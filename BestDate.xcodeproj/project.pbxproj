@@ -13,6 +13,8 @@
 		4C0E71E6284FB14A004099D4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C0E71E8284FB14A004099D4 /* Localizable.strings */; };
 		4C0E71ED284FB68E004099D4 /* CirclePointButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0E71EC284FB68E004099D4 /* CirclePointButton.swift */; };
 		4C0E71EF284FC394004099D4 /* CircleImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0E71EE284FC394004099D4 /* CircleImageButton.swift */; };
+		4C0E71F1284FC9A6004099D4 /* OnboardSecondScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0E71F0284FC9A5004099D4 /* OnboardSecondScreen.swift */; };
+		4C0E71F3284FCE7C004099D4 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0E71F2284FCE7C004099D4 /* BackButton.swift */; };
 		4C8E7D81284CC93F00D6E58D /* BestDateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8E7D80284CC93F00D6E58D /* BestDateApp.swift */; };
 		4C8E7D85284CC94900D6E58D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C8E7D84284CC94900D6E58D /* Assets.xcassets */; };
 		4C8E7D88284CC94900D6E58D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C8E7D87284CC94900D6E58D /* Preview Assets.xcassets */; };
@@ -37,6 +39,8 @@
 		4C0E71E7284FB14A004099D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4C0E71EC284FB68E004099D4 /* CirclePointButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirclePointButton.swift; sourceTree = "<group>"; };
 		4C0E71EE284FC394004099D4 /* CircleImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImageButton.swift; sourceTree = "<group>"; };
+		4C0E71F0284FC9A5004099D4 /* OnboardSecondScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardSecondScreen.swift; sourceTree = "<group>"; };
+		4C0E71F2284FCE7C004099D4 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		4C8E7D7D284CC93F00D6E58D /* BestDate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BestDate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C8E7D80284CC93F00D6E58D /* BestDateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestDateApp.swift; sourceTree = "<group>"; };
 		4C8E7D84284CC94900D6E58D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -73,6 +77,7 @@
 				4C950D62284E7D8B004E2C13 /* TextButton.swift */,
 				4C0E71EC284FB68E004099D4 /* CirclePointButton.swift */,
 				4C0E71EE284FC394004099D4 /* CircleImageButton.swift */,
+				4C0E71F2284FCE7C004099D4 /* BackButton.swift */,
 			);
 			path = butons;
 			sourceTree = "<group>";
@@ -164,6 +169,7 @@
 			children = (
 				4C8E7DAB284D252300D6E58D /* OnboardStartScreen.swift */,
 				4C950D5E284E7318004E2C13 /* AuthScreen.swift */,
+				4C0E71F0284FC9A5004099D4 /* OnboardSecondScreen.swift */,
 			);
 			path = screens;
 			sourceTree = "<group>";
@@ -263,6 +269,8 @@
 				4C8E7DAC284D252300D6E58D /* OnboardStartScreen.swift in Sources */,
 				4C950D63284E7D8B004E2C13 /* TextButton.swift in Sources */,
 				4C8E7DA6284D233100D6E58D /* Reducer.swift in Sources */,
+				4C0E71F1284FC9A6004099D4 /* OnboardSecondScreen.swift in Sources */,
+				4C0E71F3284FCE7C004099D4 /* BackButton.swift in Sources */,
 				4C950D58284E6194004E2C13 /* Extension.swift in Sources */,
 				4C8E7DA8284D23D200D6E58D /* Store.swift in Sources */,
 				4C0E71EF284FC394004099D4 /* CircleImageButton.swift in Sources */,

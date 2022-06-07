@@ -20,6 +20,7 @@ struct NavigationView: View {
             Group {
                 switch store.state.activeScreen {
                 case .ONBOARD_START: OnboardStartScreen()
+                case .ONBOARD_SECOND: OnboardSecondScreen().transition(.move(edge: .trailing))
                 case .AUTH: AuthScreen().transition(.move(edge: .trailing))
                 default: OnboardStartScreen()
                 }

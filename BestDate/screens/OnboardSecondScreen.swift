@@ -1,19 +1,19 @@
 //
-//  OnboardStartScreen.swift
+//  OnboardSecondScreen.swift
 //  BestDate
 //
-//  Created by Евгений on 05.06.2022.
+//  Created by Евгений on 08.06.2022.
 //
 
 import SwiftUI
 
-struct OnboardStartScreen: View {
+struct OnboardSecondScreen: View {
     @EnvironmentObject var store: Store
     let height = UIScreen.main.bounds.height
     
     var body: some View {
         ZStack {
-            Image("ic_decor_pink")
+            Image("ic_decor_blue")
             VStack(spacing: 0) {
                 HStack {
                     Image("ic_logoName")
@@ -28,18 +28,18 @@ struct OnboardStartScreen: View {
             let offsetHeight = (halfHeight - 250) / 2
             
             VStack(spacing: 0) {
-                Image("ic_couple_first")
+                Image("ic_couple_second")
                     .resizable()
                     .frame(width: 250, height: 250)
-            }.padding(.init(top: offsetHeight, leading: 0, bottom: halfHeight + offsetHeight, trailing: 0))
+            }.padding(.init(top: offsetHeight + 32, leading: 0, bottom: halfHeight + offsetHeight - 32, trailing: 0))
             
             VStack(spacing: 0) {
-                Text("dating_without_restrictions")
+                Text("no_loneliness_just_reality")
                     .foregroundColor(ColorList.main.color)
                     .font(MyFont.getFont(.BOLD, 38))
                     .multilineTextAlignment(.center)
                     .padding(.init(top: 20, leading: 0, bottom: 20, trailing: 0))
-                Text("communicate_and_get_to_know_people_from_all_over_the_world")
+                Text("it_s_very_simple_i_signed_off_threw_an_invitation_card_and_got_a_meeting_of_my_destiny")
                     .foregroundColor(ColorList.main_70.color)
                     .font(MyFont.getFont(.NORMAL, 18))
                     .lineSpacing(7.2)
@@ -49,17 +49,17 @@ struct OnboardStartScreen: View {
             
             VStack(spacing: 0) {
                 HStack(spacing: 10) {
+                    CirclePointButton(withOpacityRing: false) { store.dispatch(action: .navigate(screen: .ONBOARD_START)) }
                     CirclePointButton(withOpacityRing: true){ }
-                    CirclePointButton(withOpacityRing: false) { store.dispatch(action: .navigate(screen: .ONBOARD_SECOND)) }
                     CirclePointButton(withOpacityRing: false) {
                         store.dispatch(action: .navigate(screen: .AUTH))
                     }
                     Spacer()
-                    CircleImageButton(imageName: "ic_arrow_right_pink", strokeColor: MyColor.getColor(242, 138, 229, 0.18), shadowColor: MyColor.getColor(137, 117, 135, 0.63)) { store.dispatch(action: .navigate(screen: .ONBOARD_SECOND)) }
+                    CircleImageButton(imageName: "ic_arrow_right_blue", strokeColor: MyColor.getColor(190, 239, 255, 0.18), shadowColor: MyColor.getColor(117, 130, 137, 0.63)) { store.dispatch(action: .navigate(screen: .AUTH)) }
                 }.padding(.init(top: 0, leading: 32, bottom: store.state.statusBarHeight + 32, trailing: 32))
             }.frame(height: height, alignment: .bottom)
             
-        }.background(ColorList.pink.color.edgesIgnoringSafeArea(.bottom))
+        }.background(ColorList.light_blue.color.edgesIgnoringSafeArea(.bottom))
         .onAppear {
             store.dispatch(action:
                     .setScreenColors(status: ColorList.main.color, style: .lightContent))
@@ -67,8 +67,8 @@ struct OnboardStartScreen: View {
     }
 }
 
-struct OnboardStartScreen_Previews: PreviewProvider {
+struct OnboardSecondScreen_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardStartScreen()
+        OnboardSecondScreen()
     }
 }

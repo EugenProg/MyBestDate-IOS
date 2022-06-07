@@ -12,6 +12,12 @@ struct AuthScreen: View {
     
     var body: some View {
         ZStack {
+            VStack(spacing: 0) {
+                BackButton(style: .black)
+                    .padding(.init(top: 32, leading: 32, bottom: 0, trailing: 0))
+            }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .topLeading)
+                
+            
             TextButton(text: "Hello", textColor: ColorList.pink.color) {
                 store.dispatch(action: .navigationBack)
             }
