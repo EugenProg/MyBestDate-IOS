@@ -15,6 +15,13 @@
 		4C0E71EF284FC394004099D4 /* CircleImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0E71EE284FC394004099D4 /* CircleImageButton.swift */; };
 		4C0E71F1284FC9A6004099D4 /* OnboardSecondScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0E71F0284FC9A5004099D4 /* OnboardSecondScreen.swift */; };
 		4C0E71F3284FCE7C004099D4 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0E71F2284FCE7C004099D4 /* BackButton.swift */; };
+		4C3D27B9285110FA00F8FD09 /* StandardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D27B8285110F800F8FD09 /* StandardButton.swift */; };
+		4C3D27BC28511BB700F8FD09 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D27BB28511BB600F8FD09 /* Title.swift */; };
+		4C3D27BE28511DCA00F8FD09 /* HeaderText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D27BD28511DCA00F8FD09 /* HeaderText.swift */; };
+		4C3D27C0285120FC00F8FD09 /* SocialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D27BF285120FC00F8FD09 /* SocialView.swift */; };
+		4C3D27C3285244F700F8FD09 /* StandardInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D27C2285244F700F8FD09 /* StandardInputView.swift */; };
+		4C3D27C528526FA100F8FD09 /* PasswordInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D27C428526FA100F8FD09 /* PasswordInputView.swift */; };
+		4C3D27C72852792000F8FD09 /* SecondStylesTextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D27C62852792000F8FD09 /* SecondStylesTextButton.swift */; };
 		4C8E7D81284CC93F00D6E58D /* BestDateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8E7D80284CC93F00D6E58D /* BestDateApp.swift */; };
 		4C8E7D85284CC94900D6E58D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C8E7D84284CC94900D6E58D /* Assets.xcassets */; };
 		4C8E7D88284CC94900D6E58D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C8E7D87284CC94900D6E58D /* Preview Assets.xcassets */; };
@@ -41,6 +48,13 @@
 		4C0E71EE284FC394004099D4 /* CircleImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImageButton.swift; sourceTree = "<group>"; };
 		4C0E71F0284FC9A5004099D4 /* OnboardSecondScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardSecondScreen.swift; sourceTree = "<group>"; };
 		4C0E71F2284FCE7C004099D4 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
+		4C3D27B8285110F800F8FD09 /* StandardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardButton.swift; sourceTree = "<group>"; };
+		4C3D27BB28511BB600F8FD09 /* Title.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
+		4C3D27BD28511DCA00F8FD09 /* HeaderText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderText.swift; sourceTree = "<group>"; };
+		4C3D27BF285120FC00F8FD09 /* SocialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialView.swift; sourceTree = "<group>"; };
+		4C3D27C2285244F700F8FD09 /* StandardInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardInputView.swift; sourceTree = "<group>"; };
+		4C3D27C428526FA100F8FD09 /* PasswordInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordInputView.swift; sourceTree = "<group>"; };
+		4C3D27C62852792000F8FD09 /* SecondStylesTextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondStylesTextButton.swift; sourceTree = "<group>"; };
 		4C8E7D7D284CC93F00D6E58D /* BestDate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BestDate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C8E7D80284CC93F00D6E58D /* BestDateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestDateApp.swift; sourceTree = "<group>"; };
 		4C8E7D84284CC94900D6E58D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -78,8 +92,28 @@
 				4C0E71EC284FB68E004099D4 /* CirclePointButton.swift */,
 				4C0E71EE284FC394004099D4 /* CircleImageButton.swift */,
 				4C0E71F2284FCE7C004099D4 /* BackButton.swift */,
+				4C3D27B8285110F800F8FD09 /* StandardButton.swift */,
+				4C3D27C62852792000F8FD09 /* SecondStylesTextButton.swift */,
 			);
 			path = butons;
+			sourceTree = "<group>";
+		};
+		4C3D27BA28511B9A00F8FD09 /* textViews */ = {
+			isa = PBXGroup;
+			children = (
+				4C3D27BB28511BB600F8FD09 /* Title.swift */,
+				4C3D27BD28511DCA00F8FD09 /* HeaderText.swift */,
+			);
+			path = textViews;
+			sourceTree = "<group>";
+		};
+		4C3D27C1285244B100F8FD09 /* inputs */ = {
+			isa = PBXGroup;
+			children = (
+				4C3D27C2285244F700F8FD09 /* StandardInputView.swift */,
+				4C3D27C428526FA100F8FD09 /* PasswordInputView.swift */,
+			);
+			path = inputs;
 			sourceTree = "<group>";
 		};
 		4C8E7D74284CC93F00D6E58D = {
@@ -177,7 +211,10 @@
 		4C8E7DAA284D24C600D6E58D /* views */ = {
 			isa = PBXGroup;
 			children = (
+				4C3D27C1285244B100F8FD09 /* inputs */,
+				4C3D27BA28511B9A00F8FD09 /* textViews */,
 				4C0E71EB284FB60F004099D4 /* butons */,
+				4C3D27BF285120FC00F8FD09 /* SocialView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -264,10 +301,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C3D27C3285244F700F8FD09 /* StandardInputView.swift in Sources */,
 				4C8E7D99284D1E7B00D6E58D /* Color.swift in Sources */,
+				4C3D27C528526FA100F8FD09 /* PasswordInputView.swift in Sources */,
 				4C8E7DA2284D222200D6E58D /* Action.swift in Sources */,
+				4C3D27B9285110FA00F8FD09 /* StandardButton.swift in Sources */,
 				4C8E7DAC284D252300D6E58D /* OnboardStartScreen.swift in Sources */,
+				4C3D27BC28511BB700F8FD09 /* Title.swift in Sources */,
 				4C950D63284E7D8B004E2C13 /* TextButton.swift in Sources */,
+				4C3D27C72852792000F8FD09 /* SecondStylesTextButton.swift in Sources */,
 				4C8E7DA6284D233100D6E58D /* Reducer.swift in Sources */,
 				4C0E71F1284FC9A6004099D4 /* OnboardSecondScreen.swift in Sources */,
 				4C0E71F3284FCE7C004099D4 /* BackButton.swift in Sources */,
@@ -275,12 +317,14 @@
 				4C8E7DA8284D23D200D6E58D /* Store.swift in Sources */,
 				4C0E71EF284FC394004099D4 /* CircleImageButton.swift in Sources */,
 				4C950D5F284E7318004E2C13 /* AuthScreen.swift in Sources */,
+				4C3D27BE28511DCA00F8FD09 /* HeaderText.swift in Sources */,
 				4C8E7DA4284D229B00D6E58D /* AppState.swift in Sources */,
 				4C950D61284E78E8004E2C13 /* NavigationView.swift in Sources */,
 				4C0E71ED284FB68E004099D4 /* CirclePointButton.swift in Sources */,
 				4C8E7D9C284D1F0700D6E58D /* ScreenList.swift in Sources */,
 				4C8E7D81284CC93F00D6E58D /* BestDateApp.swift in Sources */,
 				4C8E7D90284D1C4000D6E58D /* Font.swift in Sources */,
+				4C3D27C0285120FC00F8FD09 /* SocialView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -38,11 +38,10 @@ final class Reducer {
                 }
             }
 
-        case .show(message: let message, screen: let screen):
+        case .show(message: let message):
             state.inProcess = false
             state.notificationText = message
             state.showMessage.toggle()
-            if (screen != nil) { state.activeScreen = screen ?? .ONBOARD_START }
 
         case .startProcess: do {
             state.inProcess = true

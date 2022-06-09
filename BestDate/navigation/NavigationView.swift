@@ -24,9 +24,12 @@ struct NavigationView: View {
                 case .AUTH: AuthScreen().transition(.move(edge: .trailing))
                 default: OnboardStartScreen()
                 }
-            }
+            }.onTapGesture(perform: { UIApplication.shared.windows.first { $0.isKeyWindow }?.endEditing(true) })
         }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
             .padding(.init(top: store.state.statusBarHeight, leading: 0, bottom: 0, trailing: 0))
+            .alert(store.state.notificationText, isPresented: $store.state.showMessage) {
+                        Button("OK", role: .cancel) { }
+                    }
     }
 }
 

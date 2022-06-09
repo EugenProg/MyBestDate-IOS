@@ -12,7 +12,7 @@ enum Action {
     case navigate(screen: ScreenList)
     case navigationBack
     case openLink(link: String)
-    case show(message: String, screen: ScreenList? = nil)
+    case show(message: String)
     case startProcess
     case endProcess
     case setStatusbarColor(color: Color)
