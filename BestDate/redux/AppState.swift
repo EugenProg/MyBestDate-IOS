@@ -10,6 +10,8 @@ import SwiftUI
 
 struct AppState {
     var activeScreen: ScreenList = ScreenList.SPLASH_SCREEN
+    var activeBottomSheet: BottomSheetList = BottomSheetList.GENDER
+    var showBottomSheet: Bool = false
     var screenStack: [ScreenList] = []
     var showMessage: Bool = false
     var notificationText: String = ""

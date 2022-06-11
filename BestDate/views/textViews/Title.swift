@@ -11,12 +11,14 @@ struct Title: View {
     var textColor: Color
     var text: String
     var textSize: CGFloat = 38
+    var paddingV: CGFloat = 10
+    var paddingH: CGFloat = 32
     
     var body: some View {
         Text(NSLocalizedString(text, comment: "title"))
             .foregroundColor(textColor)
             .font(MyFont.getFont(.BOLD, textSize))
-            .padding(.init(top: 10, leading: 32, bottom: 10, trailing: 32))
+            .padding(.init(top: paddingV, leading: paddingH, bottom: paddingV, trailing: paddingH))
     }
 }
 

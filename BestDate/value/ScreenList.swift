@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 enum ScreenList: String {
     case SPLASH_SCREEN
@@ -23,3 +24,4 @@ enum ScreenList: String {
     case PHOTO_EDITING
     case QUESTIONNAIRE
 }
+

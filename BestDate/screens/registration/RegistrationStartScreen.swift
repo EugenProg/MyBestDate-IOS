@@ -1,19 +1,20 @@
 //
-//  AuthScreen.swift
+//  RegistrationStartScreen.swift
 //  BestDate
 //
-//  Created by Евгений on 06.06.2022.
+//  Created by Евгений on 10.06.2022.
 //
 
 import SwiftUI
 
-struct AuthScreen: View {
+struct RegistrationStartScreen: View {
     @EnvironmentObject var store: Store
+    @ObservedObject var registrationHolder = RegistrationDataHolder.shared
+    
     @State var process: Bool = false
-    @State var emailInputError = false
-    @State var emailInputText: String = ""
-    @State var passInputError = false
-    @State var passInputText: String = ""
+    @State var nameInputError = false
+    @State var genderInputError = false
+    @State var birthInputError = false
     
     var body: some View {
         VStack {
@@ -28,34 +29,32 @@ struct AuthScreen: View {
                         BackButton(style: .black)
                             .padding(.init(top: 32, leading: 32, bottom: 15, trailing: 0))
                         
-                        Title(textColor: ColorList.main.color, text: "hello_login_now")
+                        Title(textColor: ColorList.main.color, text: "create_new_account")
                         
-                        HeaderText(textColor: ColorList.main_70.color, text: "welcome_to_our_kind_and_cozy_home")
+                        HeaderText(textColor: ColorList.main_70.color, text: "when_creating_a_new_account_we_recommend_that_you_read_our_privacy_policy")
                         
                         ZStack {
                             Rectangle()
                                 .fill(Color(ColorList.main.uiColor))
                                 .cornerRadius(radius: 33, corners: [.topLeft, .topRight])
                             VStack(spacing: 0) {
-                                StandardInputView(hint: "email_or_phone_number", imageName: "ic_message", inputText: $emailInputText, errorState: $emailInputError)
+                                StandardInputView(hint: "name", imageName: "ic_user", inputText: $registrationHolder.name, errorState: $nameInputError)
                                 
-                                PasswordInputView(inputText: $passInputText, errorState: $passInputError)
+                                InfoView(hint: "gender", imageName: "ic_gender", infoText: $registrationHolder.gender, errorState: $genderInputError) { store.dispatch(action: .showBottomSheet(view: .GENDER)) }
                                 
-                                SecondStylesTextButton(firstText: "forgot_password", secondText: "reset", firstTextColor: ColorList.white_60.color, secondTextColor: ColorList.white.color) {
-                                    store.dispatch(action: .navigate(screen: .PASS_RECOVERY))
-                                }.frame(width: UIScreen.main.bounds.width, alignment: .leading)
+                                InfoView(hint: "birth_date", imageName: "ic_calendar", infoText: $registrationHolder.birthDate, errorState: $birthInputError) {  }
                                 
-                                StandardButton(style: .white, title: "login", loadingProcess: $process) {
+                                StandardButton(style: .white, title: "next", loadingProcess: $process) {
                                     validate()
                                 }.padding(.init(top: 16, leading: 0, bottom: 25, trailing: 0))
                                 
-                                SecondStylesTextButton(firstText: "don_t_have_an_account", secondText: "sign_up", firstTextColor: ColorList.white_60.color, secondTextColor: ColorList.white.color) {
-                                    store.dispatch(action: .navigate(screen: .REGISTRATION_START))
+                                SecondStylesTextButton(firstText: "already_have_in_account", secondText: "login", firstTextColor: ColorList.white_60.color, secondTextColor: ColorList.white.color) {
+                                    store.dispatch(action: .navigate(screen: .AUTH))
                                 }
                                 
                                 Spacer()
                             }.padding(.init(top: 25, leading: 0, bottom: 0, trailing: 0))
-                        }.frame(width: UIScreen.main.bounds.width, height: 530 + store.state.statusBarHeight)
+                        }.frame(width: UIScreen.main.bounds.width, height: 590 + store.state.statusBarHeight)
                             .padding(.init(top: 25, leading: 0, bottom: 0, trailing: 0))
                     }
                 }
@@ -74,15 +73,20 @@ struct AuthScreen: View {
             }
     }
     
+    private func genderAction() {
+        
+    }
+    
     private func validate() {
-        if emailInputText.isEmpty { setError(errorState: $emailInputError) }
-        else if passInputText.count < 6 { setError(errorState: $passInputError) }
-        else { store.dispatch(action: .show(message: emailInputText)) }
+        if registrationHolder.name.isEmpty { nameInputError = true }
+        else if registrationHolder.gender.isEmpty { genderInputError = true }
+        else if registrationHolder.birthDate.isEmpty { birthInputError = true }
+        else { store.dispatch(action: .navigate(screen: .REGISTRATION_CONTINUE)) }
     }
 }
 
-struct AuthScreen_Previews: PreviewProvider {
+struct RegistrationStartScreen_Previews: PreviewProvider {
     static var previews: some View {
-        AuthScreen()
+        RegistrationStartScreen()
     }
 }

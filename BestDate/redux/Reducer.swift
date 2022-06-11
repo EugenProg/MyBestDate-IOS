@@ -59,6 +59,14 @@ final class Reducer {
         case .setStatusbarColor(color: let color):
             state.statusBarColor = color
             
+        case .showBottomSheet(view: let sheet): do {
+            state.activeBottomSheet = sheet
+            state.showBottomSheet = true
+        }
+            
+        case .hideBottomSheet:
+            state.showBottomSheet = false
+            
         }
         
         return state

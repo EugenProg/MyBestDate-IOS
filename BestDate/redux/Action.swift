@@ -10,6 +10,8 @@ import SwiftUI
 
 enum Action {
     case navigate(screen: ScreenList)
+    case showBottomSheet(view: BottomSheetList)
+    case hideBottomSheet
     case navigationBack
     case openLink(link: String)
     case show(message: String)

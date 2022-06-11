@@ -17,13 +17,19 @@ struct NavigationView: View {
                     .background(store.state.statusBarColor)
                 Spacer()
             }
-            Group {
-                switch store.state.activeScreen {
-                case .ONBOARD_START: OnboardStartScreen()
-                case .ONBOARD_SECOND: OnboardSecondScreen().transition(.move(edge: .trailing))
-                case .AUTH: AuthScreen().transition(.move(edge: .trailing))
-                default: OnboardStartScreen()
-                }
+            ZStack {
+                if store.state.showBottomSheet { BaseBottomSheet().zIndex(1) }
+                Group {
+                    switch store.state.activeScreen {
+                    case .ONBOARD_START: OnboardStartScreen()
+                    case .ONBOARD_SECOND: OnboardSecondScreen().transition(.move(edge: .trailing))
+                    case .AUTH: AuthScreen().transition(.move(edge: .trailing))
+                    case .REGISTRATION_START: RegistrationStartScreen()
+                    case .REGISTRATION_CONTINUE: RegistrationContinueScreen()
+                    case .REGISTRATION_OTP: RegistrationOtpScreen()
+                    default: RegistrationStartScreen()
+                    }
+                }.blur(radius: store.state.showBottomSheet ? 1.8 : 0)
             }.onTapGesture(perform: { UIApplication.shared.windows.first { $0.isKeyWindow }?.endEditing(true) })
         }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
             .padding(.init(top: store.state.statusBarHeight, leading: 0, bottom: 0, trailing: 0))
