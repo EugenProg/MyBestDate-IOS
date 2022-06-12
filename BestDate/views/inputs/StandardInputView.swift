@@ -11,9 +11,12 @@ struct StandardInputView: View {
     var errorColor = ColorList.red
     
     var hint: String
-    var imageName: String
+    var imageName: String? = nil
     @Binding var inputText: String
     @Binding var errorState: Bool
+    var inputType: UIKeyboardType = .default
+    
+    var textIsChanged: ((String) -> Void)? = nil
     
     var body: some View {
         ZStack {
@@ -29,16 +32,18 @@ struct StandardInputView: View {
                         .font(MyFont.getFont(.NORMAL, 12))
                     TextField("", text: $inputText)
                         .onChange(of: inputText) { text in
+                            if textIsChanged != nil { textIsChanged!(text) }
                             setDefault()
                         }
                         .foregroundColor(errorState ? errorColor.color : ColorList.white.color)
                         .font(MyFont.getFont(.BOLD, 20))
-                        
+                        .keyboardType(inputType)
                 }
-                Image(imageName)
-                    .renderingMode(.template)
-                    .foregroundColor(errorState ? errorColor.color : ColorList.white.color)
-                    
+                if imageName != nil {
+                    Image(imageName!)
+                        .renderingMode(.template)
+                        .foregroundColor(errorState ? errorColor.color : ColorList.white.color)
+                }
             }.padding(.init(top: 18, leading: 27, bottom: 16, trailing: 24))
             
         }

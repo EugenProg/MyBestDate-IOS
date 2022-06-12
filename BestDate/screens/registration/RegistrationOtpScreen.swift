@@ -8,8 +8,24 @@
 import SwiftUI
 
 struct RegistrationOtpScreen: View {
+    @EnvironmentObject var store: Store
+    @ObservedObject var registrationHolder = RegistrationDataHolder.shared
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        BaseOTPScreen(title: "confirmation_code",
+                      description: "on_the_email_you_specified_we_send_the_confirmation_code", email: registrationHolder.email, confirmAction: confirmAction(), resendAction: resendAction())
+    }
+    
+    private func confirmAction() -> (String) -> Void {
+        return { code in
+            store.dispatch(action: .navigate(screen: .GEO_LOCATION))
+        }
+    }
+    
+    private func resendAction() -> () -> Void {
+        return {
+            store.dispatch(action: .show(message: "resend action"))
+        }
     }
 }
 

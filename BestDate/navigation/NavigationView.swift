@@ -25,8 +25,12 @@ struct NavigationView: View {
                     case .ONBOARD_SECOND: OnboardSecondScreen().transition(.move(edge: .trailing))
                     case .AUTH: AuthScreen().transition(.move(edge: .trailing))
                     case .REGISTRATION_START: RegistrationStartScreen()
-                    case .REGISTRATION_CONTINUE: RegistrationContinueScreen()
+                    case .REGISTRATION_CONTINUE: RegistrationContinueScreen().transition(.move(edge: .trailing))
                     case .REGISTRATION_OTP: RegistrationOtpScreen()
+                    case .PASS_RECOVERY: PassRecoveryScreen()
+                    case .PASS_RECOVERY_OTP: PassRecoveryOTPScreen()
+                    case .PASS_RECOVERY_SET_NEW: PassRecoverySetNewScreen()
+                    case .GEO_LOCATION: GeolocationScreen()
                     default: RegistrationStartScreen()
                     }
                 }.blur(radius: store.state.showBottomSheet ? 1.8 : 0)

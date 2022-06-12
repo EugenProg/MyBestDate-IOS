@@ -64,3 +64,21 @@ extension View {
         UIDevice.vibrate()
     }
 }
+
+extension View {
+  @ViewBuilder func applyTextColor(_ color: Color) -> some View {
+    if UITraitCollection.current.userInterfaceStyle == .light {
+      self.colorInvert().colorMultiply(color)
+    } else {
+      self.colorMultiply(color)
+    }
+  }
+}
+
+extension Date {
+    func toString() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MMMM yyyy"
+        return formatter.string(from: self)
+    }
+}

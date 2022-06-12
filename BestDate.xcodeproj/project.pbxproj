@@ -18,6 +18,12 @@
 		4C1458F028547DE600558B6B /* BaseBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1458EF28547DE600558B6B /* BaseBottomSheet.swift */; };
 		4C1458F32855222A00558B6B /* GnderListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1458F22855222A00558B6B /* GnderListItem.swift */; };
 		4C1458F528552BE500558B6B /* RegistrationDataHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1458F428552BE500558B6B /* RegistrationDataHolder.swift */; };
+		4C1458F72855C8E900558B6B /* DateSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1458F62855C8E900558B6B /* DateSelectView.swift */; };
+		4C1458FA2855E17100558B6B /* BaseOTPScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1458F92855E17100558B6B /* BaseOTPScreen.swift */; };
+		4C1458FD285661BF00558B6B /* PassRecoveryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1458FC285661BF00558B6B /* PassRecoveryScreen.swift */; };
+		4C1458FF285661EA00558B6B /* PassRecoveryOTPScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1458FE285661EA00558B6B /* PassRecoveryOTPScreen.swift */; };
+		4C1459012856620300558B6B /* PassRecoverySetNewScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1459002856620300558B6B /* PassRecoverySetNewScreen.swift */; };
+		4C1459032856627E00558B6B /* GeolocationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1459022856627E00558B6B /* GeolocationScreen.swift */; };
 		4C3D27B9285110FA00F8FD09 /* StandardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D27B8285110F800F8FD09 /* StandardButton.swift */; };
 		4C3D27BC28511BB700F8FD09 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D27BB28511BB600F8FD09 /* Title.swift */; };
 		4C3D27BE28511DCA00F8FD09 /* HeaderText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D27BD28511DCA00F8FD09 /* HeaderText.swift */; };
@@ -60,6 +66,12 @@
 		4C1458EF28547DE600558B6B /* BaseBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseBottomSheet.swift; sourceTree = "<group>"; };
 		4C1458F22855222A00558B6B /* GnderListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GnderListItem.swift; sourceTree = "<group>"; };
 		4C1458F428552BE500558B6B /* RegistrationDataHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationDataHolder.swift; sourceTree = "<group>"; };
+		4C1458F62855C8E900558B6B /* DateSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelectView.swift; sourceTree = "<group>"; };
+		4C1458F92855E17100558B6B /* BaseOTPScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseOTPScreen.swift; sourceTree = "<group>"; };
+		4C1458FC285661BF00558B6B /* PassRecoveryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassRecoveryScreen.swift; sourceTree = "<group>"; };
+		4C1458FE285661EA00558B6B /* PassRecoveryOTPScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassRecoveryOTPScreen.swift; sourceTree = "<group>"; };
+		4C1459002856620300558B6B /* PassRecoverySetNewScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassRecoverySetNewScreen.swift; sourceTree = "<group>"; };
+		4C1459022856627E00558B6B /* GeolocationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeolocationScreen.swift; sourceTree = "<group>"; };
 		4C3D27B8285110F800F8FD09 /* StandardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardButton.swift; sourceTree = "<group>"; };
 		4C3D27BB28511BB600F8FD09 /* Title.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
 		4C3D27BD28511DCA00F8FD09 /* HeaderText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderText.swift; sourceTree = "<group>"; };
@@ -125,6 +137,24 @@
 			path = GenderSheet;
 			sourceTree = "<group>";
 		};
+		4C1458F82855E15900558B6B /* base */ = {
+			isa = PBXGroup;
+			children = (
+				4C1458F92855E17100558B6B /* BaseOTPScreen.swift */,
+			);
+			path = base;
+			sourceTree = "<group>";
+		};
+		4C1458FB285660F800558B6B /* recovery */ = {
+			isa = PBXGroup;
+			children = (
+				4C1458FC285661BF00558B6B /* PassRecoveryScreen.swift */,
+				4C1458FE285661EA00558B6B /* PassRecoveryOTPScreen.swift */,
+				4C1459002856620300558B6B /* PassRecoverySetNewScreen.swift */,
+			);
+			path = recovery;
+			sourceTree = "<group>";
+		};
 		4C3D27BA28511B9A00F8FD09 /* textViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,8 +167,10 @@
 		4C3D27C1285244B100F8FD09 /* inputs */ = {
 			isa = PBXGroup;
 			children = (
+				4C3D27D42853B0B500F8FD09 /* InfoView.swift */,
 				4C3D27C2285244F700F8FD09 /* StandardInputView.swift */,
 				4C3D27C428526FA100F8FD09 /* PasswordInputView.swift */,
+				4C1458F62855C8E900558B6B /* DateSelectView.swift */,
 			);
 			path = inputs;
 			sourceTree = "<group>";
@@ -182,11 +214,11 @@
 		4C8E7D7F284CC93F00D6E58D /* BestDate */ = {
 			isa = PBXGroup;
 			children = (
-				4C950D59284E6C4C004E2C13 /* Info.plist */,
 				4C8E7D84284CC94900D6E58D /* Assets.xcassets */,
 				4C8E7D80284CC93F00D6E58D /* BestDateApp.swift */,
 				4C950D56284E6171004E2C13 /* extensions */,
 				4C8E7D91284D1D2900D6E58D /* Fonts */,
+				4C950D59284E6C4C004E2C13 /* Info.plist */,
 				4C8E7D9D284D20A900D6E58D /* navigation */,
 				4C8E7D86284CC94900D6E58D /* Preview Content */,
 				4C8E7DA0284D21DA00D6E58D /* redux */,
@@ -249,10 +281,13 @@
 		4C8E7DA9284D24BC00D6E58D /* screens */ = {
 			isa = PBXGroup;
 			children = (
+				4C1458FB285660F800558B6B /* recovery */,
+				4C1458F82855E15900558B6B /* base */,
 				4C3D27C828539BAE00F8FD09 /* registration */,
 				4C8E7DAB284D252300D6E58D /* OnboardStartScreen.swift */,
 				4C950D5E284E7318004E2C13 /* AuthScreen.swift */,
 				4C0E71F0284FC9A5004099D4 /* OnboardSecondScreen.swift */,
+				4C1459022856627E00558B6B /* GeolocationScreen.swift */,
 			);
 			path = screens;
 			sourceTree = "<group>";
@@ -265,7 +300,6 @@
 				4C3D27BA28511B9A00F8FD09 /* textViews */,
 				4C0E71EB284FB60F004099D4 /* butons */,
 				4C3D27BF285120FC00F8FD09 /* SocialView.swift */,
-				4C3D27D42853B0B500F8FD09 /* InfoView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -358,9 +392,12 @@
 			files = (
 				4C3D27CE28539CD300F8FD09 /* RegistrationOtpScreen.swift in Sources */,
 				4C3D27C3285244F700F8FD09 /* StandardInputView.swift in Sources */,
+				4C1458FF285661EA00558B6B /* PassRecoveryOTPScreen.swift in Sources */,
+				4C1458F72855C8E900558B6B /* DateSelectView.swift in Sources */,
 				4C3D27D02853A37F00F8FD09 /* BottomSheetList.swift in Sources */,
 				4C8E7D99284D1E7B00D6E58D /* Color.swift in Sources */,
 				4C3D27C528526FA100F8FD09 /* PasswordInputView.swift in Sources */,
+				4C1459012856620300558B6B /* PassRecoverySetNewScreen.swift in Sources */,
 				4C8E7DA2284D222200D6E58D /* Action.swift in Sources */,
 				4C3D27B9285110FA00F8FD09 /* StandardButton.swift in Sources */,
 				4C8E7DAC284D252300D6E58D /* OnboardStartScreen.swift in Sources */,
@@ -373,11 +410,13 @@
 				4C0E71F1284FC9A6004099D4 /* OnboardSecondScreen.swift in Sources */,
 				4C1458F528552BE500558B6B /* RegistrationDataHolder.swift in Sources */,
 				4C0E71F3284FCE7C004099D4 /* BackButton.swift in Sources */,
+				4C1459032856627E00558B6B /* GeolocationScreen.swift in Sources */,
 				4C950D58284E6194004E2C13 /* Extension.swift in Sources */,
 				4C3D27D32853A66A00F8FD09 /* GenderBottomSheet.swift in Sources */,
 				4C8E7DA8284D23D200D6E58D /* Store.swift in Sources */,
 				4C0E71EF284FC394004099D4 /* CircleImageButton.swift in Sources */,
 				4C950D5F284E7318004E2C13 /* AuthScreen.swift in Sources */,
+				4C1458FA2855E17100558B6B /* BaseOTPScreen.swift in Sources */,
 				4C3D27BE28511DCA00F8FD09 /* HeaderText.swift in Sources */,
 				4C8E7DA4284D229B00D6E58D /* AppState.swift in Sources */,
 				4C950D61284E78E8004E2C13 /* NavigationView.swift in Sources */,
@@ -387,6 +426,7 @@
 				4C8E7D81284CC93F00D6E58D /* BestDateApp.swift in Sources */,
 				4C8E7D90284D1C4000D6E58D /* Font.swift in Sources */,
 				4C3D27CA28539C3500F8FD09 /* RegistrationStartScreen.swift in Sources */,
+				4C1458FD285661BF00558B6B /* PassRecoveryScreen.swift in Sources */,
 				4C3D27D52853B0B500F8FD09 /* InfoView.swift in Sources */,
 				4C3D27C0285120FC00F8FD09 /* SocialView.swift in Sources */,
 			);

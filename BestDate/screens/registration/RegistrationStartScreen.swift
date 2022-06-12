@@ -14,7 +14,6 @@ struct RegistrationStartScreen: View {
     @State var process: Bool = false
     @State var nameInputError = false
     @State var genderInputError = false
-    @State var birthInputError = false
     
     var body: some View {
         VStack {
@@ -42,7 +41,7 @@ struct RegistrationStartScreen: View {
                                 
                                 InfoView(hint: "gender", imageName: "ic_gender", infoText: $registrationHolder.gender, errorState: $genderInputError) { store.dispatch(action: .showBottomSheet(view: .GENDER)) }
                                 
-                                InfoView(hint: "birth_date", imageName: "ic_calendar", infoText: $registrationHolder.birthDate, errorState: $birthInputError) {  }
+                                DateSelectView(hint: "birth_date", imageName: "ic_calendar", date: $registrationHolder.birthDate)
                                 
                                 StandardButton(style: .white, title: "next", loadingProcess: $process) {
                                     validate()
@@ -73,14 +72,9 @@ struct RegistrationStartScreen: View {
             }
     }
     
-    private func genderAction() {
-        
-    }
-    
     private func validate() {
         if registrationHolder.name.isEmpty { nameInputError = true }
         else if registrationHolder.gender.isEmpty { genderInputError = true }
-        else if registrationHolder.birthDate.isEmpty { birthInputError = true }
         else { store.dispatch(action: .navigate(screen: .REGISTRATION_CONTINUE)) }
     }
 }

@@ -24,7 +24,7 @@ struct GnderListItem: View {
         }.frame(width: UIScreen.main.bounds.width - 36, height: 61)
             .padding(.init(top: 0, leading: 18, bottom: 0, trailing: 18))
             .onTapGesture {
-                clickAction(text)
+                clickAction(NSLocalizedString(text, comment: "text"))
             }
     }
 }

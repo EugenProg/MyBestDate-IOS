@@ -13,6 +13,7 @@ final class RegistrationDataHolder: ObservableObject {
     @Published var gender: String = ""
     @Published var email: String = ""
     @Published var phone: String = ""
-    @Published var birthDate: String = ""
+    @Published var birthDate: Date = Calendar.current.date(byAdding: .year, value: -18, to: Date())!
     @Published var name: String = ""
+    @Published var password: String = ""
 }
