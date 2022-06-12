@@ -24,6 +24,7 @@
 		4C1458FF285661EA00558B6B /* PassRecoveryOTPScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1458FE285661EA00558B6B /* PassRecoveryOTPScreen.swift */; };
 		4C1459012856620300558B6B /* PassRecoverySetNewScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1459002856620300558B6B /* PassRecoverySetNewScreen.swift */; };
 		4C1459032856627E00558B6B /* GeolocationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1459022856627E00558B6B /* GeolocationScreen.swift */; };
+		4C145905285664AA00558B6B /* RecoveryDataHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C145904285664AA00558B6B /* RecoveryDataHolder.swift */; };
 		4C3D27B9285110FA00F8FD09 /* StandardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D27B8285110F800F8FD09 /* StandardButton.swift */; };
 		4C3D27BC28511BB700F8FD09 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D27BB28511BB600F8FD09 /* Title.swift */; };
 		4C3D27BE28511DCA00F8FD09 /* HeaderText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D27BD28511DCA00F8FD09 /* HeaderText.swift */; };
@@ -72,6 +73,7 @@
 		4C1458FE285661EA00558B6B /* PassRecoveryOTPScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassRecoveryOTPScreen.swift; sourceTree = "<group>"; };
 		4C1459002856620300558B6B /* PassRecoverySetNewScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassRecoverySetNewScreen.swift; sourceTree = "<group>"; };
 		4C1459022856627E00558B6B /* GeolocationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeolocationScreen.swift; sourceTree = "<group>"; };
+		4C145904285664AA00558B6B /* RecoveryDataHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryDataHolder.swift; sourceTree = "<group>"; };
 		4C3D27B8285110F800F8FD09 /* StandardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardButton.swift; sourceTree = "<group>"; };
 		4C3D27BB28511BB600F8FD09 /* Title.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
 		4C3D27BD28511DCA00F8FD09 /* HeaderText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderText.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				4C1458FC285661BF00558B6B /* PassRecoveryScreen.swift */,
 				4C1458FE285661EA00558B6B /* PassRecoveryOTPScreen.swift */,
 				4C1459002856620300558B6B /* PassRecoverySetNewScreen.swift */,
+				4C145904285664AA00558B6B /* RecoveryDataHolder.swift */,
 			);
 			path = recovery;
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 				4C1459012856620300558B6B /* PassRecoverySetNewScreen.swift in Sources */,
 				4C8E7DA2284D222200D6E58D /* Action.swift in Sources */,
 				4C3D27B9285110FA00F8FD09 /* StandardButton.swift in Sources */,
+				4C145905285664AA00558B6B /* RecoveryDataHolder.swift in Sources */,
 				4C8E7DAC284D252300D6E58D /* OnboardStartScreen.swift in Sources */,
 				4C3D27BC28511BB700F8FD09 /* Title.swift in Sources */,
 				4C1458F32855222A00558B6B /* GnderListItem.swift in Sources */,
