@@ -8,8 +8,51 @@
 import SwiftUI
 
 struct PassRecoverySetNewScreen: View {
+    @EnvironmentObject var store: Store
+    @ObservedObject var recoveryHolder = RecoveryDataHolder.shared
+    
+    @State var process: Bool = false
+    @State var passInputError: Bool = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            ZStack {
+                VStack(alignment: .leading, spacing: 0) {
+                    BackButton(style: .black)
+                        .padding(.init(top: 32, leading: 32, bottom: 15, trailing: 0))
+                    
+                    Title(textColor: ColorList.main.color, text: "set_new_password")
+                    
+                    HeaderText(textColor: ColorList.main_70.color, text: "create_a_new_password_for_your_profile_password_must_be_at_least_6_characters")
+                    
+                    ZStack {
+                        Rectangle()
+                            .fill(Color(ColorList.main.uiColor))
+                            .cornerRadius(radius: 33, corners: [.topLeft, .topRight])
+                        VStack(spacing: 0) {
+                            PasswordInputView(hint: "enter_a_new_password", inputText: $recoveryHolder.newPass, errorState: $passInputError)
+                            
+                            StandardButton(style: .white, title: "install_and_login", loadingProcess: $process) {
+                                validate()
+                            }.padding(.init(top: 16, leading: 0, bottom: 25, trailing: 0))
+                            
+                            Spacer()
+                        }.padding(.init(top: 25, leading: 0, bottom: 0, trailing: 0))
+                    }.frame(width: UIScreen.main.bounds.width)
+                        .padding(.init(top: 25, leading: 0, bottom: 0, trailing: 0))
+                }
+            }
+        }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .topLeading)
+            .background(ColorList.white.color.edgesIgnoringSafeArea(.bottom))
+            .onAppear {
+                store.dispatch(action:
+                        .setScreenColors(status: ColorList.white.color, style: .darkContent))
+            }
+    }
+    
+    private func validate() {
+        if recoveryHolder.newPass.isEmpty { passInputError = true }
+        else {  }
     }
 }
 

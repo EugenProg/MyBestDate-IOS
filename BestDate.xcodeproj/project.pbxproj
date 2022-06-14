@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C022A372858EE2B0043E49D /* ProfilePhotoScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C022A362858EE2B0043E49D /* ProfilePhotoScreen.swift */; };
+		4C022A392858EE510043E49D /* PhotoEditingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C022A382858EE510043E49D /* PhotoEditingScreen.swift */; };
+		4C022A3B285903530043E49D /* HorisontalPhotoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C022A3A285903530043E49D /* HorisontalPhotoListView.swift */; };
+		4C022A3F28590B8C0043E49D /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C022A3E28590B8C0043E49D /* ImagePicker.swift */; };
+		4C022A4128590BE10043E49D /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C022A4028590BE10043E49D /* Media.swift */; };
+		4C022A4328591A2B0043E49D /* BluredImageHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C022A4228591A2B0043E49D /* BluredImageHeaderView.swift */; };
 		4C0E71DF284FAAF3004099D4 /* SansPro_bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4C0E71DC284FAAF3004099D4 /* SansPro_bold.otf */; };
 		4C0E71E0284FAAF3004099D4 /* SansPro_italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4C0E71DD284FAAF3004099D4 /* SansPro_italic.otf */; };
 		4C0E71E1284FAAF3004099D4 /* SansPro_regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4C0E71DE284FAAF3004099D4 /* SansPro_regular.otf */; };
@@ -25,6 +31,7 @@
 		4C1459012856620300558B6B /* PassRecoverySetNewScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1459002856620300558B6B /* PassRecoverySetNewScreen.swift */; };
 		4C1459032856627E00558B6B /* GeolocationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1459022856627E00558B6B /* GeolocationScreen.swift */; };
 		4C145905285664AA00558B6B /* RecoveryDataHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C145904285664AA00558B6B /* RecoveryDataHolder.swift */; };
+		4C1459072857926700558B6B /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C1459062857926700558B6B /* SplashScreen.storyboard */; };
 		4C3D27B9285110FA00F8FD09 /* StandardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D27B8285110F800F8FD09 /* StandardButton.swift */; };
 		4C3D27BC28511BB700F8FD09 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D27BB28511BB600F8FD09 /* Title.swift */; };
 		4C3D27BE28511DCA00F8FD09 /* HeaderText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D27BD28511DCA00F8FD09 /* HeaderText.swift */; };
@@ -56,6 +63,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C022A362858EE2B0043E49D /* ProfilePhotoScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoScreen.swift; sourceTree = "<group>"; };
+		4C022A382858EE510043E49D /* PhotoEditingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoEditingScreen.swift; sourceTree = "<group>"; };
+		4C022A3A285903530043E49D /* HorisontalPhotoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorisontalPhotoListView.swift; sourceTree = "<group>"; };
+		4C022A3E28590B8C0043E49D /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		4C022A4028590BE10043E49D /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
+		4C022A4228591A2B0043E49D /* BluredImageHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluredImageHeaderView.swift; sourceTree = "<group>"; };
 		4C0E71DC284FAAF3004099D4 /* SansPro_bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SansPro_bold.otf; sourceTree = "<group>"; };
 		4C0E71DD284FAAF3004099D4 /* SansPro_italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SansPro_italic.otf; sourceTree = "<group>"; };
 		4C0E71DE284FAAF3004099D4 /* SansPro_regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SansPro_regular.otf; sourceTree = "<group>"; };
@@ -74,6 +87,7 @@
 		4C1459002856620300558B6B /* PassRecoverySetNewScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassRecoverySetNewScreen.swift; sourceTree = "<group>"; };
 		4C1459022856627E00558B6B /* GeolocationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeolocationScreen.swift; sourceTree = "<group>"; };
 		4C145904285664AA00558B6B /* RecoveryDataHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryDataHolder.swift; sourceTree = "<group>"; };
+		4C1459062857926700558B6B /* SplashScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SplashScreen.storyboard; sourceTree = "<group>"; };
 		4C3D27B8285110F800F8FD09 /* StandardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardButton.swift; sourceTree = "<group>"; };
 		4C3D27BB28511BB600F8FD09 /* Title.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
 		4C3D27BD28511DCA00F8FD09 /* HeaderText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderText.swift; sourceTree = "<group>"; };
@@ -117,6 +131,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C022A352858ED570043E49D /* profile photo */ = {
+			isa = PBXGroup;
+			children = (
+				4C022A362858EE2B0043E49D /* ProfilePhotoScreen.swift */,
+				4C022A382858EE510043E49D /* PhotoEditingScreen.swift */,
+			);
+			path = "profile photo";
+			sourceTree = "<group>";
+		};
+		4C022A3C28590B600043E49D /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				4C022A3D28590B6A0043E49D /* imagePicker */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		4C022A3D28590B6A0043E49D /* imagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				4C022A3E28590B8C0043E49D /* ImagePicker.swift */,
+				4C022A4028590BE10043E49D /* Media.swift */,
+			);
+			path = imagePicker;
+			sourceTree = "<group>";
+		};
 		4C0E71EB284FB60F004099D4 /* butons */ = {
 			isa = PBXGroup;
 			children = (
@@ -217,6 +257,7 @@
 		4C8E7D7F284CC93F00D6E58D /* BestDate */ = {
 			isa = PBXGroup;
 			children = (
+				4C022A3C28590B600043E49D /* utils */,
 				4C8E7D84284CC94900D6E58D /* Assets.xcassets */,
 				4C8E7D80284CC93F00D6E58D /* BestDateApp.swift */,
 				4C950D56284E6171004E2C13 /* extensions */,
@@ -284,6 +325,7 @@
 		4C8E7DA9284D24BC00D6E58D /* screens */ = {
 			isa = PBXGroup;
 			children = (
+				4C022A352858ED570043E49D /* profile photo */,
 				4C1458FB285660F800558B6B /* recovery */,
 				4C1458F82855E15900558B6B /* base */,
 				4C3D27C828539BAE00F8FD09 /* registration */,
@@ -291,6 +333,7 @@
 				4C950D5E284E7318004E2C13 /* AuthScreen.swift */,
 				4C0E71F0284FC9A5004099D4 /* OnboardSecondScreen.swift */,
 				4C1459022856627E00558B6B /* GeolocationScreen.swift */,
+				4C1459062857926700558B6B /* SplashScreen.storyboard */,
 			);
 			path = screens;
 			sourceTree = "<group>";
@@ -303,6 +346,8 @@
 				4C3D27BA28511B9A00F8FD09 /* textViews */,
 				4C0E71EB284FB60F004099D4 /* butons */,
 				4C3D27BF285120FC00F8FD09 /* SocialView.swift */,
+				4C022A3A285903530043E49D /* HorisontalPhotoListView.swift */,
+				4C022A4228591A2B0043E49D /* BluredImageHeaderView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -383,6 +428,7 @@
 				4C0E71DF284FAAF3004099D4 /* SansPro_bold.otf in Resources */,
 				4C8E7D85284CC94900D6E58D /* Assets.xcassets in Resources */,
 				4C0E71E0284FAAF3004099D4 /* SansPro_italic.otf in Resources */,
+				4C1459072857926700558B6B /* SplashScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,18 +441,22 @@
 			files = (
 				4C3D27CE28539CD300F8FD09 /* RegistrationOtpScreen.swift in Sources */,
 				4C3D27C3285244F700F8FD09 /* StandardInputView.swift in Sources */,
+				4C022A372858EE2B0043E49D /* ProfilePhotoScreen.swift in Sources */,
 				4C1458FF285661EA00558B6B /* PassRecoveryOTPScreen.swift in Sources */,
 				4C1458F72855C8E900558B6B /* DateSelectView.swift in Sources */,
 				4C3D27D02853A37F00F8FD09 /* BottomSheetList.swift in Sources */,
 				4C8E7D99284D1E7B00D6E58D /* Color.swift in Sources */,
 				4C3D27C528526FA100F8FD09 /* PasswordInputView.swift in Sources */,
 				4C1459012856620300558B6B /* PassRecoverySetNewScreen.swift in Sources */,
+				4C022A4328591A2B0043E49D /* BluredImageHeaderView.swift in Sources */,
 				4C8E7DA2284D222200D6E58D /* Action.swift in Sources */,
 				4C3D27B9285110FA00F8FD09 /* StandardButton.swift in Sources */,
 				4C145905285664AA00558B6B /* RecoveryDataHolder.swift in Sources */,
 				4C8E7DAC284D252300D6E58D /* OnboardStartScreen.swift in Sources */,
 				4C3D27BC28511BB700F8FD09 /* Title.swift in Sources */,
+				4C022A4128590BE10043E49D /* Media.swift in Sources */,
 				4C1458F32855222A00558B6B /* GnderListItem.swift in Sources */,
+				4C022A3B285903530043E49D /* HorisontalPhotoListView.swift in Sources */,
 				4C950D63284E7D8B004E2C13 /* TextButton.swift in Sources */,
 				4C1458F028547DE600558B6B /* BaseBottomSheet.swift in Sources */,
 				4C3D27C72852792000F8FD09 /* SecondStylesTextButton.swift in Sources */,
@@ -420,9 +470,11 @@
 				4C8E7DA8284D23D200D6E58D /* Store.swift in Sources */,
 				4C0E71EF284FC394004099D4 /* CircleImageButton.swift in Sources */,
 				4C950D5F284E7318004E2C13 /* AuthScreen.swift in Sources */,
+				4C022A3F28590B8C0043E49D /* ImagePicker.swift in Sources */,
 				4C1458FA2855E17100558B6B /* BaseOTPScreen.swift in Sources */,
 				4C3D27BE28511DCA00F8FD09 /* HeaderText.swift in Sources */,
 				4C8E7DA4284D229B00D6E58D /* AppState.swift in Sources */,
+				4C022A392858EE510043E49D /* PhotoEditingScreen.swift in Sources */,
 				4C950D61284E78E8004E2C13 /* NavigationView.swift in Sources */,
 				4C0E71ED284FB68E004099D4 /* CirclePointButton.swift in Sources */,
 				4C3D27CC28539C8800F8FD09 /* RegistrationContinueScreen.swift in Sources */,
@@ -576,9 +628,12 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BestDate/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Best date";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = SplashScreen;
 				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -608,9 +663,12 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BestDate/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Best date";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = SplashScreen;
 				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

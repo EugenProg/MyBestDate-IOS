@@ -31,7 +31,9 @@ struct NavigationView: View {
                     case .PASS_RECOVERY_OTP: PassRecoveryOTPScreen()
                     case .PASS_RECOVERY_SET_NEW: PassRecoverySetNewScreen()
                     case .GEO_LOCATION: GeolocationScreen()
-                    default: RegistrationStartScreen()
+                    case .PROFILE_PHOTO: ProfilePhotoScreen()
+                    case .PHOTO_EDITING: PhotoEditingScreen().transition(.move(edge: .bottom))
+                    default: ProfilePhotoScreen()
                     }
                 }.blur(radius: store.state.showBottomSheet ? 1.8 : 0)
             }.onTapGesture(perform: { UIApplication.shared.windows.first { $0.isKeyWindow }?.endEditing(true) })

@@ -27,6 +27,8 @@ class MyColor {
 }
 
 enum ColorList {
+    case transparent
+    
     case main
     case main_5
     case main_10
@@ -59,6 +61,8 @@ enum ColorList {
     
     var color: Color {
         switch self {
+        case .transparent: return MyColor.getColor(0, 0, 0, 0)
+            
         case .main: return MyColor.getColor(40, 48, 52)
         case .main_5: return MyColor.getColor(40, 48, 52, 0.05)
         case .main_10: return MyColor.getColor(40, 48, 52, 0.1)
@@ -90,6 +94,8 @@ enum ColorList {
     
     var uiColor: UIColor {
         switch self {
+        case .transparent: return MyColor.getColor(0, 0, 0, 0)
+            
         case .main: return MyColor.getColor(40, 48, 52)
         case .main_5: return MyColor.getColor(40, 48, 52, 0.05)
         case .main_10: return MyColor.getColor(40, 48, 52, 0.1)

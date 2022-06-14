@@ -12,6 +12,5 @@ class RecoveryDataHolder: ObservableObject {
     
     @Published var email: String = ""
     @Published var phone: String = ""
-    @Published var code: String = ""
     @Published var newPass: String = ""
 }

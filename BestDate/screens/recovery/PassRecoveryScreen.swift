@@ -30,7 +30,7 @@ struct PassRecoveryScreen: View {
                             .fill(Color(ColorList.main.uiColor))
                             .cornerRadius(radius: 33, corners: [.topLeft, .topRight])
                         VStack(spacing: 0) {
-                            StandardInputView(hint: "enter_the_confirmation_code", imageName: nil, inputText: $recoveryHolder.email, errorState: $emailInputError, inputType: .emailAddress)
+                            StandardInputView(hint: "email_or_phone_number", imageName: "ic_message", inputText: $recoveryHolder.email, errorState: $emailInputError, inputType: .emailAddress)
                             
                             StandardButton(style: .white, title: "next", loadingProcess: $process) {
                                 validate()
