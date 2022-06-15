@@ -13,6 +13,9 @@
 		4C022A3F28590B8C0043E49D /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C022A3E28590B8C0043E49D /* ImagePicker.swift */; };
 		4C022A4128590BE10043E49D /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C022A4028590BE10043E49D /* Media.swift */; };
 		4C022A4328591A2B0043E49D /* BluredImageHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C022A4228591A2B0043E49D /* BluredImageHeaderView.swift */; };
+		4C022A45285A38920043E49D /* SwichSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C022A44285A38920043E49D /* SwichSelectorView.swift */; };
+		4C022A48285A409E0043E49D /* SwitchButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C022A47285A409E0043E49D /* SwitchButtonView.swift */; };
+		4C022A4B285A470B0043E49D /* PhotoSettingsBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C022A4A285A470B0043E49D /* PhotoSettingsBottomSheet.swift */; };
 		4C0E71DF284FAAF3004099D4 /* SansPro_bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4C0E71DC284FAAF3004099D4 /* SansPro_bold.otf */; };
 		4C0E71E0284FAAF3004099D4 /* SansPro_italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4C0E71DD284FAAF3004099D4 /* SansPro_italic.otf */; };
 		4C0E71E1284FAAF3004099D4 /* SansPro_regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4C0E71DE284FAAF3004099D4 /* SansPro_regular.otf */; };
@@ -69,6 +72,9 @@
 		4C022A3E28590B8C0043E49D /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		4C022A4028590BE10043E49D /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		4C022A4228591A2B0043E49D /* BluredImageHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluredImageHeaderView.swift; sourceTree = "<group>"; };
+		4C022A44285A38920043E49D /* SwichSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwichSelectorView.swift; sourceTree = "<group>"; };
+		4C022A47285A409E0043E49D /* SwitchButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchButtonView.swift; sourceTree = "<group>"; };
+		4C022A4A285A470B0043E49D /* PhotoSettingsBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSettingsBottomSheet.swift; sourceTree = "<group>"; };
 		4C0E71DC284FAAF3004099D4 /* SansPro_bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SansPro_bold.otf; sourceTree = "<group>"; };
 		4C0E71DD284FAAF3004099D4 /* SansPro_italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SansPro_italic.otf; sourceTree = "<group>"; };
 		4C0E71DE284FAAF3004099D4 /* SansPro_regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SansPro_regular.otf; sourceTree = "<group>"; };
@@ -157,6 +163,23 @@
 			path = imagePicker;
 			sourceTree = "<group>";
 		};
+		4C022A46285A40700043E49D /* switchSelector */ = {
+			isa = PBXGroup;
+			children = (
+				4C022A44285A38920043E49D /* SwichSelectorView.swift */,
+				4C022A47285A409E0043E49D /* SwitchButtonView.swift */,
+			);
+			path = switchSelector;
+			sourceTree = "<group>";
+		};
+		4C022A49285A465E0043E49D /* PhotoSettingsSheet */ = {
+			isa = PBXGroup;
+			children = (
+				4C022A4A285A470B0043E49D /* PhotoSettingsBottomSheet.swift */,
+			);
+			path = PhotoSettingsSheet;
+			sourceTree = "<group>";
+		};
 		4C0E71EB284FB60F004099D4 /* butons */ = {
 			isa = PBXGroup;
 			children = (
@@ -232,6 +255,7 @@
 		4C3D27D12853A62700F8FD09 /* bottomSheet */ = {
 			isa = PBXGroup;
 			children = (
+				4C022A49285A465E0043E49D /* PhotoSettingsSheet */,
 				4C1458F12855202D00558B6B /* GenderSheet */,
 				4C1458EF28547DE600558B6B /* BaseBottomSheet.swift */,
 			);
@@ -341,6 +365,7 @@
 		4C8E7DAA284D24C600D6E58D /* views */ = {
 			isa = PBXGroup;
 			children = (
+				4C022A46285A40700043E49D /* switchSelector */,
 				4C3D27D12853A62700F8FD09 /* bottomSheet */,
 				4C3D27C1285244B100F8FD09 /* inputs */,
 				4C3D27BA28511B9A00F8FD09 /* textViews */,
@@ -457,6 +482,7 @@
 				4C022A4128590BE10043E49D /* Media.swift in Sources */,
 				4C1458F32855222A00558B6B /* GnderListItem.swift in Sources */,
 				4C022A3B285903530043E49D /* HorisontalPhotoListView.swift in Sources */,
+				4C022A45285A38920043E49D /* SwichSelectorView.swift in Sources */,
 				4C950D63284E7D8B004E2C13 /* TextButton.swift in Sources */,
 				4C1458F028547DE600558B6B /* BaseBottomSheet.swift in Sources */,
 				4C3D27C72852792000F8FD09 /* SecondStylesTextButton.swift in Sources */,
@@ -469,6 +495,7 @@
 				4C3D27D32853A66A00F8FD09 /* GenderBottomSheet.swift in Sources */,
 				4C8E7DA8284D23D200D6E58D /* Store.swift in Sources */,
 				4C0E71EF284FC394004099D4 /* CircleImageButton.swift in Sources */,
+				4C022A4B285A470B0043E49D /* PhotoSettingsBottomSheet.swift in Sources */,
 				4C950D5F284E7318004E2C13 /* AuthScreen.swift in Sources */,
 				4C022A3F28590B8C0043E49D /* ImagePicker.swift in Sources */,
 				4C1458FA2855E17100558B6B /* BaseOTPScreen.swift in Sources */,
@@ -480,6 +507,7 @@
 				4C3D27CC28539C8800F8FD09 /* RegistrationContinueScreen.swift in Sources */,
 				4C8E7D9C284D1F0700D6E58D /* ScreenList.swift in Sources */,
 				4C8E7D81284CC93F00D6E58D /* BestDateApp.swift in Sources */,
+				4C022A48285A409E0043E49D /* SwitchButtonView.swift in Sources */,
 				4C8E7D90284D1C4000D6E58D /* Font.swift in Sources */,
 				4C3D27CA28539C3500F8FD09 /* RegistrationStartScreen.swift in Sources */,
 				4C1458FD285661BF00558B6B /* PassRecoveryScreen.swift in Sources */,

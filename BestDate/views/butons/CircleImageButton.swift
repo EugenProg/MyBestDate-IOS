@@ -9,8 +9,9 @@ import SwiftUI
 
 struct CircleImageButton: View {
     var imageName: String
-    var strokeColor: Color
+    var strokeColor: UIColor
     var shadowColor: Color
+    var circleSize: CircleSize = .LARGE
     var clickAction: () -> Void
     
     
@@ -20,11 +21,11 @@ struct CircleImageButton: View {
         }) {
             ZStack {
                 Circle()
-                    .stroke(Color(ColorList.pink_18.uiColor), lineWidth: 1)
-                    .frame(width: 56, height: 56)
+                    .stroke(Color(strokeColor), lineWidth: 1)
+                    .frame(width: circleSize.size, height: circleSize.size)
                     .background(Color(ColorList.main.uiColor))
-                    .cornerRadius(56)
-                    .shadow(color: shadowColor, radius: 46, y: 23)
+                    .cornerRadius(circleSize.size / 2)
+                    .shadow(color: shadowColor, radius: 6, y: 3)
                 Image(imageName)
             }
         }
@@ -34,5 +35,17 @@ struct CircleImageButton: View {
 struct CircleImageButton_Previews: PreviewProvider {
     static var previews: some View {
         CircleImageButton(imageName: "", strokeColor: .white, shadowColor: .pink) { }
+    }
+}
+
+enum CircleSize: String {
+    case SMALL
+    case LARGE
+    
+    var size: CGFloat {
+        switch self {
+        case .SMALL: return 44
+        case .LARGE: return 56
+        }
     }
 }

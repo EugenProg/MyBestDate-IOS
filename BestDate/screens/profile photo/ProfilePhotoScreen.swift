@@ -52,7 +52,7 @@ struct ProfilePhotoScreen: View {
                         Spacer()
                         
                         TextButton(text: "next", textColor: ColorList.white.color) {
-                            
+                            store.dispatch(action: .navigate(screen: .QUESTIONNAIRE))
                         }
                     }.padding(.init(top: 32, leading: 32, bottom: 15, trailing: 32))
                     
@@ -83,7 +83,8 @@ struct ProfilePhotoScreen: View {
                                 .padding(.init(top: 16, leading: 0, bottom: 0, trailing: 0))
                             
                             HorisontalPhotoListView(imagesList: $registrationHolder.imageList) { image in
-                                store.dispatch(action: .show(message: "message"))
+                                registrationHolder.selectedImage = image
+                                store.dispatch(action: .showBottomSheet(view: .PHOTO_SETTINGS))
                             }
                             
                             Spacer()
