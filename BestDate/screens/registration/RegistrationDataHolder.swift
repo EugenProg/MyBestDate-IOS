@@ -18,6 +18,4 @@ final class RegistrationDataHolder: ObservableObject {
     @Published var name: String = ""
     @Published var password: String = ""
     @Published var imageList: [UIImage] = []
-    
-    @Published var selectedImage: UIImage = UIImage()
 }

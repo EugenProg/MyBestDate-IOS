@@ -10,6 +10,7 @@ import SwiftUI
 struct ProfilePhotoScreen: View {
     @EnvironmentObject var store: Store
     @ObservedObject var registrationHolder = RegistrationDataHolder.shared
+    @ObservedObject var ediorHolder = PhotoEditorDataHolder.shared
     
     @State var process: Bool = false
     @State var whiteMode: Bool = false
@@ -83,7 +84,7 @@ struct ProfilePhotoScreen: View {
                                 .padding(.init(top: 16, leading: 0, bottom: 0, trailing: 0))
                             
                             HorisontalPhotoListView(imagesList: $registrationHolder.imageList) { image in
-                                registrationHolder.selectedImage = image
+                                ediorHolder.selectedPhoto = image
                                 store.dispatch(action: .showBottomSheet(view: .PHOTO_SETTINGS))
                             }
                             
@@ -118,8 +119,10 @@ struct ProfilePhotoScreen: View {
             }
             .sheet(isPresented: $isShowingPhotoLibrary) {
                 ImagePicker(sourceType: .photoLibrary) { image in
-                    setWhiteMode()
-                    registrationHolder.imageList.append(image)
+                    //setWhiteMode()
+                    //registrationHolder.imageList.append(image)
+                    ediorHolder.selectedPhoto = image
+                    store.dispatch(action: .navigate(screen: .PHOTO_EDITING))
                 }
             }
     }

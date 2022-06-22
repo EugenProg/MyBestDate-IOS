@@ -16,6 +16,10 @@
 		4C022A45285A38920043E49D /* SwichSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C022A44285A38920043E49D /* SwichSelectorView.swift */; };
 		4C022A48285A409E0043E49D /* SwitchButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C022A47285A409E0043E49D /* SwitchButtonView.swift */; };
 		4C022A4B285A470B0043E49D /* PhotoSettingsBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C022A4A285A470B0043E49D /* PhotoSettingsBottomSheet.swift */; };
+		4C022A4D285B7E470043E49D /* PhotoEditorDataHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C022A4C285B7E470043E49D /* PhotoEditorDataHolder.swift */; };
+		4C022A4F285B92D80043E49D /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C022A4E285B92D80043E49D /* ImageExtension.swift */; };
+		4C022A51285F0AF10043E49D /* EdiorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C022A50285F0AF00043E49D /* EdiorView.swift */; };
+		4C022A54285F90CC0043E49D /* PhotoViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C022A53285F90CC0043E49D /* PhotoViewer.swift */; };
 		4C0E71DF284FAAF3004099D4 /* SansPro_bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4C0E71DC284FAAF3004099D4 /* SansPro_bold.otf */; };
 		4C0E71E0284FAAF3004099D4 /* SansPro_italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4C0E71DD284FAAF3004099D4 /* SansPro_italic.otf */; };
 		4C0E71E1284FAAF3004099D4 /* SansPro_regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4C0E71DE284FAAF3004099D4 /* SansPro_regular.otf */; };
@@ -75,6 +79,10 @@
 		4C022A44285A38920043E49D /* SwichSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwichSelectorView.swift; sourceTree = "<group>"; };
 		4C022A47285A409E0043E49D /* SwitchButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchButtonView.swift; sourceTree = "<group>"; };
 		4C022A4A285A470B0043E49D /* PhotoSettingsBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSettingsBottomSheet.swift; sourceTree = "<group>"; };
+		4C022A4C285B7E470043E49D /* PhotoEditorDataHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoEditorDataHolder.swift; sourceTree = "<group>"; };
+		4C022A4E285B92D80043E49D /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
+		4C022A50285F0AF00043E49D /* EdiorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdiorView.swift; sourceTree = "<group>"; };
+		4C022A53285F90CC0043E49D /* PhotoViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewer.swift; sourceTree = "<group>"; };
 		4C0E71DC284FAAF3004099D4 /* SansPro_bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SansPro_bold.otf; sourceTree = "<group>"; };
 		4C0E71DD284FAAF3004099D4 /* SansPro_italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SansPro_italic.otf; sourceTree = "<group>"; };
 		4C0E71DE284FAAF3004099D4 /* SansPro_regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SansPro_regular.otf; sourceTree = "<group>"; };
@@ -142,6 +150,7 @@
 			children = (
 				4C022A362858EE2B0043E49D /* ProfilePhotoScreen.swift */,
 				4C022A382858EE510043E49D /* PhotoEditingScreen.swift */,
+				4C022A4C285B7E470043E49D /* PhotoEditorDataHolder.swift */,
 			);
 			path = "profile photo";
 			sourceTree = "<group>";
@@ -149,6 +158,7 @@
 		4C022A3C28590B600043E49D /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				4C022A52285F90A50043E49D /* Zoomable */,
 				4C022A3D28590B6A0043E49D /* imagePicker */,
 			);
 			path = utils;
@@ -178,6 +188,14 @@
 				4C022A4A285A470B0043E49D /* PhotoSettingsBottomSheet.swift */,
 			);
 			path = PhotoSettingsSheet;
+			sourceTree = "<group>";
+		};
+		4C022A52285F90A50043E49D /* Zoomable */ = {
+			isa = PBXGroup;
+			children = (
+				4C022A53285F90CC0043E49D /* PhotoViewer.swift */,
+			);
+			path = Zoomable;
 			sourceTree = "<group>";
 		};
 		4C0E71EB284FB60F004099D4 /* butons */ = {
@@ -281,7 +299,6 @@
 		4C8E7D7F284CC93F00D6E58D /* BestDate */ = {
 			isa = PBXGroup;
 			children = (
-				4C022A3C28590B600043E49D /* utils */,
 				4C8E7D84284CC94900D6E58D /* Assets.xcassets */,
 				4C8E7D80284CC93F00D6E58D /* BestDateApp.swift */,
 				4C950D56284E6171004E2C13 /* extensions */,
@@ -291,6 +308,7 @@
 				4C8E7D86284CC94900D6E58D /* Preview Content */,
 				4C8E7DA0284D21DA00D6E58D /* redux */,
 				4C8E7DA9284D24BC00D6E58D /* screens */,
+				4C022A3C28590B600043E49D /* utils */,
 				4C8E7D8E284D1C0B00D6E58D /* value */,
 				4C8E7DAA284D24C600D6E58D /* views */,
 			);
@@ -373,6 +391,7 @@
 				4C3D27BF285120FC00F8FD09 /* SocialView.swift */,
 				4C022A3A285903530043E49D /* HorisontalPhotoListView.swift */,
 				4C022A4228591A2B0043E49D /* BluredImageHeaderView.swift */,
+				4C022A50285F0AF00043E49D /* EdiorView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -381,6 +400,7 @@
 			isa = PBXGroup;
 			children = (
 				4C950D57284E6194004E2C13 /* Extension.swift */,
+				4C022A4E285B92D80043E49D /* ImageExtension.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -486,6 +506,8 @@
 				4C950D63284E7D8B004E2C13 /* TextButton.swift in Sources */,
 				4C1458F028547DE600558B6B /* BaseBottomSheet.swift in Sources */,
 				4C3D27C72852792000F8FD09 /* SecondStylesTextButton.swift in Sources */,
+				4C022A51285F0AF10043E49D /* EdiorView.swift in Sources */,
+				4C022A54285F90CC0043E49D /* PhotoViewer.swift in Sources */,
 				4C8E7DA6284D233100D6E58D /* Reducer.swift in Sources */,
 				4C0E71F1284FC9A6004099D4 /* OnboardSecondScreen.swift in Sources */,
 				4C1458F528552BE500558B6B /* RegistrationDataHolder.swift in Sources */,
@@ -507,6 +529,8 @@
 				4C3D27CC28539C8800F8FD09 /* RegistrationContinueScreen.swift in Sources */,
 				4C8E7D9C284D1F0700D6E58D /* ScreenList.swift in Sources */,
 				4C8E7D81284CC93F00D6E58D /* BestDateApp.swift in Sources */,
+				4C022A4F285B92D80043E49D /* ImageExtension.swift in Sources */,
+				4C022A4D285B7E470043E49D /* PhotoEditorDataHolder.swift in Sources */,
 				4C022A48285A409E0043E49D /* SwitchButtonView.swift in Sources */,
 				4C8E7D90284D1C4000D6E58D /* Font.swift in Sources */,
 				4C3D27CA28539C3500F8FD09 /* RegistrationStartScreen.swift in Sources */,

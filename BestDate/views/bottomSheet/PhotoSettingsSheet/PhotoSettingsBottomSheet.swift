@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PhotoSettingsBottomSheet: View {
     @EnvironmentObject var store: Store
-    @ObservedObject var registrationHolder = RegistrationDataHolder.shared
+    @ObservedObject var editorHolder = PhotoEditorDataHolder.shared
     
     @State var process: Bool = false
     var clickAction: () -> Void
@@ -18,7 +18,7 @@ struct PhotoSettingsBottomSheet: View {
         VStack(spacing: 0) {
             
             HStack(spacing: 0) {
-                Image(uiImage: registrationHolder.selectedImage)
+                Image(uiImage: editorHolder.selectedPhoto)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 91, height: 91)

@@ -8,10 +8,59 @@
 import SwiftUI
 
 struct PhotoEditingScreen: View {
+    @EnvironmentObject var store: Store
+    @ObservedObject var editorHolder = PhotoEditorDataHolder.shared
+
+    
+    @State var process: Bool = false
     
     var body: some View {
-        
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            ZStack {
+                EdiorView(backgroundColor: ColorList.main.color, image: editorHolder.selectedPhoto)
+                
+                VStack(alignment: .leading, spacing: 0) {
+                    VStack(alignment: .leading, spacing: 0) {
+                        BackButton(style: .white)
+                            .padding(.init(top: 32, leading: 32, bottom: 15, trailing: 32))
+
+                        Title(textColor: ColorList.white.color, text: "adding_and_editing_a_photo")
+                    }.frame(height: 165)
+                    
+                    Spacer()
+                    
+                    RoundedRectangle(cornerRadius: 30)
+                        .fill(ColorList.transparent.color)
+                        .frame(width: UIScreen.main.bounds.width - 14, height: UIScreen.main.bounds.width - 14)
+                    
+                    Spacer()
+
+                    if UIScreen.main.bounds.height > 800 {
+
+                        Text("you_can_upload_up_to_9_photos_to_your_profile")
+                            .foregroundColor(ColorList.white_60.color)
+                            .font(MyFont.getFont(.NORMAL, 18))
+                            .multilineTextAlignment(.center)
+                            .lineSpacing(8)
+                            .frame(width: UIScreen.main.bounds.width, alignment: .center)
+
+                        Spacer()
+
+                    }
+                    
+                    StandardButton(style: .white, title: "save", loadingProcess: $process) {
+                        print(UIScreen.main.bounds.height)
+                    }
+                    .padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight + 24, trailing: 0))
+                }
+                
+            }
+        }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .topLeading)
+            .background(ColorList.main.color.edgesIgnoringSafeArea(.all))
+            .onAppear {
+                store.dispatch(action:
+                        .setScreenColors(status: ColorList.main.color, style: .lightContent))
+            }
     }
 }
 
