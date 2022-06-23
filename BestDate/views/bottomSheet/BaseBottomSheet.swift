@@ -26,6 +26,7 @@ struct BaseBottomSheet: View {
                         switch store.state.activeBottomSheet {
                         case .GENDER: GenderBottomSheet { dissmiss() }
                         case .PHOTO_SETTINGS: PhotoSettingsBottomSheet { dissmiss() }
+                        case .NOT_CORRECT_PHOTO: NotCorrectPhotoBottomSheet { dissmiss() }
                         }
                     }.frame(width: width, height: store.state.activeBottomSheet.heightMode.height)
                     .padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight + 16, trailing: 0))

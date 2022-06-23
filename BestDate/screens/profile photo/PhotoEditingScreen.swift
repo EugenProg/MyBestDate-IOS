@@ -10,14 +10,14 @@ import SwiftUI
 struct PhotoEditingScreen: View {
     @EnvironmentObject var store: Store
     @ObservedObject var editorHolder = PhotoEditorDataHolder.shared
-
     
     @State var process: Bool = false
     
     var body: some View {
         VStack {
             ZStack {
-                EdiorView(backgroundColor: ColorList.main.color, image: editorHolder.selectedPhoto)
+
+                EdiorView(backgroundColor: ColorList.main.color)
                 
                 VStack(alignment: .leading, spacing: 0) {
                     VStack(alignment: .leading, spacing: 0) {
@@ -49,11 +49,13 @@ struct PhotoEditingScreen: View {
                     }
                     
                     StandardButton(style: .white, title: "save", loadingProcess: $process) {
-                        print(UIScreen.main.bounds.height)
+                        editorHolder.cropImage()
+                        store.dispatch(action: .showBottomSheet(view: .NOT_CORRECT_PHOTO))
+                        //store.dispatch(action: .navigationBack)
+                        //store.dispatch(action: .showBottomSheet(view: .PHOTO_SETTINGS))
                     }
                     .padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight + 24, trailing: 0))
                 }
-                
             }
         }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .topLeading)
             .background(ColorList.main.color.edgesIgnoringSafeArea(.all))

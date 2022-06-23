@@ -16,14 +16,17 @@ struct PhotoViewer: View {
     @State private var offset = CGSize.zero
     @State private var scale: CGFloat = 1
 
+    @Binding var currentZoom: CGFloat
+    @Binding var currentOffset: CGSize
+
     var maxZoom: CGFloat = 2.5
     var minZoom: CGFloat = 1
-    let frameSize = UIScreen.main.bounds.width - 14
+    let frameSize: CGFloat
 
     var magnification: some Gesture {
         MagnificationGesture()
             .updating($scaleState) { currentState, gestureState, _ in
-                withAnimation { gestureState = currentState }
+                gestureState = currentState
             }
             .onEnded { value in
                 let zoom = scale * value * scaleState
@@ -35,6 +38,7 @@ struct PhotoViewer: View {
                     scale *= value
                 }
                 setOffset(size: CGSize.zero)
+                currentZoom = scale * scaleState
             }
     }
 
@@ -68,6 +72,8 @@ struct PhotoViewer: View {
         } else {
             offset.height += size.height
         }
+
+        currentOffset = CGSize(width: offset.width + offsetState.width, height: offset.height + offsetState.height)
     }
 
     var body: some View {

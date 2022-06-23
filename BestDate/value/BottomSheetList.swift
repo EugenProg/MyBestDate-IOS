@@ -11,11 +11,13 @@ import SwiftUI
 enum BottomSheetList: String {
     case GENDER
     case PHOTO_SETTINGS
+    case NOT_CORRECT_PHOTO
     
     var heightMode: BottomSheetHeight {
         switch self {
         case .GENDER: return .AUTO
         case .PHOTO_SETTINGS: return .AUTO
+        case .NOT_CORRECT_PHOTO: return .AUTO
         }
     }
     
@@ -23,6 +25,7 @@ enum BottomSheetList: String {
         switch self {
         case .GENDER: return .BLACK
         case .PHOTO_SETTINGS: return .BLACK
+        case .NOT_CORRECT_PHOTO: return .BLACK
         }
     }
 }

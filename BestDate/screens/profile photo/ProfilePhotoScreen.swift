@@ -13,7 +13,6 @@ struct ProfilePhotoScreen: View {
     @ObservedObject var ediorHolder = PhotoEditorDataHolder.shared
     
     @State var process: Bool = false
-    @State var whiteMode: Bool = false
     @State var isShowingPhotoLibrary = false
     
     var body: some View {
@@ -48,17 +47,19 @@ struct ProfilePhotoScreen: View {
                 VStack(alignment: .leading, spacing: 0) {
                     
                     HStack {
-                        BackButton(style: whiteMode ? .white : .black)
+                        BackButton(style: registrationHolder.imageList.count > 0 ? .white : .black)
                         
                         Spacer()
-                        
-                        TextButton(text: "next", textColor: ColorList.white.color) {
-                            store.dispatch(action: .navigate(screen: .QUESTIONNAIRE))
+
+                        if registrationHolder.imageList.count > 0 {
+                            TextButton(text: "next", textColor: ColorList.white.color) {
+                                store.dispatch(action: .navigate(screen: .QUESTIONNAIRE))
+                            }
                         }
                     }.padding(.init(top: 32, leading: 32, bottom: 15, trailing: 32))
                     
                     
-                    Title(textColor: whiteMode ? ColorList.white.color : ColorList.main.color, text: "set_a_profile_photo")
+                    Title(textColor: registrationHolder.imageList.count > 0 ? ColorList.white.color : ColorList.main.color, text: "set_a_profile_photo")
                     
                     ZStack {
                         Rectangle()
@@ -84,7 +85,7 @@ struct ProfilePhotoScreen: View {
                                 .padding(.init(top: 16, leading: 0, bottom: 0, trailing: 0))
                             
                             HorisontalPhotoListView(imagesList: $registrationHolder.imageList) { image in
-                                ediorHolder.selectedPhoto = image
+                                ediorHolder.croppedPhoto = image
                                 store.dispatch(action: .showBottomSheet(view: .PHOTO_SETTINGS))
                             }
                             
@@ -119,18 +120,10 @@ struct ProfilePhotoScreen: View {
             }
             .sheet(isPresented: $isShowingPhotoLibrary) {
                 ImagePicker(sourceType: .photoLibrary) { image in
-                    //setWhiteMode()
-                    //registrationHolder.imageList.append(image)
                     ediorHolder.selectedPhoto = image
                     store.dispatch(action: .navigate(screen: .PHOTO_EDITING))
                 }
             }
-    }
-    
-    private func setWhiteMode() {
-        whiteMode = true
-        store.dispatch(action:
-                .setScreenColors(status: ColorList.transparent.color, style: .lightContent))
     }
 }
 

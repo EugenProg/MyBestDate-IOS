@@ -18,4 +18,12 @@ final class RegistrationDataHolder: ObservableObject {
     @Published var name: String = ""
     @Published var password: String = ""
     @Published var imageList: [UIImage] = []
+
+    func saveImage(image: UIImage) {
+        imageList.append(image)
+    }
+
+    func deleteImage(image: UIImage) {
+        imageList.removeLast()
+    }
 }
