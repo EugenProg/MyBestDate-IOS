@@ -33,7 +33,8 @@ struct NavigationView: View {
                     case .GEO_LOCATION: GeolocationScreen()
                     case .PROFILE_PHOTO: ProfilePhotoScreen()
                     case .PHOTO_EDITING: PhotoEditingScreen().transition(.move(edge: .bottom))
-                    default: ProfilePhotoScreen()
+                    case .QUESTIONNAIRE: QuestionnaireScreen()
+                    default: QuestionnaireScreen()
                     }
                 }.blur(radius: store.state.showBottomSheet ? 1.8 : 0)
             }.onTapGesture(perform: { UIApplication.shared.windows.first { $0.isKeyWindow }?.endEditing(true) })

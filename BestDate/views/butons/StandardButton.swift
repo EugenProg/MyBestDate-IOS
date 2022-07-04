@@ -37,11 +37,13 @@ struct StandardButton: View {
     enum StandardButtonStyle {
         case white
         case black
+        case blue
         
         var buttonColor: Color {
             switch self {
             case .white: return ColorList.white.color
             case .black: return ColorList.main.color
+            case .blue: return ColorList.light_blue.color
             }
         }
         
@@ -49,6 +51,7 @@ struct StandardButton: View {
             switch self {
             case .white: return ColorList.main.color
             case .black: return ColorList.white.color
+            case .blue: return ColorList.main.color
             }
         }
     }

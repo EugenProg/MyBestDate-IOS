@@ -9,6 +9,7 @@ import SwiftUI
 
 struct BaseBottomSheet: View {
     @EnvironmentObject var store: Store
+    @ObservedObject var mediator = BaseButtonSheetMediator.shared
     var width = UIScreen.main.bounds.width
     var height = UIScreen.main.bounds.height
     @State var offset: CGFloat = UIScreen.main.bounds.height
@@ -24,9 +25,13 @@ struct BaseBottomSheet: View {
                     .offset(x: 0, y: offset)
                     Group {
                         switch store.state.activeBottomSheet {
-                        case .GENDER: GenderBottomSheet { dissmiss() }
-                        case .PHOTO_SETTINGS: PhotoSettingsBottomSheet { dissmiss() }
-                        case .NOT_CORRECT_PHOTO: NotCorrectPhotoBottomSheet { dissmiss() }
+                        case .GENDER: GenderBottomSheet { dismiss() }
+                        case .PHOTO_SETTINGS: PhotoSettingsBottomSheet { dismiss() }
+                        case .NOT_CORRECT_PHOTO: NotCorrectPhotoBottomSheet { dismiss() }
+                        case .QUESTIONNAIRE_SINGLE_SELECT: QuestionnaireSingleSelectBottomSheet { dismiss() }
+                        case .QUESTIONNAIRE_SEEK_BAR: QuestionnaireSeekBarBottomSheet { dismiss() }
+                        case .QUESTIONNAIRE_SEARCH: QuestionnaireSearchBotomSheet { dismiss() }
+                        case .QUESTIONNAIRE_MULTY_SELECT: QuestionnaireMultySelectBottomSheet { dismiss() }
                         }
                     }.frame(width: width, height: store.state.activeBottomSheet.heightMode.height)
                     .padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight + 16, trailing: 0))
@@ -45,7 +50,8 @@ struct BaseBottomSheet: View {
         }.frame(width: width, height: height)
             .background(ColorList.white_5.color)
             .onTapGesture {
-                dissmiss()
+                closeAction()
+                dismiss()
             }
             .onAppear { withAnimation { offset = 0 } }
     }
@@ -62,19 +68,28 @@ struct BaseBottomSheet: View {
         let result = value.translation.height
         
         if result > (store.state.activeBottomSheet.heightMode.height ?? 400) / 2 {
-            dissmiss()
+            closeAction()
+            dismiss()
         } else {
             withAnimation { offset = 0 }
         }
     }
     
-    private func dissmiss() {
+    private func dismiss() {
         withAnimation {
             offset = store.state.activeBottomSheet.heightMode.height ?? height
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
             store.dispatch(action: .hideBottomSheet)
         })
+    }
+
+    private func closeAction() {
+        if mediator.closeAction != nil {
+            withAnimation {
+                mediator.closeAction!()
+            }
+        }
     }
 }
 
