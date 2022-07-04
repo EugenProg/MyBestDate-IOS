@@ -69,6 +69,8 @@
 		4C5C86BE287202A4006DE024 /* QuestionnaireMultySelectBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5C86BD287202A4006DE024 /* QuestionnaireMultySelectBottomSheet.swift */; };
 		4C5C86C0287203B2006DE024 /* MultySelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5C86BF287203B2006DE024 /* MultySelectView.swift */; };
 		4C5C86C2287336FD006DE024 /* MultySelectMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5C86C1287336FC006DE024 /* MultySelectMediator.swift */; };
+		4C5C86C528734CE3006DE024 /* ConfirmationInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5C86C428734CE3006DE024 /* ConfirmationInfoView.swift */; };
+		4C5C86C728734EC8006DE024 /* ConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5C86C628734EC8006DE024 /* ConfirmationView.swift */; };
 		4C8E7D81284CC93F00D6E58D /* BestDateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8E7D80284CC93F00D6E58D /* BestDateApp.swift */; };
 		4C8E7D85284CC94900D6E58D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C8E7D84284CC94900D6E58D /* Assets.xcassets */; };
 		4C8E7D88284CC94900D6E58D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C8E7D87284CC94900D6E58D /* Preview Assets.xcassets */; };
@@ -159,6 +161,8 @@
 		4C5C86BD287202A4006DE024 /* QuestionnaireMultySelectBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireMultySelectBottomSheet.swift; sourceTree = "<group>"; };
 		4C5C86BF287203B2006DE024 /* MultySelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultySelectView.swift; sourceTree = "<group>"; };
 		4C5C86C1287336FC006DE024 /* MultySelectMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultySelectMediator.swift; sourceTree = "<group>"; };
+		4C5C86C428734CE3006DE024 /* ConfirmationInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationInfoView.swift; sourceTree = "<group>"; };
+		4C5C86C628734EC8006DE024 /* ConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationView.swift; sourceTree = "<group>"; };
 		4C8E7D7D284CC93F00D6E58D /* BestDate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BestDate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C8E7D80284CC93F00D6E58D /* BestDateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestDateApp.swift; sourceTree = "<group>"; };
 		4C8E7D84284CC94900D6E58D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -296,6 +300,7 @@
 		4C1B7C1D286A3439000DB5D4 /* Input */ = {
 			isa = PBXGroup;
 			children = (
+				4C5C86C328734CBA006DE024 /* confirmation */,
 				4C1B7C1E286A3477000DB5D4 /* SingleSelectInfoView.swift */,
 				4C1B7C27286B6D48000DB5D4 /* SingleSelectMediator.swift */,
 				4C5C86B1287171FF006DE024 /* RangeSelectView.swift */,
@@ -378,6 +383,15 @@
 				4C5C86BB2871A5B4006DE024 /* CitySearchMediator.swift */,
 			);
 			path = search;
+			sourceTree = "<group>";
+		};
+		4C5C86C328734CBA006DE024 /* confirmation */ = {
+			isa = PBXGroup;
+			children = (
+				4C5C86C428734CE3006DE024 /* ConfirmationInfoView.swift */,
+				4C5C86C628734EC8006DE024 /* ConfirmationView.swift */,
+			);
+			path = confirmation;
 			sourceTree = "<group>";
 		};
 		4C8E7D74284CC93F00D6E58D = {
@@ -634,6 +648,7 @@
 				4C3D27C528526FA100F8FD09 /* PasswordInputView.swift in Sources */,
 				4C1459012856620300558B6B /* PassRecoverySetNewScreen.swift in Sources */,
 				4C022A4328591A2B0043E49D /* BluredImageHeaderView.swift in Sources */,
+				4C5C86C528734CE3006DE024 /* ConfirmationInfoView.swift in Sources */,
 				4C1B7C21286B51F8000DB5D4 /* PercentView.swift in Sources */,
 				4C8E7DA2284D222200D6E58D /* Action.swift in Sources */,
 				4C3D27B9285110FA00F8FD09 /* StandardButton.swift in Sources */,
@@ -647,6 +662,7 @@
 				4C1B7C28286B6D48000DB5D4 /* SingleSelectMediator.swift in Sources */,
 				4C022A45285A38920043E49D /* SwichSelectorView.swift in Sources */,
 				4C950D63284E7D8B004E2C13 /* TextButton.swift in Sources */,
+				4C5C86C728734EC8006DE024 /* ConfirmationView.swift in Sources */,
 				4C1458F028547DE600558B6B /* BaseBottomSheet.swift in Sources */,
 				4C3D27C72852792000F8FD09 /* SecondStylesTextButton.swift in Sources */,
 				4C022A51285F0AF10043E49D /* EdiorView.swift in Sources */,
