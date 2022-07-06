@@ -10,7 +10,7 @@ import SwiftUI
 struct PhotoSettingsBottomSheet: View {
     @EnvironmentObject var store: Store
     @ObservedObject var editorHolder = PhotoEditorDataHolder.shared
-    @ObservedObject var registrationHolder = RegistrationDataHolder.shared
+    @ObservedObject var registrationHolder = RegistrationMediator.shared
     
     @State var process: Bool = false
     var clickAction: () -> Void

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PassRecoverySetNewScreen: View {
     @EnvironmentObject var store: Store
-    @ObservedObject var recoveryHolder = RecoveryDataHolder.shared
+    @ObservedObject var mediator = RecoveryMediator.shared
     
     @State var process: Bool = false
     @State var passInputError: Bool = false
@@ -30,7 +30,7 @@ struct PassRecoverySetNewScreen: View {
                             .fill(Color(ColorList.main.uiColor))
                             .cornerRadius(radius: 33, corners: [.topLeft, .topRight])
                         VStack(spacing: 0) {
-                            PasswordInputView(hint: "enter_a_new_password", inputText: $recoveryHolder.newPass, errorState: $passInputError)
+                            PasswordInputView(hint: "enter_a_new_password", inputText: $mediator.newPass, errorState: $passInputError)
                             
                             StandardButton(style: .white, title: "install_and_login", loadingProcess: $process) {
                                 validate()
@@ -51,8 +51,20 @@ struct PassRecoverySetNewScreen: View {
     }
     
     private func validate() {
-        if recoveryHolder.newPass.isEmpty { passInputError = true }
-        else {  }
+        if mediator.newPass.isEmpty { passInputError = true }
+        else {
+            process.toggle()
+            mediator.confirm { success, message in
+                DispatchQueue.main.async {
+                    process.toggle()
+                    if success {
+                        store.dispatch(action: .show(message: "YES IT IS SUCCESSFUL"))
+                    } else {
+                        store.dispatch(action: .show(message: message))
+                    }
+                }
+            }
+        }
     }
 }
 

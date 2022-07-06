@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AuthScreen: View {
     @EnvironmentObject var store: Store
+    @ObservedObject var mediator = AuthMediator.shared
     @State var process: Bool = false
     @State var emailInputError = false
     @State var emailInputText: String = ""
@@ -77,7 +78,19 @@ struct AuthScreen: View {
     private func validate() {
         if emailInputText.isEmpty { setError(errorState: $emailInputError) }
         else if passInputText.count < 6 { setError(errorState: $passInputError) }
-        else { store.dispatch(action: .show(message: emailInputText)) }
+        else {
+            process.toggle()
+            mediator.auth(login: emailInputText, password: passInputText) { success, message in
+                DispatchQueue.main.async {
+                    process.toggle()
+                    if success {
+                        store.dispatch(action: .show(message: "IT IS SO WUNDERFULL"))
+                    } else {
+                        store.dispatch(action: .show(message: NSLocalizedString(message, comment: "Message")))
+                    }
+                }
+            }
+        }
     }
 }
 

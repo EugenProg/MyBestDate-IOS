@@ -9,8 +9,7 @@ import SwiftUI
 
 struct BaseOTPScreen: View {
     @EnvironmentObject var store: Store
-    
-    @State var process: Bool = false
+
     var title: String
     var description: String
     var email: String
@@ -19,6 +18,8 @@ struct BaseOTPScreen: View {
     
     var confirmAction: (String) -> Void
     var resendAction: (() -> Void)? = nil
+    
+    @Binding var process: Bool
     
     var body: some View {
         VStack {

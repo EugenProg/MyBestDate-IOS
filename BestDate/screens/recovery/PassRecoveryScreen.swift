@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PassRecoveryScreen: View {
     @EnvironmentObject var store: Store
-    @ObservedObject var recoveryHolder = RecoveryDataHolder.shared
+    @ObservedObject var mediator = RecoveryMediator.shared
     
     @State var process: Bool = false
     @State var emailInputError: Bool = false
@@ -30,7 +30,7 @@ struct PassRecoveryScreen: View {
                             .fill(Color(ColorList.main.uiColor))
                             .cornerRadius(radius: 33, corners: [.topLeft, .topRight])
                         VStack(spacing: 0) {
-                            StandardInputView(hint: "email_or_phone_number", imageName: "ic_message", inputText: $recoveryHolder.email, errorState: $emailInputError, inputType: .emailAddress)
+                            StandardInputView(hint: "email_or_phone_number", imageName: "ic_message", inputText: $mediator.login, errorState: $emailInputError, inputType: .emailAddress)
                             
                             StandardButton(style: .white, title: "next", loadingProcess: $process) {
                                 validate()
@@ -51,8 +51,21 @@ struct PassRecoveryScreen: View {
     }
     
     private func validate() {
-        if recoveryHolder.email.isEmpty { emailInputError = true }
-        else { store.dispatch(action: .navigate(screen: .PASS_RECOVERY_OTP)) }
+        if mediator.login.isEmpty { emailInputError = true }
+        else {
+            process.toggle()
+            mediator.sendCode { success, message in
+                process.toggle()
+                DispatchQueue.main.async {
+                    if success {
+                        withAnimation { store.dispatch(action: .navigate(screen: .PASS_RECOVERY_OTP)) }
+                    } else {
+                        store.dispatch(action: .show(message: message))
+                    }
+                }
+
+            }
+        }
     }
 }
 

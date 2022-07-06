@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RegistrationStartScreen: View {
     @EnvironmentObject var store: Store
-    @ObservedObject var registrationHolder = RegistrationDataHolder.shared
+    @ObservedObject var mediator = RegistrationMediator.shared
     
     @State var process: Bool = false
     @State var nameInputError = false
@@ -37,11 +37,11 @@ struct RegistrationStartScreen: View {
                                 .fill(Color(ColorList.main.uiColor))
                                 .cornerRadius(radius: 33, corners: [.topLeft, .topRight])
                             VStack(spacing: 0) {
-                                StandardInputView(hint: "name", imageName: "ic_user", inputText: $registrationHolder.name, errorState: $nameInputError)
+                                StandardInputView(hint: "name", imageName: "ic_user", inputText: $mediator.name, errorState: $nameInputError)
                                 
-                                InfoView(hint: "gender", imageName: "ic_gender", infoText: $registrationHolder.gender, errorState: $genderInputError) { store.dispatch(action: .showBottomSheet(view: .GENDER)) }
+                                InfoView(hint: "gender", imageName: "ic_gender", infoText: $mediator.gender, errorState: $genderInputError) { store.dispatch(action: .showBottomSheet(view: .GENDER)) }
                                 
-                                DateSelectView(hint: "birth_date", imageName: "ic_calendar", date: $registrationHolder.birthDate)
+                                DateSelectView(hint: "birth_date", imageName: "ic_calendar", date: $mediator.birthDate)
                                 
                                 StandardButton(style: .white, title: "next", loadingProcess: $process) {
                                     validate()
@@ -73,8 +73,8 @@ struct RegistrationStartScreen: View {
     }
     
     private func validate() {
-        if registrationHolder.name.isEmpty { nameInputError = true }
-        else if registrationHolder.gender.isEmpty { genderInputError = true }
+        if mediator.name.isEmpty { nameInputError = true }
+        else if mediator.gender.isEmpty { genderInputError = true }
         else { store.dispatch(action: .navigate(screen: .REGISTRATION_CONTINUE)) }
     }
 }

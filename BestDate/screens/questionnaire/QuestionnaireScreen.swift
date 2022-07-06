@@ -22,14 +22,12 @@ struct QuestionnaireScreen: View {
 
             VStack(spacing: 0) {
                 HStack(spacing: 0) {
-                    BackButton(style: .white) {
-                        mediator.removeProgress(progress: 10)
-                    }
+                    BackButton(style: .white)
 
                     Spacer()
 
                     TextButton(text: "skip", textColor: ColorList.white.color) {
-                        mediator.addProgress(progress: 10)
+                        
                     }
                 }.padding(.init(top: 32, leading: 32, bottom: 15, trailing: 32))
 

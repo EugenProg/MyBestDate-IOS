@@ -13,6 +13,8 @@
 "it_s_very_simple_i_signed_off_threw_an_invitation_card_and_got_a_meeting_of_my_destiny" = "It’s very simple, I signed off, threw an invitation card and got a meeting of my destiny. There are no long and tedious correspondence.";
 "back" = "Back";
 "hello_login_now" = "Hello!\nLogin Now.";
+"enter_email_or_phone" = "Enter a email or a phone number";
+"wrong_auth_data" = "Wrong login or password";
 "welcome_to_our_kind_and_cozy_home" = "Welcome to our kind and cozy home where you are always welcome and you are the most important character.";
 "forgot_password" = "Forgot Password?";
 "reset" = "Reset";
@@ -125,6 +127,7 @@
 "your_email_has_not_been_confirmed" = "Your email has not been confirmed";
 "the_questionnaire_has_not_been_confirmed" = "The questionnaire has not been confirmed";
 "your_phone_number_has_not_been_confirmed" = "Your phone number has not been confirmed";
+"your_photo_is_confirmed" = "Your photo is confirmed";
 
 //ANSWERS
 "married" = "Married";

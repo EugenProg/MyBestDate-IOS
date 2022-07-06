@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GenderBottomSheet: View {
     @EnvironmentObject var store: Store
-    @ObservedObject var registrationHolder = RegistrationDataHolder.shared
+    @ObservedObject var registrationHolder = RegistrationMediator.shared
     var clickAction: () -> Void
     
     var genderList: [String] =

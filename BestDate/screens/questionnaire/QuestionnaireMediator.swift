@@ -68,7 +68,7 @@ class QuestionnaireMediator: ObservableObject {
             QuestionnairePage(number: 3, title: "search_condition", type: .SELECT, questions: getSearchQuestions()),
             QuestionnairePage(number: 4, title: "your_free_time", type: .SELECT, questions: getFreeTimeQuestions()),
             QuestionnairePage(number: 5, title: "about_me", type: .INPUT, questions: getAboutQuestions()),
-            QuestionnairePage(number: 6, title: "data_verification", type: .SELECT, buttonTitle: "well_done", questions: []),
+            QuestionnairePage(number: 6, title: "data_verification", type: .SELECT, buttonTitle: "well_done", questions: getConfirmationQuestions()),
         ]
         return pages.count
     }
@@ -233,7 +233,7 @@ class QuestionnaireMediator: ObservableObject {
             QuestionInfo(
                 id: 0,
                 question: "hobby",
-                percent: 5,
+                percent: 4,
                 viewType: .MULTY_SELECT,
                 ansfers: ["music", "dancing", "stand_up"]
             )
@@ -251,7 +251,7 @@ class QuestionnaireMediator: ObservableObject {
             QuestionInfo(
                 id: 2,
                 question: "evening_time",
-                percent: 5,
+                percent: 3,
                 viewType: .SINGLE_SELECT,
                 ansfers: ["walking_around_the_city"]
             )
@@ -267,6 +267,50 @@ class QuestionnaireMediator: ObservableObject {
                 id: 0,
                 question: "tell_us_about_yourself_what_you_find_interesting",
                 percent: 5
+            )
+        )
+
+        return list
+    }
+
+    func getConfirmationQuestions() -> [QuestionInfo] {
+        var list: [QuestionInfo] = []
+        list.append(
+            QuestionInfo(
+                id: 0,
+                question: "photo",
+                percent: 6,
+                viewType: .CONFIRMATION_SELECT,
+                selectedAnsfer: "your_photo_is_confirmed"
+            )
+        )
+        list.append(
+            QuestionInfo(
+                id: 1,
+                question: "email",
+                percent: 4,
+                viewType: .CONFIRMATION_SELECT,
+                ansfers: ["your_email_has_not_been_confirmed"],
+                selectedAnsfer: RegistrationMediator.shared.email
+            )
+        )
+        list.append(
+            QuestionInfo(
+                id: 2,
+                question: "social_network",
+                percent: 5,
+                viewType: .CONFIRMATION_SELECT,
+                ansfers: ["the_questionnaire_has_not_been_confirmed"]
+            )
+        )
+        list.append(
+            QuestionInfo(
+                id: 3,
+                question: "phone_number",
+                percent: 1,
+                viewType: .CONFIRMATION_SELECT,
+                ansfers: ["your_phone_number_has_not_been_confirmed"],
+                selectedAnsfer: RegistrationMediator.shared.phone
             )
         )
 

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct QuestionnaireSearchBotomSheet: View {
+    @EnvironmentObject var store: Store
     @ObservedObject var mediator = SingleSelectMediator.shared
     @ObservedObject var searchMediator = CitySearchMediator.shared
 
@@ -53,6 +54,16 @@ struct QuestionnaireSearchBotomSheet: View {
                     }
                 }
             }
+
+            HStack(spacing: 4) {
+                Text("powered by")
+                    .foregroundColor(ColorList.main_60.color)
+                    .font(MyFont.getFont(.NORMAL, 16))
+                Text("Google")
+                    .foregroundColor(ColorList.main.color)
+                    .font(MyFont.getFont(.BOLD, 18))
+            }.frame(width: UIScreen.main.bounds.width)
+                .padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight + 16, trailing: 0))
 
         }.frame(width: UIScreen.main.bounds.width, alignment: .topLeading)
             .onAppear {

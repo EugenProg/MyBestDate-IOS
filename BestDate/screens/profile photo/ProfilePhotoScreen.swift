@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProfilePhotoScreen: View {
     @EnvironmentObject var store: Store
-    @ObservedObject var registrationHolder = RegistrationDataHolder.shared
+    @ObservedObject var registrationHolder = RegistrationMediator.shared
     @ObservedObject var ediorHolder = PhotoEditorDataHolder.shared
     
     @State var process: Bool = false

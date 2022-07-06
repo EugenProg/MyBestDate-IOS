@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RegistrationContinueScreen: View {
     @EnvironmentObject var store: Store
-    @ObservedObject var registrationHolder = RegistrationDataHolder.shared
+    @ObservedObject var mediator = RegistrationMediator.shared
     
     @State var process: Bool = false
     @State var emailInputError = false
@@ -40,15 +40,15 @@ struct RegistrationContinueScreen: View {
                                 HStack(spacing: 25) {
                                     Image("ic_hearts")
                                     VStack(alignment: .leading, spacing: 1) {
-                                        Text(registrationHolder.name)
+                                        Text(mediator.name)
                                             .foregroundColor(ColorList.white.color)
                                             .font(MyFont.getFont(.BOLD, 26))
                                         
-                                        Text(registrationHolder.birthDate.toString())
+                                        Text(mediator.birthDate.toString())
                                             .foregroundColor(ColorList.white_80.color)
                                             .font(MyFont.getFont(.BOLD, 16))
                                             
-                                        Text(registrationHolder.gender)
+                                        Text(mediator.gender)
                                             .foregroundColor(ColorList.white_60.color)
                                             .font(MyFont.getFont(.BOLD, 16))
                                             .padding(.init(top: 16, leading: 0, bottom: 0, trailing: 0))
@@ -56,9 +56,9 @@ struct RegistrationContinueScreen: View {
                                     Spacer()
                                 }.padding(.init(top: 10, leading: 32, bottom: 32, trailing: 32))
                                 
-                                StandardInputView(hint: "email_or_phone_number", imageName: "ic_message", inputText: $registrationHolder.email, errorState: $emailInputError, inputType: .emailAddress)
+                                StandardInputView(hint: "email_or_phone_number", imageName: "ic_message", inputText: $mediator.login, errorState: $emailInputError, inputType: .emailAddress)
                                 
-                                PasswordInputView(inputText: $registrationHolder.password, errorState: $passInputError)
+                                PasswordInputView(inputText: $mediator.password, errorState: $passInputError)
                                 
                                 StandardButton(style: .white, title: "create_account", loadingProcess: $process) {
                                     validate()
@@ -80,9 +80,21 @@ struct RegistrationContinueScreen: View {
     }
     
     private func validate() {
-        if registrationHolder.email.isEmpty { emailInputError = true }
-        else if registrationHolder.password.count < 6 { passInputError = true }
-        else { store.dispatch(action: .navigate(screen: .REGISTRATION_OTP)) }
+        if mediator.login.isEmpty { emailInputError = true }
+        else if mediator.password.count < 6 { passInputError = true }
+        else {
+            process.toggle()
+            mediator.sendCode() { success, message in
+                DispatchQueue.main.async {
+                    process.toggle()
+                    if success {
+                        withAnimation { store.dispatch(action: .navigate(screen: .REGISTRATION_OTP)) }
+                    } else {
+                        store.dispatch(action: .show(message: message))
+                    }
+                }
+            }
+        }
     }
 }
 
