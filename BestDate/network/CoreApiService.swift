@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreLocation
+import UIKit
 
 class CoreApiService {
     static var shared = CoreApiService()
@@ -253,7 +254,6 @@ class CoreApiService {
 
         task.resume()
     }
-
 
     private func printLog(response: URLResponse?) {
         print("\n\(String(describing: response?.http?.statusCode)) \(String(describing: response?.url))\n")

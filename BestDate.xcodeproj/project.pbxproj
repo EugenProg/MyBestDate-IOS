@@ -16,7 +16,7 @@
 		4C022A45285A38920043E49D /* SwichSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C022A44285A38920043E49D /* SwichSelectorView.swift */; };
 		4C022A48285A409E0043E49D /* SwitchButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C022A47285A409E0043E49D /* SwitchButtonView.swift */; };
 		4C022A4B285A470B0043E49D /* PhotoSettingsBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C022A4A285A470B0043E49D /* PhotoSettingsBottomSheet.swift */; };
-		4C022A4D285B7E470043E49D /* PhotoEditorDataHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C022A4C285B7E470043E49D /* PhotoEditorDataHolder.swift */; };
+		4C022A4D285B7E470043E49D /* PhotoEditorMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C022A4C285B7E470043E49D /* PhotoEditorMediator.swift */; };
 		4C022A51285F0AF10043E49D /* EdiorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C022A50285F0AF00043E49D /* EdiorView.swift */; };
 		4C022A54285F90CC0043E49D /* PhotoViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C022A53285F90CC0043E49D /* PhotoViewer.swift */; };
 		4C022A562864D3370043E49D /* NotCorrectPhotoBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C022A552864D3370043E49D /* NotCorrectPhotoBottomSheet.swift */; };
@@ -79,6 +79,11 @@
 		4C5C86DA2874AA5B006DE024 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5C86D92874AA5B006DE024 /* StringUtils.swift */; };
 		4C5C86DD2874B18D006DE024 /* AuthMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5C86DC2874B18D006DE024 /* AuthMediator.swift */; };
 		4C5C86DF2874C033006DE024 /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5C86DE2874C033006DE024 /* BaseResponse.swift */; };
+		4C5C86E128758F0E006DE024 /* FaceDetectorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5C86E028758F0E006DE024 /* FaceDetectorUtil.swift */; };
+		4C5C86E32875DF43006DE024 /* ImageUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5C86E22875DF43006DE024 /* ImageUtils.swift */; };
+		4C5C86E52875E20D006DE024 /* ImagesApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5C86E42875E20D006DE024 /* ImagesApiService.swift */; };
+		4C5C86E82875FB57006DE024 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5C86E72875FB56006DE024 /* AsyncImage.swift */; };
+		4C5C86EA2875FCC0006DE024 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5C86E92875FCC0006DE024 /* ImageLoader.swift */; };
 		4C8E7D81284CC93F00D6E58D /* BestDateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8E7D80284CC93F00D6E58D /* BestDateApp.swift */; };
 		4C8E7D85284CC94900D6E58D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C8E7D84284CC94900D6E58D /* Assets.xcassets */; };
 		4C8E7D88284CC94900D6E58D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C8E7D87284CC94900D6E58D /* Preview Assets.xcassets */; };
@@ -117,7 +122,7 @@
 		4C022A44285A38920043E49D /* SwichSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwichSelectorView.swift; sourceTree = "<group>"; };
 		4C022A47285A409E0043E49D /* SwitchButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchButtonView.swift; sourceTree = "<group>"; };
 		4C022A4A285A470B0043E49D /* PhotoSettingsBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSettingsBottomSheet.swift; sourceTree = "<group>"; };
-		4C022A4C285B7E470043E49D /* PhotoEditorDataHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoEditorDataHolder.swift; sourceTree = "<group>"; };
+		4C022A4C285B7E470043E49D /* PhotoEditorMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoEditorMediator.swift; sourceTree = "<group>"; };
 		4C022A50285F0AF00043E49D /* EdiorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdiorView.swift; sourceTree = "<group>"; };
 		4C022A53285F90CC0043E49D /* PhotoViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewer.swift; sourceTree = "<group>"; };
 		4C022A552864D3370043E49D /* NotCorrectPhotoBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotCorrectPhotoBottomSheet.swift; sourceTree = "<group>"; };
@@ -180,6 +185,11 @@
 		4C5C86D92874AA5B006DE024 /* StringUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
 		4C5C86DC2874B18D006DE024 /* AuthMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthMediator.swift; sourceTree = "<group>"; };
 		4C5C86DE2874C033006DE024 /* BaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
+		4C5C86E028758F0E006DE024 /* FaceDetectorUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectorUtil.swift; sourceTree = "<group>"; };
+		4C5C86E22875DF43006DE024 /* ImageUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUtils.swift; sourceTree = "<group>"; };
+		4C5C86E42875E20D006DE024 /* ImagesApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesApiService.swift; sourceTree = "<group>"; };
+		4C5C86E72875FB56006DE024 /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
+		4C5C86E92875FCC0006DE024 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		4C8E7D7D284CC93F00D6E58D /* BestDate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BestDate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C8E7D80284CC93F00D6E58D /* BestDateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestDateApp.swift; sourceTree = "<group>"; };
 		4C8E7D84284CC94900D6E58D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -229,7 +239,7 @@
 			children = (
 				4C022A362858EE2B0043E49D /* ProfilePhotoScreen.swift */,
 				4C022A382858EE510043E49D /* PhotoEditingScreen.swift */,
-				4C022A4C285B7E470043E49D /* PhotoEditorDataHolder.swift */,
+				4C022A4C285B7E470043E49D /* PhotoEditorMediator.swift */,
 			);
 			path = "profile photo";
 			sourceTree = "<group>";
@@ -237,9 +247,11 @@
 		4C022A3C28590B600043E49D /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				4C5C86E62875FB15006DE024 /* imageLoader */,
 				4C022A52285F90A50043E49D /* Zoomable */,
 				4C022A3D28590B6A0043E49D /* imagePicker */,
 				4C5C86D92874AA5B006DE024 /* StringUtils.swift */,
+				4C5C86E028758F0E006DE024 /* FaceDetectorUtil.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -249,6 +261,7 @@
 			children = (
 				4C022A3E28590B8C0043E49D /* ImagePicker.swift */,
 				4C022A4028590BE10043E49D /* Media.swift */,
+				4C5C86E22875DF43006DE024 /* ImageUtils.swift */,
 			);
 			path = imagePicker;
 			sourceTree = "<group>";
@@ -421,6 +434,7 @@
 			children = (
 				4C5C86C9287359A5006DE024 /* CoreApiTypes.swift */,
 				4C5C86CD28735EC5006DE024 /* CoreApiService.swift */,
+				4C5C86E42875E20D006DE024 /* ImagesApiService.swift */,
 			);
 			path = network;
 			sourceTree = "<group>";
@@ -450,6 +464,15 @@
 				4C5C86DC2874B18D006DE024 /* AuthMediator.swift */,
 			);
 			path = auth;
+			sourceTree = "<group>";
+		};
+		4C5C86E62875FB15006DE024 /* imageLoader */ = {
+			isa = PBXGroup;
+			children = (
+				4C5C86E72875FB56006DE024 /* AsyncImage.swift */,
+				4C5C86E92875FCC0006DE024 /* ImageLoader.swift */,
+			);
+			path = imageLoader;
 			sourceTree = "<group>";
 		};
 		4C8E7D74284CC93F00D6E58D = {
@@ -648,6 +671,7 @@
 				4C8E7D7A284CC93F00D6E58D /* Frameworks */,
 				4C8E7D7B284CC93F00D6E58D /* Resources */,
 				8DE3D95FDEF15DF29BA14C5C /* [CP] Copy Pods Resources */,
+				ABDB115EDFC20F01B16760D3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -748,6 +772,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BestDate/Pods-BestDate-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		ABDB115EDFC20F01B16760D3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BestDate/Pods-BestDate-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BestDate/Pods-BestDate-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BestDate/Pods-BestDate-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -758,6 +799,7 @@
 				4C3D27CE28539CD300F8FD09 /* RegistrationOtpScreen.swift in Sources */,
 				4C3D27C3285244F700F8FD09 /* StandardInputView.swift in Sources */,
 				4C022A372858EE2B0043E49D /* ProfilePhotoScreen.swift in Sources */,
+				4C5C86E32875DF43006DE024 /* ImageUtils.swift in Sources */,
 				4CA2E238286765C100E514C4 /* SelectPageView.swift in Sources */,
 				4C5C86C2287336FD006DE024 /* MultySelectMediator.swift in Sources */,
 				4C1458FF285661EA00558B6B /* PassRecoveryOTPScreen.swift in Sources */,
@@ -766,6 +808,7 @@
 				4C5C86B228717200006DE024 /* RangeSelectView.swift in Sources */,
 				4C8E7D99284D1E7B00D6E58D /* Color.swift in Sources */,
 				4C3D27C528526FA100F8FD09 /* PasswordInputView.swift in Sources */,
+				4C5C86E52875E20D006DE024 /* ImagesApiService.swift in Sources */,
 				4C5C86CE28735EC5006DE024 /* CoreApiService.swift in Sources */,
 				4C1459012856620300558B6B /* PassRecoverySetNewScreen.swift in Sources */,
 				4C022A4328591A2B0043E49D /* BluredImageHeaderView.swift in Sources */,
@@ -800,6 +843,7 @@
 				4C1B7C1F286A3477000DB5D4 /* SingleSelectInfoView.swift in Sources */,
 				4C1459032856627E00558B6B /* GeolocationScreen.swift in Sources */,
 				4C5C86D62874A602006DE024 /* UserDataHolder.swift in Sources */,
+				4C5C86EA2875FCC0006DE024 /* ImageLoader.swift in Sources */,
 				4C5C86DF2874C033006DE024 /* BaseResponse.swift in Sources */,
 				4C950D58284E6194004E2C13 /* Extension.swift in Sources */,
 				4C3D27D32853A66A00F8FD09 /* GenderBottomSheet.swift in Sources */,
@@ -812,6 +856,7 @@
 				4C5C86DA2874AA5B006DE024 /* StringUtils.swift in Sources */,
 				4CA2E23D286766EF00E514C4 /* PageHeaderView.swift in Sources */,
 				4CA2E22B2867224B00E514C4 /* QuestionnaireScreen.swift in Sources */,
+				4C5C86E128758F0E006DE024 /* FaceDetectorUtil.swift in Sources */,
 				4C5C86AE28715A13006DE024 /* BaseBotomSheetMediator.swift in Sources */,
 				4C5C86BE287202A4006DE024 /* QuestionnaireMultySelectBottomSheet.swift in Sources */,
 				4C022A3F28590B8C0043E49D /* ImagePicker.swift in Sources */,
@@ -822,6 +867,7 @@
 				4C022A392858EE510043E49D /* PhotoEditingScreen.swift in Sources */,
 				4C950D61284E78E8004E2C13 /* NavigationView.swift in Sources */,
 				4C0E71ED284FB68E004099D4 /* CirclePointButton.swift in Sources */,
+				4C5C86E82875FB57006DE024 /* AsyncImage.swift in Sources */,
 				4C3D27CC28539C8800F8FD09 /* RegistrationContinueScreen.swift in Sources */,
 				4CA2E23428673D1A00E514C4 /* ProgressBarView.swift in Sources */,
 				4C8E7D9C284D1F0700D6E58D /* ScreenList.swift in Sources */,
@@ -829,7 +875,7 @@
 				4C1B7C2C286CD5BD000DB5D4 /* QuestionnaireSeekBarBottomSheet.swift in Sources */,
 				4CA2E23F28676FA400E514C4 /* PageButtonsView.swift in Sources */,
 				4C5C86B5287174DD006DE024 /* RangeBarView.swift in Sources */,
-				4C022A4D285B7E470043E49D /* PhotoEditorDataHolder.swift in Sources */,
+				4C022A4D285B7E470043E49D /* PhotoEditorMediator.swift in Sources */,
 				4C1B7C24286B67CF000DB5D4 /* QuestionnaireSingleSelectBottomSheet.swift in Sources */,
 				4C5C86D42874A546006DE024 /* AuthResponse.swift in Sources */,
 				4C022A48285A409E0043E49D /* SwitchButtonView.swift in Sources */,

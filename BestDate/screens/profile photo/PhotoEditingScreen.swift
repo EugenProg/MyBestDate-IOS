@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PhotoEditingScreen: View {
     @EnvironmentObject var store: Store
-    @ObservedObject var editorHolder = PhotoEditorDataHolder.shared
+    @ObservedObject var mediator = PhotoEditorMediator.shared
     
     @State var process: Bool = false
     
@@ -49,10 +49,7 @@ struct PhotoEditingScreen: View {
                     }
                     
                     StandardButton(style: .white, title: "save", loadingProcess: $process) {
-                        editorHolder.cropImage()
-                        store.dispatch(action: .showBottomSheet(view: .NOT_CORRECT_PHOTO))
-                        //store.dispatch(action: .navigationBack)
-                        //store.dispatch(action: .showBottomSheet(view: .PHOTO_SETTINGS))
+                        validatePhoto()
                     }
                     .padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight + 24, trailing: 0))
                 }
@@ -63,6 +60,34 @@ struct PhotoEditingScreen: View {
                 store.dispatch(action:
                         .setScreenColors(status: ColorList.main.color, style: .lightContent))
             }
+    }
+
+    private func validatePhoto() {
+        process.toggle()
+        mediator.cropImage()
+        mediator.searchFaces { success in
+            if success {
+                saveImage()
+            } else {
+                process.toggle()
+                store.dispatch(action: .showBottomSheet(view: .NOT_CORRECT_PHOTO))
+                mediator.croppedPhoto = UIImage()
+            }
+        }
+    }
+
+    private func saveImage() {
+        ImageUtils.resize(image: mediator.croppedPhoto) { image in
+            mediator.saveImage(image: mediator.croppedPhoto) { success in
+                DispatchQueue.main.async {
+                    process.toggle()
+                    if success {
+                        store.dispatch(action: .navigationBack)
+                        store.dispatch(action: .showBottomSheet(view: .PHOTO_SETTINGS))
+                    }
+                }
+            }
+        }
     }
 }
 

@@ -23,6 +23,10 @@ enum CoreApiTypes {
     case confirmEmailReset
     case confirmPhoneReset
 
+    case saveImage
+    case deleteImage
+    case updateImageStatus
+
     var BaseURL: String {
         "https://dev-api.bestdate.info/api/v1/"
     }
@@ -41,6 +45,9 @@ enum CoreApiTypes {
         case .resetPhone: return "phone/password-reset-send-code"
         case .confirmEmailReset: return "email/password-reset-by-code"
         case .confirmPhoneReset: return "phone/password-reset-by-code"
+        case .saveImage: return "user/photos"
+        case .deleteImage: return "user/photos"
+        case .updateImageStatus: return "user/photos/top-status"
         }
     }
 
@@ -58,6 +65,9 @@ enum CoreApiTypes {
         case .resetPhone: return "POST"
         case .confirmEmailReset: return "POST"
         case .confirmPhoneReset: return "POST"
+        case .saveImage: return "POST"
+        case .deleteImage: return "DELETE"
+        case .updateImageStatus: return "PUT"
         }
     }
 
@@ -88,8 +98,12 @@ enum CoreApiTypes {
     }
 
 
-    func getRequest() -> URLRequest {
+    func getRequest(withAuth: Bool? = nil) -> URLRequest {
         print("\n\(getMethod) \(BaseURL)\(getPath)\n")
+        var request = self.request
+        if withAuth == true {
+            request.setValue(UserDataHolder.accessToken, forHTTPHeaderField: "Authorization")
+        }
         return request
     }
 }

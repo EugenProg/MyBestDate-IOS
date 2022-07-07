@@ -18,15 +18,6 @@ final class RegistrationMediator: ObservableObject {
     @Published var birthDate: Date = Calendar.current.date(byAdding: .year, value: -18, to: Date())!
     @Published var name: String = ""
     @Published var password: String = ""
-    @Published var imageList: [UIImage] = []
-
-    func saveImage(image: UIImage) {
-        imageList.append(image)
-    }
-
-    func deleteImage(image: UIImage) {
-        imageList.removeLast()
-    }
 
     func sendCode(complete: @escaping (Bool, String) -> Void) {
         if StringUtils.isPhoneNumber(phone: login) {

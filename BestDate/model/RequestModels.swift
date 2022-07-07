@@ -49,3 +49,7 @@ struct RegistrationRequest: Codable {
     var birthday: String
     var look_for: [String]
 }
+
+struct IdListRequest: Codable {
+    var ids: [Int]
+}

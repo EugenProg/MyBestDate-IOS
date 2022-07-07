@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EdiorView: View {
     @EnvironmentObject var store: Store
-    @ObservedObject var editorHolder = PhotoEditorDataHolder.shared
+    @ObservedObject var mediator = PhotoEditorMediator.shared
     var backgroundColor: Color
     
     var width = UIScreen.main.bounds.width
@@ -56,7 +56,7 @@ struct EdiorView: View {
                 RoundedRectangle(cornerRadius: 30)
                     .fill(ColorList.white.color)
 
-                PhotoViewer(image: editorHolder.selectedPhoto, currentZoom: $editorHolder.zoom, currentOffset: $editorHolder.offset, frameSize: editorHolder.frame)
+                PhotoViewer(image: mediator.newPhoto, currentZoom: $mediator.zoom, currentOffset: $mediator.offset, frameSize: mediator.frame)
                     .frame(width: width - 14, height: width - 14)
                     .padding(.init(top: 0, leading: 7, bottom: 0, trailing: 7))
             }

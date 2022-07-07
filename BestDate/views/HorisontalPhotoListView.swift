@@ -10,14 +10,13 @@ import SwiftUI
 struct HorisontalPhotoListView: View {
     
     var imageSize = (UIScreen.main.bounds.width - 12) / 3
-    @Binding var imagesList: [UIImage]
-    var selectAction: (UIImage) -> Void
+    @Binding var imagesList: [ProfileImage]
+    var selectAction: (ProfileImage) -> Void
     
-    fileprivate func imageListView(clickAction: @escaping (UIImage) -> Void) -> some View {
+    fileprivate func imageListView(clickAction: @escaping (ProfileImage) -> Void) -> some View {
         HStack(spacing: 3) {
-            ForEach(imagesList, id: \.self) { image in
-                Image(uiImage: image)
-                    .resizable()
+            ForEach(imagesList, id: \.id) { image in
+                AsyncImage(url: image.full_url ?? "", image: { Image(uiImage: $0).resizable() })
                     .frame(width: imageSize, height: imageSize)
                     .padding(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
                     .onTapGesture {
