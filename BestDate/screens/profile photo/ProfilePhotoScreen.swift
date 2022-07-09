@@ -18,7 +18,7 @@ struct ProfilePhotoScreen: View {
     var body: some View {
         VStack {
             ZStack {
-                if mediator.imageList.count > 0 {
+                if mediator.mainPhoto != nil {
                     BluredImageHeaderView(image: $mediator.mainPhoto)
                 }
                 
@@ -30,10 +30,10 @@ struct ProfilePhotoScreen: View {
                             .cornerRadius(55)
                             .shadow(color: MyColor.getColor(17, 24, 28, 0.6), radius: 16, y: 3)
                             .frame(width: 110, height: 110)
-                        if mediator.imageList.count == 0 {
+                        if mediator.mainPhoto == nil {
                             Image("ic_user_cirlce_add")
                         } else {
-                            AsyncImage(url: mediator.mainPhoto?.full_url ?? "", image: { Image(uiImage: $0).resizable() })
+                            AsyncImageView(url: mediator.mainPhoto?.full_url)
                                 .aspectRatio(contentMode: .fill)
                                 .clipShape(Circle())
                                 .frame(width: 104, height: 104, alignment: .center)
@@ -46,11 +46,11 @@ struct ProfilePhotoScreen: View {
                 VStack(alignment: .leading, spacing: 0) {
                     
                     HStack {
-                        BackButton(style: mediator.imageList.count > 0 ? .white : .black)
+                        BackButton(style: mediator.mainPhoto != nil ? .white : .black)
                         
                         Spacer()
 
-                        if mediator.imageList.count > 0 {
+                        if !mediator.imageList.isEmpty {
                             TextButton(text: "next", textColor: ColorList.white.color) {
                                 store.dispatch(action: .navigate(screen: .QUESTIONNAIRE))
                             }
@@ -58,7 +58,7 @@ struct ProfilePhotoScreen: View {
                     }.padding(.init(top: 32, leading: 32, bottom: 15, trailing: 32))
                     
                     
-                    Title(textColor: mediator.imageList.count > 0 ? ColorList.white.color : ColorList.main.color, text: "set_a_profile_photo")
+                    Title(textColor: mediator.mainPhoto != nil ? ColorList.white.color : ColorList.main.color, text: "set_a_profile_photo")
                     
                     ZStack {
                         Rectangle()

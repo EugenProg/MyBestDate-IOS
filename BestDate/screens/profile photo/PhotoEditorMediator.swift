@@ -42,7 +42,17 @@ class PhotoEditorMediator: ObservableObject {
             DispatchQueue.main.async {
                 if success {
                     let index = self.imageList.firstIndex { i in i.id == id } ?? -1
-                    if index > -1 { self.imageList.removeFirst(index) }
+                    if index > -1 {
+                        let image = self.imageList[index]
+
+                        self.imageList.remove(at: index)
+
+                        if (image.main == true || id == self.mainPhoto?.id) && !self.imageList.isEmpty {
+                            self.mainPhoto = nil
+                            self.mainPhoto = self.imageList[0]
+                        }
+                        if self.imageList.isEmpty { self.mainPhoto = nil }
+                    }
                 }
                 completion(success)
             }
@@ -51,6 +61,15 @@ class PhotoEditorMediator: ObservableObject {
 
     func updateImageStatus(image: ProfileImage?) {
         
+    }
+
+    func setImages(images: [ProfileImage]) {
+        self.imageList.removeAll()
+        for image in images {
+            if image.main ?? false { self.mainPhoto = image }
+            self.imageList.append(image)
+        }
+        if self.mainPhoto == nil && !images.isEmpty { self.mainPhoto = images.first }
     }
 
     func cropImage() {

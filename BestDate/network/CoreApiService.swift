@@ -255,6 +255,42 @@ class CoreApiService {
         task.resume()
     }
 
+    func getUserData(completion: @escaping (Bool, UserInfo) -> Void) {
+        let request = CoreApiTypes.getUser.getRequest(withAuth: true)
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            self.printLog(response: response)
+            if let data = data, let response = try? JSONDecoder().decode(UserDataResponse.self, from: data) {
+                self.printLog(data: data)
+                completion(response.success, response.data ?? UserInfo())
+            } else {
+                completion(false, UserInfo())
+            }
+        }
+
+        task.resume()
+    }
+
+    func saveQuestionnaire(questionnaire: Questionnaire, completion: @escaping (Bool, UserInfo) -> Void) {
+        var request = CoreApiTypes.saveQuestionnaire.getRequest(withAuth: true)
+
+        let data = try! encoder.encode(questionnaire)
+        encoder.outputFormatting = .prettyPrinted
+        request.httpBody = data
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            self.printLog(response: response)
+            if let data = data, let response = try? JSONDecoder().decode(UserDataResponse.self, from: data) {
+                self.printLog(data: data)
+                completion(response.success, response.data ?? UserInfo())
+            } else {
+                completion(false, UserInfo())
+            }
+        }
+
+        task.resume()
+    }
+
     private func printLog(response: URLResponse?) {
         print("\n\(String(describing: response?.http?.statusCode)) \(String(describing: response?.url))\n")
     }

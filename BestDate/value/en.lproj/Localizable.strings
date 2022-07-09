@@ -92,6 +92,12 @@
 "perfect_result" = "Perfect result!";
 "good_job" = "Good job!";
 
+"search" = "Search";
+"matches" = "Matches";
+"messages" = "Messages";
+"top_50" = "Top 50";
+"guests" = "Guests";
+
 
 //PAGES
 "personal_information" = "Personal information";

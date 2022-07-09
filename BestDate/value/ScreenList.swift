@@ -23,5 +23,11 @@ enum ScreenList: String {
     case PROFILE_PHOTO
     case PHOTO_EDITING
     case QUESTIONNAIRE
+
+    case MAIN
+    case PROFILE
+    case ANOTHER_PROFILE
+    case MY_DUELS
+    case MESSAGE
 }
 
