@@ -11,4 +11,5 @@ class SingleSelectMediator: ObservableObject {
     static var shared = SingleSelectMediator()
 
     @Published var questionInfo: QuestionInfo = QuestionInfo(id: 0)
+    
 }

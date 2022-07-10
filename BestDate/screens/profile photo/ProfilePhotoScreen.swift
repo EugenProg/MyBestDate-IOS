@@ -115,7 +115,7 @@ struct ProfilePhotoScreen: View {
             .background(ColorList.white.color.edgesIgnoringSafeArea(.bottom))
             .onAppear {
                 store.dispatch(action:
-                        .setScreenColors(status: ColorList.white.color, style: .darkContent))
+                        .setScreenColors(status: ColorList.white.color, style: mediator.mainPhoto != nil ? .lightContent : .darkContent))
             }
             .sheet(isPresented: $isShowingPhotoLibrary) {
                 ImagePicker(sourceType: .photoLibrary) { image in

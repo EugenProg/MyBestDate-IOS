@@ -124,4 +124,24 @@ final class RegistrationMediator: ObservableObject {
         default: return ["male", "female"]
         }
     }
+
+    func setUserData(user: UserInfo) {
+        self.name = user.name ?? ""
+        self.email = user.email ?? ""
+        self.phone = user.phone ?? ""
+        self.birthDate = user.birthday?.toDate() ?? Date.now
+        setGender(gender: user.gender ?? "", lookFor: user.look_for ?? [])
+    }
+
+    private func setGender(gender: String, lookFor: [String]) {
+        if gender == "male" {
+            self.gender = lookFor.contains("male") ?
+            NSLocalizedString("man_looking_for_a_man", comment: "Gender") :
+            NSLocalizedString("man_looking_for_a_woman", comment: "Gender")
+        } else {
+            self.gender = lookFor.contains("male") ?
+            NSLocalizedString("woman_looking_for_a_man", comment: "Gender") :
+            NSLocalizedString("woman_looking_for_a_woman", comment: "Gender")
+        }
+    }
 }

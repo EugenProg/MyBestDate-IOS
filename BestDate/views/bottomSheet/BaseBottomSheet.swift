@@ -32,6 +32,8 @@ struct BaseBottomSheet: View {
                         case .QUESTIONNAIRE_SEEK_BAR: QuestionnaireSeekBarBottomSheet { dismiss() }
                         case .QUESTIONNAIRE_SEARCH: QuestionnaireSearchBotomSheet { dismiss() }
                         case .QUESTIONNAIRE_MULTY_SELECT: QuestionnaireMultySelectBottomSheet { dismiss() }
+                        case .MAIN_LOCATION: MainLocationBottomSheet { dismiss() }
+                        case .MAIN_ONLINE: MainOnlineBottomSheet { dismiss() }
                         }
                     }.frame(width: width, height: store.state.activeBottomSheet.heightMode.height)
                     .padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight + 16, trailing: 0))
@@ -87,7 +89,7 @@ struct BaseBottomSheet: View {
     private func closeAction() {
         if mediator.closeAction != nil {
             withAnimation {
-                mediator.closeAction!()
+                mediator.closeAction!(store.state.activeBottomSheet)
             }
         }
     }

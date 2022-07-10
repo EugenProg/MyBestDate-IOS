@@ -89,6 +89,85 @@ extension Date {
     }
 }
 
+extension String {
+    func toDate() -> Date {
+        let dateFormatter = DateFormatter()
+          dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return dateFormatter.date(from: self) ?? Date.now
+    }
+}
+
+extension Array where Element == String {
+    func equals(array: [String]?) -> Bool {
+        if self.count != array?.count { return false }
+        for item in self {
+            if !(array?.contains(item) ?? false) { return false }
+        }
+
+        return true
+    }
+}
+
+extension UserInfo {
+    func getMainPhoto() -> ProfileImage? {
+        for image in self.photos ?? [] {
+            if image.main ?? false {
+                return image
+            }
+        }
+        return self.photos?.first
+    }
+
+    func getAge() -> Int {
+        Calendar.current.dateComponents([.year], from: self.birthday?.toDate() ?? Date.now, to: Date.now).year ?? 0
+    }
+}
+
+extension Questionnaire {
+    func isEmpty() -> Bool {
+        self.purpose == nil &&
+        self.height == nil &&
+        self.weight == nil &&
+        self.eye_color == nil &&
+        self.hair_color == nil &&
+        self.hair_length == nil &&
+        self.marital_status == nil &&
+        self.kids == nil &&
+        self.education == nil &&
+        self.occupation == nil &&
+        self.about_me == nil &&
+        self.search_age_min == nil &&
+        self.search_age_max == nil &&
+        (self.socials == nil || (self.socials?.isEmpty ?? true)) &&
+        (self.hobby == nil || (self.hobby?.isEmpty ?? true)) &&
+        (self.sport == nil || (self.sport?.isEmpty ?? true)) &&
+        self.evening_time == nil
+    }
+
+    func isFull() -> Bool {
+        self.purpose != nil &&
+        self.height != nil &&
+        self.weight != nil &&
+        self.eye_color != nil &&
+        self.hair_color != nil &&
+        self.hair_length != nil &&
+        self.marital_status != nil &&
+        self.kids != nil &&
+        self.education != nil &&
+        self.occupation != nil &&
+        self.about_me != nil &&
+        self.search_age_min != nil &&
+        self.search_age_max != nil &&
+        self.socials != nil &&
+        !(self.socials?.isEmpty ?? true) &&
+        self.hobby != nil &&
+        !(self.hobby?.isEmpty ?? true) &&
+        self.sport != nil &&
+        !(self.sport?.isEmpty ?? true) &&
+        self.evening_time != nil
+    }
+}
+
 extension URLResponse {
     /// Returns casted `HTTPURLResponse`
     var http: HTTPURLResponse? {

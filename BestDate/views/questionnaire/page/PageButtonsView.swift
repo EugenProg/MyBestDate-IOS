@@ -14,7 +14,6 @@ struct PageButtonsView: View {
     var previousAction: () -> Void
     var nextAction: () -> Void
 
-    @State var process: Bool = false
     var animation = Animation.easeInOut(duration: 0.7)
 
     var body: some View {
@@ -31,7 +30,7 @@ struct PageButtonsView: View {
 
             Spacer()
 
-            StandardButton(style: .blue, title: page.buttonTitle, loadingProcess: $process) {
+            StandardButton(style: .blue, title: page.buttonTitle, loadingProcess: $mediator.saveProcess) {
                 withAnimation(animation) { nextAction() }
             }.frame(width: UIScreen.main.bounds.width / 2)
         }

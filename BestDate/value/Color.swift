@@ -44,6 +44,8 @@ enum ColorList {
     case white_5
     case white_10
     case white_13
+    case white_30
+    case white_40
     case white_50
     case white_60
     case white_70
@@ -54,12 +56,15 @@ enum ColorList {
     case pink_18
     
     case light_blue
+    case blue_1
     
     case blue
     case blue_90
     
     case gray
     case red
+
+    case green
     
     var color: Color {
         switch self {
@@ -80,6 +85,8 @@ enum ColorList {
         case .white_5: return MyColor.getColor(255, 255, 255, 0.05)
         case .white_10: return MyColor.getColor(255, 255, 255, 0.1)
         case .white_13: return MyColor.getColor(255, 255, 255, 0.13)
+        case .white_30: return MyColor.getColor(255, 255, 255, 0.3)
+        case .white_40: return MyColor.getColor(255, 255, 255, 0.4)
         case .white_50: return MyColor.getColor(255, 255, 255, 0.5)
         case .white_60: return MyColor.getColor(255, 255, 255, 0.6)
         case .white_70: return MyColor.getColor(255, 255, 255, 0.7)
@@ -89,10 +96,13 @@ enum ColorList {
         case .pink: return MyColor.getColor(242, 138, 229)
         case .pink_18: return MyColor.getColor(242, 138, 229, 0.18)
         case .light_blue: return MyColor.getColor(190, 239, 255)
+        case .blue_1: return MyColor.getColor(118, 207, 255)
         case .blue: return MyColor.getColor(123, 215, 245)
         case .blue_90: return MyColor.getColor(230, 123, 215, 0.9)
         case .gray: return MyColor.getColor(31, 231, 238, 0.95)
         case .red: return MyColor.getColor(255, 51, 51)
+
+        case .green: return MyColor.getColor(0, 255, 98)
         }
     }
     
@@ -115,6 +125,8 @@ enum ColorList {
         case .white_5: return MyColor.getColor(255, 255, 255, 0.05)
         case .white_10: return MyColor.getColor(255, 255, 255, 0.1)
         case .white_13: return MyColor.getColor(255, 255, 255, 0.13)
+        case .white_30: return MyColor.getColor(255, 255, 255, 0.3)
+        case .white_40: return MyColor.getColor(255, 255, 255, 0.4)
         case .white_50: return MyColor.getColor(255, 255, 255, 0.5)
         case .white_60: return MyColor.getColor(255, 255, 255, 0.6)
         case .white_70: return MyColor.getColor(255, 255, 255, 0.7)
@@ -124,10 +136,13 @@ enum ColorList {
         case .pink: return MyColor.getColor(242, 138, 229)
         case .pink_18: return MyColor.getColor(242, 138, 229, 0.18)
         case .light_blue: return MyColor.getColor(190, 239, 255)
+        case .blue_1: return MyColor.getColor(118, 207, 255)
         case .blue: return MyColor.getColor(123, 215, 245)
         case .blue_90: return MyColor.getColor(230, 123, 215, 0.9)
         case .gray: return MyColor.getColor(31, 231, 238, 0.95)
         case .red: return MyColor.getColor(255, 51, 51)
+
+        case .green: return MyColor.getColor(0, 255, 98)
         }
     }
 }

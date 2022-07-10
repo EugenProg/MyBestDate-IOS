@@ -14,6 +14,16 @@ class MainMediator: ObservableObject {
     @Published var currentScreen: MainScreensType = .SEARCH
     @Published var hasNewMessages: Bool = true
     @Published var hasNewGuests: Bool = false
+    @Published var user: UserInfo = UserInfo()
+    @Published var mainPhoto: ProfileImage? = nil
+
+    func setUserInfo(user: UserInfo) {
+        hasNewMessages = (user.new_likes ?? 0) > 0
+        hasNewGuests = (user.new_guests ?? 0) > 0
+        mainPhoto = user.getMainPhoto()
+
+        self.user = user
+    }
 }
 
 enum MainScreensType {

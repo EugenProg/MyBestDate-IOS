@@ -22,6 +22,7 @@ struct BottomMainNavigationView: View {
             Rectangle()
                 .fill(ColorList.main.color)
                 .cornerRadius(radius: 33, corners: [.topLeft, .topRight])
+                .shadow(color: MyColor.getColor(17, 24, 28, 0.63), radius: 46, y: -7)
 
             HStack(alignment: .top, spacing: 0) {
                 let spaceDistance = (UIScreen.main.bounds.width - 300) / 6

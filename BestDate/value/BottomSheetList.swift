@@ -12,10 +12,14 @@ enum BottomSheetList: String {
     case GENDER
     case PHOTO_SETTINGS
     case NOT_CORRECT_PHOTO
+
     case QUESTIONNAIRE_SINGLE_SELECT
     case QUESTIONNAIRE_SEEK_BAR
     case QUESTIONNAIRE_SEARCH
     case QUESTIONNAIRE_MULTY_SELECT
+
+    case MAIN_LOCATION
+    case MAIN_ONLINE
     
     var heightMode: BottomSheetHeight {
         switch self {
@@ -26,6 +30,8 @@ enum BottomSheetList: String {
         case .QUESTIONNAIRE_SEEK_BAR: return .AUTO
         case .QUESTIONNAIRE_SEARCH: return .FULL
         case .QUESTIONNAIRE_MULTY_SELECT: return .AUTO
+        case .MAIN_LOCATION: return .AUTO
+        case .MAIN_ONLINE: return .AUTO
         }
     }
     
@@ -38,6 +44,8 @@ enum BottomSheetList: String {
         case .QUESTIONNAIRE_SEEK_BAR: return .WHITE
         case .QUESTIONNAIRE_SEARCH: return .WHITE
         case .QUESTIONNAIRE_MULTY_SELECT: return .WHITE
+        case .MAIN_LOCATION: return .BLACK
+        case .MAIN_ONLINE: return .BLACK
         }
     }
 }

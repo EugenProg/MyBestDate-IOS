@@ -9,11 +9,9 @@ import SwiftUI
 
 struct RangeSelectView: View {
     @EnvironmentObject var store: Store
-    @ObservedObject var mediator = SingleSelectMediator.shared
+    @ObservedObject var mediator = QuestionnaireMediator.shared
 
     @Binding var questionInfo: QuestionInfo
-    @State var startNumber: Int = 5
-    @State var endNumber: Int = 120
 
     var body: some View {
         ZStack {
@@ -26,7 +24,7 @@ struct RangeSelectView: View {
                     .font(MyFont.getFont(.NORMAL, 12))
                     .padding(.init(top: 0, leading: 0, bottom: 5, trailing: 0))
 
-                RangeBarView(start: getMin(), end: getMax(), startNumber: $startNumber, endNumber: $endNumber)
+                RangeBarView(start: getMin(), end: getMax(), startNumber: $mediator.startAgeRange, endNumber: $mediator.endAgeRange)
                     .padding(.init(top: 0, leading: 10, bottom: 0, trailing: 0))
             }.frame(width: UIScreen.main.bounds.width - 110, alignment: .leading)
         }.frame(width: UIScreen.main.bounds.width - 64, height: 118)

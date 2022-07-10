@@ -10,6 +10,7 @@ import SwiftUI
 struct OnboardStartScreen: View {
     @EnvironmentObject var store: Store
     let height = UIScreen.main.bounds.height
+    @State var process: Bool = false
     
     var body: some View {
         ZStack {
@@ -55,7 +56,7 @@ struct OnboardStartScreen: View {
                         store.dispatch(action: .navigate(screen: .AUTH))
                     }
                     Spacer()
-                    CircleImageButton(imageName: "ic_arrow_right_pink", strokeColor: MyColor.getColor(242, 138, 229, 0.18), shadowColor: MyColor.getColor(137, 117, 135, 0.63)) { store.dispatch(action: .navigate(screen: .ONBOARD_SECOND)) }
+                    CircleImageButton(imageName: "ic_arrow_right_pink", strokeColor: MyColor.getColor(242, 138, 229, 0.18), shadowColor: MyColor.getColor(137, 117, 135, 0.63), loadingProcess: $process) { store.dispatch(action: .navigate(screen: .ONBOARD_SECOND)) }
                 }.padding(.init(top: 0, leading: 32, bottom: store.state.statusBarHeight + 32, trailing: 32))
             }.frame(height: height, alignment: .bottom)
             

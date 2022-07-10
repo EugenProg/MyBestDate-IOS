@@ -42,10 +42,12 @@ struct QuestionnaireMultySelectBottomSheet: View {
 
         }.frame(width: UIScreen.main.bounds.width, height: height, alignment: .topLeading)
             .onAppear {
-                baseMediator.closeAction = {
-                    if mediator.questionInfo.viewType == .MULTY_SELECT {
+                baseMediator.closeAction = { type in
+                    if type == .QUESTIONNAIRE_MULTY_SELECT {
+                        print(">>> close action \(mediator.questionInfo.question)")
                         let ansferLine = mediator.getAnsferLine()
                         calculateProgress(ansferLine: ansferLine)
+                        questionnaireMediator.saveSelection(questionInfo: mediator.questionInfo, ansfer: ansferLine)
                         mediator.questionInfo.selectAction!(ansferLine)
                     }
                 }
@@ -54,6 +56,7 @@ struct QuestionnaireMultySelectBottomSheet: View {
 
     private func calculateProgress(ansferLine: String) {
         if mediator.questionInfo.selectedAnsfer.isEmpty && !ansferLine.isEmpty {
+            print(">>> add progress \(mediator.questionInfo.percent)")
             questionnaireMediator.addProgress(progress: mediator.questionInfo.percent)
         } else if !mediator.questionInfo.selectedAnsfer.isEmpty && ansferLine.isEmpty {
             questionnaireMediator.removeProgress(progress: mediator.questionInfo.percent)

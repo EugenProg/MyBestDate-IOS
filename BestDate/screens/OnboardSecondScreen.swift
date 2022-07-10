@@ -10,6 +10,7 @@ import SwiftUI
 struct OnboardSecondScreen: View {
     @EnvironmentObject var store: Store
     let height = UIScreen.main.bounds.height
+    @State var process: Bool = false
     
     var body: some View {
         ZStack {
@@ -55,7 +56,7 @@ struct OnboardSecondScreen: View {
                         store.dispatch(action: .navigate(screen: .AUTH))
                     }
                     Spacer()
-                    CircleImageButton(imageName: "ic_arrow_right_blue", strokeColor: MyColor.getColor(190, 239, 255, 0.18), shadowColor: MyColor.getColor(117, 130, 137, 0.63)) { store.dispatch(action: .navigate(screen: .AUTH)) }
+                    CircleImageButton(imageName: "ic_arrow_right_blue", strokeColor: MyColor.getColor(190, 239, 255, 0.18), shadowColor: MyColor.getColor(117, 130, 137, 0.63), loadingProcess: $process) { store.dispatch(action: .navigate(screen: .AUTH)) }
                 }.padding(.init(top: 0, leading: 32, bottom: store.state.statusBarHeight + 32, trailing: 32))
             }.frame(height: height, alignment: .bottom)
             

@@ -10,5 +10,5 @@ import Foundation
 class BaseButtonSheetMediator: ObservableObject {
     static let shared = BaseButtonSheetMediator()
 
-    var closeAction: (() -> Void)? = nil
+    var closeAction: ((BottomSheetList) -> Void)? = nil
 }

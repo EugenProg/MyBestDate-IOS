@@ -11,11 +11,20 @@ import SwiftUI
 class QuestionnaireMediator: ObservableObject {
     static let shared = QuestionnaireMediator()
 
+    private var savedQuestionnaire: Questionnaire = Questionnaire()
+
+    var userQuestinnaire: Questionnaire = Questionnaire()
+
     @Published var progress: Int = 0
     @Published var firstSurprize: Bool = false
     @Published var finalSurprize: Bool = false
     @Published var title: String = "let_s_start"
     @Published var pages: [QuestionnairePage] = []
+
+    @Published var saveProcess: Bool = false
+
+    @Published var startAgeRange: Int = 5
+    @Published var endAgeRange: Int = 120
 
     var personalPageStates = PageStates(offset: CGSize.zero, zoom: 1, opacity: 1)
     var apperancePageStates = PageStates(opacity: 0.5)
@@ -28,6 +37,131 @@ class QuestionnaireMediator: ObservableObject {
 
     init() {
         total = getPageList()
+    }
+
+    func setQuestionnaire(questionnaire: Questionnaire) {
+        pages[0].questions[0].selectedAnsfer = questionnaire.marital_status ?? ""
+        pages[0].questions[1].selectedAnsfer = questionnaire.kids ?? ""
+        //pages[0].questions[2].selectedAnsfer = questionnaire.kids ?? ""
+        pages[0].questions[3].selectedAnsfer = questionnaire.education ?? ""
+        pages[0].questions[4].selectedAnsfer = questionnaire.occupation ?? ""
+
+        pages[1].questions[0].selectedAnsfer = questionnaire.height ?? ""
+        pages[1].questions[1].selectedAnsfer = questionnaire.weight ?? ""
+        pages[1].questions[2].selectedAnsfer = questionnaire.eye_color ?? ""
+        pages[1].questions[3].selectedAnsfer = questionnaire.hair_length ?? ""
+        pages[1].questions[4].selectedAnsfer = questionnaire.hair_color ?? ""
+
+        pages[2].questions[0].selectedAnsfer = questionnaire.purpose ?? ""
+        startAgeRange = questionnaire.search_age_min ?? 5
+        endAgeRange = questionnaire.search_age_max ?? 120
+
+        pages[3].questions[0].selectedAnsfer = getAnsferLine(ansfers: questionnaire.hobby ?? [])
+        pages[3].questions[1].selectedAnsfer = getAnsferLine(ansfers: questionnaire.sport ?? [])
+        pages[3].questions[2].selectedAnsfer = questionnaire.evening_time ?? ""
+
+        pages[4].questions[0].selectedAnsfer = questionnaire.about_me ?? ""
+
+        pages[5].questions[2].selectedAnsfer = getAnsferLine(ansfers: questionnaire.socials ?? [])
+
+        addProgress(progress: calculateSavedProgress(questionnaire: questionnaire))
+
+        self.savedQuestionnaire = questionnaire
+        self.userQuestinnaire = questionnaire
+    }
+
+    private func calculateSavedProgress(questionnaire: Questionnaire) -> Int {
+        var totalProgress = 0
+        for page in pages {
+            for question in page.questions {
+                if !question.selectedAnsfer.isEmpty {
+                    totalProgress += question.percent
+                }
+            }
+        }
+        return totalProgress
+    }
+
+    func saveSelection(questionInfo: QuestionInfo, ansfer: String) {
+        switch (questionInfo.question) {
+        case "marital_status": userQuestinnaire.marital_status = ansfer
+        case "having_kids": userQuestinnaire.kids = ansfer
+        //case "plase_of_residence": userQuestinnaire.marital_status = ansfer
+        case "education": userQuestinnaire.education = ansfer
+        case "occupational_status": userQuestinnaire.occupation = ansfer
+        case "height": userQuestinnaire.height = ansfer
+        case "weight": userQuestinnaire.weight = ansfer
+        case "hair_length": userQuestinnaire.hair_length = ansfer
+        case "eye_color": userQuestinnaire.eye_color = ansfer
+        case "hair_color": userQuestinnaire.hair_color = ansfer
+        case "purpose_of_dating": userQuestinnaire.purpose = ansfer
+        //case "what_do_you_want_for_a_date": userQuestinnaire.marital_status = ansfer
+        //case "search_location": userQuestinnaire.marital_status = ansfer
+        case "hobby": userQuestinnaire.hobby = getListFromAnsfer(ansfer: ansfer)
+        case "types_of_sports": userQuestinnaire.sport = getListFromAnsfer(ansfer: ansfer)
+        case "evening_time": userQuestinnaire.evening_time = ansfer
+        case "social_network": userQuestinnaire.socials = getListFromAnsfer(ansfer: ansfer)
+        case "tell_us_about_yourself_what_you_find_interesting": userQuestinnaire.about_me = ansfer
+        default: break
+
+        }
+    }
+
+    func getAnsferLine(ansfers: [String]) -> String {
+        var line = ""
+        for ansfer in ansfers {
+            line.append("\(ansfer), ")
+        }
+
+        if !line.isEmpty {
+            line = String(line.prefix(line.count - 2))
+        }
+
+        return line
+    }
+
+    func saveQuestionnaire(questionnaire: Questionnaire, completion: @escaping (Bool, String) -> Void) {
+        CoreApiService.shared.saveQuestionnaire(questionnaire: questionnaire) { success, user in
+            completion(success, "default_error_message")
+        }
+    }
+
+    func getQuestionnaire() {
+        userQuestinnaire.search_age_min = startAgeRange
+        userQuestinnaire.search_age_max = endAgeRange
+    }
+
+    func isChanged() -> Bool {
+        if savedQuestionnaire.isEmpty() { return true }
+
+        return !(userQuestinnaire.purpose == savedQuestionnaire.purpose &&
+                 userQuestinnaire.height == savedQuestionnaire.height &&
+                 userQuestinnaire.weight == savedQuestionnaire.weight &&
+                 userQuestinnaire.eye_color == savedQuestionnaire.eye_color &&
+                 userQuestinnaire.hair_color == savedQuestionnaire.hair_color &&
+                 userQuestinnaire.hair_length == savedQuestionnaire.hair_length &&
+                 userQuestinnaire.marital_status == savedQuestionnaire.marital_status &&
+                 userQuestinnaire.kids == savedQuestionnaire.kids &&
+                 userQuestinnaire.education == savedQuestionnaire.education &&
+                 userQuestinnaire.occupation == savedQuestionnaire.occupation &&
+                 userQuestinnaire.about_me == savedQuestionnaire.about_me &&
+                 userQuestinnaire.search_age_min == savedQuestionnaire.search_age_min &&
+                 userQuestinnaire.search_age_max == savedQuestionnaire.search_age_max &&
+        (userQuestinnaire.socials?.equals(array: savedQuestionnaire.socials ?? []) ?? true) &&
+        (userQuestinnaire.hobby?.equals(array: savedQuestionnaire.hobby ?? []) ?? true) &&
+        (userQuestinnaire.sport?.equals(array: savedQuestionnaire.sport ?? []) ?? true) &&
+                 userQuestinnaire.evening_time == savedQuestionnaire.evening_time)
+    }
+
+    private func getListFromAnsfer(ansfer: String) -> [String] {
+        ansfer.components(separatedBy: " ,")
+    }
+
+    private func getQuestionInfoByPageNumberAndQuestionNumber(pageNumber: Int, questionNumber: Int) -> QuestionInfo {
+        let questions = getPageByNumber(number: pageNumber).questions
+        return questions.first { q in
+            q.id == questionNumber
+        } ?? QuestionInfo(id: 0)
     }
 
     func addProgress(progress: Int) {
@@ -175,7 +309,7 @@ class QuestionnaireMediator: ObservableObject {
         )
         list.append(
             QuestionInfo(
-                id: 3,
+                id: 4,
                 question: "hair_color",
                 percent: 5,
                 ansfers: ["blond", "brunette", "redhead", "no_hair"]

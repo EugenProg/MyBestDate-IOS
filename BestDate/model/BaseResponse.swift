@@ -54,8 +54,8 @@ struct UserInfo: Codable {
 
 struct Questionnaire: Codable {
     var purpose: String? = nil
-    var height: Int? = nil
-    var weight: Int? = nil
+    var height: String? = nil
+    var weight: String? = nil
     var eye_color: String? = nil
     var hair_color: String? = nil
     var hair_length: String? = nil
@@ -66,8 +66,15 @@ struct Questionnaire: Codable {
     var about_me: String? = nil
     var search_age_min: Int? = nil
     var search_age_max: Int? = nil
-    var socials: [String]? = nil
-    var hobby: [String]? = nil
-    var sport: [String]? = nil
+    var socials: [String]? = []
+    var hobby: [String]? = []
+    var sport: [String]? = []
     var evening_time: String? = nil
+}
+
+
+struct UserListResponse: Codable {
+    var success: Bool
+    var message: String
+    var data: [UserInfo] = []
 }

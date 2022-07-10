@@ -30,6 +30,8 @@ enum CoreApiTypes {
     case getUser
     case saveQuestionnaire
 
+    case getUserList
+
     var BaseURL: String {
         "https://dev-api.bestdate.info/api/v1/"
     }
@@ -53,6 +55,7 @@ enum CoreApiTypes {
         case .updateImageStatus: return "user/photos/top-status"
         case .getUser: return "user"
         case .saveQuestionnaire: return "user/questionnaire"
+        case .getUserList: return "users"
         }
     }
 
@@ -75,6 +78,7 @@ enum CoreApiTypes {
         case .updateImageStatus: return "PUT"
         case .getUser: return "GET"
         case .saveQuestionnaire: return "PUT"
+        case .getUserList: return "GET"
         }
     }
 

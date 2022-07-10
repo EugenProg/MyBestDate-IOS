@@ -36,8 +36,8 @@ struct QuestionnaireSeekBarBottomSheet: View {
         }.frame(width: UIScreen.main.bounds.width, alignment: .topLeading)
             .onAppear {
                 number = Int(mediator.questionInfo.selectedAnsfer) ?? 80
-                baseMediator.closeAction = {
-                    if mediator.questionInfo.viewType == .SEEK_BAR_SELECT {
+                baseMediator.closeAction = { type in
+                    if type == .QUESTIONNAIRE_SEEK_BAR {
                         calculateProgress()
                         mediator.questionInfo.selectAction!(String(number))
                     }

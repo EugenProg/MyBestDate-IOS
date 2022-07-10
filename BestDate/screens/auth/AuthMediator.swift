@@ -21,26 +21,31 @@ class AuthMediator: ObservableObject {
     }
 
     func loginByPhone(phone: String, password: String, complete: @escaping (Bool) -> Void) {
-        CoreApiService.shared.loginByPhone(phone: phone, password: password) { success in
-            self.getUserData()
+        CoreApiService.shared.loginByPhone(phone: phone, password: password) { _ in
+                self.getUserData() { success in
             complete(success)
+            }
         }
     }
 
     func loginByEmail(email: String, password: String, complete: @escaping (Bool) -> Void) {
-        CoreApiService.shared.loginByEmail(userName: email, password: password) { success in
-            self.getUserData()
-            complete(success)
+        CoreApiService.shared.loginByEmail(userName: email, password: password) { _ in
+            self.getUserData() { success in
+                complete(success)
+            }
         }
     }
 
-    private func getUserData() {
+    private func getUserData(complete: @escaping (Bool) -> Void) {
         CoreApiService.shared.getUserData { success, user in
             DispatchQueue.main.async {
                 if success {
                     PhotoEditorMediator.shared.setImages(images: user.photos ?? [])
                     RegistrationMediator.shared.setUserData(user: user)
+                    MainMediator.shared.setUserInfo(user: user)
+                    QuestionnaireMediator.shared.setQuestionnaire(questionnaire: user.questionnaire ?? Questionnaire())
                 }
+                complete(success)
             }
 
         }

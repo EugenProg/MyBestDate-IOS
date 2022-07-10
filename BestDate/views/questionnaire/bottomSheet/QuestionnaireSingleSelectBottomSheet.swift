@@ -31,11 +31,13 @@ struct QuestionnaireSingleSelectBottomSheet: View {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(spacing: 0) {
                     ForEach(mediator.questionInfo.ansfers, id: \.self) { ansfer in
-                        AnsferItemView(ansfer: ansfer, isSelect: NSLocalizedString(ansfer, comment: "Ansfer") == mediator.questionInfo.selectedAnsfer) { selectedAnsfer in
+                        AnsferItemView(ansfer: ansfer, isSelect: equals(ansfer: ansfer)) { selectedAnsfer in
 
                             calculateProgress()
 
-                            mediator.questionInfo.selectAction!(NSLocalizedString(selectedAnsfer, comment: "Ansfer") )
+                            let selectedAnsfer = NSLocalizedString(selectedAnsfer, comment: "Ansfer")
+                            mediator.questionInfo.selectAction!(selectedAnsfer)
+                            questionnaireMediator.saveSelection(questionInfo: mediator.questionInfo, ansfer: selectedAnsfer)
 
                             clickAction()
                         }
@@ -44,6 +46,10 @@ struct QuestionnaireSingleSelectBottomSheet: View {
             }
 
         }.frame(width: UIScreen.main.bounds.width, height: height, alignment: .topLeading)
+    }
+
+    private func equals(ansfer: String) -> Bool {
+        NSLocalizedString(ansfer, comment: "Ansfer").lowercased() == mediator.questionInfo.selectedAnsfer.lowercased()
     }
 
     private func calculateProgress() {

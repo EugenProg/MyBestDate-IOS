@@ -27,7 +27,7 @@ struct QuestionnaireScreen: View {
                     Spacer()
 
                     TextButton(text: "skip", textColor: ColorList.white.color) {
-                        
+                        store.dispatch(action: .navigate(screen: .MAIN))
                     }
                 }.padding(.init(top: 32, leading: 32, bottom: 15, trailing: 32))
 

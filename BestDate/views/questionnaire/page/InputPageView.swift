@@ -72,11 +72,13 @@ struct InputPageView: View {
                                 previousAction: {
                                     calculateProgress()
                                     questionInfo.selectedAnsfer = text
+                    questionnaireMediator.saveSelection(questionInfo: questionInfo, ansfer: text)
                                     previousAction()
                                 },
                                 nextAction: {
                                     calculateProgress()
                                     questionInfo.selectedAnsfer = text
+                    questionnaireMediator.saveSelection(questionInfo: questionInfo, ansfer: text)
                                     nextAction()
                                 }
                     )
@@ -88,6 +90,9 @@ struct InputPageView: View {
             .rotationEffect(state.angle)
             .scaleEffect(state.zoom)
             .opacity(state.opacity)
+            .onAppear {
+                text = questionInfo.selectedAnsfer
+            }
     }
 
     private func calculateProgress() {

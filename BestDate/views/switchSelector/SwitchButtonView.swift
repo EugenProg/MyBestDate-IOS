@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SwitchButtonView: View {
-    @State var isActive: Bool = false
+    @State var isActive: Bool
     var unactiveColor: Color = ColorList.pink.color
     var activeColor: Color = ColorList.light_blue.color
     @State var buttonOffset: CGFloat = -13
@@ -38,11 +38,8 @@ struct SwitchButtonView: View {
                 buttonOffset = isActive ? 13 : -13
             }
         }
-    }
-}
-
-struct SwitchButtonView_Previews: PreviewProvider {
-    static var previews: some View {
-        SwitchButtonView() { _ in }
+        .onAppear {
+            buttonOffset = isActive ? 13 : -13
+        }
     }
 }

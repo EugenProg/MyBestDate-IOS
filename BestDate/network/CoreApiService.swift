@@ -276,6 +276,7 @@ class CoreApiService {
 
         let data = try! encoder.encode(questionnaire)
         encoder.outputFormatting = .prettyPrinted
+        printLog(data: data)
         request.httpBody = data
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -285,6 +286,22 @@ class CoreApiService {
                 completion(response.success, response.data ?? UserInfo())
             } else {
                 completion(false, UserInfo())
+            }
+        }
+
+        task.resume()
+    }
+
+    func getUsersList(completion: @escaping (Bool, [UserInfo]) -> Void) {
+        let request = CoreApiTypes.getUserList.getRequest(withAuth: true)
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            self.printLog(response: response)
+            if let data = data, let response = try? JSONDecoder().decode(UserListResponse.self, from: data) {
+                self.printLog(data: data)
+                completion(response.success, response.data)
+            } else {
+                completion(false, [])
             }
         }
 
