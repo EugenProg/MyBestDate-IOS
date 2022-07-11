@@ -10,7 +10,7 @@ import SwiftUI
 struct DropDownView: View {
 
     var style: DropDownViewStyle
-    @State var text: String
+    @Binding var text: String
     var clickAction: () -> Void
 
     var body: some View {

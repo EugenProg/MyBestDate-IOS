@@ -12,7 +12,6 @@ struct BaseResponse: Codable {
     var message: String
 }
 
-
 struct ProfileImageResponse: Codable {
     var success: Bool
     var message: String
@@ -25,7 +24,7 @@ struct ProfileImage: Codable {
     var thumb_url: String? = nil
     var main: Bool? = nil
     var top: Bool? = nil
-    var simpaty: Bool? = nil
+    var match: Bool? = nil
 }
 
 struct UserDataResponse: Codable {
@@ -48,14 +47,15 @@ struct UserInfo: Codable {
     var new_likes: Int? = nil
     var new_guests: Int? = nil
     var photos: [ProfileImage]? = nil
-    //var location: String? = nil
+    var location: Location? = nil
     var questionnaire: Questionnaire? = nil
 }
 
 struct Questionnaire: Codable {
     var purpose: String? = nil
-    var height: String? = nil
-    var weight: String? = nil
+    var expectations: String? = nil
+    var height: Int? = nil
+    var weight: Int? = nil
     var eye_color: String? = nil
     var hair_color: String? = nil
     var hair_length: String? = nil
@@ -63,6 +63,9 @@ struct Questionnaire: Codable {
     var kids: String? = nil
     var education: String? = nil
     var occupation: String? = nil
+    var nationality: String? = nil
+    var search_country: String? = nil
+    var search_city: String? = nil
     var about_me: String? = nil
     var search_age_min: Int? = nil
     var search_age_max: Int? = nil
@@ -72,6 +75,11 @@ struct Questionnaire: Codable {
     var evening_time: String? = nil
 }
 
+struct Location: Codable {
+    var iso_code: String? = nil
+    var country: String? = nil
+    var city: String? = nil
+}
 
 struct UserListResponse: Codable {
     var success: Bool

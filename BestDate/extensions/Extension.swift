@@ -95,6 +95,26 @@ extension String {
           dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         return dateFormatter.date(from: self) ?? Date.now
     }
+
+    func toInt() -> Int {
+        if let str = NumberFormatter().number(from: self) {
+            return Int(truncating: str)
+        }
+        return 0
+    }
+
+    func toFloat() -> CGFloat {
+        if let str = NumberFormatter().number(from: self) {
+            return CGFloat(truncating: str)
+        }
+        return 0
+    }
+}
+
+extension Int {
+    func toString() -> String {
+        String(self)
+    }
 }
 
 extension Array where Element == String {
@@ -126,6 +146,7 @@ extension UserInfo {
 extension Questionnaire {
     func isEmpty() -> Bool {
         self.purpose == nil &&
+        self.expectations == nil &&
         self.height == nil &&
         self.weight == nil &&
         self.eye_color == nil &&
@@ -135,9 +156,12 @@ extension Questionnaire {
         self.kids == nil &&
         self.education == nil &&
         self.occupation == nil &&
+        self.nationality == nil &&
         self.about_me == nil &&
         self.search_age_min == nil &&
         self.search_age_max == nil &&
+        self.search_country == nil &&
+        self.search_city == nil &&
         (self.socials == nil || (self.socials?.isEmpty ?? true)) &&
         (self.hobby == nil || (self.hobby?.isEmpty ?? true)) &&
         (self.sport == nil || (self.sport?.isEmpty ?? true)) &&
@@ -146,6 +170,7 @@ extension Questionnaire {
 
     func isFull() -> Bool {
         self.purpose != nil &&
+        self.expectations != nil &&
         self.height != nil &&
         self.weight != nil &&
         self.eye_color != nil &&
@@ -155,9 +180,12 @@ extension Questionnaire {
         self.kids != nil &&
         self.education != nil &&
         self.occupation != nil &&
+        self.nationality != nil &&
         self.about_me != nil &&
         self.search_age_min != nil &&
         self.search_age_max != nil &&
+        self.search_country != nil &&
+        self.search_city != nil &&
         self.socials != nil &&
         !(self.socials?.isEmpty ?? true) &&
         self.hobby != nil &&

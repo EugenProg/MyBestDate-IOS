@@ -39,7 +39,8 @@ struct QuestionnaireSeekBarBottomSheet: View {
                 baseMediator.closeAction = { type in
                     if type == .QUESTIONNAIRE_SEEK_BAR {
                         calculateProgress()
-                        mediator.questionInfo.selectAction!(String(number))
+                        mediator.questionInfo.selectAction!(number.toString())
+                        questionnaireMediator.saveSelection(questionInfo: mediator.questionInfo, ansfer: number.toString())
                     }
                 }
             }
@@ -52,16 +53,10 @@ struct QuestionnaireSeekBarBottomSheet: View {
     }
 
     private func getMin() -> CGFloat {
-        if let str = NumberFormatter().number(from: mediator.questionInfo.ansfers[0]) {
-            return CGFloat(truncating: str)
-        }
-        return 0
+        mediator.questionInfo.ansfers[0].toFloat()
     }
 
     private func getMax() -> CGFloat {
-        if let str = NumberFormatter().number(from: mediator.questionInfo.ansfers[1]) {
-            return CGFloat(truncating: str)
-        }
-        return 100
+        mediator.questionInfo.ansfers[1].toFloat()
     }
 }

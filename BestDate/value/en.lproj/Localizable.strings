@@ -97,6 +97,17 @@
 "messages" = "Messages";
 "top_50" = "Top 50";
 "guests" = "Guests";
+"location" = "Location";
+"next_to_me" = "Next to me";
+"all_world" = "All World";
+"online" = "Online";
+"not_selected" = "Not selected";
+"was_recently" = "Was recently";
+"new_guests" = "New Guests";
+"previous_views" = "Previous views";
+"" = "";
+"" = "";
+"" = "";
 "" = "";
 
 

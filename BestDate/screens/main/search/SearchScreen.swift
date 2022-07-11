@@ -13,6 +13,8 @@ struct SearchScreen: View {
     var items: [GridItem] = [
         GridItem(.fixed((UIScreen.main.bounds.width - 9) / 2), spacing: 3),
         GridItem(.fixed((UIScreen.main.bounds.width - 9) / 2), spacing: 3)]
+    @ObservedObject var locationMediator = LocationMediator.shared
+    @ObservedObject var onlineMediator = OnlineMediator.shared
     
     var body: some View {
         VStack(spacing: 0) {
@@ -35,12 +37,12 @@ struct SearchScreen: View {
                 .padding(.init(top: 16, leading: 0, bottom: 0, trailing: 0))
 
             HStack(spacing: 9) {
-                DropDownView(style: .blue, text: "Next to me") {
-
+                DropDownView(style: .blue, text: $locationMediator.selectedItem) {
+                    store.dispatch(action: .showBottomSheet(view: .MAIN_LOCATION))
                 }
 
-                DropDownView(style: .gray, text: "Online") {
-
+                DropDownView(style: .gray, text: $onlineMediator.selectedItem) {
+                    store.dispatch(action: .showBottomSheet(view: .MAIN_ONLINE))
                 }
 
                 Spacer()

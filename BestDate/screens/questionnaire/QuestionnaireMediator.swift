@@ -42,17 +42,19 @@ class QuestionnaireMediator: ObservableObject {
     func setQuestionnaire(questionnaire: Questionnaire) {
         pages[0].questions[0].selectedAnsfer = questionnaire.marital_status ?? ""
         pages[0].questions[1].selectedAnsfer = questionnaire.kids ?? ""
-        //pages[0].questions[2].selectedAnsfer = questionnaire.kids ?? ""
+        pages[0].questions[2].selectedAnsfer = questionnaire.nationality ?? ""
         pages[0].questions[3].selectedAnsfer = questionnaire.education ?? ""
         pages[0].questions[4].selectedAnsfer = questionnaire.occupation ?? ""
 
-        pages[1].questions[0].selectedAnsfer = questionnaire.height ?? ""
-        pages[1].questions[1].selectedAnsfer = questionnaire.weight ?? ""
+        pages[1].questions[0].selectedAnsfer = (questionnaire.height != nil) ? (questionnaire.height ?? 0).toString() : ""
+        pages[1].questions[1].selectedAnsfer = (questionnaire.weight != nil) ? (questionnaire.weight ?? 0).toString() : ""
         pages[1].questions[2].selectedAnsfer = questionnaire.eye_color ?? ""
         pages[1].questions[3].selectedAnsfer = questionnaire.hair_length ?? ""
         pages[1].questions[4].selectedAnsfer = questionnaire.hair_color ?? ""
 
         pages[2].questions[0].selectedAnsfer = questionnaire.purpose ?? ""
+        pages[2].questions[1].selectedAnsfer = questionnaire.expectations ?? ""
+        pages[2].questions[2].selectedAnsfer = createLocation(country: questionnaire.search_country, city: questionnaire.search_city)
         startAgeRange = questionnaire.search_age_min ?? 5
         endAgeRange = questionnaire.search_age_max ?? 120
 
@@ -70,11 +72,22 @@ class QuestionnaireMediator: ObservableObject {
         self.userQuestinnaire = questionnaire
     }
 
+    private func createLocation(country: String?, city: String?) -> String {
+        if !(country?.isEmpty ?? true) && !(city?.isEmpty ?? true) {
+            return (country ?? "") + ", " + (city ?? "")
+        } else if !(country?.isEmpty ?? true) && (city?.isEmpty ?? true) {
+            return country ?? ""
+        } else if (country?.isEmpty ?? true) && !(city?.isEmpty ?? true) {
+            return city ?? ""
+        } else { return "" }
+
+    }
+
     private func calculateSavedProgress(questionnaire: Questionnaire) -> Int {
         var totalProgress = 0
         for page in pages {
             for question in page.questions {
-                if !question.selectedAnsfer.isEmpty {
+                if !question.selectedAnsfer.isEmpty && question.selectedAnsfer != "0" {
                     totalProgress += question.percent
                 }
             }
@@ -86,17 +99,17 @@ class QuestionnaireMediator: ObservableObject {
         switch (questionInfo.question) {
         case "marital_status": userQuestinnaire.marital_status = ansfer
         case "having_kids": userQuestinnaire.kids = ansfer
-        //case "plase_of_residence": userQuestinnaire.marital_status = ansfer
+        case "plase_of_residence": userQuestinnaire.nationality = ansfer
         case "education": userQuestinnaire.education = ansfer
         case "occupational_status": userQuestinnaire.occupation = ansfer
-        case "height": userQuestinnaire.height = ansfer
-        case "weight": userQuestinnaire.weight = ansfer
+        case "height": userQuestinnaire.height = ansfer.toInt()
+        case "weight": userQuestinnaire.weight = ansfer.toInt()
         case "hair_length": userQuestinnaire.hair_length = ansfer
         case "eye_color": userQuestinnaire.eye_color = ansfer
         case "hair_color": userQuestinnaire.hair_color = ansfer
         case "purpose_of_dating": userQuestinnaire.purpose = ansfer
-        //case "what_do_you_want_for_a_date": userQuestinnaire.marital_status = ansfer
-        //case "search_location": userQuestinnaire.marital_status = ansfer
+        case "what_do_you_want_for_a_date": userQuestinnaire.expectations = ansfer
+        case "search_location": setLocation(ansfer: ansfer)
         case "hobby": userQuestinnaire.hobby = getListFromAnsfer(ansfer: ansfer)
         case "types_of_sports": userQuestinnaire.sport = getListFromAnsfer(ansfer: ansfer)
         case "evening_time": userQuestinnaire.evening_time = ansfer
@@ -104,6 +117,16 @@ class QuestionnaireMediator: ObservableObject {
         case "tell_us_about_yourself_what_you_find_interesting": userQuestinnaire.about_me = ansfer
         default: break
 
+        }
+    }
+
+    private func setLocation(ansfer: String) {
+        if !ansfer.isEmpty {
+            let list = getListFromAnsfer(ansfer: ansfer)
+            userQuestinnaire.search_country = list.first
+            if list.count > 1 {
+                userQuestinnaire.search_city = list[1]
+            }
         }
     }
 
@@ -129,12 +152,14 @@ class QuestionnaireMediator: ObservableObject {
     func getQuestionnaire() {
         userQuestinnaire.search_age_min = startAgeRange
         userQuestinnaire.search_age_max = endAgeRange
+        userQuestinnaire.socials = ["123"]
     }
 
     func isChanged() -> Bool {
         if savedQuestionnaire.isEmpty() { return true }
 
         return !(userQuestinnaire.purpose == savedQuestionnaire.purpose &&
+                 userQuestinnaire.expectations == savedQuestionnaire.expectations &&
                  userQuestinnaire.height == savedQuestionnaire.height &&
                  userQuestinnaire.weight == savedQuestionnaire.weight &&
                  userQuestinnaire.eye_color == savedQuestionnaire.eye_color &&
@@ -147,14 +172,22 @@ class QuestionnaireMediator: ObservableObject {
                  userQuestinnaire.about_me == savedQuestionnaire.about_me &&
                  userQuestinnaire.search_age_min == savedQuestionnaire.search_age_min &&
                  userQuestinnaire.search_age_max == savedQuestionnaire.search_age_max &&
+                 userQuestinnaire.search_country == savedQuestionnaire.search_country &&
+                 userQuestinnaire.search_city == savedQuestionnaire.search_city &&
         (userQuestinnaire.socials?.equals(array: savedQuestionnaire.socials ?? []) ?? true) &&
         (userQuestinnaire.hobby?.equals(array: savedQuestionnaire.hobby ?? []) ?? true) &&
         (userQuestinnaire.sport?.equals(array: savedQuestionnaire.sport ?? []) ?? true) &&
                  userQuestinnaire.evening_time == savedQuestionnaire.evening_time)
     }
 
+    func setUserLocation(location: Location) {
+        if pages[2].questions[2].selectedAnsfer.isEmpty {
+            pages[2].questions[2].selectedAnsfer = createLocation(country: location.country, city: location.city)
+        }
+    }
+
     private func getListFromAnsfer(ansfer: String) -> [String] {
-        ansfer.components(separatedBy: " ,")
+        ansfer.components(separatedBy: ", ")
     }
 
     private func getQuestionInfoByPageNumberAndQuestionNumber(pageNumber: Int, questionNumber: Int) -> QuestionInfo {

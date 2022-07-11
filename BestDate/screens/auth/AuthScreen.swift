@@ -84,8 +84,7 @@ struct AuthScreen: View {
                 DispatchQueue.main.async {
                     process.toggle()
                     if success {
-                        store.dispatch(action: .navigate(screen: .MAIN))
-                        //store.dispatch(action: .show(message: "IT IS SO WUNDERFULL"))
+                        store.dispatch(action: .navigate(screen: .PROFILE_PHOTO))
                     } else {
                         store.dispatch(action: .show(message: NSLocalizedString(message, comment: "Message")))
                     }

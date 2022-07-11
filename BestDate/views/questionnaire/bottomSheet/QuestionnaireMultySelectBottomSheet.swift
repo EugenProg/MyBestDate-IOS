@@ -44,7 +44,6 @@ struct QuestionnaireMultySelectBottomSheet: View {
             .onAppear {
                 baseMediator.closeAction = { type in
                     if type == .QUESTIONNAIRE_MULTY_SELECT {
-                        print(">>> close action \(mediator.questionInfo.question)")
                         let ansferLine = mediator.getAnsferLine()
                         calculateProgress(ansferLine: ansferLine)
                         questionnaireMediator.saveSelection(questionInfo: mediator.questionInfo, ansfer: ansferLine)

@@ -44,18 +44,21 @@ struct PhotoSettingsBottomSheet: View {
             }.padding(.init(top: 0, leading: 0, bottom: 10, trailing: 0))
 
             if !(mediator.selectedPhoto?.main ?? false) {
-                SwichSelectorView(isActive: mediator.selectedPhoto?.main ?? false, hint: "set_as_a_profile_photo", text: "main_picture", clickInfoAction: infoClickAction()) { isChecked in }
+                SwichSelectorView(isActive: mediator.selectedPhoto?.main ?? false, hint: "set_as_a_profile_photo", text: "main_picture", clickInfoAction: infoClickAction()) { isChecked in
+                    mediator.selectedPhoto?.main = isChecked
+                }
             }
 
-            SwichSelectorView(isActive: mediator.selectedPhoto?.simpaty ?? false, hint: "take_part_in_a_contest", text: "mutual_sympathy", clickInfoAction: infoClickAction()) { isChecked in }
+            SwichSelectorView(isActive: mediator.selectedPhoto?.match ?? false, hint: "take_part_in_a_contest", text: "mutual_sympathy", clickInfoAction: infoClickAction()) { isChecked in
+                mediator.selectedPhoto?.match = isChecked
+             }
             
-            SwichSelectorView(isActive: mediator.selectedPhoto?.top ?? false, hint: "take_part_in_a_contest", text: "top_50", clickInfoAction: infoClickAction()) { isChecked in  }
+            SwichSelectorView(isActive: mediator.selectedPhoto?.top ?? false, hint: "take_part_in_a_contest", text: "top_50", clickInfoAction: infoClickAction()) { isChecked in
+                mediator.selectedPhoto?.top = isChecked
+             }
             
             StandardButton(style: .white, title: "save_changes", loadingProcess: $saveProcess) {
-                clickAction()
-                mediator.updateImageStatus(image: mediator.selectedPhoto)
-                store.dispatch(action:
-                        .setScreenColors(status: ColorList.transparent.color, style: .lightContent))
+                save()
             }.padding(.init(top: 36, leading: 0, bottom: 22, trailing: 0))
         }
         .onAppear {
@@ -68,6 +71,14 @@ struct PhotoSettingsBottomSheet: View {
     private func infoClickAction() -> () -> Void {
         {
             store.dispatch(action: .show(message: "info is clicked"))
+        }
+    }
+
+    private func save() {
+        mediator.updateImageStatus(image: mediator.selectedPhoto) { success in
+            DispatchQueue.main.async {
+                clickAction()
+            }
         }
     }
 }

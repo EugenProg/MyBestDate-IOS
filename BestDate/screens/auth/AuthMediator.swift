@@ -44,6 +44,7 @@ class AuthMediator: ObservableObject {
                     RegistrationMediator.shared.setUserData(user: user)
                     MainMediator.shared.setUserInfo(user: user)
                     QuestionnaireMediator.shared.setQuestionnaire(questionnaire: user.questionnaire ?? Questionnaire())
+                    QuestionnaireMediator.shared.setUserLocation(location: user.location ?? Location())
                 }
                 complete(success)
             }

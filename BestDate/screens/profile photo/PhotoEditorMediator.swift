@@ -59,8 +59,10 @@ class PhotoEditorMediator: ObservableObject {
         }
     }
 
-    func updateImageStatus(image: ProfileImage?) {
-        
+    func updateImageStatus(image: ProfileImage?, completion: @escaping (Bool) -> Void) {
+        ImagesApiService.shared.updateImageStatus(id: image?.id ?? 0, requestData: PhotoStatusUpdateRequest(main: image?.main, top: image?.top, match: image?.match)) { success in
+            completion(success)
+        }
     }
 
     func setImages(images: [ProfileImage]) {

@@ -52,7 +52,7 @@ enum CoreApiTypes {
         case .confirmPhoneReset: return "phone/password-reset-by-code"
         case .saveImage: return "user/photos"
         case .deleteImage: return "user/photos"
-        case .updateImageStatus: return "user/photos/top-status"
+        case .updateImageStatus: return "user/photos/"
         case .getUser: return "user"
         case .saveQuestionnaire: return "user/questionnaire"
         case .getUserList: return "users"
@@ -100,11 +100,18 @@ enum CoreApiTypes {
         return request
     }
 
-    func getRequest(path: String, body: Data? = nil) -> URLRequest {
-        var request = self.request
-        request.httpBody = body
+    func getRequest(path: String, withAuth: Bool? = nil) -> URLRequest {
+        let url = URL(string: getPath + path, relativeTo: URL(string: BaseURL)!)!
+        var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue("en", forHTTPHeaderField: "X-Localization")
+        if withAuth == true {
+            request.setValue(UserDataHolder.accessToken, forHTTPHeaderField: "Authorization")
+        }
+        request.httpMethod = getMethod
 
-        print("\n\(getMethod) \(BaseURL)\(getPath)\n\(String(describing: body))\n")
+        print("\n\(getMethod) \(BaseURL)\(getPath + path)\n")
         return request
     }
 
