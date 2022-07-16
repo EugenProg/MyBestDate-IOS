@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 enum ScreenList: String {
-    case SPLASH_SCREEN
+    case START
     case ONBOARD_START
     case ONBOARD_SECOND
     case AUTH

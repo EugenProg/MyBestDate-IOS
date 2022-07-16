@@ -44,6 +44,7 @@ struct UserInfo: Codable {
     var look_for: [String]? = nil
     var language: String? = nil
     var birthday: String? = nil
+    var is_online: Bool? = nil
     var new_likes: Int? = nil
     var new_guests: Int? = nil
     var photos: [ProfileImage]? = nil
@@ -85,4 +86,26 @@ struct UserListResponse: Codable {
     var success: Bool
     var message: String
     var data: [UserInfo] = []
+}
+
+struct ChatListResponse: Codable {
+    var success: Bool
+    var message: String
+    var data: [Chat] = []
+}
+
+struct Chat: Codable {
+    var user: UserInfo? = nil
+    var last_message: Message? = nil
+}
+
+struct Message: Codable {
+    var id: Int? = nil
+    var sender_id: Int? = nil
+    var recipient_id: Int? = nil
+    var parent_id: Int? = nil
+    var text: String? = nil
+    var media: String? = nil
+    var read_at: String? = nil
+    var created_at: String? = nil
 }

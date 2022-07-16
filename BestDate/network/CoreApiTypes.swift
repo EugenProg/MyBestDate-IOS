@@ -32,6 +32,34 @@ enum CoreApiTypes {
 
     case getUserList
 
+    case refreshToken
+
+    case getChatList
+    case deleteChat
+    case sendMessage
+    case updateMessage
+    case deleteMessage
+
+    case getGuestList
+//    case sendGuestAction
+//    case setReadedAction
+
+    case getUserLikes
+    case likeAPhoto
+
+    case getTopList
+    case voteAction
+    case getVotingPhotos
+
+    case registerUserEmail
+    case registerUserPhone
+    case confirmUserEmail
+    case confirmUserPhone
+
+    case updateUserData
+
+    case logout
+
     var BaseURL: String {
         "https://dev-api.bestdate.info/api/v1/"
     }
@@ -56,6 +84,24 @@ enum CoreApiTypes {
         case .getUser: return "user"
         case .saveQuestionnaire: return "user/questionnaire"
         case .getUserList: return "users"
+        case .refreshToken: return "refresh-token"
+        case .getChatList: return "chats"
+        case .deleteChat: return "chat/"
+        case .sendMessage: return "message"
+        case .updateMessage: return "message/"
+        case .deleteMessage: return "message/"
+        case .getGuestList: return "guests"
+        case .getUserLikes: return "likes"
+        case .likeAPhoto: return "likes"
+        case .getTopList: return "top"
+        case .voteAction: return "voting"
+        case .getVotingPhotos: return "voting-photos"
+        case .registerUserEmail: return "user/email-code"
+        case .registerUserPhone: return "user/phone-code"
+        case .confirmUserEmail: return "user/email"
+        case .confirmUserPhone: return "user/phone"
+        case .updateUserData: return "user"
+        case .logout: return "logout"
         }
     }
 
@@ -78,7 +124,25 @@ enum CoreApiTypes {
         case .updateImageStatus: return "PUT"
         case .getUser: return "GET"
         case .saveQuestionnaire: return "PUT"
-        case .getUserList: return "GET"
+        case .getUserList: return "POST"
+        case .refreshToken: return "POST"
+        case .getChatList: return "GET"
+        case .deleteChat: return "DELETE"
+        case .sendMessage: return "POST"
+        case .updateMessage: return "PUT"
+        case .deleteMessage: return "DELETE"
+        case .getGuestList: return "GET"
+        case .getUserLikes: return "GET"
+        case .likeAPhoto: return "POST"
+        case .getTopList: return "POST"
+        case .voteAction: return "POST"
+        case .getVotingPhotos: return "POST"
+        case .registerUserEmail: return "POST"
+        case .registerUserPhone: return "POST"
+        case .confirmUserEmail: return "PUT"
+        case .confirmUserPhone: return "PUT"
+        case .updateUserData: return "PUT"
+        case .logout: return "GET"
         }
     }
 
@@ -92,11 +156,10 @@ enum CoreApiTypes {
         return request
     }
 
-    func getRequest(params: [RequestParams], body: Data? = nil) -> URLRequest {
+    func getRequest(params: [RequestParams], withAuth: Bool? = nil) -> URLRequest {
         var request = self.request
-        request.httpBody = body
 
-        print("\n\(getMethod) \(BaseURL)\(getPath)\n\(String(describing: body))\n")
+        print("\n\(getMethod) \(BaseURL)\(getPath)\n")
         return request
     }
 

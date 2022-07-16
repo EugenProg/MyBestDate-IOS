@@ -38,11 +38,13 @@ struct GeolocationScreen: View {
                         Spacer()
                         
                         StandardButton(style: .black, title: "enable_geolocation", loadingProcess: $process) {
-                            
+                            UserDataHolder.setStartScreen(screen: .PROFILE_PHOTO)
+                            store.dispatch(action: .navigate(screen: .PROFILE_PHOTO))
                         }
                         
                         SecondStylesTextButton(firstText: "do_it_later", secondText: "skip", firstTextColor: ColorList.main_60.color, secondTextColor: ColorList.main.color) {
-                            
+                            UserDataHolder.setStartScreen(screen: .PROFILE_PHOTO)
+                            store.dispatch(action: .navigate(screen: .PROFILE_PHOTO))
                         }.padding(.init(top: 20, leading: 32, bottom: store.state.statusBarHeight + 32, trailing: 32))
                     }.frame(maxHeight: UIScreen.main.bounds.height / 2, alignment: .bottom)
                 }

@@ -19,6 +19,11 @@ struct LoginByPhoneRequest: Codable {
     var grant_type: String = "phone"
 }
 
+struct RefreshTokenRequest: Codable {
+    var grant_type: String = "refresh_token"
+    var refresh_token: String
+}
+
 struct LoginSociableRequest: Codable {
     var provider: String
     var access_token: String
@@ -52,4 +57,25 @@ struct RegistrationRequest: Codable {
 
 struct IdListRequest: Codable {
     var ids: [Int]
+}
+
+struct PhotoStatusUpdateRequest: Codable {
+    var main: Bool? = nil
+    var top: Bool? = nil
+    var match: Bool? = nil
+}
+
+struct SearchFilter: Codable {
+    var location: String = "all"
+    var online: String = "all"
+}
+
+struct SendMessageRequest: Codable {
+    var recipient_id: Int
+    var parent_id: Int? = nil
+    var text: String
+}
+
+struct UpdateMessageRequest: Codable {
+    var text: String
 }

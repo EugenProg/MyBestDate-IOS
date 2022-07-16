@@ -52,6 +52,7 @@ struct ProfilePhotoScreen: View {
 
                         if !mediator.imageList.isEmpty {
                             TextButton(text: "next", textColor: ColorList.white.color) {
+                                UserDataHolder.setStartScreen(screen: .QUESTIONNAIRE)
                                 store.dispatch(action: .navigate(screen: .QUESTIONNAIRE))
                             }
                         }

@@ -1,40 +1,40 @@
 //
-//  AnsferItemView.swift
+//  DarkBottomSheetItem.swift
 //  BestDate
 //
-//  Created by Евгений on 28.06.2022.
+//  Created by Евгений on 10.07.2022.
 //
 
 import SwiftUI
 
-struct AnsferItemView: View {
-    var ansfer: String
+struct DarkBottomSheetItem: View {
+    var text: String
     var isSelect: Bool
     var clickAction: (String) -> Void
-
+    
     var body: some View {
         ZStack {
             Rectangle()
-                .fill(ColorList.white.color)
+                .fill(ColorList.main.color)
 
             VStack(alignment: .leading, spacing: 8) {
                 HStack(spacing: 0) {
-                    Text(NSLocalizedString(ansfer, comment: "text"))
-                        .foregroundColor(ColorList.main.color)
+                    Text(NSLocalizedString(text, comment: "text"))
+                        .foregroundColor(ColorList.white.color)
                         .font(MyFont.getFont(.BOLD, 20))
                         .lineLimit(1)
 
                     Spacer()
 
                     if  isSelect {
-                        Image("ic_check_black")
+                        Image("ic_check_white")
                     } else {
                         Image("ic_check_gray")
                     }
                 }.padding(.init(top: 0, leading: 14, bottom: 0, trailing: 14))
 
                 Rectangle()
-                    .fill(ColorList.main_10.color)
+                    .fill(ColorList.white_10.color)
                     .frame(height: 1)
 
             }
@@ -42,7 +42,7 @@ struct AnsferItemView: View {
             .padding(.init(top: 0, leading: 18, bottom: 0, trailing: 18))
             .onTapGesture {
                 withAnimation {
-                    clickAction(NSLocalizedString(ansfer, comment: "ansfer"))
+                    clickAction(NSLocalizedString(text, comment: "text"))
                 }
             }
     }

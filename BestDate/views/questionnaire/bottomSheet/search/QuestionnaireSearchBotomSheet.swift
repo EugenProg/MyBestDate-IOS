@@ -11,10 +11,9 @@ struct QuestionnaireSearchBotomSheet: View {
     @EnvironmentObject var store: Store
     @ObservedObject var mediator = SingleSelectMediator.shared
     @ObservedObject var searchMediator = CitySearchMediator.shared
+    @ObservedObject var questionnaireMediator = QuestionnaireMediator.shared
 
     var clickAction: () -> Void
-
-    @State var input: String = ""
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -24,7 +23,8 @@ struct QuestionnaireSearchBotomSheet: View {
                 Spacer()
 
                 TextButton(text: "save", textColor: ColorList.main.color) {
-                    mediator.questionInfo.selectAction!(NSLocalizedString(input, comment: "Ansfer") )
+                    questionnaireMediator.saveSelection(questionInfo: mediator.questionInfo, ansfer: searchMediator.searchText)
+                    mediator.questionInfo.selectAction!(NSLocalizedString(searchMediator.searchText, comment: "Ansfer") )
                     clickAction()
                 }
             }.frame(width: UIScreen.main.bounds.width - 64)
@@ -37,7 +37,7 @@ struct QuestionnaireSearchBotomSheet: View {
                 PercentView(questionInfo: $mediator.questionInfo, isAlwaisActive: true)
             }.padding(.init(top: 0, leading: 0, bottom: 18, trailing: 24))
 
-            SearchInputView(hint: "specify_the_search_location", input: $input)
+            SearchInputView(hint: "specify_the_search_location", input: $searchMediator.searchText)
                 .padding(.init(top: 0, leading: 0, bottom: 13, trailing: 0))
 
             ScrollView(.vertical, showsIndicators: false) {
@@ -49,7 +49,7 @@ struct QuestionnaireSearchBotomSheet: View {
                             .frame(width: UIScreen.main.bounds.width - 64, height: 48, alignment: .leading)
                             .padding(.init(top: 0, leading: 32, bottom: 0, trailing: 32))
                             .onTapGesture {
-                                input = city
+                                searchMediator.searchText = city
                             }
                     }
                 }
@@ -67,7 +67,8 @@ struct QuestionnaireSearchBotomSheet: View {
 
         }.frame(width: UIScreen.main.bounds.width, alignment: .topLeading)
             .onAppear {
-                input = mediator.questionInfo.selectedAnsfer
+                searchMediator.initSearch()
+                searchMediator.searchText = mediator.questionInfo.selectedAnsfer
             }
     }
 }

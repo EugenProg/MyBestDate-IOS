@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct AppState {
-    var activeScreen: ScreenList = ScreenList.SPLASH_SCREEN
+    var activeScreen: ScreenList = ScreenList.START
     var activeBottomSheet: BottomSheetList = BottomSheetList.GENDER
     var showBottomSheet: Bool = false
     var screenStack: [ScreenList] = []

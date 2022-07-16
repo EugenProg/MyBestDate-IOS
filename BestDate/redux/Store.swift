@@ -12,7 +12,7 @@ final class Store: ObservableObject {
     var reducer: Reducer
     @Published var state: AppState
     
-    init(state: AppState = .init(activeScreen: .REGISTRATION_START), reducer: Reducer) {
+    init(state: AppState = .init(activeScreen: .START), reducer: Reducer) {
         self.state = state
         self.reducer = reducer
     }

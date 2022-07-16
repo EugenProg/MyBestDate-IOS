@@ -22,9 +22,9 @@ class ImagesApiService {
         request.httpBody = createDataBody(media: media, boundary: boundary)
 
         let task = URLSession.shared.dataTask(with: request) {data, response, error in
-            self.printLog(response: response)
+            NetworkLogger.printLog(response: response)
             if let data = data, let response = try? JSONDecoder().decode(ProfileImageResponse.self, from: data) {
-                self.printLog(data: data)
+                NetworkLogger.printLog(data: data)
                 completion(true, response.data ?? ProfileImage())
             } else {
                 completion(false, ProfileImage())
@@ -42,9 +42,29 @@ class ImagesApiService {
         request.httpBody = data
 
         let task = URLSession.shared.dataTask(with: request) {data, response, error in
-            self.printLog(response: response)
+            NetworkLogger.printLog(response: response)
             if let data = data, let response = try? JSONDecoder().decode(BaseResponse.self, from: data) {
-                self.printLog(data: data)
+                NetworkLogger.printLog(data: data)
+                completion(response.success)
+            } else {
+                completion(false)
+            }
+        }
+
+        task.resume()
+    }
+
+    func updateImageStatus(id: Int, requestData: PhotoStatusUpdateRequest, completion: @escaping (Bool) -> Void) {
+        var request = CoreApiTypes.updateImageStatus.getRequest(path: id.toString(), withAuth: true)
+
+        let data = try! encoder.encode(requestData)
+        encoder.outputFormatting = .prettyPrinted
+        request.httpBody = data
+
+        let task = URLSession.shared.dataTask(with: request) {data, response, error in
+            NetworkLogger.printLog(response: response)
+            if let data = data, let response = try? JSONDecoder().decode(BaseResponse.self, from: data) {
+                NetworkLogger.printLog(data: data)
                 completion(response.success)
             } else {
                 completion(false)
@@ -64,13 +84,5 @@ class ImagesApiService {
         }
         body.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
         return body
-    }
-
-    private func printLog(response: URLResponse?) {
-        print("\n\(String(describing: response?.http?.statusCode)) \(String(describing: response?.url))\n")
-    }
-
-    private func printLog(data: Data?) {
-        print("jsonData: ", String(data: data!, encoding: .utf8) ?? "")
     }
 }

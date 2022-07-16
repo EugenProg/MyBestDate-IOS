@@ -10,7 +10,9 @@ import SwiftUI
 struct QuestionnairePageContainer: View {
     @EnvironmentObject var store: Store
     @ObservedObject var mediator = QuestionnaireMediator.shared
-    private var height: CGFloat = UIScreen.main.bounds.height - 170
+    var height: CGFloat = UIScreen.main.bounds.height - 170
+
+    var saveAction: () -> Void
 
     var body: some View {
         ZStack {
@@ -19,7 +21,7 @@ struct QuestionnairePageContainer: View {
                             currentPage: mediator.dataPageStates,
                             previousPage: mediator.aboutPageStates,
                             backPage: nil) },
-                           nextAction: { saveQuestionnaire() })
+                           nextAction: { saveAction() })
 
             let page = mediator.getPageByNumber(number: 5)
             InputPageView(page: page, questionInfo: page.questions[0], total: mediator.total, state: mediator.aboutPageStates,
@@ -70,24 +72,5 @@ struct QuestionnairePageContainer: View {
                             pageInBack: mediator.searchPageStates) })
 
         }.frame(height: height)
-    }
-
-    private func saveQuestionnaire() {
-        mediator.getQuestionnaire()
-        if mediator.isChanged() {
-            mediator.saveProcess.toggle()
-            mediator.saveQuestionnaire(questionnaire: mediator.userQuestinnaire) { success, message in
-                DispatchQueue.main.async {
-                    mediator.saveProcess.toggle()
-                    if success {
-                        store.dispatch(action: .navigate(screen: .MAIN))
-                    } else {
-                        store.dispatch(action: .show(message: message))
-                    }
-                }
-            }
-        } else {
-            store.dispatch(action: .navigate(screen: .MAIN))
-        }
     }
 }

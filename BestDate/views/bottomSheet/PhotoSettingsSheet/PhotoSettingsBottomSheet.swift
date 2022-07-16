@@ -15,11 +15,11 @@ struct PhotoSettingsBottomSheet: View {
     
     @State var saveProcess: Bool = false
     @State var deleteProcess: Bool = false
+    @State var showMainSwitch: Bool = true
     var clickAction: () -> Void
     
     var body: some View {
         VStack(spacing: 0) {
-            
             HStack(spacing: 0) {
                 AsyncImageView(url: mediator.selectedPhoto?.full_url)
                     .aspectRatio(contentMode: .fill)
@@ -43,7 +43,7 @@ struct PhotoSettingsBottomSheet: View {
                 Spacer()
             }.padding(.init(top: 0, leading: 0, bottom: 10, trailing: 0))
 
-            if !(mediator.selectedPhoto?.main ?? false) {
+            if showMainSwitch {
                 SwichSelectorView(isActive: mediator.selectedPhoto?.main ?? false, hint: "set_as_a_profile_photo", text: "main_picture", clickInfoAction: infoClickAction()) { isChecked in
                     mediator.selectedPhoto?.main = isChecked
                 }
@@ -65,6 +65,7 @@ struct PhotoSettingsBottomSheet: View {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: {
                 withAnimation { ready.toggle() }
             })
+            showMainSwitch = !(mediator.selectedPhoto?.main ?? false)
         }
     }
     
@@ -80,11 +81,5 @@ struct PhotoSettingsBottomSheet: View {
                 clickAction()
             }
         }
-    }
-}
-
-struct PhotoSettingsBottomSheet_Previews: PreviewProvider {
-    static var previews: some View {
-        PhotoSettingsBottomSheet { }
     }
 }

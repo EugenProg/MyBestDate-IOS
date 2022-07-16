@@ -21,9 +21,9 @@ class CoreApiService {
         request.httpBody = data
 
         let task = URLSession.shared.dataTask(with: request) {data, response, error in
-            self.printLog(response: response)
+            NetworkLogger.printLog(response: response)
             if let data = data, let response = try? JSONDecoder().decode(AuthResponse.self, from: data) {
-                self.printLog(data: data)
+                NetworkLogger.printLog(data: data)
                 UserDataHolder.setAuthData(response: response)
                 completion(true)
             } else {
@@ -42,9 +42,9 @@ class CoreApiService {
         request.httpBody = data
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            self.printLog(response: response)
+            NetworkLogger.printLog(response: response)
             if let data = data, let response = try? JSONDecoder().decode(AuthResponse.self, from: data) {
-                self.printLog(data: data)
+                NetworkLogger.printLog(data: data)
                 UserDataHolder.setAuthData(response: response)
                 completion(true)
             } else {
@@ -63,9 +63,9 @@ class CoreApiService {
         request.httpBody = data
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            self.printLog(response: response)
+            NetworkLogger.printLog(response: response)
             if let data = data, let response = try? JSONDecoder().decode(BaseResponse.self, from: data) {
-                self.printLog(data: data)
+                NetworkLogger.printLog(data: data)
                 completion(response.success)
             } else {
                 completion(false)
@@ -83,9 +83,9 @@ class CoreApiService {
         request.httpBody = data
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            self.printLog(response: response)
+            NetworkLogger.printLog(response: response)
             if let data = data, let response = try? JSONDecoder().decode(BaseResponse.self, from: data) {
-                self.printLog(data: data)
+                NetworkLogger.printLog(data: data)
                 completion(response.success)
             } else {
                 completion(false)
@@ -103,9 +103,9 @@ class CoreApiService {
         request.httpBody = data
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            self.printLog(response: response)
+            NetworkLogger.printLog(response: response)
             if let data = data, let response = try? JSONDecoder().decode(BaseResponse.self, from: data) {
-                self.printLog(data: data)
+                NetworkLogger.printLog(data: data)
                 completion(response.success)
             } else {
                 completion(false)
@@ -123,9 +123,9 @@ class CoreApiService {
         request.httpBody = data
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            self.printLog(response: response)
+            NetworkLogger.printLog(response: response)
             if let data = data, let response = try? JSONDecoder().decode(BaseResponse.self, from: data) {
-                self.printLog(data: data)
+                NetworkLogger.printLog(data: data)
                 completion(response.success)
             } else {
                 completion(false)
@@ -143,9 +143,9 @@ class CoreApiService {
         request.httpBody = data
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            self.printLog(response: response)
+            NetworkLogger.printLog(response: response)
             if let data = data, let response = try? JSONDecoder().decode(BaseResponse.self, from: data) {
-                self.printLog(data: data)
+                NetworkLogger.printLog(data: data)
                 completion(response.success)
             } else {
                 completion(false)
@@ -163,9 +163,9 @@ class CoreApiService {
         request.httpBody = data
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            self.printLog(response: response)
+            NetworkLogger.printLog(response: response)
             if let data = data, let response = try? JSONDecoder().decode(BaseResponse.self, from: data) {
-                self.printLog(data: data)
+                NetworkLogger.printLog(data: data)
                 completion(response.success)
             } else {
                 completion(false)
@@ -183,9 +183,9 @@ class CoreApiService {
         request.httpBody = data
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            self.printLog(response: response)
+            NetworkLogger.printLog(response: response)
             if let data = data, let response = try? JSONDecoder().decode(BaseResponse.self, from: data) {
-                self.printLog(data: data)
+                NetworkLogger.printLog(data: data)
                 completion(response.success)
             } else {
                 completion(false)
@@ -203,9 +203,9 @@ class CoreApiService {
         request.httpBody = data
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            self.printLog(response: response)
+            NetworkLogger.printLog(response: response)
             if let data = data, let response = try? JSONDecoder().decode(BaseResponse.self, from: data) {
-                self.printLog(data: data)
+                NetworkLogger.printLog(data: data)
                 completion(response.success)
             } else {
                 completion(false)
@@ -223,9 +223,9 @@ class CoreApiService {
         request.httpBody = data
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            self.printLog(response: response)
+            NetworkLogger.printLog(response: response)
             if let data = data, let response = try? JSONDecoder().decode(BaseResponse.self, from: data) {
-                self.printLog(data: data)
+                NetworkLogger.printLog(data: data)
                 completion(response.success)
             } else {
                 completion(false)
@@ -243,9 +243,9 @@ class CoreApiService {
         request.httpBody = data
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            self.printLog(response: response)
+            NetworkLogger.printLog(response: response)
             if let data = data, let response = try? JSONDecoder().decode(BaseResponse.self, from: data) {
-                self.printLog(data: data)
+                NetworkLogger.printLog(data: data)
                 completion(response.success)
             } else {
                 completion(false)
@@ -259,9 +259,9 @@ class CoreApiService {
         let request = CoreApiTypes.getUser.getRequest(withAuth: true)
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            self.printLog(response: response)
+            NetworkLogger.printLog(response: response)
             if let data = data, let response = try? JSONDecoder().decode(UserDataResponse.self, from: data) {
-                self.printLog(data: data)
+                NetworkLogger.printLog(data: data)
                 completion(response.success, response.data ?? UserInfo())
             } else {
                 completion(false, UserInfo())
@@ -276,13 +276,13 @@ class CoreApiService {
 
         let data = try! encoder.encode(questionnaire)
         encoder.outputFormatting = .prettyPrinted
-        printLog(data: data)
+        NetworkLogger.printLog(data: data)
         request.httpBody = data
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            self.printLog(response: response)
+            NetworkLogger.printLog(response: response)
             if let data = data, let response = try? JSONDecoder().decode(UserDataResponse.self, from: data) {
-                self.printLog(data: data)
+                NetworkLogger.printLog(data: data)
                 completion(response.success, response.data ?? UserInfo())
             } else {
                 completion(false, UserInfo())
@@ -292,13 +292,18 @@ class CoreApiService {
         task.resume()
     }
 
-    func getUsersList(completion: @escaping (Bool, [UserInfo]) -> Void) {
-        let request = CoreApiTypes.getUserList.getRequest(withAuth: true)
+    func getUsersList(location: LocationFilterTypes, online: OnlineFilterTypes, completion: @escaping (Bool, [UserInfo]) -> Void) {
+        var request = CoreApiTypes.getUserList.getRequest(withAuth: true)
+
+        let data = try! encoder.encode(SearchFilter(location: location.rawValue, online: online.rawValue))
+        encoder.outputFormatting = .prettyPrinted
+        NetworkLogger.printLog(data: data)
+        request.httpBody = data
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            self.printLog(response: response)
+            NetworkLogger.printLog(response: response)
             if let data = data, let response = try? JSONDecoder().decode(UserListResponse.self, from: data) {
-                self.printLog(data: data)
+                NetworkLogger.printLog(data: data)
                 completion(response.success, response.data)
             } else {
                 completion(false, [])
@@ -308,11 +313,24 @@ class CoreApiService {
         task.resume()
     }
 
-    private func printLog(response: URLResponse?) {
-        print("\n\(String(describing: response?.http?.statusCode)) \(String(describing: response?.url))\n")
-    }
+    func refreshToken(completion: @escaping (Bool) -> Void) {
+        var request = CoreApiTypes.refreshToken.getRequest()
 
-    private func printLog(data: Data?) {
-        print("jsonData: ", String(data: data!, encoding: .utf8) ?? "")
+        let data = try! encoder.encode(RefreshTokenRequest(refresh_token: UserDataHolder.refreshToken))
+        encoder.outputFormatting = .prettyPrinted
+        request.httpBody = data
+
+        let task = URLSession.shared.dataTask(with: request) {data, response, error in
+            NetworkLogger.printLog(response: response)
+            if let data = data, let response = try? JSONDecoder().decode(AuthResponse.self, from: data) {
+                NetworkLogger.printLog(data: data)
+                UserDataHolder.setAuthData(response: response)
+                completion(true)
+            } else {
+                completion(false)
+            }
+        }
+
+        task.resume()
     }
 }

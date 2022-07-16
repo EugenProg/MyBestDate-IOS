@@ -27,13 +27,16 @@ struct QuestionnaireScreen: View {
                     Spacer()
 
                     TextButton(text: "skip", textColor: ColorList.white.color) {
+                        UserDataHolder.setStartScreen(screen: .MAIN)
                         store.dispatch(action: .navigate(screen: .MAIN))
                     }
                 }.padding(.init(top: 32, leading: 32, bottom: 15, trailing: 32))
 
                 FillingProgressView()
 
-                QuestionnairePageContainer()
+                QuestionnairePageContainer() {
+                    saveQuestionnaire()
+                }
             }
 
         }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .topLeading)
@@ -43,10 +46,24 @@ struct QuestionnaireScreen: View {
                         .setScreenColors(status: ColorList.main.color, style: .lightContent))
             }
     }
-}
 
-struct QuestionnaireScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        QuestionnaireScreen()
+    private func saveQuestionnaire() {
+        mediator.getQuestionnaire()
+        if mediator.isChanged() {
+            mediator.saveProcess.toggle()
+            mediator.saveQuestionnaire(questionnaire: mediator.userQuestinnaire) { success, message in
+                DispatchQueue.main.async {
+                    mediator.saveProcess.toggle()
+                    if success {
+                        UserDataHolder.setStartScreen(screen: .MAIN)
+                        store.dispatch(action: .navigate(screen: .MAIN))
+                    } else {
+                        store.dispatch(action: .show(message: message))
+                    }
+                }
+            }
+        } else {
+            store.dispatch(action: .navigate(screen: .MAIN))
+        }
     }
 }

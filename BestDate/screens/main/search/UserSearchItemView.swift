@@ -33,8 +33,10 @@ struct UserSearchItemView: View {
                                                     MyColor.getColor(40, 48, 52, 0.0)
                                                 ]), startPoint: .bottom, endPoint: .top))
                     HStack(spacing: 4) {
-                        Image("ic_signal")
-
+                        if (user.is_online ?? false) {
+                            Image("ic_signal")
+                        }
+                        
                         Text("3.1 Miles")
                             .foregroundColor(ColorList.white.color)
                             .font(MyFont.getFont(.NORMAL, 12))
@@ -69,6 +71,7 @@ struct UserSearchItemView: View {
                     .font(MyFont.getFont(.NORMAL, 12))
                     .padding(.init(top: 1, leading: 13, bottom: 7, trailing: 10))
             }
+
         }.frame(height: ((UIScreen.main.bounds.width - 9) / 2) + 54)
     }
 }

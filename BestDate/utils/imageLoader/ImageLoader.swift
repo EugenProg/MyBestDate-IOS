@@ -11,7 +11,7 @@ import Combine
 
 class ImageLoader: ObservableObject {
     @Published var image: UIImage?
-    private let url: URL
+    private var url: URL
     private var cancellable: AnyCancellable?
     private var cache: ImageCache?
     private(set) var isLoading = false
@@ -24,6 +24,12 @@ class ImageLoader: ObservableObject {
 
     deinit {
         cancel()
+    }
+
+    func update(url: URL, cache: ImageCache? = nil) {
+        self.url = url
+        self.cache = cache
+        load()
     }
 
     func load() {
@@ -41,7 +47,9 @@ class ImageLoader: ObservableObject {
                           receiveCompletion: { [weak self] _ in self?.onFinish() },
                           receiveCancel: { [weak self] in self?.onFinish() })
             .receive(on: DispatchQueue.main)
-            .sink{ [weak self] in self?.image = $0 }
+            .sink { [weak self] in
+                self?.image = $0
+            }
     }
 
     func cancel() {
@@ -61,7 +69,7 @@ class ImageLoader: ObservableObject {
     }
 }
 
-protocol  ImageCache {
+protocol ImageCache {
     subscript(_ url: URL) -> UIImage? {get set}
 }
 

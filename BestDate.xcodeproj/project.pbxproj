@@ -124,6 +124,15 @@
 		4CB9FF64287AF0C8004F1BF6 /* UserSearchItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB9FF63287AF0C8004F1BF6 /* UserSearchItemView.swift */; };
 		4CB9FF68287B3211004F1BF6 /* MainLocationBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB9FF67287B3210004F1BF6 /* MainLocationBottomSheet.swift */; };
 		4CB9FF6A287B324C004F1BF6 /* MainOnlineBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB9FF69287B324C004F1BF6 /* MainOnlineBottomSheet.swift */; };
+		4CB9FF6C287B3417004F1BF6 /* LocationMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB9FF6B287B3417004F1BF6 /* LocationMediator.swift */; };
+		4CB9FF6E287B3476004F1BF6 /* OnlineMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB9FF6D287B3476004F1BF6 /* OnlineMediator.swift */; };
+		4CB9FF70287B3582004F1BF6 /* DarkBottomSheetItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB9FF6F287B3582004F1BF6 /* DarkBottomSheetItem.swift */; };
+		4CB9FF72287F4028004F1BF6 /* StartScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB9FF71287F4027004F1BF6 /* StartScreen.swift */; };
+		4CB9FF7528808B3C004F1BF6 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 4CB9FF7428808B3C004F1BF6 /* Lottie */; };
+		4CB9FF7A28808E01004F1BF6 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB9FF7928808E01004F1BF6 /* LottieView.swift */; };
+		4CB9FF84288094C0004F1BF6 /* heart.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CB9FF83288094C0004F1BF6 /* heart.json */; };
+		4CB9FF862881DD71004F1BF6 /* ChatApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB9FF852881DD71004F1BF6 /* ChatApiService.swift */; };
+		4CB9FF882881DDCB004F1BF6 /* NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB9FF872881DDCB004F1BF6 /* NetworkLogger.swift */; };
 		F83438C4652E3D3C34402373 /* Pods_BestDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94951333D0907C80E3827BB3 /* Pods_BestDate.framework */; };
 /* End PBXBuildFile section */
 
@@ -247,6 +256,14 @@
 		4CB9FF63287AF0C8004F1BF6 /* UserSearchItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchItemView.swift; sourceTree = "<group>"; };
 		4CB9FF67287B3210004F1BF6 /* MainLocationBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLocationBottomSheet.swift; sourceTree = "<group>"; };
 		4CB9FF69287B324C004F1BF6 /* MainOnlineBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainOnlineBottomSheet.swift; sourceTree = "<group>"; };
+		4CB9FF6B287B3417004F1BF6 /* LocationMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMediator.swift; sourceTree = "<group>"; };
+		4CB9FF6D287B3476004F1BF6 /* OnlineMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineMediator.swift; sourceTree = "<group>"; };
+		4CB9FF6F287B3582004F1BF6 /* DarkBottomSheetItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkBottomSheetItem.swift; sourceTree = "<group>"; };
+		4CB9FF71287F4027004F1BF6 /* StartScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreen.swift; sourceTree = "<group>"; };
+		4CB9FF7928808E01004F1BF6 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		4CB9FF83288094C0004F1BF6 /* heart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = heart.json; sourceTree = "<group>"; };
+		4CB9FF852881DD71004F1BF6 /* ChatApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatApiService.swift; sourceTree = "<group>"; };
+		4CB9FF872881DDCB004F1BF6 /* NetworkLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLogger.swift; sourceTree = "<group>"; };
 		6C28C559A8CF11A40DD56736 /* Pods-BestDate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestDate.debug.xcconfig"; path = "Target Support Files/Pods-BestDate/Pods-BestDate.debug.xcconfig"; sourceTree = "<group>"; };
 		94951333D0907C80E3827BB3 /* Pods_BestDate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BestDate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB8D04375C9427E6025862D3 /* Pods-BestDate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestDate.release.xcconfig"; path = "Target Support Files/Pods-BestDate/Pods-BestDate.release.xcconfig"; sourceTree = "<group>"; };
@@ -258,6 +275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F83438C4652E3D3C34402373 /* Pods_BestDate.framework in Frameworks */,
+				4CB9FF7528808B3C004F1BF6 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,6 +456,7 @@
 				4C1458EF28547DE600558B6B /* BaseBottomSheet.swift */,
 				4C022A552864D3370043E49D /* NotCorrectPhotoBottomSheet.swift */,
 				4C5C86AD28715A12006DE024 /* BaseBotomSheetMediator.swift */,
+				4CB9FF6F287B3582004F1BF6 /* DarkBottomSheetItem.swift */,
 			);
 			path = bottomSheet;
 			sourceTree = "<group>";
@@ -467,6 +486,8 @@
 				4C5C86C9287359A5006DE024 /* CoreApiTypes.swift */,
 				4C5C86CD28735EC5006DE024 /* CoreApiService.swift */,
 				4C5C86E42875E20D006DE024 /* ImagesApiService.swift */,
+				4CB9FF852881DD71004F1BF6 /* ChatApiService.swift */,
+				4CB9FF872881DDCB004F1BF6 /* NetworkLogger.swift */,
 			);
 			path = network;
 			sourceTree = "<group>";
@@ -528,11 +549,12 @@
 		4C8E7D7F284CC93F00D6E58D /* BestDate */ = {
 			isa = PBXGroup;
 			children = (
+				4C950D59284E6C4C004E2C13 /* Info.plist */,
+				4CB9FF7628808D6E004F1BF6 /* Lottie */,
 				4C8E7D84284CC94900D6E58D /* Assets.xcassets */,
 				4C8E7D80284CC93F00D6E58D /* BestDateApp.swift */,
 				4C950D56284E6171004E2C13 /* extensions */,
 				4C8E7D91284D1D2900D6E58D /* Fonts */,
-				4C950D59284E6C4C004E2C13 /* Info.plist */,
 				4C5C86CF28749CBD006DE024 /* model */,
 				4C8E7D9D284D20A900D6E58D /* navigation */,
 				4C5C86C82873596A006DE024 /* network */,
@@ -610,6 +632,7 @@
 				4CA2E2292867222300E514C4 /* questionnaire */,
 				4C1458FB285660F800558B6B /* recovery */,
 				4C3D27C828539BAE00F8FD09 /* registration */,
+				4CB9FF71287F4027004F1BF6 /* StartScreen.swift */,
 			);
 			path = screens;
 			sourceTree = "<group>";
@@ -755,6 +778,7 @@
 			isa = PBXGroup;
 			children = (
 				4CB9FF69287B324C004F1BF6 /* MainOnlineBottomSheet.swift */,
+				4CB9FF6D287B3476004F1BF6 /* OnlineMediator.swift */,
 			);
 			path = mainOnline;
 			sourceTree = "<group>";
@@ -763,8 +787,18 @@
 			isa = PBXGroup;
 			children = (
 				4CB9FF67287B3210004F1BF6 /* MainLocationBottomSheet.swift */,
+				4CB9FF6B287B3417004F1BF6 /* LocationMediator.swift */,
 			);
 			path = mainLocation;
+			sourceTree = "<group>";
+		};
+		4CB9FF7628808D6E004F1BF6 /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				4CB9FF83288094C0004F1BF6 /* heart.json */,
+				4CB9FF7928808E01004F1BF6 /* LottieView.swift */,
+			);
+			path = Lottie;
 			sourceTree = "<group>";
 		};
 		72B2FF4A90E21748905C5A0C /* Frameworks */ = {
@@ -803,6 +837,9 @@
 			dependencies = (
 			);
 			name = BestDate;
+			packageProductDependencies = (
+				4CB9FF7428808B3C004F1BF6 /* Lottie */,
+			);
 			productName = BestDate;
 			productReference = 4C8E7D7D284CC93F00D6E58D /* BestDate.app */;
 			productType = "com.apple.product-type.application";
@@ -831,6 +868,9 @@
 				Base,
 			);
 			mainGroup = 4C8E7D74284CC93F00D6E58D;
+			packageReferences = (
+				4CB9FF7328808B3B004F1BF6 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+			);
 			productRefGroup = 4C8E7D7E284CC93F00D6E58D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -851,6 +891,7 @@
 				4C0E71DF284FAAF3004099D4 /* SansPro_bold.otf in Resources */,
 				4C8E7D85284CC94900D6E58D /* Assets.xcassets in Resources */,
 				4C0E71E0284FAAF3004099D4 /* SansPro_italic.otf in Resources */,
+				4CB9FF84288094C0004F1BF6 /* heart.json in Resources */,
 				4C1459072857926700558B6B /* SplashScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -925,6 +966,7 @@
 				4C3D27CE28539CD300F8FD09 /* RegistrationOtpScreen.swift in Sources */,
 				4C3D27C3285244F700F8FD09 /* StandardInputView.swift in Sources */,
 				4C022A372858EE2B0043E49D /* ProfilePhotoScreen.swift in Sources */,
+				4CB9FF6C287B3417004F1BF6 /* LocationMediator.swift in Sources */,
 				4C5C86E32875DF43006DE024 /* ImageUtils.swift in Sources */,
 				4CA2E238286765C100E514C4 /* SelectPageView.swift in Sources */,
 				4CB9FF68287B3211004F1BF6 /* MainLocationBottomSheet.swift in Sources */,
@@ -934,6 +976,7 @@
 				4CB9FF6A287B324C004F1BF6 /* MainOnlineBottomSheet.swift in Sources */,
 				4C3D27D02853A37F00F8FD09 /* BottomSheetList.swift in Sources */,
 				4C5C86B228717200006DE024 /* RangeSelectView.swift in Sources */,
+				4CB9FF72287F4028004F1BF6 /* StartScreen.swift in Sources */,
 				4C8E7D99284D1E7B00D6E58D /* Color.swift in Sources */,
 				4C3D27C528526FA100F8FD09 /* PasswordInputView.swift in Sources */,
 				4C5C86E52875E20D006DE024 /* ImagesApiService.swift in Sources */,
@@ -973,6 +1016,7 @@
 				4C1B7C2F286CD8C4000DB5D4 /* SeekBarView.swift in Sources */,
 				4C1458F528552BE500558B6B /* RegistrationMediator.swift in Sources */,
 				4C0E71F3284FCE7C004099D4 /* BackButton.swift in Sources */,
+				4CB9FF862881DD71004F1BF6 /* ChatApiService.swift in Sources */,
 				4C1B7C1F286A3477000DB5D4 /* SingleSelectInfoView.swift in Sources */,
 				4C1459032856627E00558B6B /* GeolocationScreen.swift in Sources */,
 				4C5C86D62874A602006DE024 /* UserDataHolder.swift in Sources */,
@@ -985,6 +1029,7 @@
 				4CB9FF62287AF001004F1BF6 /* SearchMediator.swift in Sources */,
 				4C8E7DA8284D23D200D6E58D /* Store.swift in Sources */,
 				4CB9FF502877472A004F1BF6 /* ChatListScreen.swift in Sources */,
+				4CB9FF70287B3582004F1BF6 /* DarkBottomSheetItem.swift in Sources */,
 				4CA2E23228672F4100E514C4 /* QuestionnaireMediator.swift in Sources */,
 				4C0E71EF284FC394004099D4 /* CircleImageButton.swift in Sources */,
 				4CB9FF5228774739004F1BF6 /* MatchesScreen.swift in Sources */,
@@ -1009,9 +1054,11 @@
 				4C5C86E82875FB57006DE024 /* AsyncImageView.swift in Sources */,
 				4C3D27CC28539C8800F8FD09 /* RegistrationContinueScreen.swift in Sources */,
 				4CA2E23428673D1A00E514C4 /* ProgressBarView.swift in Sources */,
+				4CB9FF6E287B3476004F1BF6 /* OnlineMediator.swift in Sources */,
 				4C8E7D9C284D1F0700D6E58D /* ScreenList.swift in Sources */,
 				4C8E7D81284CC93F00D6E58D /* BestDateApp.swift in Sources */,
 				4C1B7C2C286CD5BD000DB5D4 /* QuestionnaireSeekBarBottomSheet.swift in Sources */,
+				4CB9FF882881DDCB004F1BF6 /* NetworkLogger.swift in Sources */,
 				4CA2E23F28676FA400E514C4 /* PageButtonsView.swift in Sources */,
 				4CB9FF64287AF0C8004F1BF6 /* UserSearchItemView.swift in Sources */,
 				4C5C86B5287174DD006DE024 /* RangeBarView.swift in Sources */,
@@ -1029,6 +1076,7 @@
 				4C3D27C0285120FC00F8FD09 /* SocialView.swift in Sources */,
 				4C1B7C26286B6AFF000DB5D4 /* AnsferItemView.swift in Sources */,
 				4C1B7C31286CD8D7000DB5D4 /* SeekBarButtonView.swift in Sources */,
+				4CB9FF7A28808E01004F1BF6 /* LottieView.swift in Sources */,
 				4C5C86B728719F2D006DE024 /* QuestionnaireSearchBotomSheet.swift in Sources */,
 				4C022A562864D3370043E49D /* NotCorrectPhotoBottomSheet.swift in Sources */,
 			);
@@ -1256,6 +1304,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4CB9FF7328808B3B004F1BF6 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4CB9FF7428808B3C004F1BF6 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4CB9FF7328808B3B004F1BF6 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4C8E7D75284CC93F00D6E58D /* Project object */;
 }

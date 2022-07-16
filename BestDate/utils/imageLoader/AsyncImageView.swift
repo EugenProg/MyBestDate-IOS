@@ -12,6 +12,7 @@ import Foundation
 struct AsyncImageView: View {
     @StateObject private var loader: ImageLoader
     private let defaultUrl: String = "https://image.shutterstock.com/image-vector/sad-apologizing-emoticon-emoji-holding-260nw-1398672683.jpg"
+    private var isInited: Bool = false
 
     init(url: String?) {
         let realUrl = URL(string: (url == nil || url?.isEmpty == true) ? defaultUrl : url ?? defaultUrl)
@@ -36,4 +37,3 @@ struct AsyncImageView: View {
         }
     }
 }
-

@@ -21,6 +21,7 @@ struct NavigationView: View {
                 if store.state.showBottomSheet { BaseBottomSheet().zIndex(1) }
                 Group {
                     switch store.state.activeScreen {
+                    case .START: StartScreen()
                     case .ONBOARD_START: OnboardStartScreen()
                     case .ONBOARD_SECOND: OnboardSecondScreen().transition(.move(edge: .trailing))
                     case .AUTH: AuthScreen().transition(.move(edge: .trailing))
@@ -35,7 +36,7 @@ struct NavigationView: View {
                     case .PHOTO_EDITING: PhotoEditingScreen().transition(.move(edge: .bottom))
                     case .QUESTIONNAIRE: QuestionnaireScreen()
                     case .MAIN: MainScreen()
-                    default: OnboardStartScreen()
+                    default: StartScreen()
                     }
                 }.blur(radius: store.state.showBottomSheet ? 1.8 : 0)
             }.onTapGesture(perform: { UIApplication.shared.windows.first { $0.isKeyWindow }?.endEditing(true) })

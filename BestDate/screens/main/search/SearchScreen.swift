@@ -20,12 +20,16 @@ struct SearchScreen: View {
         VStack(spacing: 0) {
             ZStack {
                 HStack {
-                    MainHeaderImage()
+                    Button(action: {
+                        //store.dispatch(action: .navigate(screen: .PROFILE))
+                    }) {
+                        MainHeaderImage()
+                    }
 
                     Spacer()
 
                     Button(action: {
-                        //store.dispatch(action: .navigate(screen: .PROFILE))
+
                     }) {
                         Image("ic_menu_dots")
                             .padding(.init(top: 8, leading: 8, bottom: 8, trailing: 0))
@@ -37,18 +41,18 @@ struct SearchScreen: View {
                 .padding(.init(top: 16, leading: 0, bottom: 0, trailing: 0))
 
             HStack(spacing: 9) {
-                DropDownView(style: .blue, text: $locationMediator.selectedItem) {
+                DropDownView(style: .blue, text: $locationMediator.selectedItem.name) {
                     store.dispatch(action: .showBottomSheet(view: .MAIN_LOCATION))
                 }
 
-                DropDownView(style: .gray, text: $onlineMediator.selectedItem) {
+                DropDownView(style: .gray, text: $onlineMediator.selectedItem.name) {
                     store.dispatch(action: .showBottomSheet(view: .MAIN_ONLINE))
                 }
 
                 Spacer()
 
                 Button(action: {
-
+                    store.dispatch(action: .navigate(screen: .AUTH))
                 }) {
                     ZStack {
                         Image("ic_button_decor")
