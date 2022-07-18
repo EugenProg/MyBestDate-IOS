@@ -10,7 +10,6 @@ import SwiftUI
 struct PhotoSettingsBottomSheet: View {
     @EnvironmentObject var store: Store
     @ObservedObject var mediator = PhotoEditorMediator.shared
-    @ObservedObject var registrationHolder = RegistrationMediator.shared
     @State var ready: Bool = false
     
     @State var saveProcess: Bool = false
@@ -76,8 +75,10 @@ struct PhotoSettingsBottomSheet: View {
     }
 
     private func save() {
+        saveProcess.toggle()
         mediator.updateImageStatus(image: mediator.selectedPhoto) { success in
             DispatchQueue.main.async {
+                saveProcess.toggle()
                 clickAction()
             }
         }

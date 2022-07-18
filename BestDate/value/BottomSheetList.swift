@@ -28,7 +28,7 @@ enum BottomSheetList: String {
         case .NOT_CORRECT_PHOTO: return .AUTO
         case .QUESTIONNAIRE_SINGLE_SELECT: return .AUTO
         case .QUESTIONNAIRE_SEEK_BAR: return .AUTO
-        case .QUESTIONNAIRE_SEARCH: return .FULL
+        case .QUESTIONNAIRE_SEARCH: return .AUTO
         case .QUESTIONNAIRE_MULTY_SELECT: return .AUTO
         case .MAIN_LOCATION: return .AUTO
         case .MAIN_ONLINE: return .AUTO

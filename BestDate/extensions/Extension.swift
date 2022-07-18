@@ -87,12 +87,36 @@ extension Date {
         formatter.dateFormat = "yyyy-MM-dd"
         return formatter.string(from: self)
     }
+
+    func getZodiacSign() -> String {
+        NSLocalizedString(DateUtils().getZodiacSignByDate(date: self), comment: "Zodiac")
+    }
+
+    func isBetween(_ date1: Date, _ date2: Date) -> Bool {
+            date1 < date2
+                ? DateInterval(start: date1, end: date2).contains(self)
+                : DateInterval(start: date2, end: date1).contains(self)
+    }
+
+    static func getEithteenYearsAgoDate() -> Date {
+        let calendar = Calendar.current
+        let date = calendar.date(byAdding: .year, value: -18, to: Date())!
+        return calendar.date(byAdding: .day, value: -1, to: date)!
+    }
 }
 
 extension String {
     func toDate() -> Date {
         let dateFormatter = DateFormatter()
-          dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        return dateFormatter.date(from: self) ?? Date.now
+    }
+
+    func toShortDate() -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
         return dateFormatter.date(from: self) ?? Date.now
     }
 
@@ -128,6 +152,16 @@ extension Array where Element == String {
     }
 }
 
+extension Array where Element == ProfileImage {
+    mutating func clearAndAddAll(list: [ProfileImage]?) {
+        self.removeAll()
+
+        for item in list ?? [] {
+            self.append(item)
+        }
+    }
+}
+
 extension UserInfo {
     func getMainPhoto() -> ProfileImage? {
         for image in self.photos ?? [] {
@@ -140,6 +174,30 @@ extension UserInfo {
 
     func getAge() -> Int {
         Calendar.current.dateComponents([.year], from: self.birthday?.toDate() ?? Date.now, to: Date.now).year ?? 0
+    }
+}
+
+extension Guest {
+    func getVisitedPeriod() -> String {
+        let date = self.visit_at?.toDate() ?? Date.now
+
+        let components = Calendar.current.dateComponents([.day, .hour, .minute], from: Date.now, to: date)
+        let days = components.day ?? 0
+        let hours = components.hour ?? 0
+        let minutes = components.minute ?? 0
+        print(">>> date=\(date)\ndays=\(days)\nhours=\(hours)\nminute=\(minutes)")
+
+        if days > 6 {
+            return NSLocalizedString("was_recently", comment: "Was recently")
+        } else if days > 0 {
+            return String.localizedStringWithFormat(NSLocalizedString("was_n_days_ago", comment: "Days"), days)
+        } else if hours > 0 {
+            return String.localizedStringWithFormat(NSLocalizedString("was_n_hours_ago", comment: "Hours"), hours)
+        } else if minutes > 0 {
+            return String.localizedStringWithFormat(NSLocalizedString("was_n_min_ago", comment: "Minute"), minutes)
+        } else {
+            return "was never"
+        }
     }
 }
 

@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 enum Action {
-    case navigate(screen: ScreenList)
+    case navigate(screen: ScreenList, clearBackStack: Bool? = nil)
     case showBottomSheet(view: BottomSheetList)
     case hideBottomSheet
     case navigationBack

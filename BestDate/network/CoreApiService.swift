@@ -333,4 +333,37 @@ class CoreApiService {
 
         task.resume()
     }
+
+    func logout(completion: @escaping (Bool) -> Void) {
+        let request = CoreApiTypes.logout.getRequest(withAuth: true)
+
+        let task = URLSession.shared.dataTask(with: request) {data, response, error in
+            NetworkLogger.printLog(response: response)
+            if let data = data, let _ = try? JSONDecoder().decode(BaseResponse.self, from: data) {
+                NetworkLogger.printLog(data: data)
+                UserDataHolder.setAuthData(response: AuthResponse(token_type: "", expires_in: 0, access_token: "", refresh_token: ""))
+                completion(true)
+            } else {
+                completion(false)
+            }
+        }
+
+        task.resume()
+    }
+
+    func getGuests(completion: @escaping (Bool, [Guest]) -> Void) {
+        let request = CoreApiTypes.getGuestList.getRequest(withAuth: true)
+
+        let task = URLSession.shared.dataTask(with: request) {data, response, error in
+            NetworkLogger.printLog(response: response)
+            if let data = data, let response = try? JSONDecoder().decode(GuestListResponse.self, from: data) {
+                NetworkLogger.printLog(data: data)
+                completion(response.success, response.data)
+            } else {
+                completion(false, [])
+            }
+        }
+
+        task.resume()
+    }
 }

@@ -19,7 +19,7 @@ struct ProfilePhotoScreen: View {
         VStack {
             ZStack {
                 if mediator.mainPhoto != nil {
-                    BluredImageHeaderView(image: $mediator.mainPhoto)
+                    BluredImageHeaderView(image: mediator.mainPhoto)
                 }
                 
                 VStack {

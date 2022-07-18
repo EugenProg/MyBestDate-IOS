@@ -25,6 +25,7 @@ struct SearchInputView: View {
                 TextField("", text: $input)
                     .foregroundColor(ColorList.main.color)
                     .font(MyFont.getFont(.BOLD, 20))
+
             }
                 .padding(.init(top: 0, leading: 24, bottom: 0, trailing: 22))
         }.frame(width: UIScreen.main.bounds.width - 36, height: 76)

@@ -21,7 +21,10 @@ struct SearchScreen: View {
             ZStack {
                 HStack {
                     Button(action: {
-                        //store.dispatch(action: .navigate(screen: .PROFILE))
+                        withAnimation {
+                            ProfileMediator.shared.setUser(user: MainMediator.shared.user) 
+                            store.dispatch(action: .navigate(screen: .PROFILE))
+                        }
                     }) {
                         MainHeaderImage()
                     }
@@ -52,7 +55,7 @@ struct SearchScreen: View {
                 Spacer()
 
                 Button(action: {
-                    store.dispatch(action: .navigate(screen: .AUTH))
+                    
                 }) {
                     ZStack {
                         Image("ic_button_decor")
@@ -75,6 +78,12 @@ struct SearchScreen: View {
                                 pinnedViews: [.sectionHeaders, .sectionFooters]) {
                     ForEach(mediator.users, id: \.id) { user in
                         UserSearchItemView(user: user)
+                            .onTapGesture {
+                                AnotherProfileMediator.shared.setUser(user: user)
+                                withAnimation {
+                                    store.dispatch(action: .navigate(screen: .ANOTHER_PROFILE))
+                                }
+                            }
                     }
                 }.padding(.init(top: 14, leading: 3, bottom: 45, trailing: 3))
             }.padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight + 60, trailing: 0))

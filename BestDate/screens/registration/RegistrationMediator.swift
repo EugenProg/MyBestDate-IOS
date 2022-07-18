@@ -15,7 +15,7 @@ final class RegistrationMediator: ObservableObject {
     @Published var login: String = ""
     @Published var email: String = ""
     @Published var phone: String = ""
-    @Published var birthDate: Date = Calendar.current.date(byAdding: .year, value: -18, to: Date())!
+    @Published var birthDate: Date = Date.getEithteenYearsAgoDate()
     @Published var name: String = ""
     @Published var password: String = ""
 
@@ -129,7 +129,7 @@ final class RegistrationMediator: ObservableObject {
         self.name = user.name ?? ""
         self.email = user.email ?? ""
         self.phone = user.phone ?? ""
-        self.birthDate = user.birthday?.toDate() ?? Date.now
+        self.birthDate = user.birthday?.toDate() ?? Date.getEithteenYearsAgoDate()
         setGender(gender: user.gender ?? "", lookFor: user.look_for ?? [])
     }
 

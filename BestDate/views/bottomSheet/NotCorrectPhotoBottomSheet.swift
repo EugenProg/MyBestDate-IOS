@@ -42,6 +42,7 @@ struct NotCorrectPhotoBottomSheet: View {
             reasonsItem(text: "i_can_t_see_your_face")
             reasonsItem(text: "you_are_too_far_away")
             reasonsItem(text: "not_a_person_s_face")
+            reasonsItem(text: "more_than_one_person")
 
             Text(NSLocalizedString("recommendation", comment: "recommenadation"))
                 .foregroundColor(ColorList.white_70.color)

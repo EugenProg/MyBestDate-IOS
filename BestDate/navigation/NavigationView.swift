@@ -36,6 +36,8 @@ struct NavigationView: View {
                     case .PHOTO_EDITING: PhotoEditingScreen().transition(.move(edge: .bottom))
                     case .QUESTIONNAIRE: QuestionnaireScreen()
                     case .MAIN: MainScreen()
+                    case .PROFILE: ProfileScreen().transition(.move(edge: .trailing))
+                    case .ANOTHER_PROFILE: AnotherProfileScreen().transition(.move(edge: .trailing))
                     default: StartScreen()
                     }
                 }.blur(radius: store.state.showBottomSheet ? 1.8 : 0)

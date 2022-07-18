@@ -145,7 +145,22 @@ class QuestionnaireMediator: ObservableObject {
 
     func saveQuestionnaire(questionnaire: Questionnaire, completion: @escaping (Bool, String) -> Void) {
         CoreApiService.shared.saveQuestionnaire(questionnaire: questionnaire) { success, user in
-            completion(success, "default_error_message")
+            if success {
+                self.getUserData { success in
+                    completion(success, "")
+                }
+            } else {
+                completion(success, "default_error_message")
+            }
+        }
+    }
+
+    func getUserData(completion: @escaping (Bool) -> Void) {
+        CoreApiService.shared.getUserData { success, user in
+            if success {
+                MainMediator.shared.setUserInfo(user: user)
+            }
+            completion(success)
         }
     }
 

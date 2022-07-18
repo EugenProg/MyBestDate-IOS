@@ -9,23 +9,19 @@ import SwiftUI
 
 struct BluredImageHeaderView: View {
     
-    @Binding var image: ProfileImage?
+    @State var image: ProfileImage?
+    var enableBlur: Bool = true
     
     var body: some View {
         VStack {
             ZStack {
-                Rectangle()
-                    .fill(LinearGradient(gradient:
-                                            Gradient(colors: [
-                                                MyColor.getColor(40, 48, 52, 0.62),
-                                                MyColor.getColor(40, 48, 52, 0.17),
-                                                MyColor.getColor(40, 48, 52, 0.0)
-                                            ]), startPoint: .top, endPoint: .bottom))
+                OverlayView()
                 
             }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width)
                 .background(
                     AsyncImageView(url: image?.full_url)
-                        .blur(radius: 50)
+                        .blur(radius: enableBlur ? 50 : 0)
+                        .cornerRadius(radius: 33, corners: [.bottomLeft, .bottomRight])
                         .edgesIgnoringSafeArea(.all))
             Spacer()
             

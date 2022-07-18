@@ -25,7 +25,7 @@ struct DateSelectView: View {
                         .foregroundColor(ColorList.white_60.color)
                         .font(MyFont.getFont(.NORMAL, 12))
                     ZStack {
-                    DatePicker("Birth date", selection: $date, displayedComponents: .date)
+                        DatePicker("Birth date", selection: $date, in: ...Date.getEithteenYearsAgoDate(), displayedComponents: .date)
                         .labelsHidden()
                         .datePickerStyle(CompactDatePickerStyle())
                         .background(MyColor.getColor(0, 0, 0, 0))

@@ -7,94 +7,83 @@
 
 import Foundation
 import GooglePlaces
+import Combine
 
-class CitySearchMediator: ObservableObject {
+class CitySearchMediator: NSObject, ObservableObject {
     static var shared = CitySearchMediator()
 
-//    private var token = GMSAutocompleteSessionToken.init()
-//    var fetcher: GMSAutocompleteFetcher?
+    private var token = GMSAutocompleteSessionToken.init()
+    var fetcher: GMSAutocompleteFetcher?
+    var isInited = false
 
     @Published var cityList: [String] = []
+    @Published var searchText: String = ""
 
-//    init() {
-//
-//        let filter = GMSAutocompleteFilter()
-//        filter.type = .city
-//
-//        fetcher = GMSAutocompleteFetcher(filter: filter)
-//        //fetcher?.delegate = self
-//        fetcher?.provide(token)
-//    }
-//
-//    func search(text: String) {
-//        fetcher?.sourceTextHasChanged(text)
-//    }
+    private var cancellableSet: Set<AnyCancellable> = []
+
+    override init() {
+
+        GMSPlacesClient.provideAPIKey("AIzaSyCAvbkXsVq1FQuiLdwbwJxiM6WoYfYSX8I")
+
+        let filter = GMSAutocompleteFilter()
+        filter.accessibilityLanguage = "en"
+        filter.type = .city
+
+        fetcher = GMSAutocompleteFetcher(filter: filter)
+        fetcher?.accessibilityLanguage = "en"
+        fetcher?.provide(token)
+    }
+
+    func initSearch() {
+        print(">>> init search")
+        fetcher?.delegate = self
+        
+        $searchText
+            .debounce(for: 0.4, scheduler: RunLoop.main)
+            .removeDuplicates()
+            .map({ (string) -> String? in
+                if (string.count < 1) {
+                    self.cityList = []
+                    return nil
+                }
+                return string
+            })
+            .compactMap { $0 }
+            .sink { (_) in
+            } receiveValue: { [self] in
+                search(text: searchText)
+            }
+            .store(in: &cancellableSet)
+
+        isInited = true
+    }
+
+    func search(text: String) {
+        if !isInited { initSearch() }
+        print(">>> action \(text)")
+        fetcher?.sourceTextHasChanged(text)
+    }
 }
 
-//extension CitySearchMediator: GMSAutocompleteFetcherDelegate {
-//    func isEqual(_ object: Any?) -> Bool {
-//        false
-//    }
-//
-//    var hash: Int {
-//        <#code#>
-//    }
-//
-//    var superclass: AnyClass? {
-//        <#code#>
-//    }
-//
-//    func `self`() -> Self {
-//        <#code#>
-//    }
-//
-//    func perform(_ aSelector: Selector!) -> Unmanaged<AnyObject>! {
-//        <#code#>
-//    }
-//
-//    func perform(_ aSelector: Selector!, with object: Any!) -> Unmanaged<AnyObject>! {
-//        <#code#>
-//    }
-//
-//    func perform(_ aSelector: Selector!, with object1: Any!, with object2: Any!) -> Unmanaged<AnyObject>! {
-//        <#code#>
-//    }
-//
-//    func isProxy() -> Bool {
-//        <#code#>
-//    }
-//
-//    func isKind(of aClass: AnyClass) -> Bool {
-//        <#code#>
-//    }
-//
-//    func isMember(of aClass: AnyClass) -> Bool {
-//        <#code#>
-//    }
-//
-//    func conforms(to aProtocol: Protocol) -> Bool {
-//        <#code#>
-//    }
-//
-//    func responds(to aSelector: Selector!) -> Bool {
-//        <#code#>
-//    }
-//
-//    var description: String {
-//        <#code#>
-//    }
-//
-//  func didAutocomplete(with predictions: [GMSAutocompletePrediction]) {
-//    let resultsStr = NSMutableString()
-//    for prediction in predictions {
-//      resultsStr.appendFormat("\n Primary text: %@\n", prediction.attributedPrimaryText)
-//      resultsStr.appendFormat("Place ID: %@\n", prediction.placeID)
-//    }
-//
-//      cityList.append(resultsStr as String)
-//  }
-//
-//  func didFailAutocompleteWithError(_ error: Error) {
-//      cityList.append(error.localizedDescription)
-//  }
-//}
+extension CitySearchMediator: GMSAutocompleteFetcherDelegate {
+
+  func didAutocomplete(with predictions: [GMSAutocompletePrediction]) {
+      print(">>> search results \(predictions.count)")
+      cityList.removeAll()
+    for prediction in predictions {
+        let city = prediction.attributedPrimaryText.string
+        let countryLine = prediction.attributedSecondaryText?.string
+        var country = ""
+        if (countryLine?.contains(",") ?? false) {
+            country = countryLine?.components(separatedBy: ", ").last ?? ""
+        } else { country = countryLine ?? "" }
+        let result = city + ", " + country
+        if !cityList.contains(result) { cityList.append(result) }
+    }
+  }
+
+  func didFailAutocompleteWithError(_ error: Error) {
+      print(">>> error \(error)")
+      cityList.append(error.localizedDescription)
+  }
+}

@@ -61,6 +61,15 @@ class PhotoEditorMediator: ObservableObject {
 
     func updateImageStatus(image: ProfileImage?, completion: @escaping (Bool) -> Void) {
         ImagesApiService.shared.updateImageStatus(id: image?.id ?? 0, requestData: PhotoStatusUpdateRequest(main: image?.main, top: image?.top, match: image?.match)) { success in
+            if success {
+                DispatchQueue.main.async {
+                    let index = self.imageList.firstIndex { pi in
+                        pi.id == image?.id
+                    }
+                    let saved = self.imageList[index ?? 0]
+                    self.imageList[index ?? 0] = ProfileImage(id: saved.id, full_url: saved.full_url, thumb_url: saved.thumb_url, main: image?.main, top: image?.top, match: image?.match)
+                }
+            }
             completion(success)
         }
     }
@@ -111,7 +120,7 @@ class PhotoEditorMediator: ObservableObject {
     func searchFaces(completion: @escaping (Bool) -> Void) {
         let detector = FaceDetectorUtil()
         detector.detectFaces(image: croppedPhoto) { success, facesCount in
-            if success { completion(facesCount > 0) }
+            if success { completion(facesCount == 1) }
             else { completion(success) }
         }
     }

@@ -40,15 +40,17 @@ class AuthMediator: ObservableObject {
         CoreApiService.shared.getUserData { success, user in
             DispatchQueue.main.async {
                 if success {
-                    PhotoEditorMediator.shared.setImages(images: user.photos ?? [])
-                    RegistrationMediator.shared.setUserData(user: user)
-                    MainMediator.shared.setUserInfo(user: user)
-                    QuestionnaireMediator.shared.setQuestionnaire(questionnaire: user.questionnaire ?? Questionnaire())
-                    QuestionnaireMediator.shared.setUserLocation(location: user.location ?? Location())
+                    if UserDataHolder.startScreen == .MAIN {
+                        MainMediator.shared.setUserInfo(user: user)
+                    } else {
+                        PhotoEditorMediator.shared.setImages(images: user.photos ?? [])
+                        RegistrationMediator.shared.setUserData(user: user)
+                        QuestionnaireMediator.shared.setQuestionnaire(questionnaire: user.questionnaire ?? Questionnaire())
+                        QuestionnaireMediator.shared.setUserLocation(location: user.location ?? Location())
+                    }
                 }
                 complete(success)
             }
-
         }
     }
 }
