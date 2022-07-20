@@ -149,6 +149,10 @@
 		4CB9FFAA28847FF4004F1BF6 /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB9FFA928847FF4004F1BF6 /* OverlayView.swift */; };
 		4CB9FFAC2885B4DB004F1BF6 /* GuestsMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB9FFAB2885B4DA004F1BF6 /* GuestsMediator.swift */; };
 		4CB9FFAE2885BBFA004F1BF6 /* GuestListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB9FFAD2885BBFA004F1BF6 /* GuestListItemView.swift */; };
+		4CDD3B992888601000793466 /* no_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CDD3B982888601000793466 /* no_data.json */; };
+		4CDD3B9B2888608D00793466 /* NoDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDD3B9A2888608D00793466 /* NoDataView.swift */; };
+		4CDD3B9D288867DA00793466 /* GuestListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDD3B9C288867DA00793466 /* GuestListView.swift */; };
+		4CDD3B9F288874F200793466 /* ProfileButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDD3B9E288874F200793466 /* ProfileButtonView.swift */; };
 		DB949870B51B179BE886EF9B /* Pods_BestDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 668E51C708FF2FD4DF518EA0 /* Pods_BestDate.framework */; };
 /* End PBXBuildFile section */
 
@@ -297,6 +301,10 @@
 		4CB9FFA928847FF4004F1BF6 /* OverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
 		4CB9FFAB2885B4DA004F1BF6 /* GuestsMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestsMediator.swift; sourceTree = "<group>"; };
 		4CB9FFAD2885BBFA004F1BF6 /* GuestListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestListItemView.swift; sourceTree = "<group>"; };
+		4CDD3B982888601000793466 /* no_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = no_data.json; sourceTree = "<group>"; };
+		4CDD3B9A2888608D00793466 /* NoDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDataView.swift; sourceTree = "<group>"; };
+		4CDD3B9C288867DA00793466 /* GuestListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestListView.swift; sourceTree = "<group>"; };
+		4CDD3B9E288874F200793466 /* ProfileButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileButtonView.swift; sourceTree = "<group>"; };
 		580B6BBF9D7D1CE1D3B4B0AD /* Pods-BestDate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestDate.debug.xcconfig"; path = "Target Support Files/Pods-BestDate/Pods-BestDate.debug.xcconfig"; sourceTree = "<group>"; };
 		668E51C708FF2FD4DF518EA0 /* Pods_BestDate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BestDate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -654,19 +662,19 @@
 		4C8E7DA9284D24BC00D6E58D /* screens */ = {
 			isa = PBXGroup;
 			children = (
-				4C5C86DB2874B174006DE024 /* auth */,
-				4C1458F82855E15900558B6B /* base */,
+				4C1459062857926700558B6B /* SplashScreen.storyboard */,
 				4C1459022856627E00558B6B /* GeolocationScreen.swift */,
-				4CB9FF422877439A004F1BF6 /* main */,
 				4C0E71F0284FC9A5004099D4 /* OnboardSecondScreen.swift */,
 				4C8E7DAB284D252300D6E58D /* OnboardStartScreen.swift */,
+				4CB9FF71287F4027004F1BF6 /* StartScreen.swift */,
+				4C5C86DB2874B174006DE024 /* auth */,
+				4C1458F82855E15900558B6B /* base */,
+				4CB9FF422877439A004F1BF6 /* main */,
 				4CB9FF9B288427BA004F1BF6 /* OtherProfile */,
 				4C022A352858ED570043E49D /* profile photo */,
 				4CA2E2292867222300E514C4 /* questionnaire */,
 				4C1458FB285660F800558B6B /* recovery */,
 				4C3D27C828539BAE00F8FD09 /* registration */,
-				4C1459062857926700558B6B /* SplashScreen.storyboard */,
-				4CB9FF71287F4027004F1BF6 /* StartScreen.swift */,
 				4CB9FF892882D002004F1BF6 /* UserProfile */,
 			);
 			path = screens;
@@ -691,6 +699,7 @@
 				4C022A4228591A2B0043E49D /* BluredImageHeaderView.swift */,
 				4C022A50285F0AF00043E49D /* EdiorView.swift */,
 				4CB9FFA928847FF4004F1BF6 /* OverlayView.swift */,
+				4CDD3B9A2888608D00793466 /* NoDataView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -792,6 +801,7 @@
 				4CB9FF4B287746F9004F1BF6 /* GuestsScreen.swift */,
 				4CB9FFAB2885B4DA004F1BF6 /* GuestsMediator.swift */,
 				4CB9FFAD2885BBFA004F1BF6 /* GuestListItemView.swift */,
+				4CDD3B9C288867DA00793466 /* GuestListView.swift */,
 			);
 			path = guests;
 			sourceTree = "<group>";
@@ -835,6 +845,7 @@
 		4CB9FF7628808D6E004F1BF6 /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
+				4CDD3B982888601000793466 /* no_data.json */,
 				4CB9FF83288094C0004F1BF6 /* heart.json */,
 				4CB9FF7928808E01004F1BF6 /* LottieView.swift */,
 			);
@@ -858,6 +869,7 @@
 				4CB9FF9328833A56004F1BF6 /* DirrectionLineButtonView.swift */,
 				4CB9FF9528834303004F1BF6 /* ImageLineItemView.swift */,
 				4CB9FF97288345B7004F1BF6 /* LogoutButtonView.swift */,
+				4CDD3B9E288874F200793466 /* ProfileButtonView.swift */,
 			);
 			path = profile;
 			sourceTree = "<group>";
@@ -965,6 +977,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CDD3B992888601000793466 /* no_data.json in Resources */,
 				4C8E7D88284CC94900D6E58D /* Preview Assets.xcassets in Resources */,
 				4C0E71E6284FB14A004099D4 /* Localizable.strings in Resources */,
 				4C0E71E1284FAAF3004099D4 /* SansPro_regular.otf in Resources */,
@@ -1087,6 +1100,7 @@
 				4C022A3B285903530043E49D /* HorisontalPhotoListView.swift in Sources */,
 				4C1B7C28286B6D48000DB5D4 /* SingleSelectMediator.swift in Sources */,
 				4C022A45285A38920043E49D /* SwichSelectorView.swift in Sources */,
+				4CDD3B9B2888608D00793466 /* NoDataView.swift in Sources */,
 				4C5C86C728734EC8006DE024 /* ConfirmationView.swift in Sources */,
 				4C1458F028547DE600558B6B /* BaseBottomSheet.swift in Sources */,
 				4CB9FF5E287AAD7D004F1BF6 /* MainHeaderImage.swift in Sources */,
@@ -1163,6 +1177,8 @@
 				4C022A48285A409E0043E49D /* SwitchButtonView.swift in Sources */,
 				4CA2E2362867647A00E514C4 /* QuestionnairePageContainer.swift in Sources */,
 				4C5C86D128749CE4006DE024 /* RequestModels.swift in Sources */,
+				4CDD3B9F288874F200793466 /* ProfileButtonView.swift in Sources */,
+				4CDD3B9D288867DA00793466 /* GuestListView.swift in Sources */,
 				4C8E7D90284D1C4000D6E58D /* Font.swift in Sources */,
 				4C3D27CA28539C3500F8FD09 /* RegistrationStartScreen.swift in Sources */,
 				4C1458FD285661BF00558B6B /* PassRecoveryScreen.swift in Sources */,
@@ -1312,7 +1328,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BestDate/Preview Content\"";
 				DEVELOPMENT_TEAM = 7869H74LP9;
@@ -1336,6 +1353,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bestDate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = BestDate;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1348,7 +1366,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BestDate/Preview Content\"";
 				DEVELOPMENT_TEAM = 7869H74LP9;
@@ -1372,6 +1391,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bestDate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = BestDate;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
