@@ -292,7 +292,7 @@ class CoreApiService {
         task.resume()
     }
 
-    func getUsersList(location: LocationFilterTypes, online: OnlineFilterTypes, completion: @escaping (Bool, [UserInfo]) -> Void) {
+    func getUsersList(location: LocationFilterTypes, online: OnlineFilterTypes, completion: @escaping (Bool, [ShortUserInfo]) -> Void) {
         var request = CoreApiTypes.getUserList.getRequest(withAuth: true)
 
         let data = try! encoder.encode(SearchFilter(location: location.rawValue, online: online.rawValue))
@@ -307,6 +307,22 @@ class CoreApiService {
                 completion(response.success, response.data)
             } else {
                 completion(false, [])
+            }
+        }
+
+        task.resume()
+    }
+
+    func getUsersById(id: Int, completion: @escaping (Bool, UserInfo) -> Void) {
+        let request = CoreApiTypes.getUserById.getRequest(path: id.toString(), withAuth: true)
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            NetworkLogger.printLog(response: response)
+            if let data = data, let response = try? JSONDecoder().decode(UserDataResponse.self, from: data) {
+                NetworkLogger.printLog(data: data)
+                completion(response.success, response.data ?? UserInfo())
+            } else {
+                completion(false, UserInfo())
             }
         }
 
@@ -361,6 +377,27 @@ class CoreApiService {
                 completion(response.success, response.data)
             } else {
                 completion(false, [])
+            }
+        }
+
+        task.resume()
+    }
+
+    func setGuestViewed(ids: [Int], completion: @escaping (Bool) -> Void) {
+        var request = CoreApiTypes.setViewedAction.getRequest(withAuth: true)
+
+        let data = try! encoder.encode(IdListRequest(ids: ids))
+        encoder.outputFormatting = .prettyPrinted
+        NetworkLogger.printLog(data: data)
+        request.httpBody = data
+
+        let task = URLSession.shared.dataTask(with: request) {data, response, error in
+            NetworkLogger.printLog(response: response)
+            if let data = data, let response = try? JSONDecoder().decode(BaseResponse.self, from: data) {
+                NetworkLogger.printLog(data: data)
+                completion(response.success)
+            } else {
+                completion(false)
             }
         }
 

@@ -77,14 +77,17 @@ struct ProfileScreen: View {
                                     .foregroundColor(ColorList.white_80.color)
                                     .font(MyFont.getFont(.BOLD, 16))
 
-                                HStack {
+                                HStack(alignment: .top) {
                                     CoinsBoxView(coinsCount: 10) {
 
                                     }
 
                                     Spacer()
+
+                                    ProfileButtonView(name: "my_duels", image: "ic_duel", isActive: true) {
+
+                                    }
                                 }.padding(.init(top: 28, leading: 18, bottom: 0, trailing: 18))
-                                Spacer()
                             }.padding(.init(top: 75, leading: 0, bottom: 0, trailing: 0))
                         }.frame(height: 231, alignment: .top)
                             .padding(.init(top: 65, leading: 0, bottom: 0, trailing: 0))

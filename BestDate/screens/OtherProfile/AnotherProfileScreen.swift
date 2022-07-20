@@ -15,7 +15,7 @@ struct AnotherProfileScreen: View {
         ZStack {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(spacing: 0) {
-                    AnotherProfileHeader(image: mediator.user.getMainPhoto() ?? ProfileImage(), isOnline: mediator.user.is_online ?? false, birthday: mediator.user.birthday ?? "")
+                    AnotherProfileHeader(image: mediator.mainPhoto, isOnline: mediator.user.is_online ?? false, birthday: mediator.user.birthday ?? "")
 
                     DirrectionLineButtonView(name: "questionnaire", icon: "ic_document", buttonColor: ColorList.pink_5.color) {
 
@@ -83,6 +83,9 @@ struct AnotherProfileScreen: View {
             .onAppear {
                 store.dispatch(action:
                         .setScreenColors(status: ColorList.main.color, style: .lightContent))
+            }
+            .onDisappear {
+                mediator.cleanUserData()
             }
     }
 }

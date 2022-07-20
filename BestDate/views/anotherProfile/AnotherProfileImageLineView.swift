@@ -8,13 +8,42 @@
 import SwiftUI
 
 struct AnotherProfileImageLineView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
+    var imageSize = (UIScreen.main.bounds.width - 12) / 3
+    @Binding var imagesList: [ProfileImage]
+    var selectAction: (ProfileImage) -> Void
 
-struct AnotherProfileImageLineView_Previews: PreviewProvider {
-    static var previews: some View {
-        AnotherProfileImageLineView()
+    var body: some View {
+        ZStack {
+            if imagesList.count <= 3 {
+                HStack(spacing: 3) {
+                    Rectangle().fill(ColorList.white_10.color)
+                    Rectangle().fill(ColorList.white_10.color)
+                    Rectangle().fill(ColorList.white_10.color)
+                }.frame(height: imageSize)
+                .padding(.init(top: 0, leading: 3, bottom: 0, trailing: 3))
+
+                HStack(spacing: 3) {
+                    ForEach(imagesList, id: \.id) { image in
+                        ImageLineItemView(image: image, imageSize: imageSize)
+                            .onTapGesture {
+                                selectAction(image)
+                            }
+                    }
+                    Spacer()
+                }.padding(.init(top: 0, leading: 3, bottom: 0, trailing: 3))
+            } else {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 3) {
+                        ForEach(imagesList, id: \.id) { image in
+                            ImageLineItemView(image: image, imageSize: imageSize)
+                                .onTapGesture {
+                                    selectAction(image)
+                                }
+                        }
+                        Spacer()
+                    }.padding(.init(top: 0, leading: 3, bottom: 0, trailing: 3))
+                }
+            }
+        }.padding(.init(top: 16, leading: 0, bottom: 0, trailing: 0))
     }
 }

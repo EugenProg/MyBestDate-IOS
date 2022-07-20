@@ -21,7 +21,7 @@ struct MainOnlineBottomSheet: View {
                 DarkBottomSheetItem(text: item.name, isSelect: equals(item: item.name)) { name in
                     clickAction()
                     mediator.selectedItem = item
-                    UserDataHolder.setSettings(type: .SEARCH_ONLINE, value: item.type.rawValue)
+                    UserDataHolder.setSearchOnline(filter: item.type)
                     SearchMediator.shared.updateUserList(location: nil, online: item.type)
                 }
             }

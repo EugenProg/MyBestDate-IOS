@@ -31,6 +31,7 @@ enum CoreApiTypes {
     case saveQuestionnaire
 
     case getUserList
+    case getUserById
 
     case refreshToken
 
@@ -41,8 +42,7 @@ enum CoreApiTypes {
     case deleteMessage
 
     case getGuestList
-//    case sendGuestAction
-//    case setReadedAction
+    case setViewedAction
 
     case getUserLikes
     case likeAPhoto
@@ -50,6 +50,7 @@ enum CoreApiTypes {
     case getTopList
     case voteAction
     case getVotingPhotos
+    case getMyVoits
 
     case registerUserEmail
     case registerUserPhone
@@ -84,6 +85,7 @@ enum CoreApiTypes {
         case .getUser: return "user"
         case .saveQuestionnaire: return "user/questionnaire"
         case .getUserList: return "users"
+        case .getUserById: return "users/"
         case .refreshToken: return "refresh-token"
         case .getChatList: return "chats"
         case .deleteChat: return "chat/"
@@ -91,10 +93,12 @@ enum CoreApiTypes {
         case .updateMessage: return "message/"
         case .deleteMessage: return "message/"
         case .getGuestList: return "guests"
+        case .setViewedAction: return "guests"
         case .getUserLikes: return "likes"
         case .likeAPhoto: return "likes"
         case .getTopList: return "top"
         case .voteAction: return "voting"
+        case .getMyVoits: return "voting"
         case .getVotingPhotos: return "voting-photos"
         case .registerUserEmail: return "user/email-code"
         case .registerUserPhone: return "user/phone-code"
@@ -102,6 +106,7 @@ enum CoreApiTypes {
         case .confirmUserPhone: return "user/phone"
         case .updateUserData: return "user"
         case .logout: return "logout"
+
         }
     }
 
@@ -125,6 +130,7 @@ enum CoreApiTypes {
         case .getUser: return "GET"
         case .saveQuestionnaire: return "PUT"
         case .getUserList: return "POST"
+        case .getUserById: return "GET"
         case .refreshToken: return "POST"
         case .getChatList: return "GET"
         case .deleteChat: return "DELETE"
@@ -132,10 +138,12 @@ enum CoreApiTypes {
         case .updateMessage: return "PUT"
         case .deleteMessage: return "DELETE"
         case .getGuestList: return "GET"
+        case .setViewedAction: return "PUT"
         case .getUserLikes: return "GET"
         case .likeAPhoto: return "POST"
         case .getTopList: return "POST"
         case .voteAction: return "POST"
+        case .getMyVoits: return "GET"
         case .getVotingPhotos: return "POST"
         case .registerUserEmail: return "POST"
         case .registerUserPhone: return "POST"

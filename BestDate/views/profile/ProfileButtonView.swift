@@ -8,13 +8,40 @@
 import SwiftUI
 
 struct ProfileButtonView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
+    var name: String
+    var image: String
+    var isActive: Bool
 
-struct ProfileButtonView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileButtonView()
+    var clickAction: () -> Void
+
+    var body: some View {
+        VStack(spacing: 2.5) {
+            Button(action: {
+                withAnimation {
+                    clickAction()
+                }
+            }) {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 16)
+                        .stroke(MyColor.getColor(231, 238, 242, 0.12), lineWidth: 1)
+                        .background(ColorList.white_5.color)
+                        .cornerRadius(16)
+
+                    Image(image)
+
+                    if isActive {
+                        VStack {
+                            RoundedRectangle(cornerRadius: 4)
+                                .fill(ColorList.pink.color)
+                                .frame(width: 8, height: 8)
+                        }.frame(width: 57, height: 54, alignment: .topTrailing)
+                    }
+                }.frame(width: 61, height: 58)
+            }
+
+            Text(NSLocalizedString(name, comment: "Name"))
+                .foregroundColor(ColorList.white.color)
+                .font(MyFont.getFont(.BOLD, 10))
+        }
     }
 }

@@ -29,7 +29,17 @@ class ProfileMediator: ObservableObject {
 
     func logout(completion: @escaping () -> Void) {
         CoreApiService.shared.logout { _ in
-            completion()
+            DispatchQueue.main.async {
+                self.clearUserData()
+                GuestsMediator.shared.clearGuestData()
+                SearchMediator.shared.clearData()
+                completion()
+            }
         }
+    }
+
+    func clearUserData() {
+        self.user = UserInfo()
+        self.profileImages.removeAll()
     }
 }

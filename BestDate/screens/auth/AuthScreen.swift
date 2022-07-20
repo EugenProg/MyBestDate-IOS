@@ -84,7 +84,9 @@ struct AuthScreen: View {
                 DispatchQueue.main.async {
                     process.toggle()
                     if success {
-                        if UserDataHolder.startScreen == .START { UserDataHolder.setStartScreen(screen: .MAIN) }
+                        if UserDataHolder.startScreen == .START {
+                            UserDataHolder.setStartScreen(screen: .MAIN)
+                        }
                         store.dispatch(action: .navigate(screen: UserDataHolder.startScreen))
                     } else {
                         store.dispatch(action: .show(message: NSLocalizedString(message, comment: "Message")))

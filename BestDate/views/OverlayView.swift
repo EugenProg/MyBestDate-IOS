@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct OverlayView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
+    var reverse: Bool = false
 
-struct OverlayView_Previews: PreviewProvider {
-    static var previews: some View {
-        OverlayView()
+    var body: some View {
+        Rectangle()
+            .fill(LinearGradient(gradient:
+                                    Gradient(colors: [
+                                        MyColor.getColor(40, 48, 52, 0.62),
+                                        MyColor.getColor(40, 48, 52, 0.17),
+                                        MyColor.getColor(40, 48, 52, 0.0)
+                                    ]), startPoint: reverse ? .bottom : .top, endPoint: reverse ? .top : .bottom))
     }
 }

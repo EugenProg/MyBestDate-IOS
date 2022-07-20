@@ -11,7 +11,7 @@ import SwiftUI
 class SearchMediator: ObservableObject {
     static let shared = SearchMediator()
 
-    @Published var users: [UserInfo] = []
+    @Published var users: [ShortUserInfo] = []
     var locationType: LocationFilterTypes = UserDataHolder.searchLocation
     var onlineType: OnlineFilterTypes = UserDataHolder.searchOnline
 
@@ -19,11 +19,7 @@ class SearchMediator: ObservableObject {
         CoreApiService.shared.getUsersList(location: locationType, online: onlineType) { success, userList in
             DispatchQueue.main.async {
                 withAnimation {
-                    self.users.removeAll()
-                    
-                    for user in userList {
-                        self.users.append(user)
-                    }
+                    self.users.clearAndAddAll(list: userList)
                 }
             }
 
@@ -38,5 +34,9 @@ class SearchMediator: ObservableObject {
             onlineType = online ?? .all
             getUserList()
         }
+    }
+
+    func clearData() {
+        users.removeAll()
     }
 }

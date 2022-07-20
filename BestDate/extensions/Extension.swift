@@ -162,6 +162,16 @@ extension Array where Element == ProfileImage {
     }
 }
 
+extension Array where Element == ShortUserInfo {
+    mutating func clearAndAddAll(list: [ShortUserInfo]?) {
+        self.removeAll()
+
+        for item in list ?? [] {
+            self.append(item)
+        }
+    }
+}
+
 extension UserInfo {
     func getMainPhoto() -> ProfileImage? {
         for image in self.photos ?? [] {
@@ -177,6 +187,22 @@ extension UserInfo {
     }
 }
 
+extension ShortUserInfo {
+    func getAge() -> Int {
+        Calendar.current.dateComponents([.year], from: self.birthday?.toDate() ?? Date.now, to: Date.now).year ?? 0
+    }
+
+    func toUser() -> UserInfo {
+        UserInfo(
+            id: self.id,
+            name: self.name,
+            gender: self.gender,
+            birthday: self.birthday,
+            is_online: self.is_online
+        )
+    }
+}
+
 extension Guest {
     func getVisitedPeriod() -> String {
         let date = self.visit_at?.toDate() ?? Date.now
@@ -185,7 +211,6 @@ extension Guest {
         let days = components.day ?? 0
         let hours = components.hour ?? 0
         let minutes = components.minute ?? 0
-        print(">>> date=\(date)\ndays=\(days)\nhours=\(hours)\nminute=\(minutes)")
 
         if days > 6 {
             return NSLocalizedString("was_recently", comment: "Was recently")
@@ -255,15 +280,12 @@ extension Questionnaire {
 }
 
 extension URLResponse {
-    /// Returns casted `HTTPURLResponse`
     var http: HTTPURLResponse? {
         return self as? HTTPURLResponse
     }
 }
 
 extension HTTPURLResponse {
-    /// Returns `true` if `statusCode` is in range 200...299.
-    /// Otherwise `false`.
     var isSuccessful: Bool {
         return 200 ... 299 ~= statusCode
     }

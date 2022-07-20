@@ -24,14 +24,25 @@ class UserDataHolder {
     }
 
     static func setStartScreen(screen: ScreenList) {
+        startScreen = screen
         setSettings(type: .START_SCREEN, value: screen.rawValue)
+    }
+
+    static func setSearchOnline(filter: OnlineFilterTypes) {
+        searchOnline = filter
+        setSettings(type: .SEARCH_ONLINE, value: filter.rawValue)
+    }
+
+    static func setSearchLocation(filter: LocationFilterTypes) {
+        searchLocation = filter
+        setSettings(type: .SEARCH_LOCATION, value: filter.rawValue)
     }
 
     private static func getSettings(type: HolderTypes) -> String? {
         UserDefaults.standard.string(forKey: type.rawValue)
     }
 
-    static func setSettings(type: HolderTypes, value: String) {
+    private static func setSettings(type: HolderTypes, value: String) {
         UserDefaults.standard.setValue(value, forKey: type.rawValue)
     }
 }

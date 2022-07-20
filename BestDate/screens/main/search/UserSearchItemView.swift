@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct UserSearchItemView: View {
-    var user: UserInfo
+    var user: ShortUserInfo
 
     var body: some View {
         ZStack {
@@ -18,20 +18,15 @@ struct UserSearchItemView: View {
                 .shadow(color: MyColor.getColor(12, 28, 33, 0.24), radius: 2, y: 3)
                 .padding(.init(top: 0, leading: 4, bottom: 0, trailing: 4))
 
-            AsyncImageView(url: user.getMainPhoto()?.full_url)
+            AsyncImageView(url: user.main_photo?.full_url)
                 .padding(.init(top: 0, leading: 0, bottom: 54, trailing: 0))
 
             VStack(alignment: .leading, spacing: 0) {
                 Spacer()
 
                 ZStack {
-                    Rectangle()
-                        .fill(LinearGradient(gradient:
-                                                Gradient(colors: [
-                                                    MyColor.getColor(40, 48, 52, 0.62),
-                                                    MyColor.getColor(40, 48, 52, 0.17),
-                                                    MyColor.getColor(40, 48, 52, 0.0)
-                                                ]), startPoint: .bottom, endPoint: .top))
+                    OverlayView(reverse: true)
+
                     HStack(spacing: 4) {
                         if (user.is_online ?? false) {
                             Image("ic_signal")
@@ -50,7 +45,7 @@ struct UserSearchItemView: View {
                         .foregroundColor(ColorList.white.color)
                         .font(MyFont.getFont(.BOLD, 16))
 
-                    Image((user.questionnaire?.isFull() ?? false) ? "ic_verify_active" : "ic_verify_gray")
+                    Image((user.full_questionnaire ?? false) ? "ic_verify_active" : "ic_verify_gray")
                         .resizable()
                         .frame(width: 14, height: 14)
                         .padding(.init(top: 0, leading: 5, bottom: 0, trailing: 0))
@@ -66,7 +61,7 @@ struct UserSearchItemView: View {
                         .font(MyFont.getFont(.BOLD, 10))
                 }.padding(.init(top: 7, leading: 13, bottom: 2, trailing: 10))
 
-                Text(user.questionnaire?.occupation ?? "Luser")
+                Text(user.occupation ?? "Luser")
                     .foregroundColor(ColorList.white_40.color)
                     .font(MyFont.getFont(.NORMAL, 12))
                     .padding(.init(top: 1, leading: 13, bottom: 7, trailing: 10))
