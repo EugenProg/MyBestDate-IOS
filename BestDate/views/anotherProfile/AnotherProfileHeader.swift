@@ -13,6 +13,7 @@ struct AnotherProfileHeader: View {
     var image: ProfileImage
     var isOnline: Bool
     var birthday: String
+    var distance: String
 
     var body: some View {
         ZStack {
@@ -48,7 +49,7 @@ struct AnotherProfileHeader: View {
                                     .frame(width: 12, height: 12)
                             }
 
-                            Text("3.1 Miles")
+                            Text(distance)
                                 .foregroundColor(ColorList.white.color)
                                 .font(MyFont.getFont(.NORMAL, 14))
 

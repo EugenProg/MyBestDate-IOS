@@ -103,20 +103,40 @@ extension Date {
         let date = calendar.date(byAdding: .year, value: -18, to: Date())!
         return calendar.date(byAdding: .day, value: -1, to: date)!
     }
+
+    func getVisitPeriod() -> String {
+        let components = Calendar.current.dateComponents([.day, .hour, .minute], from: self, to: Date.now)
+        let days = components.day ?? 0
+        let hours = components.hour ?? 0
+        let minutes = components.minute ?? 0
+        //print(">>> Now: \(Date.now)\n>>> date: \(date)\n>>> days: \(days)\n>>> hours: \(hours)\n>>> min: \(minutes)")
+
+        if days > 6 {
+            return NSLocalizedString("was_recently", comment: "Was recently")
+        } else if days > 0 {
+            return String.localizedStringWithFormat(NSLocalizedString("was_n_days_ago", comment: "Days"), days)
+        } else if hours > 0 {
+            return String.localizedStringWithFormat(NSLocalizedString("was_n_hours_ago", comment: "Hours"), hours)
+        } else if minutes > 0 {
+            return String.localizedStringWithFormat(NSLocalizedString("was_n_min_ago", comment: "Minute"), minutes)
+        } else {
+            return ""
+        }
+    }
 }
 
 extension String {
     func toDate() -> Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        dateFormatter.timeZone = TimeZone(abbreviation: "MSK")
         return dateFormatter.date(from: self) ?? Date.now
     }
 
     func toShortDate() -> Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        dateFormatter.timeZone = TimeZone(abbreviation: "MSK")
         return dateFormatter.date(from: self) ?? Date.now
     }
 
@@ -136,6 +156,12 @@ extension String {
 }
 
 extension Int {
+    func toString() -> String {
+        String(self)
+    }
+}
+
+extension Double {
     func toString() -> String {
         String(self)
     }
@@ -172,6 +198,26 @@ extension Array where Element == ShortUserInfo {
     }
 }
 
+extension Array where Element == Top {
+    mutating func clearAndAddAll(list: [Top]?) {
+        self.removeAll()
+
+        for item in list ?? [] {
+            self.append(item)
+        }
+    }
+}
+
+extension Array where Element == MyDuel {
+    mutating func clearAndAddAll(list: [MyDuel]?) {
+        self.removeAll()
+
+        for item in list ?? [] {
+            self.append(item)
+        }
+    }
+}
+
 extension UserInfo {
     func getMainPhoto() -> ProfileImage? {
         for image in self.photos ?? [] {
@@ -185,11 +231,39 @@ extension UserInfo {
     func getAge() -> Int {
         Calendar.current.dateComponents([.year], from: self.birthday?.toDate() ?? Date.now, to: Date.now).year ?? 0
     }
+
+    func getDistance() -> String {
+        String.localizedStringWithFormat(
+            NSLocalizedString("disatnce_unit", comment: "Mask"),
+            NSLocalizedString(String(format: "%.0f", self.distance ?? 0.0), comment: "Distance")
+        )
+    }
+
+    func getLocation() -> String {
+        let country = self.location?.country ?? ""
+        let city = self.location?.city ?? ""
+
+        var location = ""
+        if !country.isEmpty { location = country }
+        if !location.isEmpty && !city.isEmpty {
+            location += ", \(city)"
+        } else if !city.isEmpty {
+            location = city
+        }
+        return location
+    }
 }
 
 extension ShortUserInfo {
     func getAge() -> Int {
         Calendar.current.dateComponents([.year], from: self.birthday?.toDate() ?? Date.now, to: Date.now).year ?? 0
+    }
+
+    func getDistance() -> String {
+        String.localizedStringWithFormat(
+            NSLocalizedString("disatnce_unit", comment: "Mask"),
+            NSLocalizedString(String(format: "%.0f", self.distance ?? 0.0), comment: "Distance")
+        )
     }
 
     func toUser() -> UserInfo {
@@ -207,22 +281,15 @@ extension Guest {
     func getVisitedPeriod() -> String {
         let date = self.visit_at?.toDate() ?? Date.now
 
-        let components = Calendar.current.dateComponents([.day, .hour, .minute], from: Date.now, to: date)
-        let days = components.day ?? 0
-        let hours = components.hour ?? 0
-        let minutes = components.minute ?? 0
+        return date.getVisitPeriod()
+    }
+}
 
-        if days > 6 {
-            return NSLocalizedString("was_recently", comment: "Was recently")
-        } else if days > 0 {
-            return String.localizedStringWithFormat(NSLocalizedString("was_n_days_ago", comment: "Days"), days)
-        } else if hours > 0 {
-            return String.localizedStringWithFormat(NSLocalizedString("was_n_hours_ago", comment: "Hours"), hours)
-        } else if minutes > 0 {
-            return String.localizedStringWithFormat(NSLocalizedString("was_n_min_ago", comment: "Minute"), minutes)
-        } else {
-            return "was never"
-        }
+extension MyDuel {
+    func getVisitedPeriod() -> String {
+        let date = self.created_at?.toDate() ?? Date.now
+
+        return date.getVisitPeriod()
     }
 }
 

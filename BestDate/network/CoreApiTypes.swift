@@ -44,20 +44,20 @@ enum CoreApiTypes {
     case getGuestList
     case setViewedAction
 
-    case getUserLikes
-    case likeAPhoto
+    case getUserLikes///
+    case likeAPhoto///
 
     case getTopList
     case voteAction
     case getVotingPhotos
     case getMyVoits
 
-    case registerUserEmail
-    case registerUserPhone
-    case confirmUserEmail
-    case confirmUserPhone
+    case registerUserEmail///
+    case registerUserPhone///
+    case confirmUserEmail///
+    case confirmUserPhone///
 
-    case updateUserData
+    case updateUserData///
 
     case logout
 
@@ -165,7 +165,7 @@ enum CoreApiTypes {
     }
 
     func getRequest(params: [RequestParams], withAuth: Bool? = nil) -> URLRequest {
-        var request = self.request
+        let request = self.request
 
         print("\n\(getMethod) \(BaseURL)\(getPath)\n")
         return request

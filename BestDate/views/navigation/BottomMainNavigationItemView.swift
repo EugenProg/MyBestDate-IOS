@@ -29,7 +29,7 @@ struct BottomMainNavigationItemView: View {
                         .padding(.init(top: 2, leading: 0, bottom: 0, trailing: 0))
 
                     if currentScreen == type {
-                        Image("ic_active_point")
+                        Image("ic_active_pink")
                             .padding(.init(top: 5, leading: 0, bottom: 4, trailing: 0))
                     } else {
                         Text(NSLocalizedString(text, comment: "Name"))

@@ -8,13 +8,24 @@
 import SwiftUI
 
 struct MyDuelsListView: View {
+    var list: [MyDuel]
+
+    var items: [GridItem] = [
+            GridItem(.fixed(UIScreen.main.bounds.width), spacing: 10)]
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        if list.isEmpty {
+            let topPadding = ((UIScreen.main.bounds.height - 260) / 2) - 100
+            NoDataView()
+                .padding(.init(top: topPadding, leading: 0, bottom: 0, trailing: 0))
+        } else {
+            LazyVGrid(columns: items, alignment: .center, spacing: 10,
+                      pinnedViews: [.sectionHeaders, .sectionFooters]) {
+                ForEach(list, id: \.id) { duel in
+                    MyDuelsListItemView(item: duel)
+                }
+            }
+        }
     }
 }
 
-struct MyDuelsListView_Previews: PreviewProvider {
-    static var previews: some View {
-        MyDuelsListView()
-    }
-}

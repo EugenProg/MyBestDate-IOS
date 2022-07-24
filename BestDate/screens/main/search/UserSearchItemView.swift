@@ -18,7 +18,7 @@ struct UserSearchItemView: View {
                 .shadow(color: MyColor.getColor(12, 28, 33, 0.24), radius: 2, y: 3)
                 .padding(.init(top: 0, leading: 4, bottom: 0, trailing: 4))
 
-            AsyncImageView(url: user.main_photo?.full_url)
+            AsyncImageView(url: user.main_photo?.thumb_url)
                 .padding(.init(top: 0, leading: 0, bottom: 54, trailing: 0))
 
             VStack(alignment: .leading, spacing: 0) {
@@ -32,7 +32,7 @@ struct UserSearchItemView: View {
                             Image("ic_signal")
                         }
                         
-                        Text("3.1 Miles")
+                        Text(user.getDistance())
                             .foregroundColor(ColorList.white.color)
                             .font(MyFont.getFont(.NORMAL, 12))
 

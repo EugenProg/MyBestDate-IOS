@@ -16,7 +16,7 @@ struct HorisontalPhotoListView: View {
     fileprivate func imageListView(clickAction: @escaping (ProfileImage) -> Void) -> some View {
         HStack(spacing: 3) {
             ForEach(imagesList, id: \.id) { image in
-                AsyncImageView(url: image.full_url)
+                AsyncImageView(url: image.thumb_url)
                     .frame(width: imageSize, height: imageSize)
                     .padding(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
                     .onTapGesture {

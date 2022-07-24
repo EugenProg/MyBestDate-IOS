@@ -14,9 +14,8 @@ struct TopBottomButtonView: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 32)
-                .fill(ColorList.white.color)
+                .fill(ColorList.main.color)
                 .shadow(color: MyColor.getColor(17, 24, 28, 0.63), radius: 46, y: -7)
-                .blur(radius: 50)
 
             HStack(spacing: 11) {
                 Image("ic_duel")
@@ -37,7 +36,7 @@ struct TopBottomButtonView: View {
                 }
                 .padding(.init(top: 0, leading: 22, bottom: 0, trailing: 0))
             }
-            .padding(.init(top: 13, leading: 22, bottom: 0, trailing: 23))
+            .padding(.init(top: 13, leading: 22, bottom: 90, trailing: 23))
         }.frame(width: 236, height: 133, alignment: .top)
     }
 }

@@ -8,13 +8,28 @@
 import SwiftUI
 
 struct TopListView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
+    @Binding var list: [Top]
+    var clickAction: (ShortUserInfo) -> Void
 
-struct TopListView_Previews: PreviewProvider {
-    static var previews: some View {
-        TopListView()
+    var items: [GridItem] = [
+        GridItem(.fixed((UIScreen.main.bounds.width - 9) / 2), spacing: 3),
+        GridItem(.fixed((UIScreen.main.bounds.width - 9) / 2), spacing: 3)]
+
+    var body: some View {
+        if list.isEmpty {
+            let topPadding = ((UIScreen.main.bounds.height - 260) / 2) - 100
+            NoDataView()
+                .padding(.init(top: topPadding, leading: 0, bottom: 0, trailing: 0))
+        } else {
+            LazyVGrid(columns: items, alignment: .center, spacing: 3,
+                      pinnedViews: [.sectionHeaders, .sectionFooters]) {
+                ForEach(list, id: \.id) { top in
+                    TopListItemView(item: top)
+                        .onTapGesture {
+                            withAnimation { clickAction(top.user ?? ShortUserInfo()) }
+                        }
+                }
+            }
+        }
     }
 }

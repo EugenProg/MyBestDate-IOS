@@ -10,9 +10,6 @@ import SwiftUI
 struct SearchScreen: View {
     @EnvironmentObject var store: Store
     @ObservedObject var mediator = SearchMediator.shared
-    var items: [GridItem] = [
-        GridItem(.fixed((UIScreen.main.bounds.width - 9) / 2), spacing: 3),
-        GridItem(.fixed((UIScreen.main.bounds.width - 9) / 2), spacing: 3)]
     @ObservedObject var locationMediator = LocationMediator.shared
     @ObservedObject var onlineMediator = OnlineMediator.shared
     
@@ -74,18 +71,11 @@ struct SearchScreen: View {
                 .frame(height: 1)
 
             ScrollView(.vertical, showsIndicators: false) {
-                LazyVGrid(columns: items, alignment: .center, spacing: 10,
-                                pinnedViews: [.sectionHeaders, .sectionFooters]) {
-                    ForEach(mediator.users, id: \.id) { user in
-                        UserSearchItemView(user: user)
-                            .onTapGesture {
-                                AnotherProfileMediator.shared.setUser(user: user)
-                                withAnimation {
-                                    store.dispatch(action: .navigate(screen: .ANOTHER_PROFILE))
-                                }
-                            }
-                    }
-                }.padding(.init(top: 14, leading: 3, bottom: 45, trailing: 3))
+                SearchListView(list: $mediator.users) { user in
+                    AnotherProfileMediator.shared.setUser(user: user)
+                    store.dispatch(action: .navigate(screen: .ANOTHER_PROFILE))
+                }
+                .padding(.init(top: 14, leading: 3, bottom: 45, trailing: 3))
             }.padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight + 60, trailing: 0))
 
         }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)

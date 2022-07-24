@@ -79,3 +79,13 @@ struct SendMessageRequest: Codable {
 struct UpdateMessageRequest: Codable {
     var text: String
 }
+
+struct TopRequest: Codable {
+    var gender: String
+    var country: String? = "Kaz"
+}
+
+struct VotePhotos: Codable {
+    var winning_photo: Int
+    var loser_photo: Int
+}

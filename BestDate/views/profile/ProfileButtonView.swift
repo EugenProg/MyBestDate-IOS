@@ -11,6 +11,7 @@ struct ProfileButtonView: View {
     var name: String
     var image: String
     var isActive: Bool
+    var size: CGSize = CGSize(width: 61, height: 58)
 
     var clickAction: () -> Void
 
@@ -36,7 +37,7 @@ struct ProfileButtonView: View {
                                 .frame(width: 8, height: 8)
                         }.frame(width: 57, height: 54, alignment: .topTrailing)
                     }
-                }.frame(width: 61, height: 58)
+                }.frame(width: size.width, height: size.height)
             }
 
             Text(NSLocalizedString(name, comment: "Name"))

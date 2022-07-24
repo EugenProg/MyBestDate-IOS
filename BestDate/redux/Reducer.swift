@@ -22,7 +22,7 @@ final class Reducer {
 
         case .navigationBack: do {
             let lastScreen = state.screenStack.last
-            if (lastScreen != nil) {
+            if (lastScreen != nil && lastScreen != .START) {
                 state.activeScreen = state.screenStack.last!
                 state.screenStack.removeLast()
             }

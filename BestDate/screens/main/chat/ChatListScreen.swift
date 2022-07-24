@@ -15,7 +15,10 @@ struct ChatListScreen: View {
             ZStack {
                 HStack {
                     Button(action: {
-                        //store.dispatch(action: .navigate(screen: .PROFILE))
+                        withAnimation {
+                            ProfileMediator.shared.setUser(user: MainMediator.shared.user)
+                            store.dispatch(action: .navigate(screen: .PROFILE))
+                        }
                     }) {
                         MainHeaderImage()
                     }

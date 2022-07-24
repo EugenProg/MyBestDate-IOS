@@ -33,7 +33,7 @@ struct ProfilePhotoScreen: View {
                         if mediator.mainPhoto == nil {
                             Image("ic_user_cirlce_add")
                         } else {
-                            AsyncImageView(url: mediator.mainPhoto?.full_url)
+                            AsyncImageView(url: mediator.mainPhoto?.thumb_url)
                                 .aspectRatio(contentMode: .fill)
                                 .clipShape(Circle())
                                 .frame(width: 104, height: 104, alignment: .center)

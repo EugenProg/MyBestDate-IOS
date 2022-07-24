@@ -13,7 +13,7 @@ struct ImageLineItemView: View {
 
     var body: some View {
         ZStack {
-            AsyncImageView(url: image.full_url)
+            AsyncImageView(url: image.thumb_url)
                 .frame(width: imageSize, height: imageSize)
 
             VStack {

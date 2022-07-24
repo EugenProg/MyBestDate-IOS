@@ -53,14 +53,14 @@ struct GuestsScreen: View {
 
                         if !mediator.newGuests.isEmpty {
                             GuestListView(title: "new_guests", list: $mediator.newGuests) { guest in
-                                AnotherProfileMediator.shared.setUser(user: guest.guest ?? UserInfo())
+                                AnotherProfileMediator.shared.setUser(user: guest.guest ?? ShortUserInfo())
                                 store.dispatch(action: .navigate(screen: .ANOTHER_PROFILE))
                             }
                         }
 
                         if !mediator.oldGuests.isEmpty {
                             GuestListView(title: "previous_views", list: $mediator.oldGuests) { guest in
-                                AnotherProfileMediator.shared.setUser(user: guest.guest ?? UserInfo())
+                                AnotherProfileMediator.shared.setUser(user: guest.guest ?? ShortUserInfo())
                                 store.dispatch(action: .navigate(screen: .ANOTHER_PROFILE))
                             }
                         }

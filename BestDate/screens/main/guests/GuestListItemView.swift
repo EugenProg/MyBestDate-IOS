@@ -16,7 +16,7 @@ struct GuestListItemView: View {
                 .fill(MyColor.getColor(41, 50, 54))
 
             HStack(spacing: 14) {
-                AsyncImageView(url: guest.guest?.getMainPhoto()?.thumb_url)
+                AsyncImageView(url: guest.guest?.main_photo?.thumb_url)
                     .frame(width: 64, height: 64)
 
                 VStack(alignment: .leading, spacing: 5) {
@@ -25,7 +25,7 @@ struct GuestListItemView: View {
                             .foregroundColor(ColorList.white.color)
                             .font(MyFont.getFont(.BOLD, 16))
 
-                        Image((guest.guest?.questionnaire?.isFull() ?? false) ? "ic_verify_active" : "ic_verify_gray")
+                        Image((guest.guest?.full_questionnaire ?? false) ? "ic_verify_active" : "ic_verify_gray")
                             .resizable()
                             .frame(width: 14, height: 14)
                             .padding(.init(top: 0, leading: 5, bottom: 0, trailing: 0))
@@ -41,7 +41,7 @@ struct GuestListItemView: View {
                             .padding(.init(top: 5, leading: 0, bottom: 0, trailing: 0))
                     }
 
-                    Text(guest.guest?.questionnaire?.occupation ?? "Luser")
+                    Text(guest.guest?.occupation ?? "Luser")
                         .foregroundColor(ColorList.white_40.color)
                         .font(MyFont.getFont(.NORMAL, 12))
 

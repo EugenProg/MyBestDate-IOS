@@ -53,6 +53,7 @@ struct UserInfo: Codable {
     var is_online: Bool? = nil
     var new_likes: Int? = nil
     var new_guests: Int? = nil
+    var distance: Double? = nil
     var photos: [ProfileImage]? = nil
     var location: Location? = nil
     var questionnaire: Questionnaire? = nil
@@ -67,6 +68,7 @@ struct ShortUserInfo: Codable {
     var is_online: Bool? = nil
     var occupation: String? = nil
     var full_questionnaire: Bool? = nil
+    var distance: Double? = nil
 }
 
 struct Questionnaire: Codable {
@@ -137,5 +139,33 @@ struct Guest: Codable {
     var id: Int? = nil
     var visit_at: String? = nil
     var viewed: Bool? = nil
-    var guest: UserInfo? = nil
+    var guest: ShortUserInfo? = nil
+}
+
+struct TopListResponse: Codable {
+    var success: Bool
+    var message: String
+    var data: [Top] = []
+}
+
+struct Top: Codable {
+    var id: Int? = nil
+    var full_url: String? = nil
+    var thumb_url: String? = nil
+    var rating: Double? = nil
+    var user: ShortUserInfo? = nil
+}
+
+struct MyDuelsListResponse: Codable {
+    var success: Bool
+    var message: String
+    var data: [MyDuel] = []
+}
+
+struct MyDuel: Codable {
+    var id: Int? = nil
+    var created_at: String? = nil
+    var winning_photo: ProfileImage? = nil
+    var loser_photo: ProfileImage? = nil
+    var voter: ShortUserInfo? = nil
 }

@@ -149,15 +149,35 @@
 		4CB9FFAA28847FF4004F1BF6 /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB9FFA928847FF4004F1BF6 /* OverlayView.swift */; };
 		4CB9FFAC2885B4DB004F1BF6 /* GuestsMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB9FFAB2885B4DA004F1BF6 /* GuestsMediator.swift */; };
 		4CB9FFAE2885BBFA004F1BF6 /* GuestListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB9FFAD2885BBFA004F1BF6 /* GuestListItemView.swift */; };
+		4CD34F2C288C12DD00504396 /* MyDuelsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F2B288C12DD00504396 /* MyDuelsListView.swift */; };
+		4CD34F2E288C13F000504396 /* MyDuelsListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F2D288C13F000504396 /* MyDuelsListItemView.swift */; };
+		4CD34F30288C171000504396 /* VoiterInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F2F288C171000504396 /* VoiterInfoView.swift */; };
+		4CD3F1D6288BA9E600DF8755 /* DuelCompareItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3F1D5288BA9E600DF8755 /* DuelCompareItem.swift */; };
+		4CD3F1D8288BAC9B00DF8755 /* DuelProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3F1D7288BAC9B00DF8755 /* DuelProgressView.swift */; };
+		4CD3F1DA288BC9F100DF8755 /* TopApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3F1D9288BC9F100DF8755 /* TopApiService.swift */; };
+		4CD3F1DD288BCBE300DF8755 /* MyDuelsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3F1DC288BCBE300DF8755 /* MyDuelsScreen.swift */; };
+		4CD3F1DF288BCE5900DF8755 /* MyDuelsMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3F1DE288BCE5900DF8755 /* MyDuelsMediator.swift */; };
 		4CDD3B992888601000793466 /* no_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CDD3B982888601000793466 /* no_data.json */; };
 		4CDD3B9B2888608D00793466 /* NoDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDD3B9A2888608D00793466 /* NoDataView.swift */; };
 		4CDD3B9D288867DA00793466 /* GuestListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDD3B9C288867DA00793466 /* GuestListView.swift */; };
 		4CDD3B9F288874F200793466 /* ProfileButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDD3B9E288874F200793466 /* ProfileButtonView.swift */; };
-		DB949870B51B179BE886EF9B /* Pods_BestDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 668E51C708FF2FD4DF518EA0 /* Pods_BestDate.framework */; };
+		4CF028402889BACE002C59EE /* TopButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF0283F2889BACE002C59EE /* TopButtonView.swift */; };
+		4CF028432889BB1F002C59EE /* TopBottomButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF028422889BB1F002C59EE /* TopBottomButtonView.swift */; };
+		4CF028452889BB84002C59EE /* DuelColorfullTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF028442889BB84002C59EE /* DuelColorfullTitle.swift */; };
+		4CF028472889CFBF002C59EE /* TopDropDownButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF028462889CFBF002C59EE /* TopDropDownButtonView.swift */; };
+		4CF028492889D827002C59EE /* TopPagerToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF028482889D827002C59EE /* TopPagerToggle.swift */; };
+		4CF0284B2889DCEE002C59EE /* TopListMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF0284A2889DCEE002C59EE /* TopListMediator.swift */; };
+		4CF0284D288AEB87002C59EE /* TopListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF0284C288AEB87002C59EE /* TopListView.swift */; };
+		4CF0284F288AF0C3002C59EE /* TopListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF0284E288AF0C3002C59EE /* TopListItemView.swift */; };
+		4CF02851288AFDE0002C59EE /* SearchListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF02850288AFDE0002C59EE /* SearchListView.swift */; };
+		4CF02854288B09EE002C59EE /* DuelScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF02853288B09EE002C59EE /* DuelScreen.swift */; };
+		4CF02856288B0B10002C59EE /* DuelMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF02855288B0B10002C59EE /* DuelMediator.swift */; };
+		4CF02859288B0D71002C59EE /* DuelCoinsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF02858288B0D71002C59EE /* DuelCoinsView.swift */; };
+		4CF0285B288B1450002C59EE /* DuelItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF0285A288B1450002C59EE /* DuelItemView.swift */; };
+		D87A4DD1F4DF269875144D2B /* Pods_BestDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFD1C6C48052FB4FB7ED52DE /* Pods_BestDate.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1EC4C3E25D74399C67FC188E /* Pods-BestDate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestDate.release.xcconfig"; path = "Target Support Files/Pods-BestDate/Pods-BestDate.release.xcconfig"; sourceTree = "<group>"; };
 		4C022A362858EE2B0043E49D /* ProfilePhotoScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoScreen.swift; sourceTree = "<group>"; };
 		4C022A382858EE510043E49D /* PhotoEditingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoEditingScreen.swift; sourceTree = "<group>"; };
 		4C022A3A285903530043E49D /* HorisontalPhotoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorisontalPhotoListView.swift; sourceTree = "<group>"; };
@@ -301,12 +321,34 @@
 		4CB9FFA928847FF4004F1BF6 /* OverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
 		4CB9FFAB2885B4DA004F1BF6 /* GuestsMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestsMediator.swift; sourceTree = "<group>"; };
 		4CB9FFAD2885BBFA004F1BF6 /* GuestListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestListItemView.swift; sourceTree = "<group>"; };
+		4CD34F2B288C12DD00504396 /* MyDuelsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDuelsListView.swift; sourceTree = "<group>"; };
+		4CD34F2D288C13F000504396 /* MyDuelsListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDuelsListItemView.swift; sourceTree = "<group>"; };
+		4CD34F2F288C171000504396 /* VoiterInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiterInfoView.swift; sourceTree = "<group>"; };
+		4CD3F1D5288BA9E600DF8755 /* DuelCompareItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuelCompareItem.swift; sourceTree = "<group>"; };
+		4CD3F1D7288BAC9B00DF8755 /* DuelProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuelProgressView.swift; sourceTree = "<group>"; };
+		4CD3F1D9288BC9F100DF8755 /* TopApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopApiService.swift; sourceTree = "<group>"; };
+		4CD3F1DC288BCBE300DF8755 /* MyDuelsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDuelsScreen.swift; sourceTree = "<group>"; };
+		4CD3F1DE288BCE5900DF8755 /* MyDuelsMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDuelsMediator.swift; sourceTree = "<group>"; };
 		4CDD3B982888601000793466 /* no_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = no_data.json; sourceTree = "<group>"; };
 		4CDD3B9A2888608D00793466 /* NoDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDataView.swift; sourceTree = "<group>"; };
 		4CDD3B9C288867DA00793466 /* GuestListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestListView.swift; sourceTree = "<group>"; };
 		4CDD3B9E288874F200793466 /* ProfileButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileButtonView.swift; sourceTree = "<group>"; };
-		580B6BBF9D7D1CE1D3B4B0AD /* Pods-BestDate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestDate.debug.xcconfig"; path = "Target Support Files/Pods-BestDate/Pods-BestDate.debug.xcconfig"; sourceTree = "<group>"; };
-		668E51C708FF2FD4DF518EA0 /* Pods_BestDate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BestDate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4CF0283F2889BACE002C59EE /* TopButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopButtonView.swift; sourceTree = "<group>"; };
+		4CF028422889BB1F002C59EE /* TopBottomButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBottomButtonView.swift; sourceTree = "<group>"; };
+		4CF028442889BB84002C59EE /* DuelColorfullTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuelColorfullTitle.swift; sourceTree = "<group>"; };
+		4CF028462889CFBF002C59EE /* TopDropDownButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopDropDownButtonView.swift; sourceTree = "<group>"; };
+		4CF028482889D827002C59EE /* TopPagerToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopPagerToggle.swift; sourceTree = "<group>"; };
+		4CF0284A2889DCEE002C59EE /* TopListMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopListMediator.swift; sourceTree = "<group>"; };
+		4CF0284C288AEB87002C59EE /* TopListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopListView.swift; sourceTree = "<group>"; };
+		4CF0284E288AF0C3002C59EE /* TopListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopListItemView.swift; sourceTree = "<group>"; };
+		4CF02850288AFDE0002C59EE /* SearchListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListView.swift; sourceTree = "<group>"; };
+		4CF02853288B09EE002C59EE /* DuelScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuelScreen.swift; sourceTree = "<group>"; };
+		4CF02855288B0B10002C59EE /* DuelMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuelMediator.swift; sourceTree = "<group>"; };
+		4CF02858288B0D71002C59EE /* DuelCoinsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuelCoinsView.swift; sourceTree = "<group>"; };
+		4CF0285A288B1450002C59EE /* DuelItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuelItemView.swift; sourceTree = "<group>"; };
+		96C9E8F4E3B3CC93FA57E435 /* Pods-BestDate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestDate.debug.xcconfig"; path = "Target Support Files/Pods-BestDate/Pods-BestDate.debug.xcconfig"; sourceTree = "<group>"; };
+		BFD1C6C48052FB4FB7ED52DE /* Pods_BestDate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BestDate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F947B54D9485D374D23EC159 /* Pods-BestDate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestDate.release.xcconfig"; path = "Target Support Files/Pods-BestDate/Pods-BestDate.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -315,13 +357,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CB9FF7528808B3C004F1BF6 /* Lottie in Frameworks */,
-				DB949870B51B179BE886EF9B /* Pods_BestDate.framework in Frameworks */,
+				D87A4DD1F4DF269875144D2B /* Pods_BestDate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		13849B41776CE8A5A05054A0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BFD1C6C48052FB4FB7ED52DE /* Pods_BestDate.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4C022A352858ED570043E49D /* profile photo */ = {
 			isa = PBXGroup;
 			children = (
@@ -529,6 +579,7 @@
 				4C5C86E42875E20D006DE024 /* ImagesApiService.swift */,
 				4CB9FF852881DD71004F1BF6 /* ChatApiService.swift */,
 				4CB9FF872881DDCB004F1BF6 /* NetworkLogger.swift */,
+				4CD3F1D9288BC9F100DF8755 /* TopApiService.swift */,
 			);
 			path = network;
 			sourceTree = "<group>";
@@ -575,7 +626,7 @@
 				4C8E7D7F284CC93F00D6E58D /* BestDate */,
 				4C8E7D7E284CC93F00D6E58D /* Products */,
 				8AAFA1B0BD0B01F2CA3053CD /* Pods */,
-				D1DE0595D92DC592C1D5A563 /* Frameworks */,
+				13849B41776CE8A5A05054A0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -662,15 +713,17 @@
 		4C8E7DA9284D24BC00D6E58D /* screens */ = {
 			isa = PBXGroup;
 			children = (
+				4CD3F1DB288BCBC400DF8755 /* myDuels */,
 				4C1459062857926700558B6B /* SplashScreen.storyboard */,
 				4C1459022856627E00558B6B /* GeolocationScreen.swift */,
 				4C0E71F0284FC9A5004099D4 /* OnboardSecondScreen.swift */,
 				4C8E7DAB284D252300D6E58D /* OnboardStartScreen.swift */,
 				4CB9FF71287F4027004F1BF6 /* StartScreen.swift */,
+				4CB9FF9B288427BA004F1BF6 /* anotherProfile */,
 				4C5C86DB2874B174006DE024 /* auth */,
 				4C1458F82855E15900558B6B /* base */,
+				4CF02852288B09CF002C59EE /* duel */,
 				4CB9FF422877439A004F1BF6 /* main */,
-				4CB9FF9B288427BA004F1BF6 /* OtherProfile */,
 				4C022A352858ED570043E49D /* profile photo */,
 				4CA2E2292867222300E514C4 /* questionnaire */,
 				4C1458FB285660F800558B6B /* recovery */,
@@ -683,6 +736,8 @@
 		4C8E7DAA284D24C600D6E58D /* views */ = {
 			isa = PBXGroup;
 			children = (
+				4CF02857288B0D52002C59EE /* duel */,
+				4CF028412889BAF5002C59EE /* top */,
 				4CB9FFA2288453B2004F1BF6 /* anotherProfile */,
 				4CB9FF902883317E004F1BF6 /* profile */,
 				4CB9FF5C287AAD54004F1BF6 /* main */,
@@ -753,6 +808,7 @@
 				4CB9FF402877437E004F1BF6 /* SearchScreen.swift */,
 				4CB9FF61287AF001004F1BF6 /* SearchMediator.swift */,
 				4CB9FF63287AF0C8004F1BF6 /* UserSearchItemView.swift */,
+				4CF02850288AFDE0002C59EE /* SearchListView.swift */,
 			);
 			path = search;
 			sourceTree = "<group>";
@@ -791,6 +847,9 @@
 			isa = PBXGroup;
 			children = (
 				4CB9FF4D28774718004F1BF6 /* TopScreen.swift */,
+				4CF0284A2889DCEE002C59EE /* TopListMediator.swift */,
+				4CF0284C288AEB87002C59EE /* TopListView.swift */,
+				4CF0284E288AF0C3002C59EE /* TopListItemView.swift */,
 			);
 			path = top;
 			sourceTree = "<group>";
@@ -874,13 +933,13 @@
 			path = profile;
 			sourceTree = "<group>";
 		};
-		4CB9FF9B288427BA004F1BF6 /* OtherProfile */ = {
+		4CB9FF9B288427BA004F1BF6 /* anotherProfile */ = {
 			isa = PBXGroup;
 			children = (
 				4CB9FF9C288427DA004F1BF6 /* AnotherProfileScreen.swift */,
 				4CB9FF9E28842D87004F1BF6 /* AnotherProfileMediator.swift */,
 			);
-			path = OtherProfile;
+			path = anotherProfile;
 			sourceTree = "<group>";
 		};
 		4CB9FFA2288453B2004F1BF6 /* anotherProfile */ = {
@@ -893,21 +952,57 @@
 			path = anotherProfile;
 			sourceTree = "<group>";
 		};
+		4CD3F1DB288BCBC400DF8755 /* myDuels */ = {
+			isa = PBXGroup;
+			children = (
+				4CD3F1DC288BCBE300DF8755 /* MyDuelsScreen.swift */,
+				4CD3F1DE288BCE5900DF8755 /* MyDuelsMediator.swift */,
+				4CD34F2B288C12DD00504396 /* MyDuelsListView.swift */,
+				4CD34F2D288C13F000504396 /* MyDuelsListItemView.swift */,
+				4CD34F2F288C171000504396 /* VoiterInfoView.swift */,
+			);
+			path = myDuels;
+			sourceTree = "<group>";
+		};
+		4CF028412889BAF5002C59EE /* top */ = {
+			isa = PBXGroup;
+			children = (
+				4CF0283F2889BACE002C59EE /* TopButtonView.swift */,
+				4CF028422889BB1F002C59EE /* TopBottomButtonView.swift */,
+				4CF028442889BB84002C59EE /* DuelColorfullTitle.swift */,
+				4CF028462889CFBF002C59EE /* TopDropDownButtonView.swift */,
+				4CF028482889D827002C59EE /* TopPagerToggle.swift */,
+			);
+			path = top;
+			sourceTree = "<group>";
+		};
+		4CF02852288B09CF002C59EE /* duel */ = {
+			isa = PBXGroup;
+			children = (
+				4CF02853288B09EE002C59EE /* DuelScreen.swift */,
+				4CF02855288B0B10002C59EE /* DuelMediator.swift */,
+			);
+			path = duel;
+			sourceTree = "<group>";
+		};
+		4CF02857288B0D52002C59EE /* duel */ = {
+			isa = PBXGroup;
+			children = (
+				4CF02858288B0D71002C59EE /* DuelCoinsView.swift */,
+				4CF0285A288B1450002C59EE /* DuelItemView.swift */,
+				4CD3F1D5288BA9E600DF8755 /* DuelCompareItem.swift */,
+				4CD3F1D7288BAC9B00DF8755 /* DuelProgressView.swift */,
+			);
+			path = duel;
+			sourceTree = "<group>";
+		};
 		8AAFA1B0BD0B01F2CA3053CD /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				580B6BBF9D7D1CE1D3B4B0AD /* Pods-BestDate.debug.xcconfig */,
-				1EC4C3E25D74399C67FC188E /* Pods-BestDate.release.xcconfig */,
+				96C9E8F4E3B3CC93FA57E435 /* Pods-BestDate.debug.xcconfig */,
+				F947B54D9485D374D23EC159 /* Pods-BestDate.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		D1DE0595D92DC592C1D5A563 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				668E51C708FF2FD4DF518EA0 /* Pods_BestDate.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -917,12 +1012,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4C8E7D8B284CC94900D6E58D /* Build configuration list for PBXNativeTarget "BestDate" */;
 			buildPhases = (
-				476DE1F5FDD882DDC0EA18A8 /* [CP] Check Pods Manifest.lock */,
+				B228331CB7696F0C079205F5 /* [CP] Check Pods Manifest.lock */,
 				4C8E7D79284CC93F00D6E58D /* Sources */,
 				4C8E7D7A284CC93F00D6E58D /* Frameworks */,
 				4C8E7D7B284CC93F00D6E58D /* Resources */,
-				7B4F03ED8D7C8A3781C1FCF1 /* [CP] Embed Pods Frameworks */,
-				0D1746351D2CBDA7E0DC65D3 /* [CP] Copy Pods Resources */,
+				A514376F99B82D92F9622C97 /* [CP] Embed Pods Frameworks */,
+				BAE8D7CE3A2AE88B79F83EB9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -992,24 +1087,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0D1746351D2CBDA7E0DC65D3 /* [CP] Copy Pods Resources */ = {
+		A514376F99B82D92F9622C97 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BestDate/Pods-BestDate-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-BestDate/Pods-BestDate-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BestDate/Pods-BestDate-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-BestDate/Pods-BestDate-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BestDate/Pods-BestDate-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BestDate/Pods-BestDate-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		476DE1F5FDD882DDC0EA18A8 /* [CP] Check Pods Manifest.lock */ = {
+		B228331CB7696F0C079205F5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1031,21 +1126,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7B4F03ED8D7C8A3781C1FCF1 /* [CP] Embed Pods Frameworks */ = {
+		BAE8D7CE3A2AE88B79F83EB9 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BestDate/Pods-BestDate-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-BestDate/Pods-BestDate-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BestDate/Pods-BestDate-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-BestDate/Pods-BestDate-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BestDate/Pods-BestDate-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BestDate/Pods-BestDate-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1060,11 +1155,13 @@
 				4C3D27C3285244F700F8FD09 /* StandardInputView.swift in Sources */,
 				4C022A372858EE2B0043E49D /* ProfilePhotoScreen.swift in Sources */,
 				4CB9FF6C287B3417004F1BF6 /* LocationMediator.swift in Sources */,
+				4CD34F2C288C12DD00504396 /* MyDuelsListView.swift in Sources */,
 				4C5C86E32875DF43006DE024 /* ImageUtils.swift in Sources */,
 				4CA2E238286765C100E514C4 /* SelectPageView.swift in Sources */,
 				4CB9FF68287B3211004F1BF6 /* MainLocationBottomSheet.swift in Sources */,
 				4CB9FF9A28842457004F1BF6 /* TextButton.swift in Sources */,
 				4C5C86C2287336FD006DE024 /* MultySelectMediator.swift in Sources */,
+				4CF0284B2889DCEE002C59EE /* TopListMediator.swift in Sources */,
 				4CB9FF9428833A56004F1BF6 /* DirrectionLineButtonView.swift in Sources */,
 				4C1458FF285661EA00558B6B /* PassRecoveryOTPScreen.swift in Sources */,
 				4C1458F72855C8E900558B6B /* DateSelectView.swift in Sources */,
@@ -1072,6 +1169,7 @@
 				4C3D27D02853A37F00F8FD09 /* BottomSheetList.swift in Sources */,
 				4C5C86B228717200006DE024 /* RangeSelectView.swift in Sources */,
 				4CB9FF72287F4028004F1BF6 /* StartScreen.swift in Sources */,
+				4CF02856288B0B10002C59EE /* DuelMediator.swift in Sources */,
 				4C8E7D99284D1E7B00D6E58D /* Color.swift in Sources */,
 				4C3D27C528526FA100F8FD09 /* PasswordInputView.swift in Sources */,
 				4C5C86E52875E20D006DE024 /* ImagesApiService.swift in Sources */,
@@ -1081,12 +1179,14 @@
 				4CB9FF60287AE104004F1BF6 /* DropDownView.swift in Sources */,
 				4CB9FF8F28832DAF004F1BF6 /* CoinsBoxView.swift in Sources */,
 				4CB9FF9D288427DA004F1BF6 /* AnotherProfileScreen.swift in Sources */,
+				4CF028432889BB1F002C59EE /* TopBottomButtonView.swift in Sources */,
 				4CB9FFA828847808004F1BF6 /* AnotherProfileImageLineView.swift in Sources */,
 				4C5C86CA287359A5006DE024 /* CoreApiTypes.swift in Sources */,
 				4C5C86C528734CE3006DE024 /* ConfirmationInfoView.swift in Sources */,
 				4C1B7C21286B51F8000DB5D4 /* PercentView.swift in Sources */,
 				4C8E7DA2284D222200D6E58D /* Action.swift in Sources */,
 				4C3D27B9285110FA00F8FD09 /* StandardButton.swift in Sources */,
+				4CF028472889CFBF002C59EE /* TopDropDownButtonView.swift in Sources */,
 				4C5C86BC2871A5B4006DE024 /* CitySearchMediator.swift in Sources */,
 				4CB9FF9628834303004F1BF6 /* ImageLineItemView.swift in Sources */,
 				4C145905285664AA00558B6B /* RecoveryMediator.swift in Sources */,
@@ -1098,18 +1198,23 @@
 				4C022A4128590BE10043E49D /* Media.swift in Sources */,
 				4C1458F32855222A00558B6B /* GnderListItem.swift in Sources */,
 				4C022A3B285903530043E49D /* HorisontalPhotoListView.swift in Sources */,
+				4CF0285B288B1450002C59EE /* DuelItemView.swift in Sources */,
 				4C1B7C28286B6D48000DB5D4 /* SingleSelectMediator.swift in Sources */,
 				4C022A45285A38920043E49D /* SwichSelectorView.swift in Sources */,
 				4CDD3B9B2888608D00793466 /* NoDataView.swift in Sources */,
 				4C5C86C728734EC8006DE024 /* ConfirmationView.swift in Sources */,
 				4C1458F028547DE600558B6B /* BaseBottomSheet.swift in Sources */,
 				4CB9FF5E287AAD7D004F1BF6 /* MainHeaderImage.swift in Sources */,
+				4CD3F1DF288BCE5900DF8755 /* MyDuelsMediator.swift in Sources */,
 				4C3D27C72852792000F8FD09 /* SecondStylesTextButton.swift in Sources */,
 				4CB9FF412877437F004F1BF6 /* SearchScreen.swift in Sources */,
+				4CD3F1D6288BA9E600DF8755 /* DuelCompareItem.swift in Sources */,
 				4C022A51285F0AF10043E49D /* EdiorView.swift in Sources */,
+				4CF028402889BACE002C59EE /* TopButtonView.swift in Sources */,
 				4C022A54285F90CC0043E49D /* PhotoViewer.swift in Sources */,
 				4CA2E230286728D100E514C4 /* SurprizeBoxView.swift in Sources */,
 				4C5C86BA2871A36B006DE024 /* SearchInputView.swift in Sources */,
+				4CF02854288B09EE002C59EE /* DuelScreen.swift in Sources */,
 				4CB9FF8D2882D2AF004F1BF6 /* ProfileMediator.swift in Sources */,
 				4C8E7DA6284D233100D6E58D /* Reducer.swift in Sources */,
 				4C0E71F1284FC9A6004099D4 /* OnboardSecondScreen.swift in Sources */,
@@ -1121,7 +1226,9 @@
 				4C1B7C1F286A3477000DB5D4 /* SingleSelectInfoView.swift in Sources */,
 				4C1459032856627E00558B6B /* GeolocationScreen.swift in Sources */,
 				4CB9FFA4288453DB004F1BF6 /* AnotherProfileNavigationPanelView.swift in Sources */,
+				4CD3F1D8288BAC9B00DF8755 /* DuelProgressView.swift in Sources */,
 				4CB9FF98288345B7004F1BF6 /* LogoutButtonView.swift in Sources */,
+				4CD3F1DA288BC9F100DF8755 /* TopApiService.swift in Sources */,
 				4C5C86D62874A602006DE024 /* UserDataHolder.swift in Sources */,
 				4C5C86EA2875FCC0006DE024 /* ImageLoader.swift in Sources */,
 				4C5C86DF2874C033006DE024 /* BaseResponse.swift in Sources */,
@@ -1135,10 +1242,14 @@
 				4CB9FF70287B3582004F1BF6 /* DarkBottomSheetItem.swift in Sources */,
 				4CA2E23228672F4100E514C4 /* QuestionnaireMediator.swift in Sources */,
 				4CB9FFA62884608E004F1BF6 /* AnotherProfileHeader.swift in Sources */,
+				4CF02851288AFDE0002C59EE /* SearchListView.swift in Sources */,
 				4C0E71EF284FC394004099D4 /* CircleImageButton.swift in Sources */,
 				4CB9FF5228774739004F1BF6 /* MatchesScreen.swift in Sources */,
+				4CF028452889BB84002C59EE /* DuelColorfullTitle.swift in Sources */,
 				4CB9FFAE2885BBFA004F1BF6 /* GuestListItemView.swift in Sources */,
+				4CD34F2E288C13F000504396 /* MyDuelsListItemView.swift in Sources */,
 				4CB9FF8B2882D02D004F1BF6 /* ProfileScreen.swift in Sources */,
+				4CF0284D288AEB87002C59EE /* TopListView.swift in Sources */,
 				4C5C86C0287203B2006DE024 /* MultySelectView.swift in Sources */,
 				4C022A4B285A470B0043E49D /* PhotoSettingsBottomSheet.swift in Sources */,
 				4C950D5F284E7318004E2C13 /* AuthScreen.swift in Sources */,
@@ -1156,8 +1267,11 @@
 				4C8E7DA4284D229B00D6E58D /* AppState.swift in Sources */,
 				4C022A392858EE510043E49D /* PhotoEditingScreen.swift in Sources */,
 				4C950D61284E78E8004E2C13 /* NavigationView.swift in Sources */,
+				4CD3F1DD288BCBE300DF8755 /* MyDuelsScreen.swift in Sources */,
 				4C0E71ED284FB68E004099D4 /* CirclePointButton.swift in Sources */,
 				4C5C86E82875FB57006DE024 /* AsyncImageView.swift in Sources */,
+				4CF02859288B0D71002C59EE /* DuelCoinsView.swift in Sources */,
+				4CF028492889D827002C59EE /* TopPagerToggle.swift in Sources */,
 				4C3D27CC28539C8800F8FD09 /* RegistrationContinueScreen.swift in Sources */,
 				4CA2E23428673D1A00E514C4 /* ProgressBarView.swift in Sources */,
 				4CB9FFAC2885B4DB004F1BF6 /* GuestsMediator.swift in Sources */,
@@ -1169,6 +1283,7 @@
 				4CA2E23F28676FA400E514C4 /* PageButtonsView.swift in Sources */,
 				4CB9FFAA28847FF4004F1BF6 /* OverlayView.swift in Sources */,
 				4CB9FF64287AF0C8004F1BF6 /* UserSearchItemView.swift in Sources */,
+				4CF0284F288AF0C3002C59EE /* TopListItemView.swift in Sources */,
 				4C5C86B5287174DD006DE024 /* RangeBarView.swift in Sources */,
 				4CB9FF9F28842D87004F1BF6 /* AnotherProfileMediator.swift in Sources */,
 				4C022A4D285B7E470043E49D /* PhotoEditorMediator.swift in Sources */,
@@ -1179,6 +1294,7 @@
 				4C5C86D128749CE4006DE024 /* RequestModels.swift in Sources */,
 				4CDD3B9F288874F200793466 /* ProfileButtonView.swift in Sources */,
 				4CDD3B9D288867DA00793466 /* GuestListView.swift in Sources */,
+				4CD34F30288C171000504396 /* VoiterInfoView.swift in Sources */,
 				4C8E7D90284D1C4000D6E58D /* Font.swift in Sources */,
 				4C3D27CA28539C3500F8FD09 /* RegistrationStartScreen.swift in Sources */,
 				4C1458FD285661BF00558B6B /* PassRecoveryScreen.swift in Sources */,
@@ -1324,7 +1440,7 @@
 		};
 		4C8E7D8C284CC94900D6E58D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 580B6BBF9D7D1CE1D3B4B0AD /* Pods-BestDate.debug.xcconfig */;
+			baseConfigurationReference = 96C9E8F4E3B3CC93FA57E435 /* Pods-BestDate.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1346,6 +1462,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1362,7 +1479,7 @@
 		};
 		4C8E7D8D284CC94900D6E58D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1EC4C3E25D74399C67FC188E /* Pods-BestDate.release.xcconfig */;
+			baseConfigurationReference = F947B54D9485D374D23EC159 /* Pods-BestDate.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1384,6 +1501,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

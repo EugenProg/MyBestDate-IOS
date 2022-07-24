@@ -20,7 +20,7 @@ struct PhotoSettingsBottomSheet: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
-                AsyncImageView(url: mediator.selectedPhoto?.full_url)
+                AsyncImageView(url: mediator.selectedPhoto?.thumb_url)
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 91, height: 91)
                     .cornerRadius(16)

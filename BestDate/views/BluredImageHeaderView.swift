@@ -21,7 +21,6 @@ struct BluredImageHeaderView: View {
                 .background(
                     AsyncImageView(url: image?.full_url)
                         .blur(radius: enableBlur ? 50 : 0)
-                        .cornerRadius(radius: 33, corners: [.bottomLeft, .bottomRight])
                         .edgesIgnoringSafeArea(.all))
             Spacer()
             

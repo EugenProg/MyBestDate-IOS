@@ -31,7 +31,7 @@ struct ProfileScreen: View {
                                 .shadow(color: MyColor.getColor(17, 24, 28, 0.6), radius: 16, y: 3)
                                 .frame(width: 110, height: 110)
 
-                            AsyncImageView(url: mediator.user.getMainPhoto()?.full_url)
+                            AsyncImageView(url: mediator.user.getMainPhoto()?.thumb_url)
                                 .aspectRatio(contentMode: .fill)
                                 .clipShape(Circle())
                                 .frame(width: 104, height: 104, alignment: .center)
@@ -84,8 +84,8 @@ struct ProfileScreen: View {
 
                                     Spacer()
 
-                                    ProfileButtonView(name: "my_duels", image: "ic_duel", isActive: true) {
-
+                                    ProfileButtonView(name: "my_duels", image: "ic_my_duels", isActive: true) {
+                                        store.dispatch(action: .navigate(screen: .MY_DUELS))
                                     }
                                 }.padding(.init(top: 28, leading: 18, bottom: 0, trailing: 18))
                             }.padding(.init(top: 75, leading: 0, bottom: 0, trailing: 0))

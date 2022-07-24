@@ -9,7 +9,14 @@ import SwiftUI
 
 struct DuelColorfullTitle: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack(spacing: 0) {
+            Text("DU")
+                .foregroundColor(ColorList.light_blue.color)
+                .font(MyFont.getFont(.BOLD, 14))
+            Text("EL")
+                .foregroundColor(ColorList.pink.color)
+                .font(MyFont.getFont(.BOLD, 14))
+        }
     }
 }
 

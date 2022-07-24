@@ -8,13 +8,27 @@
 import SwiftUI
 
 struct DuelProgressView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
+    var progress: Double
+    var length = UIScreen.main.bounds.width - 187
 
-struct DuelProgressView_Previews: PreviewProvider {
-    static var previews: some View {
-        DuelProgressView()
+    var body: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 7)
+                .fill(LinearGradient(gradient: Gradient(colors: [
+                    MyColor.getColor(48, 58, 62),
+                    MyColor.getColor(43, 52, 56)
+                ]), startPoint: .top, endPoint: .bottom))
+
+            let percent = (length - 6) / 100
+
+            HStack(spacing: 0) {
+                RoundedRectangle(cornerRadius: 4)
+                    .fill(ColorList.pink.color)
+                    .shadow(color: MyColor.getColor(87, 0, 53, 0.3), radius: 6, y: 3)
+                    .frame(width: percent * progress, height: 8)
+
+                Spacer()
+            }.padding(.init(top: 0, leading: 3, bottom: 0, trailing: 0))
+        }.frame(width: length, height: 14, alignment: .leading)
     }
 }
