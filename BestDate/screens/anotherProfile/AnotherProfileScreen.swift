@@ -53,7 +53,7 @@ struct AnotherProfileScreen: View {
 
                             }.padding(.init(top: 0, leading: 32, bottom: 0, trailing: 0))
 
-                            Text(mediator.user.birthday?.toDate().toString() ?? "")
+                            Text(mediator.user.getLocation())
                                 .foregroundColor(ColorList.white_80.color)
                                 .font(MyFont.getFont(.BOLD, 16))
                         }.padding(.init(top: 0, leading: 0, bottom: 0, trailing: 61))
