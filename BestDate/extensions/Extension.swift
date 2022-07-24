@@ -82,9 +82,27 @@ extension Date {
         return formatter.string(from: self)
     }
 
+    func toShortDateString() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MMM"
+        return formatter.string(from: self)
+    }
+
     func toServerDate() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.string(from: self)
+    }
+
+    func getTime() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "hh:mm"
+        return formatter.string(from: self)
+    }
+
+    func getWeekday() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EE"
         return formatter.string(from: self)
     }
 
@@ -290,6 +308,22 @@ extension MyDuel {
         let date = self.created_at?.toDate() ?? Date.now
 
         return date.getVisitPeriod()
+    }
+}
+
+extension Chat {
+    func getLastMessageTime() -> String {
+        let date = self.last_message?.created_at?.toDate() ?? Date.now
+        let components = Calendar.current.dateComponents([.day], from: date, to: Date.now)
+        let days = components.day ?? 0
+
+        if days > 1 {
+            return date.toShortDateString()
+        } else if days > 0 {
+            return date.getWeekday()
+        } else {
+            return date.getTime()
+        }
     }
 }
 

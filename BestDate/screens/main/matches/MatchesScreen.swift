@@ -41,7 +41,13 @@ struct MatchesScreen: View {
                 .fill(MyColor.getColor(190, 239, 255, 0.15))
                 .frame(height: 1)
 
-            Spacer()
+            let topPadding = ((UIScreen.main.bounds.height - 260) / 2) - 100
+            NoDataView()
+                .padding(.init(top: topPadding, leading: 0, bottom: 0, trailing: 0))
+
+            ScrollView(.vertical, showsIndicators: false) {
+
+            }
         }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         .background(ColorList.main.color.edgesIgnoringSafeArea(.bottom))
     }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ChatListScreen: View {
     @EnvironmentObject var store: Store
+    @ObservedObject var mediator = ChatListMediator.shared
     
     var body: some View {
         VStack(spacing: 0) {
@@ -26,14 +27,14 @@ struct ChatListScreen: View {
                     Spacer()
 
                     Button(action: {
-                        //store.dispatch(action: .navigate(screen: .PROFILE))
+
                     }) {
                         Image("ic_menu_dots")
                             .padding(.init(top: 8, leading: 8, bottom: 8, trailing: 0))
                     }
                 }
 
-                Title(textColor: ColorList.white.color, text: "messages", textSize: 20, paddingV: 0, paddingH: 0)
+                Title(textColor: ColorList.white.color, text: "chats", textSize: 20, paddingV: 0, paddingH: 0)
             }.frame(width: UIScreen.main.bounds.width - 64, height: 60)
                 .padding(.init(top: 16, leading: 0, bottom: 16, trailing: 0))
 
@@ -41,9 +42,19 @@ struct ChatListScreen: View {
                 .fill(MyColor.getColor(190, 239, 255, 0.15))
                 .frame(height: 1)
 
-            Spacer()
+            ScrollView(.vertical, showsIndicators: false) {
+                ChatListView(newList: $mediator.newChats, previousList: $mediator.previousChats) { chat in
+
+                }
+                .padding(.init(top: 0, leading: 0, bottom: 45, trailing: 0))
+            }.padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight + 60, trailing: 0))
         }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
             .background(ColorList.main.color.edgesIgnoringSafeArea(.bottom))
+            .onAppear {
+                if mediator.newChats.isEmpty && mediator.previousChats.isEmpty {
+                    mediator.getChatList()
+                }
+            }
     }
 }
 

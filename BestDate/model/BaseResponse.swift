@@ -114,7 +114,8 @@ struct ChatListResponse: Codable {
 }
 
 struct Chat: Codable {
-    var user: UserInfo? = nil
+    var id: Int? = nil
+    var user: ShortUserInfo? = nil
     var last_message: Message? = nil
 }
 

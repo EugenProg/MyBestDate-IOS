@@ -17,7 +17,7 @@ struct TopListView: View {
 
     var body: some View {
         if list.isEmpty {
-            let topPadding = ((UIScreen.main.bounds.height - 260) / 2) - 100
+            let topPadding = ((UIScreen.main.bounds.height - 260) / 2) - 160
             NoDataView()
                 .padding(.init(top: topPadding, leading: 0, bottom: 0, trailing: 0))
         } else {

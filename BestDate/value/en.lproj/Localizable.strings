@@ -95,6 +95,7 @@
 "search" = "Search";
 "matches" = "Matches";
 "messages" = "Messages";
+"chats" = "Chats";
 "top_50" = "Top 50";
 "guests" = "Guests";
 "location" = "Location";
@@ -143,8 +144,8 @@
 "you_where_voted_for" = "You were voted for:";
 "winner" = "Winner";
 "loser" = "Loser";
-"" = "";
-"" = "";
+"new_message" = "New message";
+"all_message" = "All message";
 "" = "";
 
 

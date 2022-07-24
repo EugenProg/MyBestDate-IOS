@@ -152,6 +152,9 @@
 		4CD34F2C288C12DD00504396 /* MyDuelsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F2B288C12DD00504396 /* MyDuelsListView.swift */; };
 		4CD34F2E288C13F000504396 /* MyDuelsListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F2D288C13F000504396 /* MyDuelsListItemView.swift */; };
 		4CD34F30288C171000504396 /* VoiterInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F2F288C171000504396 /* VoiterInfoView.swift */; };
+		4CD34F32288D0A0E00504396 /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F31288D0A0E00504396 /* ChatListView.swift */; };
+		4CD34F34288D0A3900504396 /* ChatListMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F33288D0A3900504396 /* ChatListMediator.swift */; };
+		4CD34F36288D111F00504396 /* ChatListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F35288D111F00504396 /* ChatListItemView.swift */; };
 		4CD3F1D6288BA9E600DF8755 /* DuelCompareItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3F1D5288BA9E600DF8755 /* DuelCompareItem.swift */; };
 		4CD3F1D8288BAC9B00DF8755 /* DuelProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3F1D7288BAC9B00DF8755 /* DuelProgressView.swift */; };
 		4CD3F1DA288BC9F100DF8755 /* TopApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3F1D9288BC9F100DF8755 /* TopApiService.swift */; };
@@ -324,6 +327,9 @@
 		4CD34F2B288C12DD00504396 /* MyDuelsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDuelsListView.swift; sourceTree = "<group>"; };
 		4CD34F2D288C13F000504396 /* MyDuelsListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDuelsListItemView.swift; sourceTree = "<group>"; };
 		4CD34F2F288C171000504396 /* VoiterInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiterInfoView.swift; sourceTree = "<group>"; };
+		4CD34F31288D0A0E00504396 /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
+		4CD34F33288D0A3900504396 /* ChatListMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListMediator.swift; sourceTree = "<group>"; };
+		4CD34F35288D111F00504396 /* ChatListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListItemView.swift; sourceTree = "<group>"; };
 		4CD3F1D5288BA9E600DF8755 /* DuelCompareItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuelCompareItem.swift; sourceTree = "<group>"; };
 		4CD3F1D7288BAC9B00DF8755 /* DuelProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuelProgressView.swift; sourceTree = "<group>"; };
 		4CD3F1D9288BC9F100DF8755 /* TopApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopApiService.swift; sourceTree = "<group>"; };
@@ -839,6 +845,9 @@
 			isa = PBXGroup;
 			children = (
 				4CB9FF4F2877472A004F1BF6 /* ChatListScreen.swift */,
+				4CD34F31288D0A0E00504396 /* ChatListView.swift */,
+				4CD34F33288D0A3900504396 /* ChatListMediator.swift */,
+				4CD34F35288D111F00504396 /* ChatListItemView.swift */,
 			);
 			path = chat;
 			sourceTree = "<group>";
@@ -1173,6 +1182,7 @@
 				4C8E7D99284D1E7B00D6E58D /* Color.swift in Sources */,
 				4C3D27C528526FA100F8FD09 /* PasswordInputView.swift in Sources */,
 				4C5C86E52875E20D006DE024 /* ImagesApiService.swift in Sources */,
+				4CD34F36288D111F00504396 /* ChatListItemView.swift in Sources */,
 				4C5C86CE28735EC5006DE024 /* CoreApiService.swift in Sources */,
 				4C1459012856620300558B6B /* PassRecoverySetNewScreen.swift in Sources */,
 				4C022A4328591A2B0043E49D /* BluredImageHeaderView.swift in Sources */,
@@ -1192,6 +1202,7 @@
 				4C145905285664AA00558B6B /* RecoveryMediator.swift in Sources */,
 				4CB9FF44287743C3004F1BF6 /* MainScreen.swift in Sources */,
 				4C8E7DAC284D252300D6E58D /* OnboardStartScreen.swift in Sources */,
+				4CD34F32288D0A0E00504396 /* ChatListView.swift in Sources */,
 				4C5C86DD2874B18D006DE024 /* AuthMediator.swift in Sources */,
 				4CB9FF92288331A2004F1BF6 /* ProfilePhotoLineView.swift in Sources */,
 				4C3D27BC28511BB700F8FD09 /* Title.swift in Sources */,
@@ -1273,6 +1284,7 @@
 				4CF02859288B0D71002C59EE /* DuelCoinsView.swift in Sources */,
 				4CF028492889D827002C59EE /* TopPagerToggle.swift in Sources */,
 				4C3D27CC28539C8800F8FD09 /* RegistrationContinueScreen.swift in Sources */,
+				4CD34F34288D0A3900504396 /* ChatListMediator.swift in Sources */,
 				4CA2E23428673D1A00E514C4 /* ProgressBarView.swift in Sources */,
 				4CB9FFAC2885B4DB004F1BF6 /* GuestsMediator.swift in Sources */,
 				4CB9FF6E287B3476004F1BF6 /* OnlineMediator.swift in Sources */,
