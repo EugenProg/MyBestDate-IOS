@@ -28,8 +28,7 @@ struct TopScreen: View {
                         Spacer()
 
                         TopButtonView {
-                            DuelMediator.shared.getVotePhotos(type: mediator.activePage)
-                            store.dispatch(action: .navigate(screen: .DUEL))
+                            voteAction()
                         }
                     }
 
@@ -54,7 +53,7 @@ struct TopScreen: View {
                     .frame(height: 1)
 
                 ScrollView(.vertical, showsIndicators: false) {
-                    TopListView(list: mediator.activePage == .woman ? $mediator.womanTopList : $mediator.manTopList) { user in
+                    TopListView(page: $mediator.activePage, womanList: $mediator.womanTopList, manList: $mediator.manTopList) { user in
                         AnotherProfileMediator.shared.setUser(user: user)
                         store.dispatch(action: .navigate(screen: .ANOTHER_PROFILE))
                     }
@@ -65,8 +64,7 @@ struct TopScreen: View {
             VStack(alignment: .trailing) {
                 Spacer()
                 TopBottomButtonView {
-                    DuelMediator.shared.getVotePhotos(type: mediator.activePage)
-                    store.dispatch(action: .navigate(screen: .DUEL))
+                    voteAction()
                 }
                 .padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight + 16, trailing: 0))
             }.frame(width: UIScreen.main.bounds.width, alignment: .bottomTrailing)
@@ -80,5 +78,17 @@ struct TopScreen: View {
                     mediator.getManList()
                 }
             }
+    }
+
+    private func voteAction() {
+        DuelMediator.shared.getVotePhotos(type: mediator.activePage) { success in
+            DispatchQueue.main.async {
+                if success {
+                    store.dispatch(action: .navigate(screen: .DUEL))
+                } else {
+                    store.dispatch(action: .show(message: "No Top actions"))
+                }
+            }
+        }
     }
 }

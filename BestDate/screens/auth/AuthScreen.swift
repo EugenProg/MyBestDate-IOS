@@ -84,7 +84,11 @@ struct AuthScreen: View {
                 DispatchQueue.main.async {
                     process.toggle()
                     if success {
-                        if UserDataHolder.startScreen == .START {
+                        if !mediator.hasImages {
+                            UserDataHolder.setStartScreen(screen: .PROFILE_PHOTO)
+                        } else if !mediator.hasQuestionnaire {
+                            UserDataHolder.setStartScreen(screen: .QUESTIONNAIRE)
+                        } else {
                             UserDataHolder.setStartScreen(screen: .MAIN)
                         }
                         store.dispatch(action: .navigate(screen: UserDataHolder.startScreen))

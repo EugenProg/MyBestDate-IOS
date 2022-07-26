@@ -19,7 +19,7 @@ struct MyDuelsListItemView: View {
                     AsyncImageView(url: item.winning_photo?.thumb_url)
                         .frame(width: size, height: size)
 
-                    AsyncImageView(url: item.winning_photo?.thumb_url)
+                    AsyncImageView(url: item.loser_photo?.thumb_url)
                         .frame(width: size, height: size)
                 }.padding(.init(top: 0, leading: 3, bottom: 0, trailing: 3))
 

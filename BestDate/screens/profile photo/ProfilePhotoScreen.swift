@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProfilePhotoScreen: View {
     @EnvironmentObject var store: Store
+    @ObservedObject var photoSettingsMediator = PhotoSettingsSheetMediator.shared
     @ObservedObject var registrationMediator = RegistrationMediator.shared
     @ObservedObject var mediator = PhotoEditorMediator.shared
     
@@ -19,7 +20,7 @@ struct ProfilePhotoScreen: View {
         VStack {
             ZStack {
                 if mediator.mainPhoto != nil {
-                    BluredImageHeaderView(image: mediator.mainPhoto)
+                    BluredImageHeaderView(image: $mediator.mainPhoto)
                 }
                 
                 VStack {
@@ -33,7 +34,7 @@ struct ProfilePhotoScreen: View {
                         if mediator.mainPhoto == nil {
                             Image("ic_user_cirlce_add")
                         } else {
-                            AsyncImageView(url: mediator.mainPhoto?.thumb_url)
+                            UpdateImageView(image: $mediator.mainPhoto)
                                 .aspectRatio(contentMode: .fill)
                                 .clipShape(Circle())
                                 .frame(width: 104, height: 104, alignment: .center)
@@ -85,7 +86,7 @@ struct ProfilePhotoScreen: View {
                                 .padding(.init(top: 16, leading: 0, bottom: 0, trailing: 0))
                             
                             HorisontalPhotoListView(imagesList: $mediator.imageList) { image in
-                                mediator.selectedPhoto = image
+                                photoSettingsMediator.selectedPhoto = image
                                 store.dispatch(action: .showBottomSheet(view: .PHOTO_SETTINGS))
                             }
                             

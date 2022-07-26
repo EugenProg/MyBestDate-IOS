@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PhotoSettingsBottomSheet: View {
     @EnvironmentObject var store: Store
-    @ObservedObject var mediator = PhotoEditorMediator.shared
+    @ObservedObject var mediator = PhotoSettingsSheetMediator.shared
     @State var ready: Bool = false
     
     @State var saveProcess: Bool = false
@@ -30,10 +30,11 @@ struct PhotoSettingsBottomSheet: View {
                 CircleImageButton(imageName: "ic_trash", strokeColor: MyColor.getColor(255, 255, 255, 0.03), shadowColor: MyColor.getColor(0, 0, 0, 0.16), circleSize: .SMALL, loadingProcess: $deleteProcess) {
                     deleteProcess.toggle()
                     mediator.deleteImage(id: mediator.selectedPhoto?.id ?? 0) { success in
-                        withAnimation {
+                        DispatchQueue.main.async {
                             deleteProcess.toggle()
-                            store.dispatch(action: .hideBottomSheet)
+                            clickAction()
                         }
+
                     }
                 }
                     .padding(.init(top: 10, leading: 10, bottom: 10, trailing: 10))

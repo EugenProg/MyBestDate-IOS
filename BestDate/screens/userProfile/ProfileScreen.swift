@@ -10,14 +10,14 @@ import SwiftUI
 struct ProfileScreen: View {
     @EnvironmentObject var store: Store
     @ObservedObject var mediator = ProfileMediator.shared
-    @ObservedObject var photoMediator = PhotoEditorMediator.shared
+    @ObservedObject var photoMediator = PhotoSettingsSheetMediator.shared
     @State var showHeader = false
     @State var logoutProccess: Bool = false
 
     var body: some View {
         ZStack {
             if showHeader {
-                BluredImageHeaderView(image: mediator.user.getMainPhoto(), enableBlur: false)
+                BluredImageHeaderView(image: $mediator.mainPhoto, enableBlur: false)
             }
 
             ScrollView(.vertical, showsIndicators: false) {
@@ -31,7 +31,7 @@ struct ProfileScreen: View {
                                 .shadow(color: MyColor.getColor(17, 24, 28, 0.6), radius: 16, y: 3)
                                 .frame(width: 110, height: 110)
 
-                            AsyncImageView(url: mediator.user.getMainPhoto()?.thumb_url)
+                            UpdateImageView(image: $mediator.mainPhoto)
                                 .aspectRatio(contentMode: .fill)
                                 .clipShape(Circle())
                                 .frame(width: 104, height: 104, alignment: .center)
@@ -115,9 +115,6 @@ struct ProfileScreen: View {
                                 }
 
                                 ProfilePhotoLineView(imagesList: $mediator.profileImages) { selectedImage in
-                                    if photoMediator.imageList.isEmpty {
-                                        photoMediator.setImages(images: mediator.user.photos ?? [])
-                                    }
                                     photoMediator.selectedPhoto = selectedImage
                                     store.dispatch(action: .showBottomSheet(view: .PHOTO_SETTINGS))
                                 }

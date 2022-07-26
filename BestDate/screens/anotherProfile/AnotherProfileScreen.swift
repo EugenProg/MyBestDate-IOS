@@ -46,6 +46,7 @@ struct AnotherProfileScreen: View {
                                 Text(mediator.user.name ?? "")
                                     .foregroundColor(ColorList.white.color)
                                     .font(MyFont.getFont(.BOLD, 26))
+                                    .multilineTextAlignment(.center)
 
                                 Image((mediator.user.questionnaire?.isFull() ?? false) ? "ic_verify_active" : "ic_verify_gray")
                                     .resizable()
@@ -65,13 +66,14 @@ struct AnotherProfileScreen: View {
                     AnotherProfileImageLineView(imagesList: $mediator.imageList) { image in
 
                     }
-                    .padding(.init(top: 0, leading: 0, bottom: 80, trailing: 0))
+                    .padding(.init(top: 0, leading: 0, bottom: 85, trailing: 0))
                 }
             }.padding(.init(top: 0, leading: 0, bottom: 80, trailing: 0))
                 .edgesIgnoringSafeArea(.top)
 
             AnotherProfileNavigationPanelView {
-                store.dispatch(action: .show(message: "message"))
+                ChatMediator.shared.setUser(user: mediator.user)
+                store.dispatch(action: .navigate(screen: .CHAT))
             } likeClick: {
                 store.dispatch(action: .show(message: "like"))
             } createClick: {

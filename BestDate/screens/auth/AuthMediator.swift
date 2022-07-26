@@ -10,6 +10,9 @@ import Foundation
 class AuthMediator: ObservableObject {
     static let shared = AuthMediator()
 
+    var hasImages: Bool = false
+    var hasQuestionnaire: Bool = false
+
     func auth(login: String, password: String, complete: @escaping (Bool, String) -> Void) {
         if StringUtils.isPhoneNumber(phone: login) {
             loginByPhone(phone: login, password: password) { success in complete(success, "wrong_auth_data") }
@@ -40,7 +43,10 @@ class AuthMediator: ObservableObject {
         CoreApiService.shared.getUserData { success, user in
             DispatchQueue.main.async {
                 if success {
-                    if UserDataHolder.startScreen == .MAIN {
+                    self.hasImages = !(user.photos?.isEmpty ?? true)
+                    self.hasQuestionnaire = !(user.questionnaire?.isEmpty() ?? true)
+
+                    if UserDataHolder.startScreen == .MAIN && self.hasImages && self.hasQuestionnaire {
                         MainMediator.shared.setUserInfo(user: user)
                     } else {
                         PhotoEditorMediator.shared.setImages(images: user.photos ?? [])

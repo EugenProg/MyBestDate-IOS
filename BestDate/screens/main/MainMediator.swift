@@ -24,6 +24,13 @@ class MainMediator: ObservableObject {
 
         self.user = user
     }
+
+    func clearUserData() {
+        self.user = UserInfo()
+        self.mainPhoto = nil
+        self.hasNewGuests = false
+        self.hasNewMessages = false
+    }
 }
 
 enum MainScreensType {

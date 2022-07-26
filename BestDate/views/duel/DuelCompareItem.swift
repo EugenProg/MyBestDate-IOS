@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DuelCompareItem: View {
-    var item: Top
+    @Binding var item: Top
 
     var body: some View {
         ZStack {

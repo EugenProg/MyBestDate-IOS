@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DuelItemView: View {
-    var item: Top
+    @Binding var item: ProfileImage?
     var size = (UIScreen.main.bounds.width - 9) / 2
     var clickAction: () -> Void
 
@@ -22,7 +22,7 @@ struct DuelItemView: View {
                 .frame(width: size - 8, height: size)
                 .padding(.init(top: 65, leading: 4, bottom: 0, trailing: 4))
 
-            AsyncImageView(url: item.thumb_url)
+            UpdateImageView(image: $item)
                 .frame(width: size, height: size)
                 .padding(.init(top: 0, leading: 0, bottom: 65, trailing: 0))
 

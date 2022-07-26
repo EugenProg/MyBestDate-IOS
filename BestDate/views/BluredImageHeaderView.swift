@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BluredImageHeaderView: View {
     
-    @State var image: ProfileImage?
+    @Binding var image: ProfileImage?
     var enableBlur: Bool = true
     
     var body: some View {
@@ -19,7 +19,7 @@ struct BluredImageHeaderView: View {
                 
             }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width)
                 .background(
-                    AsyncImageView(url: image?.full_url)
+                    UpdateImageView(image: $image, smallUrl: false)
                         .blur(radius: enableBlur ? 50 : 0)
                         .edgesIgnoringSafeArea(.all))
             Spacer()

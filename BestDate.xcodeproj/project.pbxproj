@@ -155,6 +155,10 @@
 		4CD34F32288D0A0E00504396 /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F31288D0A0E00504396 /* ChatListView.swift */; };
 		4CD34F34288D0A3900504396 /* ChatListMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F33288D0A3900504396 /* ChatListMediator.swift */; };
 		4CD34F36288D111F00504396 /* ChatListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F35288D111F00504396 /* ChatListItemView.swift */; };
+		4CD34F39288D2CAD00504396 /* ChatScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F38288D2CAD00504396 /* ChatScreen.swift */; };
+		4CD34F3B288D2CBE00504396 /* ChatMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F3A288D2CBE00504396 /* ChatMediator.swift */; };
+		4CD34F3D288D730300504396 /* ChatBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F3C288D730300504396 /* ChatBottomView.swift */; };
+		4CD34F3F288EF4F300504396 /* PhotoSettingsSheetMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F3E288EF4F300504396 /* PhotoSettingsSheetMediator.swift */; };
 		4CD3F1D6288BA9E600DF8755 /* DuelCompareItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3F1D5288BA9E600DF8755 /* DuelCompareItem.swift */; };
 		4CD3F1D8288BAC9B00DF8755 /* DuelProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3F1D7288BAC9B00DF8755 /* DuelProgressView.swift */; };
 		4CD3F1DA288BC9F100DF8755 /* TopApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3F1D9288BC9F100DF8755 /* TopApiService.swift */; };
@@ -330,6 +334,10 @@
 		4CD34F31288D0A0E00504396 /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
 		4CD34F33288D0A3900504396 /* ChatListMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListMediator.swift; sourceTree = "<group>"; };
 		4CD34F35288D111F00504396 /* ChatListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListItemView.swift; sourceTree = "<group>"; };
+		4CD34F38288D2CAD00504396 /* ChatScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatScreen.swift; sourceTree = "<group>"; };
+		4CD34F3A288D2CBE00504396 /* ChatMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMediator.swift; sourceTree = "<group>"; };
+		4CD34F3C288D730300504396 /* ChatBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBottomView.swift; sourceTree = "<group>"; };
+		4CD34F3E288EF4F300504396 /* PhotoSettingsSheetMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSettingsSheetMediator.swift; sourceTree = "<group>"; };
 		4CD3F1D5288BA9E600DF8755 /* DuelCompareItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuelCompareItem.swift; sourceTree = "<group>"; };
 		4CD3F1D7288BAC9B00DF8755 /* DuelProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuelProgressView.swift; sourceTree = "<group>"; };
 		4CD3F1D9288BC9F100DF8755 /* TopApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopApiService.swift; sourceTree = "<group>"; };
@@ -424,6 +432,7 @@
 			isa = PBXGroup;
 			children = (
 				4C022A4A285A470B0043E49D /* PhotoSettingsBottomSheet.swift */,
+				4CD34F3E288EF4F300504396 /* PhotoSettingsSheetMediator.swift */,
 			);
 			path = PhotoSettingsSheet;
 			sourceTree = "<group>";
@@ -719,7 +728,7 @@
 		4C8E7DA9284D24BC00D6E58D /* screens */ = {
 			isa = PBXGroup;
 			children = (
-				4CD3F1DB288BCBC400DF8755 /* myDuels */,
+				4CD34F37288D2C9800504396 /* chat */,
 				4C1459062857926700558B6B /* SplashScreen.storyboard */,
 				4C1459022856627E00558B6B /* GeolocationScreen.swift */,
 				4C0E71F0284FC9A5004099D4 /* OnboardSecondScreen.swift */,
@@ -730,11 +739,12 @@
 				4C1458F82855E15900558B6B /* base */,
 				4CF02852288B09CF002C59EE /* duel */,
 				4CB9FF422877439A004F1BF6 /* main */,
+				4CD3F1DB288BCBC400DF8755 /* myDuels */,
 				4C022A352858ED570043E49D /* profile photo */,
 				4CA2E2292867222300E514C4 /* questionnaire */,
 				4C1458FB285660F800558B6B /* recovery */,
 				4C3D27C828539BAE00F8FD09 /* registration */,
-				4CB9FF892882D002004F1BF6 /* UserProfile */,
+				4CB9FF892882D002004F1BF6 /* userProfile */,
 			);
 			path = screens;
 			sourceTree = "<group>";
@@ -824,7 +834,7 @@
 			children = (
 				4CB9FF4A287746B7004F1BF6 /* guests */,
 				4CB9FF49287746B0004F1BF6 /* top */,
-				4CB9FF48287746A8004F1BF6 /* chat */,
+				4CB9FF48287746A8004F1BF6 /* chatList */,
 				4CB9FF472877469A004F1BF6 /* matches */,
 				4CB9FF3F287741F9004F1BF6 /* search */,
 				4CB9FF43287743C3004F1BF6 /* MainScreen.swift */,
@@ -841,7 +851,7 @@
 			path = matches;
 			sourceTree = "<group>";
 		};
-		4CB9FF48287746A8004F1BF6 /* chat */ = {
+		4CB9FF48287746A8004F1BF6 /* chatList */ = {
 			isa = PBXGroup;
 			children = (
 				4CB9FF4F2877472A004F1BF6 /* ChatListScreen.swift */,
@@ -849,7 +859,7 @@
 				4CD34F33288D0A3900504396 /* ChatListMediator.swift */,
 				4CD34F35288D111F00504396 /* ChatListItemView.swift */,
 			);
-			path = chat;
+			path = chatList;
 			sourceTree = "<group>";
 		};
 		4CB9FF49287746B0004F1BF6 /* top */ = {
@@ -920,13 +930,13 @@
 			path = Lottie;
 			sourceTree = "<group>";
 		};
-		4CB9FF892882D002004F1BF6 /* UserProfile */ = {
+		4CB9FF892882D002004F1BF6 /* userProfile */ = {
 			isa = PBXGroup;
 			children = (
 				4CB9FF8A2882D02C004F1BF6 /* ProfileScreen.swift */,
 				4CB9FF8C2882D2AF004F1BF6 /* ProfileMediator.swift */,
 			);
-			path = UserProfile;
+			path = userProfile;
 			sourceTree = "<group>";
 		};
 		4CB9FF902883317E004F1BF6 /* profile */ = {
@@ -959,6 +969,16 @@
 				4CB9FFA728847808004F1BF6 /* AnotherProfileImageLineView.swift */,
 			);
 			path = anotherProfile;
+			sourceTree = "<group>";
+		};
+		4CD34F37288D2C9800504396 /* chat */ = {
+			isa = PBXGroup;
+			children = (
+				4CD34F38288D2CAD00504396 /* ChatScreen.swift */,
+				4CD34F3A288D2CBE00504396 /* ChatMediator.swift */,
+				4CD34F3C288D730300504396 /* ChatBottomView.swift */,
+			);
+			path = chat;
 			sourceTree = "<group>";
 		};
 		4CD3F1DB288BCBC400DF8755 /* myDuels */ = {
@@ -1199,7 +1219,9 @@
 				4CF028472889CFBF002C59EE /* TopDropDownButtonView.swift in Sources */,
 				4C5C86BC2871A5B4006DE024 /* CitySearchMediator.swift in Sources */,
 				4CB9FF9628834303004F1BF6 /* ImageLineItemView.swift in Sources */,
+				4CD34F3F288EF4F300504396 /* PhotoSettingsSheetMediator.swift in Sources */,
 				4C145905285664AA00558B6B /* RecoveryMediator.swift in Sources */,
+				4CD34F39288D2CAD00504396 /* ChatScreen.swift in Sources */,
 				4CB9FF44287743C3004F1BF6 /* MainScreen.swift in Sources */,
 				4C8E7DAC284D252300D6E58D /* OnboardStartScreen.swift in Sources */,
 				4CD34F32288D0A0E00504396 /* ChatListView.swift in Sources */,
@@ -1246,6 +1268,7 @@
 				4CB9FF572877500A004F1BF6 /* BottomMainNavigationItemView.swift in Sources */,
 				4C950D58284E6194004E2C13 /* Extension.swift in Sources */,
 				4CB9FF4E28774718004F1BF6 /* TopScreen.swift in Sources */,
+				4CD34F3B288D2CBE00504396 /* ChatMediator.swift in Sources */,
 				4C3D27D32853A66A00F8FD09 /* GenderBottomSheet.swift in Sources */,
 				4CB9FF62287AF001004F1BF6 /* SearchMediator.swift in Sources */,
 				4C8E7DA8284D23D200D6E58D /* Store.swift in Sources */,
@@ -1292,6 +1315,7 @@
 				4C8E7D81284CC93F00D6E58D /* BestDateApp.swift in Sources */,
 				4C1B7C2C286CD5BD000DB5D4 /* QuestionnaireSeekBarBottomSheet.swift in Sources */,
 				4CB9FF882881DDCB004F1BF6 /* NetworkLogger.swift in Sources */,
+				4CD34F3D288D730300504396 /* ChatBottomView.swift in Sources */,
 				4CA2E23F28676FA400E514C4 /* PageButtonsView.swift in Sources */,
 				4CB9FFAA28847FF4004F1BF6 /* OverlayView.swift in Sources */,
 				4CB9FF64287AF0C8004F1BF6 /* UserSearchItemView.swift in Sources */,

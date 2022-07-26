@@ -30,9 +30,22 @@ class TopListMediator: ObservableObject {
         TopApiService.shared.getTopList(gender: .woman) { success, list in
             DispatchQueue.main.async {
                 if success {
-                    self.manTopList.clearAndAddAll(list: list)
+                    self.womanTopList.clearAndAddAll(list: list)
                 }
             }
         }
+    }
+
+    func updateActiveList() {
+        if activePage == .man {
+            getManList()
+        } else {
+            getWomanList()
+        }
+    }
+
+    func clearTopList() {
+        manTopList.removeAll()
+        womanTopList.removeAll()
     }
 }

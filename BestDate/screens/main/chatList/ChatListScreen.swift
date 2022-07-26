@@ -44,7 +44,8 @@ struct ChatListScreen: View {
 
             ScrollView(.vertical, showsIndicators: false) {
                 ChatListView(newList: $mediator.newChats, previousList: $mediator.previousChats) { chat in
-
+                    ChatMediator.shared.setUser(user: chat.user ?? ShortUserInfo())
+                    store.dispatch(action: .navigate(screen: .CHAT))
                 }
                 .padding(.init(top: 0, leading: 0, bottom: 45, trailing: 0))
             }.padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight + 60, trailing: 0))

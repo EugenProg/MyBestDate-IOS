@@ -9,5 +9,6 @@ target 'BestDate' do
 
 	pod 'GooglePlaces', '7.0.0'
   pod 'GoogleMLKit/FaceDetection', '3.1.0'
+  pod 'Kingfisher', '~> 7.0'
 
 end

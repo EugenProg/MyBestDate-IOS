@@ -8,32 +8,56 @@
 import SwiftUI
 import Combine
 import Foundation
+import Kingfisher
 
 struct AsyncImageView: View {
-    @StateObject private var loader: ImageLoader
     private let defaultUrl: String = "https://image.shutterstock.com/image-vector/sad-apologizing-emoticon-emoji-holding-260nw-1398672683.jpg"
-    private var isInited: Bool = false
 
-    init(url: String?) {
-        let realUrl = URL(string: (url == nil || url?.isEmpty == true) ? defaultUrl : url ?? defaultUrl)
-        _loader = StateObject(wrappedValue: ImageLoader(url: realUrl!, cache: Environment(\.imageCache).wrappedValue))
+    @State var url: String?
+
+    fileprivate func placeholder() -> some View {
+        Text("loading...")
+            .foregroundColor(ColorList.blue.color)
+            .font(MyFont.getFont(.ITALIC, 12))
     }
 
     var body: some View {
-        content
-            .onAppear(perform: loader.load)
+        let realUrl = URL(string: (url == nil || url?.isEmpty == true) ? defaultUrl : url ?? defaultUrl)
+        KFImage.url(realUrl)
+            .placeholder(placeholder)
+            .loadDiskFileSynchronously()
+            .cacheMemoryOnly()
+            .fade(duration: 0.25)
+            .onProgress { receivedSize, totalSize in }
+            .onSuccess { result in  }
+            .onFailure { error in }
+            .resizable()
+    }
+}
+
+struct UpdateImageView: View {
+    private let defaultUrl: String = "https://image.shutterstock.com/image-vector/sad-apologizing-emoticon-emoji-holding-260nw-1398672683.jpg"
+
+    @Binding var image: ProfileImage?
+    var smallUrl: Bool = true
+
+    fileprivate func placeholder() -> some View {
+        Text("loading...")
+            .foregroundColor(ColorList.blue.color)
+            .font(MyFont.getFont(.ITALIC, 12))
     }
 
-    private var content: some View {
-        Group {
-            if loader.image != nil {
-                Image(uiImage: loader.image!)
-                    .resizable()
-            } else {
-                Text("loading...")
-                    .foregroundColor(ColorList.blue.color)
-                    .font(MyFont.getFont(.ITALIC, 12))
-            }
-        }
+    var body: some View {
+        let url = smallUrl ? image?.thumb_url : image?.full_url
+        let realUrl = URL(string: (url == nil || url?.isEmpty == true) ? defaultUrl : url ?? defaultUrl)
+        KFImage.url(realUrl)
+            .placeholder(placeholder)
+            .loadDiskFileSynchronously()
+            .cacheMemoryOnly()
+            .fade(duration: 0.25)
+            .onProgress { receivedSize, totalSize in }
+            .onSuccess { result in  }
+            .onFailure { error in }
+            .resizable()
     }
 }

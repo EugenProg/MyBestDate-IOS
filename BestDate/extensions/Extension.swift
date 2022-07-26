@@ -183,6 +183,10 @@ extension Double {
     func toString() -> String {
         String(self)
     }
+
+    func printPercent() -> String {
+        String(format: "%.1f", self)
+    }
 }
 
 extension Array where Element == String {
@@ -270,6 +274,19 @@ extension UserInfo {
         }
         return location
     }
+
+    func toShortUser() -> ShortUserInfo {
+        ShortUserInfo(
+            id: self.id,
+            name: self.name,
+            gender: self.gender,
+            birthday: self.gender,
+            main_photo: self.getMainPhoto(),
+            is_online: self.is_online,
+            occupation: self.questionnaire?.occupation,
+            full_questionnaire: self.questionnaire?.isFull(),
+            distance: self.distance)
+    }
 }
 
 extension ShortUserInfo {
@@ -292,6 +309,12 @@ extension ShortUserInfo {
             birthday: self.birthday,
             is_online: self.is_online
         )
+    }
+}
+
+extension Top {
+    func getImage() -> ProfileImage {
+        ProfileImage(id: self.id, full_url: self.full_url, thumb_url: self.thumb_url)
     }
 }
 

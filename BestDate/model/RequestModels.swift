@@ -82,7 +82,7 @@ struct UpdateMessageRequest: Codable {
 
 struct TopRequest: Codable {
     var gender: String
-    var country: String? = "Kaz"
+    var country: String? = nil
 }
 
 struct VotePhotos: Codable {

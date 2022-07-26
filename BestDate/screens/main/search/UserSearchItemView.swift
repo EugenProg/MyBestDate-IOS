@@ -44,6 +44,7 @@ struct UserSearchItemView: View {
                     Text(user.name ?? "Noname")
                         .foregroundColor(ColorList.white.color)
                         .font(MyFont.getFont(.BOLD, 16))
+                        .lineLimit(1)
 
                     Image((user.full_questionnaire ?? false) ? "ic_verify_active" : "ic_verify_gray")
                         .resizable()
@@ -61,10 +62,10 @@ struct UserSearchItemView: View {
                         .font(MyFont.getFont(.BOLD, 10))
                 }.padding(.init(top: 7, leading: 13, bottom: 2, trailing: 10))
 
-                Text(user.occupation ?? "Luser")
+                Text(user.occupation ?? "Loser")
                     .foregroundColor(ColorList.white_40.color)
                     .font(MyFont.getFont(.NORMAL, 12))
-                    .padding(.init(top: 1, leading: 13, bottom: 7, trailing: 10))
+                    .padding(.init(top: 3, leading: 13, bottom: 7, trailing: 10))
             }
 
         }.frame(height: ((UIScreen.main.bounds.width - 9) / 2) + 54)

@@ -19,4 +19,8 @@ class MyDuelsMediator: ObservableObject {
             }
         }
     }
+
+    func clearData() {
+        duelList.removeAll()
+    }
 }

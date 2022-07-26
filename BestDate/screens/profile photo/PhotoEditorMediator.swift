@@ -19,15 +19,20 @@ class PhotoEditorMediator: ObservableObject {
     @Published var frame: CGFloat = UIScreen.main.bounds.width - 14
     @Published var imageList: [ProfileImage] = []
 
-    @Published var selectedPhoto: ProfileImage? = nil
     @Published var mainPhoto: ProfileImage? = nil
+
+    init() {
+        PhotoSettingsSheetMediator.shared.updateAction = updateImageStatus()
+
+        PhotoSettingsSheetMediator.shared.deleteAction = deleteImage()
+    }
 
     func saveImage(image: UIImage, completion: @escaping (Bool) -> Void) {
         ImagesApiService.shared.saveProfileImage(image: image) { success, profileImage in
             DispatchQueue.main.async {
                 if success {
                     self.imageList.append(profileImage)
-                    self.selectedPhoto = profileImage
+                    PhotoSettingsSheetMediator.shared.selectedPhoto = profileImage
                     if (profileImage.main ?? false) || self.imageList.count == 1 {
                         self.mainPhoto = profileImage
                     }
@@ -37,40 +42,31 @@ class PhotoEditorMediator: ObservableObject {
         }
     }
 
-    func deleteImage(id: Int, completion: @escaping (Bool) -> Void) {
-        ImagesApiService.shared.deleteProfileImage(id: id) { success in
-            DispatchQueue.main.async {
-                if success {
-                    let index = self.imageList.firstIndex { i in i.id == id } ?? -1
-                    if index > -1 {
-                        let image = self.imageList[index]
+    private func setUser(user: UserInfo) {
+        self.mainPhoto = user.getMainPhoto()
+        self.imageList.clearAndAddAll(list: user.photos)
+    }
 
-                        self.imageList.remove(at: index)
-
-                        if (image.main == true || id == self.mainPhoto?.id) && !self.imageList.isEmpty {
-                            self.mainPhoto = nil
-                            self.mainPhoto = self.imageList[0]
-                        }
-                        if self.imageList.isEmpty { self.mainPhoto = nil }
-                    }
-                }
-                completion(success)
-            }
+    func deleteImage() -> (Int) -> Void {
+        return { id in
+            self.updateUserData()
         }
     }
 
-    func updateImageStatus(image: ProfileImage?, completion: @escaping (Bool) -> Void) {
-        ImagesApiService.shared.updateImageStatus(id: image?.id ?? 0, requestData: PhotoStatusUpdateRequest(main: image?.main, top: image?.top, match: image?.match)) { success in
+    func updateImageStatus() -> (ProfileImage?) -> Void {
+        return { image in
+            self.updateUserData()
+        }
+    }
+
+    func updateUserData() {
+        CoreApiService.shared.getUserData { success, user in
             if success {
                 DispatchQueue.main.async {
-                    let index = self.imageList.firstIndex { pi in
-                        pi.id == image?.id
-                    }
-                    let saved = self.imageList[index ?? 0]
-                    self.imageList[index ?? 0] = ProfileImage(id: saved.id, full_url: saved.full_url, thumb_url: saved.thumb_url, main: image?.main, top: image?.top, match: image?.match)
+                    MainMediator.shared.setUserInfo(user: user)
+                    self.setUser(user: user)
                 }
             }
-            completion(success)
         }
     }
 
