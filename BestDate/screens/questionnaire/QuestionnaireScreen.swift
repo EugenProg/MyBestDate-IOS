@@ -26,9 +26,13 @@ struct QuestionnaireScreen: View {
 
                     Spacer()
 
-                    TextButton(text: "skip", textColor: ColorList.white.color) {
-                        UserDataHolder.setStartScreen(screen: .MAIN)
-                        store.dispatch(action: .navigate(screen: .MAIN))
+                    if !mediator.editMode {
+                        TextButton(text: "skip", textColor: ColorList.white.color) {
+                            mediator.getUserData { _ in
+                                UserDataHolder.setStartScreen(screen: .MAIN)
+                                store.dispatch(action: .navigate(screen: .MAIN))
+                            }
+                        }
                     }
                 }.padding(.init(top: 32, leading: 32, bottom: 15, trailing: 32))
 
@@ -55,15 +59,27 @@ struct QuestionnaireScreen: View {
                 DispatchQueue.main.async {
                     mediator.saveProcess.toggle()
                     if success {
-                        UserDataHolder.setStartScreen(screen: .MAIN)
-                        store.dispatch(action: .navigate(screen: .MAIN))
+                        navigate()
                     } else {
                         store.dispatch(action: .show(message: message))
                     }
                 }
             }
         } else {
-            store.dispatch(action: .navigate(screen: .MAIN))
+            navigate()
+        }
+    }
+
+    private func navigate() {
+        if mediator.editMode {
+            withAnimation {
+                store.dispatch(action: .navigationBack)
+            }
+        } else {
+            withAnimation {
+                UserDataHolder.setStartScreen(screen: .MAIN)
+                store.dispatch(action: .navigate(screen: .MAIN))
+            }
         }
     }
 }

@@ -18,7 +18,8 @@ struct AnotherProfileScreen: View {
                     AnotherProfileHeader(image: mediator.mainPhoto, isOnline: mediator.user.is_online ?? false, birthday: mediator.user.birthday ?? "", distance: mediator.user.getDistance())
 
                     DirrectionLineButtonView(name: "questionnaire", icon: "ic_document", buttonColor: ColorList.pink_5.color) {
-
+                        AnotherProfileQuestionnaireMediator.shared.setUser(user: mediator.user)
+                        store.dispatch(action: .navigate(screen: .ANOTHER_QUESTIONNAIRE))
                     }.padding(.init(top: 3, leading: 0, bottom: 0, trailing: 0))
 
                     HStack(spacing: 0) {

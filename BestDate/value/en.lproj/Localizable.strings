@@ -153,7 +153,7 @@
 "personal_information" = "Personal information";
 "your_appearance" = "Your appearance";
 "search_condition" = "Search condition";
-"about_me" = "About myself";
+"about_myself" = "About myself";
 "your_free_time" = "Your free time";
 "data_verification" = "Data verification";
 
@@ -251,6 +251,8 @@
 "music" = "Music";
 "dancing" = "Dancing";
 "stand_up" = "Stand up";
+"general_information" = "General information";
+"about_me" = "About me";
 
 //COUNTRIES
 "AB" = "Abkhazia";

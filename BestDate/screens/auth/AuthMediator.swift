@@ -46,13 +46,12 @@ class AuthMediator: ObservableObject {
                     self.hasImages = !(user.photos?.isEmpty ?? true)
                     self.hasQuestionnaire = !(user.questionnaire?.isEmpty() ?? true)
 
-                    if UserDataHolder.startScreen == .MAIN && self.hasImages && self.hasQuestionnaire {
+                    if self.hasImages && self.hasQuestionnaire {
                         MainMediator.shared.setUserInfo(user: user)
                     } else {
                         PhotoEditorMediator.shared.setImages(images: user.photos ?? [])
                         RegistrationMediator.shared.setUserData(user: user)
-                        QuestionnaireMediator.shared.setQuestionnaire(questionnaire: user.questionnaire ?? Questionnaire())
-                        QuestionnaireMediator.shared.setUserLocation(location: user.location ?? Location())
+                        QuestionnaireMediator.shared.setEditInfo(user: user, editMode: false)
                     }
                 }
                 complete(success)

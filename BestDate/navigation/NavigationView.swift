@@ -41,6 +41,7 @@ struct NavigationView: View {
                     case .DUEL: DuelScreen().transition(.move(edge: .trailing))
                     case .MY_DUELS: MyDuelsScreen()
                     case .CHAT: ChatScreen()
+                    case .ANOTHER_QUESTIONNAIRE: AnotherProfileQuestionnaireScreen()
                     default: StartScreen()
                     }
                 }.blur(radius: store.state.showBottomSheet ? 1.8 : 0)

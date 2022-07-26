@@ -198,6 +198,19 @@ extension Array where Element == String {
 
         return true
     }
+
+    func toString() -> String {
+        if self.isEmpty { return "" }
+        var result = ""
+        for item in self {
+            result += "\(item), "
+        }
+        if !result.isEmpty {
+            return String(result.prefix(result.count - 2))
+        }
+
+        return result
+    }
 }
 
 extension Array where Element == ProfileImage {

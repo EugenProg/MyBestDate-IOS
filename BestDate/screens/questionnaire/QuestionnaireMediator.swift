@@ -14,6 +14,7 @@ class QuestionnaireMediator: ObservableObject {
     private var savedQuestionnaire: Questionnaire = Questionnaire()
 
     var userQuestinnaire: Questionnaire = Questionnaire()
+    var editMode: Bool = false
 
     @Published var progress: Int = 0
     @Published var firstSurprize: Bool = false
@@ -39,7 +40,22 @@ class QuestionnaireMediator: ObservableObject {
         total = getPageList()
     }
 
-    func setQuestionnaire(questionnaire: Questionnaire) {
+    func setPageStates() {
+        personalPageStates = PageStates(offset: CGSize.zero, zoom: 1, opacity: 1)
+        apperancePageStates = PageStates(opacity: 0.5)
+        searchPageStates = PageStates()
+        aboutPageStates = PageStates()
+        freeTimePageStates = PageStates()
+        dataPageStates = PageStates()
+    }
+
+    func setEditInfo(user: UserInfo, editMode: Bool) {
+        self.setQuestionnaire(questionnaire: user.questionnaire ?? Questionnaire(), email: user.email, phone: user.phone)
+        self.setUserLocation(location: user.location ?? Location())
+        self.editMode = editMode
+    }
+
+    func setQuestionnaire(questionnaire: Questionnaire, email: String?, phone: String?) {
         pages[0].questions[0].selectedAnsfer = questionnaire.marital_status ?? ""
         pages[0].questions[1].selectedAnsfer = questionnaire.kids ?? ""
         pages[0].questions[2].selectedAnsfer = questionnaire.nationality ?? ""
@@ -58,13 +74,15 @@ class QuestionnaireMediator: ObservableObject {
         startAgeRange = questionnaire.search_age_min ?? 5
         endAgeRange = questionnaire.search_age_max ?? 120
 
-        pages[3].questions[0].selectedAnsfer = getAnsferLine(ansfers: questionnaire.hobby ?? [])
-        pages[3].questions[1].selectedAnsfer = getAnsferLine(ansfers: questionnaire.sport ?? [])
+        pages[3].questions[0].selectedAnsfer = (questionnaire.hobby ?? []).toString()
+        pages[3].questions[1].selectedAnsfer = (questionnaire.sport ?? []).toString()
         pages[3].questions[2].selectedAnsfer = questionnaire.evening_time ?? ""
 
         pages[4].questions[0].selectedAnsfer = questionnaire.about_me ?? ""
 
-        pages[5].questions[2].selectedAnsfer = getAnsferLine(ansfers: questionnaire.socials ?? [])
+        pages[5].questions[1].selectedAnsfer = email ?? ""
+        pages[5].questions[2].selectedAnsfer = (questionnaire.socials ?? []).toString()
+        pages[5].questions[3].selectedAnsfer = phone ?? ""
 
         addProgress(progress: calculateSavedProgress(questionnaire: questionnaire))
 
@@ -128,19 +146,6 @@ class QuestionnaireMediator: ObservableObject {
                 userQuestinnaire.search_city = list[1]
             }
         }
-    }
-
-    func getAnsferLine(ansfers: [String]) -> String {
-        var line = ""
-        for ansfer in ansfers {
-            line.append("\(ansfer), ")
-        }
-
-        if !line.isEmpty {
-            line = String(line.prefix(line.count - 2))
-        }
-
-        return line
     }
 
     func saveQuestionnaire(questionnaire: Questionnaire, completion: @escaping (Bool, String) -> Void) {
@@ -249,7 +254,7 @@ class QuestionnaireMediator: ObservableObject {
             QuestionnairePage(number: 2, title: "your_appearance", type: .SELECT, questions: getApperanceQuestions()),
             QuestionnairePage(number: 3, title: "search_condition", type: .SELECT, questions: getSearchQuestions()),
             QuestionnairePage(number: 4, title: "your_free_time", type: .SELECT, questions: getFreeTimeQuestions()),
-            QuestionnairePage(number: 5, title: "about_me", type: .INPUT, questions: getAboutQuestions()),
+            QuestionnairePage(number: 5, title: "about_myself", type: .INPUT, questions: getAboutQuestions()),
             QuestionnairePage(number: 6, title: "data_verification", type: .SELECT, buttonTitle: "well_done", questions: getConfirmationQuestions()),
         ]
         return pages.count
@@ -473,7 +478,7 @@ class QuestionnaireMediator: ObservableObject {
                 percent: 4,
                 viewType: .CONFIRMATION_SELECT,
                 ansfers: ["your_email_has_not_been_confirmed"],
-                selectedAnsfer: RegistrationMediator.shared.email
+                selectedAnsfer: ""
             )
         )
         list.append(
@@ -492,7 +497,7 @@ class QuestionnaireMediator: ObservableObject {
                 percent: 1,
                 viewType: .CONFIRMATION_SELECT,
                 ansfers: ["your_phone_number_has_not_been_confirmed"],
-                selectedAnsfer: RegistrationMediator.shared.phone
+                selectedAnsfer: ""
             )
         )
 
@@ -514,6 +519,17 @@ class QuestionnaireMediator: ObservableObject {
         currentPage.moveFromCurrentPageState()
         previousPage.moveToPreviousPageState()
         if backPage != nil { backPage?.hidePageState() }
+    }
+
+    func clearData() {
+        _ = self.getPageList()
+        self.setPageStates()
+        self.startAgeRange = 5
+        self.endAgeRange = 120
+        self.progress = 0
+        self.firstSurprize = false
+        self.finalSurprize = false
+        self.title = "let_s_start"
     }
 }
 

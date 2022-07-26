@@ -159,6 +159,9 @@
 		4CD34F3B288D2CBE00504396 /* ChatMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F3A288D2CBE00504396 /* ChatMediator.swift */; };
 		4CD34F3D288D730300504396 /* ChatBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F3C288D730300504396 /* ChatBottomView.swift */; };
 		4CD34F3F288EF4F300504396 /* PhotoSettingsSheetMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F3E288EF4F300504396 /* PhotoSettingsSheetMediator.swift */; };
+		4CD34F4228903E7600504396 /* AnotherProfileQuestionnaireScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F4128903E7600504396 /* AnotherProfileQuestionnaireScreen.swift */; };
+		4CD34F4428903E9500504396 /* AnotherProfileQuestionnaireMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F4328903E9500504396 /* AnotherProfileQuestionnaireMediator.swift */; };
+		4CD34F46289050C100504396 /* QuestionnaireParagraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F45289050C100504396 /* QuestionnaireParagraphView.swift */; };
 		4CD3F1D6288BA9E600DF8755 /* DuelCompareItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3F1D5288BA9E600DF8755 /* DuelCompareItem.swift */; };
 		4CD3F1D8288BAC9B00DF8755 /* DuelProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3F1D7288BAC9B00DF8755 /* DuelProgressView.swift */; };
 		4CD3F1DA288BC9F100DF8755 /* TopApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3F1D9288BC9F100DF8755 /* TopApiService.swift */; };
@@ -338,6 +341,9 @@
 		4CD34F3A288D2CBE00504396 /* ChatMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMediator.swift; sourceTree = "<group>"; };
 		4CD34F3C288D730300504396 /* ChatBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBottomView.swift; sourceTree = "<group>"; };
 		4CD34F3E288EF4F300504396 /* PhotoSettingsSheetMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSettingsSheetMediator.swift; sourceTree = "<group>"; };
+		4CD34F4128903E7600504396 /* AnotherProfileQuestionnaireScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnotherProfileQuestionnaireScreen.swift; sourceTree = "<group>"; };
+		4CD34F4328903E9500504396 /* AnotherProfileQuestionnaireMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnotherProfileQuestionnaireMediator.swift; sourceTree = "<group>"; };
+		4CD34F45289050C100504396 /* QuestionnaireParagraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireParagraphView.swift; sourceTree = "<group>"; };
 		4CD3F1D5288BA9E600DF8755 /* DuelCompareItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuelCompareItem.swift; sourceTree = "<group>"; };
 		4CD3F1D7288BAC9B00DF8755 /* DuelProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuelProgressView.swift; sourceTree = "<group>"; };
 		4CD3F1D9288BC9F100DF8755 /* TopApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopApiService.swift; sourceTree = "<group>"; };
@@ -728,6 +734,7 @@
 		4C8E7DA9284D24BC00D6E58D /* screens */ = {
 			isa = PBXGroup;
 			children = (
+				4CD34F4028903E4100504396 /* AnotherProfileQuestionnaire */,
 				4CD34F37288D2C9800504396 /* chat */,
 				4C1459062857926700558B6B /* SplashScreen.storyboard */,
 				4C1459022856627E00558B6B /* GeolocationScreen.swift */,
@@ -981,6 +988,16 @@
 			path = chat;
 			sourceTree = "<group>";
 		};
+		4CD34F4028903E4100504396 /* AnotherProfileQuestionnaire */ = {
+			isa = PBXGroup;
+			children = (
+				4CD34F4128903E7600504396 /* AnotherProfileQuestionnaireScreen.swift */,
+				4CD34F4328903E9500504396 /* AnotherProfileQuestionnaireMediator.swift */,
+				4CD34F45289050C100504396 /* QuestionnaireParagraphView.swift */,
+			);
+			path = AnotherProfileQuestionnaire;
+			sourceTree = "<group>";
+		};
 		4CD3F1DB288BCBC400DF8755 /* myDuels */ = {
 			isa = PBXGroup;
 			children = (
@@ -1214,10 +1231,12 @@
 				4C5C86CA287359A5006DE024 /* CoreApiTypes.swift in Sources */,
 				4C5C86C528734CE3006DE024 /* ConfirmationInfoView.swift in Sources */,
 				4C1B7C21286B51F8000DB5D4 /* PercentView.swift in Sources */,
+				4CD34F4228903E7600504396 /* AnotherProfileQuestionnaireScreen.swift in Sources */,
 				4C8E7DA2284D222200D6E58D /* Action.swift in Sources */,
 				4C3D27B9285110FA00F8FD09 /* StandardButton.swift in Sources */,
 				4CF028472889CFBF002C59EE /* TopDropDownButtonView.swift in Sources */,
 				4C5C86BC2871A5B4006DE024 /* CitySearchMediator.swift in Sources */,
+				4CD34F4428903E9500504396 /* AnotherProfileQuestionnaireMediator.swift in Sources */,
 				4CB9FF9628834303004F1BF6 /* ImageLineItemView.swift in Sources */,
 				4CD34F3F288EF4F300504396 /* PhotoSettingsSheetMediator.swift in Sources */,
 				4C145905285664AA00558B6B /* RecoveryMediator.swift in Sources */,
@@ -1230,6 +1249,7 @@
 				4C3D27BC28511BB700F8FD09 /* Title.swift in Sources */,
 				4C022A4128590BE10043E49D /* Media.swift in Sources */,
 				4C1458F32855222A00558B6B /* GnderListItem.swift in Sources */,
+				4CD34F46289050C100504396 /* QuestionnaireParagraphView.swift in Sources */,
 				4C022A3B285903530043E49D /* HorisontalPhotoListView.swift in Sources */,
 				4CF0285B288B1450002C59EE /* DuelItemView.swift in Sources */,
 				4C1B7C28286B6D48000DB5D4 /* SingleSelectMediator.swift in Sources */,

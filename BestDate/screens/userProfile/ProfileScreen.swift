@@ -120,7 +120,8 @@ struct ProfileScreen: View {
                                 }
 
                                 DirrectionLineButtonView(name: "questionnaire", icon: "ic_document", buttonColor: ColorList.pink_5.color) {
-                                    
+                                    QuestionnaireMediator.shared.setEditInfo(user: mediator.user, editMode: true)
+                                    store.dispatch(action: .navigate(screen: .QUESTIONNAIRE))
                                 }.padding(.init(top: 40, leading: 0, bottom: 0, trailing: 0))
 
                                 DirrectionLineButtonView(name: "personal_data", icon: "ic_profile", buttonColor: ColorList.white_5.color) {

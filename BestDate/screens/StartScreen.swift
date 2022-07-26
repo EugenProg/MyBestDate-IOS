@@ -55,8 +55,7 @@ struct StartScreen: View {
                     } else {
                         PhotoEditorMediator.shared.setImages(images: user.photos ?? [])
                         RegistrationMediator.shared.setUserData(user: user)
-                        QuestionnaireMediator.shared.setQuestionnaire(questionnaire: user.questionnaire ?? Questionnaire())
-                        QuestionnaireMediator.shared.setUserLocation(location: user.location ?? Location())
+                        QuestionnaireMediator.shared.setEditInfo(user: user, editMode: false)
                     }
                 }
                 navigate(screen: startScreen)
