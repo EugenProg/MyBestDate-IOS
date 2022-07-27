@@ -87,6 +87,7 @@ struct ProfilePhotoScreen: View {
                             
                             HorisontalPhotoListView(imagesList: $mediator.imageList) { image in
                                 photoSettingsMediator.selectedPhoto = image
+                                photoSettingsMediator.callPage = .PROFILE_PHOTO
                                 store.dispatch(action: .showBottomSheet(view: .PHOTO_SETTINGS))
                             }
                             
@@ -122,6 +123,7 @@ struct ProfilePhotoScreen: View {
             .sheet(isPresented: $isShowingPhotoLibrary) {
                 ImagePicker(sourceType: .photoLibrary) { image in
                     mediator.newPhoto = image
+                    photoSettingsMediator.callPage = .PROFILE_PHOTO
                     store.dispatch(action: .navigate(screen: .PHOTO_EDITING))
                 }
             }

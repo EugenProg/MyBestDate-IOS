@@ -9,6 +9,8 @@ import SwiftUI
 
 struct DuelItemView: View {
     @Binding var item: ProfileImage?
+    @Binding var showProcess: Bool
+    @Binding var isSelect: Bool
     var size = (UIScreen.main.bounds.width - 9) / 2
     var clickAction: () -> Void
 
@@ -27,7 +29,13 @@ struct DuelItemView: View {
                 .padding(.init(top: 0, leading: 0, bottom: 65, trailing: 0))
 
             Button(action: {
-                withAnimation { clickAction() }
+                if !showProcess && !isSelect {
+                    withAnimation {
+                        showProcess.toggle()
+                        isSelect.toggle()
+                        clickAction()
+                    }
+                }
             }) {
                 ZStack {
                     Image("ic_duel_heart_decor")
@@ -36,6 +44,12 @@ struct DuelItemView: View {
                         .padding(.init(top: 7, leading: 0, bottom: 0, trailing: 0))
                 }.padding(.init(top: 6, leading: 10, bottom: 8, trailing: 10))
             }.padding(.init(top: size, leading: 0, bottom: 0, trailing: 0))
+
+            if showProcess {
+                LottieView(name: "love_burst", loopMode: .playOnce)
+                    .frame(width: 165, height: 165)
+                    .padding(.init(top: size, leading: 0, bottom: 0, trailing: 0))
+            }
         }.frame(width: size, height: size + 65)
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class ProfileMediator: ObservableObject {
     static var shared = ProfileMediator()
@@ -14,25 +15,12 @@ class ProfileMediator: ObservableObject {
     @Published var profileImages: [ProfileImage] = []
     @Published var mainPhoto: ProfileImage? = nil
 
-    init() {
-        PhotoSettingsSheetMediator.shared.updateAction = updateImageStatus()
-
-        PhotoSettingsSheetMediator.shared.deleteAction = deleteImage()
-    }
-
     func setUser(user: UserInfo) {
         self.user = user
         self.mainPhoto = user.getMainPhoto()
 
-        profileImages.removeAll()
-        for index in 0...2 {
-            setImageIfHas(number: index)
-        }
-    }
-
-    private func setImageIfHas(number: Int) {
-        if (user.photos?.count ?? 0) > number {
-            profileImages.append(user.photos?[number] ?? ProfileImage())
+        withAnimation {
+            self.profileImages.clearAndAddAll(list: user.photos)
         }
     }
 
@@ -54,18 +42,6 @@ class ProfileMediator: ObservableObject {
     func clearUserData() {
         self.user = UserInfo()
         self.profileImages.removeAll()
-    }
-
-    func deleteImage() -> (Int) -> Void {
-        return { id in
-            self.updateUserData()
-        }
-    }
-
-    func updateImageStatus() -> (ProfileImage?) -> Void {
-        return { image in
-            self.updateUserData()
-        }
     }
 
     func updateUserData() {

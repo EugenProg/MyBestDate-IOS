@@ -10,23 +10,23 @@ import SwiftUI
 struct ProfilePhotoLineView: View {
     var imageSize = (UIScreen.main.bounds.width - 42) / 3
     @Binding var imagesList: [ProfileImage]
+    var addAction: () -> Void
     var selectAction: (ProfileImage) -> Void
 
     var body: some View {
-        ZStack {
-            HStack(spacing: 3) {
-                Rectangle().fill(ColorList.white_10.color)
-                Rectangle().fill(ColorList.white_10.color)
-                Rectangle().fill(ColorList.white_10.color)
-            }.frame(height: imageSize)
-                .padding(.init(top: 0, leading: 18, bottom: 0, trailing: 18))
-
+        ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 3) {
                 ForEach(imagesList, id: \.id) { image in
                     ImageLineItemView(image: image, imageSize: imageSize)
                         .onTapGesture {
                             selectAction(image)
                         }
+                }
+                
+                if imagesList.count < 9 {
+                    AddImageButton(height: imageSize) {
+                        addAction()
+                    }
                 }
                 Spacer()
             }

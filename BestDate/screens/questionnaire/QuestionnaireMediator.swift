@@ -84,6 +84,7 @@ class QuestionnaireMediator: ObservableObject {
         pages[5].questions[2].selectedAnsfer = (questionnaire.socials ?? []).toString()
         pages[5].questions[3].selectedAnsfer = phone ?? ""
 
+        progress = 0
         addProgress(progress: calculateSavedProgress(questionnaire: questionnaire))
 
         self.savedQuestionnaire = questionnaire
@@ -102,6 +103,7 @@ class QuestionnaireMediator: ObservableObject {
     }
 
     private func calculateSavedProgress(questionnaire: Questionnaire) -> Int {
+        print(">>> total progress = \(progress)")
         var totalProgress = 0
         for page in pages {
             for question in page.questions {
@@ -110,6 +112,7 @@ class QuestionnaireMediator: ObservableObject {
                 }
             }
         }
+        print(">>> total progress = \(totalProgress)")
         return totalProgress
     }
 
@@ -203,6 +206,7 @@ class QuestionnaireMediator: ObservableObject {
     func setUserLocation(location: Location) {
         if pages[2].questions[2].selectedAnsfer.isEmpty {
             pages[2].questions[2].selectedAnsfer = createLocation(country: location.country, city: location.city)
+            addProgress(progress: pages[2].questions[2].percent)
         }
     }
 
@@ -266,7 +270,7 @@ class QuestionnaireMediator: ObservableObject {
             QuestionInfo(
                 id: 0,
                 question: "marital_status",
-                percent: 3,
+                percent: 5,
                 ansfers: ["married", "divorced", "single", "it_s_complicated", "in_love", "engaged", "actively_searching"]
             )
         )
@@ -274,7 +278,7 @@ class QuestionnaireMediator: ObservableObject {
             QuestionInfo(
                 id: 1,
                 question: "having_kids",
-                percent: 4,
+                percent: 7,
                 ansfers: ["no", "one", "two", "three", "four", "five_or_more"]
             )
         )
@@ -282,7 +286,7 @@ class QuestionnaireMediator: ObservableObject {
             QuestionInfo(
                 id: 2,
                 question: "plase_of_residence",
-                percent: 2,
+                percent: 4,
                 ansfers: ["AB", "AU", "AT", "AZ", "AL", "DZ", "AS", "AI", "AO", "AD", "AR", "AG", "AM", "AW", "AF",
                           "BS", "BD", "BB", "BH", "BY", "BZ", "BE", "BJ", "BM", "BG", "BO", "BQ", "BA", "BW", "BR",
                           "IO", "BN", "BF", "BI", "BT", "VU", "HU", "VE", "VG", "VI", "VN", "GA", "HT", "GY", "GM",
@@ -306,7 +310,7 @@ class QuestionnaireMediator: ObservableObject {
             QuestionInfo(
                 id: 3,
                 question: "education",
-                percent: 5,
+                percent: 6,
                 ansfers: ["no_education", "secondary", "higher"]
             )
         )
@@ -314,7 +318,7 @@ class QuestionnaireMediator: ObservableObject {
             QuestionInfo(
                 id: 4,
                 question: "occupational_status",
-                percent: 3,
+                percent: 5,
                 ansfers: ["student", "working", "unemployed", "businessman", "looking_for_my_self", "freelancer"]
             )
         )
@@ -328,7 +332,7 @@ class QuestionnaireMediator: ObservableObject {
             QuestionInfo(
                 id: 0,
                 question: "height",
-                percent: 5,
+                percent: 6,
                 unitMask: "cm_unit",
                 viewType: .SEEK_BAR_SELECT,
                 ansfers: ["130", "230"]
@@ -387,7 +391,7 @@ class QuestionnaireMediator: ObservableObject {
             QuestionInfo(
                 id: 1,
                 question: "what_do_you_want_for_a_date",
-                percent: 6,
+                percent: 7,
                 viewType: .SINGLE_SELECT,
                 ansfers: ["having_a_fun", "interesting_communication", "serious_relationship_only", "one_time_sex"]
             )
@@ -396,7 +400,7 @@ class QuestionnaireMediator: ObservableObject {
             QuestionInfo(
                 id: 2,
                 question: "search_location",
-                percent: 5,
+                percent: 6,
                 viewType: .SEARCH_SELECT,
                 ansfers: []
             )
@@ -420,7 +424,7 @@ class QuestionnaireMediator: ObservableObject {
             QuestionInfo(
                 id: 0,
                 question: "hobby",
-                percent: 4,
+                percent: 7,
                 viewType: .MULTY_SELECT,
                 ansfers: ["music", "dancing", "stand_up"]
             )
@@ -429,7 +433,7 @@ class QuestionnaireMediator: ObservableObject {
             QuestionInfo(
                 id: 1,
                 question: "types_of_sports",
-                percent: 5,
+                percent: 8,
                 viewType: .MULTY_SELECT,
                 ansfers: ["badminton", "basketball", "baseball", "billiards", "boxing", "wrestling", "bowling", "cycling", "volleyball", "gymnastics", "golf", "rowing", "darts", "skating"]
             )
@@ -438,7 +442,7 @@ class QuestionnaireMediator: ObservableObject {
             QuestionInfo(
                 id: 2,
                 question: "evening_time",
-                percent: 3,
+                percent: 7,
                 viewType: .SINGLE_SELECT,
                 ansfers: ["walking_around_the_city"]
             )
@@ -453,7 +457,7 @@ class QuestionnaireMediator: ObservableObject {
             QuestionInfo(
                 id: 0,
                 question: "tell_us_about_yourself_what_you_find_interesting",
-                percent: 5
+                percent: 7
             )
         )
 
@@ -466,7 +470,7 @@ class QuestionnaireMediator: ObservableObject {
             QuestionInfo(
                 id: 0,
                 question: "photo",
-                percent: 6,
+                percent: 0,
                 viewType: .CONFIRMATION_SELECT,
                 selectedAnsfer: "your_photo_is_confirmed"
             )
@@ -475,7 +479,7 @@ class QuestionnaireMediator: ObservableObject {
             QuestionInfo(
                 id: 1,
                 question: "email",
-                percent: 4,
+                percent: 0,
                 viewType: .CONFIRMATION_SELECT,
                 ansfers: ["your_email_has_not_been_confirmed"],
                 selectedAnsfer: ""
@@ -485,7 +489,7 @@ class QuestionnaireMediator: ObservableObject {
             QuestionInfo(
                 id: 2,
                 question: "social_network",
-                percent: 5,
+                percent: 0,
                 viewType: .CONFIRMATION_SELECT,
                 ansfers: ["the_questionnaire_has_not_been_confirmed"]
             )
@@ -494,7 +498,7 @@ class QuestionnaireMediator: ObservableObject {
             QuestionInfo(
                 id: 3,
                 question: "phone_number",
-                percent: 1,
+                percent: 0,
                 viewType: .CONFIRMATION_SELECT,
                 ansfers: ["your_phone_number_has_not_been_confirmed"],
                 selectedAnsfer: ""

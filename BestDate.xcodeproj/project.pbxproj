@@ -162,6 +162,8 @@
 		4CD34F4228903E7600504396 /* AnotherProfileQuestionnaireScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F4128903E7600504396 /* AnotherProfileQuestionnaireScreen.swift */; };
 		4CD34F4428903E9500504396 /* AnotherProfileQuestionnaireMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F4328903E9500504396 /* AnotherProfileQuestionnaireMediator.swift */; };
 		4CD34F46289050C100504396 /* QuestionnaireParagraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F45289050C100504396 /* QuestionnaireParagraphView.swift */; };
+		4CD34F4A289072D900504396 /* love_burst.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CD34F48289072D900504396 /* love_burst.json */; };
+		4CD34F4C2891B84B00504396 /* AddImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F4B2891B84B00504396 /* AddImageButton.swift */; };
 		4CD3F1D6288BA9E600DF8755 /* DuelCompareItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3F1D5288BA9E600DF8755 /* DuelCompareItem.swift */; };
 		4CD3F1D8288BAC9B00DF8755 /* DuelProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3F1D7288BAC9B00DF8755 /* DuelProgressView.swift */; };
 		4CD3F1DA288BC9F100DF8755 /* TopApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3F1D9288BC9F100DF8755 /* TopApiService.swift */; };
@@ -344,6 +346,8 @@
 		4CD34F4128903E7600504396 /* AnotherProfileQuestionnaireScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnotherProfileQuestionnaireScreen.swift; sourceTree = "<group>"; };
 		4CD34F4328903E9500504396 /* AnotherProfileQuestionnaireMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnotherProfileQuestionnaireMediator.swift; sourceTree = "<group>"; };
 		4CD34F45289050C100504396 /* QuestionnaireParagraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireParagraphView.swift; sourceTree = "<group>"; };
+		4CD34F48289072D900504396 /* love_burst.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = love_burst.json; sourceTree = "<group>"; };
+		4CD34F4B2891B84B00504396 /* AddImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageButton.swift; sourceTree = "<group>"; };
 		4CD3F1D5288BA9E600DF8755 /* DuelCompareItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuelCompareItem.swift; sourceTree = "<group>"; };
 		4CD3F1D7288BAC9B00DF8755 /* DuelProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuelProgressView.swift; sourceTree = "<group>"; };
 		4CD3F1D9288BC9F100DF8755 /* TopApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopApiService.swift; sourceTree = "<group>"; };
@@ -930,6 +934,7 @@
 		4CB9FF7628808D6E004F1BF6 /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
+				4CD34F48289072D900504396 /* love_burst.json */,
 				4CDD3B982888601000793466 /* no_data.json */,
 				4CB9FF83288094C0004F1BF6 /* heart.json */,
 				4CB9FF7928808E01004F1BF6 /* LottieView.swift */,
@@ -955,6 +960,7 @@
 				4CB9FF9528834303004F1BF6 /* ImageLineItemView.swift */,
 				4CB9FF97288345B7004F1BF6 /* LogoutButtonView.swift */,
 				4CDD3B9E288874F200793466 /* ProfileButtonView.swift */,
+				4CD34F4B2891B84B00504396 /* AddImageButton.swift */,
 			);
 			path = profile;
 			sourceTree = "<group>";
@@ -1118,6 +1124,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CD34F4A289072D900504396 /* love_burst.json in Resources */,
 				4CDD3B992888601000793466 /* no_data.json in Resources */,
 				4C8E7D88284CC94900D6E58D /* Preview Assets.xcassets in Resources */,
 				4C0E71E6284FB14A004099D4 /* Localizable.strings in Resources */,
@@ -1363,6 +1370,7 @@
 				4C5C86B728719F2D006DE024 /* QuestionnaireSearchBotomSheet.swift in Sources */,
 				4CB9FFA128842FC6004F1BF6 /* DateUtils.swift in Sources */,
 				4C022A562864D3370043E49D /* NotCorrectPhotoBottomSheet.swift in Sources */,
+				4CD34F4C2891B84B00504396 /* AddImageButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,17 +21,16 @@ class PhotoEditorMediator: ObservableObject {
 
     @Published var mainPhoto: ProfileImage? = nil
 
-    init() {
-        PhotoSettingsSheetMediator.shared.updateAction = updateImageStatus()
-
-        PhotoSettingsSheetMediator.shared.deleteAction = deleteImage()
-    }
+    var saveAction: ((ProfileImage) -> Void)? = nil
 
     func saveImage(image: UIImage, completion: @escaping (Bool) -> Void) {
         ImagesApiService.shared.saveProfileImage(image: image) { success, profileImage in
             DispatchQueue.main.async {
                 if success {
                     self.imageList.append(profileImage)
+                    if self.saveAction != nil {
+                        self.saveAction!(profileImage)
+                    }
                     PhotoSettingsSheetMediator.shared.selectedPhoto = profileImage
                     if (profileImage.main ?? false) || self.imageList.count == 1 {
                         self.mainPhoto = profileImage
@@ -43,19 +42,9 @@ class PhotoEditorMediator: ObservableObject {
     }
 
     private func setUser(user: UserInfo) {
-        self.mainPhoto = user.getMainPhoto()
-        self.imageList.clearAndAddAll(list: user.photos)
-    }
-
-    func deleteImage() -> (Int) -> Void {
-        return { id in
-            self.updateUserData()
-        }
-    }
-
-    func updateImageStatus() -> (ProfileImage?) -> Void {
-        return { image in
-            self.updateUserData()
+        withAnimation {
+            self.mainPhoto = user.getMainPhoto()
+            self.imageList.clearAndAddAll(list: user.photos)
         }
     }
 

@@ -10,6 +10,11 @@ import SwiftUI
 struct DuelScreen: View {
     @EnvironmentObject var store: Store
     @ObservedObject var mediator = DuelMediator.shared
+    @State var showResult: Bool = false
+
+    @State var firstProgress: Bool = false
+    @State var secondProgress: Bool = false
+    @State var isSelect: Bool = false
     
     var body: some View {
         VStack(spacing: 0) {
@@ -41,23 +46,25 @@ struct DuelScreen: View {
                     }.padding(.init(top: 16, leading: 18, bottom: 16, trailing: 18))
 
                     HStack(spacing: 3) {
-                        DuelItemView(item: $mediator.firstUserImage) {
-                            voteAction(winning: mediator.firstUser.id ?? 0, luser: mediator.secondUser.id ?? 0)
+                        DuelItemView(item: $mediator.firstUserImage, showProcess: $firstProgress, isSelect: $isSelect) {
+                            //voteAction(winning: mediator.firstUser.id ?? 0, luser: mediator.secondUser.id ?? 0)
                         }
 
-                        DuelItemView(item: $mediator.secondUserImage) {
-                            voteAction(winning: mediator.secondUser.id ?? 0, luser: mediator.firstUser.id ?? 0)
+                        DuelItemView(item: $mediator.secondUserImage, showProcess: $secondProgress, isSelect: $isSelect) {
+                            //voteAction(winning: mediator.secondUser.id ?? 0, luser: mediator.firstUser.id ?? 0)
                         }
                     }.padding(.init(top: 30, leading: 3, bottom: 16, trailing: 3))
 
-                    Text(NSLocalizedString("result", comment: "Result"))
-                        .foregroundColor(ColorList.white.color)
-                        .font(MyFont.getFont(.BOLD, 20))
-                        .padding(.init(top: 15, leading: 18, bottom: 5, trailing: 16))
+                    if showResult {
+                        Text(NSLocalizedString("result", comment: "Result"))
+                            .foregroundColor(ColorList.white.color)
+                            .font(MyFont.getFont(.BOLD, 20))
+                            .padding(.init(top: 15, leading: 18, bottom: 5, trailing: 16))
 
-                    DuelCompareItem(item: $mediator.firstUser)
+                        DuelCompareItem(item: $mediator.firstUser)
 
-                    DuelCompareItem(item: $mediator.secondUser)
+                        DuelCompareItem(item: $mediator.secondUser)
+                    }
                 }
             }
         }.background(ColorList.main.color.edgesIgnoringSafeArea(.bottom))

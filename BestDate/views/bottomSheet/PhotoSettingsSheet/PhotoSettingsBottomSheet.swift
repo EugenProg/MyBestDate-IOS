@@ -48,10 +48,6 @@ struct PhotoSettingsBottomSheet: View {
                     mediator.selectedPhoto?.main = isChecked
                 }
             }
-
-            SwichSelectorView(isActive: mediator.selectedPhoto?.match ?? false, hint: "take_part_in_a_contest", text: "mutual_sympathy", clickInfoAction: infoClickAction()) { isChecked in
-                mediator.selectedPhoto?.match = isChecked
-             }
             
             SwichSelectorView(isActive: mediator.selectedPhoto?.top ?? false, hint: "take_part_in_a_contest", text: "top_50", clickInfoAction: infoClickAction()) { isChecked in
                 mediator.selectedPhoto?.top = isChecked

@@ -10,9 +10,12 @@ import SwiftUI
 struct ProfileScreen: View {
     @EnvironmentObject var store: Store
     @ObservedObject var mediator = ProfileMediator.shared
+    @ObservedObject var editorMediator = PhotoEditorMediator.shared
     @ObservedObject var photoMediator = PhotoSettingsSheetMediator.shared
     @State var showHeader = false
     @State var logoutProccess: Bool = false
+
+    @State var isShowingPhotoLibrary = false
 
     var body: some View {
         ZStack {
@@ -84,6 +87,9 @@ struct ProfileScreen: View {
 
                                     Spacer()
 
+                                    ProfileButtonView(name: "like", image: "ic_menu_match_active", isActive: true) {
+                                    }
+
                                     ProfileButtonView(name: "my_duels", image: "ic_my_duels", isActive: true) {
                                         store.dispatch(action: .navigate(screen: .MY_DUELS))
                                     }
@@ -114,8 +120,9 @@ struct ProfileScreen: View {
                                     }
                                 }
 
-                                ProfilePhotoLineView(imagesList: $mediator.profileImages) { selectedImage in
+                                ProfilePhotoLineView(imagesList: $mediator.profileImages, addAction: addImage()) { selectedImage in
                                     photoMediator.selectedPhoto = selectedImage
+                                    photoMediator.callPage = .PROFILE
                                     store.dispatch(action: .showBottomSheet(view: .PHOTO_SETTINGS))
                                 }
 
@@ -159,5 +166,18 @@ struct ProfileScreen: View {
 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: { withAnimation { showHeader = true } })
             }
+            .sheet(isPresented: $isShowingPhotoLibrary) {
+                ImagePicker(sourceType: .photoLibrary) { image in
+                    editorMediator.newPhoto = image
+                    photoMediator.callPage = .PROFILE
+                    store.dispatch(action: .navigate(screen: .PHOTO_EDITING))
+                }
+            }
+    }
+
+    private func addImage() -> () -> Void {
+        {
+            isShowingPhotoLibrary.toggle()
+        }
     }
 }
