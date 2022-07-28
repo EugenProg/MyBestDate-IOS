@@ -44,6 +44,15 @@ class TopListMediator: ObservableObject {
         }
     }
 
+    func updateChangedList(isManUpdate: Bool, isWomanUpdate: Bool) {
+        if isManUpdate {
+            getManList()
+        }
+        if isWomanUpdate {
+            getWomanList()
+        }
+    }
+
     func clearTopList() {
         manTopList.removeAll()
         womanTopList.removeAll()

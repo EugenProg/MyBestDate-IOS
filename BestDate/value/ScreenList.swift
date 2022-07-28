@@ -28,7 +28,7 @@ enum ScreenList: String {
     case PROFILE
     case ANOTHER_PROFILE
     case MY_DUELS
-    case DUEL
+    case TOP_LIST
     case CHAT
     case ANOTHER_QUESTIONNAIRE
 

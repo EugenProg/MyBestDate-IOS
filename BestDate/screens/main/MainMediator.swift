@@ -30,6 +30,7 @@ class MainMediator: ObservableObject {
         self.mainPhoto = nil
         self.hasNewGuests = false
         self.hasNewMessages = false
+        self.currentScreen = .SEARCH
     }
 }
 

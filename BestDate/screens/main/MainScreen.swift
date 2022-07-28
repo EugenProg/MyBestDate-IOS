@@ -20,7 +20,7 @@ struct MainScreen: View {
 
                 ChatListScreen()
 
-                TopScreen()
+                DuelScreen()
 
                 GuestsScreen()
             }.offset(x: mediator.currentScreen.offset, y: 0)
@@ -29,6 +29,9 @@ struct MainScreen: View {
                 Spacer()
                 BottomMainNavigationView(currentScreen: $mediator.currentScreen, hasNewMessages: $mediator.hasNewMessages, hasNewGuests: $mediator.hasNewGuests) { type in
                     mediator.currentScreen = type
+                    if type == .TOP_50 && !DuelMediator.shared.hasADuelAction {
+                        DuelMediator.shared.getVotePhotos { _ in }
+                    }
                 }
             }
         }.background(ColorList.main.color.edgesIgnoringSafeArea(.bottom))

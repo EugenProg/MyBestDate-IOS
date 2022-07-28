@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct DuelCompareItem: View {
-    @Binding var item: Top
+    @Binding var item: Top?
+    @Binding var image: ProfileImage?
 
     var body: some View {
         ZStack {
@@ -16,21 +17,21 @@ struct DuelCompareItem: View {
                 .fill(MyColor.getColor(41, 50, 54))
 
             HStack(spacing: 15) {
-                AsyncImageView(url: item.thumb_url)
+                UpdateImageView(image: $image)
                     .frame(width: 64, height: 64)
 
                 VStack(alignment: .leading, spacing: 0) {
                     HStack(spacing: 0) {
-                        Text(item.user?.name ?? "Noname")
+                        Text(item?.user?.name ?? "Noname")
                             .foregroundColor(ColorList.white.color)
                             .font(MyFont.getFont(.BOLD, 16))
 
-                        Image((item.user?.full_questionnaire ?? false) ? "ic_verify_active" : "ic_verify_gray")
+                        Image((item?.user?.full_questionnaire ?? false) ? "ic_verify_active" : "ic_verify_gray")
                             .resizable()
                             .frame(width: 14, height: 14)
                             .padding(.init(top: 0, leading: 5, bottom: 0, trailing: 0))
 
-                        Text("\(item.user?.getAge() ?? 18)")
+                        Text("\(item?.user?.getAge() ?? 18)")
                             .foregroundColor(ColorList.white.color)
                             .font(MyFont.getFont(.BOLD, 16))
                             .padding(.init(top: 0, leading: 8, bottom: 0, trailing: 0))
@@ -41,13 +42,13 @@ struct DuelCompareItem: View {
                             .padding(.init(top: 5, leading: 0, bottom: 0, trailing: 0))
                     }
 
-                    Text(item.user?.occupation ?? "Luser")
+                    Text(item?.user?.occupation ?? "Luser")
                         .foregroundColor(ColorList.white_40.color)
                         .font(MyFont.getFont(.NORMAL, 12))
                         .padding(.init(top: 5, leading: 0, bottom: 8, trailing: 0))
 
                     HStack(spacing: 10) {
-                        DuelProgressView(progress: item.rating ?? 0)
+                        DuelProgressView(progress: item?.rating ?? 0)
 
                         ZStack {
                             RoundedRectangle(cornerRadius: 7)
@@ -57,7 +58,7 @@ struct DuelCompareItem: View {
                                 ]), startPoint: .leading, endPoint: .trailing))
 
                             HStack(spacing: 2) {
-                                Text(item.rating?.toString() ?? "")
+                                Text(item?.rating?.printPercent() ?? "")
                                     .foregroundColor(ColorList.pink.color)
                                     .font(MyFont.getFont(.BOLD, 16))
 

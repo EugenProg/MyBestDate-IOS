@@ -65,6 +65,7 @@ struct GuestsScreen: View {
                             }
                         }
                     }.frame(width: UIScreen.main.bounds.width, alignment: .leading)
+                        .padding(.init(top: 0, leading: 0, bottom: 45, trailing: 0))
                 }.padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight + 60, trailing: 0))
             }
         }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)

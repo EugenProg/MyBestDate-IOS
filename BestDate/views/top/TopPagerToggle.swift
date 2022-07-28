@@ -10,6 +10,9 @@ import SwiftUI
 struct TopPagerToggle: View {
 
     @Binding var activeType: GenderType
+
+    var changeAction: (() -> Void)? = nil
+
     var activeColor: Color = ColorList.white.color
     var unactiveColor: Color = ColorList.white_50.color
 
@@ -38,7 +41,10 @@ struct TopPagerToggle: View {
         HStack(spacing: 9) {
             Button(action: {
                 if activeType == .man {
-                    withAnimation { activeType = .woman }
+                    withAnimation {
+                        activeType = .woman
+                        clickAction()
+                    }
                 }
             }) {
                 button(type: .woman)
@@ -46,11 +52,20 @@ struct TopPagerToggle: View {
 
             Button(action: {
                 if activeType == .woman {
-                    withAnimation { activeType = .man }
+                    withAnimation {
+                        activeType = .man
+                        clickAction()
+                    }
                 }
             }) {
                 button(type: .man)
             }
+        }
+    }
+
+    private func clickAction() {
+        if changeAction != nil {
+            changeAction!()
         }
     }
 }

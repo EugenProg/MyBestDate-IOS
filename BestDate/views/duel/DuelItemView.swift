@@ -27,6 +27,8 @@ struct DuelItemView: View {
             UpdateImageView(image: $item)
                 .frame(width: size, height: size)
                 .padding(.init(top: 0, leading: 0, bottom: 65, trailing: 0))
+                .scaleEffect(isSelect ? 0.99 : 1)
+                .opacity(isSelect ? 0.99 : 1)
 
             Button(action: {
                 if !showProcess && !isSelect {

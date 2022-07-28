@@ -164,6 +164,8 @@
 		4CD34F46289050C100504396 /* QuestionnaireParagraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F45289050C100504396 /* QuestionnaireParagraphView.swift */; };
 		4CD34F4A289072D900504396 /* love_burst.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CD34F48289072D900504396 /* love_burst.json */; };
 		4CD34F4C2891B84B00504396 /* AddImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F4B2891B84B00504396 /* AddImageButton.swift */; };
+		4CD34F4E2892FEA000504396 /* NoDuelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F4D2892FE9F00504396 /* NoDuelData.swift */; };
+		4CD34F50289303EC00504396 /* ToTopListButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F4F289303EC00504396 /* ToTopListButton.swift */; };
 		4CD3F1D6288BA9E600DF8755 /* DuelCompareItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3F1D5288BA9E600DF8755 /* DuelCompareItem.swift */; };
 		4CD3F1D8288BAC9B00DF8755 /* DuelProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3F1D7288BAC9B00DF8755 /* DuelProgressView.swift */; };
 		4CD3F1DA288BC9F100DF8755 /* TopApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3F1D9288BC9F100DF8755 /* TopApiService.swift */; };
@@ -348,6 +350,8 @@
 		4CD34F45289050C100504396 /* QuestionnaireParagraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireParagraphView.swift; sourceTree = "<group>"; };
 		4CD34F48289072D900504396 /* love_burst.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = love_burst.json; sourceTree = "<group>"; };
 		4CD34F4B2891B84B00504396 /* AddImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageButton.swift; sourceTree = "<group>"; };
+		4CD34F4D2892FE9F00504396 /* NoDuelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDuelData.swift; sourceTree = "<group>"; };
+		4CD34F4F289303EC00504396 /* ToTopListButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToTopListButton.swift; sourceTree = "<group>"; };
 		4CD3F1D5288BA9E600DF8755 /* DuelCompareItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuelCompareItem.swift; sourceTree = "<group>"; };
 		4CD3F1D7288BAC9B00DF8755 /* DuelProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuelProgressView.swift; sourceTree = "<group>"; };
 		4CD3F1D9288BC9F100DF8755 /* TopApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopApiService.swift; sourceTree = "<group>"; };
@@ -738,6 +742,7 @@
 		4C8E7DA9284D24BC00D6E58D /* screens */ = {
 			isa = PBXGroup;
 			children = (
+				4CB9FF49287746B0004F1BF6 /* top */,
 				4CD34F4028903E4100504396 /* AnotherProfileQuestionnaire */,
 				4CD34F37288D2C9800504396 /* chat */,
 				4C1459062857926700558B6B /* SplashScreen.storyboard */,
@@ -748,7 +753,6 @@
 				4CB9FF9B288427BA004F1BF6 /* anotherProfile */,
 				4C5C86DB2874B174006DE024 /* auth */,
 				4C1458F82855E15900558B6B /* base */,
-				4CF02852288B09CF002C59EE /* duel */,
 				4CB9FF422877439A004F1BF6 /* main */,
 				4CD3F1DB288BCBC400DF8755 /* myDuels */,
 				4C022A352858ED570043E49D /* profile photo */,
@@ -843,8 +847,8 @@
 		4CB9FF422877439A004F1BF6 /* main */ = {
 			isa = PBXGroup;
 			children = (
+				4CF02852288B09CF002C59EE /* duel */,
 				4CB9FF4A287746B7004F1BF6 /* guests */,
-				4CB9FF49287746B0004F1BF6 /* top */,
 				4CB9FF48287746A8004F1BF6 /* chatList */,
 				4CB9FF472877469A004F1BF6 /* matches */,
 				4CB9FF3F287741F9004F1BF6 /* search */,
@@ -1044,6 +1048,8 @@
 				4CF0285A288B1450002C59EE /* DuelItemView.swift */,
 				4CD3F1D5288BA9E600DF8755 /* DuelCompareItem.swift */,
 				4CD3F1D7288BAC9B00DF8755 /* DuelProgressView.swift */,
+				4CD34F4D2892FE9F00504396 /* NoDuelData.swift */,
+				4CD34F4F289303EC00504396 /* ToTopListButton.swift */,
 			);
 			path = duel;
 			sourceTree = "<group>";
@@ -1243,6 +1249,7 @@
 				4C3D27B9285110FA00F8FD09 /* StandardButton.swift in Sources */,
 				4CF028472889CFBF002C59EE /* TopDropDownButtonView.swift in Sources */,
 				4C5C86BC2871A5B4006DE024 /* CitySearchMediator.swift in Sources */,
+				4CD34F4E2892FEA000504396 /* NoDuelData.swift in Sources */,
 				4CD34F4428903E9500504396 /* AnotherProfileQuestionnaireMediator.swift in Sources */,
 				4CB9FF9628834303004F1BF6 /* ImageLineItemView.swift in Sources */,
 				4CD34F3F288EF4F300504396 /* PhotoSettingsSheetMediator.swift in Sources */,
@@ -1272,6 +1279,7 @@
 				4C022A51285F0AF10043E49D /* EdiorView.swift in Sources */,
 				4CF028402889BACE002C59EE /* TopButtonView.swift in Sources */,
 				4C022A54285F90CC0043E49D /* PhotoViewer.swift in Sources */,
+				4CD34F50289303EC00504396 /* ToTopListButton.swift in Sources */,
 				4CA2E230286728D100E514C4 /* SurprizeBoxView.swift in Sources */,
 				4C5C86BA2871A36B006DE024 /* SearchInputView.swift in Sources */,
 				4CF02854288B09EE002C59EE /* DuelScreen.swift in Sources */,

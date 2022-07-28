@@ -53,7 +53,7 @@ class TopApiService {
         task.resume()
     }
 
-    func voteAction(winnerId: Int, luserId: Int, completion: @escaping (Bool) -> Void) {
+    func voteAction(winnerId: Int, luserId: Int, completion: @escaping (Bool, [Top]) -> Void) {
         var request = CoreApiTypes.voteAction.getRequest(withAuth: true)
 
         let data = try! encoder.encode(VotePhotos(winning_photo: winnerId, loser_photo: luserId))
@@ -63,11 +63,11 @@ class TopApiService {
 
         let task = URLSession.shared.dataTask(with: request) {data, response, error in
             NetworkLogger.printLog(response: response)
-            if let data = data, let response = try? JSONDecoder().decode(BaseResponse.self, from: data) {
+            if let data = data, let response = try? JSONDecoder().decode(TopListResponse.self, from: data) {
                 NetworkLogger.printLog(data: data)
-                completion(response.success)
+                completion(response.success, response.data)
             } else {
-                completion(false)
+                completion(false, [])
             }
         }
 
