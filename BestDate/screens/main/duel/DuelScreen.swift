@@ -101,12 +101,17 @@ struct DuelScreen: View {
 
                         DuelCompareItem(item: $mediator.secondUser, image: $mediator.secondUserImage)
                     }
-                }
-            }
+                }.padding(.init(top: 0, leading: 0, bottom: 45, trailing: 0))
+            }.padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight + 60, trailing: 0))
         }.background(ColorList.main.color.edgesIgnoringSafeArea(.bottom))
         .onAppear {
             store.dispatch(action:
                     .setScreenColors(status: ColorList.main.color, style: .lightContent))
+            MainMediator.shared.duelPage = {
+                if mediator.hasADuelAction {
+                    mediator.getVotePhotos { _ in }
+                }
+            }
         }
     }
 
@@ -129,64 +134,3 @@ struct DuelScreen: View {
         }
     }
 }
-
-
-/*
- var body: some View {
-     VStack(spacing: 0) {
-         ZStack {
-             HStack {
-                 BackButton(style: .white)
-
-                 Spacer()
-             }
-
-             Title(textColor: ColorList.white.color, text: "duel", textSize: 20, paddingV: 0, paddingH: 0)
-         }.frame(width: UIScreen.main.bounds.width - 50, height: 60)
-             .padding(.init(top: 16, leading: 32, bottom: 0, trailing: 18))
-
-         Rectangle()
-             .fill(MyColor.getColor(190, 239, 255, 0.15))
-             .frame(height: 1)
-
-         ScrollView(.vertical, showsIndicators: true) {
-             VStack(alignment: .leading, spacing: 0) {
-                 HStack {
-                     DuelCoinsView()
-
-                     Spacer()
-
-                     ProfileButtonView(name: "my_duels", image: "ic_my_duels", isActive: true, size: CGSize(width: 57, height: 54)) {
-                         store.dispatch(action: .navigate(screen: .MY_DUELS))
-                     }
-                 }.padding(.init(top: 16, leading: 18, bottom: 16, trailing: 18))
-
-                 HStack(spacing: 3) {
-                     DuelItemView(item: $mediator.firstDuelImage, showProcess: $firstProgress, isSelect: $isSelect) {
-                         voteAction(winning: mediator.firstDuelImage?.id ?? 0, luser: mediator.secondDuelImage?.id ?? 0)
-                     }
-
-                     DuelItemView(item: $mediator.secondDuelImage, showProcess: $secondProgress, isSelect: $isSelect) {
-                         voteAction(winning: mediator.secondDuelImage?.id ?? 0, luser: mediator.firstDuelImage?.id ?? 0)
-                     }
-                 }.padding(.init(top: 30, leading: 3, bottom: 16, trailing: 3))
-
-                 if mediator.firstUser != nil && mediator.secondUser != nil {
-                     Text(NSLocalizedString("result", comment: "Result"))
-                         .foregroundColor(ColorList.white.color)
-                         .font(MyFont.getFont(.BOLD, 20))
-                         .padding(.init(top: 15, leading: 18, bottom: 5, trailing: 16))
-
-                     DuelCompareItem(item: $mediator.firstUser, image: $mediator.firstUserImage)
-
-                     DuelCompareItem(item: $mediator.secondUser, image: $mediator.secondUserImage)
-                 }
-             }
-         }
-     }.background(ColorList.main.color.edgesIgnoringSafeArea(.bottom))
-     .onAppear {
-         store.dispatch(action:
-                 .setScreenColors(status: ColorList.main.color, style: .lightContent))
-     }
- }
- */

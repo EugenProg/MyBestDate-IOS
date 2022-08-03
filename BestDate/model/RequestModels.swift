@@ -62,7 +62,6 @@ struct IdListRequest: Codable {
 struct PhotoStatusUpdateRequest: Codable {
     var main: Bool? = nil
     var top: Bool? = nil
-    var match: Bool? = nil
 }
 
 struct SearchFilter: Codable {
@@ -88,4 +87,8 @@ struct TopRequest: Codable {
 struct VotePhotos: Codable {
     var winning_photo: Int
     var loser_photo: Int
+}
+
+struct PhotoLikeRequest: Codable {
+    var photo_id: Int
 }

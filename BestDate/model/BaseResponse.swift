@@ -24,7 +24,7 @@ struct ProfileImage: Codable {
     var thumb_url: String? = nil
     var main: Bool? = nil
     var top: Bool? = nil
-    var match: Bool? = nil
+    var liked: Bool? = nil
 }
 
 struct UserDataResponse: Codable {
@@ -51,6 +51,7 @@ struct UserInfo: Codable {
     var language: String? = nil
     var birthday: String? = nil
     var is_online: Bool? = nil
+    var last_online_at: String? = nil
     var new_likes: Int? = nil
     var new_guests: Int? = nil
     var distance: Double? = nil
@@ -66,6 +67,7 @@ struct ShortUserInfo: Codable {
     var birthday: String? = nil
     var main_photo: ProfileImage? = nil
     var is_online: Bool? = nil
+    var last_online_at: String? = nil
     var occupation: String? = nil
     var full_questionnaire: Bool? = nil
     var distance: Double? = nil
@@ -128,6 +130,18 @@ struct Message: Codable {
     var media: String? = nil
     var read_at: String? = nil
     var created_at: String? = nil
+}
+
+struct SendMessageResponse: Codable {
+    var success: Bool
+    var message: String
+    var data: Message? = nil
+}
+
+struct GetChatMessagesResponse: Codable {
+    var success: Bool
+    var message: String
+    var data: [Message] = []
 }
 
 struct GuestListResponse: Codable {

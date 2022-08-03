@@ -14,6 +14,12 @@ class ImageUtils {
                completion(saveImage ?? image)
            }
        }
+
+    static func resizeForChat(image: UIImage, completion: @escaping (UIImage) -> Void) {
+           ImageResizer.resize(image: image, maxByte: 400000) { saveImage in
+               completion(saveImage ?? image)
+           }
+       }
    }
 
    struct ImageResizer {

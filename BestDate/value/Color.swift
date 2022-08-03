@@ -59,6 +59,9 @@ enum ColorList {
     case light_blue
     case light_blue_5
     case blue_1
+
+    case chat_blue
+    case chat_blue_55
     
     case blue
     case blue_90
@@ -103,6 +106,10 @@ enum ColorList {
         case .blue_1: return MyColor.getColor(118, 207, 255)
         case .blue: return MyColor.getColor(123, 215, 245)
         case .blue_90: return MyColor.getColor(230, 123, 215, 0.9)
+
+        case .chat_blue: return MyColor.getColor(36, 145, 255)
+        case .chat_blue_55: return MyColor.getColor(36, 145, 255, 0.55)
+
         case .gray: return MyColor.getColor(31, 231, 238, 0.95)
         case .red: return MyColor.getColor(255, 51, 51)
 
@@ -145,6 +152,10 @@ enum ColorList {
         case .blue_1: return MyColor.getColor(118, 207, 255)
         case .blue: return MyColor.getColor(123, 215, 245)
         case .blue_90: return MyColor.getColor(230, 123, 215, 0.9)
+
+        case .chat_blue: return MyColor.getColor(36, 145, 255)
+        case .chat_blue_55: return MyColor.getColor(36, 145, 255, 0.55)
+
         case .gray: return MyColor.getColor(31, 231, 238, 0.95)
         case .red: return MyColor.getColor(255, 51, 51)
 

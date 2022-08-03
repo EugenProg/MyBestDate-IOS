@@ -55,6 +55,10 @@ struct ChatListScreen: View {
                 if mediator.newChats.isEmpty && mediator.previousChats.isEmpty {
                     mediator.getChatList()
                 }
+
+                MainMediator.shared.chatListPage = {
+                    mediator.getChatList()
+                }
             }
     }
 }

@@ -67,18 +67,18 @@ struct AnotherProfileScreen: View {
                     AnotherProfileImageLineView(imagesList: $mediator.imageList) { image in
 
                     }
-                    .padding(.init(top: 0, leading: 0, bottom: 85, trailing: 0))
+                    .padding(.init(top: 0, leading: 0, bottom: 100, trailing: 0))
                 }
             }.padding(.init(top: 0, leading: 0, bottom: 80, trailing: 0))
                 .edgesIgnoringSafeArea(.top)
 
-            AnotherProfileNavigationPanelView {
+            AnotherProfileNavigationPanelView(isLiked: $mediator.mainLiked) {
                 ChatMediator.shared.setUser(user: mediator.user)
                 store.dispatch(action: .navigate(screen: .CHAT))
             } likeClick: {
-                store.dispatch(action: .show(message: "like"))
+                mediator.likePhoto(id: mediator.mainPhoto.id)
             } createClick: {
-                store.dispatch(action: .show(message: "create"))
+               // store.dispatch(action: .show(message: "create"))
             }.zIndex(15)
 
         }.frame(width: UIScreen.main.bounds.width)

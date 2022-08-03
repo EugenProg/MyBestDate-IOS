@@ -13,6 +13,7 @@ struct ImagePicker: UIViewControllerRepresentable {
     var sourceType: UIImagePickerController.SourceType = .photoLibrary
     @Environment(\.presentationMode) var presentationMode
     var isSelectAction: (UIImage) -> Void
+    var isClosedAction: (() -> Void)? = nil
     
 
     func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
@@ -44,6 +45,13 @@ final class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigation
             parent.isSelectAction(image)
         }
 
+        parent.presentationMode.wrappedValue.dismiss()
+    }
+
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        if parent.isClosedAction != nil {
+            parent.isClosedAction!()
+        }
         parent.presentationMode.wrappedValue.dismiss()
     }
 }

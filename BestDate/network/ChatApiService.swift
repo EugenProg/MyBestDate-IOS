@@ -80,7 +80,7 @@ class ChatApiService {
         task.resume()
     }
 
-    func sendMessage(userId: Int, parentId: Int?, message: String, completion: @escaping (Bool) -> Void) {
+    func sendMessage(userId: Int, parentId: Int?, message: String, completion: @escaping (Bool, Message) -> Void) {
         var request = CoreApiTypes.sendMessage.getRequest(withAuth: true)
 
         let data = try! encoder.encode(SendMessageRequest(recipient_id: userId, parent_id: parentId, text: message))
@@ -90,11 +90,27 @@ class ChatApiService {
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             NetworkLogger.printLog(response: response)
-            if let data = data, let response = try? JSONDecoder().decode(BaseResponse.self, from: data) {
+            if let data = data, let response = try? JSONDecoder().decode(SendMessageResponse.self, from: data) {
                 NetworkLogger.printLog(data: data)
-                completion(response.success)
+                completion(response.success, response.data ?? Message())
             } else {
-                completion(false)
+                completion(false, Message())
+            }
+        }
+
+        task.resume()
+    }
+
+    func getChatMessages(userId: Int, completion: @escaping (Bool, [Message]) -> Void) {
+        let request = CoreApiTypes.getChatMessages.getRequest(path: userId.toString(), withAuth: true)
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            NetworkLogger.printLog(response: response)
+            if let data = data, let response = try? JSONDecoder().decode(GetChatMessagesResponse.self, from: data) {
+                NetworkLogger.printLog(data: data)
+                completion(response.success, response.data)
+            } else {
+                completion(false, [])
             }
         }
 

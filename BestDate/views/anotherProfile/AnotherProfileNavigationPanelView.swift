@@ -9,6 +9,8 @@ import SwiftUI
 
 struct AnotherProfileNavigationPanelView: View {
     @EnvironmentObject var store: Store
+    @Binding var isLiked: Bool
+    @State var showProcess: Bool = false
 
     var messageClick: () -> Void
     var likeClick: () -> Void
@@ -56,13 +58,26 @@ struct AnotherProfileNavigationPanelView: View {
                         }
 
                         Button(action: {
-                            withAnimation { likeClick() }
+                            if !isLiked {
+                                withAnimation {
+                                    likeClick()
+                                    showProcess = true
+                                }
+                            }
                         }) {
-                            buttonContent(bg: "ic_button_bg_small", image: "ic_like", size: 62)
+                            buttonContent(bg: "ic_button_bg_small", image: isLiked ? "ic_is_liked" : "ic_like", size: 62)
                         }
                     }.padding(.init(top: 0, leading: 0, bottom: 30, trailing: 0))
                 }
                     .edgesIgnoringSafeArea(.bottom)
+
+                if showProcess {
+                    let leftPadding = (UIScreen.main.bounds.width / 2) + 43
+                    let rightPadding = UIScreen.main.bounds.width - 130 - leftPadding
+                    LottieView(name: "love_burst", loopMode: .playOnce)
+                        .frame(width: 130, height: 130)
+                        .padding(.init(top: 35, leading: leftPadding, bottom: 0, trailing: rightPadding))
+                }
             }.frame(width: UIScreen.main.bounds.width, height: 130)
                 .background(ColorList.main_90.color)
                 .padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight, trailing: 0))

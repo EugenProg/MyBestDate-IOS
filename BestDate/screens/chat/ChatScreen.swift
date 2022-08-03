@@ -10,6 +10,12 @@ import SwiftUI
 struct ChatScreen: View {
     @EnvironmentObject var store: Store
     @ObservedObject var mediator = ChatMediator.shared
+    @State var sendTextProcess: Bool = false
+    @State var sendImageProcess: Bool = false
+    @State var translateProcess: Bool = false
+
+    @State var inputText: String = ""
+    @State var isShowingPhotoLibrary = false
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -17,15 +23,23 @@ struct ChatScreen: View {
                 HStack {
                     BackButton(style: .white) {
                         AnotherProfileMediator.shared.setUser(user: mediator.user)
+                        ChatListMediator.shared.getChatList()
+                        mediator.messages.removeAll()
                         store.dispatch(action: .navigationBack)
                     }
 
                     Spacer()
 
-                    VStack {
+                    VStack(alignment: .trailing, spacing: 2) {
                         Text(mediator.user.name ?? "NONAME")
                             .foregroundColor(ColorList.white.color)
                             .font(MyFont.getFont(.BOLD, 18))
+
+                        let visitTime = mediator.user.last_online_at?.toDate().getVisitPeriod() ?? ""
+
+                        Text((mediator.user.is_online ?? false) ? "Online" : "Last visit \(visitTime)")
+                            .foregroundColor((mediator.user.is_online ?? false) ? ColorList.green.color : ColorList.white_80.color)
+                            .font(MyFont.getFont(.NORMAL, 14))
                     }.padding(.init(top: 0, leading: 5, bottom: 0, trailing: 18))
 
                     ZStack {
@@ -48,7 +62,7 @@ struct ChatScreen: View {
                             goToUserProfile()
                         }
 
-                }.frame(height: 60)
+                }.frame(height: 55)
                     .padding(.init(top: 16, leading: 32, bottom: 16, trailing: 32))
 
                 Rectangle()
@@ -57,24 +71,32 @@ struct ChatScreen: View {
             }
             .background(ColorList.main.color)
 
-            ScrollView(.vertical, showsIndicators: true) {
-                ForEach(0...15, id: \.self) {_ in
-                    RoundedRectangle(cornerRadius: 28)
-                        .fill(ColorList.white.color)
-                        .frame(height: 50)
-                        .padding(.init(top: 5, leading: 18, bottom: 5, trailing: 18))
+            ScrollView(.vertical, showsIndicators: false) {
+                MessageListView(messageList: $mediator.messages) { item in
+                    mediator.selectedMessage = item.message
+                    store.dispatch(action: .showBottomSheet(view: .CHAT_ACTIONS))
                 }
-            }.padding(.init(top: 94, leading: 0, bottom: store.state.statusBarHeight + 60, trailing: 0))
+                    .padding(.init(top: 6, leading: 0, bottom: 16, trailing: 0))
+            }.padding(.init(top: store.state.statusBarHeight + 85, leading: 0, bottom: 94, trailing: 0))
+                .rotationEffect(Angle(degrees: 180))
 
-            ChatBottomView(
+            ChatBottomView(text: $inputText,
+                           sendTextProcess: $sendTextProcess,
+                           sendImageProcess: $sendImageProcess,
+                           translateProcess: $translateProcess,
                 loadImageAction: {
-
+                    withAnimation { isShowingPhotoLibrary.toggle() }
                 },
-                translateAction: {
-
+                translateAction: { text in
+                    translateProcess.toggle()
                 },
-                sendAction: {
-                    
+                sendAction: { text in
+                    mediator.sendMessage(message: text) { success in
+                        DispatchQueue.main.async {
+                            sendTextProcess.toggle()
+                            if success { inputText = "" }
+                        }
+                    }
                 })
                 .padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight, trailing: 0))
                 .edgesIgnoringSafeArea(.bottom)
@@ -82,6 +104,18 @@ struct ChatScreen: View {
         .onAppear {
             store.dispatch(action:
                     .setScreenColors(status: ColorList.main.color, style: .lightContent))
+        }
+        .sheet(isPresented: $isShowingPhotoLibrary) {
+            ImagePicker(sourceType: .photoLibrary,
+                        isSelectAction: { image in
+                mediator.sendImageMessage(image: image) { _ in
+                    DispatchQueue.main.async {
+                        sendImageProcess.toggle()
+                    }
+                }
+            }) {
+                sendImageProcess.toggle()
+            }
         }
     }
 

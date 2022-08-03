@@ -29,9 +29,7 @@ struct MainScreen: View {
                 Spacer()
                 BottomMainNavigationView(currentScreen: $mediator.currentScreen, hasNewMessages: $mediator.hasNewMessages, hasNewGuests: $mediator.hasNewGuests) { type in
                     mediator.currentScreen = type
-                    if type == .TOP_50 && !DuelMediator.shared.hasADuelAction {
-                        DuelMediator.shared.getVotePhotos { _ in }
-                    }
+                    mediator.selectAction(type: type)
                 }
             }
         }.background(ColorList.main.color.edgesIgnoringSafeArea(.bottom))

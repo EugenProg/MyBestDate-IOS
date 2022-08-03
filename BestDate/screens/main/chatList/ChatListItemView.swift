@@ -39,7 +39,7 @@ struct ChatListItemView: View {
                         .foregroundColor(type.nameColor)
                         .font(MyFont.getFont(.BOLD, 20))
 
-                    Text(item.last_message?.text ?? "Tell me how you are and how was your day")
+                    Text(item.last_message?.text ?? "")
                         .foregroundColor(type.messageColor)
                         .font(MyFont.getFont(.NORMAL, 18))
                         .lineLimit(1)

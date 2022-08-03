@@ -19,8 +19,11 @@ class ChatListMediator: ObservableObject {
                 if success {
                     self.newChats.removeAll()
                     self.previousChats.removeAll()
-                    for chat in chatList {
-                        if chat.last_message == nil {
+                    for index in chatList.indices {
+                        var chat = chatList[index]
+                        chat.id = index
+                        if chat.last_message?.read_at == nil &&
+                            chat.last_message?.sender_id != MainMediator.shared.user.id {
                             self.newChats.append(chat)
                         } else {
                             self.previousChats.append(chat)

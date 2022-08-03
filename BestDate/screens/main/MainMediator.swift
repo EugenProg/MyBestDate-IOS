@@ -17,6 +17,12 @@ class MainMediator: ObservableObject {
     @Published var user: UserInfo = UserInfo()
     @Published var mainPhoto: ProfileImage? = nil
 
+    var searchPage: (() -> Void)? = nil
+    var matchPage: (() -> Void)? = nil
+    var chatListPage: (() -> Void)? = nil
+    var duelPage: (() -> Void)? = nil
+    var guestsPage: (() -> Void)? = nil
+
     func setUserInfo(user: UserInfo) {
         hasNewMessages = (user.new_likes ?? 0) > 0
         hasNewGuests = (user.new_guests ?? 0) > 0
@@ -31,6 +37,16 @@ class MainMediator: ObservableObject {
         self.hasNewGuests = false
         self.hasNewMessages = false
         self.currentScreen = .SEARCH
+    }
+
+    func selectAction(type: MainScreensType) {
+        switch type {
+        case .SEARCH: if searchPage != nil { searchPage!() }
+        case .MATCHES: if matchPage != nil { matchPage!() }
+        case .CHAT_LIST: if chatListPage != nil { chatListPage!() }
+        case .TOP_50: if duelPage != nil { duelPage!() }
+        case .GUESTS: if guestsPage != nil { guestsPage!() }
+        }
     }
 }
 

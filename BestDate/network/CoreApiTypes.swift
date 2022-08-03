@@ -37,6 +37,7 @@ enum CoreApiTypes {
 
     case getChatList
     case deleteChat
+    case getChatMessages
     case sendMessage
     case updateMessage
     case deleteMessage
@@ -45,7 +46,7 @@ enum CoreApiTypes {
     case setViewedAction
 
     case getUserLikes///
-    case likeAPhoto///
+    case likeAPhoto
 
     case getTopList
     case voteAction
@@ -89,6 +90,7 @@ enum CoreApiTypes {
         case .refreshToken: return "refresh-token"
         case .getChatList: return "chats"
         case .deleteChat: return "chat/"
+        case .getChatMessages: return "chat/"
         case .sendMessage: return "message"
         case .updateMessage: return "message/"
         case .deleteMessage: return "message/"
@@ -134,6 +136,7 @@ enum CoreApiTypes {
         case .refreshToken: return "POST"
         case .getChatList: return "GET"
         case .deleteChat: return "DELETE"
+        case .getChatMessages: return "GET"
         case .sendMessage: return "POST"
         case .updateMessage: return "PUT"
         case .deleteMessage: return "DELETE"

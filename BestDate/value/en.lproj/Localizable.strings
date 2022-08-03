@@ -503,9 +503,10 @@
 "SS" = "South Sudan";
 "JM" = "Jamaica";
 "JP" = "Japan";
-"" = "";
-"" = "";
-"" = "";
+
+"reply" = "Reply";
+"delete" = "Delete";
+"edit" = "Edit";
 "" = "";
 "" = "";
 "" = "";

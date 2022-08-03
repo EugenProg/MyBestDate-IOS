@@ -22,6 +22,7 @@ struct TopListItemView: View {
 
                 ZStack {
                     Image("bg_top_rectangle")
+                        .resizable()
 
                     HStack(spacing: 1) {
                         Image(getTopStarsIcon())

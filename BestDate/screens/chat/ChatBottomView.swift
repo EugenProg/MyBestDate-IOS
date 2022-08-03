@@ -9,19 +9,30 @@ import SwiftUI
 
 struct ChatBottomView: View {
 
-    @State var text: String = ""
+    @Binding var text: String
+    @Binding var sendTextProcess: Bool
+    @Binding var sendImageProcess: Bool
+    @Binding var translateProcess: Bool
     var loadImageAction: () -> Void
-    var translateAction: () -> Void
-    var sendAction: () -> Void
+    var translateAction: (String) -> Void
+    var sendAction: (String) -> Void
     @State var additionalHeight: CGFloat = 0
 
-    init(loadImageAction: @escaping () -> Void,
-         translateAction: @escaping () -> Void,
-         sendAction: @escaping () -> Void) {
+    init(text: Binding<String>,
+         sendTextProcess: Binding<Bool>,
+         sendImageProcess: Binding<Bool>,
+         translateProcess: Binding<Bool>,
+         loadImageAction: @escaping () -> Void,
+         translateAction: @escaping (String) -> Void,
+         sendAction: @escaping (String) -> Void) {
         UITextView.appearance().backgroundColor = .clear
+        self._text = text
         self.loadImageAction = loadImageAction
         self.translateAction = translateAction
         self.sendAction = sendAction
+        self._sendTextProcess = sendTextProcess
+        self._sendImageProcess = sendImageProcess
+        self._translateProcess = translateProcess
     }
 
     var body: some View {
@@ -43,10 +54,22 @@ struct ChatBottomView: View {
 
                     HStack(spacing: 0) {
                         Button(action: {
-                            withAnimation { loadImageAction() }
+                            if !sendImageProcess && !translateProcess && !sendTextProcess {
+                                withAnimation {
+                                    sendImageProcess.toggle()
+                                    loadImageAction()
+                                }
+                            }
                         }) {
-                            Image("ic_picture")
-                                .padding(.init(top: 10, leading: 22, bottom: 10, trailing: 16))
+                            if sendImageProcess {
+                                ProgressView()
+                                    .tint(ColorList.white.color)
+                                    .frame(width: 25, height: 25)
+                                    .padding(.init(top: 10, leading: 20, bottom: 10, trailing: 13))
+                            } else {
+                                Image("ic_picture")
+                                    .padding(.init(top: 10, leading: 22, bottom: 10, trailing: 16))
+                            }
                         }
 
                         Rectangle()
@@ -64,28 +87,51 @@ struct ChatBottomView: View {
                             .foregroundColor(ColorList.white.color)
                             .autocapitalization(.sentences)
                             .font(MyFont.getFont(.BOLD, 18))
-                            .frame(height: 30 + additionalHeight)
-                            .padding(.init(top: 9, leading: 8, bottom: 3, trailing: 5))
+                            .frame(height: 40 + additionalHeight)
+                            .padding(.init(top: 9, leading: 8, bottom: 8, trailing: 3))
                             .onChange(of: text) { _ in
                                 calculateSize()
                             }
                         }
                         Button(action: {
-                            withAnimation { translateAction() }
+                            if !text.isEmpty && !translateProcess && !sendImageProcess && !sendTextProcess {
+                                withAnimation {
+                                    translateProcess.toggle()
+                                    translateAction(text)
+                                }
+                            }
                         }) {
-                            Image("ic_translate")
-                                .padding(.init(top: 10, leading: 8, bottom: 10, trailing: 9))
+                            if translateProcess {
+                                ProgressView()
+                                    .tint(ColorList.white.color)
+                                    .frame(width: 25, height: 25)
+                                    .padding(.init(top: 10, leading: 6, bottom: 10, trailing: 7))
+                            } else {
+                                Image("ic_translate")
+                                    .padding(.init(top: 10, leading: 8, bottom: 10, trailing: 9))
+                            }
                         }
 
                         Button(action: {
-                            withAnimation { sendAction() }
+                            if !text.isEmpty && !sendTextProcess && !translateProcess && !sendImageProcess {
+                                withAnimation {
+                                    sendTextProcess.toggle()
+                                    sendAction(text)
+                                }
+                            }
                         }) {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 17)
                                     .fill(MyColor.getColor(72, 97, 105))
 
-                                Image("ic_send")
-                                    .padding(.init(top: 3, leading: 0, bottom: 0, trailing: 3))
+                                if sendTextProcess {
+                                    ProgressView()
+                                        .tint(ColorList.white.color)
+                                        .frame(width: 25, height: 25)
+                                } else {
+                                    Image("ic_send")
+                                        .padding(.init(top: 3, leading: 0, bottom: 0, trailing: 3))
+                                }
                             }.frame(width: 33, height: 33)
                                 .padding(.init(top: 8, leading: 9, bottom: 8, trailing: 11))
                         }
@@ -100,7 +146,7 @@ struct ChatBottomView: View {
     private func calculateSize() {
         let size = self.text.boundingRect(
                     with: CGSize(
-                        width: UIScreen.main.bounds.width - 185,
+                        width: UIScreen.main.bounds.width - 189,
                         height: .greatestFiniteMagnitude
                     ),
                     options: .usesLineFragmentOrigin,

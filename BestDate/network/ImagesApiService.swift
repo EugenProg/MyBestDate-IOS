@@ -12,7 +12,6 @@ class ImagesApiService {
     static let shared = ImagesApiService()
     private let encoder = JSONEncoder()
 
-
     func saveProfileImage(image: UIImage, completion: @escaping (Bool, ProfileImage) -> Void) {
         var request = CoreApiTypes.saveImage.getRequest(withAuth: true)
 
@@ -58,6 +57,47 @@ class ImagesApiService {
         var request = CoreApiTypes.updateImageStatus.getRequest(path: id.toString(), withAuth: true)
 
         let data = try! encoder.encode(requestData)
+        encoder.outputFormatting = .prettyPrinted
+        request.httpBody = data
+
+        let task = URLSession.shared.dataTask(with: request) {data, response, error in
+            NetworkLogger.printLog(response: response)
+            if let data = data, let response = try? JSONDecoder().decode(BaseResponse.self, from: data) {
+                NetworkLogger.printLog(data: data)
+                completion(response.success)
+            } else {
+                completion(false)
+            }
+        }
+
+        task.resume()
+    }
+
+    func sendImageMessage(image: UIImage, completion: @escaping (Bool, Message) -> Void) {
+        var request = CoreApiTypes.sendMessage.getRequest(withAuth: true)
+
+        let media = Media(withImage: image, forKey: "media")
+        let boundary = NSUUID().uuidString
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        request.httpBody = createDataBody(media: media, boundary: boundary)
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            NetworkLogger.printLog(response: response)
+            if let data = data, let response = try? JSONDecoder().decode(SendMessageResponse.self, from: data) {
+                NetworkLogger.printLog(data: data)
+                completion(response.success, response.data ?? Message())
+            } else {
+                completion(false, Message())
+            }
+        }
+
+        task.resume()
+    }
+
+    func likeAImage(photoId: Int, completion: @escaping (Bool) -> Void) {
+        var request = CoreApiTypes.likeAPhoto.getRequest(withAuth: true)
+
+        let data = try! encoder.encode(PhotoLikeRequest(photo_id: photoId))
         encoder.outputFormatting = .prettyPrinted
         request.httpBody = data
 

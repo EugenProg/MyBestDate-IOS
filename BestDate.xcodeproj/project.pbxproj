@@ -166,6 +166,12 @@
 		4CD34F4C2891B84B00504396 /* AddImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F4B2891B84B00504396 /* AddImageButton.swift */; };
 		4CD34F4E2892FEA000504396 /* NoDuelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F4D2892FE9F00504396 /* NoDuelData.swift */; };
 		4CD34F50289303EC00504396 /* ToTopListButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F4F289303EC00504396 /* ToTopListButton.swift */; };
+		4CD34F5228950D8900504396 /* MessageListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F5128950D8500504396 /* MessageListView.swift */; };
+		4CD34F552895127200504396 /* MyTextMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F542895127100504396 /* MyTextMessageView.swift */; };
+		4CD34F5728951B7C00504396 /* CompanionTextMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F5628951B7B00504396 /* CompanionTextMessageView.swift */; };
+		4CD34F592895A63F00504396 /* DateBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F582895A63E00504396 /* DateBlockView.swift */; };
+		4CD34F5B289689B700504396 /* ChatUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F5A289689B600504396 /* ChatUtils.swift */; };
+		4CD34F5E289698EC00504396 /* ChatActionsBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F5D289698EC00504396 /* ChatActionsBottomSheet.swift */; };
 		4CD3F1D6288BA9E600DF8755 /* DuelCompareItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3F1D5288BA9E600DF8755 /* DuelCompareItem.swift */; };
 		4CD3F1D8288BAC9B00DF8755 /* DuelProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3F1D7288BAC9B00DF8755 /* DuelProgressView.swift */; };
 		4CD3F1DA288BC9F100DF8755 /* TopApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3F1D9288BC9F100DF8755 /* TopApiService.swift */; };
@@ -352,6 +358,12 @@
 		4CD34F4B2891B84B00504396 /* AddImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageButton.swift; sourceTree = "<group>"; };
 		4CD34F4D2892FE9F00504396 /* NoDuelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDuelData.swift; sourceTree = "<group>"; };
 		4CD34F4F289303EC00504396 /* ToTopListButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToTopListButton.swift; sourceTree = "<group>"; };
+		4CD34F5128950D8500504396 /* MessageListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListView.swift; sourceTree = "<group>"; };
+		4CD34F542895127100504396 /* MyTextMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTextMessageView.swift; sourceTree = "<group>"; };
+		4CD34F5628951B7B00504396 /* CompanionTextMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanionTextMessageView.swift; sourceTree = "<group>"; };
+		4CD34F582895A63E00504396 /* DateBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateBlockView.swift; sourceTree = "<group>"; };
+		4CD34F5A289689B600504396 /* ChatUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUtils.swift; sourceTree = "<group>"; };
+		4CD34F5D289698EC00504396 /* ChatActionsBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatActionsBottomSheet.swift; sourceTree = "<group>"; };
 		4CD3F1D5288BA9E600DF8755 /* DuelCompareItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuelCompareItem.swift; sourceTree = "<group>"; };
 		4CD3F1D7288BAC9B00DF8755 /* DuelProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuelProgressView.swift; sourceTree = "<group>"; };
 		4CD3F1D9288BC9F100DF8755 /* TopApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopApiService.swift; sourceTree = "<group>"; };
@@ -419,6 +431,7 @@
 				4C5C86D92874AA5B006DE024 /* StringUtils.swift */,
 				4C5C86E028758F0E006DE024 /* FaceDetectorUtil.swift */,
 				4CB9FFA028842FC6004F1BF6 /* DateUtils.swift */,
+				4CD34F5A289689B600504396 /* ChatUtils.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -569,6 +582,7 @@
 		4C3D27D12853A62700F8FD09 /* bottomSheet */ = {
 			isa = PBXGroup;
 			children = (
+				4CD34F5C289698CE00504396 /* chat */,
 				4CB9FF66287B31E8004F1BF6 /* mainLocation */,
 				4CB9FF65287B31D4004F1BF6 /* mainOnline */,
 				4C022A49285A465E0043E49D /* PhotoSettingsSheet */,
@@ -743,7 +757,7 @@
 			isa = PBXGroup;
 			children = (
 				4CB9FF49287746B0004F1BF6 /* top */,
-				4CD34F4028903E4100504396 /* AnotherProfileQuestionnaire */,
+				4CD34F4028903E4100504396 /* anotherProfileQuestionnaire */,
 				4CD34F37288D2C9800504396 /* chat */,
 				4C1459062857926700558B6B /* SplashScreen.storyboard */,
 				4C1459022856627E00558B6B /* GeolocationScreen.swift */,
@@ -767,6 +781,7 @@
 		4C8E7DAA284D24C600D6E58D /* views */ = {
 			isa = PBXGroup;
 			children = (
+				4CD34F532895125600504396 /* chat */,
 				4CF02857288B0D52002C59EE /* duel */,
 				4CF028412889BAF5002C59EE /* top */,
 				4CB9FFA2288453B2004F1BF6 /* anotherProfile */,
@@ -994,18 +1009,37 @@
 				4CD34F38288D2CAD00504396 /* ChatScreen.swift */,
 				4CD34F3A288D2CBE00504396 /* ChatMediator.swift */,
 				4CD34F3C288D730300504396 /* ChatBottomView.swift */,
+				4CD34F5128950D8500504396 /* MessageListView.swift */,
 			);
 			path = chat;
 			sourceTree = "<group>";
 		};
-		4CD34F4028903E4100504396 /* AnotherProfileQuestionnaire */ = {
+		4CD34F4028903E4100504396 /* anotherProfileQuestionnaire */ = {
 			isa = PBXGroup;
 			children = (
 				4CD34F4128903E7600504396 /* AnotherProfileQuestionnaireScreen.swift */,
 				4CD34F4328903E9500504396 /* AnotherProfileQuestionnaireMediator.swift */,
 				4CD34F45289050C100504396 /* QuestionnaireParagraphView.swift */,
 			);
-			path = AnotherProfileQuestionnaire;
+			path = anotherProfileQuestionnaire;
+			sourceTree = "<group>";
+		};
+		4CD34F532895125600504396 /* chat */ = {
+			isa = PBXGroup;
+			children = (
+				4CD34F542895127100504396 /* MyTextMessageView.swift */,
+				4CD34F5628951B7B00504396 /* CompanionTextMessageView.swift */,
+				4CD34F582895A63E00504396 /* DateBlockView.swift */,
+			);
+			path = chat;
+			sourceTree = "<group>";
+		};
+		4CD34F5C289698CE00504396 /* chat */ = {
+			isa = PBXGroup;
+			children = (
+				4CD34F5D289698EC00504396 /* ChatActionsBottomSheet.swift */,
+			);
+			path = chat;
 			sourceTree = "<group>";
 		};
 		4CD3F1DB288BCBC400DF8755 /* myDuels */ = {
@@ -1247,6 +1281,7 @@
 				4CD34F4228903E7600504396 /* AnotherProfileQuestionnaireScreen.swift in Sources */,
 				4C8E7DA2284D222200D6E58D /* Action.swift in Sources */,
 				4C3D27B9285110FA00F8FD09 /* StandardButton.swift in Sources */,
+				4CD34F5E289698EC00504396 /* ChatActionsBottomSheet.swift in Sources */,
 				4CF028472889CFBF002C59EE /* TopDropDownButtonView.swift in Sources */,
 				4C5C86BC2871A5B4006DE024 /* CitySearchMediator.swift in Sources */,
 				4CD34F4E2892FEA000504396 /* NoDuelData.swift in Sources */,
@@ -1270,6 +1305,7 @@
 				4C022A45285A38920043E49D /* SwichSelectorView.swift in Sources */,
 				4CDD3B9B2888608D00793466 /* NoDataView.swift in Sources */,
 				4C5C86C728734EC8006DE024 /* ConfirmationView.swift in Sources */,
+				4CD34F552895127200504396 /* MyTextMessageView.swift in Sources */,
 				4C1458F028547DE600558B6B /* BaseBottomSheet.swift in Sources */,
 				4CB9FF5E287AAD7D004F1BF6 /* MainHeaderImage.swift in Sources */,
 				4CD3F1DF288BCE5900DF8755 /* MyDuelsMediator.swift in Sources */,
@@ -1286,6 +1322,7 @@
 				4CB9FF8D2882D2AF004F1BF6 /* ProfileMediator.swift in Sources */,
 				4C8E7DA6284D233100D6E58D /* Reducer.swift in Sources */,
 				4C0E71F1284FC9A6004099D4 /* OnboardSecondScreen.swift in Sources */,
+				4CD34F592895A63F00504396 /* DateBlockView.swift in Sources */,
 				4CB9FF46287743D9004F1BF6 /* MainMediator.swift in Sources */,
 				4C1B7C2F286CD8C4000DB5D4 /* SeekBarView.swift in Sources */,
 				4C1458F528552BE500558B6B /* RegistrationMediator.swift in Sources */,
@@ -1339,6 +1376,7 @@
 				4CD3F1DD288BCBE300DF8755 /* MyDuelsScreen.swift in Sources */,
 				4C0E71ED284FB68E004099D4 /* CirclePointButton.swift in Sources */,
 				4C5C86E82875FB57006DE024 /* AsyncImageView.swift in Sources */,
+				4CD34F5B289689B700504396 /* ChatUtils.swift in Sources */,
 				4CF02859288B0D71002C59EE /* DuelCoinsView.swift in Sources */,
 				4CF028492889D827002C59EE /* TopPagerToggle.swift in Sources */,
 				4C3D27CC28539C8800F8FD09 /* RegistrationContinueScreen.swift in Sources */,
@@ -1357,6 +1395,7 @@
 				4CF0284F288AF0C3002C59EE /* TopListItemView.swift in Sources */,
 				4C5C86B5287174DD006DE024 /* RangeBarView.swift in Sources */,
 				4CB9FF9F28842D87004F1BF6 /* AnotherProfileMediator.swift in Sources */,
+				4CD34F5228950D8900504396 /* MessageListView.swift in Sources */,
 				4C022A4D285B7E470043E49D /* PhotoEditorMediator.swift in Sources */,
 				4C1B7C24286B67CF000DB5D4 /* QuestionnaireSingleSelectBottomSheet.swift in Sources */,
 				4C5C86D42874A546006DE024 /* AuthResponse.swift in Sources */,
@@ -1376,6 +1415,7 @@
 				4C1B7C31286CD8D7000DB5D4 /* SeekBarButtonView.swift in Sources */,
 				4CB9FF7A28808E01004F1BF6 /* LottieView.swift in Sources */,
 				4C5C86B728719F2D006DE024 /* QuestionnaireSearchBotomSheet.swift in Sources */,
+				4CD34F5728951B7C00504396 /* CompanionTextMessageView.swift in Sources */,
 				4CB9FFA128842FC6004F1BF6 /* DateUtils.swift in Sources */,
 				4C022A562864D3370043E49D /* NotCorrectPhotoBottomSheet.swift in Sources */,
 				4CD34F4C2891B84B00504396 /* AddImageButton.swift in Sources */,
@@ -1518,7 +1558,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"BestDate/Preview Content\"";
 				DEVELOPMENT_TEAM = 7869H74LP9;
 				ENABLE_PREVIEWS = YES;
@@ -1557,7 +1597,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"BestDate/Preview Content\"";
 				DEVELOPMENT_TEAM = 7869H74LP9;
 				ENABLE_PREVIEWS = YES;

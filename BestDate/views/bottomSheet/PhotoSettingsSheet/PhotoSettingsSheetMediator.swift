@@ -23,7 +23,7 @@ class PhotoSettingsSheetMediator: ObservableObject {
     }
 
     func updateImageStatus(image: ProfileImage?, completion: @escaping (Bool) -> Void) {
-        ImagesApiService.shared.updateImageStatus(id: image?.id ?? 0, requestData: PhotoStatusUpdateRequest(main: image?.main, top: image?.top, match: image?.match)) { success in
+        ImagesApiService.shared.updateImageStatus(id: image?.id ?? 0, requestData: PhotoStatusUpdateRequest(main: image?.main, top: image?.top)) { success in
             if success {
                 self.updateDataAction()
             }

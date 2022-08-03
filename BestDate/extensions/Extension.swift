@@ -82,27 +82,9 @@ extension Date {
         return formatter.string(from: self)
     }
 
-    func toShortDateString() -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd MMM"
-        return formatter.string(from: self)
-    }
-
     func toServerDate() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
-        return formatter.string(from: self)
-    }
-
-    func getTime() -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "hh:mm"
-        return formatter.string(from: self)
-    }
-
-    func getWeekday() -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "EE"
         return formatter.string(from: self)
     }
 
@@ -147,8 +129,33 @@ extension String {
     func toDate() -> Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.timeZone = TimeZone(abbreviation: "MSK")
         return dateFormatter.date(from: self) ?? Date.now
+    }
+
+    func getDateString() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy"
+        return formatter.string(from: self.toDate())
+    }
+
+    func toShortDateString() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MMM"
+        return formatter.string(from: self.toDate())
+    }
+
+    func getTime() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        return formatter.string(from: self.toDate())
+    }
+
+    func getWeekday() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EE"
+        return formatter.string(from: self.toDate())
     }
 
     func toShortDate() -> Date {
@@ -253,6 +260,56 @@ extension Array where Element == MyDuel {
     }
 }
 
+extension Array where Element == ChatItem {
+    mutating func addAll(list: [Message], clear: Bool? = nil) {
+        if clear == true {
+            self.removeAll()
+        }
+
+        let items = ChatUtils().getChatItemsFromMessages(messageList: list)
+        for item in items {
+            self.append(item)
+        }
+    }
+
+    mutating func add(message: Message) {
+        var messages: [Message] = []
+
+        messages.append(message)
+
+        for item in self {
+            if item.messageType != .date_block {
+                messages.append(item.message ?? Message())
+            }
+        }
+
+        var newItemList: [ChatItem] = []
+        newItemList.addAll(list: messages)
+
+        self = newItemList
+    }
+
+    mutating func delete(id: Int?) {
+        var messages: [Message] = []
+
+        let deletedIndex = self.firstIndex { item in
+            item.message?.id == id
+        }
+        self.remove(at: deletedIndex ?? 0)
+
+        for item in self {
+            if item.messageType != .date_block {
+                messages.append(item.message ?? Message())
+            }
+        }
+
+        var newItemList: [ChatItem] = []
+        newItemList.addAll(list: messages)
+
+        self = newItemList
+    }
+}
+
 extension UserInfo {
     func getMainPhoto() -> ProfileImage? {
         for image in self.photos ?? [] {
@@ -296,6 +353,7 @@ extension UserInfo {
             birthday: self.gender,
             main_photo: self.getMainPhoto(),
             is_online: self.is_online,
+            last_online_at: self.last_online_at,
             occupation: self.questionnaire?.occupation,
             full_questionnaire: self.questionnaire?.isFull(),
             distance: self.distance)
@@ -320,7 +378,8 @@ extension ShortUserInfo {
             name: self.name,
             gender: self.gender,
             birthday: self.birthday,
-            is_online: self.is_online
+            is_online: self.is_online,
+            last_online_at: self.last_online_at
         )
     }
 }
@@ -349,16 +408,17 @@ extension MyDuel {
 
 extension Chat {
     func getLastMessageTime() -> String {
-        let date = self.last_message?.created_at?.toDate() ?? Date.now
+        let createdDate = self.last_message?.created_at
+        let date = createdDate?.toDate() ?? Date.now
         let components = Calendar.current.dateComponents([.day], from: date, to: Date.now)
         let days = components.day ?? 0
 
-        if days > 1 {
-            return date.toShortDateString()
+        if days > 6 {
+            return createdDate?.toShortDateString() ?? date.toString()
         } else if days > 0 {
-            return date.getWeekday()
+            return createdDate?.getWeekday() ?? date.toString()
         } else {
-            return date.getTime()
+            return createdDate?.getTime() ?? date.toString()
         }
     }
 }
