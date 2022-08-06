@@ -70,12 +70,6 @@ struct SearchFilter: Codable {
 }
 
 struct SendMessageRequest: Codable {
-    var recipient_id: Int
-    var parent_id: Int? = nil
-    var text: String
-}
-
-struct UpdateMessageRequest: Codable {
     var text: String
 }
 

@@ -73,8 +73,9 @@ class ImagesApiService {
         task.resume()
     }
 
-    func sendImageMessage(image: UIImage, completion: @escaping (Bool, Message) -> Void) {
-        var request = CoreApiTypes.sendMessage.getRequest(withAuth: true)
+    func sendImageMessage(image: UIImage, userId: Int, parentId: Int?, message: String?, completion: @escaping (Bool, Message) -> Void) {
+        let path = parentId == nil ? userId.toString() : "\(userId)/\(parentId!)"
+        var request = CoreApiTypes.sendMessage.getRequest(path: path, withAuth: true)
 
         let media = Media(withImage: image, forKey: "media")
         let boundary = NSUUID().uuidString
@@ -85,7 +86,13 @@ class ImagesApiService {
             NetworkLogger.printLog(response: response)
             if let data = data, let response = try? JSONDecoder().decode(SendMessageResponse.self, from: data) {
                 NetworkLogger.printLog(data: data)
-                completion(response.success, response.data ?? Message())
+                if message != nil {
+                    ChatApiService.shared.updateMessage(id: userId, message: message ?? "") { success, savedMessage in
+                        completion(success, savedMessage)
+                    }
+                } else {
+                    completion(response.success, response.data ?? Message())
+                }
             } else {
                 completion(false, Message())
             }

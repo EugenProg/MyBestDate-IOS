@@ -11,11 +11,10 @@ struct ChatScreen: View {
     @EnvironmentObject var store: Store
     @ObservedObject var mediator = ChatMediator.shared
     @State var sendTextProcess: Bool = false
-    @State var sendImageProcess: Bool = false
     @State var translateProcess: Bool = false
 
-    @State var inputText: String = ""
     @State var isShowingPhotoLibrary = false
+    @State var additionalHeight: CGFloat = 0
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -77,13 +76,16 @@ struct ChatScreen: View {
                     store.dispatch(action: .showBottomSheet(view: .CHAT_ACTIONS))
                 }
                     .padding(.init(top: 6, leading: 0, bottom: 16, trailing: 0))
-            }.padding(.init(top: store.state.statusBarHeight + 85, leading: 0, bottom: 94, trailing: 0))
+            }.padding(.init(top: store.state.statusBarHeight + (mediator.editMode || mediator.replyMode ? 135 : 85) + additionalHeight, leading: 0, bottom: 90, trailing: 0))
                 .rotationEffect(Angle(degrees: 180))
 
-            ChatBottomView(text: $inputText,
+            ChatBottomView(text: $mediator.inputText,
                            sendTextProcess: $sendTextProcess,
-                           sendImageProcess: $sendImageProcess,
                            translateProcess: $translateProcess,
+                           additionalHeight: $additionalHeight,
+                           editMode: $mediator.editMode,
+                           replyMode: $mediator.replyMode,
+                           selectedMessage: $mediator.selectedMessage,
                 loadImageAction: {
                     withAnimation { isShowingPhotoLibrary.toggle() }
                 },
@@ -91,10 +93,10 @@ struct ChatScreen: View {
                     translateProcess.toggle()
                 },
                 sendAction: { text in
-                    mediator.sendMessage(message: text) { success in
+                    mediator.saveMessage(message: text) { success in
                         DispatchQueue.main.async {
                             sendTextProcess.toggle()
-                            if success { inputText = "" }
+                            if success { mediator.inputText = "" }
                         }
                     }
                 })
@@ -108,14 +110,11 @@ struct ChatScreen: View {
         .sheet(isPresented: $isShowingPhotoLibrary) {
             ImagePicker(sourceType: .photoLibrary,
                         isSelectAction: { image in
-                mediator.sendImageMessage(image: image) { _ in
-                    DispatchQueue.main.async {
-                        sendImageProcess.toggle()
-                    }
-                }
-            }) {
-                sendImageProcess.toggle()
-            }
+                /*let message = inputText.isEmpty ? nil : inputText
+                mediator.sendImageMessage(image: image, message: message) { _ in
+
+                }*/
+            })
         }
     }
 

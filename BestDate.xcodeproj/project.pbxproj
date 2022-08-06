@@ -162,7 +162,6 @@
 		4CD34F4228903E7600504396 /* AnotherProfileQuestionnaireScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F4128903E7600504396 /* AnotherProfileQuestionnaireScreen.swift */; };
 		4CD34F4428903E9500504396 /* AnotherProfileQuestionnaireMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F4328903E9500504396 /* AnotherProfileQuestionnaireMediator.swift */; };
 		4CD34F46289050C100504396 /* QuestionnaireParagraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F45289050C100504396 /* QuestionnaireParagraphView.swift */; };
-		4CD34F4A289072D900504396 /* love_burst.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CD34F48289072D900504396 /* love_burst.json */; };
 		4CD34F4C2891B84B00504396 /* AddImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F4B2891B84B00504396 /* AddImageButton.swift */; };
 		4CD34F4E2892FEA000504396 /* NoDuelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F4D2892FE9F00504396 /* NoDuelData.swift */; };
 		4CD34F50289303EC00504396 /* ToTopListButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F4F289303EC00504396 /* ToTopListButton.swift */; };
@@ -172,6 +171,10 @@
 		4CD34F592895A63F00504396 /* DateBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F582895A63E00504396 /* DateBlockView.swift */; };
 		4CD34F5B289689B700504396 /* ChatUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F5A289689B600504396 /* ChatUtils.swift */; };
 		4CD34F5E289698EC00504396 /* ChatActionsBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F5D289698EC00504396 /* ChatActionsBottomSheet.swift */; };
+		4CD34F64289C22C800504396 /* love_burst_red.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CD34F62289C22C400504396 /* love_burst_red.json */; };
+		4CD34F65289C22C800504396 /* love_burst_pink.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CD34F63289C22C700504396 /* love_burst_pink.json */; };
+		4CD34F67289C39C200504396 /* MyTextMessageWithParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F66289C39C200504396 /* MyTextMessageWithParentView.swift */; };
+		4CD34F69289D885100504396 /* CompanionTextMessageWithParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD34F68289D885000504396 /* CompanionTextMessageWithParentView.swift */; };
 		4CD3F1D6288BA9E600DF8755 /* DuelCompareItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3F1D5288BA9E600DF8755 /* DuelCompareItem.swift */; };
 		4CD3F1D8288BAC9B00DF8755 /* DuelProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3F1D7288BAC9B00DF8755 /* DuelProgressView.swift */; };
 		4CD3F1DA288BC9F100DF8755 /* TopApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD3F1D9288BC9F100DF8755 /* TopApiService.swift */; };
@@ -354,7 +357,6 @@
 		4CD34F4128903E7600504396 /* AnotherProfileQuestionnaireScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnotherProfileQuestionnaireScreen.swift; sourceTree = "<group>"; };
 		4CD34F4328903E9500504396 /* AnotherProfileQuestionnaireMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnotherProfileQuestionnaireMediator.swift; sourceTree = "<group>"; };
 		4CD34F45289050C100504396 /* QuestionnaireParagraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireParagraphView.swift; sourceTree = "<group>"; };
-		4CD34F48289072D900504396 /* love_burst.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = love_burst.json; sourceTree = "<group>"; };
 		4CD34F4B2891B84B00504396 /* AddImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageButton.swift; sourceTree = "<group>"; };
 		4CD34F4D2892FE9F00504396 /* NoDuelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDuelData.swift; sourceTree = "<group>"; };
 		4CD34F4F289303EC00504396 /* ToTopListButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToTopListButton.swift; sourceTree = "<group>"; };
@@ -364,6 +366,10 @@
 		4CD34F582895A63E00504396 /* DateBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateBlockView.swift; sourceTree = "<group>"; };
 		4CD34F5A289689B600504396 /* ChatUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUtils.swift; sourceTree = "<group>"; };
 		4CD34F5D289698EC00504396 /* ChatActionsBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatActionsBottomSheet.swift; sourceTree = "<group>"; };
+		4CD34F62289C22C400504396 /* love_burst_red.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = love_burst_red.json; sourceTree = "<group>"; };
+		4CD34F63289C22C700504396 /* love_burst_pink.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = love_burst_pink.json; sourceTree = "<group>"; };
+		4CD34F66289C39C200504396 /* MyTextMessageWithParentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTextMessageWithParentView.swift; sourceTree = "<group>"; };
+		4CD34F68289D885000504396 /* CompanionTextMessageWithParentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanionTextMessageWithParentView.swift; sourceTree = "<group>"; };
 		4CD3F1D5288BA9E600DF8755 /* DuelCompareItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuelCompareItem.swift; sourceTree = "<group>"; };
 		4CD3F1D7288BAC9B00DF8755 /* DuelProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuelProgressView.swift; sourceTree = "<group>"; };
 		4CD3F1D9288BC9F100DF8755 /* TopApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopApiService.swift; sourceTree = "<group>"; };
@@ -953,7 +959,8 @@
 		4CB9FF7628808D6E004F1BF6 /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
-				4CD34F48289072D900504396 /* love_burst.json */,
+				4CD34F63289C22C700504396 /* love_burst_pink.json */,
+				4CD34F62289C22C400504396 /* love_burst_red.json */,
 				4CDD3B982888601000793466 /* no_data.json */,
 				4CB9FF83288094C0004F1BF6 /* heart.json */,
 				4CB9FF7928808E01004F1BF6 /* LottieView.swift */,
@@ -1030,6 +1037,8 @@
 				4CD34F542895127100504396 /* MyTextMessageView.swift */,
 				4CD34F5628951B7B00504396 /* CompanionTextMessageView.swift */,
 				4CD34F582895A63E00504396 /* DateBlockView.swift */,
+				4CD34F66289C39C200504396 /* MyTextMessageWithParentView.swift */,
+				4CD34F68289D885000504396 /* CompanionTextMessageWithParentView.swift */,
 			);
 			path = chat;
 			sourceTree = "<group>";
@@ -1164,8 +1173,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4CD34F4A289072D900504396 /* love_burst.json in Resources */,
 				4CDD3B992888601000793466 /* no_data.json in Resources */,
+				4CD34F65289C22C800504396 /* love_burst_pink.json in Resources */,
 				4C8E7D88284CC94900D6E58D /* Preview Assets.xcassets in Resources */,
 				4C0E71E6284FB14A004099D4 /* Localizable.strings in Resources */,
 				4C0E71E1284FAAF3004099D4 /* SansPro_regular.otf in Resources */,
@@ -1173,6 +1182,7 @@
 				4C8E7D85284CC94900D6E58D /* Assets.xcassets in Resources */,
 				4C0E71E0284FAAF3004099D4 /* SansPro_italic.otf in Resources */,
 				4CB9FF84288094C0004F1BF6 /* heart.json in Resources */,
+				4CD34F64289C22C800504396 /* love_burst_red.json in Resources */,
 				4C1459072857926700558B6B /* SplashScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1259,6 +1269,7 @@
 				4C1458FF285661EA00558B6B /* PassRecoveryOTPScreen.swift in Sources */,
 				4C1458F72855C8E900558B6B /* DateSelectView.swift in Sources */,
 				4CB9FF6A287B324C004F1BF6 /* MainOnlineBottomSheet.swift in Sources */,
+				4CD34F69289D885100504396 /* CompanionTextMessageWithParentView.swift in Sources */,
 				4C3D27D02853A37F00F8FD09 /* BottomSheetList.swift in Sources */,
 				4C5C86B228717200006DE024 /* RangeSelectView.swift in Sources */,
 				4CB9FF72287F4028004F1BF6 /* StartScreen.swift in Sources */,
@@ -1284,6 +1295,7 @@
 				4CD34F5E289698EC00504396 /* ChatActionsBottomSheet.swift in Sources */,
 				4CF028472889CFBF002C59EE /* TopDropDownButtonView.swift in Sources */,
 				4C5C86BC2871A5B4006DE024 /* CitySearchMediator.swift in Sources */,
+				4CD34F67289C39C200504396 /* MyTextMessageWithParentView.swift in Sources */,
 				4CD34F4E2892FEA000504396 /* NoDuelData.swift in Sources */,
 				4CD34F4428903E9500504396 /* AnotherProfileQuestionnaireMediator.swift in Sources */,
 				4CB9FF9628834303004F1BF6 /* ImageLineItemView.swift in Sources */,

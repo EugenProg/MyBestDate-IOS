@@ -16,6 +16,11 @@ class ChatMediator: ObservableObject {
     @Published var messages: [ChatItem] = []
     @Published var selectedMessage: Message? = nil
 
+    @Published var inputText: String = ""
+
+    @Published var editMode: Bool = false
+    @Published var replyMode: Bool = false
+
     func setUser(user: ShortUserInfo) {
         self.user = user
         self.getMessageList()
@@ -25,26 +30,57 @@ class ChatMediator: ObservableObject {
         self.setUser(user: user.toShortUser())
     }
 
-    func sendMessage(message: String, completion: @escaping (Bool) -> Void) {
-        ChatApiService.shared.sendMessage(userId: user.id ?? 0, parentId: selectedMessage?.id, message: message) { success, savedMessage in
-            DispatchQueue.main.async {
-                if success {
-                    self.messages.add(message: savedMessage)
-                }
-            }
-            completion(success)
+    func saveMessage(message: String, completion: @escaping (Bool) -> Void) {
+        if editMode {
+            editMessage(newMessage: message) { success in completion(success) }
+        } else {
+            sendMessage(message: message) { success in completion(success) }
         }
     }
 
-    func sendImageMessage(image: UIImage, completion: @escaping (Bool) -> Void) {
-        ImageUtils.resizeForChat(image: image) { newImage in
-            ImagesApiService.shared.sendImageMessage(image: newImage) { success, message in
-                DispatchQueue.main.async {
-                    if success {
-                        self.messages.add(message: message)
+    func sendMessage(message: String, completion: @escaping (Bool) -> Void) {
+        ChatApiService.shared.sendTextMessage(userId: user.id ?? 0, parentId: selectedMessage?.id, message: message) { success, savedMessage in
+            DispatchQueue.main.async {
+                if success {
+                    self.messages.add(message: savedMessage)
+                    withAnimation {
+                        self.replyMode = false
+                        self.editMode = false
                     }
                 }
                 completion(success)
+            }
+        }
+    }
+
+    func editMessage(newMessage: String, completion: @escaping (Bool) -> Void) {
+        ChatApiService.shared.updateMessage(id: selectedMessage?.id ?? 0, message: newMessage) { success, message in
+            DispatchQueue.main.async {
+                if success {
+                    self.messages.update(message: message)
+                    withAnimation {
+                        self.replyMode = false
+                        self.editMode = false
+                    }
+                }
+                completion(success)
+            }
+        }
+    }
+
+    func sendImageMessage(image: UIImage, message: String?, completion: @escaping (Bool) -> Void) {
+        ImageUtils.resizeForChat(image: image) { newImage in
+            ImagesApiService.shared.sendImageMessage(image: newImage, userId: self.user.id ?? 0, parentId: self.selectedMessage?.id, message: message) { success, message in
+                DispatchQueue.main.async {
+                    if success {
+                        self.messages.add(message: message)
+                        withAnimation {
+                            self.replyMode = false
+                            self.editMode = false
+                        }
+                    }
+                    completion(success)
+                }
             }
         }
     }
@@ -61,11 +97,18 @@ class ChatMediator: ObservableObject {
     }
 
     func editMessage() {
-
+        withAnimation {
+            self.editMode = true
+            self.replyMode = false
+            self.inputText = selectedMessage?.text ?? ""
+        }
     }
 
     func reply() {
-
+        withAnimation {
+            self.replyMode = true
+            self.editMode = false
+        }
     }
 
     func doActionByType(type: ChatActions) {

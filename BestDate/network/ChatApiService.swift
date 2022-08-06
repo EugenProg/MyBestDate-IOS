@@ -59,31 +59,32 @@ class ChatApiService {
         task.resume()
     }
 
-    func updateMessage(id: Int, message: String, completion: @escaping (Bool) -> Void) {
-        var request = CoreApiTypes.deleteMessage.getRequest(path: id.toString(), withAuth: true)
+    func updateMessage(id: Int, message: String, completion: @escaping (Bool, Message) -> Void) {
+        var request = CoreApiTypes.updateMessage.getRequest(path: id.toString(), withAuth: true)
 
-        let data = try! encoder.encode(UpdateMessageRequest(text: message))
+        let data = try! encoder.encode(SendMessageRequest(text: message))
         encoder.outputFormatting = .prettyPrinted
         NetworkLogger.printLog(data: data)
         request.httpBody = data
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             NetworkLogger.printLog(response: response)
-            if let data = data, let response = try? JSONDecoder().decode(BaseResponse.self, from: data) {
+            if let data = data, let response = try? JSONDecoder().decode(SendMessageResponse.self, from: data) {
                 NetworkLogger.printLog(data: data)
-                completion(response.success)
+                completion(response.success, response.data ?? Message())
             } else {
-                completion(false)
+                completion(false, Message())
             }
         }
 
         task.resume()
     }
 
-    func sendMessage(userId: Int, parentId: Int?, message: String, completion: @escaping (Bool, Message) -> Void) {
-        var request = CoreApiTypes.sendMessage.getRequest(withAuth: true)
+    func sendTextMessage(userId: Int, parentId: Int?, message: String, completion: @escaping (Bool, Message) -> Void) {
+        let path = parentId == nil ? userId.toString() : "\(userId)/\(parentId!)"
+        var request = CoreApiTypes.sendMessage.getRequest(path: path, withAuth: true)
 
-        let data = try! encoder.encode(SendMessageRequest(recipient_id: userId, parent_id: parentId, text: message))
+        let data = try! encoder.encode(SendMessageRequest(text: message))
         encoder.outputFormatting = .prettyPrinted
         NetworkLogger.printLog(data: data)
         request.httpBody = data

@@ -11,17 +11,22 @@ struct ChatBottomView: View {
 
     @Binding var text: String
     @Binding var sendTextProcess: Bool
-    @Binding var sendImageProcess: Bool
     @Binding var translateProcess: Bool
     var loadImageAction: () -> Void
     var translateAction: (String) -> Void
     var sendAction: (String) -> Void
-    @State var additionalHeight: CGFloat = 0
+    @Binding var additionalHeight: CGFloat
+    @Binding var editMode: Bool
+    @Binding var replyMode: Bool
+    @Binding var selectedMessage: Message?
 
     init(text: Binding<String>,
          sendTextProcess: Binding<Bool>,
-         sendImageProcess: Binding<Bool>,
          translateProcess: Binding<Bool>,
+         additionalHeight: Binding<CGFloat>,
+         editMode: Binding<Bool>,
+         replyMode: Binding<Bool>,
+         selectedMessage: Binding<Message?>,
          loadImageAction: @escaping () -> Void,
          translateAction: @escaping (String) -> Void,
          sendAction: @escaping (String) -> Void) {
@@ -31,20 +36,59 @@ struct ChatBottomView: View {
         self.translateAction = translateAction
         self.sendAction = sendAction
         self._sendTextProcess = sendTextProcess
-        self._sendImageProcess = sendImageProcess
         self._translateProcess = translateProcess
+        self._additionalHeight = additionalHeight
+        self._editMode = editMode
+        self._replyMode = replyMode
+        self._selectedMessage = selectedMessage
     }
 
     var body: some View {
         VStack {
             Spacer()
             
-            ZStack {
+            ZStack(alignment: .bottom) {
+                if editMode || replyMode {
+                    Rectangle()
+                        .stroke(MyColor.getColor(255, 255, 255, 0.04), lineWidth: 1)
+                        .background(MyColor.getColor(39, 47, 51))
+                        .shadow(color: MyColor.getColor(17, 28, 34, 0.45), radius: 46, y: -7)
+
+                    HStack(spacing: 0) {
+                        Image(editMode ? "ic_edit" : "ic_reply_white")
+                            .padding(.init(top: 0, leading: 0, bottom: 0, trailing: 11))
+
+                        Text(selectedMessage?.text ?? "")
+                            .foregroundColor(ColorList.white_70.color)
+                            .font(MyFont.getFont(.NORMAL, 18))
+
+                        Spacer()
+
+                        Button(action: {
+                            if editMode { withAnimation {
+                                editMode = false
+                                text = ""
+                            } }
+                            if replyMode { withAnimation { replyMode = false } }
+                            selectedMessage = nil
+                        }) {
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 12)
+                                    .fill(MyColor.getColor(51, 62, 67))
+
+                                Image("ic_close_white")
+                            }.frame(width: 23, height: 23)
+                        }
+                    }.frame(height: 23)
+                        .padding(.init(top: 10, leading: 18, bottom: 113 + additionalHeight, trailing: 18))
+                }
+                
                 Rectangle()
                     .stroke(MyColor.getColor(255, 255, 255, 0.04), lineWidth: 1)
                     .background(MyColor.getColor(39, 47, 51))
                     .cornerRadius(radius: 33, corners: [.topLeft, .topRight])
                     .shadow(color: MyColor.getColor(17, 28, 34, 0.45), radius: 46, y: -7)
+                    .frame(width: UIScreen.main.bounds.width, height: 101 + additionalHeight)
 
                 ZStack {
                     RoundedRectangle(cornerRadius: 25)
@@ -54,22 +98,12 @@ struct ChatBottomView: View {
 
                     HStack(spacing: 0) {
                         Button(action: {
-                            if !sendImageProcess && !translateProcess && !sendTextProcess {
-                                withAnimation {
-                                    sendImageProcess.toggle()
-                                    loadImageAction()
-                                }
+                            if !translateProcess && !sendTextProcess {
+                                withAnimation { loadImageAction() }
                             }
                         }) {
-                            if sendImageProcess {
-                                ProgressView()
-                                    .tint(ColorList.white.color)
-                                    .frame(width: 25, height: 25)
-                                    .padding(.init(top: 10, leading: 20, bottom: 10, trailing: 13))
-                            } else {
-                                Image("ic_picture")
-                                    .padding(.init(top: 10, leading: 22, bottom: 10, trailing: 16))
-                            }
+                            Image("ic_picture")
+                                .padding(.init(top: 10, leading: 22, bottom: 10, trailing: 16))
                         }
 
                         Rectangle()
@@ -94,7 +128,7 @@ struct ChatBottomView: View {
                             }
                         }
                         Button(action: {
-                            if !text.isEmpty && !translateProcess && !sendImageProcess && !sendTextProcess {
+                            if !text.isEmpty && !translateProcess && !sendTextProcess {
                                 withAnimation {
                                     translateProcess.toggle()
                                     translateAction(text)
@@ -113,7 +147,7 @@ struct ChatBottomView: View {
                         }
 
                         Button(action: {
-                            if !text.isEmpty && !sendTextProcess && !translateProcess && !sendImageProcess {
+                            if !text.isEmpty && !sendTextProcess && !translateProcess {
                                 withAnimation {
                                     sendTextProcess.toggle()
                                     sendAction(text)
@@ -138,21 +172,15 @@ struct ChatBottomView: View {
                     }
                 }.frame(height: 50 + additionalHeight)
                 .padding(.init(top: 21, leading: 18, bottom: 30, trailing: 18))
+                .frame(width: UIScreen.main.bounds.width, height: 101 + additionalHeight)
             }
-            .frame(width: UIScreen.main.bounds.width, height: 101 + additionalHeight)
+            .frame(width: UIScreen.main.bounds.width, height: ((editMode || replyMode) ? 151 : 101) + additionalHeight)
         }.edgesIgnoringSafeArea(.bottom)
     }
 
     private func calculateSize() {
-        let size = self.text.boundingRect(
-                    with: CGSize(
-                        width: UIScreen.main.bounds.width - 189,
-                        height: .greatestFiniteMagnitude
-                    ),
-                    options: .usesLineFragmentOrigin,
-                    attributes: [.font: UIFont.systemFont(ofSize: 18)],
-                    context: nil
-                )
+        let size = self.text.getLinesHeight(viewVidth: UIScreen.main.bounds.width - 189, fontSize: 18)
+        
         let linesCount = Int(size.height / 21.48)
         if linesCount <= 3 {
             withAnimation {

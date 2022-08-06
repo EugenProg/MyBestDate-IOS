@@ -41,7 +41,7 @@ struct GuestListItemView: View {
                             .padding(.init(top: 5, leading: 0, bottom: 0, trailing: 0))
                     }
 
-                    Text(guest.guest?.occupation ?? "Luser")
+                    Text(guest.guest?.getLocation() ?? "")
                         .foregroundColor(ColorList.white_40.color)
                         .font(MyFont.getFont(.NORMAL, 12))
 

@@ -42,7 +42,7 @@ struct VoiterInfoView: View {
                             .padding(.init(top: 5, leading: 0, bottom: 0, trailing: 0))
                     }
 
-                    Text(voter.occupation ?? "Loser")
+                    Text(voter.getLocation())
                         .foregroundColor(ColorList.white_40.color)
                         .font(MyFont.getFont(.NORMAL, 12))
 

@@ -15,7 +15,7 @@ struct CompanionTextMessageView: View {
         VStack(alignment: .leading, spacing: 2) {
             ZStack(alignment: .leading) {
                 Text(message?.text ?? "")
-                    .foregroundColor(MyColor.getColor(40, 48, 52))
+                    .foregroundColor(ColorList.main.color)
                     .font(MyFont.getFont(.NORMAL, 18))
                     .padding(.init(top: 9, leading: 18, bottom: 9, trailing: 18))
             }.background(

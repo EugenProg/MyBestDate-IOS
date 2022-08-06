@@ -42,7 +42,7 @@ struct DuelCompareItem: View {
                             .padding(.init(top: 5, leading: 0, bottom: 0, trailing: 0))
                     }
 
-                    Text(item?.user?.occupation ?? "Luser")
+                    Text(item?.user?.getLocation() ?? "")
                         .foregroundColor(ColorList.white_40.color)
                         .font(MyFont.getFont(.NORMAL, 12))
                         .padding(.init(top: 5, leading: 0, bottom: 8, trailing: 0))

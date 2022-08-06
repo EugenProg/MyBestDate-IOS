@@ -28,16 +28,19 @@ struct MessageListView: View {
     }
 
     private func getMessageViewByType(item: ChatItem) -> some View {
-        Group {
+        let parentMessage = messageList.getMessageById(id: item.message?.parent_id)
+        let topOffset = parentMessage.text?.getLinesHeight(viewVidth: UIScreen.main.bounds.width - 80, fontSize: 17).height ?? 0
+        let bottomOffset = item.message?.text?.getLinesHeight(viewVidth: UIScreen.main.bounds.width - 92, fontSize: 17).height ?? 0
+        return Group {
             switch item.messageType {
             case .my_text_message: MyTextMessageView(message: item.message, isLast: item.last)
-            case .my_text_message_with_parent: MyTextMessageView(message: item.message, isLast: item.last)
+            case .my_text_message_with_parent: MyTextMessageWithParentView(message: item.message, parentMessage: parentMessage, isLast: item.last, topOffset: topOffset, bottomOffset: bottomOffset)
             case .my_voice_message: MyTextMessageView(message: item.message, isLast: item.last)
             case .my_voice_message_with_parent: MyTextMessageView(message: item.message, isLast: item.last)
             case .my_image_message: MyTextMessageView(message: item.message, isLast: item.last)
             case .my_image_message_with_parent: MyTextMessageView(message: item.message, isLast: item.last)
             case .user_text_message: CompanionTextMessageView(message: item.message, isLast: item.last)
-            case .user_text_message_with_parent: CompanionTextMessageView(message: item.message, isLast: item.last)
+            case .user_text_message_with_parent: CompanionTextMessageWithParentView(message: item.message, parentMessage: parentMessage, isLast: item.last, topOffset: topOffset, bottomOffset: bottomOffset)
             case .user_voice_message: CompanionTextMessageView(message: item.message, isLast: item.last)
             case .user_voice_message_with_parent: CompanionTextMessageView(message: item.message, isLast: item.last)
             case .user_image_message: CompanionTextMessageView(message: item.message, isLast: item.last)

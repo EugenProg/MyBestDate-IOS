@@ -22,7 +22,7 @@ class ChatUtils {
             var type = getMessageType(current: current, previous: previous, withDate: true)
 
             if type == .date_block {
-                dateItem = ChatItem(id: item + additionIndex, messageType: type, message: nil, last: false, date: current.created_at?.toShortDateString())
+                dateItem = ChatItem(id: item + additionIndex, messageType: type, message: nil, last: false, date: getChatDateFormattedString(date: current.created_at))
                 additionIndex += 1
                 type = getMessageType(current: current, previous: previous, withDate: false)
             }
@@ -51,13 +51,32 @@ class ChatUtils {
         }
 
         if current.sender_id != MainMediator.shared.user.id {
-            return .user_text_message
+            if current.media == nil {
+                return current.parent_id == nil ? .user_text_message : .user_text_message_with_parent
+            } else {
+                return current.parent_id == nil ? .user_image_message : .user_image_message_with_parent
+            }
         } else {
-            return .my_text_message
+            if current.media == nil {
+                return current.parent_id == nil ? .my_text_message : .my_text_message_with_parent
+            } else {
+                return current.parent_id == nil ? .my_image_message : .my_image_message_with_parent
+            }
         }
     }
 
     private func isNextDate(firstDate: String?, secondDate: String?) -> Bool {
         firstDate?.getDateString() != secondDate?.getDateString()
+    }
+
+    private func getChatDateFormattedString(date: String?) -> String {
+        let components = Calendar.current.dateComponents([.day], from: date?.toDate() ?? Date.now, to: Date.now)
+        let days = components.day ?? 0
+
+        switch days {
+            case 0: return NSLocalizedString("today", comment: "Today")
+            case 1: return NSLocalizedString("yesterday", comment: "Yesterday")
+            default: return date?.toShortDateString() ?? ""
+        }
     }
 }

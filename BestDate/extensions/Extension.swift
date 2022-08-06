@@ -178,6 +178,18 @@ extension String {
         }
         return 0
     }
+
+    func getLinesHeight(viewVidth: CGFloat, fontSize: CGFloat) -> CGRect {
+        self.boundingRect(
+                    with: CGSize(
+                        width: viewVidth,
+                        height: .greatestFiniteMagnitude
+                    ),
+                    options: .usesLineFragmentOrigin,
+                    attributes: [.font: UIFont.systemFont(ofSize: fontSize)],
+                    context: nil
+                )
+    }
 }
 
 extension Int {
@@ -289,6 +301,26 @@ extension Array where Element == ChatItem {
         self = newItemList
     }
 
+    mutating func update(message: Message) {
+        var messages: [Message] = []
+
+        for item in self {
+            if item.messageType != .date_block {
+                messages.append(item.message ?? Message())
+            }
+        }
+
+        let updateIndex = messages.firstIndex { item in
+            item.id == (message.id ?? 0)
+        }
+        messages[updateIndex ?? 0] = message
+
+        var newItemList: [ChatItem] = []
+        newItemList.addAll(list: messages)
+
+        self = newItemList
+    }
+
     mutating func delete(id: Int?) {
         var messages: [Message] = []
 
@@ -307,6 +339,12 @@ extension Array where Element == ChatItem {
         newItemList.addAll(list: messages)
 
         self = newItemList
+    }
+
+    func getMessageById(id: Int?) -> Message {
+        self.first { item in
+            item.message?.id == id
+        }?.message ?? Message()
     }
 }
 
@@ -332,17 +370,7 @@ extension UserInfo {
     }
 
     func getLocation() -> String {
-        let country = self.location?.country ?? ""
-        let city = self.location?.city ?? ""
-
-        var location = ""
-        if !country.isEmpty { location = country }
-        if !location.isEmpty && !city.isEmpty {
-            location += ", \(city)"
-        } else if !city.isEmpty {
-            location = city
-        }
-        return location
+        return self.location?.toString() ?? ""
     }
 
     func toShortUser() -> ShortUserInfo {
@@ -354,11 +382,11 @@ extension UserInfo {
             main_photo: self.getMainPhoto(),
             is_online: self.is_online,
             last_online_at: self.last_online_at,
-            occupation: self.questionnaire?.occupation,
             full_questionnaire: self.questionnaire?.isFull(),
             distance: self.distance)
     }
 }
+
 
 extension ShortUserInfo {
     func getAge() -> Int {
@@ -372,6 +400,10 @@ extension ShortUserInfo {
         )
     }
 
+    func getLocation() -> String {
+        return self.location?.toString() ?? ""
+    }
+
     func toUser() -> UserInfo {
         UserInfo(
             id: self.id,
@@ -381,6 +413,22 @@ extension ShortUserInfo {
             is_online: self.is_online,
             last_online_at: self.last_online_at
         )
+    }
+}
+
+extension Location {
+    func toString() -> String {
+        let country = self.country ?? ""
+        let city = self.city ?? ""
+
+        var location = ""
+        if !country.isEmpty { location = country }
+        if !location.isEmpty && !city.isEmpty {
+            location += ", \(city)"
+        } else if !city.isEmpty {
+            location = city
+        }
+        return location
     }
 }
 

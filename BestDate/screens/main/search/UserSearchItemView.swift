@@ -39,7 +39,7 @@ struct UserSearchItemView: View {
                         Spacer()
                     }.padding(.init(top: 0, leading: 10, bottom: 0, trailing: 0))
                 }.frame(height: 28)
-                    .padding(.init(top: 0, leading: 0, bottom: 8, trailing: 0))
+                    .padding(.init(top: 0, leading: 0, bottom: 6, trailing: 0))
                 HStack(spacing: 2) {
                     Text(user.name ?? "Noname")
                         .foregroundColor(ColorList.white.color)
@@ -62,7 +62,7 @@ struct UserSearchItemView: View {
                         .font(MyFont.getFont(.BOLD, 10))
                 }.padding(.init(top: 7, leading: 13, bottom: 2, trailing: 10))
 
-                Text(user.occupation ?? "Loser")
+                Text(user.getLocation())
                     .foregroundColor(ColorList.white_40.color)
                     .font(MyFont.getFont(.NORMAL, 12))
                     .padding(.init(top: 3, leading: 13, bottom: 7, trailing: 10))

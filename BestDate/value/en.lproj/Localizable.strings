@@ -507,8 +507,8 @@
 "reply" = "Reply";
 "delete" = "Delete";
 "edit" = "Edit";
-"" = "";
-"" = "";
+"today" = "Today";
+"yesterday" = "Yesterday";
 "" = "";
 "" = "";
 "" = "";

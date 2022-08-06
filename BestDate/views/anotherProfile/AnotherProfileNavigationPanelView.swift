@@ -74,7 +74,7 @@ struct AnotherProfileNavigationPanelView: View {
                 if showProcess {
                     let leftPadding = (UIScreen.main.bounds.width / 2) + 43
                     let rightPadding = UIScreen.main.bounds.width - 130 - leftPadding
-                    LottieView(name: "love_burst", loopMode: .playOnce)
+                    LottieView(name: "love_burst_pink", loopMode: .playOnce)
                         .frame(width: 130, height: 130)
                         .padding(.init(top: 35, leading: leftPadding, bottom: 0, trailing: rightPadding))
                 }

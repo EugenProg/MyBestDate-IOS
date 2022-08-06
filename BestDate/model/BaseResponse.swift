@@ -68,7 +68,7 @@ struct ShortUserInfo: Codable {
     var main_photo: ProfileImage? = nil
     var is_online: Bool? = nil
     var last_online_at: String? = nil
-    var occupation: String? = nil
+    var location: Location? = nil
     var full_questionnaire: Bool? = nil
     var distance: Double? = nil
 }

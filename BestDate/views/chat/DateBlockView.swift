@@ -12,14 +12,16 @@ struct DateBlockView: View {
 
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 28)
-                .stroke(ColorList.chat_blue_55.color, lineWidth: 2)
-                .background(ColorList.white.color)
-                .cornerRadius(28)
+            RoundedRectangle(cornerRadius: 13)
+                .stroke(MyColor.getColor(190, 239, 255, 0.15), lineWidth: 1.5)
+                .background(ColorList.main.color)
+                .cornerRadius(13)
+                .shadow(color: MyColor.getColor(0, 0, 0, 0.16), radius: 6, y: 3)
 
             Text(date)
-                .foregroundColor(MyColor.getColor(40, 48, 52))
-                .font(MyFont.getFont(.NORMAL, 16))
-        }.frame(width: 100, height: 35)
+                .foregroundColor(ColorList.white_30.color)
+                .font(MyFont.getFont(.BOLD, 14))
+        }.frame(width: 103, height: 26)
+            .padding(.init(top: 16, leading: 0, bottom: 16, trailing: 0))
     }
 }

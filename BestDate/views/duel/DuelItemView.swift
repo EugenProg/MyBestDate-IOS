@@ -48,7 +48,7 @@ struct DuelItemView: View {
             }.padding(.init(top: size, leading: 0, bottom: 0, trailing: 0))
 
             if showProcess {
-                LottieView(name: "love_burst", loopMode: .playOnce)
+                LottieView(name: "love_burst_red", loopMode: .playOnce)
                     .frame(width: 165, height: 165)
                     .padding(.init(top: size, leading: 0, bottom: 0, trailing: 0))
             }

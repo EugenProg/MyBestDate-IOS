@@ -91,7 +91,7 @@ enum CoreApiTypes {
         case .getChatList: return "chats"
         case .deleteChat: return "chat/"
         case .getChatMessages: return "chat/"
-        case .sendMessage: return "message"
+        case .sendMessage: return "message/"
         case .updateMessage: return "message/"
         case .deleteMessage: return "message/"
         case .getGuestList: return "guests"
