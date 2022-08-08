@@ -42,7 +42,7 @@ struct NavigationView: View {
                     case .MY_DUELS: MyDuelsScreen()
                     case .CHAT: ChatScreen()
                     case .ANOTHER_QUESTIONNAIRE: AnotherProfileQuestionnaireScreen()
-                    default: StartScreen()
+                    case .ANOTHER_IMAGES: AnotherProfileImagesScreen()
                     }
                 }.blur(radius: store.state.showBottomSheet ? 1.8 : 0)
             }.onTapGesture(perform: { UIApplication.shared.windows.first { $0.isKeyWindow }?.endEditing(true) })

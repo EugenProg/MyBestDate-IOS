@@ -29,6 +29,18 @@ class ChatListMediator: ObservableObject {
                             self.previousChats.append(chat)
                         }
                     }
+                    MainMediator.shared.hasNewMessages = self.newChats.count > 0
+                }
+            }
+        }
+    }
+
+    func delete(chat: Chat, completion: @escaping () -> Void) {
+        ChatApiService.shared.deleteChat(id: chat.user?.id ?? 0) { success in
+            DispatchQueue.main.async {
+                if success {
+                    self.getChatList()
+                    completion()
                 }
             }
         }

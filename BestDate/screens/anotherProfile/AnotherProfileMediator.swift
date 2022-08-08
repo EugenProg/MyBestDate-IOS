@@ -16,6 +16,8 @@ class AnotherProfileMediator: ObservableObject {
     @Published var mainPhoto: ProfileImage = ProfileImage()
     @Published var mainLiked: Bool = false
 
+    @Published var selectedImage: Int = 0
+
     func setUser(user: ShortUserInfo) {
         self.mainPhoto = user.main_photo ?? ProfileImage()
         self.mainLiked = self.mainPhoto.liked ?? false
@@ -41,18 +43,16 @@ class AnotherProfileMediator: ObservableObject {
         }
     }
 
-    func likePhoto(id: Int?) {
+    func likePhoto(id: Int?, completion: @escaping () -> Void) {
         ImagesApiService.shared.likeAImage(photoId: id ?? 0) { _ in
-            DispatchQueue.main.async {
-                withAnimation {
-                    self.mainLiked = true
-                }
-            }
+            self.getUserById(id: self.user.id ?? 0)
+            completion()
         }
     }
 
     func cleanUserData() {
         self.user = UserInfo()
         self.imageList.removeAll()
+        self.selectedImage = 0
     }
 }

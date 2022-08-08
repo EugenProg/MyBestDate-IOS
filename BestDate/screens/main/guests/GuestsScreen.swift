@@ -42,6 +42,7 @@ struct GuestsScreen: View {
                 .fill(MyColor.getColor(190, 239, 255, 0.15))
                 .frame(height: 1)
                 .shadow(color: MyColor.getColor(0, 0, 0, 0.16), radius: 6, y: 3)
+            
             if mediator.newGuests.isEmpty && mediator.oldGuests.isEmpty {
                 let topPadding = ((UIScreen.main.bounds.height - 260 - store.state.statusBarHeight) / 2) - 100
                 NoDataView()

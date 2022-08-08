@@ -21,9 +21,9 @@ struct ChatScreen: View {
             VStack(spacing: 0) {
                 HStack {
                     BackButton(style: .white) {
-                        AnotherProfileMediator.shared.setUser(user: mediator.user)
                         ChatListMediator.shared.getChatList()
                         mediator.messages.removeAll()
+                        mediator.loadingMode = true
                         store.dispatch(action: .navigationBack)
                     }
 
@@ -70,14 +70,19 @@ struct ChatScreen: View {
             }
             .background(ColorList.main.color)
 
-            ScrollView(.vertical, showsIndicators: false) {
-                MessageListView(messageList: $mediator.messages) { item in
-                    mediator.selectedMessage = item.message
-                    store.dispatch(action: .showBottomSheet(view: .CHAT_ACTIONS))
-                }
-                    .padding(.init(top: 6, leading: 0, bottom: 16, trailing: 0))
-            }.padding(.init(top: store.state.statusBarHeight + (mediator.editMode || mediator.replyMode ? 135 : 85) + additionalHeight, leading: 0, bottom: 90, trailing: 0))
-                .rotationEffect(Angle(degrees: 180))
+            if mediator.messages.isEmpty && !mediator.loadingMode {
+                VStack {
+                    InvitationChatView()
+                }.frame(height: UIScreen.main.bounds.height)
+            } else {
+                ScrollView(.vertical, showsIndicators: false) {
+                    MessageListView(messageList: $mediator.messages) { item in
+                        mediator.selectedMessage = item.message
+                        store.dispatch(action: .showBottomSheet(view: .CHAT_ACTIONS))
+                    }.padding(.init(top: 6, leading: 0, bottom: 16, trailing: 0))
+                }.padding(.init(top: store.state.statusBarHeight + (mediator.editMode || mediator.replyMode ? 135 : 85) + additionalHeight, leading: 0, bottom: 90, trailing: 0))
+                    .rotationEffect(Angle(degrees: 180))
+            }
 
             ChatBottomView(text: $mediator.inputText,
                            sendTextProcess: $sendTextProcess,

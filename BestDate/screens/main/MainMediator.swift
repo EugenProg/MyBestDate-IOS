@@ -24,10 +24,8 @@ class MainMediator: ObservableObject {
     var guestsPage: (() -> Void)? = nil
 
     func setUserInfo(user: UserInfo) {
-        hasNewMessages = (user.new_likes ?? 0) > 0
         hasNewGuests = (user.new_guests ?? 0) > 0
         mainPhoto = user.getMainPhoto()
-
         self.user = user
     }
 

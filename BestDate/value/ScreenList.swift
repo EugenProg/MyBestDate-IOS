@@ -31,6 +31,7 @@ enum ScreenList: String {
     case TOP_LIST
     case CHAT
     case ANOTHER_QUESTIONNAIRE
+    case ANOTHER_IMAGES
 
 }
 

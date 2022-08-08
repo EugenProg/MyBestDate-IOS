@@ -15,6 +15,8 @@ struct AnotherProfileHeader: View {
     var birthday: String
     var distance: String
 
+    var backAction: () -> Void
+
     var body: some View {
         ZStack {
             AsyncImageView(url: image.full_url)
@@ -26,7 +28,10 @@ struct AnotherProfileHeader: View {
             VStack {
                 VStack(spacing: 0) {
                     HStack {
-                        BackButton(style: .white)
+                        BackButton(style: .white) {
+                            store.dispatch(action: .navigationBack)
+                            backAction()
+                        }
 
                         Spacer()
 

@@ -15,7 +15,9 @@ struct AnotherProfileScreen: View {
         ZStack {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(spacing: 0) {
-                    AnotherProfileHeader(image: mediator.mainPhoto, isOnline: mediator.user.is_online ?? false, birthday: mediator.user.birthday ?? "", distance: mediator.user.getDistance())
+                    AnotherProfileHeader(image: mediator.mainPhoto, isOnline: mediator.user.is_online ?? false, birthday: mediator.user.birthday ?? "", distance: mediator.user.getDistance()) {
+                        mediator.cleanUserData()
+                    }
 
                     DirrectionLineButtonView(name: "questionnaire", icon: "ic_document", buttonColor: ColorList.pink_5.color) {
                         AnotherProfileQuestionnaireMediator.shared.setUser(user: mediator.user)
@@ -64,8 +66,11 @@ struct AnotherProfileScreen: View {
                     }
                     .padding(.init(top: 24, leading: 18, bottom: 24, trailing: 18))
 
-                    AnotherProfileImageLineView(imagesList: $mediator.imageList) { image in
-
+                    AnotherProfileImageLineView(imagesList: $mediator.imageList) { index in
+                        withAnimation {
+                            mediator.selectedImage = index
+                            store.dispatch(action: .navigate(screen: .ANOTHER_IMAGES))
+                        }
                     }
                     .padding(.init(top: 0, leading: 0, bottom: 100, trailing: 0))
                 }
@@ -76,7 +81,7 @@ struct AnotherProfileScreen: View {
                 ChatMediator.shared.setUser(user: mediator.user)
                 store.dispatch(action: .navigate(screen: .CHAT))
             } likeClick: {
-                mediator.likePhoto(id: mediator.mainPhoto.id)
+                mediator.likePhoto(id: mediator.mainPhoto.id) { }
             } createClick: {
                // store.dispatch(action: .show(message: "create"))
             }.zIndex(15)
@@ -86,9 +91,6 @@ struct AnotherProfileScreen: View {
             .onAppear {
                 store.dispatch(action:
                         .setScreenColors(status: ColorList.main.color, style: .lightContent))
-            }
-            .onDisappear {
-                mediator.cleanUserData()
             }
     }
 }

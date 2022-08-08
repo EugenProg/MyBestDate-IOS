@@ -11,6 +11,7 @@ struct AnotherProfileNavigationPanelView: View {
     @EnvironmentObject var store: Store
     @Binding var isLiked: Bool
     @State var showProcess: Bool = false
+    var opacity: Bool = true
 
     var messageClick: () -> Void
     var likeClick: () -> Void
@@ -79,7 +80,7 @@ struct AnotherProfileNavigationPanelView: View {
                         .padding(.init(top: 35, leading: leftPadding, bottom: 0, trailing: rightPadding))
                 }
             }.frame(width: UIScreen.main.bounds.width, height: 130)
-                .background(ColorList.main_90.color)
+                .background(opacity ? ColorList.main_90.color : MyColor.getColor(0, 0, 0, 0))
                 .padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight, trailing: 0))
         }
     }

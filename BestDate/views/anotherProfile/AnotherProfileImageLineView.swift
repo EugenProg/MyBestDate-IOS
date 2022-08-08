@@ -10,7 +10,7 @@ import SwiftUI
 struct AnotherProfileImageLineView: View {
     var imageSize = (UIScreen.main.bounds.width - 12) / 3
     @Binding var imagesList: [ProfileImage]
-    var selectAction: (ProfileImage) -> Void
+    var selectAction: (Int) -> Void
 
     var body: some View {
         ZStack {
@@ -23,10 +23,10 @@ struct AnotherProfileImageLineView: View {
                 .padding(.init(top: 0, leading: 3, bottom: 0, trailing: 3))
 
                 HStack(spacing: 3) {
-                    ForEach(imagesList, id: \.id) { image in
-                        ImageLineItemView(image: image, imageSize: imageSize)
+                    ForEach(imagesList.indices, id: \.self) { index in
+                        ImageLineItemView(image: imagesList[index], imageSize: imageSize)
                             .onTapGesture {
-                                selectAction(image)
+                                selectAction(index)
                             }
                     }
                     Spacer()
@@ -34,10 +34,10 @@ struct AnotherProfileImageLineView: View {
             } else {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 3) {
-                        ForEach(imagesList, id: \.id) { image in
-                            ImageLineItemView(image: image, imageSize: imageSize)
+                        ForEach(imagesList.indices, id: \.self) { index in
+                            ImageLineItemView(image: imagesList[index], imageSize: imageSize)
                                 .onTapGesture {
-                                    selectAction(image)
+                                    selectAction(index)
                                 }
                         }
                         Spacer()

@@ -10,6 +10,7 @@ import SwiftUI
 struct ChatListScreen: View {
     @EnvironmentObject var store: Store
     @ObservedObject var mediator = ChatListMediator.shared
+    @State var deleteProcess: Bool = false
     
     var body: some View {
         VStack(spacing: 0) {
@@ -43,7 +44,7 @@ struct ChatListScreen: View {
                 .frame(height: 1)
 
             ScrollView(.vertical, showsIndicators: false) {
-                ChatListView(newList: $mediator.newChats, previousList: $mediator.previousChats) { chat in
+                ChatListView(newList: $mediator.newChats, previousList: $mediator.previousChats, deleteProcess: $deleteProcess, deleteAction: delete()) { chat in
                     ChatMediator.shared.setUser(user: chat.user ?? ShortUserInfo())
                     store.dispatch(action: .navigate(screen: .CHAT))
                 }
@@ -60,6 +61,14 @@ struct ChatListScreen: View {
                     mediator.getChatList()
                 }
             }
+    }
+
+    private func delete() -> (Chat) -> Void {
+        { chat in
+            mediator.delete(chat: chat) {
+                deleteProcess = false
+            }
+        }
     }
 }
 

@@ -61,3 +61,29 @@ struct UpdateImageView: View {
             .resizable()
     }
 }
+
+struct UserImageView: View {
+    private let defaultUrl: String = "https://image.shutterstock.com/image-vector/sad-apologizing-emoticon-emoji-holding-260nw-1398672683.jpg"
+
+    @Binding var user: ShortUserInfo?
+
+    fileprivate func placeholder() -> some View {
+        Text("loading...")
+            .foregroundColor(ColorList.blue.color)
+            .font(MyFont.getFont(.ITALIC, 12))
+    }
+
+    var body: some View {
+        let url = user?.main_photo?.thumb_url
+        let realUrl = URL(string: (url == nil || url?.isEmpty == true) ? defaultUrl : url ?? defaultUrl)
+        KFImage.url(realUrl)
+            .placeholder(placeholder)
+            .loadDiskFileSynchronously()
+            .cacheMemoryOnly()
+            .fade(duration: 0.25)
+            .onProgress { receivedSize, totalSize in }
+            .onSuccess { result in  }
+            .onFailure { error in }
+            .resizable()
+    }
+}
