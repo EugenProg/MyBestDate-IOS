@@ -1,23 +1,35 @@
 //
-//  CompanionTextMessageView.swift
+//  CompanionImageMessageView.swift
 //  BestDate
 //
-//  Created by Евгений on 30.07.2022.
+//  Created by Евгений on 09.08.2022.
 //
 
 import SwiftUI
 
-struct CompanionTextMessageView: View {
+struct CompanionImageMessageView: View {
     @Binding var message: Message?
     @Binding var isLast: Bool
 
+    var imageClick: (Message?) -> Void
+
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
-            ZStack(alignment: .leading) {
-                Text(message?.text ?? "")
-                    .foregroundColor(ColorList.main.color)
-                    .font(MyFont.getFont(.NORMAL, 18))
-                    .padding(.init(top: 9, leading: 18, bottom: 9, trailing: 18))
+            VStack(alignment: .leading, spacing: 0) {
+                ChatImageView(message: $message)
+                    .aspectRatio(contentMode: .fit)
+                    .cornerRadius(25)
+                    .padding(.init(top: 6, leading: 6, bottom: 6, trailing: 6))
+                    .onTapGesture {
+                        withAnimation { imageClick(message) }
+                    }
+
+                if !(message?.text?.isEmpty ?? true) {
+                    Text(message?.text ?? "")
+                        .foregroundColor(ColorList.main.color)
+                        .font(MyFont.getFont(.NORMAL, 18))
+                        .padding(.init(top: 0, leading: 18, bottom: 9, trailing: 18))
+                }
             }.background(
                 RoundedRectangle(cornerRadius: 28)
                     .stroke(ColorList.chat_blue_55.color, lineWidth: 2)

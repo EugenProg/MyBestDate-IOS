@@ -127,9 +127,15 @@ struct Message: Codable {
     var recipient_id: Int? = nil
     var parent_id: Int? = nil
     var text: String? = nil
-    var media: String? = nil
+    var image: ChatImage? = nil
     var read_at: String? = nil
     var created_at: String? = nil
+}
+
+struct ChatImage: Codable {
+    var id: Int? = nil
+    var full_url: String? = nil
+    var thumb_url: String? = nil
 }
 
 struct SendMessageResponse: Codable {

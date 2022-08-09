@@ -51,13 +51,13 @@ class ChatUtils {
         }
 
         if current.sender_id != MainMediator.shared.user.id {
-            if current.media == nil {
+            if current.image == nil {
                 return current.parent_id == nil ? .user_text_message : .user_text_message_with_parent
             } else {
                 return current.parent_id == nil ? .user_image_message : .user_image_message_with_parent
             }
         } else {
-            if current.media == nil {
+            if current.image == nil {
                 return current.parent_id == nil ? .my_text_message : .my_text_message_with_parent
             } else {
                 return current.parent_id == nil ? .my_image_message : .my_image_message_with_parent

@@ -15,6 +15,9 @@ struct ChatScreen: View {
 
     @State var isShowingPhotoLibrary = false
     @State var additionalHeight: CGFloat = 0
+
+    @State var showImage: Bool = false
+    @State var showingImage: Message? = nil
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -79,6 +82,9 @@ struct ChatScreen: View {
                     MessageListView(messageList: $mediator.messages) { item in
                         mediator.selectedMessage = item.message
                         store.dispatch(action: .showBottomSheet(view: .CHAT_ACTIONS))
+                    } imageClick: { image in
+                        showingImage = image
+                        showImage = true
                     }.padding(.init(top: 6, leading: 0, bottom: 16, trailing: 0))
                 }.padding(.init(top: store.state.statusBarHeight + (mediator.editMode || mediator.replyMode ? 135 : 85) + additionalHeight, leading: 0, bottom: 90, trailing: 0))
                     .rotationEffect(Angle(degrees: 180))
@@ -107,6 +113,14 @@ struct ChatScreen: View {
                 })
                 .padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight, trailing: 0))
                 .edgesIgnoringSafeArea(.bottom)
+
+            ChatImageViewer()
+                .opacity(mediator.editImageMode ? 1 : 0)
+                .offset(y: mediator.editImageMode ? 0 : UIScreen.main.bounds.height)
+
+            ChatImageShowView(message: $showingImage, show: $showImage)
+                .opacity(showImage ? 1 : 0)
+                .scaleEffect(showImage ? 1 : 0)
         }.background(Image("bg_chat_decor").edgesIgnoringSafeArea(.bottom))
         .onAppear {
             store.dispatch(action:
@@ -115,10 +129,8 @@ struct ChatScreen: View {
         .sheet(isPresented: $isShowingPhotoLibrary) {
             ImagePicker(sourceType: .photoLibrary,
                         isSelectAction: { image in
-                /*let message = inputText.isEmpty ? nil : inputText
-                mediator.sendImageMessage(image: image, message: message) { _ in
-
-                }*/
+                mediator.selectedImage = image
+                mediator.editImageMode.toggle()
             })
         }
     }

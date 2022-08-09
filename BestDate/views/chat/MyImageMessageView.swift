@@ -1,30 +1,42 @@
 //
-//  MyTextMessageView.swift
+//  MyImageMessageView.swift
 //  BestDate
 //
-//  Created by Евгений on 30.07.2022.
+//  Created by Евгений on 08.08.2022.
 //
 
 import SwiftUI
 
-struct MyTextMessageView: View {
+struct MyImageMessageView: View {
     @Binding var message: Message?
     @Binding var isLast: Bool
 
+    var imageClick: (Message?) -> Void
+    
     var body: some View {
         VStack(alignment: .trailing, spacing: 2) {
-            ZStack(alignment: .trailing) {
-                Text(message?.text ?? "")
-                    .foregroundColor(ColorList.white.color)
-                    .font(MyFont.getFont(.NORMAL, 18))
-                    .padding(.init(top: 9, leading: 18, bottom: 9, trailing: 18))
+            VStack(alignment: .leading, spacing: 0) {
+                ChatImageView(message: $message)
+                    .aspectRatio(contentMode: .fit)
+                    .cornerRadius(25)
+                    .padding(.init(top: 6, leading: 6, bottom: 6, trailing: 6))
+                    .onTapGesture {
+                        withAnimation { imageClick(message) }
+                    }
+
+                if !(message?.text?.isEmpty ?? true) {
+                    Text(message?.text ?? "")
+                        .foregroundColor(ColorList.white.color)
+                        .font(MyFont.getFont(.NORMAL, 18))
+                        .padding(.init(top: 0, leading: 18, bottom: 9, trailing: 18))
+                }
             }.background(
                 RoundedRectangle(cornerRadius: 28)
                     .stroke(ColorList.white_50.color, lineWidth: 2)
                     .background(ColorList.chat_blue.color)
                     .cornerRadius(28)
             )
-            .padding(.init(top: 0, leading: 60, bottom: 0, trailing: 18))
+            .padding(.init(top: 0, leading: 100, bottom: 0, trailing: 18))
 
             if isLast {
                 HStack(spacing: 3) {

@@ -340,12 +340,6 @@ extension Array where Element == ChatItem {
 
         self = newItemList
     }
-
-    func getMessageById(id: Int?) -> Message {
-        self.first { item in
-            item.message?.id == id
-        }?.message ?? Message()
-    }
 }
 
 extension UserInfo {

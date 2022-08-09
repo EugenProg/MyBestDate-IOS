@@ -58,6 +58,14 @@ struct ChatBottomView: View {
                         Image(editMode ? "ic_edit" : "ic_reply_white")
                             .padding(.init(top: 0, leading: 0, bottom: 0, trailing: 11))
 
+                        if selectedMessage?.image != nil {
+                            ChatImageView(message: $selectedMessage)
+                                .aspectRatio(contentMode: .fit)
+                                .clipShape(RoundedRectangle(cornerRadius: 5))
+                                .frame(width: 35, height: 35)
+                                .padding(.init(top: 0, leading: 0, bottom: 0, trailing: 11))
+                        }
+
                         Text(selectedMessage?.text ?? "")
                             .foregroundColor(ColorList.white_70.color)
                             .font(MyFont.getFont(.NORMAL, 18))

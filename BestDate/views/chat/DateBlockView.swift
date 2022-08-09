@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DateBlockView: View {
-    var date: String
+    @Binding var date: String?
 
     var body: some View {
         ZStack {
@@ -18,7 +18,7 @@ struct DateBlockView: View {
                 .cornerRadius(13)
                 .shadow(color: MyColor.getColor(0, 0, 0, 0.16), radius: 6, y: 3)
 
-            Text(date)
+            Text(date ?? "")
                 .foregroundColor(ColorList.white_30.color)
                 .font(MyFont.getFont(.BOLD, 14))
         }.frame(width: 103, height: 26)

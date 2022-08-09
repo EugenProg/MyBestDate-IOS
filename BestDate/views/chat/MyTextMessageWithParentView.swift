@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct MyTextMessageWithParentView: View {
-    var message: Message?
-    var parentMessage: Message?
-    var isLast: Bool
+    @Binding var message: Message?
+    @Binding var isLast: Bool
+
+    @Binding var parentMessage: Message?
     var topOffset: CGFloat
     var bottomOffset: CGFloat
 
@@ -20,6 +21,14 @@ struct MyTextMessageWithParentView: View {
                 VStack(alignment: .leading, spacing: 16) {
                     HStack(spacing: 8) {
                         Image("ic_reply_white")
+
+                        if parentMessage?.image != nil {
+                            ChatImageView(message: $parentMessage)
+                                .aspectRatio(contentMode: .fill)
+                                .clipShape(RoundedRectangle(cornerRadius: 5))
+                                .frame(width: 35, height: 35)
+                                .padding(.init(top: 0, leading: 8, bottom: 0, trailing: 8))
+                        }
 
                         Text(parentMessage?.text ?? "")
                             .foregroundColor(ColorList.white_70.color)
@@ -36,10 +45,8 @@ struct MyTextMessageWithParentView: View {
                             Rectangle()
                                 .fill(MyColor.getColor(244, 248, 250, 0.5))
                                 .frame(height: 1)
-                        }.padding(.init(top: topOffset, leading: 18, bottom: bottomOffset, trailing: 18))
+                        }.padding(.init(top: parentMessage?.image != nil && topOffset < 35 ? 45 : topOffset, leading: 18, bottom: bottomOffset, trailing: 18))
                     )
-
-
             }.background(
                 RoundedRectangle(cornerRadius: 28)
                     .stroke(ColorList.white_50.color, lineWidth: 2)

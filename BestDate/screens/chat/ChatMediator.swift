@@ -22,6 +22,9 @@ class ChatMediator: ObservableObject {
     @Published var replyMode: Bool = false
     @Published var loadingMode: Bool = true
 
+    @Published var editImageMode: Bool = false
+    @Published var selectedImage: UIImage? = nil
+
     func setUser(user: ShortUserInfo) {
         self.user = user
         self.getMessageList()

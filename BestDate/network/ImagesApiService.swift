@@ -77,7 +77,7 @@ class ImagesApiService {
         let path = parentId == nil ? userId.toString() : "\(userId)/\(parentId!)"
         var request = CoreApiTypes.sendMessage.getRequest(path: path, withAuth: true)
 
-        let media = Media(withImage: image, forKey: "media")
+        let media = Media(withImage: image, forKey: "image")
         let boundary = NSUUID().uuidString
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         request.httpBody = createDataBody(media: media, boundary: boundary)
@@ -87,7 +87,7 @@ class ImagesApiService {
             if let data = data, let response = try? JSONDecoder().decode(SendMessageResponse.self, from: data) {
                 NetworkLogger.printLog(data: data)
                 if message != nil {
-                    ChatApiService.shared.updateMessage(id: userId, message: message ?? "") { success, savedMessage in
+                    ChatApiService.shared.updateMessage(id: response.data?.id ?? 0, message: message ?? "") { success, savedMessage in
                         completion(success, savedMessage)
                     }
                 } else {

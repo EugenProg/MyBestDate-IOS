@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct CompanionTextMessageWithParentView: View {
-    var message: Message?
-    var parentMessage: Message?
-    var isLast: Bool
+    @Binding var message: Message?
+    @Binding var isLast: Bool
+    @Binding var parentMessage: Message?
     var topOffset: CGFloat
     var bottomOffset: CGFloat
 
@@ -20,6 +20,14 @@ struct CompanionTextMessageWithParentView: View {
                 VStack(alignment: .leading, spacing: 16) {
                     HStack(spacing: 8) {
                         Image("ic_reply_black")
+
+                        if parentMessage?.image != nil {
+                            ChatImageView(message: $parentMessage)
+                                .aspectRatio(contentMode: .fill)
+                                .clipShape(RoundedRectangle(cornerRadius: 5))
+                                .frame(width: 35, height: 35)
+                                .padding(.init(top: 0, leading: 8, bottom: 0, trailing: 8))
+                        }
 
                         Text(parentMessage?.text ?? "")
                             .foregroundColor(ColorList.main_70.color)
@@ -36,7 +44,7 @@ struct CompanionTextMessageWithParentView: View {
                             Rectangle()
                                 .fill(MyColor.getColor(40, 48, 52, 0.11))
                                 .frame(height: 1)
-                        }.padding(.init(top: topOffset, leading: 18, bottom: bottomOffset, trailing: 18))
+                        }.padding(.init(top: parentMessage?.image != nil && topOffset < 35 ? 45 : topOffset, leading: 18, bottom: bottomOffset, trailing: 18))
                     )
 
 
