@@ -34,6 +34,7 @@ class ProfileMediator: ObservableObject {
                 MyDuelsMediator.shared.clearData()
                 TopListMediator.shared.clearTopList()
                 QuestionnaireMediator.shared.clearData()
+                MatchMediator.shared.clearData()
                 completion()
             }
         }

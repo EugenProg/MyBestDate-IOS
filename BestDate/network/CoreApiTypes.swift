@@ -53,6 +53,10 @@ enum CoreApiTypes {
     case getVotingPhotos
     case getMyVoits
 
+    case getMatchUsers
+    case getMatchList
+    case matchAction
+
     case registerUserEmail///
     case registerUserPhone///
     case confirmUserEmail///
@@ -108,7 +112,9 @@ enum CoreApiTypes {
         case .confirmUserPhone: return "user/phone"
         case .updateUserData: return "user"
         case .logout: return "logout"
-
+        case .getMatchUsers: return "match-users"
+        case .getMatchList: return "match"
+        case .matchAction: return "match"
         }
     }
 
@@ -154,6 +160,9 @@ enum CoreApiTypes {
         case .confirmUserPhone: return "PUT"
         case .updateUserData: return "PUT"
         case .logout: return "GET"
+        case .getMatchUsers: return "GET"
+        case .getMatchList: return "GET"
+        case .matchAction: return "POST"
         }
     }
 
@@ -167,15 +176,8 @@ enum CoreApiTypes {
         return request
     }
 
-    func getRequest(params: [RequestParams], withAuth: Bool? = nil) -> URLRequest {
-        let request = self.request
-
-        print("\n\(getMethod) \(BaseURL)\(getPath)\n")
-        return request
-    }
-
-    func getRequest(path: String, withAuth: Bool? = nil) -> URLRequest {
-        let url = URL(string: getPath + path, relativeTo: URL(string: BaseURL)!)!
+    func getRequest(path: String, withAuth: Bool? = nil, params: [RequestParams]? = nil) -> URLRequest {
+        let url = URL(string: getPath + path + (params?.getParamsString() ?? ""), relativeTo: URL(string: BaseURL)!)!
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
@@ -185,17 +187,22 @@ enum CoreApiTypes {
         }
         request.httpMethod = getMethod
 
-        print("\n\(getMethod) \(BaseURL)\(getPath + path)\n")
+        print("\n\(getMethod) \(BaseURL)\(getPath + path)\(params?.getParamsString() ?? "")\n")
         return request
     }
 
 
-    func getRequest(withAuth: Bool? = nil) -> URLRequest {
-        print("\n\(getMethod) \(BaseURL)\(getPath)\n")
-        var request = self.request
+    func getRequest(withAuth: Bool? = nil, params: [RequestParams]? = nil) -> URLRequest {
+        print("\n\(getMethod) \(BaseURL)\(getPath)\(params?.getParamsString() ?? "")\n")
+        let url = URL(string: getPath + (params?.getParamsString() ?? ""), relativeTo: URL(string: BaseURL)!)!
+        var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue("en", forHTTPHeaderField: "X-Localization")
         if withAuth == true {
             request.setValue(UserDataHolder.accessToken, forHTTPHeaderField: "Authorization")
         }
+        request.httpMethod = getMethod
         return request
     }
 }
@@ -203,4 +210,16 @@ enum CoreApiTypes {
 struct RequestParams {
     var key: String = ""
     var value: String = ""
+}
+
+extension Array where Element == RequestParams {
+    func getParamsString() -> String {
+        var paramsString = "?"
+
+        for param in self {
+            paramsString += "\(param.key)=\(param.value)&"
+        }
+
+        return String(paramsString.prefix(paramsString.count - 1))
+    }
 }

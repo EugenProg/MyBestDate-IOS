@@ -25,6 +25,20 @@ class AnotherProfileQuestionnaireMediator: ObservableObject {
         self.freeTime = getFreeTime(questionnaire: questinnaire)
     }
 
+    func setUser(user: ShortUserInfo?) {
+        getUserById(id: user?.id ?? 0)
+    }
+
+    private func getUserById(id: Int) {
+        CoreApiService.shared.getUsersById(id: id) { success, user in
+            DispatchQueue.main.async {
+                if success {
+                    self.setUser(user: user)
+                }
+            }
+        }
+    }
+
     private func getGeneralParagraph(questionnaire: Questionnaire) -> QuestionnaireParagraph {
         QuestionnaireParagraph(
             title: NSLocalizedString("general_information", comment: "Title").uppercased(),

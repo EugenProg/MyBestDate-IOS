@@ -86,3 +86,7 @@ struct VotePhotos: Codable {
 struct PhotoLikeRequest: Codable {
     var photo_id: Int
 }
+
+struct MatchActionRequest: Codable {
+    var user_id: Int
+}

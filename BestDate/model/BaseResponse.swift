@@ -12,6 +12,15 @@ struct BaseResponse: Codable {
     var message: String
 }
 
+struct Meta: Codable {
+    var current_page: Int? = nil
+    var from: Int? = nil
+    var last_page: Int? = nil
+    var per_page: Int? = nil
+    var to: Int? = nil
+    var total: Int? = nil
+}
+
 struct ProfileImageResponse: Codable {
     var success: Bool
     var message: String
@@ -107,6 +116,7 @@ struct UserListResponse: Codable {
     var success: Bool
     var message: String
     var data: [ShortUserInfo] = []
+    var meta: Meta? = nil
 }
 
 struct ChatListResponse: Codable {
@@ -148,12 +158,14 @@ struct GetChatMessagesResponse: Codable {
     var success: Bool
     var message: String
     var data: [Message] = []
+    var meta: Meta? = nil
 }
 
 struct GuestListResponse: Codable {
     var success: Bool
     var message: String
     var data: [Guest] = []
+    var meta: Meta
 }
 
 struct Guest: Codable {
@@ -181,6 +193,7 @@ struct MyDuelsListResponse: Codable {
     var success: Bool
     var message: String
     var data: [MyDuel] = []
+    var meta: Meta? = nil
 }
 
 struct MyDuel: Codable {
