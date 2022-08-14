@@ -10,6 +10,8 @@ import SwiftUI
 struct ChatScreen: View {
     @EnvironmentObject var store: Store
     @ObservedObject var mediator = ChatMediator.shared
+    @State private var offsetValue: CGFloat = 0.0
+
     @State var sendTextProcess: Bool = false
     @State var translateProcess: Bool = false
 
@@ -63,7 +65,6 @@ struct ChatScreen: View {
                         .onTapGesture {
                             goToUserProfile()
                         }
-
                 }.frame(height: 55)
                     .padding(.init(top: 16, leading: 32, bottom: 16, trailing: 32))
 
@@ -110,7 +111,7 @@ struct ChatScreen: View {
                             if success { mediator.inputText = "" }
                         }
                     }
-                })
+            }).keyboardSensible($offsetValue)
                 .padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight, trailing: 0))
                 .edgesIgnoringSafeArea(.bottom)
 
@@ -121,7 +122,8 @@ struct ChatScreen: View {
             ChatImageShowView(message: $showingImage, show: $showImage)
                 .opacity(showImage ? 1 : 0)
                 .scaleEffect(showImage ? 1 : 0)
-        }.background(Image("bg_chat_decor").edgesIgnoringSafeArea(.bottom))
+        }
+            .background(Image("bg_chat_decor").edgesIgnoringSafeArea(.bottom))
         .onAppear {
             store.dispatch(action:
                     .setScreenColors(status: ColorList.main.color, style: .lightContent))

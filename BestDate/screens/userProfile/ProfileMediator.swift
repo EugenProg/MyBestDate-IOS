@@ -45,7 +45,7 @@ class ProfileMediator: ObservableObject {
         self.profileImages.removeAll()
     }
 
-    func updateUserData() {
+    func updateUserData(completion: @escaping () -> Void) {
         CoreApiService.shared.getUserData { success, user in
             if success {
                 DispatchQueue.main.async {
@@ -53,6 +53,7 @@ class ProfileMediator: ObservableObject {
                     self.setUser(user: user)
                 }
             }
+            completion()
         }
     }
 }

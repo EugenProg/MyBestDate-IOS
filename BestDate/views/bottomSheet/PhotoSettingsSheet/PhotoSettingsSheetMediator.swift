@@ -35,7 +35,7 @@ class PhotoSettingsSheetMediator: ObservableObject {
         if callPage == .PROFILE_PHOTO {
             PhotoEditorMediator.shared.updateUserData()
         } else if callPage == .PROFILE {
-            ProfileMediator.shared.updateUserData()
+            ProfileMediator.shared.updateUserData { }
         }
     }
 }

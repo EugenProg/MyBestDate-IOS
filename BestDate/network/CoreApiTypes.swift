@@ -205,6 +205,10 @@ enum CoreApiTypes {
         request.httpMethod = getMethod
         return request
     }
+
+    static func getPageParams(page: Int) -> [RequestParams] {
+        [RequestParams(key: "page", value: page.toString())]
+    }
 }
 
 struct RequestParams {

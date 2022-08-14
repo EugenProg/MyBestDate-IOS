@@ -25,6 +25,7 @@ struct QuestionnaireParagraphView: View {
                 .fill(ColorList.white_10.color)
                 .frame(width: UIScreen.main.bounds.width - 64, height: 1)
         }.padding(.init(top: 10, leading: 0, bottom: 10, trailing: 0))
+            .frame(width: UIScreen.main.bounds.width - 64)
     }
 
     var body: some View {

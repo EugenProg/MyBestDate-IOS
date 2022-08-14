@@ -243,8 +243,8 @@ extension Array where Element == ProfileImage {
 }
 
 extension Array where Element == ShortUserInfo {
-    mutating func clearAndAddAll(list: [ShortUserInfo]?) {
-        self.removeAll()
+    mutating func addAll(list: [ShortUserInfo]?, clear: Bool) {
+        if clear { self.removeAll() }
 
         for item in list ?? [] {
             self.append(item)

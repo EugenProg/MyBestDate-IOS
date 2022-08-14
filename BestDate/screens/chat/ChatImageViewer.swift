@@ -10,6 +10,7 @@ import SwiftUI
 struct ChatImageViewer: View {
     @EnvironmentObject var store: Store
     @ObservedObject var mediator = ChatMediator.shared
+    @State private var offsetValue: CGFloat = 0.0
 
     @State var additionalHeight: CGFloat = 0
     @State var text: String = ""
@@ -108,9 +109,9 @@ struct ChatImageViewer: View {
                             .padding(.init(top: 8, leading: 9, bottom: 8, trailing: 11))
                     }
                 }
+                .keyboardSensible($offsetValue)
             }.frame(height: 50 + additionalHeight)
                 .padding(.init(top: 16, leading: 18, bottom: store.state.statusBarHeight + 32, trailing: 18))
-
         }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
             .background(ColorList.main.color)
     }

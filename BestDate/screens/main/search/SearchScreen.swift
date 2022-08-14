@@ -12,6 +12,7 @@ struct SearchScreen: View {
     @ObservedObject var mediator = SearchMediator.shared
     @ObservedObject var locationMediator = LocationMediator.shared
     @ObservedObject var onlineMediator = OnlineMediator.shared
+    @State var refreshingProcess: Bool = false
     
     var body: some View {
         VStack(spacing: 0) {
@@ -70,20 +71,28 @@ struct SearchScreen: View {
                 .fill(MyColor.getColor(190, 239, 255, 0.15))
                 .frame(height: 1)
 
-            ScrollView(.vertical, showsIndicators: false) {
-                SearchListView(list: $mediator.users) { user in
-                    AnotherProfileMediator.shared.setUser(user: user)
-                    store.dispatch(action: .navigate(screen: .ANOTHER_PROFILE))
-                }
-                .padding(.init(top: 14, leading: 3, bottom: 45, trailing: 3))
-            }.padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight + 60, trailing: 0))
-
+                SaveAndSetPositionScrollView(startPosition: mediator.savedPosition,
+                                             offsetChanged: { mediator.savePosition($0) },
+                                             onRefresh: { done in mediator.getUserList(withClear: true, page: 0) { done() }}) {
+                    SearchListView(list: $mediator.users, meta: $mediator.meta) { user in
+                        AnotherProfileMediator.shared.setUser(user: user)
+                        store.dispatch(action: .navigate(screen: .ANOTHER_PROFILE))
+                    } loadNextPage: {
+                        mediator.getNextPage()
+                    }
+                    .padding(.init(top: 14, leading: 3, bottom: 45, trailing: 3))
+                }.padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight + 60, trailing: 0))
         }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         .background(ColorList.main.color.edgesIgnoringSafeArea(.bottom))
         .onAppear {
             if mediator.users.isEmpty {
-                mediator.getUserList()
+                mediator.getUserList(withClear: true, page: 0) { }
             }
         }
     }
+}
+
+struct ScrollViewOffsetPreferenceKey: PreferenceKey {
+    static var defaultValue: CGPoint = .zero
+    static func reduce(value: inout CGPoint, nextValue: () -> CGPoint) {}
 }

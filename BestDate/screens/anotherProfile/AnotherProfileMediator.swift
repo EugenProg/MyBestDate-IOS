@@ -50,6 +50,13 @@ class AnotherProfileMediator: ObservableObject {
         }
     }
 
+    func getMainPhotoIndex() -> Int {
+        for index in imageList.indices {
+            if imageList[index].main == true { return index }
+        }
+        return 0
+    }
+
     func cleanUserData() {
         self.user = UserInfo()
         self.imageList.removeAll()

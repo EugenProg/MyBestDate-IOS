@@ -13,13 +13,14 @@ class GuestsMediator: ObservableObject {
     @Published var newGuests: [Guest] = []
     @Published var oldGuests: [Guest] = []
 
-    func getGuests() {
+    func getGuests(completion: @escaping () -> Void) {
         CoreApiService.shared.getGuests { success, guests in
             DispatchQueue.main.async {
                 if success {
                     self.setGuests(guests: guests)
                 }
             }
+            completion()
         }
     }
 

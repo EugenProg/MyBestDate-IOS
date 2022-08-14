@@ -49,9 +49,10 @@ struct GuestsScreen: View {
                     .padding(.init(top: topPadding, leading: 0, bottom: 0, trailing: 0))
                 Spacer()
             } else {
-                ScrollView(.vertical, showsIndicators: false) {
+                SaveAndSetPositionScrollView(onRefresh: { done in
+                    mediator.getGuests { done() }
+                }) {
                     VStack(alignment: .leading, spacing: 0) {
-
                         if !mediator.newGuests.isEmpty {
                             GuestListView(title: "new_guests", list: $mediator.newGuests) { guest in
                                 AnotherProfileMediator.shared.setUser(user: guest.guest ?? ShortUserInfo())
@@ -73,7 +74,7 @@ struct GuestsScreen: View {
             .background(ColorList.main.color.edgesIgnoringSafeArea(.bottom))
             .onAppear {
                 if mediator.oldGuests.isEmpty && mediator.newGuests.isEmpty {
-                    mediator.getGuests()
+                    mediator.getGuests { }
                 }
             }
     }

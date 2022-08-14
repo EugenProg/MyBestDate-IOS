@@ -23,7 +23,9 @@ struct ProfileScreen: View {
                 BluredImageHeaderView(image: $mediator.mainPhoto, enableBlur: false)
             }
 
-            ScrollView(.vertical, showsIndicators: false) {
+            SaveAndSetPositionScrollView(onRefresh: { done in
+                mediator.updateUserData { done() }
+            } ) {
                 ZStack {
                     VStack {
                         ZStack {
@@ -45,20 +47,6 @@ struct ProfileScreen: View {
                     }.zIndex(15)
 
                     VStack(alignment: .leading, spacing: 0) {
-                        HStack {
-                            BackButton(style: .white)
-
-                            Spacer()
-
-                            Button(action: {
-
-                            }) {
-                                Image("ic_menu_dots")
-                                    .padding(.init(top: 8, leading: 8, bottom: 8, trailing: 0))
-                            }
-                        }.padding(.init(top: 32, leading: 32, bottom: 15, trailing: 32))
-
-
                         ZStack {
                             Rectangle()
                                 .fill(MyColor.getColor(36, 43, 47))
@@ -96,7 +84,7 @@ struct ProfileScreen: View {
                                 }.padding(.init(top: 28, leading: 18, bottom: 0, trailing: 18))
                             }.padding(.init(top: 75, leading: 0, bottom: 0, trailing: 0))
                         }.frame(height: 231, alignment: .top)
-                            .padding(.init(top: 65, leading: 0, bottom: 0, trailing: 0))
+                            .padding(.init(top: 139, leading: 0, bottom: 0, trailing: 0))
 
                         ZStack {
                             Rectangle()
@@ -156,6 +144,22 @@ struct ProfileScreen: View {
                         }
                     }
                 }
+            }
+
+            VStack {
+                HStack {
+                    BackButton(style: .white)
+
+                    Spacer()
+
+                    Button(action: {
+
+                    }) {
+                        Image("ic_menu_dots")
+                            .padding(.init(top: 8, leading: 8, bottom: 8, trailing: 0))
+                    }
+                }.padding(.init(top: 32, leading: 32, bottom: 15, trailing: 32))
+                Spacer()
             }
 
         }.frame(width: UIScreen.main.bounds.width)

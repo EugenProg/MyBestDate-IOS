@@ -17,6 +17,8 @@ struct AnotherProfileScreen: View {
                 VStack(spacing: 0) {
                     AnotherProfileHeader(image: mediator.mainPhoto, isOnline: mediator.user.is_online ?? false, birthday: mediator.user.birthday ?? "", distance: mediator.user.getDistance()) {
                         mediator.cleanUserData()
+                    }.onTapGesture {
+                        goToImageViewer(index: mediator.getMainPhotoIndex())
                     }
 
                     DirrectionLineButtonView(name: "questionnaire", icon: "ic_document", buttonColor: ColorList.pink_5.color) {
@@ -67,10 +69,7 @@ struct AnotherProfileScreen: View {
                     .padding(.init(top: 24, leading: 18, bottom: 24, trailing: 18))
 
                     AnotherProfileImageLineView(imagesList: $mediator.imageList) { index in
-                        withAnimation {
-                            mediator.selectedImage = index
-                            store.dispatch(action: .navigate(screen: .ANOTHER_IMAGES))
-                        }
+                        goToImageViewer(index: index)
                     }
                     .padding(.init(top: 0, leading: 0, bottom: 100, trailing: 0))
                 }
@@ -92,6 +91,13 @@ struct AnotherProfileScreen: View {
                 store.dispatch(action:
                         .setScreenColors(status: ColorList.main.color, style: .lightContent))
             }
+    }
+
+    private func goToImageViewer(index: Int) {
+        withAnimation {
+            mediator.selectedImage = index
+            store.dispatch(action: .navigate(screen: .ANOTHER_IMAGES))
+        }
     }
 }
 

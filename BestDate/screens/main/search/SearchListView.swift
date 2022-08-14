@@ -9,7 +9,11 @@ import SwiftUI
 
 struct SearchListView: View {
     @Binding var list: [ShortUserInfo]
+    @Binding var meta: Meta
     var clickAction: (ShortUserInfo) -> Void
+    var loadNextPage: () -> Void
+
+    @State var showLoadingBlock: Bool = false
 
     var items: [GridItem] = [
         GridItem(.fixed((UIScreen.main.bounds.width - 9) / 2), spacing: 3),
@@ -23,14 +27,25 @@ struct SearchListView: View {
         } else {
             LazyVGrid(columns: items, alignment: .center, spacing: 10,
                       pinnedViews: [.sectionHeaders, .sectionFooters]) {
-                ForEach(list, id: \.id) { user in
+                ForEach(list.indices, id: \.self) { i in
+                    let user = list[i]
                     UserSearchItemView(user: user)
                         .onTapGesture {
-                            withAnimation {
-                                clickAction(user)
+                            withAnimation { clickAction(user) }
+                        }
+                        .onAppear {
+                            if user.id == list.last?.id {
+                                showLoadingBlock = true
                             }
                         }
                 }
+            }
+
+            if (meta.current_page ?? 0) < (meta.last_page ?? 0) && showLoadingBlock {
+                LoadingNextPageView()
+                    .onAppear {
+                        loadNextPage()
+                    }
             }
         }
     }

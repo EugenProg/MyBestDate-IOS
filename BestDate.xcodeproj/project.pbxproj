@@ -96,6 +96,8 @@
 		4C8E7DA8284D23D200D6E58D /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8E7DA7284D23D200D6E58D /* Store.swift */; };
 		4C8E7DAC284D252300D6E58D /* OnboardStartScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8E7DAB284D252300D6E58D /* OnboardStartScreen.swift */; };
 		4C92CAFD28A6A9D000E5DF52 /* KeyboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C92CAFC28A6A9D000E5DF52 /* KeyboardExtension.swift */; };
+		4C92CAFF28A76FD800E5DF52 /* LoadingNextPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C92CAFE28A76FD800E5DF52 /* LoadingNextPageView.swift */; };
+		4C92CB0228A78ACA00E5DF52 /* SaveAndSetPositionScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C92CB0128A78ACA00E5DF52 /* SaveAndSetPositionScrollView.swift */; };
 		4C950D58284E6194004E2C13 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C950D57284E6194004E2C13 /* Extension.swift */; };
 		4C950D5F284E7318004E2C13 /* AuthScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C950D5E284E7318004E2C13 /* AuthScreen.swift */; };
 		4C950D61284E78E8004E2C13 /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C950D60284E78E8004E2C13 /* NavigationView.swift */; };
@@ -303,6 +305,8 @@
 		4C8E7DA7284D23D200D6E58D /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		4C8E7DAB284D252300D6E58D /* OnboardStartScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardStartScreen.swift; sourceTree = "<group>"; };
 		4C92CAFC28A6A9D000E5DF52 /* KeyboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardExtension.swift; sourceTree = "<group>"; };
+		4C92CAFE28A76FD800E5DF52 /* LoadingNextPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingNextPageView.swift; sourceTree = "<group>"; };
+		4C92CB0128A78ACA00E5DF52 /* SaveAndSetPositionScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveAndSetPositionScrollView.swift; sourceTree = "<group>"; };
 		4C950D57284E6194004E2C13 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		4C950D59284E6C4C004E2C13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4C950D5E284E7318004E2C13 /* AuthScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthScreen.swift; sourceTree = "<group>"; };
@@ -455,6 +459,7 @@
 		4C022A3C28590B600043E49D /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				4C92CB0028A78A6E00E5DF52 /* scroll */,
 				4C5C86E62875FB15006DE024 /* imageLoader */,
 				4C022A52285F90A50043E49D /* Zoomable */,
 				4C022A3D28590B6A0043E49D /* imagePicker */,
@@ -831,8 +836,17 @@
 				4C022A50285F0AF00043E49D /* EdiorView.swift */,
 				4CB9FFA928847FF4004F1BF6 /* OverlayView.swift */,
 				4CDD3B9A2888608D00793466 /* NoDataView.swift */,
+				4C92CAFE28A76FD800E5DF52 /* LoadingNextPageView.swift */,
 			);
 			path = views;
+			sourceTree = "<group>";
+		};
+		4C92CB0028A78A6E00E5DF52 /* scroll */ = {
+			isa = PBXGroup;
+			children = (
+				4C92CB0128A78ACA00E5DF52 /* SaveAndSetPositionScrollView.swift */,
+			);
+			path = scroll;
 			sourceTree = "<group>";
 		};
 		4C950D56284E6171004E2C13 /* extensions */ = {
@@ -1379,6 +1393,7 @@
 				4CBF593128A2B2EB006BDE53 /* ChatImageShowView.swift in Sources */,
 				4CA2E230286728D100E514C4 /* SurprizeBoxView.swift in Sources */,
 				4C5C86BA2871A36B006DE024 /* SearchInputView.swift in Sources */,
+				4C92CB0228A78ACA00E5DF52 /* SaveAndSetPositionScrollView.swift in Sources */,
 				4CF02854288B09EE002C59EE /* DuelScreen.swift in Sources */,
 				4CB9FF8D2882D2AF004F1BF6 /* ProfileMediator.swift in Sources */,
 				4C8E7DA6284D233100D6E58D /* Reducer.swift in Sources */,
@@ -1390,6 +1405,7 @@
 				4C1458F528552BE500558B6B /* RegistrationMediator.swift in Sources */,
 				4C0E71F3284FCE7C004099D4 /* BackButton.swift in Sources */,
 				4CB9FF862881DD71004F1BF6 /* ChatApiService.swift in Sources */,
+				4C92CAFF28A76FD800E5DF52 /* LoadingNextPageView.swift in Sources */,
 				4C1B7C1F286A3477000DB5D4 /* SingleSelectInfoView.swift in Sources */,
 				4C1459032856627E00558B6B /* GeolocationScreen.swift in Sources */,
 				4CB9FFA4288453DB004F1BF6 /* AnotherProfileNavigationPanelView.swift in Sources */,

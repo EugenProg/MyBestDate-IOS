@@ -292,8 +292,8 @@ class CoreApiService {
         task.resume()
     }
 
-    func getUsersList(location: LocationFilterTypes, online: OnlineFilterTypes, completion: @escaping (Bool, [ShortUserInfo]) -> Void) {
-        var request = CoreApiTypes.getUserList.getRequest(withAuth: true)
+    func getUsersList(location: LocationFilterTypes, online: OnlineFilterTypes, page: Int, completion: @escaping (Bool, [ShortUserInfo], Meta) -> Void) {
+        var request = CoreApiTypes.getUserList.getRequest(withAuth: true, params: CoreApiTypes.getPageParams(page: page))
 
         let data = try! encoder.encode(SearchFilter(location: location.rawValue, online: online.rawValue))
         encoder.outputFormatting = .prettyPrinted
@@ -304,9 +304,9 @@ class CoreApiService {
             NetworkLogger.printLog(response: response)
             if let data = data, let response = try? JSONDecoder().decode(UserListResponse.self, from: data) {
                 NetworkLogger.printLog(data: data)
-                completion(response.success, response.data)
+                completion(response.success, response.data, response.meta ?? Meta())
             } else {
-                completion(false, [])
+                completion(false, [], Meta())
             }
         }
 
