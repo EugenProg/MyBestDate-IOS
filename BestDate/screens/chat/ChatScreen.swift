@@ -66,7 +66,7 @@ struct ChatScreen: View {
                             goToUserProfile()
                         }
                 }.frame(height: 55)
-                    .padding(.init(top: 16, leading: 32, bottom: 16, trailing: 32))
+                    .padding(.init(top: 16 + (offsetValue / 2), leading: 32, bottom: 16, trailing: 32))
 
                 Rectangle()
                     .fill(MyColor.getColor(190, 239, 255, 0.15))
@@ -87,7 +87,7 @@ struct ChatScreen: View {
                         showingImage = image
                         showImage = true
                     }.padding(.init(top: 6, leading: 0, bottom: 16, trailing: 0))
-                }.padding(.init(top: store.state.statusBarHeight + (mediator.editMode || mediator.replyMode ? 135 : 85) + additionalHeight, leading: 0, bottom: 90, trailing: 0))
+                }.padding(.init(top: getTopPadding(), leading: 0, bottom: getBottomPadding(), trailing: 0))
                     .rotationEffect(Angle(degrees: 180))
             }
 
@@ -148,6 +148,14 @@ struct ChatScreen: View {
                 store.dispatch(action: .navigate(screen: .ANOTHER_PROFILE))
             }
         }
+    }
+
+    private func getTopPadding() -> CGFloat {
+        store.state.statusBarHeight + (mediator.editMode || mediator.replyMode ? 135 : 85) + additionalHeight + (offsetValue / 2) + (offsetValue > 0 ? 32 : 0)
+    }
+
+    private func getBottomPadding() -> CGFloat {
+        (offsetValue / 2) + 90
     }
 }
 

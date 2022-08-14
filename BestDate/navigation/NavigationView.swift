@@ -45,7 +45,7 @@ struct NavigationView: View {
                     case .ANOTHER_IMAGES: AnotherProfileImagesScreen()
                     }
                 }.blur(radius: store.state.showBottomSheet ? 1.8 : 0)
-            }.onTapGesture(perform: { UIApplication.shared.windows.first { $0.isKeyWindow }?.endEditing(true) })
+            }.onTapGesture(perform: { store.dispatch(action: .hideKeyboard) })
         }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
             .padding(.init(top: store.state.statusBarHeight, leading: 0, bottom: 0, trailing: 0))
             .alert(store.state.notificationText, isPresented: $store.state.showMessage) {

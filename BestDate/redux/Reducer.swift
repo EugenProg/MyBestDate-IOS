@@ -68,7 +68,9 @@ final class Reducer {
             
         case .hideBottomSheet:
             state.showBottomSheet = false
-            
+
+        case .hideKeyboard:
+            UIApplication.shared.windows.first { $0.isKeyWindow }?.endEditing(true)
         }
         
         return state

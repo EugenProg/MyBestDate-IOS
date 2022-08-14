@@ -19,4 +19,5 @@ enum Action {
     case endProcess
     case setStatusbarColor(color: Color)
     case setScreenColors(status: Color, style: UIStatusBarStyle)
+    case hideKeyboard
 }
