@@ -91,6 +91,14 @@ class QuestionnaireMediator: ObservableObject {
         self.userQuestinnaire = questionnaire
     }
 
+    func setEmail(email: String) {
+        pages[5].questions[1].selectedAnsfer = email
+    }
+
+    func setPhone(phone: String) {
+        pages[5].questions[3].selectedAnsfer = phone
+    }
+
     private func createLocation(country: String?, city: String?) -> String {
         if !(country?.isEmpty ?? true) && !(city?.isEmpty ?? true) {
             return (country ?? "") + ", " + (city ?? "")
@@ -103,7 +111,6 @@ class QuestionnaireMediator: ObservableObject {
     }
 
     private func calculateSavedProgress(questionnaire: Questionnaire) -> Int {
-        print(">>> total progress = \(progress)")
         var totalProgress = 0
         for page in pages {
             for question in page.questions {
@@ -112,7 +119,6 @@ class QuestionnaireMediator: ObservableObject {
                 }
             }
         }
-        print(">>> total progress = \(totalProgress)")
         return totalProgress
     }
 
@@ -175,7 +181,6 @@ class QuestionnaireMediator: ObservableObject {
     func getQuestionnaire() {
         userQuestinnaire.search_age_min = startAgeRange
         userQuestinnaire.search_age_max = endAgeRange
-        userQuestinnaire.socials = ["123"]
     }
 
     func isChanged() -> Bool {
@@ -480,7 +485,7 @@ class QuestionnaireMediator: ObservableObject {
                 id: 1,
                 question: "email",
                 percent: 0,
-                viewType: .CONFIRMATION_SELECT,
+                viewType: .CONFIRMATION_EMAIL,
                 ansfers: ["your_email_has_not_been_confirmed"],
                 selectedAnsfer: ""
             )
@@ -490,7 +495,7 @@ class QuestionnaireMediator: ObservableObject {
                 id: 2,
                 question: "social_network",
                 percent: 0,
-                viewType: .CONFIRMATION_SELECT,
+                viewType: .CONFIRMATION_SOCIAL,
                 ansfers: ["the_questionnaire_has_not_been_confirmed"]
             )
         )
@@ -499,7 +504,7 @@ class QuestionnaireMediator: ObservableObject {
                 id: 3,
                 question: "phone_number",
                 percent: 0,
-                viewType: .CONFIRMATION_SELECT,
+                viewType: .CONFIRMATION_PHONE,
                 ansfers: ["your_phone_number_has_not_been_confirmed"],
                 selectedAnsfer: ""
             )
@@ -569,6 +574,9 @@ enum QuestionViewType {
     case SEARCH_SELECT
     case RANGE_SEEK_BAR
     case CONFIRMATION_SELECT
+    case CONFIRMATION_EMAIL
+    case CONFIRMATION_PHONE
+    case CONFIRMATION_SOCIAL
 }
 
 class PageStates: ObservableObject {

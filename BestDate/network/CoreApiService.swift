@@ -75,6 +75,27 @@ class CoreApiService {
         task.resume()
     }
 
+
+    func registrUserEmail(email: String, completion: @escaping (Bool, String) -> Void) {
+        var request = CoreApiTypes.registerUserEmail.getRequest(withAuth: true)
+
+        let data = try! encoder.encode(SendCodeRequest(email: email))
+        encoder.outputFormatting = .prettyPrinted
+        request.httpBody = data
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            NetworkLogger.printLog(response: response)
+            if let data = data, let response = try? JSONDecoder().decode(BaseResponse.self, from: data) {
+                NetworkLogger.printLog(data: data)
+                completion(response.success, response.message)
+            } else {
+                completion(false, "")
+            }
+        }
+
+        task.resume()
+    }
+
     func registrPhone(phone: String, completion: @escaping (Bool) -> Void) {
         var request = CoreApiTypes.registerPhone.getRequest()
 
@@ -89,6 +110,26 @@ class CoreApiService {
                 completion(response.success)
             } else {
                 completion(false)
+            }
+        }
+
+        task.resume()
+    }
+
+    func registrUserPhone(phone: String, completion: @escaping (Bool, String) -> Void) {
+        var request = CoreApiTypes.registerUserPhone.getRequest(withAuth: true)
+
+        let data = try! encoder.encode(SendCodeRequest(phone: phone))
+        encoder.outputFormatting = .prettyPrinted
+        request.httpBody = data
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            NetworkLogger.printLog(response: response)
+            if let data = data, let response = try? JSONDecoder().decode(BaseResponse.self, from: data) {
+                NetworkLogger.printLog(data: data)
+                completion(response.success, response.message)
+            } else {
+                completion(false, "")
             }
         }
 
@@ -115,6 +156,26 @@ class CoreApiService {
         task.resume()
     }
 
+    func confirmUserEmail(email: String, code: String, completion: @escaping (Bool, String) -> Void) {
+        var request = CoreApiTypes.confirmUserEmail.getRequest(withAuth: true)
+
+        let data = try! encoder.encode(ConfirmRequest(email: email, code: code))
+        encoder.outputFormatting = .prettyPrinted
+        request.httpBody = data
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            NetworkLogger.printLog(response: response)
+            if let data = data, let response = try? JSONDecoder().decode(BaseResponse.self, from: data) {
+                NetworkLogger.printLog(data: data)
+                completion(response.success, response.message)
+            } else {
+                completion(false, "")
+            }
+        }
+
+        task.resume()
+    }
+
     func confirmPhone(phone: String, code: String, completion: @escaping (Bool) -> Void) {
         var request = CoreApiTypes.confirmPhone.getRequest()
 
@@ -129,6 +190,26 @@ class CoreApiService {
                 completion(response.success)
             } else {
                 completion(false)
+            }
+        }
+
+        task.resume()
+    }
+
+    func confirmUserPhone(phone: String, code: String, completion: @escaping (Bool, String) -> Void) {
+        var request = CoreApiTypes.confirmUserPhone.getRequest(withAuth: true)
+
+        let data = try! encoder.encode(ConfirmRequest(phone: phone, code: code))
+        encoder.outputFormatting = .prettyPrinted
+        request.httpBody = data
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            NetworkLogger.printLog(response: response)
+            if let data = data, let response = try? JSONDecoder().decode(BaseResponse.self, from: data) {
+                NetworkLogger.printLog(data: data)
+                completion(response.success, response.message)
+            } else {
+                completion(false, "")
             }
         }
 

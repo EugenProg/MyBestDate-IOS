@@ -11,6 +11,7 @@ struct AnotherProfileImagesScreen: View {
     @EnvironmentObject var store: Store
     @ObservedObject var mediator = AnotherProfileMediator.shared
     @State var isLiked: Bool = false
+    @State var showButtons = true
 
     var body: some View {
         ZStack {
@@ -25,18 +26,17 @@ struct AnotherProfileImagesScreen: View {
                 if mediator.imageList.count > 1 {
                     ImagesTabView(imagesCount: mediator.imageList.count, selectedImage: $mediator.selectedImage) {
                         isLiked = mediator.imageList[mediator.selectedImage].liked ?? false
-                    }
+                    }.opacity(showButtons ? 1 : 0)
                 }
 
                 Spacer()
 
-                ImagesListView(images: $mediator.imageList, selectedImage: $mediator.selectedImage) {
+                ImagesListView(images: $mediator.imageList, selectedImage: $mediator.selectedImage, showButtons: $showButtons) {
                     isLiked = mediator.imageList[mediator.selectedImage].liked ?? false
                 }
 
                 Spacer()
             }
-
 
             AnotherProfileNavigationPanelView(isLiked: $isLiked, opacity: false) {
                 ChatMediator.shared.setUser(user: mediator.user)
@@ -57,6 +57,9 @@ struct AnotherProfileImagesScreen: View {
                 store.dispatch(action:
                         .setScreenColors(status: MyColor.getColor(23, 28, 31), style: .lightContent))
                 isLiked = mediator.imageList.isEmpty ? false : (mediator.imageList[mediator.selectedImage].liked ?? false)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    withAnimation { showButtons = false }
+                }
             }
     }
 }

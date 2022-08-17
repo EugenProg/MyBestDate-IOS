@@ -98,6 +98,13 @@
 		4C92CAFD28A6A9D000E5DF52 /* KeyboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C92CAFC28A6A9D000E5DF52 /* KeyboardExtension.swift */; };
 		4C92CAFF28A76FD800E5DF52 /* LoadingNextPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C92CAFE28A76FD800E5DF52 /* LoadingNextPageView.swift */; };
 		4C92CB0228A78ACA00E5DF52 /* SaveAndSetPositionScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C92CB0128A78ACA00E5DF52 /* SaveAndSetPositionScrollView.swift */; };
+		4C92CB0928AC1C2900E5DF52 /* QuestionnaireVerificationBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C92CB0828AC1C2800E5DF52 /* QuestionnaireVerificationBottomSheet.swift */; };
+		4C92CB0B28AC21C600E5DF52 /* VerificationMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C92CB0A28AC21C600E5DF52 /* VerificationMediator.swift */; };
+		4C92CB0D28AC255C00E5DF52 /* VerificationInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C92CB0C28AC255C00E5DF52 /* VerificationInputView.swift */; };
+		4C92CB0F28AD4F7700E5DF52 /* EmailVerficationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C92CB0E28AD4F7700E5DF52 /* EmailVerficationView.swift */; };
+		4C92CB1128AD4FAD00E5DF52 /* PhoneVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C92CB1028AD4FAD00E5DF52 /* PhoneVerificationView.swift */; };
+		4C92CB1328AD4FD200E5DF52 /* SocialVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C92CB1228AD4FD200E5DF52 /* SocialVerificationView.swift */; };
+		4C92CB1828AD56FD00E5DF52 /* VerificationOtpInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C92CB1728AD56FC00E5DF52 /* VerificationOtpInputView.swift */; };
 		4C950D58284E6194004E2C13 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C950D57284E6194004E2C13 /* Extension.swift */; };
 		4C950D5F284E7318004E2C13 /* AuthScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C950D5E284E7318004E2C13 /* AuthScreen.swift */; };
 		4C950D61284E78E8004E2C13 /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C950D60284E78E8004E2C13 /* NavigationView.swift */; };
@@ -307,6 +314,13 @@
 		4C92CAFC28A6A9D000E5DF52 /* KeyboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardExtension.swift; sourceTree = "<group>"; };
 		4C92CAFE28A76FD800E5DF52 /* LoadingNextPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingNextPageView.swift; sourceTree = "<group>"; };
 		4C92CB0128A78ACA00E5DF52 /* SaveAndSetPositionScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveAndSetPositionScrollView.swift; sourceTree = "<group>"; };
+		4C92CB0828AC1C2800E5DF52 /* QuestionnaireVerificationBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireVerificationBottomSheet.swift; sourceTree = "<group>"; };
+		4C92CB0A28AC21C600E5DF52 /* VerificationMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationMediator.swift; sourceTree = "<group>"; };
+		4C92CB0C28AC255C00E5DF52 /* VerificationInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationInputView.swift; sourceTree = "<group>"; };
+		4C92CB0E28AD4F7700E5DF52 /* EmailVerficationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailVerficationView.swift; sourceTree = "<group>"; };
+		4C92CB1028AD4FAD00E5DF52 /* PhoneVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhoneVerificationView.swift; path = "../New Group/PhoneVerificationView.swift"; sourceTree = "<group>"; };
+		4C92CB1228AD4FD200E5DF52 /* SocialVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialVerificationView.swift; sourceTree = "<group>"; };
+		4C92CB1728AD56FC00E5DF52 /* VerificationOtpInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationOtpInputView.swift; sourceTree = "<group>"; };
 		4C950D57284E6194004E2C13 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		4C950D59284E6C4C004E2C13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4C950D5E284E7318004E2C13 /* AuthScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthScreen.swift; sourceTree = "<group>"; };
@@ -564,6 +578,7 @@
 		4C1B7C22286B6783000DB5D4 /* bottomSheet */ = {
 			isa = PBXGroup;
 			children = (
+				4C92CB0728AC1BE000E5DF52 /* verification */,
 				4C5C86B82871A32E006DE024 /* search */,
 				4C1B7C23286B67CF000DB5D4 /* QuestionnaireSingleSelectBottomSheet.swift */,
 				4C1B7C25286B6AFF000DB5D4 /* AnsferItemView.swift */,
@@ -847,6 +862,44 @@
 				4C92CB0128A78ACA00E5DF52 /* SaveAndSetPositionScrollView.swift */,
 			);
 			path = scroll;
+			sourceTree = "<group>";
+		};
+		4C92CB0728AC1BE000E5DF52 /* verification */ = {
+			isa = PBXGroup;
+			children = (
+				4C92CB1628AD50EF00E5DF52 /* social */,
+				4C92CB1528AD50E400E5DF52 /* phone */,
+				4C92CB1428AD50C900E5DF52 /* email */,
+				4C92CB0828AC1C2800E5DF52 /* QuestionnaireVerificationBottomSheet.swift */,
+				4C92CB0A28AC21C600E5DF52 /* VerificationMediator.swift */,
+				4C92CB0C28AC255C00E5DF52 /* VerificationInputView.swift */,
+				4C92CB1728AD56FC00E5DF52 /* VerificationOtpInputView.swift */,
+			);
+			path = verification;
+			sourceTree = "<group>";
+		};
+		4C92CB1428AD50C900E5DF52 /* email */ = {
+			isa = PBXGroup;
+			children = (
+				4C92CB0E28AD4F7700E5DF52 /* EmailVerficationView.swift */,
+			);
+			path = email;
+			sourceTree = "<group>";
+		};
+		4C92CB1528AD50E400E5DF52 /* phone */ = {
+			isa = PBXGroup;
+			children = (
+				4C92CB1028AD4FAD00E5DF52 /* PhoneVerificationView.swift */,
+			);
+			path = phone;
+			sourceTree = "<group>";
+		};
+		4C92CB1628AD50EF00E5DF52 /* social */ = {
+			isa = PBXGroup;
+			children = (
+				4C92CB1228AD4FD200E5DF52 /* SocialVerificationView.swift */,
+			);
+			path = social;
 			sourceTree = "<group>";
 		};
 		4C950D56284E6171004E2C13 /* extensions */ = {
@@ -1322,6 +1375,7 @@
 				4CB9FF68287B3211004F1BF6 /* MainLocationBottomSheet.swift in Sources */,
 				4CB9FF9A28842457004F1BF6 /* TextButton.swift in Sources */,
 				4C5C86C2287336FD006DE024 /* MultySelectMediator.swift in Sources */,
+				4C92CB0B28AC21C600E5DF52 /* VerificationMediator.swift in Sources */,
 				4CF0284B2889DCEE002C59EE /* TopListMediator.swift in Sources */,
 				4CB9FF9428833A56004F1BF6 /* DirrectionLineButtonView.swift in Sources */,
 				4CBF592B28A16C71006BDE53 /* ChatImageViewer.swift in Sources */,
@@ -1356,6 +1410,7 @@
 				4CF028472889CFBF002C59EE /* TopDropDownButtonView.swift in Sources */,
 				4C5C86BC2871A5B4006DE024 /* CitySearchMediator.swift in Sources */,
 				4CD34F67289C39C200504396 /* MyTextMessageWithParentView.swift in Sources */,
+				4C92CB0F28AD4F7700E5DF52 /* EmailVerficationView.swift in Sources */,
 				4CD34F4E2892FEA000504396 /* NoDataBoxView.swift in Sources */,
 				4CD34F4428903E9500504396 /* AnotherProfileQuestionnaireMediator.swift in Sources */,
 				4CB9FF9628834303004F1BF6 /* ImageLineItemView.swift in Sources */,
@@ -1367,6 +1422,7 @@
 				4CD34F32288D0A0E00504396 /* ChatListView.swift in Sources */,
 				4C5C86DD2874B18D006DE024 /* AuthMediator.swift in Sources */,
 				4CB9FF92288331A2004F1BF6 /* ProfilePhotoLineView.swift in Sources */,
+				4C92CB1328AD4FD200E5DF52 /* SocialVerificationView.swift in Sources */,
 				4C3D27BC28511BB700F8FD09 /* Title.swift in Sources */,
 				4C022A4128590BE10043E49D /* Media.swift in Sources */,
 				4C1458F32855222A00558B6B /* GnderListItem.swift in Sources */,
@@ -1385,6 +1441,7 @@
 				4CD3F1DF288BCE5900DF8755 /* MyDuelsMediator.swift in Sources */,
 				4C3D27C72852792000F8FD09 /* SecondStylesTextButton.swift in Sources */,
 				4CB9FF412877437F004F1BF6 /* SearchScreen.swift in Sources */,
+				4C92CB1128AD4FAD00E5DF52 /* PhoneVerificationView.swift in Sources */,
 				4CD3F1D6288BA9E600DF8755 /* DuelCompareItem.swift in Sources */,
 				4C022A51285F0AF10043E49D /* EdiorView.swift in Sources */,
 				4CF028402889BACE002C59EE /* TopButtonView.swift in Sources */,
@@ -1410,6 +1467,7 @@
 				4C1459032856627E00558B6B /* GeolocationScreen.swift in Sources */,
 				4CB9FFA4288453DB004F1BF6 /* AnotherProfileNavigationPanelView.swift in Sources */,
 				4CD3F1D8288BAC9B00DF8755 /* DuelProgressView.swift in Sources */,
+				4C92CB1828AD56FD00E5DF52 /* VerificationOtpInputView.swift in Sources */,
 				4CB9FF98288345B7004F1BF6 /* LogoutButtonView.swift in Sources */,
 				4CD3F1DA288BC9F100DF8755 /* TopApiService.swift in Sources */,
 				4C5C86D62874A602006DE024 /* UserDataHolder.swift in Sources */,
@@ -1418,6 +1476,7 @@
 				4CBF593928A43A5B006BDE53 /* MatchesApiService.swift in Sources */,
 				4CB9FF572877500A004F1BF6 /* BottomMainNavigationItemView.swift in Sources */,
 				4CBF5925289EB739006BDE53 /* AnotherProfileImagesScreen.swift in Sources */,
+				4C92CB0D28AC255C00E5DF52 /* VerificationInputView.swift in Sources */,
 				4C950D58284E6194004E2C13 /* Extension.swift in Sources */,
 				4CB9FF4E28774718004F1BF6 /* TopScreen.swift in Sources */,
 				4CD34F3B288D2CBE00504396 /* ChatMediator.swift in Sources */,
@@ -1455,6 +1514,7 @@
 				4C3D27BE28511DCA00F8FD09 /* HeaderText.swift in Sources */,
 				4C8E7DA4284D229B00D6E58D /* AppState.swift in Sources */,
 				4C022A392858EE510043E49D /* PhotoEditingScreen.swift in Sources */,
+				4C92CB0928AC1C2900E5DF52 /* QuestionnaireVerificationBottomSheet.swift in Sources */,
 				4C950D61284E78E8004E2C13 /* NavigationView.swift in Sources */,
 				4CD3F1DD288BCBE300DF8755 /* MyDuelsScreen.swift in Sources */,
 				4C0E71ED284FB68E004099D4 /* CirclePointButton.swift in Sources */,
@@ -1657,7 +1717,7 @@
 				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortraitUpsideDown;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1696,7 +1756,7 @@
 				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortraitUpsideDown;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

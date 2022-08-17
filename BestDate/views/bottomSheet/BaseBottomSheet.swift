@@ -13,7 +13,8 @@ struct BaseBottomSheet: View {
     var width = UIScreen.main.bounds.width
     var height = UIScreen.main.bounds.height
     @State var offset: CGFloat = UIScreen.main.bounds.height
-    
+    @State var keyboardOffset: CGFloat = 0
+
     var body: some View {
         ZStack {
             VStack(spacing: 0) {
@@ -22,7 +23,7 @@ struct BaseBottomSheet: View {
                     .fill(store.state.activeBottomSheet.style.backColor)
                     .cornerRadius(radius: 33, corners: [.topLeft, .topRight])
                     .frame(height: 33)
-                    .offset(x: 0, y: offset)
+                    .offset(x: 0, y: offset + (keyboardOffset / 2))
                     Group {
                         switch store.state.activeBottomSheet {
                         case .GENDER: GenderBottomSheet { dismiss() }
@@ -32,6 +33,7 @@ struct BaseBottomSheet: View {
                         case .QUESTIONNAIRE_SEEK_BAR: QuestionnaireSeekBarBottomSheet { dismiss() }
                         case .QUESTIONNAIRE_SEARCH: QuestionnaireSearchBotomSheet { dismiss() }
                         case .QUESTIONNAIRE_MULTY_SELECT: QuestionnaireMultySelectBottomSheet { dismiss() }
+                        case .QUESTIONNAIRE_VERIFICATION: QuestionnaireVerificationBottomSheet { dismiss() }
                         case .MAIN_LOCATION: MainLocationBottomSheet { dismiss() }
                         case .MAIN_ONLINE: MainOnlineBottomSheet { dismiss() }
                         case .CHAT_ACTIONS: ChatActionsBottomSheet { dismiss() }
@@ -39,7 +41,7 @@ struct BaseBottomSheet: View {
                     }.frame(width: width, height: store.state.activeBottomSheet.heightMode.height)
                     .padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight + 16, trailing: 0))
                     .background(store.state.activeBottomSheet.style.backColor)
-                    .offset(x: 0, y: offset)
+                    .offset(x: 0, y: offset + (keyboardOffset / 2))
             }.onTapGesture {  }
                 .gesture(
                     DragGesture()
@@ -50,6 +52,7 @@ struct BaseBottomSheet: View {
                             endAction(value: value)
                         }
                 )
+                .keyboardTopOffset($keyboardOffset)
         }.frame(width: width, height: height)
             .background(ColorList.white_5.color)
             .onTapGesture {

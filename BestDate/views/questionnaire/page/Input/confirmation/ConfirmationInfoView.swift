@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ConfirmationInfoView: View {
+    @EnvironmentObject var store: Store
+    @ObservedObject var mediator = VerificationMediator.shared
 
     @Binding var questionInfo: QuestionInfo
     @State var isConfirmed: Bool = false
@@ -40,6 +42,16 @@ struct ConfirmationInfoView: View {
             .padding(.init(top: 1, leading: 14, bottom: 1, trailing: 14))
             .onAppear{
                 isConfirmed = !questionInfo.selectedAnsfer.isEmpty
+                questionInfo.selectAction = { ansfer in
+                    isConfirmed = !ansfer.isEmpty
+                    questionInfo.selectedAnsfer = ansfer
+                }
+            }
+            .onTapGesture {
+                if questionInfo.viewType != .CONFIRMATION_SELECT {
+                    mediator.questionInfo = questionInfo
+                    store.dispatch(action: .showBottomSheet(view: .QUESTIONNAIRE_VERIFICATION))
+                }
             }
     }
 

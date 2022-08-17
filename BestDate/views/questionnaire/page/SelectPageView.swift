@@ -34,7 +34,10 @@ struct SelectPageView: View {
                                         case .SINGLE_SELECT: SingleSelectInfoView(questionInfo: $page.questions[index])
                                         case .RANGE_SEEK_BAR: RangeSelectView(questionInfo: $page.questions[index])
                                         case .MULTY_SELECT: MultySelectView(questionInfo: $page.questions[index])
-                                        case .CONFIRMATION_SELECT: ConfirmationInfoView(questionInfo: $page.questions[index])
+                                        case .CONFIRMATION_SELECT,
+                                            .CONFIRMATION_SOCIAL,
+                                            .CONFIRMATION_PHONE,
+                                            .CONFIRMATION_EMAIL: ConfirmationInfoView(questionInfo: $page.questions[index])
                                     default: SingleSelectInfoView(questionInfo: $page.questions[index])
                                     }
                                 }

@@ -10,6 +10,7 @@ import SwiftUI
 struct ImagesListView: View {
     @Binding var images: [ProfileImage]
     @Binding var selectedImage: Int
+    @Binding var showButtons: Bool
     var selectAction: () -> Void
 
     @State var proccess: Bool = false
@@ -22,42 +23,33 @@ struct ImagesListView: View {
     @GestureState private var offsetState = CGSize.zero
 
     @State private var offset = CGSize.zero
-    @State private var scale: CGFloat = 1
 
     var body: some View {
         VStack(spacing: 42) {
             HStack(spacing: 0) {
-                ForEach(images, id: \.id) { image in
+                ForEach(images.indices, id: \.self) { index in
+                    let image = images[index]
                     AsyncImageView(url: image.full_url)
                         .frame(width: size, height: size)
                         .padding(.init(top: 0, leading: 2, bottom: 0, trailing: 2))
-                        //.scaleEffect(scale * scaleState)
-                }.offset(x: -(startOffset + ((size + 4) * CGFloat(selectedImage))), y: 0)
+                        .opacity(selectedImage == index ? 1 : 0)
+                        .scaleEffect(scaleState)
+                }.offset(x: offset.width)
             }.frame(height: size)
 
             if images.count > 1 {
                 HStack {
                     CircleImageButton(imageName: "ic_arrow_right_white", strokeColor: MyColor.getColor(190, 239, 255, 0.18), shadowColor: MyColor.getColor(80, 110, 126, 0.63), circleSize: .LARGE, loadingProcess: $proccess) {
-                        if selectedImage > 0 {
-                            withAnimation {
-                                selectedImage = selectedImage - 1
-                                selectAction()
-                            }
-                        }
+                        previousAction()
                     }.rotationEffect(Angle(degrees: 180))
 
                     Spacer()
 
-
                     CircleImageButton(imageName: "ic_arrow_right_white", strokeColor: MyColor.getColor(190, 239, 255, 0.18), shadowColor: MyColor.getColor(80, 110, 126, 0.63), circleSize: .LARGE, loadingProcess: $proccess) {
-                        if selectedImage < images.count - 1 {
-                            withAnimation {
-                                selectedImage = selectedImage + 1
-                                selectAction()
-                            }
-                        }
+                        nextAction()
                     }
                 }.padding(.init(top: 0, leading: 18, bottom: 0, trailing: 18))
+                    .opacity(showButtons ? 1 : 0)
             }
         }.frame(width: UIScreen.main.bounds.width)
             .padding(.init(top: 0, leading: 0, bottom: images.count > 1 ? 100 : 198, trailing: 0))
@@ -65,6 +57,7 @@ struct ImagesListView: View {
             size = UIScreen.main.bounds.width - 4
             totalWidth = (size + 4) * CGFloat(images.count)
             startOffset = -(totalWidth / 2 - (size / 2 + 2))
+            calculateOffset()
         }
         .gesture(SimultaneousGesture(magnification, dragGesture))
     }
@@ -74,9 +67,6 @@ struct ImagesListView: View {
             .updating($scaleState) { currentState, gestureState, _ in
                 gestureState = currentState
             }
-            .onEnded { value in
-                scale = 1
-            }
     }
 
     var dragGesture: some Gesture {
@@ -84,7 +74,35 @@ struct ImagesListView: View {
             .updating($offsetState) { currentState, gestureState, _ in
                 gestureState = currentState.translation
             }.onEnded { value in
-                //currentOffset = value.translation
+                if -value.translation.width > (50) {
+                    nextAction()
+                } else if value.translation.width > (50) {
+                    previousAction()
+                }
             }
+    }
+
+    func nextAction() {
+        if selectedImage < images.count - 1 {
+            withAnimation {
+                selectedImage = selectedImage + 1
+                selectAction()
+                calculateOffset()
+            }
+        }
+    }
+
+    func previousAction() {
+        if selectedImage > 0 {
+            withAnimation {
+                selectedImage = selectedImage - 1
+                selectAction()
+                calculateOffset()
+            }
+        }
+    }
+
+    func calculateOffset() {
+        offset.width = -(startOffset + ((size + 4) * CGFloat(selectedImage)))
     }
 }

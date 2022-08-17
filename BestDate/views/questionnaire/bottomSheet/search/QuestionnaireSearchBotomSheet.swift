@@ -47,13 +47,13 @@ struct QuestionnaireSearchBotomSheet: View {
                             .foregroundColor(ColorList.main_90.color)
                             .font(MyFont.getFont(.NORMAL, 18))
                             .frame(width: UIScreen.main.bounds.width - 64, height: 48, alignment: .leading)
-                            .padding(.init(top: 0, leading: 32, bottom: 0, trailing: 32))
+
                             .onTapGesture {
                                 searchMediator.searchText = city
                             }
                     }
                 }
-            }
+            }.padding(.init(top: 0, leading: 32, bottom: 0, trailing: 32))
 
             HStack(spacing: 4) {
                 Text("powered by")
@@ -63,9 +63,12 @@ struct QuestionnaireSearchBotomSheet: View {
                     .foregroundColor(ColorList.main.color)
                     .font(MyFont.getFont(.BOLD, 18))
             }.frame(width: UIScreen.main.bounds.width)
-                .padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight + 16, trailing: 0))
+                .padding(.init(top: 0, leading: 0, bottom: 16, trailing: 0))
 
         }.frame(width: UIScreen.main.bounds.width, alignment: .topLeading)
+            .onTapGesture {
+                store.dispatch(action: .hideKeyboard)
+            }
             .onAppear {
                 searchMediator.initSearch()
                 searchMediator.searchText = mediator.questionInfo.selectedAnsfer

@@ -18,7 +18,9 @@ struct BestDateApp: App {
             let state = AppState()
             let reducer = Reducer()
             let store = Store(state: state, reducer: reducer)
-            NavigationView().environmentObject(store)
+            NavigationView()
+                .environmentObject(store)
+                .previewInterfaceOrientation(.portrait)
         }
     }
 }

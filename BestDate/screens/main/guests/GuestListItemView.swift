@@ -61,15 +61,16 @@ struct GuestListItemView: View {
 
                 Spacer()
 
-                VStack {
-                    Spacer()
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 7)
-                            .fill(LinearGradient(gradient: Gradient(colors: [
-                                MyColor.getColor(48, 58, 62),
-                                MyColor.getColor(43, 52, 56)
-                            ]), startPoint: .leading, endPoint: .trailing))
-                        if !(guest.viewed ?? false) {
+                if !(guest.viewed ?? false) {
+                    VStack {
+                        Spacer()
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 7)
+                                .fill(LinearGradient(gradient: Gradient(colors: [
+                                    MyColor.getColor(48, 58, 62),
+                                    MyColor.getColor(43, 52, 56)
+                                ]), startPoint: .leading, endPoint: .trailing))
+
                             HStack(spacing: 6) {
                                 Text(NSLocalizedString("new_visit", comment: "New visit"))
                                     .foregroundColor(ColorList.white.color)
@@ -79,9 +80,9 @@ struct GuestListItemView: View {
                                     .fill(MyColor.getColor(240, 89, 221))
                                     .frame(width: 8, height: 8)
                             }
-                        }
-                    }.frame(width: 67, height: 20)
-                }.padding(.init(top: 8, leading: 0, bottom: 7, trailing: 0))
+                        }.frame(width: 67, height: 20)
+                    }.padding(.init(top: 8, leading: 0, bottom: 7, trailing: 0))
+                }
             }
             .padding(.init(top: 0, leading: 18, bottom: 0, trailing: 13))
         }.frame(height: 84)

@@ -57,10 +57,10 @@ enum CoreApiTypes {
     case getMatchList
     case matchAction
 
-    case registerUserEmail///
-    case registerUserPhone///
-    case confirmUserEmail///
-    case confirmUserPhone///
+    case registerUserEmail
+    case registerUserPhone
+    case confirmUserEmail
+    case confirmUserPhone
 
     case updateUserData///
 
