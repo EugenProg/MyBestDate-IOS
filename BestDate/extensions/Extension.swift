@@ -92,6 +92,12 @@ extension Date {
         NSLocalizedString(DateUtils().getZodiacSignByDate(date: self), comment: "Zodiac")
     }
 
+    func toShortString() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MMM"
+        return formatter.string(from: self)
+    }
+
     func isBetween(_ date1: Date, _ date2: Date) -> Bool {
             date1 < date2
                 ? DateInterval(start: date1, end: date2).contains(self)
@@ -109,10 +115,9 @@ extension Date {
         let days = components.day ?? 0
         let hours = components.hour ?? 0
         let minutes = components.minute ?? 0
-        //print(">>> Now: \(Date.now)\n>>> date: \(date)\n>>> days: \(days)\n>>> hours: \(hours)\n>>> min: \(minutes)")
 
         if days > 6 {
-            return NSLocalizedString("was_recently", comment: "Was recently")
+            return self.toShortString()
         } else if days > 0 {
             return String.localizedStringWithFormat(NSLocalizedString("was_n_days_ago", comment: "Days"), days)
         } else if hours > 0 {
@@ -361,6 +366,16 @@ extension UserInfo {
             NSLocalizedString("disatnce_unit", comment: "Mask"),
             NSLocalizedString(String(format: "%.0f", self.distance ?? 0.0), comment: "Distance")
         )
+    }
+
+    func getBirthday() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMMM yyyy"
+
+        let incomingFormatter = DateFormatter()
+        incomingFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+
+        return dateFormatter.string(from: incomingFormatter.date(from: self.birthday ?? "") ?? Date())
     }
 
     func getLocation() -> String {

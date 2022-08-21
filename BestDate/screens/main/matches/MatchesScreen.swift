@@ -47,7 +47,8 @@ struct MatchesScreen: View {
                     VStack(spacing: 0) {
                         MatchSliderView(users: $mediator.users,
                                         user: $mediator.currentUser,
-                                        index: $mediator.currentIndex) { id in
+                                        index: $mediator.currentIndex,
+                                        openProfile: openProfile()) { id in
                             mediator.matchAction(id: id)
                         }.padding(.init(top: 18, leading: 0, bottom: 21, trailing: 0))
 
@@ -110,6 +111,13 @@ struct MatchesScreen: View {
             if mediator.users.isEmpty {
                 mediator.getNextMatchPage()
             }
+        }
+    }
+
+    private func openProfile() -> (ShortUserInfo?) -> Void {
+        { user in
+            AnotherProfileMediator.shared.setUser(user: user ?? ShortUserInfo())
+            store.dispatch(action: .navigate(screen: .ANOTHER_PROFILE))
         }
     }
 }

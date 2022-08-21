@@ -17,6 +17,7 @@ struct VerificationInputView: View {
     @Binding var errorState: Bool
     var keyboard: UIKeyboardType = .default
 
+    var textIsChanged: ((String) -> Void)? = nil
 
     var body: some View {
         ZStack {
@@ -27,6 +28,7 @@ struct VerificationInputView: View {
                 Image(image)
                     .renderingMode(.template)
                     .foregroundColor(errorState ? errorColor.color : ColorList.main.color)
+                    .frame(width: 24, height: 24)
                     .padding(.init(top: 0, leading: 24, bottom: 0, trailing: 16))
 
                 Rectangle()
@@ -45,6 +47,9 @@ struct VerificationInputView: View {
                         .font(MyFont.getFont(.BOLD, 20))
                         .keyboardType(keyboard)
                         .onChange(of: input) { newValue in
+                            if textIsChanged != nil {
+                                textIsChanged!(newValue)
+                            }
                             errorState = false
                         }
                 }.padding(.init(top: 0, leading: 14, bottom: 0, trailing: 8))

@@ -514,7 +514,7 @@
 "add_a_caption" = "Add a caption...";
 "sorry_you_voted_for_all_the_photos" = "Sorry you voted for all the photos";
 "enter_email" = "Enter Email";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
+"insta" = "Instagram";
+"facebook" = "Facebook";
+"twitter" = "Twitter";
+"linkedin" = "Linkedin";

@@ -12,6 +12,8 @@ struct QuestionnaireVerificationBottomSheet: View {
     @EnvironmentObject var store: Store
     @ObservedObject var mediator = VerificationMediator.shared
 
+    @State var offset: CGFloat = 0
+
     var clickAction: () -> Void
 
     var body: some View {
@@ -23,8 +25,12 @@ struct QuestionnaireVerificationBottomSheet: View {
 
                 if mediator.questionInfo.viewType == .CONFIRMATION_SOCIAL {
                     TextButton(text: "save", textColor: ColorList.main.color) {
-
-                        clickAction()
+                        if mediator.isValid() {
+                            let ansferLine = mediator.getAnsferLine()
+                            mediator.setAnsfers(ansfers: ansferLine)
+                            mediator.questionInfo.selectAction!(ansferLine)
+                            clickAction()
+                        }
                     }
                 }
             }.frame(width: UIScreen.main.bounds.width - 64)
@@ -38,6 +44,7 @@ struct QuestionnaireVerificationBottomSheet: View {
             ScrollView(.vertical, showsIndicators: false) {
                 getViewByType(type: mediator.questionInfo.viewType)
             }
+            .keyboardSensible($offset)
         }.frame(width: UIScreen.main.bounds.width, alignment: .topLeading)
             .onTapGesture {
                 store.dispatch(action: .hideKeyboard)

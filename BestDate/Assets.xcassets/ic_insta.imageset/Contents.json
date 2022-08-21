@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Card Pink.png",
+      "filename" : "instagram.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Card Pink@2x.png",
+      "filename" : "instagram@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Card Pink@3x.png",
+      "filename" : "instagram@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -91,14 +91,6 @@ class QuestionnaireMediator: ObservableObject {
         self.userQuestinnaire = questionnaire
     }
 
-    func setEmail(email: String) {
-        pages[5].questions[1].selectedAnsfer = email
-    }
-
-    func setPhone(phone: String) {
-        pages[5].questions[3].selectedAnsfer = phone
-    }
-
     private func createLocation(country: String?, city: String?) -> String {
         if !(country?.isEmpty ?? true) && !(city?.isEmpty ?? true) {
             return (country ?? "") + ", " + (city ?? "")

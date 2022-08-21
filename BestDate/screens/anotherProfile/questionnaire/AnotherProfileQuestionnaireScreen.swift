@@ -43,6 +43,21 @@ struct AnotherProfileQuestionnaireScreen: View {
                     QuestionnaireParagraphView(paragraph: mediator.personalInfo)
 
                     QuestionnaireParagraphView(paragraph: mediator.freeTime)
+
+                    if !mediator.socialNetworks.isEmpty {
+                        HStack(spacing: 16) {
+                            ForEach(mediator.socialNetworks.indices, id: \.self) { index in
+                                let net = mediator.socialNetworks[index]
+                                Button(action: {
+                                    store.dispatch(action: .openLink(link: net.link))
+                                }) {
+                                    Image(net.type.image)
+                                        .renderingMode(.template)
+                                        .foregroundColor(ColorList.white.color)
+                                }
+                            }
+                        }.padding(.init(top: 30, leading: 0, bottom: 32, trailing: 0))
+                    }
                 }
             }.padding(.init(top: 94, leading: 0, bottom: store.state.statusBarHeight, trailing: 0))
         }.background(Image("bg_chat_decor").edgesIgnoringSafeArea(.bottom))

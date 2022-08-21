@@ -98,8 +98,14 @@ struct DuelScreen: View {
                             .padding(.init(top: 15, leading: 18, bottom: 5, trailing: 16))
 
                         DuelCompareItem(item: $mediator.firstUser, image: $mediator.firstUserImage)
+                            .onTapGesture {
+                                navigateToUser(user: mediator.firstUser?.user)
+                            }
 
                         DuelCompareItem(item: $mediator.secondUser, image: $mediator.secondUserImage)
+                            .onTapGesture {
+                                navigateToUser(user: mediator.secondUser?.user)
+                            }
                     }
                 }.padding(.init(top: 0, leading: 0, bottom: 45, trailing: 0))
             }.padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight + 60, trailing: 0))
@@ -131,6 +137,13 @@ struct DuelScreen: View {
                     isSelect = !success
                 }
             }
+        }
+    }
+
+    private func navigateToUser(user: ShortUserInfo?) {
+        withAnimation {
+            AnotherProfileMediator.shared.setUser(user: user ?? ShortUserInfo())
+            store.dispatch(action: .navigate(screen: .ANOTHER_PROFILE))
         }
     }
 }

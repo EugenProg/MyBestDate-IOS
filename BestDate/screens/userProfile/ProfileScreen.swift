@@ -64,7 +64,7 @@ struct ProfileScreen: View {
 
                                 }.padding(.init(top: 0, leading: 32, bottom: 0, trailing: 0))
 
-                                Text(mediator.user.birthday?.toDate().toString() ?? "")
+                                Text(mediator.user.getBirthday())
                                     .foregroundColor(ColorList.white_80.color)
                                     .font(MyFont.getFont(.BOLD, 16))
 

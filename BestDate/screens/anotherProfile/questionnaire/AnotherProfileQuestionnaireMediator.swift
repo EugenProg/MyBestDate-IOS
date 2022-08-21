@@ -16,6 +16,7 @@ class AnotherProfileQuestionnaireMediator: ObservableObject {
     @Published var dataVerification: QuestionnaireParagraph? = nil
     @Published var personalInfo: QuestionnaireParagraph? = nil
     @Published var freeTime: QuestionnaireParagraph? = nil
+    @Published var socialNetworks: [SocialNet] = []
 
     func setUser(user: UserInfo) {
         self.user = user
@@ -23,6 +24,7 @@ class AnotherProfileQuestionnaireMediator: ObservableObject {
         self.generalInfo = getGeneralParagraph(questionnaire: questinnaire)
         self.personalInfo = getPersonalInfo(questionnaire: questinnaire)
         self.freeTime = getFreeTime(questionnaire: questinnaire)
+        setSocialNetworks(links: questinnaire.socials)
     }
 
     func setUser(user: ShortUserInfo?) {
@@ -163,6 +165,16 @@ class AnotherProfileQuestionnaireMediator: ObservableObject {
                 )
             ]
         )
+    }
+
+    private func setSocialNetworks(links: [String]?) {
+        socialNetworks.removeAll()
+        for link in links ?? [] {
+            socialNetworks.append(
+                SocialNet(type: SocialTypes.getSocialTypeByLink(link: link),
+                          link: link)
+            )
+        }
     }
 }
 

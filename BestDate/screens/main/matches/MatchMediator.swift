@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class MatchMediator: ObservableObject {
     static var shared: MatchMediator = MatchMediator()
@@ -50,4 +51,6 @@ class MatchMediator: ObservableObject {
 struct MatchItem {
     var id: Int
     var user: ShortUserInfo?
+    var offset: CGSize = CGSize.zero
+    var rotation: Angle = Angle.zero
 }

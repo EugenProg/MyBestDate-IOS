@@ -14,9 +14,11 @@ struct MatchSliderView: View {
 
     @State var clickProcess: Bool = false
 
+    var openProfile: (ShortUserInfo?) -> Void
     var likeClick: (_ id: Int?) -> Void
 
     var size: CGFloat = UIScreen.main.bounds.width
+    @GestureState private var offsetState = CGSize.zero
 
     var body: some View {
         ZStack {
@@ -24,26 +26,20 @@ struct MatchSliderView: View {
                 MatchImageView(match: item)
                     .clipShape(RoundedRectangle(cornerRadius: 32))
                     .opacity(getImageOpacity(id: item.wrappedValue.id))
-                    .offset(x: item.wrappedValue.id > index ? size * 1.03 : 0, y: item.wrappedValue.id > index ? -(size / 4.7) : 0)
-                    .rotationEffect(Angle(degrees: item.wrappedValue.id > index ? 20 : 0))
+                    .offset(item.wrappedValue.offset)
+                    .rotationEffect(item.wrappedValue.rotation)
+                    .gesture(dragGesture)
+                    .onTapGesture {
+                        withAnimation { openProfile(user) }
+                    }
             }.padding(.init(top: 18, leading: 18, bottom: 18, trailing: 18))
 
             VStack {
-                HStack {
-                    Button(action: {
-                        previousUser()
-                    }) {
-                        MatchButton(size: 37, icon: "ic_arrow_left_blue", opacity: 0.4)
-                    }
-
-                    Spacer()
-                }.padding(.init(top: 16, leading: 16, bottom: 0, trailing: 0))
-
                 Spacer()
 
                 HStack {
                     Button(action: {
-                        nextUser()
+                        nextUser(liked: false)
                     }) {
                         MatchButton(size: 65, icon: "ic_close_blue", opacity: 0.7)
                     }
@@ -51,9 +47,7 @@ struct MatchSliderView: View {
                     Spacer()
 
                     Button(action: {
-                        withAnimation { clickProcess = true }
-                        likeClick(user?.id)
-                        nextUser()
+                        nextUser(liked: true)
                     }) {
                         MatchButton(size: 65, icon: "ic_heart", opacity: 0.7)
                     }
@@ -81,35 +75,52 @@ struct MatchSliderView: View {
         }.frame(width: size, height: size)
     }
 
-    private func nextUser() {
+    private func nextUser(liked: Bool) {
         if index < users.count {
             withAnimation(.easeInOut(duration: 0.5)) {
                 index += 1
-                if index < users.count { user = users[index].user }
+                if index < users.count {
+                    user = users[index].user
+                }
+                if liked { likeClick(user?.id) }
+                clickProcess = liked
+                modify(liked: liked)
                 unblockButton()
             }
         }
     }
 
-    private func previousUser() {
-        if index > 0 {
-            withAnimation(.easeInOut(duration: 0.5)) {
-                index -= 1
-                user = users[index].user
-                clickProcess = false
-            }
-        }
+    private func getImageOpacity(id: Int) -> CGFloat {
+        if id == index - 1 { return 1 }
+        else if id == index { return 1 }
+        else { return 0 }
     }
 
-    private func getImageOpacity(id: Int) -> CGFloat {
-        if id < index { return 0 }
-        else if id > index + 1 { return 0 }
-        else { return 1 }
+    private func modify(liked: Bool) {
+        users[index - 1].offset = CGSize(width: liked ? size * 1.1 : -(size * 1.1), height: -(size / 4.7))
+        users[index - 1].rotation = Angle(degrees: liked ? 20 : -20)
     }
 
     private func unblockButton() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             clickProcess = false
         }
+    }
+
+    var dragGesture: some Gesture {
+        DragGesture()
+            .updating($offsetState) { currentState, gestureState, _ in
+                gestureState = currentState.translation
+                if index < users.count {
+                    users[index].offset = offsetState
+                }
+            }.onEnded { value in
+                if value.translation.width > 50 {
+                    withAnimation { clickProcess = true }
+                    nextUser(liked: true)
+                } else if value.translation.width < -50 {
+                    nextUser(liked: false)
+                }
+            }
     }
 }

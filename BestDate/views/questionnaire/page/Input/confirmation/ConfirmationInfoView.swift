@@ -57,7 +57,7 @@ struct ConfirmationInfoView: View {
 
     private func getAnsfer() -> String {
         if questionInfo.selectedAnsfer.isEmpty {
-            return NSLocalizedString(questionInfo.ansfers.first ?? "123", comment: "Answer")
+            return NSLocalizedString(questionInfo.ansfers.first ?? "", comment: "Answer")
         } else {
             return NSLocalizedString(questionInfo.selectedAnsfer, comment: "Answer")
         }

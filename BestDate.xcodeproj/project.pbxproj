@@ -105,6 +105,7 @@
 		4C92CB1128AD4FAD00E5DF52 /* PhoneVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C92CB1028AD4FAD00E5DF52 /* PhoneVerificationView.swift */; };
 		4C92CB1328AD4FD200E5DF52 /* SocialVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C92CB1228AD4FD200E5DF52 /* SocialVerificationView.swift */; };
 		4C92CB1828AD56FD00E5DF52 /* VerificationOtpInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C92CB1728AD56FC00E5DF52 /* VerificationOtpInputView.swift */; };
+		4C92CB1A28AE9BAC00E5DF52 /* ConfirmationSocialInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C92CB1928AE9BAB00E5DF52 /* ConfirmationSocialInfoView.swift */; };
 		4C950D58284E6194004E2C13 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C950D57284E6194004E2C13 /* Extension.swift */; };
 		4C950D5F284E7318004E2C13 /* AuthScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C950D5E284E7318004E2C13 /* AuthScreen.swift */; };
 		4C950D61284E78E8004E2C13 /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C950D60284E78E8004E2C13 /* NavigationView.swift */; };
@@ -321,6 +322,7 @@
 		4C92CB1028AD4FAD00E5DF52 /* PhoneVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhoneVerificationView.swift; path = "../New Group/PhoneVerificationView.swift"; sourceTree = "<group>"; };
 		4C92CB1228AD4FD200E5DF52 /* SocialVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialVerificationView.swift; sourceTree = "<group>"; };
 		4C92CB1728AD56FC00E5DF52 /* VerificationOtpInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationOtpInputView.swift; sourceTree = "<group>"; };
+		4C92CB1928AE9BAB00E5DF52 /* ConfirmationSocialInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationSocialInfoView.swift; sourceTree = "<group>"; };
 		4C950D57284E6194004E2C13 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		4C950D59284E6C4C004E2C13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4C950D5E284E7318004E2C13 /* AuthScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthScreen.swift; sourceTree = "<group>"; };
@@ -660,6 +662,7 @@
 			children = (
 				4C5C86C428734CE3006DE024 /* ConfirmationInfoView.swift */,
 				4C5C86C628734EC8006DE024 /* ConfirmationView.swift */,
+				4C92CB1928AE9BAB00E5DF52 /* ConfirmationSocialInfoView.swift */,
 			);
 			path = confirmation;
 			sourceTree = "<group>";
@@ -1504,6 +1507,7 @@
 				4C5C86DA2874AA5B006DE024 /* StringUtils.swift in Sources */,
 				4CA2E23D286766EF00E514C4 /* PageHeaderView.swift in Sources */,
 				4CA2E22B2867224B00E514C4 /* QuestionnaireScreen.swift in Sources */,
+				4C92CB1A28AE9BAC00E5DF52 /* ConfirmationSocialInfoView.swift in Sources */,
 				4C5C86E128758F0E006DE024 /* FaceDetectorUtil.swift in Sources */,
 				4C5C86AE28715A13006DE024 /* BaseBotomSheetMediator.swift in Sources */,
 				4C5C86BE287202A4006DE024 /* QuestionnaireMultySelectBottomSheet.swift in Sources */,
