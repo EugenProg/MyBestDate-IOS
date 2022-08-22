@@ -68,20 +68,24 @@ struct ProfileScreen: View {
                                     .foregroundColor(ColorList.white_80.color)
                                     .font(MyFont.getFont(.BOLD, 16))
 
-                                HStack(alignment: .top) {
-                                    CoinsBoxView(coinsCount: 10) {
+                                ScrollView(.horizontal, showsIndicators: false) {
+                                    HStack(alignment: .top) {
+                                        CoinsBoxView(coinsCount: 1000) {
 
-                                    }
+                                        }
 
-                                    Spacer()
+                                        ProfileButtonView(name: "cards", image: "ic_add", isActive: true) {
+                                            store.dispatch(action: .navigate(screen: .INVITATION))
+                                        }
 
-                                    ProfileButtonView(name: "like", image: "ic_menu_match_active", isActive: true) {
-                                    }
+                                        ProfileButtonView(name: "like", image: "ic_menu_match_active", isActive: true) {
+                                        }
 
-                                    ProfileButtonView(name: "my_duels", image: "ic_my_duels", isActive: true) {
-                                        store.dispatch(action: .navigate(screen: .MY_DUELS))
-                                    }
-                                }.padding(.init(top: 28, leading: 18, bottom: 0, trailing: 18))
+                                        ProfileButtonView(name: "my_duels", image: "ic_my_duels", isActive: true) {
+                                            store.dispatch(action: .navigate(screen: .MY_DUELS))
+                                        }
+                                    }.padding(.init(top: 28, leading: 18, bottom: 0, trailing: 18))
+                                }
                             }.padding(.init(top: 75, leading: 0, bottom: 0, trailing: 0))
                         }.frame(height: 231, alignment: .top)
                             .padding(.init(top: 139, leading: 0, bottom: 0, trailing: 0))

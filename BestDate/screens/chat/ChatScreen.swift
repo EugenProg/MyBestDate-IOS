@@ -102,7 +102,12 @@ struct ChatScreen: View {
                     withAnimation { isShowingPhotoLibrary.toggle() }
                 },
                 translateAction: { text in
-                    translateProcess.toggle()
+                    mediator.translate(text: text) { success, translatedText in
+                        DispatchQueue.main.async {
+                            translateProcess.toggle()
+                            if success { mediator.inputText = translatedText }
+                        }
+                    }
                 },
                 sendAction: { text in
                     mediator.saveMessage(message: text) { success in

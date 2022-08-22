@@ -24,7 +24,7 @@ struct CoinsBoxView: View {
                 HStack(spacing: 8) {
                     Image("ic_coin_bd_mini")
 
-                    Text("\(coinsCount)")
+                    Text(coinsCount.toString())
                         .foregroundColor(ColorList.white.color)
                         .font(MyFont.getFont(.BOLD, 28))
 

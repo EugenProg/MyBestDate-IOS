@@ -43,6 +43,7 @@ struct NavigationView: View {
                     case .CHAT: ChatScreen()
                     case .ANOTHER_QUESTIONNAIRE: AnotherProfileQuestionnaireScreen()
                     case .ANOTHER_IMAGES: AnotherProfileImagesScreen()
+                    case .INVITATION: InvitatinsScreen()
                     }
                 }.blur(radius: store.state.showBottomSheet ? 1.8 : 0)
             }.onTapGesture(perform: { store.dispatch(action: .hideKeyboard) })

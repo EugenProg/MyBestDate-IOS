@@ -203,3 +203,19 @@ struct MyDuel: Codable {
     var loser_photo: ProfileImage? = nil
     var voter: ShortUserInfo? = nil
 }
+
+struct Invitation: Codable {
+    var id: Int? = nil
+    var from_user: ShortUserInfo? = nil
+    var to_user: ShortUserInfo? = nil
+    var status: Bool? = nil
+}
+
+struct TranslationResponse: Codable {
+    var translations: [Translation]? = []
+}
+
+struct Translation: Codable {
+    var detected_source_language: String? = nil
+    var text: String? = nil
+}

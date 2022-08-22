@@ -105,6 +105,12 @@ class ChatMediator: ObservableObject {
         }
     }
 
+    func translate(text: String, completion: @escaping (Bool, String) -> Void) {
+        TranslateTextApiService.shared.translate(text: text, lang: "EN") { success, translatedText in
+            completion(success, translatedText)
+        }
+    }
+
     func editMessage() {
         withAnimation {
             self.editMode = true

@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct GuestListView: View {
-    var items: [GridItem] = [
-            GridItem(.fixed(UIScreen.main.bounds.width), spacing: 10)]
+    var items: [GridItem] = [GridItem(.fixed(UIScreen.main.bounds.width), spacing: 10)]
 
     var title: String
     @Binding var list: [Guest]

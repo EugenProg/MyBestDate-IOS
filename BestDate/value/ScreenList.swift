@@ -32,6 +32,7 @@ enum ScreenList: String {
     case CHAT
     case ANOTHER_QUESTIONNAIRE
     case ANOTHER_IMAGES
+    case INVITATION
 
 }
 
