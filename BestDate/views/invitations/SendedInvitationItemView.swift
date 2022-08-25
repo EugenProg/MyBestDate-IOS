@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SendedInvitationItemView: View {
-    var invitation: Invitation
+    var invitation: InvitationCard
 
     var userSelectAction: (_ user: ShortUserInfo?) -> Void
 

@@ -71,6 +71,9 @@ final class Reducer {
 
         case .hideKeyboard:
             UIApplication.shared.windows.first { $0.isKeyWindow }?.endEditing(true)
+
+        case .createInvitation:
+            state.showInvitationDialog = true
         }
         
         return state

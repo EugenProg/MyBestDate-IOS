@@ -19,6 +19,8 @@ struct NavigationView: View {
             }
             ZStack {
                 if store.state.showBottomSheet { BaseBottomSheet().zIndex(1) }
+                if store.state.showMessage { AlertScreen().zIndex(1) }
+                if store.state.showInvitationDialog { CreateInvitionScreen().zIndex(1) }
                 Group {
                     switch store.state.activeScreen {
                     case .START: StartScreen()
@@ -37,6 +39,7 @@ struct NavigationView: View {
                     case .QUESTIONNAIRE: QuestionnaireScreen()
                     case .MAIN: MainScreen()
                     case .PROFILE: ProfileScreen().transition(.move(edge: .trailing))
+                    case .PROFILE_IMAGES: UserProfileImageListScreen()
                     case .ANOTHER_PROFILE: AnotherProfileScreen().transition(.move(edge: .trailing))
                     case .TOP_LIST: TopScreen().transition(.move(edge: .trailing))
                     case .MY_DUELS: MyDuelsScreen()
@@ -45,13 +48,16 @@ struct NavigationView: View {
                     case .ANOTHER_IMAGES: AnotherProfileImagesScreen()
                     case .INVITATION: InvitatinsScreen()
                     }
-                }.blur(radius: store.state.showBottomSheet ? 1.8 : 0)
+                }.blur(radius: getBlur())
             }.onTapGesture(perform: { store.dispatch(action: .hideKeyboard) })
         }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
             .padding(.init(top: store.state.statusBarHeight, leading: 0, bottom: 0, trailing: 0))
-            .alert(store.state.notificationText, isPresented: $store.state.showMessage) {
-                        Button("OK", role: .cancel) { }
-                    }
+    }
+
+    private func getBlur() -> CGFloat {
+        store.state.showBottomSheet ||
+        store.state.showMessage ||
+        store.state.showInvitationDialog ? 1.8 : 0
     }
 }
 

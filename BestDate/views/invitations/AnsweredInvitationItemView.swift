@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AnsweredInvitationItemView: View {
-    var invitation: Invitation
+    var invitation: InvitationCard
     
     var userSelectAction: (_ user: ShortUserInfo?) -> Void
 
@@ -34,7 +34,7 @@ struct AnsweredInvitationItemView: View {
                             .foregroundColor(ColorList.main.color)
                             .font(MyFont.getFont(.BOLD, 26))
                         
-                        Text(NSLocalizedString("you_have_received_an_invitation_please_give_an_answer", comment: "answer please"))
+                        Text(NSLocalizedString("we_have_transmitted_your_reply_to_the_sender", comment: "answer please"))
                             .foregroundColor(ColorList.main_60.color)
                             .font(MyFont.getFont(.NORMAL, 13))
                     }

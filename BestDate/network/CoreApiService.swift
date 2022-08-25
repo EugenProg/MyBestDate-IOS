@@ -484,4 +484,52 @@ class CoreApiService {
 
         task.resume()
     }
+
+    func blockUser(id: Int?, completion: @escaping (Bool) -> Void) {
+        let request = CoreApiTypes.blockUser.getRequest(path: (id ?? 0).toString(), withAuth: true)
+
+        let task = URLSession.shared.dataTask(with: request) {data, response, error in
+            NetworkLogger.printLog(response: response)
+            if let data = data, let response = try? JSONDecoder().decode(BaseResponse.self, from: data) {
+                NetworkLogger.printLog(data: data)
+                completion(response.success)
+            } else {
+                completion(false)
+            }
+        }
+
+        task.resume()
+    }
+
+    func unlockUser(id: Int?, completion: @escaping (Bool) -> Void) {
+        let request = CoreApiTypes.unlockUser.getRequest(path: (id ?? 0).toString(), withAuth: true)
+
+        let task = URLSession.shared.dataTask(with: request) {data, response, error in
+            NetworkLogger.printLog(response: response)
+            if let data = data, let response = try? JSONDecoder().decode(BaseResponse.self, from: data) {
+                NetworkLogger.printLog(data: data)
+                completion(response.success)
+            } else {
+                completion(false)
+            }
+        }
+
+        task.resume()
+    }
+
+    func getBlockedList(completion: @escaping (Bool, [ShortUserInfo]) -> Void) {
+        let request = CoreApiTypes.getBlockedList.getRequest(withAuth: true)
+
+        let task = URLSession.shared.dataTask(with: request) {data, response, error in
+            NetworkLogger.printLog(response: response)
+            if let data = data, let response = try? JSONDecoder().decode(UserListResponse.self, from: data) {
+                NetworkLogger.printLog(data: data)
+                completion(response.success, response.data)
+            } else {
+                completion(false, [])
+            }
+        }
+
+        task.resume()
+    }
 }

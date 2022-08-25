@@ -62,6 +62,15 @@ enum CoreApiTypes {
     case confirmUserEmail
     case confirmUserPhone
 
+    case blockUser
+    case unlockUser
+    case getBlockedList
+
+    case getInvitationsList
+    case sendInvitation
+    case answerTheInvitation
+    case getUserInvitationList
+
     case updateUserData///
 
     case logout
@@ -115,6 +124,13 @@ enum CoreApiTypes {
         case .getMatchUsers: return "match-users"
         case .getMatchList: return "match"
         case .matchAction: return "match"
+        case .blockUser: return "block-user/"
+        case .unlockUser: return "unlock-user/"
+        case .getBlockedList: return "blocked-users"
+        case .getInvitationsList: return "invitations"
+        case .sendInvitation: return "invitations"
+        case .answerTheInvitation: return "invitations/"
+        case .getUserInvitationList: return "user/invitations"
         }
     }
 
@@ -163,6 +179,13 @@ enum CoreApiTypes {
         case .getMatchUsers: return "GET"
         case .getMatchList: return "GET"
         case .matchAction: return "POST"
+        case .blockUser: return "POST"
+        case .unlockUser: return "POST"
+        case .getBlockedList: return "GET"
+        case .getInvitationsList: return "GET"
+        case .sendInvitation: return "POST"
+        case .answerTheInvitation: return "PUT"
+        case .getUserInvitationList: return "GET"
         }
     }
 

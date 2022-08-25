@@ -11,13 +11,13 @@ class InvitationMediator: ObservableObject {
     static var shared = InvitationMediator()
 
     @Published var activeType: InvitationType = .new
-    @Published var newInvitations: [Invitation] = []
-    @Published var answerdInvitations: [Invitation] = []
-    @Published var sentInvitations: [Invitation] = []
+    @Published var newInvitations: [InvitationCard] = []
+    @Published var answerdInvitations: [InvitationCard] = []
+    @Published var sentInvitations: [InvitationCard] = []
 
     func setInvitations(users: [ShortUserInfo]) {
         for user in users {
-        let invitation = Invitation(
+        let invitation = InvitationCard(
             id: 0,
             from_user: user,
             to_user: user,

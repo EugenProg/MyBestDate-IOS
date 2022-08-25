@@ -18,4 +18,5 @@ struct AppState {
     var inProcess: Bool = false
     var statusBarColor: Color = ColorList.white.color
     var statusBarHeight: CGFloat = 0.0
+    var showInvitationDialog: Bool = false
 }

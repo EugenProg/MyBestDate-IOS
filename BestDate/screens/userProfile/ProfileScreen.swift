@@ -40,6 +40,9 @@ struct ProfileScreen: View {
                                 .aspectRatio(contentMode: .fill)
                                 .clipShape(Circle())
                                 .frame(width: 104, height: 104, alignment: .center)
+                                .onTapGesture {
+                                    goToImageViewer(index: mediator.getMainPhotoIndex())
+                                }
 
                         }.padding(.init(top: 84, leading: 32, bottom: 32, trailing: 32))
 
@@ -186,6 +189,13 @@ struct ProfileScreen: View {
     private func addImage() -> () -> Void {
         {
             isShowingPhotoLibrary.toggle()
+        }
+    }
+
+    private func goToImageViewer(index: Int) {
+        withAnimation {
+            mediator.selectedImage = index
+            store.dispatch(action: .navigate(screen: .PROFILE_IMAGES))
         }
     }
 }

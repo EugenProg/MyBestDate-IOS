@@ -67,10 +67,23 @@ struct ChatListItemView: View {
                             .foregroundColor(type.nameColor)
                             .font(MyFont.getFont(.BOLD, 20))
 
-                        Text(item.last_message?.text ?? "")
-                            .foregroundColor(type.messageColor)
-                            .font(MyFont.getFont(.NORMAL, 18))
-                            .lineLimit(1)
+                        if item.last_message?.image != nil {
+                            HStack {
+                                Image("ic_picture")
+                                    .resizable()
+                                    .opacity(0.8)
+                                    .frame(width: 14, height: 14)
+
+                                Text("Photo")
+                                    .foregroundColor(type.messageColor)
+                                    .font(MyFont.getFont(.NORMAL, 18))
+                            }
+                        } else if item.last_message?.text != nil {
+                            Text(item.last_message?.text ?? "")
+                                .foregroundColor(type.messageColor)
+                                .font(MyFont.getFont(.NORMAL, 18))
+                                .lineLimit(1)
+                        }
                     }.padding(.init(top: 0, leading: 17, bottom: 0, trailing: 0))
                     Spacer()
 

@@ -25,6 +25,8 @@ class ChatMediator: ObservableObject {
     @Published var editImageMode: Bool = false
     @Published var selectedImage: UIImage? = nil
 
+    @Published var cardsOnlyMode: Bool = false
+
     func setUser(user: ShortUserInfo) {
         self.user = user
         self.getMessageList()
@@ -47,8 +49,8 @@ class ChatMediator: ObservableObject {
         ChatApiService.shared.sendTextMessage(userId: user.id ?? 0, parentId: parentId, message: message) { success, savedMessage in
             DispatchQueue.main.async {
                 if success {
-                    self.messages.add(message: savedMessage)
                     withAnimation {
+                        self.messages.add(message: savedMessage)
                         self.replyMode = false
                         self.editMode = false
                         self.selectedMessage = nil
@@ -63,8 +65,8 @@ class ChatMediator: ObservableObject {
         ChatApiService.shared.updateMessage(id: selectedMessage?.id ?? 0, message: newMessage) { success, message in
             DispatchQueue.main.async {
                 if success {
-                    self.messages.update(message: message)
                     withAnimation {
+                        self.messages.update(message: message)
                         self.replyMode = false
                         self.editMode = false
                         self.selectedMessage = nil
@@ -81,8 +83,8 @@ class ChatMediator: ObservableObject {
             ImagesApiService.shared.sendImageMessage(image: newImage, userId: self.user.id ?? 0, parentId: parentId, message: message) { success, message in
                 DispatchQueue.main.async {
                     if success {
-                        self.messages.add(message: message)
                         withAnimation {
+                            self.messages.add(message: message)
                             self.replyMode = false
                             self.editMode = false
                             self.selectedMessage = nil
@@ -147,6 +149,7 @@ class ChatMediator: ObservableObject {
                         self.messages.addAll(list: list, clear: true)
                     }
                 }
+                self.cardsOnlyMode = self.messages.isEmpty && (self.user.block_messages ?? false)
                 self.loadingMode = false
             }
         }

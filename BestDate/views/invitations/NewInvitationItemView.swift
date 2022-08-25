@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NewInvitationItemView: View {
-    var invitation: Invitation
+    var invitation: InvitationCard
 
     var answerAction: (_ text: String) -> Void
     var userSelectAction: (_ user: ShortUserInfo?) -> Void
@@ -138,9 +138,9 @@ struct NewInvitationItemView: View {
                 backSideView()
             }
         }
-        .rotation3DEffect(Angle(degrees: frontSide ? 0 : -180), axis: (x: 0, y: 1, z: 0))
+        .rotation3DEffect(Angle(degrees: frontSide ? 0 : 180), axis: (x: 0, y: 1, z: 0))
         .onTapGesture {
-            withAnimation { frontSide.toggle() }
+            withAnimation(.easeInOut(duration: 0.4)) { frontSide.toggle() }
         }
     }
 }

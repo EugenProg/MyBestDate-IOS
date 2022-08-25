@@ -90,3 +90,16 @@ struct PhotoLikeRequest: Codable {
 struct MatchActionRequest: Codable {
     var user_id: Int
 }
+
+struct SendInvitationRequest: Codable {
+    var invitation_id: Int
+    var user_id: Int
+}
+
+struct AnswerTheInvitationRequest: Codable {
+    var status: Bool
+}
+
+struct GetUserInvitationFilter: Codable {
+    var filter: String
+}

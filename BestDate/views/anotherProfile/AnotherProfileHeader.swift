@@ -16,6 +16,7 @@ struct AnotherProfileHeader: View {
     var distance: String
 
     var backAction: () -> Void
+    var additionnallyAction: () -> Void
 
     var body: some View {
         ZStack {
@@ -36,7 +37,7 @@ struct AnotherProfileHeader: View {
                         Spacer()
 
                         Button(action: {
-
+                            withAnimation { additionnallyAction() }
                         }) {
                             Image("ic_menu_dots")
                                 .padding(.init(top: 8, leading: 8, bottom: 8, trailing: 0))

@@ -17,6 +17,9 @@ struct AnotherProfileScreen: View {
                 VStack(spacing: 0) {
                     AnotherProfileHeader(image: mediator.mainPhoto, isOnline: mediator.user.is_online ?? false, birthday: mediator.user.birthday ?? "", distance: mediator.user.getDistance()) {
                         mediator.cleanUserData()
+                    } additionnallyAction: {
+                        AdditionallyMediator.shared.setInfo(user: mediator.user)
+                        store.dispatch(action: .showBottomSheet(view: .ANOTHER_ADDITIONALLY))
                     }.onTapGesture {
                         goToImageViewer(index: mediator.getMainPhotoIndex())
                     }
@@ -82,7 +85,8 @@ struct AnotherProfileScreen: View {
             } likeClick: {
                 mediator.likePhoto(id: mediator.mainPhoto.id) { }
             } createClick: {
-               // store.dispatch(action: .show(message: "create"))
+                CreateInvitationMediator.shared.setUser(user: mediator.user.toShortUser())
+                store.dispatch(action: .createInvitation)
             }.zIndex(15)
 
         }.frame(width: UIScreen.main.bounds.width)

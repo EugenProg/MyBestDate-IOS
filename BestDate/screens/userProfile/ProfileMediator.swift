@@ -14,6 +14,8 @@ class ProfileMediator: ObservableObject {
     @Published var user: UserInfo = UserInfo()
     @Published var profileImages: [ProfileImage] = []
     @Published var mainPhoto: ProfileImage? = nil
+    
+    @Published var selectedImage: Int = 0
 
     func setUser(user: UserInfo) {
         self.user = user
@@ -55,5 +57,12 @@ class ProfileMediator: ObservableObject {
             }
             completion()
         }
+    }
+
+    func getMainPhotoIndex() -> Int {
+        for index in profileImages.indices {
+            if profileImages[index].main == true { return index }
+        }
+        return 0
     }
 }

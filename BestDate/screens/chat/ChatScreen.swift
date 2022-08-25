@@ -23,6 +23,13 @@ struct ChatScreen: View {
     
     var body: some View {
         ZStack(alignment: .top) {
+            if !mediator.messages.isEmpty {
+                TopPanelView(offsetValue: $offsetValue) {
+                    CreateInvitationMediator.shared.setUser(user: mediator.user)
+                    store.dispatch(action: .createInvitation)
+                }
+            }
+
             VStack(spacing: 0) {
                 HStack {
                     BackButton(style: .white) {
@@ -45,6 +52,9 @@ struct ChatScreen: View {
                             .foregroundColor((mediator.user.is_online ?? false) ? ColorList.green.color : ColorList.white_80.color)
                             .font(MyFont.getFont(.NORMAL, 14))
                     }.padding(.init(top: 0, leading: 5, bottom: 0, trailing: 18))
+                        .onTapGesture {
+                            goToUserProfile()
+                        }
 
                     ZStack {
                         AsyncImageView(url: mediator.user.main_photo?.thumb_url)
@@ -76,7 +86,10 @@ struct ChatScreen: View {
 
             if mediator.messages.isEmpty && !mediator.loadingMode {
                 VStack {
-                    InvitationChatView()
+                    InvitationChatView(onlyCards: $mediator.cardsOnlyMode) {
+                        CreateInvitationMediator.shared.setUser(user: mediator.user)
+                        store.dispatch(action: .createInvitation)
+                    }
                 }.frame(height: UIScreen.main.bounds.height)
             } else {
                 ScrollView(.vertical, showsIndicators: false) {
@@ -91,17 +104,22 @@ struct ChatScreen: View {
                     .rotationEffect(Angle(degrees: 180))
             }
 
-            ChatBottomView(text: $mediator.inputText,
-                           sendTextProcess: $sendTextProcess,
-                           translateProcess: $translateProcess,
-                           additionalHeight: $additionalHeight,
-                           editMode: $mediator.editMode,
-                           replyMode: $mediator.replyMode,
-                           selectedMessage: $mediator.selectedMessage,
-                loadImageAction: {
+            if mediator.cardsOnlyMode {
+                ChatOnlyCardBottomView(user: mediator.user)
+                    .padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight, trailing: 0))
+                    .edgesIgnoringSafeArea(.bottom)
+            } else {
+                ChatBottomView(text: $mediator.inputText,
+                               sendTextProcess: $sendTextProcess,
+                               translateProcess: $translateProcess,
+                               additionalHeight: $additionalHeight,
+                               editMode: $mediator.editMode,
+                               replyMode: $mediator.replyMode,
+                               selectedMessage: $mediator.selectedMessage,
+                               loadImageAction: {
                     withAnimation { isShowingPhotoLibrary.toggle() }
                 },
-                translateAction: { text in
+                               translateAction: { text in
                     mediator.translate(text: text) { success, translatedText in
                         DispatchQueue.main.async {
                             translateProcess.toggle()
@@ -109,16 +127,17 @@ struct ChatScreen: View {
                         }
                     }
                 },
-                sendAction: { text in
+                               sendAction: { text in
                     mediator.saveMessage(message: text) { success in
                         DispatchQueue.main.async {
                             sendTextProcess.toggle()
                             if success { mediator.inputText = "" }
                         }
                     }
-            }).keyboardSensible($offsetValue)
-                .padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight, trailing: 0))
-                .edgesIgnoringSafeArea(.bottom)
+                }).keyboardSensible($offsetValue)
+                    .padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight, trailing: 0))
+                    .edgesIgnoringSafeArea(.bottom)
+            }
 
             ChatImageViewer()
                 .opacity(mediator.editImageMode ? 1 : 0)
@@ -160,7 +179,7 @@ struct ChatScreen: View {
     }
 
     private func getBottomPadding() -> CGFloat {
-        (offsetValue / 2) + 90
+        (offsetValue / 2) + 90 + (mediator.messages.isEmpty ? 0 : 41)
     }
 }
 

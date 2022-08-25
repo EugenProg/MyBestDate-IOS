@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct InvitationsListView: View {
-    @Binding var newList: [Invitation]
-    @Binding var answerdList: [Invitation]
-    @Binding var sentList: [Invitation]
+    @Binding var newList: [InvitationCard]
+    @Binding var answerdList: [InvitationCard]
+    @Binding var sentList: [InvitationCard]
     @Binding var page: InvitationType
 
     var answerAction: (String) -> Void
@@ -18,7 +18,7 @@ struct InvitationsListView: View {
 
     var items: [GridItem] = [GridItem(.fixed(UIScreen.main.bounds.width), spacing: 10)]
 
-    fileprivate func listView(list: [Invitation], type: InvitationType) -> some View {
+    fileprivate func listView(list: [InvitationCard], type: InvitationType) -> some View {
         LazyVGrid(columns: items, alignment: .center, spacing: 16,
                   pinnedViews: [.sectionHeaders, .sectionFooters]) {
             ForEach(list.indices, id: \.self) { index in

@@ -66,6 +66,8 @@ struct UserInfo: Codable {
     var distance: Double? = nil
     var photos: [ProfileImage]? = nil
     var location: Location? = nil
+    var block_messages: Bool? = nil
+    var blocked: Bool? = nil
     var questionnaire: Questionnaire? = nil
 }
 
@@ -78,6 +80,7 @@ struct ShortUserInfo: Codable {
     var is_online: Bool? = nil
     var last_online_at: String? = nil
     var location: Location? = nil
+    var block_messages: Bool? = nil
     var full_questionnaire: Bool? = nil
     var distance: Double? = nil
 }
@@ -204,11 +207,17 @@ struct MyDuel: Codable {
     var voter: ShortUserInfo? = nil
 }
 
-struct Invitation: Codable {
+struct InvitationCard: Codable {
     var id: Int? = nil
+    var invitation: Invitation? = nil
     var from_user: ShortUserInfo? = nil
     var to_user: ShortUserInfo? = nil
     var status: Bool? = nil
+}
+
+struct Invitation: Codable {
+    var id: Int? = nil
+    var name: String? = nil
 }
 
 struct TranslationResponse: Codable {
@@ -218,4 +227,16 @@ struct TranslationResponse: Codable {
 struct Translation: Codable {
     var detected_source_language: String? = nil
     var text: String? = nil
+}
+
+struct InvitationListResponse: Codable {
+    var success: Bool
+    var message: String
+    var data: [Invitation] = []
+}
+
+struct UserInvitationListResponse: Codable {
+    var success: Bool
+    var message: String
+    var data: [InvitationCard] = []
 }

@@ -32,6 +32,7 @@ class AnotherProfileMediator: ObservableObject {
     }
 
     func getUserById(id: Int) {
+        CreateInvitationMediator.shared.getInvitations()
         CoreApiService.shared.getUsersById(id: id) { success, user in
             DispatchQueue.main.async {
                 if success {
