@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class InvitationMediator: ObservableObject {
     static var shared = InvitationMediator()
@@ -15,17 +16,63 @@ class InvitationMediator: ObservableObject {
     @Published var answerdInvitations: [InvitationCard] = []
     @Published var sentInvitations: [InvitationCard] = []
 
-    func setInvitations(users: [ShortUserInfo]) {
-        for user in users {
-        let invitation = InvitationCard(
-            id: 0,
-            from_user: user,
-            to_user: user,
-            status: true)
+    func getAllInvitations() {
+        if newInvitations.isEmpty &&
+            answerdInvitations.isEmpty &&
+            sentInvitations.isEmpty {
+            getNewInVitations()
+            getAnsweredInvitations()
+            getSentInvitations()
+        }
+    }
 
-        newInvitations.append(invitation)
-        sentInvitations.append(invitation)
-        answerdInvitations.append(invitation)
+    func getNewInVitations() {
+        for user in SearchMediator.shared.users {
+            let card = InvitationCard(id: user.id, invitation: Invitation(id: 0, name: "Restorant"), from_user: user, to_user: user, status: nil)
+            newInvitations.append(card)
+        }
+//        InvitationApiService.shared.getUserInvitationList(filter: .new) { success, invitations in
+//            DispatchQueue.main.async {
+//                withAnimation {
+//                    self.newInvitations.clearAndAddAll(list: invitations)
+//                }
+//            }
+//        }
+    }
+
+    func getAnsweredInvitations() {
+        for user in SearchMediator.shared.users {
+            let card = InvitationCard(id: user.id, invitation: Invitation(id: 0, name: "Restorant"), from_user: user, to_user: user, status: getStatus(id: user.id))
+            answerdInvitations.append(card)
+        }
+//        InvitationApiService.shared.getUserInvitationList(filter: .answered) { success, invitations in
+//            DispatchQueue.main.async {
+//                withAnimation {
+//                    self.answerdInvitations.clearAndAddAll(list: invitations)
+//                }
+//            }
+//        }
+    }
+
+    func getSentInvitations() {
+        for user in SearchMediator.shared.users {
+            let card = InvitationCard(id: user.id, invitation: Invitation(id: 0, name: "Restorant"), from_user: user, to_user: user, status: getStatus(id: user.id))
+            sentInvitations.append(card)
+        }
+//        InvitationApiService.shared.getUserInvitationList(filter: .sent) { success, invitations in
+//            DispatchQueue.main.async {
+//                withAnimation {
+//                    self.sentInvitations.clearAndAddAll(list: invitations)
+//                }
+//            }
+//        }
+    }
+
+    func getStatus(id: Int?) -> Bool? {
+        switch (id ?? 0) % 3 {
+        case 0: return true
+        case 1: return false
+        default: return nil
         }
     }
 }

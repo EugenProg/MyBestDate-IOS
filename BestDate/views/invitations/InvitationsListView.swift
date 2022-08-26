@@ -24,9 +24,9 @@ struct InvitationsListView: View {
             ForEach(list.indices, id: \.self) { index in
                 Group {
                     switch type {
-                    case .new: NewInvitationItemView(invitation: list[index], answerAction: answerAction, userSelectAction: showUserAction)
-                    case .answered: AnsweredInvitationItemView(invitation: list[index], userSelectAction: showUserAction)
-                    case .sended: SendedInvitationItemView(invitation: list[index], userSelectAction: showUserAction)
+                    case .new: NewInvitationItemView(invitationCard: list[index], answerAction: answerAction, userSelectAction: showUserAction)
+                    case .answered: AnsweredInvitationItemView(invitationCard: list[index], userSelectAction: showUserAction)
+                    case .sended: SendedInvitationItemView(invitationCard: list[index], userSelectAction: showUserAction)
                     }
                 }
             }

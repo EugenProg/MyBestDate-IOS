@@ -8,15 +8,17 @@
 import SwiftUI
 
 struct AnsweredInvitationItemView: View {
-    var invitation: InvitationCard
+    var invitationCard: InvitationCard
     
     var userSelectAction: (_ user: ShortUserInfo?) -> Void
+
+    let width = UIScreen.main.bounds.width - 36
 
     var body: some View {
         ZStack {
             Image("bg_invitation_card")
                 .resizable()
-                .frame(width: UIScreen.main.bounds.width - 36, height: 174)
+                .frame(width: width, height: 174)
             
             ZStack(alignment: .topTrailing) {
                 Image("ic_invitation_title")
@@ -30,7 +32,7 @@ struct AnsweredInvitationItemView: View {
                     Image("ic_add")
                     
                     VStack(alignment: .leading, spacing: 3) {
-                        Text(invitation.from_user?.name ?? "")
+                        Text(invitationCard.invitation?.name ?? "Sex")
                             .foregroundColor(ColorList.main.color)
                             .font(MyFont.getFont(.BOLD, 26))
                         
@@ -45,35 +47,49 @@ struct AnsweredInvitationItemView: View {
                 
                 HStack {
                     HStack(spacing: 7) {
-                        AsyncImageView(url: invitation.from_user?.main_photo?.thumb_url)
+                        AsyncImageView(url: invitationCard.from_user?.main_photo?.thumb_url)
                             .aspectRatio(contentMode: .fill)
                             .clipShape(Circle())
                             .frame(width: 26, height: 26)
                         
                         VStack(alignment: .leading, spacing: 0) {
                             HStack(spacing: 7) {
-                                Text(invitation.from_user?.name ?? "Noname")
+                                Text(invitationCard.from_user?.name ?? "Noname")
                                     .foregroundColor(ColorList.main_70.color)
                                     .font(MyFont.getFont(.BOLD, 14))
                                 
-                                Image((invitation.from_user?.full_questionnaire ?? false) ? "ic_verify_active" : "ic_verify_gray")
+                                Image((invitationCard.from_user?.full_questionnaire ?? false) ? "ic_verify_active" : "ic_verify_gray")
                                     .resizable()
                                     .frame(width: 12, height: 12)
                             }
-                            Text(invitation.from_user?.getLocation() ?? "")
+                            Text(invitationCard.from_user?.getLocation() ?? "")
                                 .foregroundColor(ColorList.main_50.color)
                                 .font(MyFont.getFont(.NORMAL, 11))
                         }
                     }.onTapGesture {
-                        withAnimation { userSelectAction(invitation.from_user) }
+                        withAnimation { userSelectAction(invitationCard.from_user) }
                     }
                     
                     Spacer()
-
-                    
                     
                 }.padding(.init(top: 0, leading: 36, bottom: 16, trailing: 36))
             }
+
+            HStack() {
+                Spacer()
+                VStack(spacing: 11) {
+                    if invitationCard.status == true {
+                        SuccessItemView()
+                    } else if invitationCard.status == false {
+                        CloseItemView()
+                    }
+
+                    Text(invitationCard.status == true ? "Yes I agree" : "Thanks, but I can’t yet")
+                        .foregroundColor(ColorList.main.color)
+                        .font(MyFont.getFont(.BOLD, 14))
+                }.frame(width: width / 2, height: 130, alignment: .bottom)
+                    .padding(.init(top: 0, leading: 20, bottom: 5, trailing: 0))
+            }.frame(width: width, height: 174)
         }
     }
 }

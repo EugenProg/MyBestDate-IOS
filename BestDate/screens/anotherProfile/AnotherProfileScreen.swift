@@ -91,6 +91,9 @@ struct AnotherProfileScreen: View {
 
         }.frame(width: UIScreen.main.bounds.width)
             .background(ColorList.main.color.edgesIgnoringSafeArea(.all))
+            .sheet(isPresented: $mediator.showShareSheet) {
+                ActivityViewController(activityItems: ["Hello Friends!!"])
+            }
             .onAppear {
                 store.dispatch(action:
                         .setScreenColors(status: ColorList.main.color, style: .lightContent))

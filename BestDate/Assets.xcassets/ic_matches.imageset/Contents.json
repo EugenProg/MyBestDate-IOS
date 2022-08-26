@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Coin BD mini.png",
+      "filename" : "Heart List.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Coin BD mini@2x.png",
+      "filename" : "Heart List@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Coin BD mini@3x.png",
+      "filename" : "Heart List@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

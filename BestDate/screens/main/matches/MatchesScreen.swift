@@ -26,11 +26,8 @@ struct MatchesScreen: View {
 
                     Spacer()
 
-                    Button(action: {
-                        //store.dispatch(action: .navigate(screen: .PROFILE))
-                    }) {
-                        Image("ic_menu_dots")
-                            .padding(.init(top: 8, leading: 8, bottom: 8, trailing: 0))
+                    ProfileButtonView(image: "ic_matches", isActive: true, size: CGSize(width: 48, height: 46)) {
+                        //store.dispatch(action: .navigate(screen: .MATCHES_LIST))
                     }
                 }
 

@@ -18,6 +18,8 @@ class AnotherProfileMediator: ObservableObject {
 
     @Published var selectedImage: Int = 0
 
+    @Published var showShareSheet: Bool = false
+
     func setUser(user: ShortUserInfo) {
         self.mainPhoto = user.main_photo ?? ProfileImage()
         self.mainLiked = self.mainPhoto.liked ?? false

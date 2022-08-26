@@ -72,16 +72,20 @@ struct ProfileScreen: View {
                                     .font(MyFont.getFont(.BOLD, 16))
 
                                 ScrollView(.horizontal, showsIndicators: false) {
-                                    HStack(alignment: .top) {
+                                    HStack(alignment: .top, spacing: 15) {
                                         CoinsBoxView(coinsCount: 1000) {
 
+                                        }
+
+                                        ProfileButtonView(name: "matches_list", image: "ic_matches", isActive: true) {
+                                            //store.dispatch(action: .navigate(screen: .MATCHES_LIST))
                                         }
 
                                         ProfileButtonView(name: "cards", image: "ic_add", isActive: true) {
                                             store.dispatch(action: .navigate(screen: .INVITATION))
                                         }
 
-                                        ProfileButtonView(name: "like", image: "ic_menu_match_active", isActive: true) {
+                                        ProfileButtonView(name: "like", image: "ic_is_liked", isActive: true) {
                                         }
 
                                         ProfileButtonView(name: "my_duels", image: "ic_my_duels", isActive: true) {

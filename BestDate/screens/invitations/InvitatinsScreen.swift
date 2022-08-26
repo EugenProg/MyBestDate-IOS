@@ -44,7 +44,7 @@ struct InvitatinsScreen: View {
             .background(ColorList.main.color.edgesIgnoringSafeArea(.bottom))
             .onAppear {
                 if mediator.newInvitations.isEmpty {
-                    mediator.setInvitations(users: SearchMediator.shared.users)
+                    mediator.getAllInvitations()
                 }
             }
     }

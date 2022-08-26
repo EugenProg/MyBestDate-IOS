@@ -95,6 +95,9 @@
 		4C878F1428B7DA7F00043680 /* CreateInvitationMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C878F1328B7DA7F00043680 /* CreateInvitationMediator.swift */; };
 		4C878F1628B7DD3000043680 /* InvitationApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C878F1528B7DD3000043680 /* InvitationApiService.swift */; };
 		4C878F1828B7E3B400043680 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C878F1728B7E3B400043680 /* ArrayExtension.swift */; };
+		4C878F1C28B7F75300043680 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C878F1B28B7F75300043680 /* ActivityViewController.swift */; };
+		4C878F1E28B7FC3600043680 /* SuccessItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C878F1D28B7FC3600043680 /* SuccessItemView.swift */; };
+		4C878F2028B7FEB300043680 /* CloseItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C878F1F28B7FEB300043680 /* CloseItemView.swift */; };
 		4C8E7D81284CC93F00D6E58D /* BestDateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8E7D80284CC93F00D6E58D /* BestDateApp.swift */; };
 		4C8E7D85284CC94900D6E58D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C8E7D84284CC94900D6E58D /* Assets.xcassets */; };
 		4C8E7D88284CC94900D6E58D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C8E7D87284CC94900D6E58D /* Preview Assets.xcassets */; };
@@ -329,6 +332,9 @@
 		4C878F1328B7DA7F00043680 /* CreateInvitationMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateInvitationMediator.swift; sourceTree = "<group>"; };
 		4C878F1528B7DD3000043680 /* InvitationApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationApiService.swift; sourceTree = "<group>"; };
 		4C878F1728B7E3B400043680 /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
+		4C878F1B28B7F75300043680 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
+		4C878F1D28B7FC3600043680 /* SuccessItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessItemView.swift; sourceTree = "<group>"; };
+		4C878F1F28B7FEB300043680 /* CloseItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseItemView.swift; sourceTree = "<group>"; };
 		4C8E7D7D284CC93F00D6E58D /* BestDate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BestDate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C8E7D80284CC93F00D6E58D /* BestDateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestDateApp.swift; sourceTree = "<group>"; };
 		4C8E7D84284CC94900D6E58D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -519,6 +525,7 @@
 				4C5C86E028758F0E006DE024 /* FaceDetectorUtil.swift */,
 				4CB9FFA028842FC6004F1BF6 /* DateUtils.swift */,
 				4CD34F5A289689B600504396 /* ChatUtils.swift */,
+				4C878F1B28B7F75300043680 /* ActivityViewController.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -991,6 +998,8 @@
 				4C92CB2528B2783200E5DF52 /* NewInvitationItemView.swift */,
 				4C92CB2728B2785800E5DF52 /* AnsweredInvitationItemView.swift */,
 				4C92CB2928B2787300E5DF52 /* SendedInvitationItemView.swift */,
+				4C878F1D28B7FC3600043680 /* SuccessItemView.swift */,
+				4C878F1F28B7FEB300043680 /* CloseItemView.swift */,
 			);
 			path = invitations;
 			sourceTree = "<group>";
@@ -1484,6 +1493,7 @@
 				4C3D27D02853A37F00F8FD09 /* BottomSheetList.swift in Sources */,
 				4C5C86B228717200006DE024 /* RangeSelectView.swift in Sources */,
 				4CB9FF72287F4028004F1BF6 /* StartScreen.swift in Sources */,
+				4C878F2028B7FEB300043680 /* CloseItemView.swift in Sources */,
 				4CF02856288B0B10002C59EE /* DuelMediator.swift in Sources */,
 				4C8E7D99284D1E7B00D6E58D /* Color.swift in Sources */,
 				4C3D27C528526FA100F8FD09 /* PasswordInputView.swift in Sources */,
@@ -1578,6 +1588,7 @@
 				4CB9FF98288345B7004F1BF6 /* LogoutButtonView.swift in Sources */,
 				4CD3F1DA288BC9F100DF8755 /* TopApiService.swift in Sources */,
 				4C5C86D62874A602006DE024 /* UserDataHolder.swift in Sources */,
+				4C878F1C28B7F75300043680 /* ActivityViewController.swift in Sources */,
 				4C5C86EA2875FCC0006DE024 /* ImageLoader.swift in Sources */,
 				4C5C86DF2874C033006DE024 /* BaseResponse.swift in Sources */,
 				4CBF593928A43A5B006BDE53 /* MatchesApiService.swift in Sources */,
@@ -1608,6 +1619,7 @@
 				4CF0284D288AEB87002C59EE /* TopListView.swift in Sources */,
 				4C5C86C0287203B2006DE024 /* MultySelectView.swift in Sources */,
 				4CBF592F28A2AD7A006BDE53 /* CompanionImageMessageView.swift in Sources */,
+				4C878F1E28B7FC3600043680 /* SuccessItemView.swift in Sources */,
 				4C022A4B285A470B0043E49D /* PhotoSettingsBottomSheet.swift in Sources */,
 				4C950D5F284E7318004E2C13 /* AuthScreen.swift in Sources */,
 				4C5C86DA2874AA5B006DE024 /* StringUtils.swift in Sources */,

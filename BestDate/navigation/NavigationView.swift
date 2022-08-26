@@ -47,6 +47,7 @@ struct NavigationView: View {
                     case .ANOTHER_QUESTIONNAIRE: AnotherProfileQuestionnaireScreen()
                     case .ANOTHER_IMAGES: AnotherProfileImagesScreen()
                     case .INVITATION: InvitatinsScreen()
+                    case .MATCHES_LIST: InvitatinsScreen().transition(.move(edge: .trailing))
                     }
                 }.blur(radius: getBlur())
             }.onTapGesture(perform: { store.dispatch(action: .hideKeyboard) })

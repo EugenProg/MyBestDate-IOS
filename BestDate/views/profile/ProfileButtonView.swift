@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProfileButtonView: View {
-    var name: String
+    var name: String?
     var image: String
     var isActive: Bool
     var size: CGSize = CGSize(width: 61, height: 58)
@@ -35,14 +35,16 @@ struct ProfileButtonView: View {
                             RoundedRectangle(cornerRadius: 4)
                                 .fill(ColorList.pink.color)
                                 .frame(width: 8, height: 8)
-                        }.frame(width: 57, height: 54, alignment: .topTrailing)
+                        }.frame(width: size.width - 4, height: size.height - 4, alignment: .topTrailing)
                     }
                 }.frame(width: size.width, height: size.height)
             }
 
-            Text(NSLocalizedString(name, comment: "Name"))
+            if name != nil {
+            Text(NSLocalizedString(name ?? "Name", comment: "Name"))
                 .foregroundColor(ColorList.white.color)
                 .font(MyFont.getFont(.BOLD, 10))
+            }
         }
     }
 }

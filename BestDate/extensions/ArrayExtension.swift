@@ -71,6 +71,16 @@ extension Array where Element == Invitation {
     }
 }
 
+extension Array where Element == InvitationCard {
+    mutating func clearAndAddAll(list: [InvitationCard]?) {
+        self.removeAll()
+
+        for item in list ?? [] {
+            self.append(item)
+        }
+    }
+}
+
 extension Array where Element == MyDuel {
     mutating func clearAndAddAll(list: [MyDuel]?) {
         self.removeAll()

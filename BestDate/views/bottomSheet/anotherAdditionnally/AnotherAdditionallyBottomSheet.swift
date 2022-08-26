@@ -39,7 +39,7 @@ struct AnotherAdditionallyBottomSheet: View {
 
             button(title: "share", textColor: ColorList.white.color) {
                 clickAction()
-                store.dispatch(action: .openLink(link: "https://dev-api.bestdate.info/api/documentation"))
+                AnotherProfileMediator.shared.showShareSheet = true
             }
 
             button(title: mediator.isBlocked ? "unlock_profile" : "block_profile", textColor: MyColor.getColor(242, 138, 182)) {
