@@ -10,6 +10,7 @@ import SwiftUI
 struct SearchListView: View {
     @Binding var list: [ShortUserInfo]
     @Binding var meta: Meta
+    @Binding var loadingMode: Bool
     var clickAction: (ShortUserInfo) -> Void
     var loadNextPage: () -> Void
 
@@ -22,7 +23,7 @@ struct SearchListView: View {
     var body: some View {
         if list.isEmpty {
             let topPadding = ((UIScreen.main.bounds.height - 260) / 2) - 100
-            NoDataView()
+            NoDataView(loadingMode: $loadingMode)
                 .padding(.init(top: topPadding, leading: 0, bottom: 0, trailing: 0))
         } else {
             LazyVGrid(columns: items, alignment: .center, spacing: 10,
@@ -41,7 +42,7 @@ struct SearchListView: View {
                 }
             }
 
-            if (meta.current_page ?? 0) < (meta.last_page ?? 0) && showLoadingBlock {
+            if (meta.current_page ?? 0) < (meta.last_page ?? 0) && showLoadingBlock && !list.isEmpty {
                 LoadingNextPageView()
                     .onAppear {
                         loadNextPage()

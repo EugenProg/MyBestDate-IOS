@@ -81,6 +81,26 @@ extension Array where Element == InvitationCard {
     }
 }
 
+extension Array where Element == Match {
+    mutating func clearAndAddAll(list: [Match]?) {
+        self.removeAll()
+
+        for item in list ?? [] {
+            self.append(item)
+        }
+    }
+}
+
+extension Array where Element == Like {
+    mutating func clearAndAddAll(list: [Like]?) {
+        self.removeAll()
+
+        for item in list ?? [] {
+            self.append(item)
+        }
+    }
+}
+
 extension Array where Element == MyDuel {
     mutating func clearAndAddAll(list: [MyDuel]?) {
         self.removeAll()

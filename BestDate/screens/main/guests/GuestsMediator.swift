@@ -12,8 +12,10 @@ class GuestsMediator: ObservableObject {
 
     @Published var newGuests: [Guest] = []
     @Published var oldGuests: [Guest] = []
+    @Published var loadingMode: Bool = true
 
     func getGuests(completion: @escaping () -> Void) {
+        loadingMode = true
         CoreApiService.shared.getGuests { success, guests in
             DispatchQueue.main.async {
                 if success {
@@ -21,6 +23,7 @@ class GuestsMediator: ObservableObject {
                 }
             }
             completion()
+            self.loadingMode = false
         }
     }
 

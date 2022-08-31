@@ -15,6 +15,7 @@ class SearchMediator: ObservableObject {
 
     @Published var users: [ShortUserInfo] = []
     @Published var meta: Meta = Meta()
+    @Published var loadingMode: Bool = true
 
     var savedPosition: CGFloat = 0
 
@@ -22,6 +23,7 @@ class SearchMediator: ObservableObject {
     var onlineType: OnlineFilterTypes = UserDataHolder.searchOnline
 
     func getUserList(withClear: Bool, page: Int, completion: @escaping () -> Void) {
+        loadingMode = true
         CoreApiService.shared.getUsersList(location: locationType, online: onlineType, page: page) { success, userList, meta in
             DispatchQueue.main.async {
                 withAnimation {
@@ -30,6 +32,7 @@ class SearchMediator: ObservableObject {
                 }
             }
             completion()
+            self.loadingMode = false
         }
     }
 

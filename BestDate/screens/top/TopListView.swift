@@ -11,6 +11,7 @@ struct TopListView: View {
     @Binding var page: GenderType
     @Binding var womanList: [Top]
     @Binding var manList: [Top]
+    @Binding var loadingMode: Bool
     var clickAction: (ShortUserInfo) -> Void
 
     var items: [GridItem] = [
@@ -33,7 +34,7 @@ struct TopListView: View {
     var body: some View {
         if manList.isEmpty && page == .man || womanList.isEmpty && page == .woman {
             let topPadding = ((UIScreen.main.bounds.height - 260) / 2) - 160
-            NoDataView()
+            NoDataView(loadingMode: $loadingMode)
                 .padding(.init(top: topPadding, leading: 0, bottom: 0, trailing: 0))
         } else {
             if page == .man {

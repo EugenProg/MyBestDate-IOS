@@ -21,6 +21,7 @@ struct NavigationView: View {
                 if store.state.showBottomSheet { BaseBottomSheet().zIndex(1) }
                 if store.state.showMessage { AlertScreen().zIndex(1) }
                 if store.state.showInvitationDialog { CreateInvitionScreen().zIndex(1) }
+                if store.state.showMatchActionDialog { MatchActionScreen().zIndex(1) }
                 Group {
                     switch store.state.activeScreen {
                     case .START: StartScreen()
@@ -47,7 +48,8 @@ struct NavigationView: View {
                     case .ANOTHER_QUESTIONNAIRE: AnotherProfileQuestionnaireScreen()
                     case .ANOTHER_IMAGES: AnotherProfileImagesScreen()
                     case .INVITATION: InvitatinsScreen()
-                    case .MATCHES_LIST: InvitatinsScreen().transition(.move(edge: .trailing))
+                    case .MATCHES_LIST: MatchesListScreen()
+                    case .LIKES_LIST: LikesListScreen()
                     }
                 }.blur(radius: getBlur())
             }.onTapGesture(perform: { store.dispatch(action: .hideKeyboard) })
@@ -58,6 +60,7 @@ struct NavigationView: View {
     private func getBlur() -> CGFloat {
         store.state.showBottomSheet ||
         store.state.showMessage ||
+        store.state.showMatchActionDialog ||
         store.state.showInvitationDialog ? 1.8 : 0
     }
 }

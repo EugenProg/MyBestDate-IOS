@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import AuthenticationServices
 
 class AuthMediator: ObservableObject {
     static let shared = AuthMediator()
@@ -58,4 +59,56 @@ class AuthMediator: ObservableObject {
             }
         }
     }
+
+    func signInWithApple() {
+        let request = ASAuthorizationAppleIDProvider().createRequest()
+        request.requestedScopes = [.fullName, .email]
+
+        let controller = ASAuthorizationController(authorizationRequests: [request])
+        controller.delegate = SignInWithAppleDelegates { success in
+
+        }
+
+        controller.performRequests()
+    }
 }
+
+class SignInWithAppleDelegates: NSObject, ASAuthorizationControllerDelegate {
+    var isSignIn: (Bool) -> Void
+
+    init(_ action: @escaping (Bool) -> Void) {
+        self.isSignIn = action
+    }
+
+    func authorizationController(controller: ASAuthorizationController,
+                                 didCompleteWithAuthorization authorization: ASAuthorization) {
+        switch authorization.credential {
+        case let appleIdCredential as ASAuthorizationAppleIDCredential:
+            print("\n ** ASAuthorizationAppleIDCredential - \(#function)** \n")
+            print(appleIdCredential.email ?? "Email not available.")
+            print(appleIdCredential.fullName ?? "fullname not available")
+            print(appleIdCredential.fullName?.givenName ?? "givenName not available")
+            print(appleIdCredential.fullName?.familyName ?? "Familyname not available")
+            print(appleIdCredential.user)  // This is a user identifier
+            print(appleIdCredential.identityToken?.base64EncodedString() ?? "Identity token not available") //JWT Token
+            print(appleIdCredential.authorizationCode?.base64EncodedString() ?? "Authorization code not available")
+            break
+
+        case let passwordCredential as ASPasswordCredential:
+            print("\n ** ASPasswordCredential ** \n")
+            print(passwordCredential.user)  // This is a user identifier
+            print(passwordCredential.password) //The password
+            break
+
+        default:
+            break
+        }
+    }
+
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        print("\n -- ASAuthorizationControllerDelegate -\(#function) -- \n")
+        print(error)
+    }
+}
+
+

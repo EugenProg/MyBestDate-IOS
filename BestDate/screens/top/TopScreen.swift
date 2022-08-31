@@ -39,7 +39,9 @@ struct TopScreen: View {
                 .frame(height: 1)
 
             ScrollView(.vertical, showsIndicators: false) {
-                TopListView(page: $mediator.activePage, womanList: $mediator.womanTopList, manList: $mediator.manTopList) { user in
+                TopListView(page: $mediator.activePage,
+                            womanList: $mediator.womanTopList,
+                            manList: $mediator.manTopList, loadingMode: $mediator.loadingMode) { user in
                     AnotherProfileMediator.shared.setUser(user: user)
                     store.dispatch(action: .navigate(screen: .ANOTHER_PROFILE))
                 }

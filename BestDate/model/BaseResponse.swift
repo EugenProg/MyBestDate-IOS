@@ -240,3 +240,29 @@ struct UserInvitationListResponse: Codable {
     var message: String
     var data: [InvitationCard] = []
 }
+
+struct MatchesListResponse: Codable {
+    var success: Bool
+    var message: String
+    var data: [Match] = []
+}
+
+struct Match: Codable {
+    var id: Int? = nil
+    var viewed: Bool? = nil
+    var user: ShortUserInfo? = nil
+    var created_at: String? = nil
+}
+
+struct Like: Codable {
+    var id: Int? = nil
+    var created_at: String? = nil
+    var photo: ProfileImage? = nil
+    var user: ShortUserInfo? = nil
+}
+
+struct LikesListResponse: Codable {
+    var success: Bool
+    var message: String
+    var data: [Like] = []
+}

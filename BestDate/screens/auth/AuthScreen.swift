@@ -63,7 +63,7 @@ struct AuthScreen: View {
                 VStack {
                     SocialView(
                         gooleClickAction: { store.dispatch(action: .show(message: "google")) },
-                        appleClickAction: { store.dispatch(action: .show(message: "apple")) },
+                        appleClickAction: { },//mediator.signInWithApple() },
                         facebookClickAction: { store.dispatch(action: .show(message: "facebook")) })
                 }.frame(height: UIScreen.main.bounds.height, alignment: .bottom)
             }

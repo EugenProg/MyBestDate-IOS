@@ -8,14 +8,17 @@
 import SwiftUI
 
 struct NoDataView: View {
+    @Binding var loadingMode: Bool
+
     var body: some View {
-        LottieView(name: "no_data")
-            .frame(width: 150, height: 150)
+        if loadingMode {
+            ProgressView()
+                .tint(ColorList.white.color)
+                .frame(width: 80, height: 80)
+        } else {
+            LottieView(name: "no_data")
+                .frame(width: 150, height: 150)
+        }
     }
 }
 
-struct NoDataView_Previews: PreviewProvider {
-    static var previews: some View {
-        NoDataView()
-    }
-}

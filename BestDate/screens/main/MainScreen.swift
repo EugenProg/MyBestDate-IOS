@@ -36,6 +36,13 @@ struct MainScreen: View {
             .onAppear {
                 store.dispatch(action:
                         .setScreenColors(status: ColorList.main.color, style: .lightContent))
+
+                if store.state.hasADeepLink {
+                    withAnimation {
+                        store.dispatch(action: .navigate(screen: .ANOTHER_PROFILE))
+                        store.state.hasADeepLink = false
+                    }
+                }
             }
     }
 }

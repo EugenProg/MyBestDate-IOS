@@ -21,4 +21,6 @@ enum Action {
     case setScreenColors(status: Color, style: UIStatusBarStyle)
     case hideKeyboard
     case createInvitation
+    case matchAction
+    case hasADeepLink
 }

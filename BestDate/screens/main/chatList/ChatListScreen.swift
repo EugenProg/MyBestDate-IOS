@@ -44,7 +44,11 @@ struct ChatListScreen: View {
                 .frame(height: 1)
 
             ScrollView(.vertical, showsIndicators: false) {
-                ChatListView(newList: $mediator.newChats, previousList: $mediator.previousChats, deleteProcess: $deleteProcess, deleteAction: delete()) { chat in
+                ChatListView(newList: $mediator.newChats,
+                             previousList: $mediator.previousChats,
+                             deleteProcess: $deleteProcess,
+                             loadingMode: $mediator.loadingMode,
+                             deleteAction: delete()) { chat in
                     ChatMediator.shared.setUser(user: chat.user ?? ShortUserInfo())
                     store.dispatch(action: .navigate(screen: .CHAT))
                 }

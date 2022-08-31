@@ -36,7 +36,7 @@ struct MyDuelsScreen: View {
                         .padding(.init(top: 22, leading: 18, bottom: 23, trailing: 3))
                         .frame(width: UIScreen.main.bounds.width, alignment: .leading)
 
-                    MyDuelsListView(list: mediator.duelList)
+                    MyDuelsListView(list: mediator.duelList, loadingMode: $mediator.loadingMode)
                 }
             }.padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight, trailing: 0))
         }.background(ColorList.main.color.edgesIgnoringSafeArea(.bottom))

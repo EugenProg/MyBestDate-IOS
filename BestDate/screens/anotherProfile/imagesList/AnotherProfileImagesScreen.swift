@@ -25,14 +25,14 @@ struct AnotherProfileImagesScreen: View {
 
                 if mediator.imageList.count > 1 {
                     ImagesTabView(imagesCount: mediator.imageList.count, selectedImage: $mediator.selectedImage) {
-                        isLiked = mediator.imageList[mediator.selectedImage].liked ?? false
+                        isLiked = mediator.imageList[mediator.selectedImage].liked == true
                     }.opacity(showButtons ? 1 : 0)
                 }
 
                 Spacer()
 
                 ImagesListView(images: $mediator.imageList, selectedImage: $mediator.selectedImage, showButtons: $showButtons) {
-                    isLiked = mediator.imageList[mediator.selectedImage].liked ?? false
+                    isLiked = mediator.imageList[mediator.selectedImage].liked == true
                 }
 
                 Spacer()
@@ -42,13 +42,10 @@ struct AnotherProfileImagesScreen: View {
                 ChatMediator.shared.setUser(user: mediator.user)
                 store.dispatch(action: .navigate(screen: .CHAT))
             } likeClick: {
-                mediator.likePhoto(id: mediator.imageList[mediator.selectedImage].id ?? 0) {
-                    DispatchQueue.main.async {
-                        isLiked = true
-                    }
-                }
+                mediator.likePhoto(id: mediator.imageList[mediator.selectedImage].id ?? 0) { }
             } createClick: {
-               // store.dispatch(action: .show(message: "create"))
+                CreateInvitationMediator.shared.setUser(user: mediator.user.toShortUser())
+                store.dispatch(action: .createInvitation)
             }.zIndex(15)
 
         }.frame(width: UIScreen.main.bounds.width)

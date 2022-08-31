@@ -63,6 +63,7 @@ struct AnotherProfileNavigationPanelView: View {
                                 withAnimation {
                                     likeClick()
                                     showProcess = true
+                                    isLiked = true
                                 }
                             }
                         }) {

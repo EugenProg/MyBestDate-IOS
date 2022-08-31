@@ -47,13 +47,13 @@ struct CreateInvitionScreen: View {
             VStack(spacing: 3) {
                 ForEach(mediator.invitations, id: \.id) { invitation in
                     Button(action: {
-                        mediator.sendInvitation(invitaionId: invitation.id) {
-                            DispatchQueue.main.async {
+//                        mediator.sendInvitation(invitaionId: invitation.id) {
+//                            DispatchQueue.main.async {
                                 withAnimation {
                                     store.state.showInvitationDialog = false
                                 }
-                            }
-                        }
+//                            }
+//                        }
                     }) {
                         invitationItem(invitation: invitation)
                     }
@@ -99,9 +99,9 @@ struct CreateInvitionScreen: View {
         }
         .onTapGesture {
             withAnimation {
-                if showFrontSide {
+                //if showFrontSide {
                     store.state.showInvitationDialog = false
-                }
+              //  }
             }
         }
         .onAppear {

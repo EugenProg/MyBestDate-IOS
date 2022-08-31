@@ -27,12 +27,28 @@ class MatchesApiService {
         task.resume()
     }
 
-    func getUserMatches(completion: @escaping (Bool, [ShortUserInfo]) -> Void) {
+    func getUserMatches(completion: @escaping (Bool, [Match]) -> Void) {
         let request = CoreApiTypes.getMatchList.getRequest(withAuth: true)
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             NetworkLogger.printLog(response: response)
-            if let data = data, let response = try? JSONDecoder().decode(UserListResponse.self, from: data) {
+            if let data = data, let response = try? JSONDecoder().decode(MatchesListResponse.self, from: data) {
+                NetworkLogger.printLog(data: data)
+                completion(response.success, response.data)
+            } else {
+                completion(false, [])
+            }
+        }
+
+        task.resume()
+    }
+
+    func getUserLikes(completion: @escaping (Bool, [Like]) -> Void) {
+        let request = CoreApiTypes.getUserLikes.getRequest(withAuth: true)
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            NetworkLogger.printLog(response: response)
+            if let data = data, let response = try? JSONDecoder().decode(LikesListResponse.self, from: data) {
                 NetworkLogger.printLog(data: data)
                 completion(response.success, response.data)
             } else {

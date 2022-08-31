@@ -15,23 +15,28 @@ class TopListMediator: ObservableObject {
 
     @Published var womanTopList: [Top] = []
     @Published var manTopList: [Top] = []
+    @Published var loadingMode: Bool = true
 
     func getManList() {
+        loadingMode = true
         TopApiService.shared.getTopList(gender: .man) { success, list in
             DispatchQueue.main.async {
                 if success {
                     self.manTopList.clearAndAddAll(list: list)
                 }
+                self.loadingMode = false
             }
         }
     }
 
     func getWomanList() {
+        loadingMode = true
         TopApiService.shared.getTopList(gender: .woman) { success, list in
             DispatchQueue.main.async {
                 if success {
                     self.womanTopList.clearAndAddAll(list: list)
                 }
+                self.loadingMode = false
             }
         }
     }

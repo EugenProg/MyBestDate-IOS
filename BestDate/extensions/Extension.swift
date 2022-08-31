@@ -163,6 +163,12 @@ extension String {
         return formatter.string(from: self.toDate())
     }
 
+    func getWeekdayWithTime() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EE HH:mm"
+        return formatter.string(from: self.toDate())
+    }
+
     func toShortDate() -> Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -216,7 +222,7 @@ extension Double {
 extension UserInfo {
     func getMainPhoto() -> ProfileImage? {
         for image in self.photos ?? [] {
-            if image.main ?? false {
+            if image.main == true {
                 return image
             }
         }
@@ -328,6 +334,36 @@ extension MyDuel {
         let date = self.created_at?.toDate() ?? Date.now
 
         return date.getVisitPeriod()
+    }
+}
+
+extension Like {
+    func getTime() -> String {
+        let createdDate = self.created_at
+        let date = createdDate?.toDate() ?? Date.now
+        let components = Calendar.current.dateComponents([.day], from: date, to: Date.now)
+        let days = components.day ?? 0
+
+        if days == 0 {
+            return self.created_at?.getTime() ?? date.toString()
+        } else {
+            return self.created_at?.getWeekdayWithTime() ?? date.toString()
+        }
+    }
+}
+
+extension Match {
+    func getTime() -> String {
+        let createdDate = self.created_at
+        let date = createdDate?.toDate() ?? Date.now
+        let components = Calendar.current.dateComponents([.day], from: date, to: Date.now)
+        let days = components.day ?? 0
+
+        if days == 0 {
+            return self.created_at?.getTime() ?? date.toString()
+        } else {
+            return self.created_at?.getWeekdayWithTime() ?? date.toString()
+        }
     }
 }
 

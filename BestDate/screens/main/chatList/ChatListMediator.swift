@@ -12,8 +12,10 @@ class ChatListMediator: ObservableObject {
 
     @Published var newChats: [Chat] = []
     @Published var previousChats: [Chat] = []
+    @Published var loadingMode: Bool = true
 
     func getChatList() {
+        loadingMode = true
         ChatApiService.shared.getChatList { success, chatList in
             DispatchQueue.main.async {
                 if success {
@@ -31,6 +33,7 @@ class ChatListMediator: ObservableObject {
                     }
                     MainMediator.shared.hasNewMessages = self.newChats.count > 0
                 }
+                self.loadingMode = false
             }
         }
     }

@@ -45,7 +45,7 @@ struct GuestsScreen: View {
             
             if mediator.newGuests.isEmpty && mediator.oldGuests.isEmpty {
                 let topPadding = ((UIScreen.main.bounds.height - 260 - store.state.statusBarHeight) / 2) - 100
-                NoDataView()
+                NoDataView(loadingMode: $mediator.loadingMode)
                     .padding(.init(top: topPadding, leading: 0, bottom: 0, trailing: 0))
                 Spacer()
             } else {

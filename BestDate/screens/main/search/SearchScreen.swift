@@ -53,7 +53,7 @@ struct SearchScreen: View {
                 Spacer()
 
                 Button(action: {
-                    
+                   
                 }) {
                     ZStack {
                         Image("ic_button_decor")
@@ -74,7 +74,7 @@ struct SearchScreen: View {
                 SaveAndSetPositionScrollView(startPosition: mediator.savedPosition,
                                              offsetChanged: { mediator.savePosition($0) },
                                              onRefresh: { done in mediator.getUserList(withClear: true, page: 0) { done() }}) {
-                    SearchListView(list: $mediator.users, meta: $mediator.meta) { user in
+                    SearchListView(list: $mediator.users, meta: $mediator.meta, loadingMode: $mediator.loadingMode) { user in
                         AnotherProfileMediator.shared.setUser(user: user)
                         store.dispatch(action: .navigate(screen: .ANOTHER_PROFILE))
                     } loadNextPage: {

@@ -19,4 +19,6 @@ struct AppState {
     var statusBarColor: Color = ColorList.white.color
     var statusBarHeight: CGFloat = 0.0
     var showInvitationDialog: Bool = false
+    var showMatchActionDialog: Bool = false
+    var hasADeepLink: Bool = false
 }

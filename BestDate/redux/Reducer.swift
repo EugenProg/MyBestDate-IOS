@@ -74,6 +74,12 @@ final class Reducer {
 
         case .createInvitation:
             state.showInvitationDialog = true
+
+        case .matchAction:
+            state.showMatchActionDialog = true
+
+        case .hasADeepLink:
+            state.hasADeepLink = true
         }
         
         return state

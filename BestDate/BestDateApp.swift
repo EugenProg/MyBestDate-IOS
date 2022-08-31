@@ -13,6 +13,8 @@ import UIKit
 
 @main
 struct BestDateApp: App {
+  //  @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
     var body: some Scene {
         WindowGroup {
             let state = AppState()
@@ -21,6 +23,14 @@ struct BestDateApp: App {
             NavigationView()
                 .environmentObject(store)
                 .previewInterfaceOrientation(.portrait)
+                .onOpenURL { url in
+                    lazy var deeplinkCoordinator: DeeplinkCoordinatorProtocol =
+                    DeeplinkCoordinator(handlers: [
+                        UserProfileDeeplinkHandler(store: store)
+                    ])
+
+                    deeplinkCoordinator.handleURL(url)
+                }
         }
     }
 }

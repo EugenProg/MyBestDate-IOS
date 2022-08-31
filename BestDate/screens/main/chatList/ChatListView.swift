@@ -11,6 +11,7 @@ struct ChatListView: View {
     @Binding var newList: [Chat]
     @Binding var previousList: [Chat]
     @Binding var deleteProcess: Bool
+    @Binding var loadingMode: Bool
 
     var deleteAction: (Chat) -> Void
     var clickAction: (Chat) -> Void
@@ -41,7 +42,7 @@ struct ChatListView: View {
         VStack(spacing: 0) {
             if newList.isEmpty && previousList.isEmpty {
                 let topPadding = ((UIScreen.main.bounds.height - 260) / 2) - 100
-                NoDataView()
+                NoDataView(loadingMode: $loadingMode)
                     .padding(.init(top: topPadding, leading: 0, bottom: 0, trailing: 0))
             } else {
                 if !newList.isEmpty {

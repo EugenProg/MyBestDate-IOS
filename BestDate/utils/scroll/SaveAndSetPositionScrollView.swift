@@ -59,7 +59,9 @@ struct SaveAndSetPositionScrollView<Content: View>: View {
                     let offset = movingY - fixedY
 
                     currentOffset = offset
-                    offsetChanged(offset)
+                    if offset > 0 {
+                        offsetChanged(offset)
+                    }
 
                     if offset > THRESHOLD && state == .waiting {
                         state = .primed
@@ -101,7 +103,8 @@ private struct PositionIndicators: View {
     var body: some View {
         GeometryReader { proxy in
             Color.clear
-                    .preference(key: PositionPreferenceKey.self, value: [Position(type: type, y: proxy.frame(in: .global).minY)])
+                .preference(key: PositionPreferenceKey.self,
+                            value: [Position(type: type, y: proxy.frame(in: .global).minY)])
         }
     }
 }
@@ -115,25 +118,3 @@ private let THRESHOLD: CGFloat = 50
 public enum RefreshState {
     case waiting, primed, loading
 }
-
-//struct ActivityIndicator: UIViewRepresentable {
-//    public typealias UIView = UIActivityIndicatorView
-//    public var isAnimating: Bool = true
-//    public var configuration = { (indicator: UIView) in }
-//
-//    public init(isAnimating: Bool, configuration: ((UIView) -> Void)? = nil) {
-//        self.isAnimating = isAnimating
-//        if let configuration = configuration {
-//            self.configuration = configuration
-//        }
-//    }
-//
-//    public func makeUIView(context: UIViewRepresentableContext<Self>) -> UIView {
-//        UIView()
-//    }
-//
-//    public func updateUIView(_ uiView: UIView, context: UIViewRepresentableContext<Self>) {
-//        isAnimating ? uiView.startAnimating() : uiView.stopAnimating()
-//        configuration(uiView)
-//    }
-//}

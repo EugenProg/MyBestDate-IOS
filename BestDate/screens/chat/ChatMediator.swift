@@ -28,6 +28,7 @@ class ChatMediator: ObservableObject {
     @Published var cardsOnlyMode: Bool = false
 
     func setUser(user: ShortUserInfo) {
+        CreateInvitationMediator.shared.getInvitations()
         self.user = user
         self.getMessageList()
     }

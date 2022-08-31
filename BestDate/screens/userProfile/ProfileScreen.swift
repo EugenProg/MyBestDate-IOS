@@ -78,14 +78,15 @@ struct ProfileScreen: View {
                                         }
 
                                         ProfileButtonView(name: "matches_list", image: "ic_matches", isActive: true) {
-                                            //store.dispatch(action: .navigate(screen: .MATCHES_LIST))
+                                           // store.dispatch(action: .navigate(screen: .MATCHES_LIST))
                                         }
 
                                         ProfileButtonView(name: "cards", image: "ic_add", isActive: true) {
-                                            store.dispatch(action: .navigate(screen: .INVITATION))
+                                            //store.dispatch(action: .navigate(screen: .INVITATION))
                                         }
 
                                         ProfileButtonView(name: "like", image: "ic_is_liked", isActive: true) {
+                                          //  store.dispatch(action: .navigate(screen: .LIKES_LIST))
                                         }
 
                                         ProfileButtonView(name: "my_duels", image: "ic_my_duels", isActive: true) {

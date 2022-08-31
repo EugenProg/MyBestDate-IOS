@@ -36,6 +36,7 @@ struct InvitatinsScreen: View {
                     answerdList: $mediator.answerdInvitations,
                     sentList: $mediator.sentInvitations,
                     page: $mediator.activeType,
+                    loadingMode: $mediator.loadingMode,
                     answerAction: answer(),
                     showUserAction: showUser())
                 .padding(.init(top: 14, leading: 0, bottom: 16, trailing: 0))
