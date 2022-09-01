@@ -59,6 +59,12 @@
 		4C2DC93128BE944F00DD15C2 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 4C2DC92D28BE944D00DD15C2 /* loading.json */; };
 		4C2DC93828BFB6B400DD15C2 /* NotifySettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2DC93728BFB6B400DD15C2 /* NotifySettingsScreen.swift */; };
 		4C2DC93B28C0824800DD15C2 /* NotifySettingsSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2DC93A28C0824700DD15C2 /* NotifySettingsSelectorView.swift */; };
+		4C2DC93E28C11C2B00DD15C2 /* PushMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2DC93D28C11C2A00DD15C2 /* PushMediator.swift */; };
+		4C2DC94028C11F8100DD15C2 /* PushScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2DC93F28C11F8000DD15C2 /* PushScreen.swift */; };
+		4C2DC94228C121AC00DD15C2 /* LikePushView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2DC94128C121AC00DD15C2 /* LikePushView.swift */; };
+		4C2DC94428C121D700DD15C2 /* MatchPushView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2DC94328C121D700DD15C2 /* MatchPushView.swift */; };
+		4C2DC94628C1221600DD15C2 /* InvitationPushView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2DC94528C1221600DD15C2 /* InvitationPushView.swift */; };
+		4C2DC94828C1225900DD15C2 /* DefaultPushView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2DC94728C1225900DD15C2 /* DefaultPushView.swift */; };
 		4C3D27B9285110FA00F8FD09 /* StandardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D27B8285110F800F8FD09 /* StandardButton.swift */; };
 		4C3D27BC28511BB700F8FD09 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D27BB28511BB600F8FD09 /* Title.swift */; };
 		4C3D27BE28511DCA00F8FD09 /* HeaderText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D27BD28511DCA00F8FD09 /* HeaderText.swift */; };
@@ -331,6 +337,12 @@
 		4C2DC92D28BE944D00DD15C2 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
 		4C2DC93728BFB6B400DD15C2 /* NotifySettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifySettingsScreen.swift; sourceTree = "<group>"; };
 		4C2DC93A28C0824700DD15C2 /* NotifySettingsSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifySettingsSelectorView.swift; sourceTree = "<group>"; };
+		4C2DC93D28C11C2A00DD15C2 /* PushMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushMediator.swift; sourceTree = "<group>"; };
+		4C2DC93F28C11F8000DD15C2 /* PushScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushScreen.swift; sourceTree = "<group>"; };
+		4C2DC94128C121AC00DD15C2 /* LikePushView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikePushView.swift; sourceTree = "<group>"; };
+		4C2DC94328C121D700DD15C2 /* MatchPushView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchPushView.swift; sourceTree = "<group>"; };
+		4C2DC94528C1221600DD15C2 /* InvitationPushView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationPushView.swift; sourceTree = "<group>"; };
+		4C2DC94728C1225900DD15C2 /* DefaultPushView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPushView.swift; sourceTree = "<group>"; };
 		4C3D27B8285110F800F8FD09 /* StandardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardButton.swift; sourceTree = "<group>"; };
 		4C3D27BB28511BB600F8FD09 /* Title.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
 		4C3D27BD28511DCA00F8FD09 /* HeaderText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderText.swift; sourceTree = "<group>"; };
@@ -715,6 +727,19 @@
 			path = "notify settings";
 			sourceTree = "<group>";
 		};
+		4C2DC93C28C11C0300DD15C2 /* push */ = {
+			isa = PBXGroup;
+			children = (
+				4C2DC93D28C11C2A00DD15C2 /* PushMediator.swift */,
+				4C2DC93F28C11F8000DD15C2 /* PushScreen.swift */,
+				4C2DC94128C121AC00DD15C2 /* LikePushView.swift */,
+				4C2DC94328C121D700DD15C2 /* MatchPushView.swift */,
+				4C2DC94528C1221600DD15C2 /* InvitationPushView.swift */,
+				4C2DC94728C1225900DD15C2 /* DefaultPushView.swift */,
+			);
+			path = push;
+			sourceTree = "<group>";
+		};
 		4C3D27BA28511B9A00F8FD09 /* textViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -981,6 +1006,7 @@
 		4C8E7DA9284D24BC00D6E58D /* screens */ = {
 			isa = PBXGroup;
 			children = (
+				4C2DC93C28C11C0300DD15C2 /* push */,
 				4C2DC93928BFB72D00DD15C2 /* notify settings */,
 				4C2DC8CC28BA9AF500DD15C2 /* match action */,
 				4C878F2228B9246F00043680 /* likes list */,
@@ -1617,6 +1643,7 @@
 				4C878F2028B7FEB300043680 /* CloseItemView.swift in Sources */,
 				4CF02856288B0B10002C59EE /* DuelMediator.swift in Sources */,
 				4C8E7D99284D1E7B00D6E58D /* Color.swift in Sources */,
+				4C2DC94228C121AC00DD15C2 /* LikePushView.swift in Sources */,
 				4C3D27C528526FA100F8FD09 /* PasswordInputView.swift in Sources */,
 				4C92CB1D28B2143F00E5DF52 /* InvitatinsScreen.swift in Sources */,
 				4C5C86E52875E20D006DE024 /* ImagesApiService.swift in Sources */,
@@ -1642,6 +1669,7 @@
 				4C5C86BC2871A5B4006DE024 /* CitySearchMediator.swift in Sources */,
 				4CD34F67289C39C200504396 /* MyTextMessageWithParentView.swift in Sources */,
 				4C92CB0F28AD4F7700E5DF52 /* EmailVerficationView.swift in Sources */,
+				4C2DC94428C121D700DD15C2 /* MatchPushView.swift in Sources */,
 				4C2DC8DA28BCDA6C00DD15C2 /* AppDelegate.swift in Sources */,
 				4CD34F4E2892FEA000504396 /* NoDataBoxView.swift in Sources */,
 				4CD34F4428903E9500504396 /* AnotherProfileQuestionnaireMediator.swift in Sources */,
@@ -1695,6 +1723,7 @@
 				4CF02854288B09EE002C59EE /* DuelScreen.swift in Sources */,
 				4CB9FF8D2882D2AF004F1BF6 /* ProfileMediator.swift in Sources */,
 				4C8E7DA6284D233100D6E58D /* Reducer.swift in Sources */,
+				4C2DC94828C1225900DD15C2 /* DefaultPushView.swift in Sources */,
 				4C0E71F1284FC9A6004099D4 /* OnboardSecondScreen.swift in Sources */,
 				4CD34F592895A63F00504396 /* DateBlockView.swift in Sources */,
 				4CBF5927289EC1FF006BDE53 /* ImagesTabView.swift in Sources */,
@@ -1728,6 +1757,7 @@
 				4CD34F3B288D2CBE00504396 /* ChatMediator.swift in Sources */,
 				4C3D27D32853A66A00F8FD09 /* GenderBottomSheet.swift in Sources */,
 				4CB9FF62287AF001004F1BF6 /* SearchMediator.swift in Sources */,
+				4C2DC94028C11F8100DD15C2 /* PushScreen.swift in Sources */,
 				4C8E7DA8284D23D200D6E58D /* Store.swift in Sources */,
 				4CBF5929289ECC97006BDE53 /* ImagesListView.swift in Sources */,
 				4CB9FF502877472A004F1BF6 /* ChatListScreen.swift in Sources */,
@@ -1762,6 +1792,7 @@
 				4C92CB2428B275D500E5DF52 /* InvitationsListView.swift in Sources */,
 				4C1458FA2855E17100558B6B /* BaseOTPScreen.swift in Sources */,
 				4CA2E22E2867286000E514C4 /* FillingProgressView.swift in Sources */,
+				4C2DC94628C1221600DD15C2 /* InvitationPushView.swift in Sources */,
 				4CB9FF4C287746F9004F1BF6 /* GuestsScreen.swift in Sources */,
 				4C3D27BE28511DCA00F8FD09 /* HeaderText.swift in Sources */,
 				4C8E7DA4284D229B00D6E58D /* AppState.swift in Sources */,
@@ -1787,6 +1818,7 @@
 				4C8E7D81284CC93F00D6E58D /* BestDateApp.swift in Sources */,
 				4C1B7C2C286CD5BD000DB5D4 /* QuestionnaireSeekBarBottomSheet.swift in Sources */,
 				4C2DC8CE28BA9B1300DD15C2 /* MatchActionScreen.swift in Sources */,
+				4C2DC93E28C11C2B00DD15C2 /* PushMediator.swift in Sources */,
 				4C6CFF2428B699AB00BA33E0 /* AlertScreen.swift in Sources */,
 				4CB9FF882881DDCB004F1BF6 /* NetworkLogger.swift in Sources */,
 				4CD34F3D288D730300504396 /* ChatBottomView.swift in Sources */,
@@ -1965,7 +1997,7 @@
 				CODE_SIGN_ENTITLEMENTS = BestDate/BestDateDebug.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"BestDate/Preview Content\"";
 				DEVELOPMENT_TEAM = 7869H74LP9;
 				ENABLE_PREVIEWS = YES;
@@ -2005,7 +2037,7 @@
 				CODE_SIGN_ENTITLEMENTS = BestDate/BestDate.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"BestDate/Preview Content\"";
 				DEVELOPMENT_TEAM = 7869H74LP9;
 				ENABLE_PREVIEWS = YES;

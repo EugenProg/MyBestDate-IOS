@@ -80,6 +80,11 @@ final class Reducer {
 
         case .hasADeepLink:
             state.hasADeepLink = true
+
+        case .showPushNotification(type: let notificationType): do {
+            state.activePush = notificationType
+            state.showPushNotification = true
+        }
         }
         
         return state

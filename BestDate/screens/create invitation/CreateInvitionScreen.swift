@@ -92,7 +92,7 @@ struct CreateInvitionScreen: View {
                     }
 
                 }.frame(width: 306, height: 454)
-                    .offset(x: 0, y: visible ? 0 : (UIScreen.main.bounds.height - 454) / 2 + 454)
+                    .offset(y: visible ? 0 : (UIScreen.main.bounds.height - 454) / 2 + 454)
                     .rotation3DEffect(getRotationAngle(), axis: (x: 0, y: 1, z: 0))
                     .onTapGesture { }
             }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 100)

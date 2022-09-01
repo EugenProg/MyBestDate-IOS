@@ -22,6 +22,7 @@ struct NavigationView: View {
                 if store.state.showMessage { AlertScreen().zIndex(1) }
                 if store.state.showInvitationDialog { CreateInvitionScreen().zIndex(1) }
                 if store.state.showMatchActionDialog { MatchActionScreen().zIndex(1) }
+                if store.state.showPushNotification { PushScreen().zIndex(1) }
                 Group {
                     switch store.state.activeScreen {
                     case .START: StartScreen()
@@ -62,6 +63,7 @@ struct NavigationView: View {
         store.state.showBottomSheet ||
         store.state.showMessage ||
         store.state.showMatchActionDialog ||
+        store.state.showPushNotification ||
         store.state.showInvitationDialog ? 1.8 : 0
     }
 }

@@ -12,6 +12,7 @@ import UserNotifications
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     let gcmMessageIDKey = "gcm.message_id"
+    var store: Store? = nil
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         FirebaseApp.configure()
@@ -64,21 +65,31 @@ extension AppDelegate: MessagingDelegate {
 @available(iOS 10, *)
 extension AppDelegate : UNUserNotificationCenterDelegate {
 
-  // Receive displayed notifications for iOS 10 devices.
-  func userNotificationCenter(_ center: UNUserNotificationCenter,
-                              willPresent notification: UNNotification,
-    withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-    let userInfo = notification.request.content.userInfo
+    // Receive displayed notifications for iOS 10 devices.
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        let userInfo = notification.request.content.userInfo
 
-    if let messageID = userInfo[gcmMessageIDKey] {
-        print("Message ID: \(messageID)")
+        if let messageID = userInfo[gcmMessageIDKey] {
+            print("Message ID: \(messageID)")
+        }
+
+        print(userInfo)
+
+        if UIApplication.shared.applicationState == .active {
+            let pushType = NotificationType.getNotificationType(type: userInfo["type"] as? String ?? "")
+            if pushType == .defaultPush {
+                PushMediator.shared.setDefaultMessage(body: notification.request.content.body, title: notification.request.content.title)
+            } else {
+                PushMediator.shared.setUser(jsonString: userInfo["user"] as? String ?? "")
+            }
+            store?.dispatch(action: .showPushNotification(type: pushType))
+            //store?.dispatch(action: .show(message:  pushType.rawValue))
+        } else {
+            completionHandler([[.banner, .badge, .sound]])
+        }
     }
-
-    print(userInfo)
-
-    // Change this to your preferred presentation option
-    completionHandler([[.banner, .badge, .sound]])
-  }
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
 
@@ -88,17 +99,17 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
 
     }
 
-  func userNotificationCenter(_ center: UNUserNotificationCenter,
-                              didReceive response: UNNotificationResponse,
-                              withCompletionHandler completionHandler: @escaping () -> Void) {
-    let userInfo = response.notification.request.content.userInfo
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        let userInfo = response.notification.request.content.userInfo
 
-    if let messageID = userInfo[gcmMessageIDKey] {
-      print("Message ID from userNotificationCenter didReceive: \(messageID)")
+        if let messageID = userInfo[gcmMessageIDKey] {
+            print("Message ID from userNotificationCenter didReceive: \(messageID) 4321")
+        }
+
+        print(userInfo)
+
+        completionHandler()
     }
-
-    print(userInfo)
-
-    completionHandler()
-  }
 }

@@ -11,7 +11,6 @@ struct NotifySettingsSelectorView: View {
     @State var isActive: Bool
     var showInfoImage: Bool = true
 
-    var clickInfoAction: () -> Void
     var checkAction: (Bool) -> Void
 
     var body: some View {
@@ -42,7 +41,7 @@ struct NotifySettingsSelectorView: View {
 
             }.padding(.init(top: 0, leading: 24, bottom: 0, trailing: 8))
 
-        }.frame(height: 76)
+        }.frame(width: UIScreen.main.bounds.width - 36, height: 76)
             .padding(.init(top: 5, leading: 18, bottom: 5, trailing: 18))
     }
 }

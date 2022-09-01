@@ -23,4 +23,5 @@ enum Action {
     case createInvitation
     case matchAction
     case hasADeepLink
+    case showPushNotification(type: NotificationType)
 }

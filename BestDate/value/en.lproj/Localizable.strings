@@ -556,7 +556,7 @@
 "prohibit_incoming_messages" = "Prohibit incoming messages";
 "active" = "Active";
 "deactive" = "Deactive";
-"" = "";
+"watch" = "Watch";
 "" = "";
 "" = "";
 "" = "";

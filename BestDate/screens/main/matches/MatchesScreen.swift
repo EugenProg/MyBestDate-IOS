@@ -106,7 +106,7 @@ struct MatchesScreen: View {
         .background(ColorList.main.color.edgesIgnoringSafeArea(.bottom))
         .onAppear {
             if mediator.users.isEmpty {
-                mediator.getNextMatchPage()
+                mediator.getMatchPage()
             }
         }
     }

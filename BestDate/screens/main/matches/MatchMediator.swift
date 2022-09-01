@@ -22,10 +22,10 @@ class MatchMediator: ObservableObject {
                 MatchItem(id: index, user: list[index])
             )
         }
-        currentUser = users[0].user
+        if !users.isEmpty { currentUser = users[0].user }
     }
 
-    func getNextMatchPage() {
+    func getMatchPage() {
         MatchesApiService.shared.getMatchesList() { success, users in
             if success {
                 DispatchQueue.main.async {

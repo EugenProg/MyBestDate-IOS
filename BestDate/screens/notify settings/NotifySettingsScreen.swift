@@ -41,12 +41,13 @@ struct NotifySettingsScreen: View {
                             .foregroundColor(ColorList.white.color)
                             .font(MyFont.getFont(.NORMAL, 18))
                     }.padding(16)
-                }.padding(.init(top: 20, leading: 32, bottom: 0, trailing: 16))
+                }.padding(.init(top: 20, leading: 32, bottom: 0, trailing: 32))
 
 
                 Text(NSLocalizedString("this_will_be_your_best_date", comment: "Date").uppercased())
                     .foregroundColor(ColorList.white_70.color)
                     .font(MyFont.getFont(.NORMAL, 18))
+                    .frame(width: UIScreen.main.bounds.width)
                     .padding(.init(top: 210, leading: 32, bottom: 8, trailing: 32))
 
                 Text(NSLocalizedString("we_are_for_live_communication", comment: "Date"))
@@ -73,7 +74,7 @@ struct NotifySettingsScreen: View {
                 }.frame(width: UIScreen.main.bounds.width - 64, alignment: .leading)
                 .padding(.init(top: 0, leading: 0, bottom: 14, trailing: 0))
 
-                NotifySettingsSelectorView(isActive: false, clickInfoAction: {}) { enabled in
+                NotifySettingsSelectorView(isActive: false) { enabled in
                     
                 }
 

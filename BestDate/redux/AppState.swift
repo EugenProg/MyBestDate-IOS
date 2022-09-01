@@ -11,6 +11,7 @@ import SwiftUI
 struct AppState {
     var activeScreen: ScreenList = ScreenList.START
     var activeBottomSheet: BottomSheetList = BottomSheetList.GENDER
+    var activePush: NotificationType = NotificationType.defaultPush
     var showBottomSheet: Bool = false
     var screenStack: [ScreenList] = []
     var showMessage: Bool = false
@@ -21,4 +22,5 @@ struct AppState {
     var showInvitationDialog: Bool = false
     var showMatchActionDialog: Bool = false
     var hasADeepLink: Bool = false
+    var showPushNotification: Bool = false
 }

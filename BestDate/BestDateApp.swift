@@ -13,13 +13,11 @@ import UIKit
 
 @main
 struct BestDateApp: App {
-  //  @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
-    var body: some Scene {
+    var body: some Scene { 
         WindowGroup {
-            let state = AppState()
-            let reducer = Reducer()
-            let store = Store(state: state, reducer: reducer)
+            let store = Store(state: AppState(), reducer: Reducer())
             NavigationView()
                 .environmentObject(store)
                 .previewInterfaceOrientation(.portrait)
@@ -30,6 +28,9 @@ struct BestDateApp: App {
                     ])
 
                     deeplinkCoordinator.handleURL(url)
+                }
+                .onAppear {
+                    appDelegate.store = store
                 }
         }
     }
