@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct UserSearchItemView: View {
-    var user: ShortUserInfo
+    @Binding var user: ShortUserInfo?
 
     var body: some View {
         ZStack {
@@ -18,7 +18,7 @@ struct UserSearchItemView: View {
                 .shadow(color: MyColor.getColor(12, 28, 33, 0.24), radius: 2, y: 3)
                 .padding(.init(top: 0, leading: 4, bottom: 0, trailing: 4))
 
-            AsyncImageView(url: user.main_photo?.thumb_url)
+            UserImageView(user: $user)
                 .padding(.init(top: 0, leading: 0, bottom: 54, trailing: 0))
 
             VStack(alignment: .leading, spacing: 0) {
@@ -28,11 +28,11 @@ struct UserSearchItemView: View {
                     OverlayView(reverse: true)
 
                     HStack(spacing: 4) {
-                        if (user.is_online ?? false) {
+                        if (user?.is_online ?? false) {
                             Image("ic_signal")
                         }
                         
-                        Text(user.getDistance())
+                        Text(user?.getDistance() ?? "0")
                             .foregroundColor(ColorList.white.color)
                             .font(MyFont.getFont(.NORMAL, 12))
 
@@ -41,19 +41,19 @@ struct UserSearchItemView: View {
                 }.frame(height: 28)
                     .padding(.init(top: 0, leading: 0, bottom: 6, trailing: 0))
                 HStack(spacing: 2) {
-                    Text(user.name ?? "Noname")
+                    Text(user?.name ?? "Noname")
                         .foregroundColor(ColorList.white.color)
                         .font(MyFont.getFont(.BOLD, 16))
                         .lineLimit(1)
 
-                    Image((user.full_questionnaire ?? false) ? "ic_verify_active" : "ic_verify_gray")
+                    Image((user?.full_questionnaire ?? false) ? "ic_verify_active" : "ic_verify_gray")
                         .resizable()
                         .frame(width: 14, height: 14)
                         .padding(.init(top: 0, leading: 5, bottom: 0, trailing: 0))
 
                     Spacer()
 
-                    Text("\(user.getAge())")
+                    Text("\(user?.getAge() ?? 18)")
                         .foregroundColor(ColorList.white_80.color)
                         .font(MyFont.getFont(.BOLD, 16))
 
@@ -62,7 +62,7 @@ struct UserSearchItemView: View {
                         .font(MyFont.getFont(.BOLD, 10))
                 }.padding(.init(top: 7, leading: 13, bottom: 2, trailing: 10))
 
-                Text(user.getLocation())
+                Text(user?.getLocation() ?? "")
                     .foregroundColor(ColorList.white_40.color)
                     .font(MyFont.getFont(.NORMAL, 12))
                     .padding(.init(top: 3, leading: 13, bottom: 7, trailing: 10))

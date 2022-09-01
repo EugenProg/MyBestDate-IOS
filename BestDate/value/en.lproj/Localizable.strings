@@ -548,6 +548,14 @@
 "congratulation" = "Congratulations";
 "write_a_message" = "Write a message";
 "you_have_a_match_write_to_the_user" = "You have a match, write to the user, you liked each other";
+"this_will_be_your_best_date" = "This will be your best date";
+"we_are_for_live_communication" = "We are for live communication";
+"if_you_turn_off_the_chat, then_you_can_only_be_called_on_a_date" = "If you turn off the chat, then you can only be called on a date";
+"or_everyone_can_write_to_you" = "Or everyone can write to you\nYou can change this in the ";
+"get_started" = "Get Started";
+"prohibit_incoming_messages" = "Prohibit incoming messages";
+"active" = "Active";
+"deactive" = "Deactive";
 "" = "";
 "" = "";
 "" = "";

@@ -50,6 +50,7 @@ struct NavigationView: View {
                     case .INVITATION: InvitatinsScreen()
                     case .MATCHES_LIST: MatchesListScreen()
                     case .LIKES_LIST: LikesListScreen()
+                    case .NOTIFY_SETTINGS: NotifySettingsScreen()
                     }
                 }.blur(radius: getBlur())
             }.onTapGesture(perform: { store.dispatch(action: .hideKeyboard) })

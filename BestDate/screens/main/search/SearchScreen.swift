@@ -53,7 +53,7 @@ struct SearchScreen: View {
                 Spacer()
 
                 Button(action: {
-                   
+                    
                 }) {
                     ZStack {
                         Image("ic_button_decor")

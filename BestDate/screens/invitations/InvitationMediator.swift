@@ -29,11 +29,6 @@ class InvitationMediator: ObservableObject {
 
     func getNewInVitations() {
         loadingMode = true
-        for user in SearchMediator.shared.users {
-            let card = InvitationCard(id: user.id, invitation: Invitation(id: 0, name: "Restorant"), from_user: user, to_user: user, status: nil)
-            newInvitations.append(card)
-            self.loadingMode = false
-        }
 //        InvitationApiService.shared.getUserInvitationList(filter: .new) { success, invitations in
 //            DispatchQueue.main.async {
 //                withAnimation {
@@ -46,11 +41,6 @@ class InvitationMediator: ObservableObject {
 
     func getAnsweredInvitations() {
         loadingMode = true
-        for user in SearchMediator.shared.users {
-            let card = InvitationCard(id: user.id, invitation: Invitation(id: 0, name: "Restorant"), from_user: user, to_user: user, status: getStatus(id: user.id))
-            answerdInvitations.append(card)
-            self.loadingMode = false
-        }
 //        InvitationApiService.shared.getUserInvitationList(filter: .answered) { success, invitations in
 //            DispatchQueue.main.async {
 //                withAnimation {
@@ -63,11 +53,6 @@ class InvitationMediator: ObservableObject {
 
     func getSentInvitations() {
         loadingMode = true
-        for user in SearchMediator.shared.users {
-            let card = InvitationCard(id: user.id, invitation: Invitation(id: 0, name: "Restorant"), from_user: user, to_user: user, status: getStatus(id: user.id))
-            sentInvitations.append(card)
-            self.loadingMode = false
-        }
 //        InvitationApiService.shared.getUserInvitationList(filter: .sent) { success, invitations in
 //            DispatchQueue.main.async {
 //                withAnimation {

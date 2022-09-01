@@ -57,6 +57,8 @@
 		4C2DC8DF28BCF16B00DD15C2 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2DC8DE28BCF16A00DD15C2 /* NotificationService.swift */; };
 		4C2DC8E128BCFB2E00DD15C2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C2DC8E028BCFB2E00DD15C2 /* GoogleService-Info.plist */; };
 		4C2DC93128BE944F00DD15C2 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 4C2DC92D28BE944D00DD15C2 /* loading.json */; };
+		4C2DC93828BFB6B400DD15C2 /* NotifySettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2DC93728BFB6B400DD15C2 /* NotifySettingsScreen.swift */; };
+		4C2DC93B28C0824800DD15C2 /* NotifySettingsSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2DC93A28C0824700DD15C2 /* NotifySettingsSelectorView.swift */; };
 		4C3D27B9285110FA00F8FD09 /* StandardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D27B8285110F800F8FD09 /* StandardButton.swift */; };
 		4C3D27BC28511BB700F8FD09 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D27BB28511BB600F8FD09 /* Title.swift */; };
 		4C3D27BE28511DCA00F8FD09 /* HeaderText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D27BD28511DCA00F8FD09 /* HeaderText.swift */; };
@@ -327,6 +329,8 @@
 		4C2DC8F928BD0C4E00DD15C2 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
 		4C2DC92C28BDF0F900DD15C2 /* BestDateDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BestDateDebug.entitlements; sourceTree = "<group>"; };
 		4C2DC92D28BE944D00DD15C2 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
+		4C2DC93728BFB6B400DD15C2 /* NotifySettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifySettingsScreen.swift; sourceTree = "<group>"; };
+		4C2DC93A28C0824700DD15C2 /* NotifySettingsSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifySettingsSelectorView.swift; sourceTree = "<group>"; };
 		4C3D27B8285110F800F8FD09 /* StandardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardButton.swift; sourceTree = "<group>"; };
 		4C3D27BB28511BB600F8FD09 /* Title.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
 		4C3D27BD28511DCA00F8FD09 /* HeaderText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderText.swift; sourceTree = "<group>"; };
@@ -702,6 +706,15 @@
 			path = "notification center";
 			sourceTree = "<group>";
 		};
+		4C2DC93928BFB72D00DD15C2 /* notify settings */ = {
+			isa = PBXGroup;
+			children = (
+				4C2DC93728BFB6B400DD15C2 /* NotifySettingsScreen.swift */,
+				4C2DC93A28C0824700DD15C2 /* NotifySettingsSelectorView.swift */,
+			);
+			path = "notify settings";
+			sourceTree = "<group>";
+		};
 		4C3D27BA28511B9A00F8FD09 /* textViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -968,6 +981,7 @@
 		4C8E7DA9284D24BC00D6E58D /* screens */ = {
 			isa = PBXGroup;
 			children = (
+				4C2DC93928BFB72D00DD15C2 /* notify settings */,
 				4C2DC8CC28BA9AF500DD15C2 /* match action */,
 				4C878F2228B9246F00043680 /* likes list */,
 				4C878F2128B9246300043680 /* matches list */,
@@ -1633,6 +1647,7 @@
 				4CD34F4428903E9500504396 /* AnotherProfileQuestionnaireMediator.swift in Sources */,
 				4CB9FF9628834303004F1BF6 /* ImageLineItemView.swift in Sources */,
 				4CD34F3F288EF4F300504396 /* PhotoSettingsSheetMediator.swift in Sources */,
+				4C2DC93B28C0824800DD15C2 /* NotifySettingsSelectorView.swift in Sources */,
 				4C145905285664AA00558B6B /* RecoveryMediator.swift in Sources */,
 				4CD34F39288D2CAD00504396 /* ChatScreen.swift in Sources */,
 				4CB9FF44287743C3004F1BF6 /* MainScreen.swift in Sources */,
@@ -1784,6 +1799,7 @@
 				4CB9FF9F28842D87004F1BF6 /* AnotherProfileMediator.swift in Sources */,
 				4CD34F5228950D8900504396 /* MessageListView.swift in Sources */,
 				4C022A4D285B7E470043E49D /* PhotoEditorMediator.swift in Sources */,
+				4C2DC93828BFB6B400DD15C2 /* NotifySettingsScreen.swift in Sources */,
 				4C1B7C24286B67CF000DB5D4 /* QuestionnaireSingleSelectBottomSheet.swift in Sources */,
 				4C5C86D42874A546006DE024 /* AuthResponse.swift in Sources */,
 				4C022A48285A409E0043E49D /* SwitchButtonView.swift in Sources */,

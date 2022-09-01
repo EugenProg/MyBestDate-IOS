@@ -41,7 +41,7 @@ extension Array where Element == ProfileImage {
     }
 }
 
-extension Array where Element == ShortUserInfo {
+extension Array where Element == ShortUserInfo? {
     mutating func addAll(list: [ShortUserInfo]?, clear: Bool) {
         if clear { self.removeAll() }
 

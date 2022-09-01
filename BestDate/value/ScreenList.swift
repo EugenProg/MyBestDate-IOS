@@ -36,6 +36,7 @@ enum ScreenList: String {
     case INVITATION
     case MATCHES_LIST
     case LIKES_LIST
+    case NOTIFY_SETTINGS
 
 }
 

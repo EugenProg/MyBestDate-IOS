@@ -13,7 +13,7 @@ class SearchMediator: ObservableObject {
 
     private let itemHeight: CGFloat = ((UIScreen.main.bounds.width - 9) / 2) + 54
 
-    @Published var users: [ShortUserInfo] = []
+    @Published var users: [ShortUserInfo?] = []
     @Published var meta: Meta = Meta()
     @Published var loadingMode: Bool = true
 
@@ -30,9 +30,9 @@ class SearchMediator: ObservableObject {
                     self.users.addAll(list: userList, clear: withClear)
                     self.meta = meta
                 }
+                self.loadingMode = false
             }
             completion()
-            self.loadingMode = false
         }
     }
 

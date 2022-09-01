@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SearchListView: View {
-    @Binding var list: [ShortUserInfo]
+    @Binding var list: [ShortUserInfo?]
     @Binding var meta: Meta
     @Binding var loadingMode: Bool
     var clickAction: (ShortUserInfo) -> Void
@@ -30,19 +30,19 @@ struct SearchListView: View {
                       pinnedViews: [.sectionHeaders, .sectionFooters]) {
                 ForEach(list.indices, id: \.self) { i in
                     let user = list[i]
-                    UserSearchItemView(user: user)
+                    UserSearchItemView(user: $list[i])
                         .onTapGesture {
-                            withAnimation { clickAction(user) }
+                            withAnimation { clickAction(user ?? ShortUserInfo()) }
                         }
                         .onAppear {
-                            if user.id == list.last?.id {
+                            if (user?.id ?? 0) == (list.last??.id ?? 0) && !list.isEmpty {
                                 showLoadingBlock = true
                             }
                         }
                 }
             }
 
-            if (meta.current_page ?? 0) < (meta.last_page ?? 0) && showLoadingBlock && !list.isEmpty {
+            if (meta.current_page ?? 0) < (meta.last_page ?? 0) && showLoadingBlock {
                 LoadingNextPageView()
                     .onAppear {
                         loadNextPage()
