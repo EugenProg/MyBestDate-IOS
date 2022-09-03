@@ -18,6 +18,7 @@ class CoreApiService {
 
         let data = try! encoder.encode(LoginByEmailRequest(username: userName, password: password))
         encoder.outputFormatting = .prettyPrinted
+        NetworkLogger.printLog(data: data)
         request.httpBody = data
 
         let task = URLSession.shared.dataTask(with: request) {data, response, error in
@@ -39,6 +40,29 @@ class CoreApiService {
 
         let data = try! encoder.encode(LoginByPhoneRequest(phone: phone, password: password))
         encoder.outputFormatting = .prettyPrinted
+        NetworkLogger.printLog(data: data)
+        request.httpBody = data
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            NetworkLogger.printLog(response: response)
+            if let data = data, let response = try? JSONDecoder().decode(AuthResponse.self, from: data) {
+                NetworkLogger.printLog(data: data)
+                UserDataHolder.setAuthData(response: response)
+                completion(true)
+            } else {
+                completion(false)
+            }
+        }
+
+        task.resume()
+    }
+
+    func signInWithSocial(provider: SocialOAuthType, token: String, completion: @escaping (Bool) -> Void) {
+        var request = CoreApiTypes.signInWithSocial.getRequest()
+
+        let data = try! encoder.encode(SocialOAuthRequest(provider: provider.rawValue, access_token: token))
+        encoder.outputFormatting = .prettyPrinted
+        NetworkLogger.printLog(data: data)
         request.httpBody = data
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -60,6 +84,7 @@ class CoreApiService {
 
         let data = try! encoder.encode(SendCodeRequest(email: email))
         encoder.outputFormatting = .prettyPrinted
+        NetworkLogger.printLog(data: data)
         request.httpBody = data
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -81,6 +106,7 @@ class CoreApiService {
 
         let data = try! encoder.encode(SendCodeRequest(email: email))
         encoder.outputFormatting = .prettyPrinted
+        NetworkLogger.printLog(data: data)
         request.httpBody = data
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -101,6 +127,7 @@ class CoreApiService {
 
         let data = try! encoder.encode(SendCodeRequest(phone: phone))
         encoder.outputFormatting = .prettyPrinted
+        NetworkLogger.printLog(data: data)
         request.httpBody = data
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -121,6 +148,7 @@ class CoreApiService {
 
         let data = try! encoder.encode(SendCodeRequest(phone: phone))
         encoder.outputFormatting = .prettyPrinted
+        NetworkLogger.printLog(data: data)
         request.httpBody = data
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -141,6 +169,7 @@ class CoreApiService {
 
         let data = try! encoder.encode(ConfirmRequest(email: email, code: code))
         encoder.outputFormatting = .prettyPrinted
+        NetworkLogger.printLog(data: data)
         request.httpBody = data
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -161,6 +190,7 @@ class CoreApiService {
 
         let data = try! encoder.encode(ConfirmRequest(email: email, code: code))
         encoder.outputFormatting = .prettyPrinted
+        NetworkLogger.printLog(data: data)
         request.httpBody = data
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -181,6 +211,7 @@ class CoreApiService {
 
         let data = try! encoder.encode(ConfirmRequest(phone: phone, code: code))
         encoder.outputFormatting = .prettyPrinted
+        NetworkLogger.printLog(data: data)
         request.httpBody = data
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -201,6 +232,7 @@ class CoreApiService {
 
         let data = try! encoder.encode(ConfirmRequest(phone: phone, code: code))
         encoder.outputFormatting = .prettyPrinted
+        NetworkLogger.printLog(data: data)
         request.httpBody = data
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -221,6 +253,7 @@ class CoreApiService {
 
         let data = try! encoder.encode(requestModel)
         encoder.outputFormatting = .prettyPrinted
+        NetworkLogger.printLog(data: data)
         request.httpBody = data
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -241,6 +274,7 @@ class CoreApiService {
 
         let data = try! encoder.encode(requestModel)
         encoder.outputFormatting = .prettyPrinted
+        NetworkLogger.printLog(data: data)
         request.httpBody = data
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -261,6 +295,7 @@ class CoreApiService {
 
         let data = try! encoder.encode(SendCodeRequest(email: email))
         encoder.outputFormatting = .prettyPrinted
+        NetworkLogger.printLog(data: data)
         request.httpBody = data
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -281,6 +316,7 @@ class CoreApiService {
 
         let data = try! encoder.encode(SendCodeRequest(phone: phone))
         encoder.outputFormatting = .prettyPrinted
+        NetworkLogger.printLog(data: data)
         request.httpBody = data
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -301,6 +337,7 @@ class CoreApiService {
 
         let data = try! encoder.encode(ConfirmRequest(email: email, code: code, password: password, password_confirmation: password))
         encoder.outputFormatting = .prettyPrinted
+        NetworkLogger.printLog(data: data)
         request.httpBody = data
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -321,6 +358,7 @@ class CoreApiService {
 
         let data = try! encoder.encode(ConfirmRequest(phone: phone, code: code, password: password, password_confirmation: password))
         encoder.outputFormatting = .prettyPrinted
+        NetworkLogger.printLog(data: data)
         request.httpBody = data
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in

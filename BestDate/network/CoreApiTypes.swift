@@ -18,6 +18,8 @@ enum CoreApiTypes {
     case registerByEmail
     case registerByPhone
 
+    case signInWithSocial
+
     case resetEmail
     case resetPhone
     case confirmEmailReset
@@ -89,6 +91,7 @@ enum CoreApiTypes {
         case .confirmPhone: return "phone/confirm-code"
         case .registerByEmail: return "email/register"
         case .registerByPhone: return "phone/register"
+        case .signInWithSocial: return "login-social"
         case .resetEmail: return "email/password-reset-send-code"
         case .resetPhone: return "phone/password-reset-send-code"
         case .confirmEmailReset: return "email/password-reset-by-code"
@@ -144,6 +147,7 @@ enum CoreApiTypes {
         case .confirmPhone: return "POST"
         case .registerByEmail: return "POST"
         case .registerByPhone: return "POST"
+        case .signInWithSocial: return "POST"
         case .resetEmail: return "POST"
         case .resetPhone: return "POST"
         case .confirmEmailReset: return "POST"

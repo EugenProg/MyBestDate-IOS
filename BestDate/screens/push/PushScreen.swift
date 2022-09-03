@@ -19,7 +19,7 @@ struct PushScreen: View {
                         switch store.state.activePush {
                         case .like: LikePushView() { dismiss() }
                         case .match: MatchPushView() { dismiss() }
-                        case .invitation: InvitationPushView()
+                        case .invitation: InvitationPushView() { dismiss() }
                         default: DefaultPushView() { dismiss() }
                         }
                     }

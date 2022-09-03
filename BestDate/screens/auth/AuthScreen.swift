@@ -62,8 +62,8 @@ struct AuthScreen: View {
                 }
                 VStack {
                     SocialView(
-                        gooleClickAction: { store.dispatch(action: .show(message: "google")) },
-                        appleClickAction: { },//mediator.signInWithApple() },
+                        gooleClickAction: { loginSocial(provider: .google)},
+                        appleClickAction: { loginSocial(provider: .apple) },
                         facebookClickAction: { store.dispatch(action: .show(message: "facebook")) })
                 }.frame(height: UIScreen.main.bounds.height, alignment: .bottom)
             }
@@ -83,19 +83,39 @@ struct AuthScreen: View {
             mediator.auth(login: emailInputText, password: passInputText) { success, message in
                 DispatchQueue.main.async {
                     process.toggle()
-                    if success {
-                        if !mediator.hasImages {
-                            UserDataHolder.setStartScreen(screen: .PROFILE_PHOTO)
-                        } else if !mediator.hasQuestionnaire {
-                            UserDataHolder.setStartScreen(screen: .QUESTIONNAIRE)
-                        } else {
-                            UserDataHolder.setStartScreen(screen: .MAIN)
-                        }
-                        store.dispatch(action: .navigate(screen: UserDataHolder.startScreen))
-                    } else {
-                        store.dispatch(action: .show(message: NSLocalizedString(message, comment: "Message")))
+                    goIn(success: success, message: message)
+                }
+            }
+        }
+    }
+
+    private func goIn(success: Bool, message: String) {
+        store.dispatch(action: .endProcess)
+        if success {
+            if !mediator.hasImages {
+                UserDataHolder.setStartScreen(screen: .PROFILE_PHOTO)
+            } else if !mediator.hasQuestionnaire {
+                UserDataHolder.setStartScreen(screen: .QUESTIONNAIRE)
+            } else {
+                UserDataHolder.setStartScreen(screen: .MAIN)
+            }
+            store.dispatch(action: .navigate(screen: UserDataHolder.startScreen))
+        } else {
+            store.dispatch(action: .show(message: NSLocalizedString(message, comment: "Message")))
+        }
+    }
+
+    private func loginSocial(provider: SocialOAuthType) {
+        mediator.loginSocial(provider: provider) { success in
+            if success {
+                DispatchQueue.main.async { store.dispatch(action: .startProcess) }
+                mediator.getUserData { success in
+                    DispatchQueue.main.async {
+                        goIn(success: success, message: "default_error_message")
                     }
                 }
+            } else {
+                store.dispatch(action: .show(message: NSLocalizedString("default_error_message", comment: "Message")))
             }
         }
     }

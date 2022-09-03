@@ -19,15 +19,15 @@ struct LoginByPhoneRequest: Codable {
     var grant_type: String = "phone"
 }
 
+struct SocialOAuthRequest: Codable {
+    var grant_type: String = "social"
+    var provider: String
+    var access_token: String
+}
+
 struct RefreshTokenRequest: Codable {
     var grant_type: String = "refresh_token"
     var refresh_token: String
-}
-
-struct LoginSociableRequest: Codable {
-    var provider: String
-    var access_token: String
-    var grant_type: String = "social"
 }
 
 struct SendCodeRequest: Codable {
