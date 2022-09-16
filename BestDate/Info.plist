@@ -8,7 +8,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLIconFile</key>
-			<string>AppIcon</string>
+			<string>/Users/eugen/Downloads/Archive (1)/Icon.png</string>
 			<key>CFBundleURLName</key>
 			<string>com.best-date.app.example</string>
 			<key>CFBundleURLSchemes</key>
@@ -26,6 +26,16 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>com.googleusercontent.apps.320734338059-5llkt240p9ev4v67dngnbehj4lnki47b</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.best-date</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>best-date</string>
 			</array>
 		</dict>
 	</array>

@@ -14,7 +14,6 @@ struct PhotoSettingsBottomSheet: View {
     
     @State var saveProcess: Bool = false
     @State var deleteProcess: Bool = false
-    @State var showMainSwitch: Bool = true
     var clickAction: () -> Void
     
     var body: some View {
@@ -43,13 +42,13 @@ struct PhotoSettingsBottomSheet: View {
                 Spacer()
             }.padding(.init(top: 0, leading: 0, bottom: 10, trailing: 0))
 
-            if showMainSwitch {
-                SwichSelectorView(isActive: mediator.selectedPhoto?.main ?? false, hint: "set_as_a_profile_photo", text: "main_picture", clickInfoAction: infoClickAction()) { isChecked in
+            if mediator.showMainBlock {
+                SwichSelectorView(isActive: $mediator.isMain, hint: "set_as_a_profile_photo", text: "main_picture", clickInfoAction: infoClickAction()) { isChecked in
                     mediator.selectedPhoto?.main = isChecked
                 }
             }
             
-            SwichSelectorView(isActive: mediator.selectedPhoto?.top ?? false, hint: "take_part_in_a_contest", text: "top_50", clickInfoAction: infoClickAction()) { isChecked in
+            SwichSelectorView(isActive: $mediator.topEnabled, hint: "take_part_in_a_contest", text: "top_50", clickInfoAction: infoClickAction()) { isChecked in
                 mediator.selectedPhoto?.top = isChecked
              }
             
@@ -61,7 +60,6 @@ struct PhotoSettingsBottomSheet: View {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: {
                 withAnimation { ready.toggle() }
             })
-            showMainSwitch = !(mediator.selectedPhoto?.main ?? false)
         }
     }
     

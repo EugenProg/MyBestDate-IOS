@@ -21,9 +21,9 @@ class GuestsMediator: ObservableObject {
                 if success {
                     self.setGuests(guests: guests)
                 }
+                self.loadingMode = false
             }
             completion()
-            self.loadingMode = false
         }
     }
 

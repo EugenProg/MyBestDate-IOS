@@ -88,7 +88,7 @@ class AuthMediator: NSObject, ObservableObject {
                 print(">>> error: \(error.localizedDescription)")
             }
 
-            print(">>> SUCCESS\nname = \(user?.profile?.name)\nemail = \(user?.profile?.email)\ntoken = \(user?.authentication.accessToken)")
+            print(">>> SUCCESS\nname = \(user?.profile?.name ?? "")\nemail = \(user?.profile?.email ?? "")\ntoken = \(user?.authentication.accessToken ?? "")")
 
             CoreApiService.shared.signInWithSocial(provider: .google, token: user?.authentication.accessToken ?? "") { success in complete(success)
             }

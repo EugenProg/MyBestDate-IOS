@@ -78,15 +78,15 @@ struct ProfileScreen: View {
                                         }
 
                                         ProfileButtonView(name: "matches_list", image: "ic_matches", isActive: true) {
-                                           // store.dispatch(action: .navigate(screen: .MATCHES_LIST))
+                                            store.dispatch(action: .navigate(screen: .MATCHES_LIST))
                                         }
 
                                         ProfileButtonView(name: "cards", image: "ic_add", isActive: true) {
-                                            //store.dispatch(action: .navigate(screen: .INVITATION))
+                                            store.dispatch(action: .navigate(screen: .INVITATION))
                                         }
 
                                         ProfileButtonView(name: "like", image: "ic_is_liked", isActive: true) {
-                                          //  store.dispatch(action: .navigate(screen: .LIKES_LIST))
+                                            store.dispatch(action: .navigate(screen: .LIKES_LIST))
                                         }
 
                                         ProfileButtonView(name: "my_duels", image: "ic_my_duels", isActive: true) {
@@ -103,28 +103,11 @@ struct ProfileScreen: View {
                                 .fill(ColorList.main.color)
 
                             VStack(spacing: 0) {
-                                HStack {
-                                    Spacer()
-                                    HStack(spacing: 9) {
-                                        Text("See All")
-                                            .foregroundColor(ColorList.white_60.color)
-                                            .font(MyFont.getFont(.NORMAL, 12))
-
-                                        Image("ic_arrow_right_white")
-                                            .resizable()
-                                            .frame(width: 5, height: 10)
-                                            .opacity(0.6)
-                                    }.padding(.init(top: 10, leading: 16, bottom: 13, trailing: 18))
-                                        .onTapGesture {
-
-                                    }
-                                }
-
                                 ProfilePhotoLineView(imagesList: $mediator.profileImages, addAction: addImage()) { selectedImage in
-                                    photoMediator.selectedPhoto = selectedImage
+                                    photoMediator.setImage(image: selectedImage)
                                     photoMediator.callPage = .PROFILE
                                     store.dispatch(action: .showBottomSheet(view: .PHOTO_SETTINGS))
-                                }
+                                }.padding(.init(top: 10, leading: 0, bottom: 0, trailing: 0))
 
                                 DirrectionLineButtonView(name: "questionnaire", icon: "ic_document", buttonColor: ColorList.pink_5.color) {
                                     QuestionnaireMediator.shared.setEditInfo(user: mediator.user, editMode: true)
@@ -132,11 +115,13 @@ struct ProfileScreen: View {
                                 }.padding(.init(top: 40, leading: 0, bottom: 0, trailing: 0))
 
                                 DirrectionLineButtonView(name: "personal_data", icon: "ic_profile", buttonColor: ColorList.white_5.color) {
-
+                                    PersonalDataMediator.shared.setUserData()
+                                    store.dispatch(action: .navigate(screen: .PERSONAL_DATA))
                                 }
 
                                 DirrectionLineButtonView(name: "settings", icon: "ic_setting", buttonColor: ColorList.light_blue_5.color) {
-
+                                    SettingsMediator.shared.getUserSettings()
+                                    store.dispatch(action: .navigate(screen: .SETTINGS))
                                 }
 
                                 HStack {

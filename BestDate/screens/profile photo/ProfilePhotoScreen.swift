@@ -86,7 +86,7 @@ struct ProfilePhotoScreen: View {
                                 .padding(.init(top: 16, leading: 0, bottom: 0, trailing: 0))
                             
                             HorisontalPhotoListView(imagesList: $mediator.imageList) { image in
-                                photoSettingsMediator.selectedPhoto = image
+                                photoSettingsMediator.setImage(image: image)
                                 photoSettingsMediator.callPage = .PROFILE_PHOTO
                                 store.dispatch(action: .showBottomSheet(view: .PHOTO_SETTINGS))
                             }

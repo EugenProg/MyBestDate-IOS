@@ -33,7 +33,7 @@ struct CreateInvitionScreen: View {
                     .font(MyFont.getFont(.BOLD, 19))
                     .padding(.init(top: 7, leading: 0, bottom: 116, trailing: 0))
 
-                StandardButton(style: .white, title: "Open  •  1€", loadingProcess: $loadingProcess) {
+                StandardButton(style: .white, title: "invite", loadingProcess: $loadingProcess) {
                     withAnimation { showFrontSide.toggle() }
                 }
                 .padding(.init(top: 116, leading: 12, bottom: 23, trailing: 12))
@@ -99,9 +99,7 @@ struct CreateInvitionScreen: View {
         }
         .onTapGesture {
             withAnimation {
-                //if showFrontSide {
-                    store.state.showInvitationDialog = false
-              //  }
+                store.state.showInvitationDialog = false
             }
         }
         .onAppear {

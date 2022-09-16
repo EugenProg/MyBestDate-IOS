@@ -38,6 +38,7 @@ struct BaseBottomSheet: View {
                         case .MAIN_ONLINE: MainOnlineBottomSheet { dismiss() }
                         case .CHAT_ACTIONS: ChatActionsBottomSheet { dismiss() }
                         case .ANOTHER_ADDITIONALLY: AnotherAdditionallyBottomSheet { dismiss() }
+                        case .LANGUAGE: LanguageBottomSheet { dismiss() }
                         }
                     }.frame(width: width, height: store.state.activeBottomSheet.heightMode.height)
                     .padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight + 16, trailing: 0))

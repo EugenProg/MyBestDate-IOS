@@ -570,4 +570,62 @@ class CoreApiService {
 
         task.resume()
     }
+
+    func getUserSettings(completion: @escaping (Bool, UserSettings) -> Void) {
+        let request = CoreApiTypes.getUserSettings.getRequest(withAuth: true)
+
+        let task = URLSession.shared.dataTask(with: request) {data, response, error in
+            NetworkLogger.printLog(response: response)
+            if let data = data, let response = try? JSONDecoder().decode(UserSettingsResponse.self, from: data) {
+                NetworkLogger.printLog(data: data)
+                completion(response.success, response.data)
+            } else {
+                completion(false, UserSettings())
+            }
+        }
+
+        task.resume()
+    }
+
+    func saveSettings(model: SaveSettingsRequest, completion: @escaping (Bool) -> Void) {
+        var request = CoreApiTypes.saveSettings.getRequest(withAuth: true)
+
+        let data = try! encoder.encode(model)
+        encoder.outputFormatting = .prettyPrinted
+        NetworkLogger.printLog(data: data)
+        request.httpBody = data
+
+        let task = URLSession.shared.dataTask(with: request) {data, response, error in
+            NetworkLogger.printLog(response: response)
+            if let data = data, let response = try? JSONDecoder().decode(BaseResponse.self, from: data) {
+                NetworkLogger.printLog(data: data)
+                completion(response.success)
+            } else {
+                completion(false)
+            }
+        }
+
+        task.resume()
+    }
+
+    func updateLanguage(enable: Bool, completion: @escaping (Bool) -> Void) {
+        var request = CoreApiTypes.updateLanguage.getRequest(withAuth: true)
+
+        let data = try! encoder.encode(UpdateLanguageRequest(language: enable))
+        encoder.outputFormatting = .prettyPrinted
+        NetworkLogger.printLog(data: data)
+        request.httpBody = data
+
+        let task = URLSession.shared.dataTask(with: request) {data, response, error in
+            NetworkLogger.printLog(response: response)
+            if let data = data, let response = try? JSONDecoder().decode(BaseResponse.self, from: data) {
+                NetworkLogger.printLog(data: data)
+                completion(response.success)
+            } else {
+                completion(false)
+            }
+        }
+
+        task.resume()
+    }
 }

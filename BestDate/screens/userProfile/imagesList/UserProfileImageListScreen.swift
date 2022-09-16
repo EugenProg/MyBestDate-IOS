@@ -22,11 +22,6 @@ struct UserProfileImageListScreen: View {
                 }.frame(width: UIScreen.main.bounds.width - 50, height: 60)
                     .padding(.init(top: 16, leading: 32, bottom: 0, trailing: 18))
 
-                if mediator.profileImages.count > 1 {
-                    ImagesTabView(imagesCount: mediator.profileImages.count, selectedImage: $mediator.selectedImage) { }
-                        .opacity(showButtons ? 1 : 0)
-                }
-
                 Spacer()
 
                 ImagesListView(images: $mediator.profileImages, selectedImage: $mediator.selectedImage, showButtons: $showButtons) { }

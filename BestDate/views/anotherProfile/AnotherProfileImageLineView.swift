@@ -14,14 +14,7 @@ struct AnotherProfileImageLineView: View {
 
     var body: some View {
         ZStack {
-            if imagesList.count <= 3 {
-                HStack(spacing: 3) {
-                    Rectangle().fill(ColorList.white_10.color)
-                    Rectangle().fill(ColorList.white_10.color)
-                    Rectangle().fill(ColorList.white_10.color)
-                }.frame(height: imageSize)
-                .padding(.init(top: 0, leading: 3, bottom: 0, trailing: 3))
-
+            ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 3) {
                     ForEach(imagesList.indices, id: \.self) { index in
                         ImageLineItemView(image: imagesList[index], imageSize: imageSize)
@@ -31,18 +24,6 @@ struct AnotherProfileImageLineView: View {
                     }
                     Spacer()
                 }.padding(.init(top: 0, leading: 3, bottom: 0, trailing: 3))
-            } else {
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 3) {
-                        ForEach(imagesList.indices, id: \.self) { index in
-                            ImageLineItemView(image: imagesList[index], imageSize: imageSize)
-                                .onTapGesture {
-                                    selectAction(index)
-                                }
-                        }
-                        Spacer()
-                    }.padding(.init(top: 0, leading: 3, bottom: 0, trailing: 3))
-                }
             }
         }.padding(.init(top: 16, leading: 0, bottom: 0, trailing: 0))
     }

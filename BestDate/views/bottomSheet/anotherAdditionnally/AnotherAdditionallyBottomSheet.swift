@@ -12,7 +12,7 @@ struct AnotherAdditionallyBottomSheet: View {
     @ObservedObject var mediator = AdditionallyMediator.shared
 
     var clickAction: () -> Void
-    var padding: CGFloat = (UIScreen.main.bounds.width - 150) / 2
+    var padding: CGFloat = (UIScreen.main.bounds.width - 220) / 2
 
     fileprivate func button(title: String, textColor: Color, click: @escaping () -> Void) -> some View {
         VStack(spacing: 8) {

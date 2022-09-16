@@ -31,7 +31,7 @@ class PhotoEditorMediator: ObservableObject {
                     if self.saveAction != nil {
                         self.saveAction!(profileImage)
                     }
-                    PhotoSettingsSheetMediator.shared.selectedPhoto = profileImage
+                    PhotoSettingsSheetMediator.shared.setImage(image: profileImage)
                     if (profileImage.main ?? false) || self.imageList.count == 1 {
                         self.mainPhoto = profileImage
                     }

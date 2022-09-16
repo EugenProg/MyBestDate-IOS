@@ -36,27 +36,27 @@ struct SendedInvitationItemView: View {
 
                 HStack {
                     HStack(spacing: 7) {
-                        AsyncImageView(url: invitationCard.from_user?.main_photo?.thumb_url)
+                        AsyncImageView(url: invitationCard.to_user?.main_photo?.thumb_url)
                             .aspectRatio(contentMode: .fill)
                             .clipShape(Circle())
                             .frame(width: 26, height: 26)
 
                         VStack(alignment: .leading, spacing: 0) {
                             HStack(spacing: 7) {
-                                Text(invitationCard.from_user?.name ?? "Noname")
+                                Text(invitationCard.to_user?.name ?? "Noname")
                                     .foregroundColor(ColorList.main_70.color)
                                     .font(MyFont.getFont(.BOLD, 14))
 
-                                Image((invitationCard.from_user?.full_questionnaire ?? false) ? "ic_verify_active" : "ic_verify_gray")
+                                Image((invitationCard.to_user?.full_questionnaire ?? false) ? "ic_verify_active" : "ic_verify_gray")
                                     .resizable()
                                     .frame(width: 12, height: 12)
                             }
-                            Text(invitationCard.from_user?.getLocation() ?? "")
+                            Text(invitationCard.to_user?.getLocation() ?? "")
                                 .foregroundColor(ColorList.main_50.color)
                                 .font(MyFont.getFont(.NORMAL, 11))
                         }
                     }.onTapGesture {
-                        withAnimation { userSelectAction(invitationCard.from_user) }
+                        withAnimation { userSelectAction(invitationCard.to_user) }
                     }
                 }.padding(.init(top: 3, leading: 0, bottom: 0, trailing: 0))
 
@@ -83,7 +83,7 @@ struct SendedInvitationItemView: View {
     }
 
     private func getStatusText(status: Bool?) -> String {
-        if status == nil { return "\(invitationCard.from_user?.name ?? "") hasn’t given an answer yet" }
+        if status == nil { return "\(invitationCard.to_user?.name ?? "") hasn’t given an answer yet" }
         else if status == true { return "Yes I agree" }
         else { return "Thanks, but I can’t yet" }
     }

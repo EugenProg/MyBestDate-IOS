@@ -59,7 +59,7 @@ struct SaveAndSetPositionScrollView<Content: View>: View {
                     let offset = movingY - fixedY
 
                     currentOffset = offset
-                    if offset > 0 {
+                    if offset < 0 {
                         offsetChanged(offset)
                     }
 

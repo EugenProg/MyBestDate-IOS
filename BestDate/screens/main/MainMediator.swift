@@ -27,6 +27,7 @@ class MainMediator: ObservableObject {
         hasNewGuests = (user.new_guests ?? 0) > 0
         mainPhoto = user.getMainPhoto()
         self.user = user
+        SettingsMediator.shared.getUserSettings()
     }
 
     func clearUserData() {

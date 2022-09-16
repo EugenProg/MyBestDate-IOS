@@ -68,6 +68,7 @@ struct UserInfo: Codable {
     var location: Location? = nil
     var block_messages: Bool? = nil
     var blocked: Bool? = nil
+    var blocked_me: Bool? = nil
     var questionnaire: Questionnaire? = nil
 }
 
@@ -80,6 +81,7 @@ struct ShortUserInfo: Codable {
     var is_online: Bool? = nil
     var last_online_at: String? = nil
     var location: Location? = nil
+    var language: String? = nil
     var block_messages: Bool? = nil
     var full_questionnaire: Bool? = nil
     var distance: Double? = nil
@@ -265,4 +267,27 @@ struct LikesListResponse: Codable {
     var success: Bool
     var message: String
     var data: [Like] = []
+}
+
+struct UserSettingsResponse: Codable {
+    var success: Bool
+    var message: String
+    var data: UserSettings
+}
+
+struct UserSettings: Codable {
+    var user_id: Int? = nil
+    var block_messages: Bool? = nil
+    var matches: Bool? = nil
+    var invisible: Bool? = nil
+    var language: String? = nil
+    var notifications: NotificationSettings = NotificationSettings()
+}
+
+struct NotificationSettings: Codable {
+    var likes: Bool? = nil
+    var matches: Bool? = nil
+    var invitations: Bool? = nil
+    var messages: Bool? = nil
+    var guests: Bool? = nil
 }

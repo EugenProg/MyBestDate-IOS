@@ -68,6 +68,8 @@
 		4C2DC94A28C2528100DD15C2 /* PushUserDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2DC94928C2528100DD15C2 /* PushUserDataView.swift */; };
 		4C2DC94C28C2764C00DD15C2 /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C2DC94B28C2764500DD15C2 /* AuthenticationServices.framework */; };
 		4C2DC94E28C36DBF00DD15C2 /* LoadingProgressScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2DC94D28C36DBE00DD15C2 /* LoadingProgressScreen.swift */; };
+		4C2DC95128C399D700DD15C2 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 4C2DC95028C399D700DD15C2 /* FacebookCore */; };
+		4C2DC95328C399D700DD15C2 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 4C2DC95228C399D700DD15C2 /* FacebookLogin */; };
 		4C3D27B9285110FA00F8FD09 /* StandardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D27B8285110F800F8FD09 /* StandardButton.swift */; };
 		4C3D27BC28511BB700F8FD09 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D27BB28511BB600F8FD09 /* Title.swift */; };
 		4C3D27BE28511DCA00F8FD09 /* HeaderText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D27BD28511DCA00F8FD09 /* HeaderText.swift */; };
@@ -157,6 +159,28 @@
 		4C950D58284E6194004E2C13 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C950D57284E6194004E2C13 /* Extension.swift */; };
 		4C950D5F284E7318004E2C13 /* AuthScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C950D5E284E7318004E2C13 /* AuthScreen.swift */; };
 		4C950D61284E78E8004E2C13 /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C950D60284E78E8004E2C13 /* NavigationView.swift */; };
+		4C9E5AD528CFA92900E4E9FF /* BlockedUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E5AD428CFA92900E4E9FF /* BlockedUserView.swift */; };
+		4C9E5AD728CFA9C500E4E9FF /* ActiveUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E5AD628CFA9C500E4E9FF /* ActiveUserView.swift */; };
+		4C9E5ADA28D0E01F00E4E9FF /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E5AD928D0E01F00E4E9FF /* SettingsScreen.swift */; };
+		4C9E5ADD28D0E1D200E4E9FF /* PersonalDataScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E5ADC28D0E1D200E4E9FF /* PersonalDataScreen.swift */; };
+		4C9E5ADF28D0E1EA00E4E9FF /* BlackListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E5ADE28D0E1EA00E4E9FF /* BlackListScreen.swift */; };
+		4C9E5AE228D0E5FE00E4E9FF /* SettingsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E5AE128D0E5FE00E4E9FF /* SettingsHeaderView.swift */; };
+		4C9E5AE428D0E72700E4E9FF /* SettingsSwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E5AE328D0E72700E4E9FF /* SettingsSwitchView.swift */; };
+		4C9E5AE628D0E9C900E4E9FF /* SettingsSwitchBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E5AE528D0E9C900E4E9FF /* SettingsSwitchBlockView.swift */; };
+		4C9E5AE828D0F57400E4E9FF /* NotificationsSettingsBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E5AE728D0F57400E4E9FF /* NotificationsSettingsBlockView.swift */; };
+		4C9E5AEA28D0FCCC00E4E9FF /* SettingsButtonBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E5AE928D0FCCC00E4E9FF /* SettingsButtonBlockView.swift */; };
+		4C9E5AEC28D230CD00E4E9FF /* SettingsSearchLocationButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E5AEB28D230CD00E4E9FF /* SettingsSearchLocationButtonView.swift */; };
+		4C9E5AEE28D2347100E4E9FF /* PerasonalDataMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E5AED28D2347100E4E9FF /* PerasonalDataMediator.swift */; };
+		4C9E5AF028D242E500E4E9FF /* SettingsInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E5AEF28D242E500E4E9FF /* SettingsInputView.swift */; };
+		4C9E5AF228D2482D00E4E9FF /* SettingsInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E5AF128D2482D00E4E9FF /* SettingsInfoView.swift */; };
+		4C9E5AF428D24FE000E4E9FF /* SettingsDateSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E5AF328D24FE000E4E9FF /* SettingsDateSelectView.swift */; };
+		4C9E5AF628D254E500E4E9FF /* SettingsSaveButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E5AF528D254E500E4E9FF /* SettingsSaveButtonView.swift */; };
+		4C9E5AF928D37DBD00E4E9FF /* BlackListMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E5AF828D37DBD00E4E9FF /* BlackListMediator.swift */; };
+		4C9E5AFB28D37E6D00E4E9FF /* BlackListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E5AFA28D37E6D00E4E9FF /* BlackListView.swift */; };
+		4C9E5AFD28D37E8B00E4E9FF /* BlackListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E5AFC28D37E8B00E4E9FF /* BlackListItemView.swift */; };
+		4C9E5AFF28D389BB00E4E9FF /* SettingsMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E5AFE28D389BB00E4E9FF /* SettingsMediator.swift */; };
+		4C9E5B0228D38C2800E4E9FF /* LanguageBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E5B0128D38C2800E4E9FF /* LanguageBottomSheet.swift */; };
+		4C9E5B0428D38C9C00E4E9FF /* LanguageMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E5B0328D38C9C00E4E9FF /* LanguageMediator.swift */; };
 		4CA2E22B2867224B00E514C4 /* QuestionnaireScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA2E22A2867224B00E514C4 /* QuestionnaireScreen.swift */; };
 		4CA2E22E2867286000E514C4 /* FillingProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA2E22D2867286000E514C4 /* FillingProgressView.swift */; };
 		4CA2E230286728D100E514C4 /* SurprizeBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA2E22F286728D100E514C4 /* SurprizeBoxView.swift */; };
@@ -210,7 +234,6 @@
 		4CB9FFAE2885BBFA004F1BF6 /* GuestListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB9FFAD2885BBFA004F1BF6 /* GuestListItemView.swift */; };
 		4CBF5922289E9754006BDE53 /* InvitationChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBF5921289E9754006BDE53 /* InvitationChatView.swift */; };
 		4CBF5925289EB739006BDE53 /* AnotherProfileImagesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBF5924289EB739006BDE53 /* AnotherProfileImagesScreen.swift */; };
-		4CBF5927289EC1FF006BDE53 /* ImagesTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBF5926289EC1FF006BDE53 /* ImagesTabView.swift */; };
 		4CBF5929289ECC97006BDE53 /* ImagesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBF5928289ECC97006BDE53 /* ImagesListView.swift */; };
 		4CBF592B28A16C71006BDE53 /* ChatImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBF592A28A16C71006BDE53 /* ChatImageViewer.swift */; };
 		4CBF592D28A17A99006BDE53 /* MyImageMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBF592C28A17A99006BDE53 /* MyImageMessageView.swift */; };
@@ -440,6 +463,28 @@
 		4C950D59284E6C4C004E2C13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4C950D5E284E7318004E2C13 /* AuthScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthScreen.swift; sourceTree = "<group>"; };
 		4C950D60284E78E8004E2C13 /* NavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationView.swift; sourceTree = "<group>"; };
+		4C9E5AD428CFA92900E4E9FF /* BlockedUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedUserView.swift; sourceTree = "<group>"; };
+		4C9E5AD628CFA9C500E4E9FF /* ActiveUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveUserView.swift; sourceTree = "<group>"; };
+		4C9E5AD928D0E01F00E4E9FF /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
+		4C9E5ADC28D0E1D200E4E9FF /* PersonalDataScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalDataScreen.swift; sourceTree = "<group>"; };
+		4C9E5ADE28D0E1EA00E4E9FF /* BlackListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackListScreen.swift; sourceTree = "<group>"; };
+		4C9E5AE128D0E5FE00E4E9FF /* SettingsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHeaderView.swift; sourceTree = "<group>"; };
+		4C9E5AE328D0E72700E4E9FF /* SettingsSwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSwitchView.swift; sourceTree = "<group>"; };
+		4C9E5AE528D0E9C900E4E9FF /* SettingsSwitchBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSwitchBlockView.swift; sourceTree = "<group>"; };
+		4C9E5AE728D0F57400E4E9FF /* NotificationsSettingsBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSettingsBlockView.swift; sourceTree = "<group>"; };
+		4C9E5AE928D0FCCC00E4E9FF /* SettingsButtonBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButtonBlockView.swift; sourceTree = "<group>"; };
+		4C9E5AEB28D230CD00E4E9FF /* SettingsSearchLocationButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSearchLocationButtonView.swift; sourceTree = "<group>"; };
+		4C9E5AED28D2347100E4E9FF /* PerasonalDataMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerasonalDataMediator.swift; sourceTree = "<group>"; };
+		4C9E5AEF28D242E500E4E9FF /* SettingsInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsInputView.swift; sourceTree = "<group>"; };
+		4C9E5AF128D2482D00E4E9FF /* SettingsInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsInfoView.swift; sourceTree = "<group>"; };
+		4C9E5AF328D24FE000E4E9FF /* SettingsDateSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDateSelectView.swift; sourceTree = "<group>"; };
+		4C9E5AF528D254E500E4E9FF /* SettingsSaveButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSaveButtonView.swift; sourceTree = "<group>"; };
+		4C9E5AF828D37DBD00E4E9FF /* BlackListMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackListMediator.swift; sourceTree = "<group>"; };
+		4C9E5AFA28D37E6D00E4E9FF /* BlackListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackListView.swift; sourceTree = "<group>"; };
+		4C9E5AFC28D37E8B00E4E9FF /* BlackListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackListItemView.swift; sourceTree = "<group>"; };
+		4C9E5AFE28D389BB00E4E9FF /* SettingsMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMediator.swift; sourceTree = "<group>"; };
+		4C9E5B0128D38C2800E4E9FF /* LanguageBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageBottomSheet.swift; sourceTree = "<group>"; };
+		4C9E5B0328D38C9C00E4E9FF /* LanguageMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageMediator.swift; sourceTree = "<group>"; };
 		4CA2E22A2867224B00E514C4 /* QuestionnaireScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireScreen.swift; sourceTree = "<group>"; };
 		4CA2E22D2867286000E514C4 /* FillingProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillingProgressView.swift; sourceTree = "<group>"; };
 		4CA2E22F286728D100E514C4 /* SurprizeBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurprizeBoxView.swift; sourceTree = "<group>"; };
@@ -492,7 +537,6 @@
 		4CB9FFAD2885BBFA004F1BF6 /* GuestListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestListItemView.swift; sourceTree = "<group>"; };
 		4CBF5921289E9754006BDE53 /* InvitationChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationChatView.swift; sourceTree = "<group>"; };
 		4CBF5924289EB739006BDE53 /* AnotherProfileImagesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnotherProfileImagesScreen.swift; sourceTree = "<group>"; };
-		4CBF5926289EC1FF006BDE53 /* ImagesTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesTabView.swift; sourceTree = "<group>"; };
 		4CBF5928289ECC97006BDE53 /* ImagesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListView.swift; sourceTree = "<group>"; };
 		4CBF592A28A16C71006BDE53 /* ChatImageViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatImageViewer.swift; sourceTree = "<group>"; };
 		4CBF592C28A17A99006BDE53 /* MyImageMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyImageMessageView.swift; sourceTree = "<group>"; };
@@ -559,9 +603,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C2DC95328C399D700DD15C2 /* FacebookLogin in Frameworks */,
 				4C2DC94C28C2764C00DD15C2 /* AuthenticationServices.framework in Frameworks */,
 				4CB9FF7528808B3C004F1BF6 /* Lottie in Frameworks */,
 				AE31A162FAB8F8BB7D8331B3 /* Pods_BestDate.framework in Frameworks */,
+				4C2DC95128C399D700DD15C2 /* FacebookCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -782,6 +828,7 @@
 		4C3D27D12853A62700F8FD09 /* bottomSheet */ = {
 			isa = PBXGroup;
 			children = (
+				4C9E5B0028D38C0C00E4E9FF /* language */,
 				4C6CFF2028B688F600BA33E0 /* anotherAdditionnally */,
 				4CD34F5C289698CE00504396 /* chat */,
 				4CB9FF66287B31E8004F1BF6 /* mainLocation */,
@@ -1014,6 +1061,8 @@
 		4C8E7DA9284D24BC00D6E58D /* screens */ = {
 			isa = PBXGroup;
 			children = (
+				4C9E5ADB28D0E1B400E4E9FF /* personal data */,
+				4C9E5AD828D0DFEA00E4E9FF /* settings */,
 				4C2DC93C28C11C0300DD15C2 /* push */,
 				4C2DC93928BFB72D00DD15C2 /* notify settings */,
 				4C2DC8CC28BA9AF500DD15C2 /* match action */,
@@ -1025,7 +1074,7 @@
 				4C0E71F0284FC9A5004099D4 /* OnboardSecondScreen.swift */,
 				4C8E7DAB284D252300D6E58D /* OnboardStartScreen.swift */,
 				4CB9FF71287F4027004F1BF6 /* StartScreen.swift */,
-				4CB9FF9B288427BA004F1BF6 /* anotherProfile */,
+				4CB9FF9B288427BA004F1BF6 /* another profile */,
 				4C5C86DB2874B174006DE024 /* auth */,
 				4C1458F82855E15900558B6B /* base */,
 				4CD34F37288D2C9800504396 /* chat */,
@@ -1046,6 +1095,7 @@
 		4C8E7DAA284D24C600D6E58D /* views */ = {
 			isa = PBXGroup;
 			children = (
+				4C9E5AE028D0E5D600E4E9FF /* settings */,
 				4C92CB2028B267E900E5DF52 /* invitations */,
 				4CD34F532895125600504396 /* chat */,
 				4CF02857288B0D52002C59EE /* duel */,
@@ -1150,6 +1200,62 @@
 				4C878F1728B7E3B400043680 /* ArrayExtension.swift */,
 			);
 			path = extensions;
+			sourceTree = "<group>";
+		};
+		4C9E5AD828D0DFEA00E4E9FF /* settings */ = {
+			isa = PBXGroup;
+			children = (
+				4C9E5AF728D37D8D00E4E9FF /* BlockedList */,
+				4C9E5AD928D0E01F00E4E9FF /* SettingsScreen.swift */,
+				4C9E5AE728D0F57400E4E9FF /* NotificationsSettingsBlockView.swift */,
+				4C9E5AFE28D389BB00E4E9FF /* SettingsMediator.swift */,
+			);
+			path = settings;
+			sourceTree = "<group>";
+		};
+		4C9E5ADB28D0E1B400E4E9FF /* personal data */ = {
+			isa = PBXGroup;
+			children = (
+				4C9E5ADC28D0E1D200E4E9FF /* PersonalDataScreen.swift */,
+				4C9E5AED28D2347100E4E9FF /* PerasonalDataMediator.swift */,
+			);
+			path = "personal data";
+			sourceTree = "<group>";
+		};
+		4C9E5AE028D0E5D600E4E9FF /* settings */ = {
+			isa = PBXGroup;
+			children = (
+				4C9E5AE128D0E5FE00E4E9FF /* SettingsHeaderView.swift */,
+				4C9E5AE328D0E72700E4E9FF /* SettingsSwitchView.swift */,
+				4C9E5AE528D0E9C900E4E9FF /* SettingsSwitchBlockView.swift */,
+				4C9E5AE928D0FCCC00E4E9FF /* SettingsButtonBlockView.swift */,
+				4C9E5AEB28D230CD00E4E9FF /* SettingsSearchLocationButtonView.swift */,
+				4C9E5AEF28D242E500E4E9FF /* SettingsInputView.swift */,
+				4C9E5AF128D2482D00E4E9FF /* SettingsInfoView.swift */,
+				4C9E5AF328D24FE000E4E9FF /* SettingsDateSelectView.swift */,
+				4C9E5AF528D254E500E4E9FF /* SettingsSaveButtonView.swift */,
+			);
+			path = settings;
+			sourceTree = "<group>";
+		};
+		4C9E5AF728D37D8D00E4E9FF /* BlockedList */ = {
+			isa = PBXGroup;
+			children = (
+				4C9E5ADE28D0E1EA00E4E9FF /* BlackListScreen.swift */,
+				4C9E5AF828D37DBD00E4E9FF /* BlackListMediator.swift */,
+				4C9E5AFA28D37E6D00E4E9FF /* BlackListView.swift */,
+				4C9E5AFC28D37E8B00E4E9FF /* BlackListItemView.swift */,
+			);
+			path = BlockedList;
+			sourceTree = "<group>";
+		};
+		4C9E5B0028D38C0C00E4E9FF /* language */ = {
+			isa = PBXGroup;
+			children = (
+				4C9E5B0128D38C2800E4E9FF /* LanguageBottomSheet.swift */,
+				4C9E5B0328D38C9C00E4E9FF /* LanguageMediator.swift */,
+			);
+			path = language;
 			sourceTree = "<group>";
 		};
 		4CA2E2292867222300E514C4 /* questionnaire */ = {
@@ -1329,15 +1435,17 @@
 			path = profile;
 			sourceTree = "<group>";
 		};
-		4CB9FF9B288427BA004F1BF6 /* anotherProfile */ = {
+		4CB9FF9B288427BA004F1BF6 /* another profile */ = {
 			isa = PBXGroup;
 			children = (
 				4CBF5923289EB716006BDE53 /* imagesList */,
 				4CD34F4028903E4100504396 /* questionnaire */,
 				4CB9FF9C288427DA004F1BF6 /* AnotherProfileScreen.swift */,
 				4CB9FF9E28842D87004F1BF6 /* AnotherProfileMediator.swift */,
+				4C9E5AD428CFA92900E4E9FF /* BlockedUserView.swift */,
+				4C9E5AD628CFA9C500E4E9FF /* ActiveUserView.swift */,
 			);
-			path = anotherProfile;
+			path = "another profile";
 			sourceTree = "<group>";
 		};
 		4CB9FFA2288453B2004F1BF6 /* anotherProfile */ = {
@@ -1354,7 +1462,6 @@
 			isa = PBXGroup;
 			children = (
 				4CBF5924289EB739006BDE53 /* AnotherProfileImagesScreen.swift */,
-				4CBF5926289EC1FF006BDE53 /* ImagesTabView.swift */,
 				4CBF5928289ECC97006BDE53 /* ImagesListView.swift */,
 			);
 			path = imagesList;
@@ -1496,6 +1603,8 @@
 			name = BestDate;
 			packageProductDependencies = (
 				4CB9FF7428808B3C004F1BF6 /* Lottie */,
+				4C2DC95028C399D700DD15C2 /* FacebookCore */,
+				4C2DC95228C399D700DD15C2 /* FacebookLogin */,
 			);
 			productName = BestDate;
 			productReference = 4C8E7D7D284CC93F00D6E58D /* BestDate.app */;
@@ -1527,6 +1636,7 @@
 			mainGroup = 4C8E7D74284CC93F00D6E58D;
 			packageReferences = (
 				4CB9FF7328808B3B004F1BF6 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				4C2DC94F28C399D700DD15C2 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 			);
 			productRefGroup = 4C8E7D7E284CC93F00D6E58D /* Products */;
 			projectDirPath = "";
@@ -1660,6 +1770,7 @@
 				4C5C86E52875E20D006DE024 /* ImagesApiService.swift in Sources */,
 				4CD34F36288D111F00504396 /* ChatListItemView.swift in Sources */,
 				4C5C86CE28735EC5006DE024 /* CoreApiService.swift in Sources */,
+				4C9E5AEE28D2347100E4E9FF /* PerasonalDataMediator.swift in Sources */,
 				4C1459012856620300558B6B /* PassRecoverySetNewScreen.swift in Sources */,
 				4C022A4328591A2B0043E49D /* BluredImageHeaderView.swift in Sources */,
 				4CB9FF60287AE104004F1BF6 /* DropDownView.swift in Sources */,
@@ -1682,11 +1793,14 @@
 				4C92CB0F28AD4F7700E5DF52 /* EmailVerficationView.swift in Sources */,
 				4C2DC94428C121D700DD15C2 /* MatchPushView.swift in Sources */,
 				4C2DC8DA28BCDA6C00DD15C2 /* AppDelegate.swift in Sources */,
+				4C9E5AEA28D0FCCC00E4E9FF /* SettingsButtonBlockView.swift in Sources */,
+				4C9E5AE428D0E72700E4E9FF /* SettingsSwitchView.swift in Sources */,
 				4CD34F4E2892FEA000504396 /* NoDataBoxView.swift in Sources */,
 				4CD34F4428903E9500504396 /* AnotherProfileQuestionnaireMediator.swift in Sources */,
 				4CB9FF9628834303004F1BF6 /* ImageLineItemView.swift in Sources */,
 				4CD34F3F288EF4F300504396 /* PhotoSettingsSheetMediator.swift in Sources */,
 				4C2DC93B28C0824800DD15C2 /* NotifySettingsSelectorView.swift in Sources */,
+				4C9E5AE628D0E9C900E4E9FF /* SettingsSwitchBlockView.swift in Sources */,
 				4C145905285664AA00558B6B /* RecoveryMediator.swift in Sources */,
 				4CD34F39288D2CAD00504396 /* ChatScreen.swift in Sources */,
 				4CB9FF44287743C3004F1BF6 /* MainScreen.swift in Sources */,
@@ -1699,11 +1813,13 @@
 				4C92CB1328AD4FD200E5DF52 /* SocialVerificationView.swift in Sources */,
 				4C3D27BC28511BB700F8FD09 /* Title.swift in Sources */,
 				4C878F1428B7DA7F00043680 /* CreateInvitationMediator.swift in Sources */,
+				4C9E5B0228D38C2800E4E9FF /* LanguageBottomSheet.swift in Sources */,
 				4C022A4128590BE10043E49D /* Media.swift in Sources */,
 				4C1458F32855222A00558B6B /* GnderListItem.swift in Sources */,
 				4CD34F46289050C100504396 /* QuestionnaireParagraphView.swift in Sources */,
 				4C92CB2228B2683500E5DF52 /* InvitationsPagerToggleView.swift in Sources */,
 				4C878F2828B925BE00043680 /* LikeListMediator.swift in Sources */,
+				4C9E5AE828D0F57400E4E9FF /* NotificationsSettingsBlockView.swift in Sources */,
 				4C022A3B285903530043E49D /* HorisontalPhotoListView.swift in Sources */,
 				4C6CFF2A28B6B15000BA33E0 /* TopPanelView.swift in Sources */,
 				4CF0285B288B1450002C59EE /* DuelItemView.swift in Sources */,
@@ -1730,6 +1846,7 @@
 				4CA2E230286728D100E514C4 /* SurprizeBoxView.swift in Sources */,
 				4C5C86BA2871A36B006DE024 /* SearchInputView.swift in Sources */,
 				4C92CB0228A78ACA00E5DF52 /* SaveAndSetPositionScrollView.swift in Sources */,
+				4C9E5AF028D242E500E4E9FF /* SettingsInputView.swift in Sources */,
 				4C2DC8C928BA6D8600DD15C2 /* MatchesListView.swift in Sources */,
 				4CF02854288B09EE002C59EE /* DuelScreen.swift in Sources */,
 				4CB9FF8D2882D2AF004F1BF6 /* ProfileMediator.swift in Sources */,
@@ -1737,16 +1854,19 @@
 				4C2DC94828C1225900DD15C2 /* DefaultPushView.swift in Sources */,
 				4C0E71F1284FC9A6004099D4 /* OnboardSecondScreen.swift in Sources */,
 				4CD34F592895A63F00504396 /* DateBlockView.swift in Sources */,
-				4CBF5927289EC1FF006BDE53 /* ImagesTabView.swift in Sources */,
+				4C9E5ADA28D0E01F00E4E9FF /* SettingsScreen.swift in Sources */,
+				4C9E5B0428D38C9C00E4E9FF /* LanguageMediator.swift in Sources */,
 				4CB9FF46287743D9004F1BF6 /* MainMediator.swift in Sources */,
 				4C1B7C2F286CD8C4000DB5D4 /* SeekBarView.swift in Sources */,
 				4C1458F528552BE500558B6B /* RegistrationMediator.swift in Sources */,
+				4C9E5AFB28D37E6D00E4E9FF /* BlackListView.swift in Sources */,
 				4C0E71F3284FCE7C004099D4 /* BackButton.swift in Sources */,
 				4CB9FF862881DD71004F1BF6 /* ChatApiService.swift in Sources */,
 				4C6CFF1D28B5565500BA33E0 /* UserProfileImageListScreen.swift in Sources */,
 				4C92CAFF28A76FD800E5DF52 /* LoadingNextPageView.swift in Sources */,
 				4C1B7C1F286A3477000DB5D4 /* SingleSelectInfoView.swift in Sources */,
 				4C878F1828B7E3B400043680 /* ArrayExtension.swift in Sources */,
+				4C9E5AFD28D37E8B00E4E9FF /* BlackListItemView.swift in Sources */,
 				4C1459032856627E00558B6B /* GeolocationScreen.swift in Sources */,
 				4CB9FFA4288453DB004F1BF6 /* AnotherProfileNavigationPanelView.swift in Sources */,
 				4CD3F1D8288BAC9B00DF8755 /* DuelProgressView.swift in Sources */,
@@ -1757,6 +1877,7 @@
 				4C2DC8CB28BA6EC400DD15C2 /* MatchesListItemView.swift in Sources */,
 				4C878F1C28B7F75300043680 /* ActivityViewController.swift in Sources */,
 				4C5C86EA2875FCC0006DE024 /* ImageLoader.swift in Sources */,
+				4C9E5ADD28D0E1D200E4E9FF /* PersonalDataScreen.swift in Sources */,
 				4C5C86DF2874C033006DE024 /* BaseResponse.swift in Sources */,
 				4CBF593928A43A5B006BDE53 /* MatchesApiService.swift in Sources */,
 				4CB9FF572877500A004F1BF6 /* BottomMainNavigationItemView.swift in Sources */,
@@ -1767,8 +1888,10 @@
 				4CB9FF4E28774718004F1BF6 /* TopScreen.swift in Sources */,
 				4CD34F3B288D2CBE00504396 /* ChatMediator.swift in Sources */,
 				4C3D27D32853A66A00F8FD09 /* GenderBottomSheet.swift in Sources */,
+				4C9E5AD728CFA9C500E4E9FF /* ActiveUserView.swift in Sources */,
 				4CB9FF62287AF001004F1BF6 /* SearchMediator.swift in Sources */,
 				4C2DC94028C11F8100DD15C2 /* PushScreen.swift in Sources */,
+				4C9E5AF928D37DBD00E4E9FF /* BlackListMediator.swift in Sources */,
 				4C8E7DA8284D23D200D6E58D /* Store.swift in Sources */,
 				4CBF5929289ECC97006BDE53 /* ImagesListView.swift in Sources */,
 				4CB9FF502877472A004F1BF6 /* ChatListScreen.swift in Sources */,
@@ -1782,6 +1905,7 @@
 				4CB9FFAE2885BBFA004F1BF6 /* GuestListItemView.swift in Sources */,
 				4CD34F2E288C13F000504396 /* MyDuelsListItemView.swift in Sources */,
 				4C6CFF2228B6894D00BA33E0 /* AdditinoallyMediator.swift in Sources */,
+				4C9E5AE228D0E5FE00E4E9FF /* SettingsHeaderView.swift in Sources */,
 				4C878F2628B924A200043680 /* LikesListScreen.swift in Sources */,
 				4CBF593728A2DDCA006BDE53 /* MatchMediator.swift in Sources */,
 				4CB9FF8B2882D02D004F1BF6 /* ProfileScreen.swift in Sources */,
@@ -1812,6 +1936,7 @@
 				4C950D61284E78E8004E2C13 /* NavigationView.swift in Sources */,
 				4CD3F1DD288BCBE300DF8755 /* MyDuelsScreen.swift in Sources */,
 				4C0E71ED284FB68E004099D4 /* CirclePointButton.swift in Sources */,
+				4C9E5AD528CFA92900E4E9FF /* BlockedUserView.swift in Sources */,
 				4C5C86E82875FB57006DE024 /* AsyncImageView.swift in Sources */,
 				4CD34F5B289689B700504396 /* ChatUtils.swift in Sources */,
 				4CF02859288B0D71002C59EE /* DuelCoinsView.swift in Sources */,
@@ -1820,9 +1945,11 @@
 				4C3D27CC28539C8800F8FD09 /* RegistrationContinueScreen.swift in Sources */,
 				4C2DC94E28C36DBF00DD15C2 /* LoadingProgressScreen.swift in Sources */,
 				4CD34F34288D0A3900504396 /* ChatListMediator.swift in Sources */,
+				4C9E5AF628D254E500E4E9FF /* SettingsSaveButtonView.swift in Sources */,
 				4C6CFF1828B3E7C800BA33E0 /* TranslateTextApiService.swift in Sources */,
 				4C878F2A28B926B200043680 /* MatchesListMediator.swift in Sources */,
 				4CA2E23428673D1A00E514C4 /* ProgressBarView.swift in Sources */,
+				4C9E5AF228D2482D00E4E9FF /* SettingsInfoView.swift in Sources */,
 				4CB9FFAC2885B4DB004F1BF6 /* GuestsMediator.swift in Sources */,
 				4CB9FF6E287B3476004F1BF6 /* OnlineMediator.swift in Sources */,
 				4C8E7D9C284D1F0700D6E58D /* ScreenList.swift in Sources */,
@@ -1831,6 +1958,8 @@
 				4C1B7C2C286CD5BD000DB5D4 /* QuestionnaireSeekBarBottomSheet.swift in Sources */,
 				4C2DC8CE28BA9B1300DD15C2 /* MatchActionScreen.swift in Sources */,
 				4C2DC93E28C11C2B00DD15C2 /* PushMediator.swift in Sources */,
+				4C9E5AFF28D389BB00E4E9FF /* SettingsMediator.swift in Sources */,
+				4C9E5ADF28D0E1EA00E4E9FF /* BlackListScreen.swift in Sources */,
 				4C6CFF2428B699AB00BA33E0 /* AlertScreen.swift in Sources */,
 				4CB9FF882881DDCB004F1BF6 /* NetworkLogger.swift in Sources */,
 				4CD34F3D288D730300504396 /* ChatBottomView.swift in Sources */,
@@ -1838,6 +1967,7 @@
 				4CB9FFAA28847FF4004F1BF6 /* OverlayView.swift in Sources */,
 				4CB9FF64287AF0C8004F1BF6 /* UserSearchItemView.swift in Sources */,
 				4CF0284F288AF0C3002C59EE /* TopListItemView.swift in Sources */,
+				4C9E5AEC28D230CD00E4E9FF /* SettingsSearchLocationButtonView.swift in Sources */,
 				4C5C86B5287174DD006DE024 /* RangeBarView.swift in Sources */,
 				4C92CB1F28B264B100E5DF52 /* InvitationMediator.swift in Sources */,
 				4CB9FF9F28842D87004F1BF6 /* AnotherProfileMediator.swift in Sources */,
@@ -1855,6 +1985,7 @@
 				4C8E7D90284D1C4000D6E58D /* Font.swift in Sources */,
 				4C92CB2A28B2787300E5DF52 /* SendedInvitationItemView.swift in Sources */,
 				4C3D27CA28539C3500F8FD09 /* RegistrationStartScreen.swift in Sources */,
+				4C9E5AF428D24FE000E4E9FF /* SettingsDateSelectView.swift in Sources */,
 				4C1458FD285661BF00558B6B /* PassRecoveryScreen.swift in Sources */,
 				4CBF592D28A17A99006BDE53 /* MyImageMessageView.swift in Sources */,
 				4CA2E23A286765D900E514C4 /* InputPageView.swift in Sources */,
@@ -2104,6 +2235,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		4C2DC94F28C399D700DD15C2 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
 		4CB9FF7328808B3B004F1BF6 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios";
@@ -2115,6 +2254,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4C2DC95028C399D700DD15C2 /* FacebookCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4C2DC94F28C399D700DD15C2 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookCore;
+		};
+		4C2DC95228C399D700DD15C2 /* FacebookLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4C2DC94F28C399D700DD15C2 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookLogin;
+		};
 		4CB9FF7428808B3C004F1BF6 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4CB9FF7328808B3B004F1BF6 /* XCRemoteSwiftPackageReference "lottie-ios" */;

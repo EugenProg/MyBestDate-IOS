@@ -11,6 +11,7 @@ struct NotifySettingsScreen: View {
     @EnvironmentObject var store: Store
 
     @State var process: Bool = false
+    @State var notificationEnbaled: Bool?
 
     var body: some View {
         ZStack {
@@ -74,7 +75,7 @@ struct NotifySettingsScreen: View {
                 }.frame(width: UIScreen.main.bounds.width - 64, alignment: .leading)
                 .padding(.init(top: 0, leading: 0, bottom: 14, trailing: 0))
 
-                NotifySettingsSelectorView(isActive: false) { enabled in
+                NotifySettingsSelectorView(isActive: $notificationEnbaled) { enabled in
                     
                 }
 

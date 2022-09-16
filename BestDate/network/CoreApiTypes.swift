@@ -75,6 +75,10 @@ enum CoreApiTypes {
 
     case updateUserData///
 
+    case getUserSettings
+    case saveSettings
+    case updateLanguage
+
     case logout
 
     var BaseURL: String {
@@ -134,6 +138,9 @@ enum CoreApiTypes {
         case .sendInvitation: return "invitations"
         case .answerTheInvitation: return "invitations/"
         case .getUserInvitationList: return "user/invitations"
+        case .getUserSettings: return "settings"
+        case .saveSettings: return "settings"
+        case .updateLanguage: return "settings/language"
         }
     }
 
@@ -189,7 +196,10 @@ enum CoreApiTypes {
         case .getInvitationsList: return "GET"
         case .sendInvitation: return "POST"
         case .answerTheInvitation: return "PUT"
-        case .getUserInvitationList: return "GET"
+        case .getUserInvitationList: return "POST"
+        case .getUserSettings: return "GET"
+        case .saveSettings: return "PUT"
+        case .updateLanguage: return "PUT"
         }
     }
 

@@ -25,6 +25,7 @@ enum BottomSheetList: String {
     case CHAT_ACTIONS
 
     case ANOTHER_ADDITIONALLY
+    case LANGUAGE
     
     var heightMode: BottomSheetHeight {
         switch self {
@@ -40,6 +41,7 @@ enum BottomSheetList: String {
         case .MAIN_ONLINE: return .AUTO
         case .CHAT_ACTIONS: return .AUTO
         case .ANOTHER_ADDITIONALLY: return .AUTO
+        case .LANGUAGE: return .AUTO
         }
     }
     
@@ -57,6 +59,7 @@ enum BottomSheetList: String {
         case .MAIN_ONLINE: return .BLACK
         case .CHAT_ACTIONS: return .BLACK
         case .ANOTHER_ADDITIONALLY: return .BLACK
+        case .LANGUAGE: return .BLACK
         }
     }
 }

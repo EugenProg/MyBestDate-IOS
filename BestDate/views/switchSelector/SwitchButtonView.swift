@@ -8,17 +8,26 @@
 import SwiftUI
 
 struct SwitchButtonView: View {
-    @State var isActive: Bool
+    @Binding var isActive: Bool?
     var unactiveColor: Color = ColorList.pink.color
     var activeColor: Color = ColorList.light_blue.color
     @State var buttonOffset: CGFloat = -13
+    @Binding var isEnabled: Bool
 
     var checkAction: (Bool) -> Void
+
+    init(isActive: Binding<Bool?> = .constant(true),
+         isEnabled: Binding<Bool> = .constant(true),
+         checkAction: @escaping (Bool) -> Void) {
+        self._isActive = isActive
+        self._isEnabled = isEnabled
+        self.checkAction = checkAction
+    }
 
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 9)
-                .fill(isActive ? activeColor : unactiveColor)
+                .fill(isActive == true ? activeColor : unactiveColor)
                 .frame(width: 44, height: 18, alignment: .center)
             
             Circle()
@@ -32,14 +41,16 @@ struct SwitchButtonView: View {
         .frame(width: 58, height: 32)
         .padding(16)
         .onTapGesture {
-            withAnimation {
-                isActive.toggle()
-                checkAction(isActive)
-                buttonOffset = isActive ? 13 : -13
+            if isEnabled {
+                withAnimation {
+                    isActive?.toggle()
+                    checkAction(isActive == true)
+                    buttonOffset = (isActive == true) ? 13 : -13
+                }
             }
         }
         .onAppear {
-            buttonOffset = isActive ? 13 : -13
+            buttonOffset = (isActive == true) ? 13 : -13
         }
     }
 }

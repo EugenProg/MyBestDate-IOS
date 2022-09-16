@@ -53,6 +53,9 @@ struct NavigationView: View {
                     case .MATCHES_LIST: MatchesListScreen()
                     case .LIKES_LIST: LikesListScreen()
                     case .NOTIFY_SETTINGS: NotifySettingsScreen()
+                    case .SETTINGS: SettingsScreen()
+                    case .PERSONAL_DATA: PersonalDataScreen()
+                    case .BLACK_LIST: BlackListScreen()
                     }
                 }.blur(radius: getBlur())
             }.onTapGesture(perform: { store.dispatch(action: .hideKeyboard) })

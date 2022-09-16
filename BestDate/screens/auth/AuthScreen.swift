@@ -115,7 +115,10 @@ struct AuthScreen: View {
                     }
                 }
             } else {
-                store.dispatch(action: .show(message: NSLocalizedString("default_error_message", comment: "Message")))
+                DispatchQueue.main.async {
+                    store.dispatch(action:
+                            .show(message: NSLocalizedString("default_error_message", comment: "Message")))
+                }
             }
         }
     }

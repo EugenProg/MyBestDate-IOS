@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SwichSelectorView: View {
-    @State var isActive: Bool
+    @Binding var isActive: Bool?
     var hint: String
     var text: String
     var showInfoImage: Bool = true
@@ -19,7 +19,7 @@ struct SwichSelectorView: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 24)
-                .stroke(isActive ? ColorList.light_blue.color : MyColor.getColor(231, 238, 242, 0.12), lineWidth: 2)
+                .stroke(isActive == true ? ColorList.light_blue.color : MyColor.getColor(231, 238, 242, 0.12), lineWidth: 2)
                 .background(ColorList.main.color)
                 .cornerRadius(24)
             
@@ -42,7 +42,7 @@ struct SwichSelectorView: View {
                         }
                 }
                 
-                SwitchButtonView(isActive: isActive) { checked in
+                SwitchButtonView(isActive: $isActive) { checked in
                     checkAction(checked)
                     isActive = checked
                 }

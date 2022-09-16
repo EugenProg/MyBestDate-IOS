@@ -25,13 +25,6 @@ struct GuestsScreen: View {
                     }
 
                     Spacer()
-
-                    Button(action: {
-                        
-                    }) {
-                        Image("ic_menu_dots")
-                            .padding(.init(top: 8, leading: 8, bottom: 8, trailing: 0))
-                    }
                 }
 
                 Title(textColor: ColorList.white.color, text: "guests", textSize: 20, paddingV: 0, paddingH: 0)

@@ -103,3 +103,18 @@ struct AnswerTheInvitationRequest: Codable {
 struct GetUserInvitationFilter: Codable {
     var filter: String
 }
+
+struct SaveSettingsRequest: Codable {
+    var block_messages: Bool? = nil
+    var matches: Bool? = nil
+    var invisible: Bool? = nil
+    var likes_notifications: Bool? = nil
+    var matches_notifications: Bool? = nil
+    var invitations_notifications: Bool? = nil
+    var messages_notifications: Bool? = nil
+    var guests_notifications: Bool? = nil
+}
+
+struct UpdateLanguageRequest: Codable {
+    var language: Bool
+}

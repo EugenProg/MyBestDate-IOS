@@ -26,15 +26,11 @@ struct GenderBottomSheet: View {
             ForEach(genderList, id: \.self) { gender in
                 GnderListItem(text: gender) { item in
                     clickAction()
-                    registrationHolder.gender = item
+                    if store.state.activeScreen == .REGISTRATION_START { registrationHolder.gender = item }
+                    if store.state.activeScreen == .PERSONAL_DATA { PersonalDataMediator.shared.setGender(gender: item) }
                 }
             }
         }.frame(width: UIScreen.main.bounds.width, alignment: .topLeading)
     }
 }
 
-struct GenderBottomSheet_Previews: PreviewProvider {
-    static var previews: some View {
-        GenderBottomSheet() { }
-    }
-}

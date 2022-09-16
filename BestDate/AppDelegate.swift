@@ -85,8 +85,12 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                 PushMediator.shared.setUser(jsonString: userInfo["user"] as? String ?? "")
             }
             store?.dispatch(action: .showPushNotification(type: pushType))
-            //store?.dispatch(action: .show(message:  pushType.rawValue))
         } else {
+            let pushType = NotificationType.getNotificationType(type: userInfo["type"] as? String ?? "")
+            if pushType != .defaultPush {
+                AnotherProfileMediator.shared.setUser(jsonString: userInfo["user"] as? String ?? "")
+                store?.dispatch(action: .hasADeepLink)
+            }
             completionHandler([[.banner, .badge, .sound]])
         }
     }
