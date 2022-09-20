@@ -20,6 +20,11 @@ class PersonalDataMediator: ObservableObject {
 
     @Published var saveEnable: Bool = false
 
+    @Published var emailConfirmMode: Bool = false
+    @Published var phoneConfirmMode: Bool = false
+
+    var saveTypes: [SaveTypes] = []
+
     func setUserData() {
         self.savedUser = MainMediator.shared.user
         
@@ -48,7 +53,7 @@ class PersonalDataMediator: ObservableObject {
         }
     }
 
-    private func genderIsChanged() -> Bool {
+    func genderIsChanged() -> Bool {
         gender != getGender(gender: savedUser.gender, lookFor: savedUser.look_for)
     }
 
@@ -59,4 +64,127 @@ class PersonalDataMediator: ObservableObject {
         birthday != savedUser.birthday?.toDate() ||
         genderIsChanged()
     }
+
+    private func getAim() -> [String] {
+        switch gender {
+        case NSLocalizedString("woman_looking_for_a_man", comment: "Gender"): return ["male"]
+        case NSLocalizedString("woman_looking_for_a_woman", comment: "Gender"): return ["female"]
+        case NSLocalizedString("man_looking_for_a_man", comment: "Gender"): return ["male"]
+        case NSLocalizedString("man_looking_for_a_woman", comment: "Gender"): return ["female"]
+        default: return ["male", "female"]
+        }
+    }
+
+    private func getNewGender() -> String {
+        switch gender {
+        case NSLocalizedString("woman_looking_for_a_man", comment: "Gender"): return "female"
+        case NSLocalizedString("woman_looking_for_a_woman", comment: "Gender"): return "female"
+        case NSLocalizedString("man_looking_for_a_man", comment: "Gender"): return "male"
+        case NSLocalizedString("man_looking_for_a_woman", comment: "Gender"): return "male"
+        default: return "male"
+        }
+    }
+
+    private func getUserDataRequest() -> UpdateUserDataRequest {
+        UpdateUserDataRequest(name: self.name,
+                              gender: self.getNewGender(),
+                              birthday: self.birthday.toServerDate(),
+                              look_for: self.getAim())
+    }
+
+    private func getSaveTypes() -> [SaveTypes] {
+        var types: [SaveTypes] = []
+        if email != savedUser.email { types.append(.email) }
+        if phone != savedUser.phone { types.append(.phone) }
+        if (name != savedUser.name || birthday != savedUser.birthday?.toDate() || genderIsChanged()) {
+            types.append(.data)
+        }
+        return types
+    }
+
+    func saveData(completion: @escaping () -> Void) {
+        saveTypes = getSaveTypes()
+        if saveTypes.contains(.data) { updateMainUserData { completion() } }
+        else if saveTypes.contains(.email) { saveEmail { completion() } }
+        else if saveTypes.contains(.phone) { savePhone { completion() } }
+    }
+
+    func saveEmail(completion: @escaping () -> Void) {
+        CoreApiService.shared.registrUserEmail(email: self.email) { _, _ in
+            DispatchQueue.main.async {
+                self.emailConfirmMode = true
+                completion()
+            }
+        }
+    }
+
+    func savePhone(completion: @escaping () -> Void) {
+        CoreApiService.shared.registrUserPhone(phone: self.phone) { _, _ in
+            DispatchQueue.main.async {
+                self.phoneConfirmMode = true
+                completion()
+            }
+        }
+    }
+
+    func updateMainUserData(completion: @escaping () -> Void) {
+        CoreApiService.shared.updateUserData(data: getUserDataRequest()) { _, user in
+            DispatchQueue.main.async {
+                if !self.saveTypes.contains(.email) && !self.saveTypes.contains(.phone) {
+                    ProfileMediator.shared.setUser(user: user)
+                    MainMediator.shared.setUserInfo(user: user)
+                    self.setUserData()
+                    self.checkChanges()
+                    completion()
+                } else {
+                    self.savedUser = user
+                    if self.saveTypes.contains(.email) { self.saveEmail { completion() } }
+                    else if self.saveTypes.contains(.phone) { self.savePhone { completion() } }
+                }
+            }
+        }
+    }
+
+    func confirmEmail(code: String, completion: @escaping (Bool, String) -> Void) {
+        CoreApiService.shared.confirmUserEmail(email: email, code: code) { success, message in
+            DispatchQueue.main.async {
+                if success {
+                    self.emailConfirmMode = !success
+                    if self.saveTypes.contains(.phone) {
+                        self.savePhone { completion(success, message) }
+                    } else {
+                        self.checkUserUpdates()
+                    }
+                }
+            }
+            completion(success, message)
+        }
+    }
+
+    func confirmPhone(code: String, completion: @escaping (Bool, String) -> Void) {
+        CoreApiService.shared.confirmUserPhone(phone: phone, code: code) { success, message in
+            DispatchQueue.main.async {
+                self.phoneConfirmMode = !success
+                self.checkUserUpdates()
+            }
+            completion(success, message)
+        }
+    }
+
+    private func checkUserUpdates() {
+        self.savedUser.email = self.email
+        self.savedUser.phone = self.phone
+        if self.saveTypes.contains(.data) {
+            ProfileMediator.shared.setUser(user: self.savedUser)
+            MainMediator.shared.setUserInfo(user: self.savedUser)
+            self.setUserData()
+        }
+        self.checkChanges()
+    }
+}
+
+enum SaveTypes: String {
+    case email
+    case phone
+    case data
 }

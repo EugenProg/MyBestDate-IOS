@@ -17,7 +17,13 @@ struct PersonalDataScreen: View {
         VStack(spacing: 0) {
             ZStack {
                 HStack {
-                    BackButton(style: .white)
+                    BackButton(style: .white) {
+                        mediator.saveTypes = []
+                        mediator.emailConfirmMode = false
+                        mediator.phoneConfirmMode = false
+                        mediator.saveEnable = false
+                        store.dispatch(action: .navigationBack)
+                    }
 
                     Spacer()
                 }
@@ -51,26 +57,27 @@ struct PersonalDataScreen: View {
                         mediator.checkChanges()
                     }
 
+                    if mediator.emailConfirmMode {
+                        SettingsInputOtpView { code in
+                            confirmEmail(code: code)
+                        }
+                    }
+
                     SettingsInputView(hint: "phone_number", image: "ic_phone_number", input: $mediator.phone) {
                         mediator.checkChanges()
                     }
 
-                    SettingsSaveButtonView(saveEnabled: $mediator.saveEnable, saveProcess: $saveProcess) {
-                        saveProcess.toggle()
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                            saveProcess.toggle()
+                    if mediator.phoneConfirmMode {
+                        SettingsInputOtpView { code in
+                            confirmPhone(code: code)
                         }
                     }
 
-                    SettingsButtonBlockView(title: "password_change",
-                                            description: "changing_the_password",
-                                            buttonTitle: "new_password") {
+                    SettingsSaveButtonView(saveEnabled: $mediator.saveEnable, saveProcess: $saveProcess) {
+                       saveData()
+                    }
 
-                    }.padding(.init(top: 10, leading: 0, bottom: 10, trailing: 0))
-
-                    SettingsSearchLocationButtonView(location: MainMediator.shared.user.getLocation()) {
-                        
-                    }.padding(.init(top: 0, leading: 0, bottom: 30, trailing: 0))
+                    PersonalDataBottomView()
                 }
             }
             .padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight, trailing: 0))
@@ -79,6 +86,50 @@ struct PersonalDataScreen: View {
             store.dispatch(action:
                     .setScreenColors(status: ColorList.main.color, style: .lightContent))
         }
+    }
+
+    private func saveData() {
+        saveProcess.toggle()
+        mediator.saveData {
+            DispatchQueue.main.async {
+                saveProcess.toggle()
+                if !mediator.saveTypes.contains(.email) && !mediator.saveTypes.contains(.phone) {
+                    showSuccessMessage()
+                }
+            }
+        }
+    }
+
+    private func confirmEmail(code: String) {
+        store.dispatch(action: .startProcess)
+        mediator.confirmEmail(code: code) { success, message in
+            DispatchQueue.main.async {
+                store.dispatch(action: .endProcess)
+                if success {
+                    if !mediator.saveTypes.contains(.phone) {
+                        showSuccessMessage()
+                    }
+                } else {
+                    store.dispatch(action: .show(message: message))
+                }
+            }
+        }
+    }
+
+    private func confirmPhone(code: String) {
+        store.dispatch(action: .startProcess)
+        mediator.confirmPhone(code: code) { success, message in
+            DispatchQueue.main.async {
+                store.dispatch(action: .endProcess)
+                if success { showSuccessMessage() }
+                else { store.dispatch(action: .show(message: message)) }
+            }
+        }
+    }
+
+    private func showSuccessMessage() {
+        let successMessage = NSLocalizedString("save_successfully", comment: "message")
+        store.dispatch(action: .show(message: successMessage))
     }
 }
 

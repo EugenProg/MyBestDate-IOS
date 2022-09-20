@@ -118,3 +118,10 @@ struct SaveSettingsRequest: Codable {
 struct UpdateLanguageRequest: Codable {
     var language: Bool
 }
+
+struct UpdateUserDataRequest: Codable {
+    var name: String
+    var gender: String
+    var birthday: String
+    var look_for: [String]
+}

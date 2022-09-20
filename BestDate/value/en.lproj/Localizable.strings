@@ -51,6 +51,7 @@
 "confirm" = "Confirm";
 "code_send_to_your_email" = "Code sent to your email";
 "confirmation_code_sent_to_email_address" = "Confirmation code sent to email address:";
+"confirmation_code_sent_to_phone" = "Confirmation code sent to phone:";
 "set_new_password" = "Set new password";
 "create_a_new_password_for_your_profile_password_must_be_at_least_6_characters" = "Create a new password for your profile\nPassword must be at least 6 characters";
 "install_and_login" = "Install and Login";
@@ -591,7 +592,7 @@
 "save_persoanl_data" = "Save personal data";
 "this_user_is_blocked" = "This user is blocked";
 "unblock" = "Unblock";
-"" = "";
+"save_successfully" = "Changes successfully saved";
 "" = "";
 "" = "";
 "" = "";

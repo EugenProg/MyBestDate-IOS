@@ -264,6 +264,7 @@ extension UserInfo {
             is_online: self.is_online,
             last_online_at: self.last_online_at,
             block_messages: self.block_messages,
+            blocked: self.blocked,
             full_questionnaire: self.questionnaire?.isFull(),
             distance: self.distance)
     }

@@ -46,7 +46,9 @@ struct MatchesScreen: View {
                                         user: $mediator.currentUser,
                                         index: $mediator.currentIndex,
                                         openProfile: openProfile()) { id in
-                            mediator.matchAction(id: id)
+                            mediator.matchAction(id: id) { match in
+                                showMatchAction(match: match)
+                            }
                         }.padding(.init(top: 18, leading: 0, bottom: 21, trailing: 0))
 
                         HStack(spacing: 0) {
@@ -115,6 +117,15 @@ struct MatchesScreen: View {
         { user in
             AnotherProfileMediator.shared.setUser(user: user ?? ShortUserInfo())
             store.dispatch(action: .navigate(screen: .ANOTHER_PROFILE))
+        }
+    }
+
+    private func showMatchAction(match: Match) {
+        DispatchQueue.main.async {
+            if match.matched == true {
+                MatchActionMediator.shared.setMatch(match: match)
+                store.dispatch(action: .matchAction)
+            }
         }
     }
 }

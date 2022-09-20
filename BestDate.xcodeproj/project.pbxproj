@@ -181,6 +181,8 @@
 		4C9E5AFF28D389BB00E4E9FF /* SettingsMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E5AFE28D389BB00E4E9FF /* SettingsMediator.swift */; };
 		4C9E5B0228D38C2800E4E9FF /* LanguageBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E5B0128D38C2800E4E9FF /* LanguageBottomSheet.swift */; };
 		4C9E5B0428D38C9C00E4E9FF /* LanguageMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E5B0328D38C9C00E4E9FF /* LanguageMediator.swift */; };
+		4C9E5B0828DA225300E4E9FF /* SettingsInputOtpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E5B0728DA225300E4E9FF /* SettingsInputOtpView.swift */; };
+		4C9E5B0A28DA267300E4E9FF /* PersonalDataBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E5B0928DA267300E4E9FF /* PersonalDataBottomView.swift */; };
 		4CA2E22B2867224B00E514C4 /* QuestionnaireScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA2E22A2867224B00E514C4 /* QuestionnaireScreen.swift */; };
 		4CA2E22E2867286000E514C4 /* FillingProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA2E22D2867286000E514C4 /* FillingProgressView.swift */; };
 		4CA2E230286728D100E514C4 /* SurprizeBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA2E22F286728D100E514C4 /* SurprizeBoxView.swift */; };
@@ -485,6 +487,8 @@
 		4C9E5AFE28D389BB00E4E9FF /* SettingsMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMediator.swift; sourceTree = "<group>"; };
 		4C9E5B0128D38C2800E4E9FF /* LanguageBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageBottomSheet.swift; sourceTree = "<group>"; };
 		4C9E5B0328D38C9C00E4E9FF /* LanguageMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageMediator.swift; sourceTree = "<group>"; };
+		4C9E5B0728DA225300E4E9FF /* SettingsInputOtpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsInputOtpView.swift; sourceTree = "<group>"; };
+		4C9E5B0928DA267300E4E9FF /* PersonalDataBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalDataBottomView.swift; sourceTree = "<group>"; };
 		4CA2E22A2867224B00E514C4 /* QuestionnaireScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireScreen.swift; sourceTree = "<group>"; };
 		4CA2E22D2867286000E514C4 /* FillingProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillingProgressView.swift; sourceTree = "<group>"; };
 		4CA2E22F286728D100E514C4 /* SurprizeBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurprizeBoxView.swift; sourceTree = "<group>"; };
@@ -1218,6 +1222,7 @@
 			children = (
 				4C9E5ADC28D0E1D200E4E9FF /* PersonalDataScreen.swift */,
 				4C9E5AED28D2347100E4E9FF /* PerasonalDataMediator.swift */,
+				4C9E5B0928DA267300E4E9FF /* PersonalDataBottomView.swift */,
 			);
 			path = "personal data";
 			sourceTree = "<group>";
@@ -1234,6 +1239,7 @@
 				4C9E5AF128D2482D00E4E9FF /* SettingsInfoView.swift */,
 				4C9E5AF328D24FE000E4E9FF /* SettingsDateSelectView.swift */,
 				4C9E5AF528D254E500E4E9FF /* SettingsSaveButtonView.swift */,
+				4C9E5B0728DA225300E4E9FF /* SettingsInputOtpView.swift */,
 			);
 			path = settings;
 			sourceTree = "<group>";
@@ -1812,6 +1818,7 @@
 				4CB9FF92288331A2004F1BF6 /* ProfilePhotoLineView.swift in Sources */,
 				4C92CB1328AD4FD200E5DF52 /* SocialVerificationView.swift in Sources */,
 				4C3D27BC28511BB700F8FD09 /* Title.swift in Sources */,
+				4C9E5B0A28DA267300E4E9FF /* PersonalDataBottomView.swift in Sources */,
 				4C878F1428B7DA7F00043680 /* CreateInvitationMediator.swift in Sources */,
 				4C9E5B0228D38C2800E4E9FF /* LanguageBottomSheet.swift in Sources */,
 				4C022A4128590BE10043E49D /* Media.swift in Sources */,
@@ -1878,6 +1885,7 @@
 				4C878F1C28B7F75300043680 /* ActivityViewController.swift in Sources */,
 				4C5C86EA2875FCC0006DE024 /* ImageLoader.swift in Sources */,
 				4C9E5ADD28D0E1D200E4E9FF /* PersonalDataScreen.swift in Sources */,
+				4C9E5B0828DA225300E4E9FF /* SettingsInputOtpView.swift in Sources */,
 				4C5C86DF2874C033006DE024 /* BaseResponse.swift in Sources */,
 				4CBF593928A43A5B006BDE53 /* MatchesApiService.swift in Sources */,
 				4CB9FF572877500A004F1BF6 /* BottomMainNavigationItemView.swift in Sources */,

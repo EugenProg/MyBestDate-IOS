@@ -77,19 +77,19 @@ struct ProfileScreen: View {
 
                                         }
 
-                                        ProfileButtonView(name: "matches_list", image: "ic_matches", isActive: true) {
+                                        ProfileButtonView(name: "matches_list", image: "ic_matches", isActive: (mediator.user.new_messages ?? 0) > 0) {
                                             store.dispatch(action: .navigate(screen: .MATCHES_LIST))
                                         }
 
-                                        ProfileButtonView(name: "cards", image: "ic_add", isActive: true) {
+                                        ProfileButtonView(name: "cards", image: "ic_add", isActive: (mediator.user.new_invitations ?? 0) > 0) {
                                             store.dispatch(action: .navigate(screen: .INVITATION))
                                         }
 
-                                        ProfileButtonView(name: "like", image: "ic_is_liked", isActive: true) {
+                                        ProfileButtonView(name: "like", image: "ic_is_liked", isActive: (mediator.user.new_likes ?? 0) > 0) {
                                             store.dispatch(action: .navigate(screen: .LIKES_LIST))
                                         }
 
-                                        ProfileButtonView(name: "my_duels", image: "ic_my_duels", isActive: true) {
+                                        ProfileButtonView(name: "my_duels", image: "ic_my_duels", isActive: (mediator.user.new_duels ?? 0) > 0) {
                                             store.dispatch(action: .navigate(screen: .MY_DUELS))
                                         }
                                     }.padding(.init(top: 28, leading: 18, bottom: 0, trailing: 18))

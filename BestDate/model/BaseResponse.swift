@@ -63,6 +63,9 @@ struct UserInfo: Codable {
     var last_online_at: String? = nil
     var new_likes: Int? = nil
     var new_guests: Int? = nil
+    var new_messages: Int? = nil
+    var new_invitations: Int? = nil
+    var new_duels: Int? = nil
     var distance: Double? = nil
     var photos: [ProfileImage]? = nil
     var location: Location? = nil
@@ -83,6 +86,7 @@ struct ShortUserInfo: Codable {
     var location: Location? = nil
     var language: String? = nil
     var block_messages: Bool? = nil
+    var blocked: Bool? = nil
     var full_questionnaire: Bool? = nil
     var distance: Double? = nil
 }
@@ -249,9 +253,16 @@ struct MatchesListResponse: Codable {
     var data: [Match] = []
 }
 
+struct MatchResponse: Codable {
+    var success: Bool
+    var message: String
+    var data: Match? = nil
+}
+
 struct Match: Codable {
     var id: Int? = nil
     var viewed: Bool? = nil
+    var matched: Bool? = nil
     var user: ShortUserInfo? = nil
     var created_at: String? = nil
 }

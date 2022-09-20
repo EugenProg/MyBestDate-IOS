@@ -59,7 +59,7 @@ class MatchesApiService {
         task.resume()
     }
 
-    func matchAction(userId: Int, completion: @escaping (Bool) -> Void) {
+    func matchAction(userId: Int, completion: @escaping (Bool, Match) -> Void) {
         var request = CoreApiTypes.matchAction.getRequest(withAuth: true)
 
         let data = try! encoder.encode(MatchActionRequest(user_id: userId))
@@ -68,11 +68,11 @@ class MatchesApiService {
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             NetworkLogger.printLog(response: response)
-            if let data = data, let response = try? JSONDecoder().decode(BaseResponse.self, from: data) {
+            if let data = data, let response = try? JSONDecoder().decode(MatchResponse.self, from: data) {
                 NetworkLogger.printLog(data: data)
-                completion(response.success)
+                completion(response.success, response.data ?? Match())
             } else {
-                completion(false)
+                completion(false, Match())
             }
         }
 

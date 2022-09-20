@@ -79,10 +79,10 @@ struct MatchSliderView: View {
         if index < users.count {
             withAnimation(.easeInOut(duration: 0.5)) {
                 index += 1
+                if liked { likeClick(user?.id) }
                 if index < users.count {
                     user = users[index].user
                 }
-                if liked { likeClick(user?.id) }
                 clickProcess = liked
                 modify(liked: liked)
                 unblockButton()

@@ -35,9 +35,9 @@ class MatchMediator: ObservableObject {
         }
     }
 
-    func matchAction(id: Int?) {
-        MatchesApiService.shared.matchAction(userId: id ?? 0) { success in
-            
+    func matchAction(id: Int?, completion: @escaping (Match) -> Void) {
+        MatchesApiService.shared.matchAction(userId: id ?? 0) { success, match in
+            completion(match)
         }
     }
 
