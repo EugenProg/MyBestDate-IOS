@@ -48,10 +48,10 @@ class InvitationApiService {
         task.resume()
     }
 
-    func answerTheInvitation(invitationId: Int, status: Bool, completion: @escaping (Bool) -> Void) {
+    func answerTheInvitation(invitationId: Int, answer: InvitationAnswer, completion: @escaping (Bool) -> Void) {
         var request = CoreApiTypes.answerTheInvitation.getRequest(path: invitationId.toString(), withAuth: true)
 
-        let data = try! encoder.encode(AnswerTheInvitationRequest(status: status))
+        let data = try! encoder.encode(AnswerTheInvitationRequest(answer_id: answer.id))
         encoder.outputFormatting = .prettyPrinted
         NetworkLogger.printLog(data: data)
         request.httpBody = data

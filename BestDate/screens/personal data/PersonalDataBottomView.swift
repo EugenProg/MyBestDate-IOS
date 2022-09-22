@@ -15,7 +15,7 @@ struct PersonalDataBottomView: View {
             SettingsButtonBlockView(title: "password_change",
                                     description: "changing_the_password",
                                     buttonTitle: "new_password") {
-
+                store.dispatch(action: .navigate(screen: .CHANGE_PASS))
             }.padding(.init(top: 10, leading: 0, bottom: 10, trailing: 0))
 
             SettingsSearchLocationButtonView(location: MainMediator.shared.user.getLocation()) {

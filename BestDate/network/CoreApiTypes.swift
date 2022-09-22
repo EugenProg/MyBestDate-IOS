@@ -47,7 +47,7 @@ enum CoreApiTypes {
     case getGuestList
     case setViewedAction
 
-    case getUserLikes///
+    case getUserLikes
     case likeAPhoto
 
     case getTopList
@@ -73,13 +73,16 @@ enum CoreApiTypes {
     case answerTheInvitation
     case getUserInvitationList
 
-    case updateUserData///
+    case updateUserData
 
     case getUserSettings
     case saveSettings
     case updateLanguage
 
     case logout
+
+    case deleteUserProfile
+    case changePassword
 
     var BaseURL: String {
         "https://dev-api.bestdate.info/api/v1/"
@@ -141,6 +144,8 @@ enum CoreApiTypes {
         case .getUserSettings: return "settings"
         case .saveSettings: return "settings"
         case .updateLanguage: return "settings/language"
+        case .deleteUserProfile: return "user"
+        case .changePassword: return "user/password"
         }
     }
 
@@ -200,6 +205,8 @@ enum CoreApiTypes {
         case .getUserSettings: return "GET"
         case .saveSettings: return "PUT"
         case .updateLanguage: return "PUT"
+        case .deleteUserProfile: return "DELETE"
+        case .changePassword: return "PUT"
         }
     }
 

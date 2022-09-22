@@ -101,13 +101,13 @@ struct SettingsScreen: View {
                     SettingsButtonBlockView(title: "language",
                                             description: "here_you_can_select_the_language",
                                             buttonTitle: mediator.language) {
-                        store.dispatch(action: .showBottomSheet(view: .LANGUAGE))
+                        //store.dispatch(action: .showBottomSheet(view: .LANGUAGE))
                     }
 
                     SettingsButtonBlockView(title: "delete_profile",
                                             description: "this_action_will_delete_your_account",
                                             buttonTitle: "delete") {
-
+                        store.dispatch(action: .showDeleteDialog)
                     }.padding(.init(top: 0, leading: 0, bottom: 23, trailing: 0))
 
                 }

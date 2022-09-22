@@ -23,6 +23,7 @@ struct NavigationView: View {
                 if store.state.showInvitationDialog { CreateInvitionScreen().zIndex(1) }
                 if store.state.showMatchActionDialog { MatchActionScreen().zIndex(1) }
                 if store.state.showPushNotification { PushScreen().zIndex(1) }
+                if store.state.showDeleteDialog { DeleteUserDialog().zIndex(1) }
                 if store.state.inProcess { LoadingProgressScreen().zIndex(1) }
                 Group {
                     switch store.state.activeScreen {
@@ -55,7 +56,8 @@ struct NavigationView: View {
                     case .NOTIFY_SETTINGS: NotifySettingsScreen()
                     case .SETTINGS: SettingsScreen()
                     case .PERSONAL_DATA: PersonalDataScreen()
-                    case .BLACK_LIST: BlackListScreen()
+                    case .BLACK_LIST: BlackListScreen().transition(.move(edge: .trailing))
+                    case .CHANGE_PASS: ChangePasswordScreen().transition(.move(edge: .trailing))
                     }
                 }.blur(radius: getBlur())
             }.onTapGesture(perform: { store.dispatch(action: .hideKeyboard) })
@@ -69,6 +71,7 @@ struct NavigationView: View {
         store.state.showMatchActionDialog ||
         store.state.showPushNotification ||
         store.state.inProcess ||
+        store.state.showDeleteDialog ||
         store.state.showInvitationDialog ? 1.8 : 0
     }
 }

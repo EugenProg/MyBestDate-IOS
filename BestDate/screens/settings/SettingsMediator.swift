@@ -33,7 +33,6 @@ class SettingsMediator: ObservableObject {
             completion()
         }
     }
-    
 }
 
 enum UserSettingsType {

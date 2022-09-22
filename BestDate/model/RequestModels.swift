@@ -97,7 +97,7 @@ struct SendInvitationRequest: Codable {
 }
 
 struct AnswerTheInvitationRequest: Codable {
-    var status: Bool
+    var answer_id: Int
 }
 
 struct GetUserInvitationFilter: Codable {

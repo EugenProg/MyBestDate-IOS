@@ -50,9 +50,14 @@ struct InvitatinsScreen: View {
             }
     }
 
-    private func answer() -> (String) -> Void {
-        { text in
-            store.dispatch(action: .show(message: text))
+    private func answer() -> (Int, InvitationAnswer) -> Void {
+        { id, answer in
+            store.dispatch(action: .startProcess)
+            mediator.answerTheInvitation(invitationId: id, answer: answer) {
+                DispatchQueue.main.async {
+                    store.dispatch(action: .endProcess)
+                }
+            }
         }
     }
 

@@ -78,13 +78,14 @@ struct AnsweredInvitationItemView: View {
             HStack() {
                 Spacer()
                 VStack(spacing: 11) {
-                    if invitationCard.status == true {
+                    let answer = InvitationAnswer.getAnswer(id: invitationCard.id ?? 0)
+                    if answer == .yes || answer == .yes_next_time {
                         SuccessItemView()
-                    } else if invitationCard.status == false {
+                    } else if answer == .no || answer == .not_yet {
                         CloseItemView()
                     }
 
-                    Text(invitationCard.status == true ? "Yes I agree" : "Thanks, but I can’t yet")
+                    Text(answer.text)
                         .foregroundColor(ColorList.main.color)
                         .font(MyFont.getFont(.BOLD, 14))
                 }.frame(width: width / 2, height: 130, alignment: .bottom)

@@ -24,4 +24,5 @@ enum Action {
     case matchAction
     case hasADeepLink
     case showPushNotification(type: NotificationType)
+    case showDeleteDialog
 }

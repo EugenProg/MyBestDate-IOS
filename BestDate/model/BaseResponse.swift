@@ -218,7 +218,7 @@ struct InvitationCard: Codable {
     var invitation: Invitation? = nil
     var from_user: ShortUserInfo? = nil
     var to_user: ShortUserInfo? = nil
-    var status: Bool? = nil
+    var answer: Invitation? = nil
 }
 
 struct Invitation: Codable {
@@ -301,4 +301,10 @@ struct NotificationSettings: Codable {
     var invitations: Bool? = nil
     var messages: Bool? = nil
     var guests: Bool? = nil
+}
+
+struct ChangePasswordRequest: Codable {
+    var old_password: String? = nil
+    var password: String? = nil
+    var password_confirmation: String? = nil
 }

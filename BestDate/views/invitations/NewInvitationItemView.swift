@@ -10,7 +10,7 @@ import SwiftUI
 struct NewInvitationItemView: View {
     var invitationCard: InvitationCard
 
-    var answerAction: (_ text: String) -> Void
+    var answerAction: (Int, InvitationAnswer) -> Void
     var userSelectAction: (_ user: ShortUserInfo?) -> Void
 
     @State var frontSide: Bool = true
@@ -90,11 +90,11 @@ struct NewInvitationItemView: View {
             VStack {
                 HStack(spacing: 8) {
                     cardButton(text: "yes_i_agree") {
-                        answerAction(NSLocalizedString("yes", comment: "text"))
+                        answerAction(invitationCard.id ?? 0, .yes)
                     }
 
                     cardButton(text: "yes_i_will_but_next_time") {
-                        answerAction(NSLocalizedString("yes later", comment: "text"))
+                        answerAction(invitationCard.id ?? 0, .yes_next_time)
                     }
                 }
 
@@ -102,11 +102,11 @@ struct NewInvitationItemView: View {
 
                 HStack(spacing: 8) {
                     cardButton(text: "thanks_but_i_cant_yet") {
-                        answerAction(NSLocalizedString("not yet", comment: "text"))
+                        answerAction(invitationCard.id ?? 0, .not_yet)
                     }
 
                     cardButton(text: "no") {
-                        answerAction(NSLocalizedString("no", comment: "text"))
+                        answerAction(invitationCard.id ?? 0, .no)
                     }
                 }
             }.padding(.init(top: 32, leading: 16, bottom: 24, trailing: 16))

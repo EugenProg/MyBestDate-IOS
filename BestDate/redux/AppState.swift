@@ -23,4 +23,5 @@ struct AppState {
     var showMatchActionDialog: Bool = false
     var hasADeepLink: Bool = false
     var showPushNotification: Bool = false
+    var showDeleteDialog: Bool = false
 }

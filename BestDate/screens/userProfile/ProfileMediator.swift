@@ -30,16 +30,6 @@ class ProfileMediator: ObservableObject {
         CoreApiService.shared.logout { _ in
             DispatchQueue.main.async {
                 self.clearUserData()
-                GuestsMediator.shared.clearGuestData()
-                SearchMediator.shared.clearData()
-                MainMediator.shared.clearUserData()
-                MyDuelsMediator.shared.clearData()
-                TopListMediator.shared.clearTopList()
-                QuestionnaireMediator.shared.clearData()
-                MatchMediator.shared.clearData()
-                MatchesListMediator.shared.clearData()
-                LikeListMediator.shared.clearData()
-                InvitationMediator.shared.clearData()
                 completion()
             }
         }
@@ -48,6 +38,16 @@ class ProfileMediator: ObservableObject {
     func clearUserData() {
         self.user = UserInfo()
         self.profileImages.removeAll()
+        GuestsMediator.shared.clearGuestData()
+        SearchMediator.shared.clearData()
+        MainMediator.shared.clearUserData()
+        MyDuelsMediator.shared.clearData()
+        TopListMediator.shared.clearTopList()
+        QuestionnaireMediator.shared.clearData()
+        MatchMediator.shared.clearData()
+        MatchesListMediator.shared.clearData()
+        LikeListMediator.shared.clearData()
+        InvitationMediator.shared.clearData()
     }
 
     func updateUserData(completion: @escaping () -> Void) {

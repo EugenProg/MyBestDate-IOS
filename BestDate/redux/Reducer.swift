@@ -85,6 +85,9 @@ final class Reducer {
             state.activePush = notificationType
             state.showPushNotification = true
         }
+
+        case .showDeleteDialog:
+            state.showDeleteDialog = true
         }
         
         return state

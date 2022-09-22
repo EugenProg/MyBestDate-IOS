@@ -649,4 +649,41 @@ class CoreApiService {
 
         task.resume()
     }
+
+    func deleteUserProfile(completion: @escaping () -> Void) {
+        let request = CoreApiTypes.deleteUserProfile.getRequest(withAuth: true)
+
+        let task = URLSession.shared.dataTask(with: request) {data, response, error in
+            NetworkLogger.printLog(response: response)
+            if let data = data, let _ = try? JSONDecoder().decode(BaseResponse.self, from: data) {
+                NetworkLogger.printLog(data: data)
+                completion()
+            } else {
+                completion()
+            }
+        }
+
+        task.resume()
+    }
+
+    func changePassword(oldPass: String, newPass: String, completion: @escaping (Bool, String) -> Void) {
+        var request = CoreApiTypes.changePassword.getRequest(withAuth: true)
+
+        let data = try! encoder.encode(ChangePasswordRequest(old_password: oldPass, password: newPass, password_confirmation: newPass))
+        encoder.outputFormatting = .prettyPrinted
+        NetworkLogger.printLog(data: data)
+        request.httpBody = data
+
+        let task = URLSession.shared.dataTask(with: request) {data, response, error in
+            NetworkLogger.printLog(response: response)
+            if let data = data, let response = try? JSONDecoder().decode(BaseResponse.self, from: data) {
+                NetworkLogger.printLog(data: data)
+                completion(response.success, response.message)
+            } else {
+                completion(false, "")
+            }
+        }
+
+        task.resume()
+    }
 }

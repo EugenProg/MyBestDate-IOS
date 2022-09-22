@@ -66,13 +66,14 @@ struct SendedInvitationItemView: View {
                     .padding(.init(top: 10, leading: 0, bottom: 10, trailing: 0))
 
                 HStack(spacing: 9) {
-                    if invitationCard.status == true {
+                    let answer = InvitationAnswer.getAnswer(id: invitationCard.id ?? 0)
+                    if answer == .yes || answer == .yes_next_time {
                         SuccessItemView()
-                    } else if invitationCard.status == false {
+                    } else if answer == .no || answer == .not_yet {
                         CloseItemView()
                     }
 
-                    Text(getStatusText(status: invitationCard.status))
+                    Text(getStatusText(answer: answer))
                         .foregroundColor(ColorList.main.color)
                         .font(MyFont.getFont(.BOLD, 14))
                 }
@@ -82,9 +83,13 @@ struct SendedInvitationItemView: View {
         }
     }
 
-    private func getStatusText(status: Bool?) -> String {
-        if status == nil { return "\(invitationCard.to_user?.name ?? "") hasn’t given an answer yet" }
-        else if status == true { return "Yes I agree" }
-        else { return "Thanks, but I can’t yet" }
+    private func getStatusText(answer: InvitationAnswer) -> String {
+        if answer == .none {
+            return String.localizedStringWithFormat(
+                NSLocalizedString("any_has_not_given_an_answer_yet", comment: "Answer"),
+                invitationCard.to_user?.name ?? ""
+            )
+        }
+        else { return answer.text }
     }
 }
