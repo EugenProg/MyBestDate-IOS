@@ -61,15 +61,9 @@ struct ChatImageViewer: View {
                                     .font(MyFont.getFont(.NORMAL, 18))
                                     .padding(.init(top: 0, leading: 23, bottom: 0, trailing: 5))
                             }
-                            TextEditor(text: $text)
-                                .foregroundColor(ColorList.white.color)
-                                .autocapitalization(.sentences)
-                                .font(MyFont.getFont(.BOLD, 18))
+                            Editor()
                                 .frame(height: 40 + additionalHeight)
                                 .padding(.init(top: 9, leading: 18, bottom: 8, trailing: 3))
-                                .onChange(of: text) { _ in
-                                    calculateSize()
-                                }
                         }
                         Button(action: {
                             if !text.isEmpty && !translateProcess && !sendTextProcess {
@@ -150,6 +144,29 @@ struct ChatImageViewer: View {
             withAnimation {
                 additionalHeight = CGFloat(42)
             }
+        }
+    }
+
+    fileprivate func Editor() -> some View {
+        if #available(iOS 16.0, *) {
+            return TextEditor(text: $text)
+                .foregroundColor(ColorList.white.color)
+                .autocapitalization(.sentences)
+                .scrollContentBackground(.hidden)
+                .background(MyColor.getColor(0, 0, 0, 0))
+                .font(MyFont.getFont(.BOLD, 18))
+                .onChange(of: text) { _ in
+                    calculateSize()
+                }
+        } else {
+            return TextEditor(text: $text)
+                .foregroundColor(ColorList.white.color)
+                .autocapitalization(.sentences)
+                .font(MyFont.getFont(.BOLD, 18))
+                .background(MyColor.getColor(0, 0, 0, 0))
+                .onChange(of: text) { _ in
+                    calculateSize()
+                }
         }
     }
 }

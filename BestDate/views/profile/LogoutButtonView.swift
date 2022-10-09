@@ -33,7 +33,7 @@ struct LogoutButtonView: View {
                         Text("sign_out")
                             .foregroundColor(ColorList.white_70.color)
                             .font(MyFont.getFont(.BOLD, 14))
-                    }.padding(.init(top: 0, leading: 21, bottom: 0, trailing: 30))
+                    }.padding(.init(top: 0, leading: 16, bottom: 0, trailing: 16))
                 }
 
             }.frame(width: 136, height: 58)

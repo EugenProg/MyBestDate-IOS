@@ -35,7 +35,7 @@ struct GuestListItemView: View {
                             .font(MyFont.getFont(.BOLD, 16))
                             .padding(.init(top: 0, leading: 8, bottom: 0, trailing: 0))
 
-                        Text("y")
+                        Text(NSLocalizedString("years_short", comment: "age"))
                             .foregroundColor(ColorList.white_80.color)
                             .font(MyFont.getFont(.BOLD, 10))
                             .padding(.init(top: 5, leading: 0, bottom: 0, trailing: 0))
@@ -65,12 +65,6 @@ struct GuestListItemView: View {
                     VStack {
                         Spacer()
                         ZStack {
-                            RoundedRectangle(cornerRadius: 7)
-                                .fill(LinearGradient(gradient: Gradient(colors: [
-                                    MyColor.getColor(48, 58, 62),
-                                    MyColor.getColor(43, 52, 56)
-                                ]), startPoint: .leading, endPoint: .trailing))
-
                             HStack(spacing: 6) {
                                 Text(NSLocalizedString("new_visit", comment: "New visit"))
                                     .foregroundColor(ColorList.white.color)
@@ -80,7 +74,16 @@ struct GuestListItemView: View {
                                     .fill(MyColor.getColor(240, 89, 221))
                                     .frame(width: 8, height: 8)
                             }
-                        }.frame(width: 67, height: 20)
+                        }
+                        .padding(.init(top: 0, leading: 8, bottom: 0, trailing: 7))
+                        .frame(height: 20)
+                        .background(
+                            RoundedRectangle(cornerRadius: 7)
+                                .fill(LinearGradient(gradient: Gradient(colors: [
+                                    MyColor.getColor(48, 58, 62),
+                                    MyColor.getColor(43, 52, 56)
+                                ]), startPoint: .leading, endPoint: .trailing))
+                        )
                     }.padding(.init(top: 8, leading: 0, bottom: 7, trailing: 0))
                 }
             }

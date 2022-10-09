@@ -44,9 +44,7 @@ struct InvitatinsScreen: View {
         }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
             .background(ColorList.main.color.edgesIgnoringSafeArea(.bottom))
             .onAppear {
-                if mediator.newInvitations.isEmpty {
-                    mediator.getAllInvitations()
-                }
+                mediator.getAllInvitations()
             }
     }
 

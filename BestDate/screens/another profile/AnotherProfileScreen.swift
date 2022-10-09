@@ -19,8 +19,12 @@ struct AnotherProfileScreen: View {
                 ActiveUserView()
 
                 AnotherProfileNavigationPanelView(isLiked: $mediator.mainLiked) {
-                    ChatMediator.shared.setUser(user: mediator.user)
-                    store.dispatch(action: .navigate(screen: .CHAT))
+                    if store.state.screenStack.last == .CHAT {
+                        store.dispatch(action: .navigationBack)
+                    } else {
+                        ChatMediator.shared.setUser(user: mediator.user)
+                        store.dispatch(action: .navigate(screen: .CHAT))
+                    }
                 } likeClick: {
                     mediator.likePhoto(id: mediator.mainPhoto.id) { }
                 } createClick: {

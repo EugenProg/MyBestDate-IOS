@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import UIKit
 import AudioToolbox
 
 struct CornerRadiusStyle: ViewModifier {
@@ -267,6 +268,35 @@ extension UserInfo {
             blocked: self.blocked,
             full_questionnaire: self.questionnaire?.isFull(),
             distance: self.distance)
+    }
+
+    func copy() -> UserInfo {
+        UserInfo(
+            id: self.id,
+            name: self.name,
+            email: self.email,
+            email_verification: self.email_verification,
+            phone: self.phone,
+            phone_verification: self.phone_verification,
+            gender: self.gender,
+            look_for: self.look_for,
+            language: self.language,
+            birthday: self.birthday,
+            is_online: self.is_online,
+            last_online_at: self.last_online_at,
+            new_likes: self.new_likes,
+            new_guests: self.new_guests,
+            new_messages: self.new_messages,
+            new_invitations: self.new_invitations,
+            new_duels: self.new_duels,
+            distance: self.distance,
+            photos: self.photos,
+            location: self.location,
+            block_messages: self.block_messages,
+            blocked: self.blocked,
+            blocked_me: self.blocked_me,
+            questionnaire: self.questionnaire
+        )
     }
 }
 

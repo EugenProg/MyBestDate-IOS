@@ -16,10 +16,10 @@ class UserDataHolder {
     private(set) static var searchLocation: LocationFilterTypes = LocationFilterTypes(rawValue: getSettings(type: .SEARCH_LOCATION) ?? LocationFilterTypes.all.rawValue) ?? LocationFilterTypes.all
 
     static func setAuthData(response: AuthResponse) {
-        accessToken = "Bearer \(response.access_token)"
+        accessToken = "Bearer \(response.access_token ?? "")"
         setSettings(type: .ACCESS_TOKEN, value: accessToken)
 
-        refreshToken = response.refresh_token
+        refreshToken = response.refresh_token ?? ""
         setSettings(type: .REFRESH_TOKEN, value: refreshToken)
     }
 

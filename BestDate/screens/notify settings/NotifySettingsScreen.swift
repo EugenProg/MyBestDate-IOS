@@ -9,9 +9,10 @@ import SwiftUI
 
 struct NotifySettingsScreen: View {
     @EnvironmentObject var store: Store
+    @ObservedObject var mediator = NotifySettingsMediator()
 
     @State var process: Bool = false
-    @State var notificationEnbaled: Bool?
+    @State var notificationEnbaled: Bool? = false
 
     var body: some View {
         ZStack {
@@ -36,7 +37,7 @@ struct NotifySettingsScreen: View {
                     Spacer()
 
                     Button(action: {
-                        withAnimation { store.dispatch(action: .navigationBack) }
+                        withAnimation { store.dispatch(action: .navigate(screen: .MAIN)) }
                     }) {
                         Text(NSLocalizedString("cancel", comment: "Cancel"))
                             .foregroundColor(ColorList.white.color)
@@ -75,14 +76,19 @@ struct NotifySettingsScreen: View {
                 }.frame(width: UIScreen.main.bounds.width - 64, alignment: .leading)
                 .padding(.init(top: 0, leading: 0, bottom: 14, trailing: 0))
 
-                NotifySettingsSelectorView(isActive: $notificationEnbaled) { enabled in
-                    
-                }
+                NotifySettingsSelectorView(isActive: $notificationEnbaled) { _ in }
 
                 Spacer()
 
                 StandardButton(style: .white, title: "get_started", loadingProcess: $process) {
-                    store.dispatch(action: .navigationBack)
+                    process.toggle()
+                    mediator.saveSettings(enable: notificationEnbaled ?? false) {
+                        DispatchQueue.main.async {
+                            process.toggle()
+                            UserDataHolder.setStartScreen(screen: .MAIN)
+                            withAnimation { store.dispatch(action: .navigate(screen: .MAIN)) }
+                        }
+                    }
                 }
                 .frame(width: 230)
 

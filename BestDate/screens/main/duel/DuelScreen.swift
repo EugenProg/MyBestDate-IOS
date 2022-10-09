@@ -114,9 +114,7 @@ struct DuelScreen: View {
             store.dispatch(action:
                     .setScreenColors(status: ColorList.main.color, style: .lightContent))
             MainMediator.shared.duelPage = {
-                if mediator.hasADuelAction {
-                    mediator.getVotePhotos { _ in }
-                }
+                mediator.getVotePhotos { _ in }
             }
         }
     }

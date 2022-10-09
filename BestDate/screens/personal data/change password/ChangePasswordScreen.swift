@@ -68,6 +68,7 @@ struct ChangePasswordScreen: View {
                 DispatchQueue.main.async {
                     saveProccess.toggle()
                     if success {
+                        showSuccessMessage()
                         withAnimation { store.dispatch(action: .navigationBack) }
                     } else {
                         store.dispatch(action: .show(message: message))
@@ -75,5 +76,10 @@ struct ChangePasswordScreen: View {
                 }
             }
         }
+    }
+
+    private func showSuccessMessage() {
+        let successMessage = NSLocalizedString("save_successfully", comment: "message")
+        store.dispatch(action: .show(message: successMessage))
     }
 }

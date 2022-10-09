@@ -10,6 +10,8 @@ import SwiftUI
 struct RegistrationStartScreen: View {
     @EnvironmentObject var store: Store
     @ObservedObject var mediator = RegistrationMediator.shared
+    @ObservedObject var authMediator = AuthMediator.shared
+    @ObservedObject var socialMediator = SocialSignInMediator.shared
     
     @State var process: Bool = false
     @State var nameInputError = false
@@ -53,13 +55,12 @@ struct RegistrationStartScreen: View {
                                 
                                 Spacer()
                             }.padding(.init(top: 25, leading: 0, bottom: 0, trailing: 0))
-                        }.frame(width: UIScreen.main.bounds.width, height: 590 + store.state.statusBarHeight)
-                            .padding(.init(top: 25, leading: 0, bottom: 0, trailing: 0))
+                        }.frame(width: UIScreen.main.bounds.width, height: 615 + store.state.statusBarHeight)
                     }
                 }
                 VStack {
                     SocialView(
-                        gooleClickAction: { store.dispatch(action: .show(message: "google")) },
+                        gooleClickAction: { loginSocial(provider: .google) },
                         appleClickAction: { store.dispatch(action: .show(message: "apple")) },
                         facebookClickAction: { store.dispatch(action: .show(message: "facebook")) })
                 }.frame(height: UIScreen.main.bounds.height, alignment: .bottom)
@@ -76,6 +77,44 @@ struct RegistrationStartScreen: View {
         if mediator.name.isEmpty { nameInputError = true }
         else if mediator.gender.isEmpty { genderInputError = true }
         else { store.dispatch(action: .navigate(screen: .REGISTRATION_CONTINUE)) }
+    }
+
+    private func goIn(success: Bool, registrationMode: Bool, message: String) {
+        store.dispatch(action: .endProcess)
+        if success {
+            if !authMediator.hasFullData {
+                UserDataHolder.setStartScreen(screen: .FILL_REGISTRATION_DATA)
+            } else if !authMediator.hasImages {
+                UserDataHolder.setStartScreen(screen: .PROFILE_PHOTO)
+            } else if !authMediator.hasQuestionnaire {
+                UserDataHolder.setStartScreen(screen: .QUESTIONNAIRE)
+            } else {
+                UserDataHolder.setStartScreen(screen: .MAIN)
+            }
+            withAnimation {
+                store.dispatch(action: .navigate(screen: UserDataHolder.startScreen))
+            }
+        } else {
+            store.dispatch(action: .show(message: NSLocalizedString(message, comment: "Message")))
+        }
+    }
+
+    private func loginSocial(provider: SocialOAuthType) {
+        socialMediator.loginSocial(provider: provider) { success, registrationMode in
+            if success {
+                DispatchQueue.main.async { store.dispatch(action: .startProcess) }
+                authMediator.getUserData { success in
+                    DispatchQueue.main.async {
+                        goIn(success: success, registrationMode: registrationMode, message: "default_error_message")
+                    }
+                }
+            } else {
+                DispatchQueue.main.async {
+                    store.dispatch(action:
+                            .show(message: NSLocalizedString("default_error_message", comment: "Message")))
+                }
+            }
+        }
     }
 }
 

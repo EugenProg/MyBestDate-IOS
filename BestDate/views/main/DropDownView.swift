@@ -20,13 +20,16 @@ struct DropDownView: View {
                 .background(ColorList.main.color)
                 .shadow(color: style.shadowColor, radius: 16, y: 3)
 
-            Image(style.image)
-                .padding(.init(top: 0, leading: 101, bottom: 0, trailing: 13))
+            HStack(spacing: 2) {
+                Text(NSLocalizedString(text, comment: "Text"))
+                    .foregroundColor(style.textColor)
+                    .font(MyFont.getFont(.BOLD, 14))
+                    .lineLimit(1)
 
-            Text(NSLocalizedString(text, comment: "Text"))
-                .foregroundColor(style.textColor)
-                .font(MyFont.getFont(.BOLD, 14))
-                .padding(.init(top: 0, leading: 0, bottom: 0, trailing: 10))
+                Spacer()
+
+                Image(style.image)
+            }.frame(width: 105)
         }.frame(width: 125, height: 34)
             .onTapGesture {
                 withAnimation { clickAction() }

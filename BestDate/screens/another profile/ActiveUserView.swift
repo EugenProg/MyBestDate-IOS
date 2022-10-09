@@ -40,7 +40,7 @@ struct ActiveUserView: View {
                                 .foregroundColor(ColorList.white.color)
                                 .font(MyFont.getFont(.BOLD, 26))
 
-                            Text("y")
+                            Text(NSLocalizedString("years_short", comment: "age"))
                                 .foregroundColor(ColorList.white_80.color)
                                 .font(MyFont.getFont(.BOLD, 13))
                         }.padding(.init(top: 0, leading: 6, bottom: 0, trailing: 0))
@@ -68,7 +68,7 @@ struct ActiveUserView: View {
 
                     Spacer()
                 }
-                .padding(.init(top: 24, leading: 18, bottom: 24, trailing: 18))
+                .padding(.init(top: 8, leading: 18, bottom: 8, trailing: 18))
 
                 AnotherProfileImageLineView(imagesList: $mediator.imageList) { index in
                     goToImageViewer(index: index)

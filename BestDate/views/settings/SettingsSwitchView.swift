@@ -34,12 +34,6 @@ struct SettingsSwitchView: View {
 
             Spacer()
 
-            if isActive == true {
-                Text(NSLocalizedString("settings_applied", comment: "applied"))
-                    .foregroundColor(ColorList.white_40.color)
-                    .font(MyFont.getFont(.NORMAL, 14))
-            }
-
             ZStack {
                 ProgressView()
                     .tint(ColorList.white.color)

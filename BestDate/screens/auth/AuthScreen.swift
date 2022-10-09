@@ -10,6 +10,7 @@ import SwiftUI
 struct AuthScreen: View {
     @EnvironmentObject var store: Store
     @ObservedObject var mediator = AuthMediator.shared
+    @ObservedObject var socialMediator = SocialSignInMediator.shared
     @State var process: Bool = false
     @State var emailInputError = false
     @State var emailInputText: String = ""
@@ -56,15 +57,14 @@ struct AuthScreen: View {
                                 
                                 Spacer()
                             }.padding(.init(top: 25, leading: 0, bottom: 0, trailing: 0))
-                        }.frame(width: UIScreen.main.bounds.width, height: 530 + store.state.statusBarHeight)
-                            .padding(.init(top: 25, leading: 0, bottom: 0, trailing: 0))
+                        }.frame(width: UIScreen.main.bounds.width, height: 555 + store.state.statusBarHeight)
                     }
                 }
                 VStack {
                     SocialView(
-                        gooleClickAction: { loginSocial(provider: .google)},
-                        appleClickAction: { loginSocial(provider: .apple) },
-                        facebookClickAction: { store.dispatch(action: .show(message: "facebook")) })
+                        gooleClickAction: { loginSocial(provider: .google) },
+                        appleClickAction: { },//loginSocial(provider: .apple) },
+                        facebookClickAction: { })//loginSocial(provider: .facebook) })
                 }.frame(height: UIScreen.main.bounds.height, alignment: .bottom)
             }
         }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .topLeading)
@@ -83,35 +83,39 @@ struct AuthScreen: View {
             mediator.auth(login: emailInputText, password: passInputText) { success, message in
                 DispatchQueue.main.async {
                     process.toggle()
-                    goIn(success: success, message: message)
+                    goIn(success: success, registrationMode: false, message: message)
                 }
             }
         }
     }
 
-    private func goIn(success: Bool, message: String) {
+    private func goIn(success: Bool, registrationMode: Bool, message: String) {
         store.dispatch(action: .endProcess)
         if success {
-            if !mediator.hasImages {
+            if !mediator.hasFullData {
+                UserDataHolder.setStartScreen(screen: .FILL_REGISTRATION_DATA)
+            } else if !mediator.hasImages {
                 UserDataHolder.setStartScreen(screen: .PROFILE_PHOTO)
             } else if !mediator.hasQuestionnaire {
                 UserDataHolder.setStartScreen(screen: .QUESTIONNAIRE)
             } else {
                 UserDataHolder.setStartScreen(screen: .MAIN)
             }
-            store.dispatch(action: .navigate(screen: UserDataHolder.startScreen))
+            withAnimation {
+                store.dispatch(action: .navigate(screen: UserDataHolder.startScreen))
+            }
         } else {
             store.dispatch(action: .show(message: NSLocalizedString(message, comment: "Message")))
         }
     }
 
     private func loginSocial(provider: SocialOAuthType) {
-        mediator.loginSocial(provider: provider) { success in
+        socialMediator.loginSocial(provider: provider) { success, registrationMode in
             if success {
                 DispatchQueue.main.async { store.dispatch(action: .startProcess) }
                 mediator.getUserData { success in
                     DispatchQueue.main.async {
-                        goIn(success: success, message: "default_error_message")
+                        goIn(success: success, registrationMode: registrationMode, message: "default_error_message")
                     }
                 }
             } else {

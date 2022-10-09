@@ -9,7 +9,7 @@ import SwiftUI
 
 class MyFont {
     static func getFont(_ type: FontType, _ size: CGFloat) -> Font {
-        .custom(type.name, size: size)
+        .custom(type.name, size: size - 2)
     }
 }
 
@@ -20,9 +20,9 @@ enum FontType {
 
     var name: String {
         switch self {
-        case .BOLD: return "cronospro-bold"
-        case .ITALIC: return "cronospro-italic"
-        case .NORMAL: return "cronospro-regular"
+        case .BOLD: return "notosansdisplay-bold"//"valuesanspro-bold"//"cronospro-bold"
+        case .ITALIC: return "notosansdisplay-italic"//"valuesanspro-italic"// "cronospro-italic"
+        case .NORMAL: return "notosansdisplay-regular"//"valuesanspro-regular"//"cronospro-regular"
         }
     }
 }

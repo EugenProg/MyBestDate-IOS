@@ -13,11 +13,12 @@ class MultySelectMediator: ObservableObject {
     @Published var questionInfo: QuestionInfo = QuestionInfo(id: 0)
     @Published var ansfersList: [AnsferInfo] = []
 
-    func getAnsferLine() -> String {
+    func getAnsferLine(_ translate: Bool = false) -> String {
         var line = ""
         for ansferInfo in ansfersList {
             if ansferInfo.isSelect {
-                line.append("\(ansferInfo.ansfer), ")
+                let name = translate ? NSLocalizedString(ansferInfo.ansfer, comment: "Ansfer") : ansferInfo.ansfer
+                line.append("\(name), ")
             }
         }
 
@@ -31,11 +32,13 @@ class MultySelectMediator: ObservableObject {
     private func setAnsfers(ansfers: [String]) {
         ansfersList.removeAll()
         for index in ansfers.indices {
-            let ansfer = NSLocalizedString(ansfers[index], comment: "Ansfer")
+            let ansfer = ansfers[index]
+            let isSelect = questionInfo.selectedAnsfer.contains(ansfer) ||
+                            questionInfo.selectedAnsfer.contains(NSLocalizedString(ansfer, comment: "Ansfer"))
             ansfersList.append(
                 AnsferInfo(id: index,
                            ansfer: ansfer,
-                           isSelect: questionInfo.selectedAnsfer.contains(ansfer))
+                           isSelect: isSelect)
             )
         }
     }

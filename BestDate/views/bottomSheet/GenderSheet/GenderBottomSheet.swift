@@ -28,6 +28,7 @@ struct GenderBottomSheet: View {
                     clickAction()
                     if store.state.activeScreen == .REGISTRATION_START { registrationHolder.gender = item }
                     if store.state.activeScreen == .PERSONAL_DATA { PersonalDataMediator.shared.setGender(gender: item) }
+                    if store.state.activeScreen == .FILL_REGISTRATION_DATA { FillRegistrationDataMediator.shared.setGender(gender: item) }
                 }
             }
         }.frame(width: UIScreen.main.bounds.width, alignment: .topLeading)

@@ -81,6 +81,9 @@ struct SearchScreen: View {
             if mediator.users.isEmpty {
                 mediator.getUserList(withClear: true, page: 0) { }
             }
+//            MainMediator.shared.searchPage = {
+//                mediator.getUserList(withClear: true, page: 0) { }
+//            }
         }
     }
 }

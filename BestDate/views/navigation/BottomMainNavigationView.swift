@@ -34,7 +34,7 @@ struct BottomMainNavigationView: View {
                 BottomMainNavigationItemView(text: "matches", activeIcon: "ic_menu_match_active", unActiveIcon: "ic_menu_match_unactive", type: .MATCHES, currentScreen: $currentScreen, hasNewActions: $emptyAction) { type in clickAction(type) }
                     .padding(.init(top: 0, leading: halfDistance, bottom: 0, trailing: halfDistance))
 
-                BottomMainNavigationItemView(text: "messages", activeIcon: "ic_menu_message_active", unActiveIcon: "ic_menu_message_unactive", type: .CHAT_LIST, currentScreen: $currentScreen, hasNewActions: $hasNewMessages) { type in clickAction(type) }
+                BottomMainNavigationItemView(text: "chats", activeIcon: "ic_menu_message_active", unActiveIcon: "ic_menu_message_unactive", type: .CHAT_LIST, currentScreen: $currentScreen, hasNewActions: $hasNewMessages) { type in clickAction(type) }
                     .padding(.init(top: 0, leading: halfDistance, bottom: 0, trailing: halfDistance))
 
                 BottomMainNavigationItemView(text: "top_50", activeIcon: "ic_menu_top_active", unActiveIcon: "ic_menu_top_unactive", type: .TOP_50, currentScreen: $currentScreen, hasNewActions: $emptyAction) { type in clickAction(type) }

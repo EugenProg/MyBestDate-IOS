@@ -58,6 +58,7 @@ struct NavigationView: View {
                     case .PERSONAL_DATA: PersonalDataScreen()
                     case .BLACK_LIST: BlackListScreen().transition(.move(edge: .trailing))
                     case .CHANGE_PASS: ChangePasswordScreen().transition(.move(edge: .trailing))
+                    case .FILL_REGISTRATION_DATA: FillRegistrationDataScreen()
                     }
                 }.blur(radius: getBlur())
             }.onTapGesture(perform: { store.dispatch(action: .hideKeyboard) })

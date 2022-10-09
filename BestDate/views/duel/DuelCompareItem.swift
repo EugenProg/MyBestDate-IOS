@@ -36,7 +36,7 @@ struct DuelCompareItem: View {
                             .font(MyFont.getFont(.BOLD, 16))
                             .padding(.init(top: 0, leading: 8, bottom: 0, trailing: 0))
 
-                        Text("y")
+                        Text(NSLocalizedString("years_short", comment: "age"))
                             .foregroundColor(ColorList.white_80.color)
                             .font(MyFont.getFont(.BOLD, 10))
                             .padding(.init(top: 5, leading: 0, bottom: 0, trailing: 0))

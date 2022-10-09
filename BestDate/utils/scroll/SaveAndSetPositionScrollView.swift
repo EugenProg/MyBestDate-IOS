@@ -8,21 +8,24 @@
 import SwiftUI
 
 struct SaveAndSetPositionScrollView<Content: View>: View {
-    let startPosition: CGFloat
+    var startPosition: CGFloat
     let offsetChanged: (CGFloat) -> Void
     let onRefresh: OnRefresh
     let content: Content
+    @Binding var scrollToStartPosition: Bool
 
     @State private var state = RefreshState.waiting
     @State private var currentOffset: CGFloat = 0
 
     init(
             startPosition: CGFloat = 0,
+            toStartPosition: Binding<Bool> = .constant(false),
             offsetChanged: @escaping (CGFloat) -> Void = { _ in },
             onRefresh: @escaping OnRefresh,
             @ViewBuilder content: () -> Content
         ) {
             self.startPosition = startPosition
+            self._scrollToStartPosition = toStartPosition
             self.offsetChanged = offsetChanged
             self.onRefresh = onRefresh
             self.content = content()
@@ -49,6 +52,14 @@ struct SaveAndSetPositionScrollView<Content: View>: View {
                             .frame(width: 50, height: 50)
                     }.offset(y: (state == .loading) ? 0 : -THRESHOLD)
                         .opacity((currentOffset < 1) ? 0 : 1)
+
+                    if scrollToStartPosition {
+                        EmptyView()
+                            .onAppear {
+                                proxy.scrollTo(0, anchor: .top)
+                                scrollToStartPosition.toggle()
+                            }
+                    }
                 }
             }
             .background(PositionIndicators(type: .fixed))

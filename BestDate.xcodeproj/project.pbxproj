@@ -20,6 +20,7 @@
 		4C022A51285F0AF10043E49D /* EdiorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C022A50285F0AF00043E49D /* EdiorView.swift */; };
 		4C022A54285F90CC0043E49D /* PhotoViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C022A53285F90CC0043E49D /* PhotoViewer.swift */; };
 		4C022A562864D3370043E49D /* NotCorrectPhotoBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C022A552864D3370043E49D /* NotCorrectPhotoBottomSheet.swift */; };
+		4C09803028EDF9BE0025D729 /* QuestionnaireTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C09802F28EDF9BD0025D729 /* QuestionnaireTypes.swift */; };
 		4C0E71DF284FAAF3004099D4 /* SansPro_bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4C0E71DC284FAAF3004099D4 /* SansPro_bold.otf */; };
 		4C0E71E0284FAAF3004099D4 /* SansPro_italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4C0E71DD284FAAF3004099D4 /* SansPro_italic.otf */; };
 		4C0E71E1284FAAF3004099D4 /* SansPro_regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4C0E71DE284FAAF3004099D4 /* SansPro_regular.otf */; };
@@ -163,6 +164,17 @@
 		4C9C57C228DCC9BD00688F4B /* ChangePasswordMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9C57C128DCC9BD00688F4B /* ChangePasswordMediator.swift */; };
 		4C9C57C428DCCAF900688F4B /* ChangePasswordInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9C57C328DCCAF900688F4B /* ChangePasswordInputView.swift */; };
 		4C9C57C728DCDCA100688F4B /* SocialNetworkBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9C57C628DCDCA100688F4B /* SocialNetworkBottomSheet.swift */; };
+		4C9C57C928DCE0A600688F4B /* SocialNetworkMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9C57C828DCE0A600688F4B /* SocialNetworkMediator.swift */; };
+		4C9C57CB28E0AA9500688F4B /* FillRegistrationDataScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9C57CA28E0AA9500688F4B /* FillRegistrationDataScreen.swift */; };
+		4C9C57CD28E0B00400688F4B /* FillRegistrationDataMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9C57CC28E0B00400688F4B /* FillRegistrationDataMediator.swift */; };
+		4C9C57D228E0C21100688F4B /* NotifySettingsMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9C57D128E0C21100688F4B /* NotifySettingsMediator.swift */; };
+		4C9C57D828E35CA400688F4B /* ValueSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C9C57D728E35CA300688F4B /* ValueSansPro-Regular.ttf */; };
+		4C9C57DA28E35CCF00688F4B /* ValueSansPro-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C9C57D928E35CCF00688F4B /* ValueSansPro-Italic.ttf */; };
+		4C9C57DC28E35CD500688F4B /* ValueSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C9C57DB28E35CD500688F4B /* ValueSansPro-Bold.ttf */; };
+		4C9C57DE28E4AAFC00688F4B /* NotoSansDisplay-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C9C57DD28E4AAFB00688F4B /* NotoSansDisplay-Bold.ttf */; };
+		4C9C57E028E4AB0500688F4B /* NotoSansDisplay-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C9C57DF28E4AB0500688F4B /* NotoSansDisplay-Italic.ttf */; };
+		4C9C57E228E4AB0D00688F4B /* NotoSansDisplay-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C9C57E128E4AB0D00688F4B /* NotoSansDisplay-Regular.ttf */; };
+		4C9C57E528E5F89A00688F4B /* SocialSignInMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9C57E428E5F89900688F4B /* SocialSignInMediator.swift */; };
 		4C9E5AD528CFA92900E4E9FF /* BlockedUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E5AD428CFA92900E4E9FF /* BlockedUserView.swift */; };
 		4C9E5AD728CFA9C500E4E9FF /* ActiveUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E5AD628CFA9C500E4E9FF /* ActiveUserView.swift */; };
 		4C9E5ADA28D0E01F00E4E9FF /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E5AD928D0E01F00E4E9FF /* SettingsScreen.swift */; };
@@ -327,6 +339,7 @@
 		4C022A50285F0AF00043E49D /* EdiorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdiorView.swift; sourceTree = "<group>"; };
 		4C022A53285F90CC0043E49D /* PhotoViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewer.swift; sourceTree = "<group>"; };
 		4C022A552864D3370043E49D /* NotCorrectPhotoBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotCorrectPhotoBottomSheet.swift; sourceTree = "<group>"; };
+		4C09802F28EDF9BD0025D729 /* QuestionnaireTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireTypes.swift; sourceTree = "<group>"; };
 		4C0E71DC284FAAF3004099D4 /* SansPro_bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SansPro_bold.otf; sourceTree = "<group>"; };
 		4C0E71DD284FAAF3004099D4 /* SansPro_italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SansPro_italic.otf; sourceTree = "<group>"; };
 		4C0E71DE284FAAF3004099D4 /* SansPro_regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SansPro_regular.otf; sourceTree = "<group>"; };
@@ -474,6 +487,20 @@
 		4C9C57C128DCC9BD00688F4B /* ChangePasswordMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordMediator.swift; sourceTree = "<group>"; };
 		4C9C57C328DCCAF900688F4B /* ChangePasswordInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordInputView.swift; sourceTree = "<group>"; };
 		4C9C57C628DCDCA100688F4B /* SocialNetworkBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialNetworkBottomSheet.swift; sourceTree = "<group>"; };
+		4C9C57C828DCE0A600688F4B /* SocialNetworkMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialNetworkMediator.swift; sourceTree = "<group>"; };
+		4C9C57CA28E0AA9500688F4B /* FillRegistrationDataScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillRegistrationDataScreen.swift; sourceTree = "<group>"; };
+		4C9C57CC28E0B00400688F4B /* FillRegistrationDataMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillRegistrationDataMediator.swift; sourceTree = "<group>"; };
+		4C9C57D128E0C21100688F4B /* NotifySettingsMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifySettingsMediator.swift; sourceTree = "<group>"; };
+		4C9C57D528E20DC700688F4B /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4C9C57D628E20E0900688F4B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4C9C57D728E35CA300688F4B /* ValueSansPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ValueSansPro-Regular.ttf"; sourceTree = "<group>"; };
+		4C9C57D928E35CCF00688F4B /* ValueSansPro-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ValueSansPro-Italic.ttf"; sourceTree = "<group>"; };
+		4C9C57DB28E35CD500688F4B /* ValueSansPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ValueSansPro-Bold.ttf"; sourceTree = "<group>"; };
+		4C9C57DD28E4AAFB00688F4B /* NotoSansDisplay-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansDisplay-Bold.ttf"; sourceTree = "<group>"; };
+		4C9C57DF28E4AB0500688F4B /* NotoSansDisplay-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansDisplay-Italic.ttf"; sourceTree = "<group>"; };
+		4C9C57E128E4AB0D00688F4B /* NotoSansDisplay-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansDisplay-Regular.ttf"; sourceTree = "<group>"; };
+		4C9C57E328E4B26A00688F4B /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4C9C57E428E5F89900688F4B /* SocialSignInMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialSignInMediator.swift; sourceTree = "<group>"; };
 		4C9E5AD428CFA92900E4E9FF /* BlockedUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedUserView.swift; sourceTree = "<group>"; };
 		4C9E5AD628CFA9C500E4E9FF /* ActiveUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveUserView.swift; sourceTree = "<group>"; };
 		4C9E5AD928D0E01F00E4E9FF /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
@@ -790,6 +817,7 @@
 			children = (
 				4C2DC93728BFB6B400DD15C2 /* NotifySettingsScreen.swift */,
 				4C2DC93A28C0824700DD15C2 /* NotifySettingsSelectorView.swift */,
+				4C9C57D128E0C21100688F4B /* NotifySettingsMediator.swift */,
 			);
 			path = "notify settings";
 			sourceTree = "<group>";
@@ -917,6 +945,7 @@
 			children = (
 				4C950D5E284E7318004E2C13 /* AuthScreen.swift */,
 				4C5C86DC2874B18D006DE024 /* AuthMediator.swift */,
+				4C9C57E428E5F89900688F4B /* SocialSignInMediator.swift */,
 			);
 			path = auth;
 			sourceTree = "<group>";
@@ -1039,6 +1068,7 @@
 				4C0E71E8284FB14A004099D4 /* Localizable.strings */,
 				4C3D27CF2853A37F00F8FD09 /* BottomSheetList.swift */,
 				4C5C86D52874A602006DE024 /* UserDataHolder.swift */,
+				4C09802F28EDF9BD0025D729 /* QuestionnaireTypes.swift */,
 			);
 			path = value;
 			sourceTree = "<group>";
@@ -1046,6 +1076,12 @@
 		4C8E7D91284D1D2900D6E58D /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				4C9C57DD28E4AAFB00688F4B /* NotoSansDisplay-Bold.ttf */,
+				4C9C57DF28E4AB0500688F4B /* NotoSansDisplay-Italic.ttf */,
+				4C9C57E128E4AB0D00688F4B /* NotoSansDisplay-Regular.ttf */,
+				4C9C57D928E35CCF00688F4B /* ValueSansPro-Italic.ttf */,
+				4C9C57DB28E35CD500688F4B /* ValueSansPro-Bold.ttf */,
+				4C9C57D728E35CA300688F4B /* ValueSansPro-Regular.ttf */,
 				4C0E71DC284FAAF3004099D4 /* SansPro_bold.otf */,
 				4C0E71DD284FAAF3004099D4 /* SansPro_italic.otf */,
 				4C0E71DE284FAAF3004099D4 /* SansPro_regular.otf */,
@@ -1076,7 +1112,7 @@
 		4C8E7DA9284D24BC00D6E58D /* screens */ = {
 			isa = PBXGroup;
 			children = (
-				4C9C57BE28DCC82600688F4B /* change password */,
+				4C9C57CE28E0B15300688F4B /* fill data */,
 				4C1459062857926700558B6B /* SplashScreen.storyboard */,
 				4C1459022856627E00558B6B /* GeolocationScreen.swift */,
 				4C2DC94D28C36DBE00DD15C2 /* LoadingProgressScreen.swift */,
@@ -1233,8 +1269,18 @@
 			isa = PBXGroup;
 			children = (
 				4C9C57C628DCDCA100688F4B /* SocialNetworkBottomSheet.swift */,
+				4C9C57C828DCE0A600688F4B /* SocialNetworkMediator.swift */,
 			);
 			path = social;
+			sourceTree = "<group>";
+		};
+		4C9C57CE28E0B15300688F4B /* fill data */ = {
+			isa = PBXGroup;
+			children = (
+				4C9C57CA28E0AA9500688F4B /* FillRegistrationDataScreen.swift */,
+				4C9C57CC28E0B00400688F4B /* FillRegistrationDataMediator.swift */,
+			);
+			path = "fill data";
 			sourceTree = "<group>";
 		};
 		4C9E5AD828D0DFEA00E4E9FF /* settings */ = {
@@ -1251,6 +1297,7 @@
 		4C9E5ADB28D0E1B400E4E9FF /* personal data */ = {
 			isa = PBXGroup;
 			children = (
+				4C9C57BE28DCC82600688F4B /* change password */,
 				4C9E5ADC28D0E1D200E4E9FF /* PersonalDataScreen.swift */,
 				4C9E5AED28D2347100E4E9FF /* PerasonalDataMediator.swift */,
 				4C9E5B0928DA267300E4E9FF /* PersonalDataBottomView.swift */,
@@ -1669,6 +1716,9 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
+				ru,
+				uk,
 			);
 			mainGroup = 4C8E7D74284CC93F00D6E58D;
 			packageReferences = (
@@ -1690,14 +1740,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CDD3B992888601000793466 /* no_data.json in Resources */,
+				4C9C57D828E35CA400688F4B /* ValueSansPro-Regular.ttf in Resources */,
 				4C2DC93128BE944F00DD15C2 /* loading.json in Resources */,
 				4CD34F65289C22C800504396 /* love_burst_pink.json in Resources */,
 				4C8E7D88284CC94900D6E58D /* Preview Assets.xcassets in Resources */,
 				4C0E71E6284FB14A004099D4 /* Localizable.strings in Resources */,
 				4C2DC8D228BA9F3D00DD15C2 /* match_action_anim.json in Resources */,
 				4C0E71E1284FAAF3004099D4 /* SansPro_regular.otf in Resources */,
+				4C9C57E028E4AB0500688F4B /* NotoSansDisplay-Italic.ttf in Resources */,
+				4C9C57E228E4AB0D00688F4B /* NotoSansDisplay-Regular.ttf in Resources */,
 				4C0E71DF284FAAF3004099D4 /* SansPro_bold.otf in Resources */,
+				4C9C57DA28E35CCF00688F4B /* ValueSansPro-Italic.ttf in Resources */,
 				4C8E7D85284CC94900D6E58D /* Assets.xcassets in Resources */,
+				4C9C57DE28E4AAFC00688F4B /* NotoSansDisplay-Bold.ttf in Resources */,
+				4C9C57DC28E35CD500688F4B /* ValueSansPro-Bold.ttf in Resources */,
 				4C0E71E0284FAAF3004099D4 /* SansPro_italic.otf in Resources */,
 				4CB9FF84288094C0004F1BF6 /* heart.json in Resources */,
 				4CD34F64289C22C800504396 /* love_burst_red.json in Resources */,
@@ -1783,6 +1839,7 @@
 				4CB9FF68287B3211004F1BF6 /* MainLocationBottomSheet.swift in Sources */,
 				4CB9FF9A28842457004F1BF6 /* TextButton.swift in Sources */,
 				4C5C86C2287336FD006DE024 /* MultySelectMediator.swift in Sources */,
+				4C9C57E528E5F89A00688F4B /* SocialSignInMediator.swift in Sources */,
 				4C92CB0B28AC21C600E5DF52 /* VerificationMediator.swift in Sources */,
 				4CF0284B2889DCEE002C59EE /* TopListMediator.swift in Sources */,
 				4CB9FF9428833A56004F1BF6 /* DirrectionLineButtonView.swift in Sources */,
@@ -1790,6 +1847,7 @@
 				4C878F2428B9248B00043680 /* MatchesListScreen.swift in Sources */,
 				4C1458FF285661EA00558B6B /* PassRecoveryOTPScreen.swift in Sources */,
 				4C1458F72855C8E900558B6B /* DateSelectView.swift in Sources */,
+				4C9C57CD28E0B00400688F4B /* FillRegistrationDataMediator.swift in Sources */,
 				4CB9FF6A287B324C004F1BF6 /* MainOnlineBottomSheet.swift in Sources */,
 				4CD34F69289D885100504396 /* CompanionTextMessageWithParentView.swift in Sources */,
 				4CBF5922289E9754006BDE53 /* InvitationChatView.swift in Sources */,
@@ -1896,6 +1954,7 @@
 				4C0E71F1284FC9A6004099D4 /* OnboardSecondScreen.swift in Sources */,
 				4CD34F592895A63F00504396 /* DateBlockView.swift in Sources */,
 				4C9E5ADA28D0E01F00E4E9FF /* SettingsScreen.swift in Sources */,
+				4C9C57CB28E0AA9500688F4B /* FillRegistrationDataScreen.swift in Sources */,
 				4C9E5B0428D38C9C00E4E9FF /* LanguageMediator.swift in Sources */,
 				4CB9FF46287743D9004F1BF6 /* MainMediator.swift in Sources */,
 				4C1B7C2F286CD8C4000DB5D4 /* SeekBarView.swift in Sources */,
@@ -1934,6 +1993,7 @@
 				4CB9FF62287AF001004F1BF6 /* SearchMediator.swift in Sources */,
 				4C2DC94028C11F8100DD15C2 /* PushScreen.swift in Sources */,
 				4C9E5AF928D37DBD00E4E9FF /* BlackListMediator.swift in Sources */,
+				4C09803028EDF9BE0025D729 /* QuestionnaireTypes.swift in Sources */,
 				4C8E7DA8284D23D200D6E58D /* Store.swift in Sources */,
 				4CBF5929289ECC97006BDE53 /* ImagesListView.swift in Sources */,
 				4CB9FF502877472A004F1BF6 /* ChatListScreen.swift in Sources */,
@@ -1990,6 +2050,7 @@
 				4C9E5AF628D254E500E4E9FF /* SettingsSaveButtonView.swift in Sources */,
 				4C6CFF1828B3E7C800BA33E0 /* TranslateTextApiService.swift in Sources */,
 				4C878F2A28B926B200043680 /* MatchesListMediator.swift in Sources */,
+				4C9C57C928DCE0A600688F4B /* SocialNetworkMediator.swift in Sources */,
 				4CA2E23428673D1A00E514C4 /* ProgressBarView.swift in Sources */,
 				4C9E5AF228D2482D00E4E9FF /* SettingsInfoView.swift in Sources */,
 				4CB9FFAC2885B4DB004F1BF6 /* GuestsMediator.swift in Sources */,
@@ -1999,6 +2060,7 @@
 				4C8E7D81284CC93F00D6E58D /* BestDateApp.swift in Sources */,
 				4C1B7C2C286CD5BD000DB5D4 /* QuestionnaireSeekBarBottomSheet.swift in Sources */,
 				4C2DC8CE28BA9B1300DD15C2 /* MatchActionScreen.swift in Sources */,
+				4C9C57D228E0C21100688F4B /* NotifySettingsMediator.swift in Sources */,
 				4C2DC93E28C11C2B00DD15C2 /* PushMediator.swift in Sources */,
 				4C9E5AFF28D389BB00E4E9FF /* SettingsMediator.swift in Sources */,
 				4C9E5ADF28D0E1EA00E4E9FF /* BlackListScreen.swift in Sources */,
@@ -2054,6 +2116,9 @@
 			isa = PBXVariantGroup;
 			children = (
 				4C0E71E7284FB14A004099D4 /* en */,
+				4C9C57D528E20DC700688F4B /* de */,
+				4C9C57D628E20E0900688F4B /* ru */,
+				4C9C57E328E4B26A00688F4B /* uk */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -2065,6 +2130,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -2125,6 +2191,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -2184,7 +2251,7 @@
 				CODE_SIGN_ENTITLEMENTS = BestDate/BestDateDebug.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"BestDate/Preview Content\"";
 				DEVELOPMENT_TEAM = 7869H74LP9;
 				ENABLE_PREVIEWS = YES;
@@ -2224,7 +2291,7 @@
 				CODE_SIGN_ENTITLEMENTS = BestDate/BestDate.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"BestDate/Preview Content\"";
 				DEVELOPMENT_TEAM = 7869H74LP9;
 				ENABLE_PREVIEWS = YES;

@@ -116,7 +116,7 @@ struct SaveSettingsRequest: Codable {
 }
 
 struct UpdateLanguageRequest: Codable {
-    var language: Bool
+    var language: String
 }
 
 struct UpdateUserDataRequest: Codable {

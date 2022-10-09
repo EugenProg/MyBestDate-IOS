@@ -26,7 +26,7 @@ class CoreApiService {
             if let data = data, let response = try? JSONDecoder().decode(AuthResponse.self, from: data) {
                 NetworkLogger.printLog(data: data)
                 UserDataHolder.setAuthData(response: response)
-                completion(true)
+                completion(response.error == nil)
             } else {
                 completion(false)
             }
@@ -48,7 +48,7 @@ class CoreApiService {
             if let data = data, let response = try? JSONDecoder().decode(AuthResponse.self, from: data) {
                 NetworkLogger.printLog(data: data)
                 UserDataHolder.setAuthData(response: response)
-                completion(true)
+                completion(response.error == nil)
             } else {
                 completion(false)
             }
@@ -57,7 +57,7 @@ class CoreApiService {
         task.resume()
     }
 
-    func signInWithSocial(provider: SocialOAuthType, token: String, completion: @escaping (Bool) -> Void) {
+    func signInWithSocial(provider: SocialOAuthType, token: String, completion: @escaping (Bool, Bool) -> Void) {
         var request = CoreApiTypes.signInWithSocial.getRequest()
 
         let data = try! encoder.encode(SocialOAuthRequest(provider: provider.rawValue, access_token: token))
@@ -70,9 +70,9 @@ class CoreApiService {
             if let data = data, let response = try? JSONDecoder().decode(AuthResponse.self, from: data) {
                 NetworkLogger.printLog(data: data)
                 UserDataHolder.setAuthData(response: response)
-                completion(true)
+                completion(response.error == nil, response.registration == true)
             } else {
-                completion(false)
+                completion(false, false)
             }
         }
 
@@ -453,6 +453,7 @@ class CoreApiService {
 
         let data = try! encoder.encode(RefreshTokenRequest(refresh_token: UserDataHolder.refreshToken))
         encoder.outputFormatting = .prettyPrinted
+        NetworkLogger.printLog(data: data)
         request.httpBody = data
 
         let task = URLSession.shared.dataTask(with: request) {data, response, error in
@@ -460,7 +461,7 @@ class CoreApiService {
             if let data = data, let response = try? JSONDecoder().decode(AuthResponse.self, from: data) {
                 NetworkLogger.printLog(data: data)
                 UserDataHolder.setAuthData(response: response)
-                completion(true)
+                completion(response.error == nil)
             } else {
                 completion(false)
             }
@@ -476,7 +477,7 @@ class CoreApiService {
             NetworkLogger.printLog(response: response)
             if let data = data, let _ = try? JSONDecoder().decode(BaseResponse.self, from: data) {
                 NetworkLogger.printLog(data: data)
-                UserDataHolder.setAuthData(response: AuthResponse(token_type: "", expires_in: 0, access_token: "", refresh_token: ""))
+                UserDataHolder.setAuthData(response: AuthResponse(access_token: "", refresh_token: ""))
                 completion(true)
             } else {
                 completion(false)
@@ -608,10 +609,10 @@ class CoreApiService {
         task.resume()
     }
 
-    func updateLanguage(enable: Bool, completion: @escaping (Bool) -> Void) {
+    func updateLanguage(lang: String, completion: @escaping (Bool) -> Void) {
         var request = CoreApiTypes.updateLanguage.getRequest(withAuth: true)
 
-        let data = try! encoder.encode(UpdateLanguageRequest(language: enable))
+        let data = try! encoder.encode(UpdateLanguageRequest(language: lang))
         encoder.outputFormatting = .prettyPrinted
         NetworkLogger.printLog(data: data)
         request.httpBody = data
@@ -657,6 +658,7 @@ class CoreApiService {
             NetworkLogger.printLog(response: response)
             if let data = data, let _ = try? JSONDecoder().decode(BaseResponse.self, from: data) {
                 NetworkLogger.printLog(data: data)
+                UserDataHolder.setAuthData(response: AuthResponse(access_token: "", refresh_token: ""))
                 completion()
             } else {
                 completion()

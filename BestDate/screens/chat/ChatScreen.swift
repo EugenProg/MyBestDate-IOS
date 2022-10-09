@@ -36,7 +36,9 @@ struct ChatScreen: View {
                         ChatListMediator.shared.getChatList()
                         mediator.messages.removeAll()
                         mediator.loadingMode = true
-                        store.dispatch(action: .navigationBack)
+                        withAnimation {
+                            store.dispatch(action: .navigationBack)
+                        }
                     }
 
                     Spacer()

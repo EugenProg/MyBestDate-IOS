@@ -10,7 +10,6 @@ import SwiftUI
 struct UserProfileImageListScreen: View {
     @EnvironmentObject var store: Store
     @ObservedObject var mediator = ProfileMediator.shared
-    @State var showButtons = true
 
     var body: some View {
         ZStack {
@@ -24,7 +23,7 @@ struct UserProfileImageListScreen: View {
 
                 Spacer()
 
-                ImagesListView(images: $mediator.profileImages, selectedImage: $mediator.selectedImage, showButtons: $showButtons) { }
+                ImagesListView(images: $mediator.profileImages, selectedImage: $mediator.selectedImage) { }
 
                 Spacer()
             }
@@ -34,10 +33,6 @@ struct UserProfileImageListScreen: View {
             .onAppear {
                 store.dispatch(action:
                         .setScreenColors(status: MyColor.getColor(23, 28, 31), style: .lightContent))
-
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    withAnimation { showButtons = false }
-                }
             }
     }
 }

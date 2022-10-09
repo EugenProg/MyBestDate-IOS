@@ -17,7 +17,7 @@ struct AnotherProfileImageLineView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 3) {
                     ForEach(imagesList.indices, id: \.self) { index in
-                        ImageLineItemView(image: imagesList[index], imageSize: imageSize)
+                        ImageLineItemView(image: imagesList[index], imageSize: imageSize, showText: false)
                             .onTapGesture {
                                 selectAction(index)
                             }

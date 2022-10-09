@@ -30,6 +30,7 @@ class MatchMediator: ObservableObject {
             if success {
                 DispatchQueue.main.async {
                     self.setMatchUsers(list: users)
+                    self.currentIndex = 0
                 }
             }
         }

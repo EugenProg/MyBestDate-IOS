@@ -27,12 +27,6 @@ class SettingsMediator: ObservableObject {
             completion()
         }
     }
-
-    func updateLanguage(enable: Bool, completion: @escaping () -> Void) {
-        CoreApiService.shared.updateLanguage(enable: enable) { success in
-            completion()
-        }
-    }
 }
 
 enum UserSettingsType {

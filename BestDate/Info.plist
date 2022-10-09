@@ -7,45 +7,47 @@
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>CFBundleURLIconFile</key>
-			<string>/Users/eugen/Downloads/Archive (1)/Icon.png</string>
 			<key>CFBundleURLName</key>
-			<string>com.best-date.app.example</string>
+			<string>Facebook</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>best-date</string>
+				<string>fb1234729153762453</string>
 			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>CFBundleURLIconFile</key>
-			<string>AppIcon</string>
 			<key>CFBundleURLName</key>
-			<string>Google sign in</string>
+			<string>Google</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>com.googleusercontent.apps.320734338059-5llkt240p9ev4v67dngnbehj4lnki47b</string>
 			</array>
 		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLName</key>
-			<string>com.best-date</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>best-date</string>
-			</array>
-		</dict>
 	</array>
+	<key>FacebookAppID</key>
+	<string>1234729153762453</string>
+	<key>FacebookClientToken</key>
+	<string>0aad54b18e8d0286c214dbc4c6a02747</string>
+	<key>FacebookDisplayName</key>
+	<string>My Best date</string>
 	<key>FirebaseAppDelegateProxyEnabled</key>
 	<false/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbauth2</string>
+	</array>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SansPro_bold.otf</string>
 		<string>SansPro_italic.otf</string>
 		<string>SansPro_regular.otf</string>
+        <string>ValueSansPro-Italic.ttf</string>
+        <string>ValueSansPro-Bold.ttf</string>
+        <string>ValueSansPro-Regular.ttf</string>
+        <string>NotoSansDisplay-Italic.ttf</string>
+        <string>NotoSansDisplay-Bold.ttf</string>
+        <string>NotoSansDisplay-Regular.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

@@ -35,7 +35,9 @@ struct AnotherProfileQuestionnaireScreen: View {
 
             ScrollView(.vertical, showsIndicators: true) {
                 VStack(spacing: 0) {
-                    QuestionnaireParagraphView(paragraph: mediator.generalInfo)
+                    QuestionnaireParagraphView(paragraph: mediator.generalInfo) { text in
+                        mediator.translate(text: text)
+                    }
 
                     QuestionnaireParagraphView(paragraph: mediator.personalInfo)
 

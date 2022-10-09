@@ -36,7 +36,11 @@ struct DirrectionLineButtonView: View {
                 clickAction()
             }
         }.frame(height: 56)
-        .padding(.init(top: 8, leading: 18, bottom: 8, trailing: 18))
+            .background(ColorList.main.color)
+            .padding(.init(top: 8, leading: 18, bottom: 8, trailing: 18))
+            .onTapGesture {
+                withAnimation { clickAction() }
+            }
     }
 }
 

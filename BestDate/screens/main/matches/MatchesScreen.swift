@@ -65,7 +65,7 @@ struct MatchesScreen: View {
                                 .foregroundColor(ColorList.white_80.color)
                                 .font(MyFont.getFont(.BOLD, 19))
 
-                            Text("y")
+                            Text(NSLocalizedString("years_short", comment: "age"))
                                 .foregroundColor(ColorList.white_80.color)
                                 .font(MyFont.getFont(.BOLD, 12))
                                 .padding(.init(top: 0, leading: 3, bottom: 0, trailing: 0))
@@ -107,6 +107,11 @@ struct MatchesScreen: View {
         }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         .background(ColorList.main.color.edgesIgnoringSafeArea(.bottom))
         .onAppear {
+            MainMediator.shared.matchPage = {
+                if mediator.users.isEmpty || mediator.currentIndex >= mediator.users.count {
+                    mediator.getMatchPage()
+                }
+            }
             if mediator.users.isEmpty {
                 mediator.getMatchPage()
             }

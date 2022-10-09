@@ -41,6 +41,16 @@ class AnotherProfileQuestionnaireMediator: ObservableObject {
         }
     }
 
+    func translate(text: String) {
+        TranslateTextApiService.shared.translate(text: text, lang: MainMediator.shared.user.language ?? "en") { success, translatedText in
+            DispatchQueue.main.async {
+                var questionnaire = self.user.questionnaire ?? Questionnaire()
+                questionnaire.about_me = translatedText
+                self.generalInfo = self.getGeneralParagraph(questionnaire: questionnaire)
+            }
+        }
+    }
+
     private func getGeneralParagraph(questionnaire: Questionnaire) -> QuestionnaireParagraph {
         QuestionnaireParagraph(
             title: NSLocalizedString("general_information", comment: "Title").uppercased(),
@@ -48,7 +58,10 @@ class AnotherProfileQuestionnaireMediator: ObservableObject {
                 QuestionnairePoint(
                     id: 0,
                     title: NSLocalizedString("about_me", comment: "Title"),
-                    value: questionnaire.about_me
+                    value: questionnaire.about_me,
+                    trnaslatableView: true,
+                    translatable: questionnaire.about_me?.isEmpty == false &&
+                                    user.language != MainMediator.shared.user.language
                 ),
                 QuestionnairePoint(
                     id: 1,
@@ -67,17 +80,17 @@ class AnotherProfileQuestionnaireMediator: ObservableObject {
                 QuestionnairePoint(
                     id: 3,
                     title: NSLocalizedString("eye_color", comment: "Title"),
-                    value:  questionnaire.eye_color
+                    value:  EyeColorType().getName(questionnaire.eye_color)
                 ),
                 QuestionnairePoint(
                     id: 4,
                     title: NSLocalizedString("hair_color", comment: "Title"),
-                    value: questionnaire.hair_color
+                    value: HeirColorType().getName(questionnaire.hair_color)
                 ),
                 QuestionnairePoint(
                     id: 5,
                     title: NSLocalizedString("hair_length", comment: "Title"),
-                    value: questionnaire.hair_length
+                    value: HeirLengthType().getName(questionnaire.hair_length)
                 )
             ]
         )
@@ -118,27 +131,27 @@ class AnotherProfileQuestionnaireMediator: ObservableObject {
                 QuestionnairePoint(
                     id: 0,
                     title: NSLocalizedString("marital_status", comment: "Title"),
-                    value: questionnaire.marital_status
+                    value: MaritalStatus().getName(questionnaire.marital_status)
                 ),
                 QuestionnairePoint(
                     id: 1,
                     title: NSLocalizedString("having_kids", comment: "Title"),
-                    value: questionnaire.kids
+                    value: KidsCount().getName(questionnaire.kids)
                 ),
                 QuestionnairePoint(
                     id: 2,
                     title: NSLocalizedString("plase_of_residence", comment: "Title"),
-                    value: questionnaire.nationality
+                    value: NationalityTypes().getName(questionnaire.nationality)
                 ),
                 QuestionnairePoint(
                     id: 3,
                     title: NSLocalizedString("education", comment: "Title"),
-                    value: questionnaire.education
+                    value: EducationStatus().getName(questionnaire.education)
                 ),
                 QuestionnairePoint(
                     id: 4,
                     title: NSLocalizedString("occupational_status", comment: "Title"),
-                    value: questionnaire.occupation
+                    value: OccupationalStatus().getName(questionnaire.occupation)
                 )
             ]
         )
@@ -151,17 +164,17 @@ class AnotherProfileQuestionnaireMediator: ObservableObject {
                 QuestionnairePoint(
                     id: 0,
                     title: NSLocalizedString("hobby", comment: "Title"),
-                    value: questionnaire.hobby?.toString()
+                    value: HobbyType().getNameLine(questionnaire.hobby)
                 ),
                 QuestionnairePoint(
                     id: 1,
                     title: NSLocalizedString("types_of_sports", comment: "Title"),
-                    value: questionnaire.sport?.toString()
+                    value: SportTypes().getNameLine(questionnaire.sport)
                 ),
                 QuestionnairePoint(
                     id: 2,
                     title: NSLocalizedString("evening_time", comment: "Title"),
-                    value: questionnaire.evening_time
+                    value: EveningTimeTypes().getName(questionnaire.evening_time)
                 )
             ]
         )
@@ -187,4 +200,7 @@ struct QuestionnairePoint {
     var id: Int
     var title: String
     var value: String? = ""
+    var trnaslatableView: Bool = false
+    var translatable: Bool = false
 }
+

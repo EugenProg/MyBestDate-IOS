@@ -29,8 +29,10 @@ struct QuestionnaireScreen: View {
                     if !mediator.editMode {
                         TextButton(text: "skip", textColor: ColorList.white.color) {
                             mediator.getUserData { _ in
-                                UserDataHolder.setStartScreen(screen: .MAIN)
-                                store.dispatch(action: .navigate(screen: .MAIN))
+                                DispatchQueue.main.async {
+                                    UserDataHolder.setStartScreen(screen: .NOTIFY_SETTINGS)
+                                    store.dispatch(action: .navigate(screen: .NOTIFY_SETTINGS))
+                                }
                             }
                         }
                     }
@@ -77,8 +79,8 @@ struct QuestionnaireScreen: View {
             }
         } else {
             withAnimation {
-                UserDataHolder.setStartScreen(screen: .MAIN)
-                store.dispatch(action: .navigate(screen: .MAIN))
+                UserDataHolder.setStartScreen(screen: .NOTIFY_SETTINGS)
+                store.dispatch(action: .navigate(screen: .NOTIFY_SETTINGS))
             }
         }
     }

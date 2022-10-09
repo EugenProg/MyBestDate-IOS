@@ -56,27 +56,27 @@ class QuestionnaireMediator: ObservableObject {
     }
 
     func setQuestionnaire(questionnaire: Questionnaire, email: String?, phone: String?) {
-        pages[0].questions[0].selectedAnsfer = questionnaire.marital_status ?? ""
-        pages[0].questions[1].selectedAnsfer = questionnaire.kids ?? ""
-        pages[0].questions[2].selectedAnsfer = questionnaire.nationality ?? ""
-        pages[0].questions[3].selectedAnsfer = questionnaire.education ?? ""
-        pages[0].questions[4].selectedAnsfer = questionnaire.occupation ?? ""
+        pages[0].questions[0].selectedAnsfer = MaritalStatus().getNameKey(questionnaire.marital_status)
+        pages[0].questions[1].selectedAnsfer = KidsCount().getNameKey(questionnaire.kids)
+        pages[0].questions[2].selectedAnsfer = NationalityTypes().getNameKey(questionnaire.nationality)
+        pages[0].questions[3].selectedAnsfer = EducationStatus().getNameKey(questionnaire.education)
+        pages[0].questions[4].selectedAnsfer = OccupationalStatus().getNameKey(questionnaire.occupation)
 
         pages[1].questions[0].selectedAnsfer = (questionnaire.height != nil) ? (questionnaire.height ?? 0).toString() : ""
         pages[1].questions[1].selectedAnsfer = (questionnaire.weight != nil) ? (questionnaire.weight ?? 0).toString() : ""
-        pages[1].questions[2].selectedAnsfer = questionnaire.eye_color ?? ""
-        pages[1].questions[3].selectedAnsfer = questionnaire.hair_length ?? ""
-        pages[1].questions[4].selectedAnsfer = questionnaire.hair_color ?? ""
+        pages[1].questions[2].selectedAnsfer = EyeColorType().getNameKey(questionnaire.eye_color)
+        pages[1].questions[3].selectedAnsfer = HeirLengthType().getNameKey(questionnaire.hair_length)
+        pages[1].questions[4].selectedAnsfer = HeirColorType().getNameKey(questionnaire.hair_color)
 
-        pages[2].questions[0].selectedAnsfer = questionnaire.purpose ?? ""
-        pages[2].questions[1].selectedAnsfer = questionnaire.expectations ?? ""
+        pages[2].questions[0].selectedAnsfer = PorposeOfDatingType().getNameKey(questionnaire.purpose)
+        pages[2].questions[1].selectedAnsfer = AwaitFromDatingType().getNameKey(questionnaire.expectations)
         pages[2].questions[2].selectedAnsfer = createLocation(country: questionnaire.search_country, city: questionnaire.search_city)
         startAgeRange = questionnaire.search_age_min ?? 5
         endAgeRange = questionnaire.search_age_max ?? 120
 
-        pages[3].questions[0].selectedAnsfer = (questionnaire.hobby ?? []).toString()
-        pages[3].questions[1].selectedAnsfer = (questionnaire.sport ?? []).toString()
-        pages[3].questions[2].selectedAnsfer = questionnaire.evening_time ?? ""
+        pages[3].questions[0].selectedAnsfer = HobbyType().getNameLine(questionnaire.hobby)
+        pages[3].questions[1].selectedAnsfer = SportTypes().getNameLine(questionnaire.sport)
+        pages[3].questions[2].selectedAnsfer = EveningTimeTypes().getNameKey(questionnaire.evening_time)
 
         pages[4].questions[0].selectedAnsfer = questionnaire.about_me ?? ""
 
@@ -88,7 +88,33 @@ class QuestionnaireMediator: ObservableObject {
         addProgress(progress: calculateSavedProgress(questionnaire: questionnaire))
 
         self.savedQuestionnaire = questionnaire
-        self.userQuestinnaire = questionnaire
+        self.userQuestinnaire = transformQuestionnaire(questionnaire: questionnaire)
+    }
+
+    private func transformQuestionnaire(questionnaire: Questionnaire) -> Questionnaire {
+        Questionnaire(
+            purpose: PorposeOfDatingType().getNameKey(questionnaire.purpose),
+            expectations: AwaitFromDatingType().getNameKey(questionnaire.expectations),
+            height: questionnaire.height,
+            weight: questionnaire.weight,
+            eye_color: EyeColorType().getNameKey(questionnaire.eye_color),
+            hair_color: HeirColorType().getNameKey(questionnaire.hair_color),
+            hair_length: HeirLengthType().getNameKey(questionnaire.hair_length),
+            marital_status: MaritalStatus().getNameKey(questionnaire.marital_status),
+            kids: KidsCount().getNameKey(questionnaire.kids),
+            education: EducationStatus().getNameKey(questionnaire.education),
+            occupation: OccupationalStatus().getNameKey(questionnaire.occupation),
+            nationality: NationalityTypes().getNameKey(questionnaire.nationality),
+            search_country: questionnaire.search_country,
+            search_city: questionnaire.search_city,
+            about_me: questionnaire.about_me,
+            search_age_min: questionnaire.search_age_min,
+            search_age_max: questionnaire.search_age_max,
+            socials: questionnaire.socials,
+            hobby: HobbyType().getNameArray(questionnaire.hobby),
+            sport: SportTypes().getNameArray(questionnaire.sport),
+            evening_time: EveningTimeTypes().getNameKey(questionnaire.evening_time)
+        )
     }
 
     private func createLocation(country: String?, city: String?) -> String {
@@ -150,15 +176,17 @@ class QuestionnaireMediator: ObservableObject {
     }
 
     func saveQuestionnaire(questionnaire: Questionnaire, completion: @escaping (Bool, String) -> Void) {
-        CoreApiService.shared.saveQuestionnaire(questionnaire: questionnaire) { success, user in
-            if success {
-                self.getUserData { success in
-                    completion(success, "")
-                }
-            } else {
-                completion(success, "default_error_message")
-            }
-        }
+        let data = try! JSONEncoder().encode(questionnaire)
+        NetworkLogger.printLog(data: data)
+//        CoreApiService.shared.saveQuestionnaire(questionnaire: questionnaire) { success, user in
+//            if success {
+//                self.getUserData { success in
+//                    completion(success, "")
+//                }
+//            } else {
+//                completion(success, "default_error_message")
+//            }
+//        }
     }
 
     func getUserData(completion: @escaping (Bool) -> Void) {
@@ -171,6 +199,19 @@ class QuestionnaireMediator: ObservableObject {
     }
 
     func getQuestionnaire() {
+        userQuestinnaire.marital_status = MaritalStatus().getServerName(userQuestinnaire.marital_status)
+        userQuestinnaire.kids = KidsCount().getServerName(userQuestinnaire.kids)
+        userQuestinnaire.nationality = NationalityTypes().getServerName(userQuestinnaire.nationality)
+        userQuestinnaire.education = EducationStatus().getServerName(userQuestinnaire.education)
+        userQuestinnaire.occupation = OccupationalStatus().getServerName(userQuestinnaire.occupation)
+        userQuestinnaire.hair_color = HeirColorType().getServerName(userQuestinnaire.hair_color)
+        userQuestinnaire.hair_length = HeirLengthType().getServerName(userQuestinnaire.hair_length)
+        userQuestinnaire.eye_color = EyeColorType().getServerName(userQuestinnaire.eye_color)
+        userQuestinnaire.purpose = PorposeOfDatingType().getServerName(userQuestinnaire.purpose)
+        userQuestinnaire.expectations = AwaitFromDatingType().getServerName(userQuestinnaire.expectations)
+        userQuestinnaire.evening_time = EveningTimeTypes().getServerName(userQuestinnaire.evening_time)
+        userQuestinnaire.hobby = HobbyType().getServerArray(userQuestinnaire.hobby)
+        userQuestinnaire.sport = SportTypes().getServerArray(userQuestinnaire.sport)
         userQuestinnaire.search_age_min = startAgeRange
         userQuestinnaire.search_age_max = endAgeRange
     }

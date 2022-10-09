@@ -57,10 +57,10 @@ struct UserSearchItemView: View {
                         .foregroundColor(ColorList.white_80.color)
                         .font(MyFont.getFont(.BOLD, 16))
 
-                    Text("y")
+                    Text(NSLocalizedString("years_short", comment: "age"))
                         .foregroundColor(ColorList.white_80.color)
                         .font(MyFont.getFont(.BOLD, 10))
-                }.padding(.init(top: 7, leading: 13, bottom: 2, trailing: 10))
+                }.padding(.init(top: 0, leading: 13, bottom: 2, trailing: 10))
 
                 Text(user?.getLocation() ?? "")
                     .foregroundColor(ColorList.white_40.color)

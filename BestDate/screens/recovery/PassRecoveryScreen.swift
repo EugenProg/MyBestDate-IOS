@@ -39,7 +39,6 @@ struct PassRecoveryScreen: View {
                             Spacer()
                         }.padding(.init(top: 25, leading: 0, bottom: 0, trailing: 0))
                     }.frame(width: UIScreen.main.bounds.width)
-                        .padding(.init(top: 25, leading: 0, bottom: 0, trailing: 0))
                 }
             }
         }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .topLeading)

@@ -11,7 +11,6 @@ struct AnotherProfileImagesScreen: View {
     @EnvironmentObject var store: Store
     @ObservedObject var mediator = AnotherProfileMediator.shared
     @State var isLiked: Bool = false
-    @State var showButtons = true
 
     var body: some View {
         ZStack {
@@ -25,7 +24,7 @@ struct AnotherProfileImagesScreen: View {
 
                 Spacer()
 
-                ImagesListView(images: $mediator.imageList, selectedImage: $mediator.selectedImage, showButtons: $showButtons) {
+                ImagesListView(images: $mediator.imageList, selectedImage: $mediator.selectedImage) {
                     isLiked = mediator.imageList[mediator.selectedImage].liked == true
                 }
 
@@ -48,14 +47,6 @@ struct AnotherProfileImagesScreen: View {
                 store.dispatch(action:
                         .setScreenColors(status: MyColor.getColor(23, 28, 31), style: .lightContent))
                 isLiked = mediator.imageList.isEmpty ? false : (mediator.imageList[mediator.selectedImage].liked ?? false)
-
-                if mediator.imageList.count > 1 {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                        withAnimation { showButtons = false }
-                    }
-                } else {
-                    showButtons = false
-                }
             }
     }
 }

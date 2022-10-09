@@ -66,8 +66,7 @@ struct RegistrationContinueScreen: View {
                                 
                                 Spacer()
                             }.padding(.init(top: 25, leading: 0, bottom: 0, trailing: 0))
-                        }.frame(width: UIScreen.main.bounds.width, height: 590 + store.state.statusBarHeight)
-                            .padding(.init(top: 25, leading: 0, bottom: 0, trailing: 0))
+                        }.frame(width: UIScreen.main.bounds.width, height: 615 + store.state.statusBarHeight)
                     }
                 }
             }

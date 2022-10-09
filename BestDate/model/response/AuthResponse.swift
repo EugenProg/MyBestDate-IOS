@@ -8,8 +8,12 @@
 import Foundation
 
 struct AuthResponse: Decodable {
-    var token_type: String
-    var expires_in: Int
-    var access_token: String
-    var refresh_token: String
+    var token_type: String? = nil
+    var expires_in: Int? = nil
+    var access_token: String? = nil
+    var refresh_token: String? = nil
+    var registration: Bool? = nil
+    var error: String? = nil
+    var error_description: String? = nil
+    var message: String? = nil
 }

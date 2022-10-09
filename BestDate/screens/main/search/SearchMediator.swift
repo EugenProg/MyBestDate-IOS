@@ -17,6 +17,7 @@ class SearchMediator: ObservableObject {
     @Published var meta: Meta = Meta()
     @Published var loadingMode: Bool = true
 
+    @Published var scrollToStartPosition: Bool = false
     var savedPosition: CGFloat = 0
 
     var locationType: LocationFilterTypes = UserDataHolder.searchLocation
@@ -30,6 +31,7 @@ class SearchMediator: ObservableObject {
                     self.users.addAll(list: userList, clear: withClear)
                     self.meta = meta
                 }
+                self.scrollToStartPosition = true
                 self.loadingMode = false
             }
             completion()

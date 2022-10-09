@@ -43,20 +43,18 @@ struct InputPageView: View {
                         .fill(ColorList.main_5.color)
 
                     if text.isEmpty {
-                        VStack {
+                        VStack(alignment: .leading, spacing: 0) {
                             Text(NSLocalizedString("tell_us_about_yourself_what_you_find_interesting", comment: "About you"))
                                 .foregroundColor(ColorList.main_30.color)
                                 .font(MyFont.getFont(.BOLD, 20))
                                 .lineSpacing(6)
-                                .padding(.init(top: 18, leading: 12, bottom: 18, trailing: 18))
+                                .padding(.init(top: 18, leading: 5, bottom: 18, trailing: 0))
 
                             Spacer()
-                        }
+                        }.frame(width: UIScreen.main.bounds.width - 100, alignment: .leading)
                     }
                     VStack {
-                        TextEditor(text: $text)
-                            .foregroundColor(ColorList.main.color)
-                            .font(MyFont.getFont(.BOLD, 20))
+                        Editor()
                             .padding(.init(top: 10, leading: 18, bottom: 18, trailing: 18))
 
                         HStack {
@@ -100,6 +98,21 @@ struct InputPageView: View {
             questionnaireMediator.removeProgress(progress: questionInfo.percent)
         } else if !text.isEmpty && questionInfo.selectedAnsfer.isEmpty {
             questionnaireMediator.addProgress(progress: questionInfo.percent)
+        }
+    }
+
+    fileprivate func Editor() -> some View {
+        if #available(iOS 16.0, *) {
+            return TextEditor(text: $text)
+                .foregroundColor(ColorList.main.color)
+                .scrollContentBackground(.hidden)
+                .background(MyColor.getColor(0, 0, 0, 0))
+                .font(MyFont.getFont(.BOLD, 20))
+        } else {
+            return TextEditor(text: $text)
+                .foregroundColor(ColorList.main.color)
+                .font(MyFont.getFont(.BOLD, 20))
+                .background(MyColor.getColor(0, 0, 0, 0))
         }
     }
 }

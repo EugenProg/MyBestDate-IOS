@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import Firebase
 import UserNotifications
+import FacebookCore
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     let gcmMessageIDKey = "gcm.message_id"
@@ -37,6 +38,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             application.registerUserNotificationSettings(settings)
         }
 
+      //  ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+
         application.registerForRemoteNotifications()
         return true
     }
@@ -52,6 +55,15 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
       completionHandler(UIBackgroundFetchResult.newData)
     }
+
+//    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+//        ApplicationDelegate.shared.application(
+//            app, open: url,
+//            sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
+//
+//            annotation: options[UIApplication.OpenURLOptionsKey.annotation]
+//        )
+//    }
 }
 
 extension AppDelegate: MessagingDelegate {

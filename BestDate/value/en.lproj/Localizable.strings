@@ -140,7 +140,6 @@
 "duel" = "Duel";
 "result" = "Result";
 "disatnce_unit" = "%@ km";
-"my_duels" = "My Duels";
 "who_voted_for_me" = "Who voted for me";
 "you_where_voted_for" = "You were voted for:";
 "winner" = "Winner";
@@ -194,7 +193,7 @@
 "in_love" = "In love";
 "engaged" = "Engaged";
 "actively_searching" = "Actively searching";
-"no" = "No";
+"no_kids" = "No";
 "one" = "1";
 "two" = "2";
 "three" = "3";
@@ -573,6 +572,7 @@
 "a_list_of_users_who_have_been_blocked_by_you" = "A list of users who have been blocked by you. The list can be edited";
 "show_the_list" = "Show the list";
 "app_lang" = "English";
+"lang_code" = "en";
 "language" = "Language";
 "here_you_can_select_the_language" = "Here you can select the desired application language";
 "delete_profile" = "Delete Profile";
@@ -602,10 +602,10 @@
 "enter_a_old_pass" = "Enter the old password";
 "confirm_the_new_pass" = "Confirm the new password";
 "change_password" = "Change password";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
+"fill_the_required_data" = "Fill the required data";
+"sign_out" = "Sign Out";
+"your_invitation_was_send" = "Your invitation was successfully sent";
+"years_short" = "y";
 "" = "";
 "" = "";
 "" = "";

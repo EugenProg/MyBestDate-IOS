@@ -33,7 +33,7 @@ struct BlockedUserView: View {
                                 .foregroundColor(ColorList.white.color)
                                 .font(MyFont.getFont(.BOLD, 26))
 
-                            Text("y")
+                            Text(NSLocalizedString("years_short", comment: "age"))
                                 .foregroundColor(ColorList.white_80.color)
                                 .font(MyFont.getFont(.BOLD, 13))
                         }.padding(.init(top: 0, leading: 6, bottom: 0, trailing: 0))

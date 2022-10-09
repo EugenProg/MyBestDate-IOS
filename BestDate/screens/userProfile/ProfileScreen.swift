@@ -92,7 +92,7 @@ struct ProfileScreen: View {
                                         ProfileButtonView(name: "my_duels", image: "ic_my_duels", isActive: (mediator.user.new_duels ?? 0) > 0) {
                                             store.dispatch(action: .navigate(screen: .MY_DUELS))
                                         }
-                                    }.padding(.init(top: 28, leading: 18, bottom: 0, trailing: 18))
+                                    }.padding(.init(top: 28, leading: 18, bottom: 3, trailing: 18))
                                 }
                             }.padding(.init(top: 75, leading: 0, bottom: 0, trailing: 0))
                         }.frame(height: 231, alignment: .top)
