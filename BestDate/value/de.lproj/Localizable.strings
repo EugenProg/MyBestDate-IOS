@@ -593,6 +593,7 @@
 "this_user_is_blocked" = "Dieser Benutzer ist gesperrt";
 "unblock" = "Entsperren";
 "save_successfully" = "Änderungen erfolgreich gespeichert";
+"failed_save_data" = "Daten wurden nicht gespeichert";
 "attention" = "Achtung";
 "all_your_data_will_be_deleted" = "Alle Ihre Daten, einschließlich Ihres Kontos, werden gelöscht.";
 "any_has_not_given_an_answer_yet" = "%@ hat noch nicht geantwortet";

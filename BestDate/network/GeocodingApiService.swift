@@ -14,7 +14,6 @@ class GeocodingApiService {
 
         let task = URLSession.shared.dataTask(with: request) {data, response, error in
             NetworkLogger.printLog(response: response)
-            NetworkLogger.printLog(data: data)
             if let data = data, let response = try? JSONDecoder().decode([GeocodingResponse].self, from: data) {
                 NetworkLogger.printLog(data: data)
                 completion(response.first ?? GeocodingResponse())

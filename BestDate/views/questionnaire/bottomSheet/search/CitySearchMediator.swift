@@ -65,25 +65,30 @@ class CitySearchMediator: NSObject, ObservableObject {
 
 extension CitySearchMediator: GMSAutocompleteFetcherDelegate {
 
-  func didAutocomplete(with predictions: [GMSAutocompletePrediction]) {
-      cityList.removeAll()
-    for prediction in predictions {
-        let city = prediction.attributedPrimaryText.string
-        let countryLine = prediction.attributedSecondaryText?.string
-        var country = ""
-        if (countryLine?.contains(",") == false) {
-            country = countryLine?.components(separatedBy: ", ").last ?? ""
-        } else { country = countryLine ?? "" }
-        let result = CityListItem(id: cityList.count, country: country,city: city)
-        if !cityList.contains(where: { item in item.city == result.city }) {
-            cityList.append(result)
+    func didAutocomplete(with predictions: [GMSAutocompletePrediction]) {
+        cityList.removeAll()
+        for prediction in predictions {
+            let city = prediction.attributedPrimaryText.string
+            let country = getItemFromLine(line: prediction.attributedSecondaryText?.string)
+            let result = CityListItem(id: cityList.count, country: country,city: city)
+            if !cityList.contains(where: { item in item.city == result.city && item.country == result.country }) {
+                cityList.append(result)
+            }
+
         }
     }
-  }
 
-  func didFailAutocompleteWithError(_ error: Error) {
-      print(">>> error \(error)")
-  }
+    private func getItemFromLine(line: String?) -> String {
+        var item = ""
+        if (line?.contains(",") == true) {
+            item = line?.components(separatedBy: ", ").last ?? ""
+        } else { item = line ?? "" }
+        return item
+    }
+
+    func didFailAutocompleteWithError(_ error: Error) {
+        print(">>> error \(error)")
+    }
 }
 
 struct CityListItem {

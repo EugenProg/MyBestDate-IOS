@@ -593,6 +593,7 @@
 "this_user_is_blocked" = "This user is blocked";
 "unblock" = "Unblock";
 "save_successfully" = "Changes successfully saved";
+"failed_save_data" = "Failed to save data";
 "attention" = "Attention";
 "all_your_data_will_be_deleted" = "All of your data, including your account, will be deleted";
 "any_has_not_given_an_answer_yet" = "%@ hasn’t given an answer yet";

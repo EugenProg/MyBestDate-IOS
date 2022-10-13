@@ -482,8 +482,9 @@ extension GeocodingResponse {
                                lng: self.lon ?? "",
                                iso_code: self.address?.country_code ?? "",
                                country: self.address?.country ?? "",
-                               state: self.address?.state ?? "",
-                               state_name: self.address?.state_district ?? "",
+                               state: self.address?.country_code ?? "",
+                               //state: self.address?.state ?? "",
+                               state_name: self.address?.state_district ?? self.address?.country_code ?? "",
                                city: self.address?.city ?? "")
     }
 

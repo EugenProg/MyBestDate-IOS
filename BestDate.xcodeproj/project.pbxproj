@@ -75,6 +75,8 @@
 		4C2ED4F228F71CA80057DB02 /* DistanceBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2ED4F128F71CA80057DB02 /* DistanceBarView.swift */; };
 		4C2ED4F428F71D0A0057DB02 /* DistanceBarButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2ED4F328F71D0A0057DB02 /* DistanceBarButtonView.swift */; };
 		4C2ED4F628F72C160057DB02 /* GeocodingApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2ED4F528F72C150057DB02 /* GeocodingApiService.swift */; };
+		4C2ED4F928F87CEF0057DB02 /* UserLocationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2ED4F828F87CEF0057DB02 /* UserLocationScreen.swift */; };
+		4C2ED4FB28F87D080057DB02 /* UserLocationMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2ED4FA28F87D080057DB02 /* UserLocationMediator.swift */; };
 		4C3D27B9285110FA00F8FD09 /* StandardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D27B8285110F800F8FD09 /* StandardButton.swift */; };
 		4C3D27BC28511BB700F8FD09 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D27BB28511BB600F8FD09 /* Title.swift */; };
 		4C3D27BE28511DCA00F8FD09 /* HeaderText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D27BD28511DCA00F8FD09 /* HeaderText.swift */; };
@@ -400,6 +402,8 @@
 		4C2ED4F128F71CA80057DB02 /* DistanceBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceBarView.swift; sourceTree = "<group>"; };
 		4C2ED4F328F71D0A0057DB02 /* DistanceBarButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceBarButtonView.swift; sourceTree = "<group>"; };
 		4C2ED4F528F72C150057DB02 /* GeocodingApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodingApiService.swift; sourceTree = "<group>"; };
+		4C2ED4F828F87CEF0057DB02 /* UserLocationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationScreen.swift; sourceTree = "<group>"; };
+		4C2ED4FA28F87D080057DB02 /* UserLocationMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationMediator.swift; sourceTree = "<group>"; };
 		4C3D27B8285110F800F8FD09 /* StandardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardButton.swift; sourceTree = "<group>"; };
 		4C3D27BB28511BB600F8FD09 /* Title.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
 		4C3D27BD28511DCA00F8FD09 /* HeaderText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderText.swift; sourceTree = "<group>"; };
@@ -852,6 +856,15 @@
 				4C2ED4F328F71D0A0057DB02 /* DistanceBarButtonView.swift */,
 			);
 			path = filter;
+			sourceTree = "<group>";
+		};
+		4C2ED4F728F87CC40057DB02 /* user location */ = {
+			isa = PBXGroup;
+			children = (
+				4C2ED4F828F87CEF0057DB02 /* UserLocationScreen.swift */,
+				4C2ED4FA28F87D080057DB02 /* UserLocationMediator.swift */,
+			);
+			path = "user location";
 			sourceTree = "<group>";
 		};
 		4C3D27BA28511B9A00F8FD09 /* textViews */ = {
@@ -1316,6 +1329,7 @@
 		4C9E5ADB28D0E1B400E4E9FF /* personal data */ = {
 			isa = PBXGroup;
 			children = (
+				4C2ED4F728F87CC40057DB02 /* user location */,
 				4C9C57BE28DCC82600688F4B /* change password */,
 				4C9E5ADC28D0E1D200E4E9FF /* PersonalDataScreen.swift */,
 				4C9E5AED28D2347100E4E9FF /* PerasonalDataMediator.swift */,
@@ -2070,6 +2084,7 @@
 				4C2DC94E28C36DBF00DD15C2 /* LoadingProgressScreen.swift in Sources */,
 				4CD34F34288D0A3900504396 /* ChatListMediator.swift in Sources */,
 				4C9E5AF628D254E500E4E9FF /* SettingsSaveButtonView.swift in Sources */,
+				4C2ED4FB28F87D080057DB02 /* UserLocationMediator.swift in Sources */,
 				4C6CFF1828B3E7C800BA33E0 /* TranslateTextApiService.swift in Sources */,
 				4C878F2A28B926B200043680 /* MatchesListMediator.swift in Sources */,
 				4C9C57C928DCE0A600688F4B /* SocialNetworkMediator.swift in Sources */,
@@ -2109,6 +2124,7 @@
 				4C5C86D128749CE4006DE024 /* RequestModels.swift in Sources */,
 				4CDD3B9F288874F200793466 /* ProfileButtonView.swift in Sources */,
 				4CDD3B9D288867DA00793466 /* GuestListView.swift in Sources */,
+				4C2ED4F928F87CEF0057DB02 /* UserLocationScreen.swift in Sources */,
 				4CD34F30288C171000504396 /* VoiterInfoView.swift in Sources */,
 				4C8E7D90284D1C4000D6E58D /* Font.swift in Sources */,
 				4C92CB2A28B2787300E5DF52 /* SendedInvitationItemView.swift in Sources */,

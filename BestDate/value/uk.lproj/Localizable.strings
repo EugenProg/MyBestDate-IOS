@@ -593,6 +593,7 @@
 "this_user_is_blocked" = "Цей користувач заблокований";
 "unblock" = "Розблокувати";
 "save_successfully" = "Зміни успішно збережено";
+"failed_save_data" = "Не вдалося зберегти дані";
 "attention" = "Увага!";
 "all_your_data_will_be_deleted" = "Всі ваші дані, включаючи обліковий запис, будуть видалені";
 "any_has_not_given_an_answer_yet" = "%@ ще не відповіла";

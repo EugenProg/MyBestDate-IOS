@@ -19,7 +19,7 @@ struct PersonalDataBottomView: View {
             }.padding(.init(top: 10, leading: 0, bottom: 10, trailing: 0))
 
             SettingsSearchLocationButtonView(location: MainMediator.shared.user.getLocation()) {
-
+                store.dispatch(action: .navigate(screen: .USER_LOCATION))
             }.padding(.init(top: 0, leading: 0, bottom: 30, trailing: 0))
         }
     }

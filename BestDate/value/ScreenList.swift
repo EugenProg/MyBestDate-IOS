@@ -43,5 +43,6 @@ enum ScreenList: String {
     case BLACK_LIST
     case CHANGE_PASS
     case SEARCH_FILTER
+    case USER_LOCATION
 }
 

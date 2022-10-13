@@ -691,4 +691,25 @@ class CoreApiService {
 
         task.resume()
     }
+
+    func saveUserLocation(location: SetUserLocationRequest, completion: @escaping (Bool, UserInfo) -> Void) {
+        var request = CoreApiTypes.saveUserLocation.getRequest(withAuth: true)
+
+        let data = try! encoder.encode(location)
+        encoder.outputFormatting = .prettyPrinted
+        NetworkLogger.printLog(data: data)
+        request.httpBody = data
+
+        let task = URLSession.shared.dataTask(with: request) {data, response, error in
+            NetworkLogger.printLog(response: response)
+            if let data = data, let response = try? JSONDecoder().decode(UserDataResponse.self, from: data) {
+                NetworkLogger.printLog(data: data)
+                completion(response.success, response.data ?? UserInfo())
+            } else {
+                completion(false, UserInfo())
+            }
+        }
+
+        task.resume()
+    }
 }
