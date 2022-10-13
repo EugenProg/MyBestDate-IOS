@@ -150,7 +150,7 @@ class ChatMediator: ObservableObject {
                         self.messages.addAll(list: list, clear: true)
                     }
                 }
-                self.cardsOnlyMode = (self.messages.isEmpty && self.user.block_messages == true) || self.user.blocked == true
+                self.cardsOnlyMode = (self.messages.isEmpty && self.user.block_messages == true) || self.user.allow_chat == false
                 self.loadingMode = false
             }
         }

@@ -45,6 +45,7 @@ enum ColorList {
     case white_10
     case white_13
     case white_30
+    case white_30_without_opacity
     case white_40
     case white_50
     case white_60
@@ -91,6 +92,7 @@ enum ColorList {
         case .white_10: return MyColor.getColor(255, 255, 255, 0.1)
         case .white_13: return MyColor.getColor(255, 255, 255, 0.13)
         case .white_30: return MyColor.getColor(255, 255, 255, 0.3)
+        case .white_30_without_opacity: return MyColor.getColor(255, 255, 255, 0.3)
         case .white_40: return MyColor.getColor(255, 255, 255, 0.4)
         case .white_50: return MyColor.getColor(255, 255, 255, 0.5)
         case .white_60: return MyColor.getColor(255, 255, 255, 0.6)
@@ -137,6 +139,7 @@ enum ColorList {
         case .white_10: return MyColor.getColor(255, 255, 255, 0.1)
         case .white_13: return MyColor.getColor(255, 255, 255, 0.13)
         case .white_30: return MyColor.getColor(255, 255, 255, 0.3)
+        case .white_30_without_opacity: return MyColor.getColor(255, 255, 255, 0.3)
         case .white_40: return MyColor.getColor(255, 255, 255, 0.4)
         case .white_50: return MyColor.getColor(255, 255, 255, 0.5)
         case .white_60: return MyColor.getColor(255, 255, 255, 0.6)

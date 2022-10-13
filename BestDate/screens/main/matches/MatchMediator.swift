@@ -14,6 +14,7 @@ class MatchMediator: ObservableObject {
     @Published var users: [MatchItem] = []
     @Published var currentUser: ShortUserInfo? = nil
     @Published var currentIndex: Int = 0
+    @Published var loadingMode: Bool = true
 
     func setMatchUsers(list: [ShortUserInfo]) {
         users.removeAll()
@@ -26,11 +27,13 @@ class MatchMediator: ObservableObject {
     }
 
     func getMatchPage() {
+        loadingMode = true
         MatchesApiService.shared.getMatchesList() { success, users in
             if success {
                 DispatchQueue.main.async {
                     self.setMatchUsers(list: users)
                     self.currentIndex = 0
+                    self.loadingMode = false
                 }
             }
         }

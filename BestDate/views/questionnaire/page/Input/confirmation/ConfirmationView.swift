@@ -12,13 +12,13 @@ struct ConfirmationView: View {
     @Binding var isSelect: Bool
 
     var body: some View {
-        HStack(spacing: 12) {
+        HStack(spacing: 2) {
             if isSelect {
-                Text("confirmed")
-                    .foregroundColor(ColorList.pink.color)
-                    .font(MyFont.getFont(.BOLD, 16))
-                
                 Image("ic_verify_active")
+
+//                Text("confirmed")
+//                    .foregroundColor(ColorList.pink.color)
+//                    .font(MyFont.getFont(.BOLD, 12))
             } else {
                 Image("ic_verify_unactive")
             }

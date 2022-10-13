@@ -22,9 +22,8 @@ struct MatchesListView: View {
             offsetChanged: { it in mediator.savePosition(it) },
             onRefresh: { done in mediator.getMatchesList { done() } }) {
                 if mediator.matches.isEmpty {
-                    let topPadding = ((UIScreen.main.bounds.height - 260) / 2) - 100
-                    NoDataView(loadingMode: $mediator.loadingMode)
-                        .padding(.init(top: topPadding, leading: 0, bottom: 0, trailing: 0))
+                    NoDataBoxView(loadingMode: $mediator.loadingMode, text: "you_dont_have_a_match_yet")
+                        .padding(.init(top: 50, leading: 50, bottom: ((UIScreen.main.bounds.width - 9) / 2) - 69, trailing: 50))
                 } else {
                     LazyVGrid(columns: items, alignment: .center, spacing: 20,
                               pinnedViews: [.sectionHeaders, .sectionFooters]) {

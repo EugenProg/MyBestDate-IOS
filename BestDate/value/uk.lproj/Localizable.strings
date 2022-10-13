@@ -94,7 +94,7 @@
 "good_job" = "Молодець!";
 
 "search" = "Пошук";
-"matches" = "Збіжності";
+"matches" = "Matches";
 "messages" = "Повідомлення";
 "chats" = "Чати";
 "top_50" = "Топ-50";
@@ -606,12 +606,13 @@
 "sign_out" = "Вийти";
 "your_invitation_was_send" = "Ваше запрошення успішно надіслано";
 "years_short" = "р";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
+"you_have_no_guests_yet" = "У вас поки що немає гостей";
+"nobody_voted_for_you_yet" = "За вас ще ніхто не проголосував";
+"no_one_has_liked_your_photos_yet" = "Нікому поки що не сподобалися ваші фотографії";
+"nothing_was_found_by_these_parameters" = "За заданими параметрами нічого не знайдено";
+"you_dont_have_a_match_yet" = "У вас поки що немає збігів";
+"search_distance" = "Дистанція пошуку";
+"possibility_from_to_km" = "Можливість від 0 до 300 кілометрів";
 "" = "";
 "" = "";
 "" = "";

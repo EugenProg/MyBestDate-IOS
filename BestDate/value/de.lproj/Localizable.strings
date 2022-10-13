@@ -94,7 +94,7 @@
 "good_job" = "Gut gemacht!";
 
 "search" = "Suche";
-"matches" = "Treffer";
+"matches" = "Matches";
 "messages" = "Messages";
 "chats" = "Chats";
 "top_50" = "Top 50";
@@ -606,12 +606,13 @@
 "sign_out" = "Verlassen";
 "your_invitation_was_send" = "Ihre Einladung wurde erfolgreich gesendet";
 "years_short" = "j";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
+"you_have_no_guests_yet" = "Sie haben noch keine Gäste";
+"nobody_voted_for_you_yet" = "Bis jetzt hat noch niemand für Sie gestimmt";
+"no_one_has_liked_your_photos_yet" = "Ihre Fotos haben noch niemandem gefallen";
+"nothing_was_found_by_these_parameters" = "Für die angegebenen Parameter wurde nichts gefunden";
+"you_dont_have_a_match_yet" = "Sie haben noch keine Übereinstimmung";
+"search_distance" = "Entfernung suchen";
+"possibility_from_to_km" = "Möglichkeit von 0 bis 300 Kilometer";
 "" = "";
 "" = "";
 "" = "";

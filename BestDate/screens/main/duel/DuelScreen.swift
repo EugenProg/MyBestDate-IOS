@@ -87,7 +87,7 @@ struct DuelScreen: View {
                             }
                         }.padding(.init(top: 0, leading: 3, bottom: 16, trailing: 3))
                     } else {
-                        NoDataBoxView(text: "sorry_you_voted_for_all_the_photos")
+                        NoDataBoxView(loadingMode: $mediator.loadingMode, text: "sorry_you_voted_for_all_the_photos")
                             .padding(.init(top: 50, leading: 50, bottom: ((UIScreen.main.bounds.width - 9) / 2) - 69, trailing: 50))
                     }
 

@@ -23,7 +23,7 @@ struct ChatScreen: View {
     
     var body: some View {
         ZStack(alignment: .top) {
-            if !mediator.messages.isEmpty {
+            if !mediator.messages.isEmpty && mediator.user.getRole() != .bot {
                 TopPanelView(offsetValue: $offsetValue) {
                     CreateInvitationMediator.shared.setUser(user: mediator.user)
                     store.dispatch(action: .createInvitation)
@@ -48,35 +48,46 @@ struct ChatScreen: View {
                             .foregroundColor(ColorList.white.color)
                             .font(MyFont.getFont(.BOLD, 18))
 
-                        let visitTime = mediator.user.last_online_at?.toDate().getVisitPeriod() ?? ""
+                        if mediator.user.getRole() == .user {
+                            let visitTime = mediator.user.last_online_at?.toDate().getVisitPeriod() ?? ""
 
-                        Text((mediator.user.is_online ?? false) ? "Online" : "Last visit \(visitTime)")
-                            .foregroundColor((mediator.user.is_online ?? false) ? ColorList.green.color : ColorList.white_80.color)
-                            .font(MyFont.getFont(.NORMAL, 14))
+                            Text((mediator.user.is_online ?? false) ? "Online" : "Last visit \(visitTime)")
+                                .foregroundColor((mediator.user.is_online ?? false) ? ColorList.green.color : ColorList.white_80.color)
+                                .font(MyFont.getFont(.NORMAL, 14))
+                        }
                     }.padding(.init(top: 0, leading: 5, bottom: 0, trailing: 18))
                         .onTapGesture {
-                            goToUserProfile()
+                            if mediator.user.getRole() == .user {
+                                goToUserProfile()
+                            }
                         }
 
-                    ZStack {
-                        AsyncImageView(url: mediator.user.main_photo?.thumb_url)
+                    if mediator.user.getRole() == .bot {
+                        Image("icon")
+                            .resizable()
                             .clipShape(Circle())
+                            .frame(width: 45, height: 45)
+                    } else {
+                        ZStack {
+                            AsyncImageView(url: mediator.user.main_photo?.thumb_url)
+                                .clipShape(Circle())
 
-                        if mediator.user.is_online ?? false {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 6)
-                                    .fill(ColorList.main.color)
+                            if mediator.user.is_online ?? false {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 6)
+                                        .fill(ColorList.main.color)
 
-                                RoundedRectangle(cornerRadius: 4)
-                                    .fill(ColorList.green.color)
-                                    .frame(width: 8, height: 8)
-                            }.frame(width: 12, height: 12)
-                                .padding(.init(top: 33, leading: 33, bottom: 0, trailing: 0))
-                        }
-                    }.frame(width: 45, height: 45, alignment: .bottomTrailing)
-                        .onTapGesture {
-                            goToUserProfile()
-                        }
+                                    RoundedRectangle(cornerRadius: 4)
+                                        .fill(ColorList.green.color)
+                                        .frame(width: 8, height: 8)
+                                }.frame(width: 12, height: 12)
+                                    .padding(.init(top: 33, leading: 33, bottom: 0, trailing: 0))
+                            }
+                        }.frame(width: 45, height: 45, alignment: .bottomTrailing)
+                            .onTapGesture {
+                                goToUserProfile()
+                            }
+                    }
                 }.frame(height: 55)
                     .padding(.init(top: 16 + (offsetValue / 2), leading: 32, bottom: 16, trailing: 32))
 
@@ -106,39 +117,41 @@ struct ChatScreen: View {
                     .rotationEffect(Angle(degrees: 180))
             }
 
-            if mediator.cardsOnlyMode {
-                ChatOnlyCardBottomView(user: mediator.user)
-                    .padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight, trailing: 0))
-                    .edgesIgnoringSafeArea(.bottom)
-            } else {
-                ChatBottomView(text: $mediator.inputText,
-                               sendTextProcess: $sendTextProcess,
-                               translateProcess: $translateProcess,
-                               additionalHeight: $additionalHeight,
-                               editMode: $mediator.editMode,
-                               replyMode: $mediator.replyMode,
-                               selectedMessage: $mediator.selectedMessage,
-                               loadImageAction: {
-                    withAnimation { isShowingPhotoLibrary.toggle() }
-                },
-                               translateAction: { text in
-                    mediator.translate(text: text) { success, translatedText in
-                        DispatchQueue.main.async {
-                            translateProcess.toggle()
-                            if success { mediator.inputText = translatedText }
+            if mediator.user.getRole() == .user {
+                if mediator.cardsOnlyMode {
+                    ChatOnlyCardBottomView(user: mediator.user)
+                        .padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight, trailing: 0))
+                        .edgesIgnoringSafeArea(.bottom)
+                } else {
+                    ChatBottomView(text: $mediator.inputText,
+                                   sendTextProcess: $sendTextProcess,
+                                   translateProcess: $translateProcess,
+                                   additionalHeight: $additionalHeight,
+                                   editMode: $mediator.editMode,
+                                   replyMode: $mediator.replyMode,
+                                   selectedMessage: $mediator.selectedMessage,
+                                   loadImageAction: {
+                        withAnimation { isShowingPhotoLibrary.toggle() }
+                    },
+                                   translateAction: { text in
+                        mediator.translate(text: text) { success, translatedText in
+                            DispatchQueue.main.async {
+                                translateProcess.toggle()
+                                if success { mediator.inputText = translatedText }
+                            }
                         }
-                    }
-                },
-                               sendAction: { text in
-                    mediator.saveMessage(message: text) { success in
-                        DispatchQueue.main.async {
-                            sendTextProcess.toggle()
-                            if success { mediator.inputText = "" }
+                    },
+                                   sendAction: { text in
+                        mediator.saveMessage(message: text) { success in
+                            DispatchQueue.main.async {
+                                sendTextProcess.toggle()
+                                if success { mediator.inputText = "" }
+                            }
                         }
-                    }
-                }).keyboardSensible($offsetValue)
-                    .padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight, trailing: 0))
-                    .edgesIgnoringSafeArea(.bottom)
+                    }).keyboardSensible($offsetValue)
+                        .padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight, trailing: 0))
+                        .edgesIgnoringSafeArea(.bottom)
+                }
             }
 
             ChatImageViewer()
@@ -177,11 +190,12 @@ struct ChatScreen: View {
     }
 
     private func getTopPadding() -> CGFloat {
-        store.state.statusBarHeight + (mediator.editMode || mediator.replyMode ? 135 : 85) + additionalHeight + (offsetValue / 2) + (offsetValue > 0 ? 32 : 0)
+        let bottomBoxHeight = mediator.user.getRole() == .user ? (mediator.editMode || mediator.replyMode ? 135 : 85) + additionalHeight + (offsetValue / 2) + (offsetValue > 0 ? 32 : 0) : 16
+        return store.state.statusBarHeight + bottomBoxHeight
     }
 
     private func getBottomPadding() -> CGFloat {
-        (offsetValue / 2) + 90 + (mediator.messages.isEmpty ? 0 : 41)
+        (offsetValue / 2) + 90 + ((mediator.messages.isEmpty || mediator.user.getRole() == .bot) ? 0 : 41)
     }
 }
 

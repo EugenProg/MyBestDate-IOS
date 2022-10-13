@@ -24,7 +24,7 @@ struct PhotoEditingScreen: View {
                         BackButton(style: .white)
                             .padding(.init(top: 32, leading: 32, bottom: 15, trailing: 32))
 
-                        Title(textColor: ColorList.white.color, text: "adding_and_editing_a_photo")
+                        Title(textColor: ColorList.white.color, text: "adding_and_editing_a_photo", textSize: 26)
                     }.frame(height: 165)
                     
                     Spacer()
@@ -42,7 +42,7 @@ struct PhotoEditingScreen: View {
                             .font(MyFont.getFont(.NORMAL, 18))
                             .multilineTextAlignment(.center)
                             .lineSpacing(8)
-                            .frame(width: UIScreen.main.bounds.width, alignment: .center)
+                            .frame(width: UIScreen.main.bounds.width - 36, alignment: .center)
 
                         Spacer()
 

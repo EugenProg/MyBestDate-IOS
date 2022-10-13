@@ -13,6 +13,8 @@ struct QuestionnaireSearchBotomSheet: View {
     @ObservedObject var searchMediator = CitySearchMediator.shared
     @ObservedObject var questionnaireMediator = QuestionnaireMediator.shared
 
+    @State var selectedItem: CityListItem? = nil
+
     var clickAction: () -> Void
     
     var body: some View {
@@ -23,8 +25,9 @@ struct QuestionnaireSearchBotomSheet: View {
                 Spacer()
 
                 TextButton(text: "save", textColor: ColorList.main.color) {
-                    questionnaireMediator.saveSelection(questionInfo: mediator.questionInfo, ansfer: searchMediator.searchText)
-                    mediator.questionInfo.selectAction!(NSLocalizedString(searchMediator.searchText, comment: "Ansfer") )
+                    let answerLine = selectedItem == nil ? selectedItem?.getCityLine() : searchMediator.searchText
+                    questionnaireMediator.saveSelection(questionInfo: mediator.questionInfo, ansfer: answerLine ?? "")
+                    mediator.questionInfo.selectAction!(answerLine ?? "")
                     clickAction()
                 }
             }.frame(width: UIScreen.main.bounds.width - 64)
@@ -42,14 +45,14 @@ struct QuestionnaireSearchBotomSheet: View {
 
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(spacing: 0) {
-                    ForEach(searchMediator.cityList, id: \.self) { city in
-                        Text(city)
+                    ForEach(searchMediator.cityList, id: \.id) { item in
+                        Text(item.getCityLine())
                             .foregroundColor(ColorList.main_90.color)
                             .font(MyFont.getFont(.NORMAL, 18))
                             .frame(width: UIScreen.main.bounds.width - 64, height: 48, alignment: .leading)
-
                             .onTapGesture {
-                                searchMediator.searchText = city
+                                self.selectedItem = item
+                                searchMediator.searchText = item.getCityLine()
                             }
                     }
                 }
@@ -71,7 +74,9 @@ struct QuestionnaireSearchBotomSheet: View {
             }
             .onAppear {
                 searchMediator.initSearch()
-                searchMediator.searchText = mediator.questionInfo.selectedAnsfer
+                let items = mediator.questionInfo.selectedAnsfer.components(separatedBy: ", ")
+                selectedItem = CityListItem(id: 0, country: items.first, city: items.last ?? "")
+                searchMediator.searchText = selectedItem?.getCityLine() ?? ""
             }
     }
 }

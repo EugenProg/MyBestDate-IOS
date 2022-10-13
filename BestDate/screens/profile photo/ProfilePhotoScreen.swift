@@ -51,13 +51,11 @@ struct ProfilePhotoScreen: View {
                         
                         Spacer()
 
-                        if !mediator.imageList.isEmpty {
-                            TextButton(text: "next", textColor: ColorList.white.color) {
-                                UserDataHolder.setStartScreen(screen: .QUESTIONNAIRE)
-                                store.dispatch(action: .navigate(screen: .QUESTIONNAIRE))
-                            }
+                        TextButton(text: "next", textColor: mediator.mainPhoto != nil ? ColorList.white.color : ColorList.main.color) {
+                            UserDataHolder.setStartScreen(screen: .QUESTIONNAIRE)
+                            store.dispatch(action: .navigate(screen: .QUESTIONNAIRE))
                         }
-                    }.padding(.init(top: 32, leading: 32, bottom: 15, trailing: 32))
+                    }.padding(.init(top: 32, leading: 32, bottom: 0, trailing: 32))
                     
                     
                     Title(textColor: mediator.mainPhoto != nil ? ColorList.white.color : ColorList.main.color, text: "set_a_profile_photo")
@@ -98,6 +96,7 @@ struct ProfilePhotoScreen: View {
                                 .font(MyFont.getFont(.NORMAL, 18))
                                 .multilineTextAlignment(.center)
                                 .lineSpacing(8)
+                                .padding(.init(top: 0, leading: 18, bottom: 0, trailing: 18))
                             
                             Spacer()
                             

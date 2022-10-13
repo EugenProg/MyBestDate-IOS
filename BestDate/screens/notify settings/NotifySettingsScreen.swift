@@ -37,6 +37,7 @@ struct NotifySettingsScreen: View {
                     Spacer()
 
                     Button(action: {
+                        UserDataHolder.setStartScreen(screen: .MAIN)
                         withAnimation { store.dispatch(action: .navigate(screen: .MAIN)) }
                     }) {
                         Text(NSLocalizedString("cancel", comment: "Cancel"))

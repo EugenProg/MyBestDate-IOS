@@ -66,8 +66,6 @@ struct AnsweredInvitationItemView: View {
                                 .foregroundColor(ColorList.main_50.color)
                                 .font(MyFont.getFont(.NORMAL, 11))
                         }
-                    }.onTapGesture {
-                        withAnimation { userSelectAction(invitationCard.from_user) }
                     }
                     
                     Spacer()
@@ -91,6 +89,8 @@ struct AnsweredInvitationItemView: View {
                 }.frame(width: width / 2, height: 130, alignment: .bottom)
                     .padding(.init(top: 0, leading: 20, bottom: 5, trailing: 0))
             }.frame(width: width, height: 174)
+        }.onTapGesture {
+            withAnimation { userSelectAction(invitationCard.from_user) }
         }
     }
 }

@@ -22,6 +22,10 @@ class OnlineMediator: ObservableObject {
             item.type == UserDataHolder.searchOnline
         }) ?? itemList[1]
     }
+
+    func setSelectedItem(type: OnlineFilterTypes) {
+        self.selectedItem = OnlineTypesListItem(id: 0, name: type.name, type: type)
+    }
 }
 
 struct OnlineTypesListItem {
@@ -34,12 +38,14 @@ enum OnlineFilterTypes: String {
     case all
     case online
     case recently
+    case filter
 
     var name: String {
         switch self {
         case .all: return "all"
         case .online: return "online"
         case .recently: return "recently"
+        case .filter: return "filter"
         }
     }
 }

@@ -22,9 +22,8 @@ struct SearchListView: View {
 
     var body: some View {
         if list.isEmpty {
-            let topPadding = ((UIScreen.main.bounds.height - 260) / 2) - 100
-            NoDataView(loadingMode: $loadingMode)
-                .padding(.init(top: topPadding, leading: 0, bottom: 0, trailing: 0))
+            NoDataBoxView(loadingMode: $loadingMode, text: "nothing_was_found_by_these_parameters")
+                .padding(.init(top: 50, leading: 50, bottom: ((UIScreen.main.bounds.width - 9) / 2) - 69, trailing: 50))
         } else {
             LazyVGrid(columns: items, alignment: .center, spacing: 10,
                       pinnedViews: [.sectionHeaders, .sectionFooters]) {

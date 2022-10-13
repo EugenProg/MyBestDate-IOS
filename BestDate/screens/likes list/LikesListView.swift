@@ -21,9 +21,8 @@ struct LikesListView: View {
             offsetChanged: { it in mediator.savePosition(it) },
             onRefresh: { done in mediator.getLikesList { done() } }) {
                 if mediator.likeList.isEmpty {
-                    let topPadding = ((UIScreen.main.bounds.height - 260) / 2) - 100
-                    NoDataView(loadingMode: $mediator.loadingMode)
-                        .padding(.init(top: topPadding, leading: 0, bottom: 0, trailing: 0))
+                    NoDataBoxView(loadingMode: $mediator.loadingMode, text: "no_one_has_liked_your_photos_yet")
+                        .padding(.init(top: 50, leading: 50, bottom: ((UIScreen.main.bounds.width - 9) / 2) - 69, trailing: 50))
                 } else {
                     LazyVGrid(columns: items, alignment: .center, spacing: 10,
                               pinnedViews: [.sectionHeaders, .sectionFooters]) {

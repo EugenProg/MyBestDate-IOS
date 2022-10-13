@@ -16,7 +16,7 @@ class CitySearchMediator: NSObject, ObservableObject {
     var fetcher: GMSAutocompleteFetcher?
     var isInited = false
 
-    @Published var cityList: [String] = []
+    @Published var cityList: [CityListItem] = []
     @Published var searchText: String = ""
 
     private var cancellableSet: Set<AnyCancellable> = []
@@ -26,16 +26,15 @@ class CitySearchMediator: NSObject, ObservableObject {
         GMSPlacesClient.provideAPIKey("AIzaSyCAvbkXsVq1FQuiLdwbwJxiM6WoYfYSX8I")
 
         let filter = GMSAutocompleteFilter()
-        filter.accessibilityLanguage = "en"
+        filter.accessibilityLanguage = NSLocalizedString("lang_code", comment: "Lang")
         filter.type = .city
 
         fetcher = GMSAutocompleteFetcher(filter: filter)
-        fetcher?.accessibilityLanguage = "en"
+        fetcher?.accessibilityLanguage = NSLocalizedString("lang_code", comment: "Lang")
         fetcher?.provide(token)
     }
 
     func initSearch() {
-        print(">>> init search")
         fetcher?.delegate = self
         
         $searchText
@@ -60,7 +59,6 @@ class CitySearchMediator: NSObject, ObservableObject {
 
     func search(text: String) {
         if !isInited { initSearch() }
-        print(">>> action \(text)")
         fetcher?.sourceTextHasChanged(text)
     }
 }
@@ -68,22 +66,32 @@ class CitySearchMediator: NSObject, ObservableObject {
 extension CitySearchMediator: GMSAutocompleteFetcherDelegate {
 
   func didAutocomplete(with predictions: [GMSAutocompletePrediction]) {
-      print(">>> search results \(predictions.count)")
       cityList.removeAll()
     for prediction in predictions {
         let city = prediction.attributedPrimaryText.string
         let countryLine = prediction.attributedSecondaryText?.string
         var country = ""
-        if (countryLine?.contains(",") ?? false) {
+        if (countryLine?.contains(",") == false) {
             country = countryLine?.components(separatedBy: ", ").last ?? ""
         } else { country = countryLine ?? "" }
-        let result = city + ", " + country
-        if !cityList.contains(result) { cityList.append(result) }
+        let result = CityListItem(id: cityList.count, country: country,city: city)
+        if !cityList.contains(where: { item in item.city == result.city }) {
+            cityList.append(result)
+        }
     }
   }
 
   func didFailAutocompleteWithError(_ error: Error) {
       print(">>> error \(error)")
-      cityList.append(error.localizedDescription)
   }
+}
+
+struct CityListItem {
+    var id: Int
+    var country: String? = nil
+    var city: String
+
+    func getCityLine() -> String {
+        city + ", " + (country ?? "")
+    }
 }

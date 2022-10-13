@@ -84,6 +84,8 @@ enum CoreApiTypes {
     case deleteUserProfile
     case changePassword
 
+    case saveUserLocation
+
     var BaseURL: String {
         "https://dev-api.bestdate.info/api/v1/"
     }
@@ -146,6 +148,7 @@ enum CoreApiTypes {
         case .updateLanguage: return "settings/language"
         case .deleteUserProfile: return "user"
         case .changePassword: return "user/password"
+        case .saveUserLocation: return "user/location"
         }
     }
 
@@ -207,6 +210,7 @@ enum CoreApiTypes {
         case .updateLanguage: return "PUT"
         case .deleteUserProfile: return "DELETE"
         case .changePassword: return "PUT"
+        case .saveUserLocation: return "PUT"
         }
     }
 
@@ -215,7 +219,7 @@ enum CoreApiTypes {
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue("en", forHTTPHeaderField: "X-Localization")
+        request.setValue(getLanguage(), forHTTPHeaderField: "X-Localization")
         request.httpMethod = getMethod
         return request
     }
@@ -225,7 +229,7 @@ enum CoreApiTypes {
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue("en", forHTTPHeaderField: "X-Localization")
+        request.setValue(getLanguage(), forHTTPHeaderField: "X-Localization")
         if withAuth == true {
             request.setValue(UserDataHolder.accessToken, forHTTPHeaderField: "Authorization")
         }
@@ -242,7 +246,7 @@ enum CoreApiTypes {
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue("en", forHTTPHeaderField: "X-Localization")
+        request.setValue(getLanguage(), forHTTPHeaderField: "X-Localization")
         if withAuth == true {
             request.setValue(UserDataHolder.accessToken, forHTTPHeaderField: "Authorization")
         }
@@ -252,6 +256,10 @@ enum CoreApiTypes {
 
     static func getPageParams(page: Int) -> [RequestParams] {
         [RequestParams(key: "page", value: page.toString())]
+    }
+
+    private func getLanguage() -> String {
+        NSLocalizedString("lang_code", comment: "Lang")
     }
 }
 

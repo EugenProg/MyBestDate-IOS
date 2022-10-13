@@ -30,12 +30,20 @@ class UserDataHolder {
 
     static func setSearchOnline(filter: OnlineFilterTypes) {
         searchOnline = filter
-        setSettings(type: .SEARCH_ONLINE, value: filter.rawValue)
+        if filter == .filter {
+            setSettings(type: .SEARCH_ONLINE, value: OnlineFilterTypes.all.rawValue)
+        } else {
+            setSettings(type: .SEARCH_ONLINE, value: filter.rawValue)
+        }
     }
 
     static func setSearchLocation(filter: LocationFilterTypes) {
         searchLocation = filter
-        setSettings(type: .SEARCH_LOCATION, value: filter.rawValue)
+        if filter == .filter {
+            setSettings(type: .SEARCH_LOCATION, value: LocationFilterTypes.all.rawValue)
+        } else {
+            setSettings(type: .SEARCH_LOCATION, value: filter.rawValue)
+        }
     }
 
     private static func getSettings(type: HolderTypes) -> String? {

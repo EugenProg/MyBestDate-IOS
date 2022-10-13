@@ -37,9 +37,8 @@ struct GuestsScreen: View {
                 .shadow(color: MyColor.getColor(0, 0, 0, 0.16), radius: 6, y: 3)
             
             if mediator.newGuests.isEmpty && mediator.oldGuests.isEmpty {
-                let topPadding = ((UIScreen.main.bounds.height - 260 - store.state.statusBarHeight) / 2) - 100
-                NoDataView(loadingMode: $mediator.loadingMode)
-                    .padding(.init(top: topPadding, leading: 0, bottom: 0, trailing: 0))
+                NoDataBoxView(loadingMode: $mediator.loadingMode, text: "you_have_no_guests_yet")
+                    .padding(.init(top: 50, leading: 50, bottom: ((UIScreen.main.bounds.width - 9) / 2) - 69, trailing: 50))
                 Spacer()
             } else {
                 SaveAndSetPositionScrollView(onRefresh: { done in

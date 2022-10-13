@@ -67,6 +67,17 @@ struct PhotoStatusUpdateRequest: Codable {
 struct SearchFilter: Codable {
     var location: String = "all"
     var online: String = "all"
+    var filters: Filter? = nil
+}
+
+struct Filter: Codable {
+    var location: FilterLocation
+}
+
+struct FilterLocation: Codable {
+    var range: Int
+    var lat: String
+    var lng: String
 }
 
 struct SendMessageRequest: Codable {
@@ -124,4 +135,14 @@ struct UpdateUserDataRequest: Codable {
     var gender: String
     var birthday: String
     var look_for: [String]
+}
+
+struct SetUserLocationRequest: Codable {
+    var lat: String
+    var lng: String
+    var iso_code: String
+    var country: String
+    var state: String
+    var state_name: String
+    var city: String
 }

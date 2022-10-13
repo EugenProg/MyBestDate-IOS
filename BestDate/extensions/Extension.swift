@@ -328,6 +328,14 @@ extension ShortUserInfo {
             block_messages: self.block_messages
         )
     }
+
+    func getRole() -> UserRole {
+        switch self.role {
+        case "bot": return .bot
+        case "user": return .user
+        default: return .user
+        }
+    }
 }
 
 extension Location {
@@ -465,6 +473,26 @@ extension Questionnaire {
         self.sport != nil &&
         !(self.sport?.isEmpty ?? true) &&
         self.evening_time != nil
+    }
+}
+
+extension GeocodingResponse {
+    func getSaveLocationRequest() -> SetUserLocationRequest {
+        SetUserLocationRequest(lat: self.lat ?? "",
+                               lng: self.lon ?? "",
+                               iso_code: self.address?.country_code ?? "",
+                               country: self.address?.country ?? "",
+                               state: self.address?.state ?? "",
+                               state_name: self.address?.state_district ?? "",
+                               city: self.address?.city ?? "")
+    }
+
+    func getSearchFilter(range: Int) -> Filter {
+        Filter(location:
+                FilterLocation(range: range,
+                               lat: self.lat ?? "",
+                               lng: self.lon ?? "")
+        )
     }
 }
 

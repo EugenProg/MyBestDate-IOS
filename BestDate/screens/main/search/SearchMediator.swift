@@ -18,6 +18,9 @@ class SearchMediator: ObservableObject {
     @Published var loadingMode: Bool = true
 
     @Published var scrollToStartPosition: Bool = false
+
+    var searchFilter: Filter? = nil
+    var searchCity: CityListItem? = nil
     var savedPosition: CGFloat = 0
 
     var locationType: LocationFilterTypes = UserDataHolder.searchLocation
@@ -25,7 +28,7 @@ class SearchMediator: ObservableObject {
 
     func getUserList(withClear: Bool, page: Int, completion: @escaping () -> Void) {
         loadingMode = true
-        CoreApiService.shared.getUsersList(location: locationType, online: onlineType, page: page) { success, userList, meta in
+        CoreApiService.shared.getUsersList(location: locationType, online: onlineType, filter: searchFilter, page: page) { success, userList, meta in
             DispatchQueue.main.async {
                 withAnimation {
                     self.users.addAll(list: userList, clear: withClear)
@@ -46,11 +49,29 @@ class SearchMediator: ObservableObject {
 
     func updateUserList(location: LocationFilterTypes?, online: OnlineFilterTypes?) {
         if location != nil && location != locationType {
+            searchFilter = nil
             locationType = location ?? .all
+            if onlineType == .filter { OnlineMediator.shared.setSelectedItem(type: OnlineFilterTypes.all) }
             getUserList(withClear: true, page: 0) { }
         } else if online != nil && online != onlineType {
+            searchFilter = nil
             onlineType = online ?? .all
+            if locationType == .filter { LocationMediator.shared.setSelectedItem(type: LocationFilterTypes.all) }
             getUserList(withClear: true, page: 0) { }
+        }
+    }
+
+    func setSearchFilter(address: CityListItem, range: Int) {
+        GeocodingApiService().getLocationByAddress(address: address) { response in
+            DispatchQueue.main.async {
+                LocationMediator.shared.setSelectedItem(type: .filter)
+                self.locationType = .filter
+                OnlineMediator.shared.setSelectedItem(type: .filter)
+                self.onlineType = .filter
+                self.searchCity = address
+                self.searchFilter = response.getSearchFilter(range: range)
+                self.getUserList(withClear: true, page: 0) { }
+            }
         }
     }
 

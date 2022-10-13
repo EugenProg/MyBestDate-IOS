@@ -71,8 +71,14 @@ struct UserInfo: Codable {
     var location: Location? = nil
     var block_messages: Bool? = nil
     var blocked: Bool? = nil
+    var role: String? = nil
     var blocked_me: Bool? = nil
     var questionnaire: Questionnaire? = nil
+}
+
+enum UserRole: String {
+    case bot
+    case user
 }
 
 struct ShortUserInfo: Codable {
@@ -87,7 +93,9 @@ struct ShortUserInfo: Codable {
     var language: String? = nil
     var block_messages: Bool? = nil
     var blocked: Bool? = nil
+    var allow_chat: Bool? = nil
     var full_questionnaire: Bool? = nil
+    var role: String? = nil
     var distance: Double? = nil
 }
 
@@ -307,4 +315,23 @@ struct ChangePasswordRequest: Codable {
     var old_password: String? = nil
     var password: String? = nil
     var password_confirmation: String? = nil
+}
+
+struct GeocodingResponse: Codable {
+    var place_id: Int? = nil
+    var licence: String? = nil
+    var osm_type: String? = nil
+    var lat: String? = nil
+    var lon: String? = nil
+    var display_name: String? = nil
+    var address: Address? = nil
+}
+
+struct Address: Codable {
+    var city: String? = nil
+    var county: String? = nil
+    var state_district: String? = nil
+    var state: String? = nil
+    var country: String? = nil
+    var country_code: String? = nil
 }

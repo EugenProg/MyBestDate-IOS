@@ -26,6 +26,9 @@ struct MainLocationBottomSheet: View {
                 }
             }
         }.frame(width: UIScreen.main.bounds.width, alignment: .topLeading)
+            .onAppear {
+                mediator.updateItemsList()
+            }
     }
 
     private func equals(item: String) -> Bool {

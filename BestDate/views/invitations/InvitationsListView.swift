@@ -41,13 +41,13 @@ struct InvitationsListView: View {
                 .frame(width: 80, height: 80)
                 .padding(100)
         } else if newList.isEmpty && page == .new {
-            NoDataBoxView(text: "you_have_no_new_invitations")
+            NoDataBoxView(loadingMode: $loadingMode, text: "you_have_no_new_invitations")
                 .padding(.init(top: 50, leading: 50, bottom: ((UIScreen.main.bounds.width - 9) / 2) - 69, trailing: 50))
         } else if answerdList.isEmpty && page == .answered {
-            NoDataBoxView(text: "you_have_no_answered_invitations")
+            NoDataBoxView(loadingMode: $loadingMode, text: "you_have_no_answered_invitations")
                 .padding(.init(top: 50, leading: 50, bottom: ((UIScreen.main.bounds.width - 9) / 2) - 69, trailing: 50))
         } else if sentList.isEmpty && page == .sended {
-            NoDataBoxView(text: "you_have_no_invitations_sent")
+            NoDataBoxView(loadingMode: $loadingMode, text: "you_have_no_invitations_sent")
                 .padding(.init(top: 50, leading: 50, bottom: ((UIScreen.main.bounds.width - 9) / 2) - 69, trailing: 50))
         } else {
             if page == .new {

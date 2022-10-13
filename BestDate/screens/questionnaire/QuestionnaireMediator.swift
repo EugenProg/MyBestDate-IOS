@@ -176,17 +176,15 @@ class QuestionnaireMediator: ObservableObject {
     }
 
     func saveQuestionnaire(questionnaire: Questionnaire, completion: @escaping (Bool, String) -> Void) {
-        let data = try! JSONEncoder().encode(questionnaire)
-        NetworkLogger.printLog(data: data)
-//        CoreApiService.shared.saveQuestionnaire(questionnaire: questionnaire) { success, user in
-//            if success {
-//                self.getUserData { success in
-//                    completion(success, "")
-//                }
-//            } else {
-//                completion(success, "default_error_message")
-//            }
-//        }
+        CoreApiService.shared.saveQuestionnaire(questionnaire: questionnaire) { success, user in
+            if success {
+                self.getUserData { success in
+                    completion(success, "")
+                }
+            } else {
+                completion(success, "default_error_message")
+            }
+        }
     }
 
     func getUserData(completion: @escaping (Bool) -> Void) {

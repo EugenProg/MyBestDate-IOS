@@ -94,7 +94,7 @@
 "good_job" = "Молодец!";
 
 "search" = "Поиск";
-"matches" = "Совпадения";
+"matches" = "Matches";
 "messages" = "Сообщения";
 "chats" = "Чаты";
 "top_50" = "Топ-50";
@@ -111,7 +111,7 @@
 "default_error_message" = "Упс, что-то пошл не так";
 "settings" = "Настройки";
 "personal_data" = "Личные данные";
-"questionnaire" = "Опросный лист";
+"questionnaire" = "Анкета";
 "sympathy" = "Симпатия";
 "aries" = "Овен";
 "taurus" = "Телец";
@@ -606,12 +606,13 @@
 "sign_out" = "Выйти";
 "your_invitation_was_send" = "Ваше приглашение успешно отправлено";
 "years_short" = "л";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
+"you_have_no_guests_yet" = "У вас пока нет гостей";
+"nobody_voted_for_you_yet" = "За вас пока никто не проголосовал";
+"no_one_has_liked_your_photos_yet" = "Никому пока не понравились ваши фотографии";
+"nothing_was_found_by_these_parameters" = "По заданным параметрам ничего не найдено";
+"you_dont_have_a_match_yet" = "У вас пока нет совпадений";
+"search_distance" = "Дистанция поиска";
+"possibility_from_to_km" = "Возможность от 0 до 300 километров";
 "" = "";
 "" = "";
 "" = "";

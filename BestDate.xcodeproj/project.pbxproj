@@ -71,6 +71,10 @@
 		4C2DC94E28C36DBF00DD15C2 /* LoadingProgressScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2DC94D28C36DBE00DD15C2 /* LoadingProgressScreen.swift */; };
 		4C2DC95128C399D700DD15C2 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 4C2DC95028C399D700DD15C2 /* FacebookCore */; };
 		4C2DC95328C399D700DD15C2 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 4C2DC95228C399D700DD15C2 /* FacebookLogin */; };
+		4C2ED4F028F5E4550057DB02 /* SearchFilterScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2ED4EF28F5E4550057DB02 /* SearchFilterScreen.swift */; };
+		4C2ED4F228F71CA80057DB02 /* DistanceBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2ED4F128F71CA80057DB02 /* DistanceBarView.swift */; };
+		4C2ED4F428F71D0A0057DB02 /* DistanceBarButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2ED4F328F71D0A0057DB02 /* DistanceBarButtonView.swift */; };
+		4C2ED4F628F72C160057DB02 /* GeocodingApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2ED4F528F72C150057DB02 /* GeocodingApiService.swift */; };
 		4C3D27B9285110FA00F8FD09 /* StandardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D27B8285110F800F8FD09 /* StandardButton.swift */; };
 		4C3D27BC28511BB700F8FD09 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D27BB28511BB600F8FD09 /* Title.swift */; };
 		4C3D27BE28511DCA00F8FD09 /* HeaderText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D27BD28511DCA00F8FD09 /* HeaderText.swift */; };
@@ -392,6 +396,10 @@
 		4C2DC94928C2528100DD15C2 /* PushUserDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushUserDataView.swift; sourceTree = "<group>"; };
 		4C2DC94B28C2764500DD15C2 /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 		4C2DC94D28C36DBE00DD15C2 /* LoadingProgressScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingProgressScreen.swift; sourceTree = "<group>"; };
+		4C2ED4EF28F5E4550057DB02 /* SearchFilterScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFilterScreen.swift; sourceTree = "<group>"; };
+		4C2ED4F128F71CA80057DB02 /* DistanceBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceBarView.swift; sourceTree = "<group>"; };
+		4C2ED4F328F71D0A0057DB02 /* DistanceBarButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceBarButtonView.swift; sourceTree = "<group>"; };
+		4C2ED4F528F72C150057DB02 /* GeocodingApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodingApiService.swift; sourceTree = "<group>"; };
 		4C3D27B8285110F800F8FD09 /* StandardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardButton.swift; sourceTree = "<group>"; };
 		4C3D27BB28511BB600F8FD09 /* Title.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
 		4C3D27BD28511DCA00F8FD09 /* HeaderText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderText.swift; sourceTree = "<group>"; };
@@ -836,6 +844,16 @@
 			path = push;
 			sourceTree = "<group>";
 		};
+		4C2ED4EE28F5E4260057DB02 /* filter */ = {
+			isa = PBXGroup;
+			children = (
+				4C2ED4EF28F5E4550057DB02 /* SearchFilterScreen.swift */,
+				4C2ED4F128F71CA80057DB02 /* DistanceBarView.swift */,
+				4C2ED4F328F71D0A0057DB02 /* DistanceBarButtonView.swift */,
+			);
+			path = filter;
+			sourceTree = "<group>";
+		};
 		4C3D27BA28511B9A00F8FD09 /* textViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -918,6 +936,7 @@
 				4CBF593828A43A5A006BDE53 /* MatchesApiService.swift */,
 				4C6CFF1728B3E7C800BA33E0 /* TranslateTextApiService.swift */,
 				4C878F1528B7DD3000043680 /* InvitationApiService.swift */,
+				4C2ED4F528F72C150057DB02 /* GeocodingApiService.swift */,
 			);
 			path = network;
 			sourceTree = "<group>";
@@ -1380,6 +1399,7 @@
 		4CB9FF3F287741F9004F1BF6 /* search */ = {
 			isa = PBXGroup;
 			children = (
+				4C2ED4EE28F5E4260057DB02 /* filter */,
 				4CB9FF402877437E004F1BF6 /* SearchScreen.swift */,
 				4CB9FF61287AF001004F1BF6 /* SearchMediator.swift */,
 				4CB9FF63287AF0C8004F1BF6 /* UserSearchItemView.swift */,
@@ -1853,6 +1873,7 @@
 				4CBF5922289E9754006BDE53 /* InvitationChatView.swift in Sources */,
 				4C878F2C28B92BC600043680 /* LikesListView.swift in Sources */,
 				4C3D27D02853A37F00F8FD09 /* BottomSheetList.swift in Sources */,
+				4C2ED4F028F5E4550057DB02 /* SearchFilterScreen.swift in Sources */,
 				4C5C86B228717200006DE024 /* RangeSelectView.swift in Sources */,
 				4CB9FF72287F4028004F1BF6 /* StartScreen.swift in Sources */,
 				4C878F2028B7FEB300043680 /* CloseItemView.swift in Sources */,
@@ -1965,6 +1986,7 @@
 				4C6CFF1D28B5565500BA33E0 /* UserProfileImageListScreen.swift in Sources */,
 				4C92CAFF28A76FD800E5DF52 /* LoadingNextPageView.swift in Sources */,
 				4C1B7C1F286A3477000DB5D4 /* SingleSelectInfoView.swift in Sources */,
+				4C2ED4F628F72C160057DB02 /* GeocodingApiService.swift in Sources */,
 				4C878F1828B7E3B400043680 /* ArrayExtension.swift in Sources */,
 				4C9E5AFD28D37E8B00E4E9FF /* BlackListItemView.swift in Sources */,
 				4C1459032856627E00558B6B /* GeolocationScreen.swift in Sources */,
@@ -2053,6 +2075,7 @@
 				4C9C57C928DCE0A600688F4B /* SocialNetworkMediator.swift in Sources */,
 				4CA2E23428673D1A00E514C4 /* ProgressBarView.swift in Sources */,
 				4C9E5AF228D2482D00E4E9FF /* SettingsInfoView.swift in Sources */,
+				4C2ED4F428F71D0A0057DB02 /* DistanceBarButtonView.swift in Sources */,
 				4CB9FFAC2885B4DB004F1BF6 /* GuestsMediator.swift in Sources */,
 				4CB9FF6E287B3476004F1BF6 /* OnlineMediator.swift in Sources */,
 				4C8E7D9C284D1F0700D6E58D /* ScreenList.swift in Sources */,
@@ -2070,6 +2093,7 @@
 				4CA2E23F28676FA400E514C4 /* PageButtonsView.swift in Sources */,
 				4CB9FFAA28847FF4004F1BF6 /* OverlayView.swift in Sources */,
 				4CB9FF64287AF0C8004F1BF6 /* UserSearchItemView.swift in Sources */,
+				4C2ED4F228F71CA80057DB02 /* DistanceBarView.swift in Sources */,
 				4CF0284F288AF0C3002C59EE /* TopListItemView.swift in Sources */,
 				4C9E5AEC28D230CD00E4E9FF /* SettingsSearchLocationButtonView.swift in Sources */,
 				4C5C86B5287174DD006DE024 /* RangeBarView.swift in Sources */,
@@ -2251,9 +2275,10 @@
 				CODE_SIGN_ENTITLEMENTS = BestDate/BestDateDebug.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_ASSET_PATHS = "\"BestDate/Preview Content\"";
 				DEVELOPMENT_TEAM = 7869H74LP9;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 7869H74LP9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BestDate/Info.plist;
@@ -2276,6 +2301,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bestDate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = BestDate;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = BestDate;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2291,9 +2317,10 @@
 				CODE_SIGN_ENTITLEMENTS = BestDate/BestDate.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_ASSET_PATHS = "\"BestDate/Preview Content\"";
 				DEVELOPMENT_TEAM = 7869H74LP9;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 7869H74LP9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BestDate/Info.plist;
@@ -2316,6 +2343,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bestDate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = BestDate;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = BestDate;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

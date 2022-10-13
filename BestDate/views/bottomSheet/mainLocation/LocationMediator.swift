@@ -14,14 +14,25 @@ class LocationMediator: ObservableObject {
     @Published var itemList: [LocationTypesListItem] = []
 
     init() {
+        updateItemsList()
+    }
+
+    func updateItemsList() {
+        itemList.removeAll()
         itemList.append(LocationTypesListItem(id: 0, name: "next_to_me", type: .nearby))
         itemList.append(LocationTypesListItem(id: 1, name: "all_world", type: .all))
         itemList.append(LocationTypesListItem(id: 2, name: MainMediator.shared.user.location?.country ?? "", type: .country))
         itemList.append(LocationTypesListItem(id: 3, name: MainMediator.shared.user.location?.city ?? "", type: .city))
 
-        selectedItem = itemList.first(where: { item in
-            item.type == UserDataHolder.searchLocation
-        }) ?? itemList[1]
+        if selectedItem.type != .filter {
+            selectedItem = itemList.first(where: { item in
+                item.type == UserDataHolder.searchLocation
+            }) ?? itemList[1]
+        }
+    }
+
+    func setSelectedItem(type: LocationFilterTypes) {
+        self.selectedItem = LocationTypesListItem(id: 0, name: type.name, type: type)
     }
 }
 
@@ -36,4 +47,15 @@ enum LocationFilterTypes: String {
     case nearby
     case country
     case city
+    case filter
+
+    var name: String {
+        switch self {
+        case .all: return NSLocalizedString("all_world", comment: "All")
+        case .nearby: return NSLocalizedString("next_to_me", comment: "nearby")
+        case .country: return MainMediator.shared.user.location?.country ?? ""
+        case .city: return MainMediator.shared.user.location?.city ?? ""
+        case .filter: return "Filter"
+        }
+    }
 }

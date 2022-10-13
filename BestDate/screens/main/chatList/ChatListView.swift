@@ -28,10 +28,16 @@ struct ChatListView: View {
 
             LazyVGrid(columns: items, alignment: .center, spacing: 6, pinnedViews: [.sectionHeaders, .sectionFooters]) {
                 ForEach(list, id: \.id) { chat in
-                    ChatListItemView(item: chat, type: itemsType, deleteProccess: $deleteProcess) { chat in
-                        deleteAction(chat)
-                    } clickAction: { chat in
-                        clickAction(chat)
+                    if chat.user.wrappedValue?.getRole() == .user {
+                        ChatListItemView(item: chat, type: itemsType, deleteProccess: $deleteProcess) { chat in
+                            deleteAction(chat)
+                        } clickAction: { chat in
+                            clickAction(chat)
+                        }
+                    } else {
+                        ChatBotItemView(item: chat, type: itemsType) { chat in
+                            clickAction(chat)
+                        }
                     }
                 }
             }

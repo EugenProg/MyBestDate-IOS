@@ -10,20 +10,21 @@ import SwiftUI
 struct SearchInputView: View {
 
     var hint: String
+    var light: Bool = true
     @Binding var input: String
 
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 24)
-                .fill(ColorList.main_5.color)
+                .fill(light ? ColorList.main_5.color : ColorList.white_5.color)
 
             VStack(alignment: .leading, spacing: 5) {
                 Text(NSLocalizedString(hint, comment: "Question"))
-                    .foregroundColor(ColorList.main_60.color)
+                    .foregroundColor(light ? ColorList.main_60.color : ColorList.white_60.color)
                     .font(MyFont.getFont(.NORMAL, 12))
 
                 TextField("", text: $input)
-                    .foregroundColor(ColorList.main.color)
+                    .foregroundColor(light ? ColorList.main.color : ColorList.white.color)
                     .font(MyFont.getFont(.BOLD, 20))
 
             }

@@ -28,6 +28,7 @@ class MainMediator: ObservableObject {
         mainPhoto = user.getMainPhoto()
         self.user = user
         SettingsMediator.shared.getUserSettings()
+        LocationMediator.shared.updateItemsList()
     }
 
     func clearUserData() {

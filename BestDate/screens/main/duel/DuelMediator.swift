@@ -23,6 +23,7 @@ class DuelMediator: ObservableObject {
     @Published var place: String = "Europe"
 
     @Published var hasADuelAction: Bool = false
+    @Published var loadingMode: Bool = true
 
     var womanVoted: Bool = false
     var manVoted: Bool = false
