@@ -11,6 +11,7 @@ struct ImagesListView: View {
     @Binding var images: [ProfileImage]
     @Binding var selectedImage: Int
     var selectAction: () -> Void
+    var closeAction:() -> Void
 
     @State var proccess: Bool = false
     @State var size: CGFloat = 0
@@ -72,6 +73,12 @@ struct ImagesListView: View {
                     nextAction()
                 } else if value.translation.width > (50) {
                     previousAction()
+                }
+
+                if value.translation.height > 80 &&
+                    value.translation.width < 50 &&
+                    value.translation.width > -50 {
+                    withAnimation { closeAction() }
                 }
             }
     }

@@ -25,7 +25,7 @@ struct TopScreen: View {
                 .padding(.init(top: 16, leading: 32, bottom: 0, trailing: 18))
 
             HStack {
-                TopDropDownButtonView(style: mediator.activePage == .woman ? .pink : .blue, text: "Germany") {
+                TopDropDownButtonView(style: mediator.activePage == .woman ? .pink : .blue, text: NSLocalizedString("universe", comment: "Top")) {
                     
                 }
 

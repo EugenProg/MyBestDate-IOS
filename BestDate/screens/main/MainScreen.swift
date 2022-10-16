@@ -13,17 +13,15 @@ struct MainScreen: View {
     
     var body: some View {
         ZStack {
-            HStack(spacing: 0) {
-                SearchScreen()
-
-                MatchesScreen()
-
-                ChatListScreen()
-
-                DuelScreen()
-
-                GuestsScreen()
-            }.offset(x: mediator.currentScreen.offset, y: 0)
+            Group {
+                switch mediator.currentScreen {
+                case .SEARCH: SearchScreen()
+                case .MATCHES: MatchesScreen()
+                case .CHAT_LIST: ChatListScreen()
+                case .TOP_50: DuelScreen()
+                case .GUESTS: GuestsScreen()
+                }
+            }
 
             VStack {
                 Spacer()

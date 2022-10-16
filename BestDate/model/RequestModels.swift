@@ -142,7 +142,7 @@ struct SetUserLocationRequest: Codable {
     var lng: String
     var iso_code: String
     var country: String
-    var state: String
-    var state_name: String
+    var state: String? = nil
+    var state_name: String? = nil
     var city: String
 }

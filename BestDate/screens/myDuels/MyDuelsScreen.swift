@@ -36,7 +36,14 @@ struct MyDuelsScreen: View {
                         .padding(.init(top: 22, leading: 18, bottom: 23, trailing: 3))
                         .frame(width: UIScreen.main.bounds.width, alignment: .leading)
 
-                    MyDuelsListView(list: mediator.duelList, loadingMode: $mediator.loadingMode)
+                    MyDuelsListView(list: mediator.duelList, loadingMode: $mediator.loadingMode) { user in
+                        AnotherProfileMediator.shared.setUser(user: user)
+                        store.dispatch(action: .navigate(screen: .ANOTHER_PROFILE))
+                    }
+//                    } clickLoser: { user in
+//                        AnotherProfileMediator.shared.setUser(user: user)
+//                        store.dispatch(action: .navigate(screen: .ANOTHER_PROFILE))
+//                    }
                 }
             }.padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight, trailing: 0))
         }.background(ColorList.main.color.edgesIgnoringSafeArea(.bottom))

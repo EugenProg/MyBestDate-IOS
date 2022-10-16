@@ -17,8 +17,6 @@ class SearchMediator: ObservableObject {
     @Published var meta: Meta = Meta()
     @Published var loadingMode: Bool = true
 
-    @Published var scrollToStartPosition: Bool = false
-
     var searchFilter: Filter? = nil
     var searchCity: CityListItem? = nil
     var savedPosition: CGFloat = 0
@@ -28,13 +26,13 @@ class SearchMediator: ObservableObject {
 
     func getUserList(withClear: Bool, page: Int, completion: @escaping () -> Void) {
         loadingMode = true
+        self.savedPosition = 0
         CoreApiService.shared.getUsersList(location: locationType, online: onlineType, filter: searchFilter, page: page) { success, userList, meta in
             DispatchQueue.main.async {
                 withAnimation {
                     self.users.addAll(list: userList, clear: withClear)
                     self.meta = meta
                 }
-                self.scrollToStartPosition = true
                 self.loadingMode = false
             }
             completion()

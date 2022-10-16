@@ -10,6 +10,9 @@ import SwiftUI
 struct MyDuelsListItemView: View {
     var item: MyDuel
 
+    var clickVoiter: (ShortUserInfo) -> Void
+  // var clickLoser: (Int) -> Void
+
     var body: some View {
         let size = (UIScreen.main.bounds.width - 9) / 2
         ZStack {
@@ -21,9 +24,15 @@ struct MyDuelsListItemView: View {
 
                     AsyncImageView(url: item.loser_photo?.thumb_url)
                         .frame(width: size, height: size)
+                        .onTapGesture {
+                           // clickLoser()
+                        }
                 }.padding(.init(top: 0, leading: 3, bottom: 0, trailing: 3))
 
                 VoiterInfoView(voter: item.voter ?? ShortUserInfo(), voteTime: item.getVisitedPeriod())
+                    .onTapGesture {
+                        withAnimation { clickVoiter(item.voter ?? ShortUserInfo()) }
+                    }
             }
 
             HStack(alignment: .bottom, spacing: 0) {

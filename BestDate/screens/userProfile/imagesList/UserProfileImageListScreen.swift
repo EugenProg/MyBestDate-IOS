@@ -23,7 +23,9 @@ struct UserProfileImageListScreen: View {
 
                 Spacer()
 
-                ImagesListView(images: $mediator.profileImages, selectedImage: $mediator.selectedImage) { }
+                ImagesListView(images: $mediator.profileImages, selectedImage: $mediator.selectedImage) { } closeAction: {
+                    store.dispatch(action: .navigationBack)
+                }
 
                 Spacer()
             }

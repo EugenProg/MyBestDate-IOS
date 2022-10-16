@@ -32,11 +32,7 @@ struct DuelScreen: View {
                     Spacer()
 
                     ToTopListButton {
-                        withAnimation {
-                            TopListMediator.shared.activePage = mediator.activeGender
-                            mediator.updateTopLists()
-                            store.dispatch(action: .navigate(screen: .TOP_LIST))
-                        }
+                        navigateToTopList()
                     }
                 }
 
@@ -87,8 +83,9 @@ struct DuelScreen: View {
                             }
                         }.padding(.init(top: 0, leading: 3, bottom: 16, trailing: 3))
                     } else {
-                        NoDataBoxView(loadingMode: $mediator.loadingMode, text: "sorry_you_voted_for_all_the_photos")
-                            .padding(.init(top: 50, leading: 50, bottom: ((UIScreen.main.bounds.width - 9) / 2) - 69, trailing: 50))
+                        NoDuelsView(loading: $mediator.loadingMode) {
+                            navigateToTopList()
+                        }.padding(.init(top: 16, leading: 18, bottom: 32, trailing: 18))
                     }
 
                     if mediator.firstUser != nil && mediator.secondUser != nil {
@@ -113,9 +110,13 @@ struct DuelScreen: View {
         .onAppear {
             store.dispatch(action:
                     .setScreenColors(status: ColorList.main.color, style: .lightContent))
-            MainMediator.shared.duelPage = {
-                mediator.getVotePhotos { _ in }
-            }
+            checkForADuel()
+        }
+    }
+
+    private func checkForADuel() {
+        if !mediator.hasADuelAction {
+            mediator.getVotePhotos { _ in }
         }
     }
 
@@ -142,6 +143,14 @@ struct DuelScreen: View {
         withAnimation {
             AnotherProfileMediator.shared.setUser(user: user ?? ShortUserInfo())
             store.dispatch(action: .navigate(screen: .ANOTHER_PROFILE))
+        }
+    }
+
+    private func navigateToTopList() {
+        withAnimation {
+            TopListMediator.shared.activePage = mediator.activeGender
+            mediator.updateTopLists()
+            store.dispatch(action: .navigate(screen: .TOP_LIST))
         }
     }
 }

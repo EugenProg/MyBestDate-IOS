@@ -26,6 +26,8 @@ struct AnotherProfileImagesScreen: View {
 
                 ImagesListView(images: $mediator.imageList, selectedImage: $mediator.selectedImage) {
                     isLiked = mediator.imageList[mediator.selectedImage].liked == true
+                } closeAction: {
+                    store.dispatch(action: .navigationBack)
                 }
 
                 Spacer()

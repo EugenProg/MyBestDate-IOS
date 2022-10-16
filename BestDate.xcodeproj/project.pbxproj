@@ -77,6 +77,7 @@
 		4C2ED4F628F72C160057DB02 /* GeocodingApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2ED4F528F72C150057DB02 /* GeocodingApiService.swift */; };
 		4C2ED4F928F87CEF0057DB02 /* UserLocationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2ED4F828F87CEF0057DB02 /* UserLocationScreen.swift */; };
 		4C2ED4FB28F87D080057DB02 /* UserLocationMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2ED4FA28F87D080057DB02 /* UserLocationMediator.swift */; };
+		4C2ED4FD28FBE00E0057DB02 /* NoDuelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2ED4FC28FBE00E0057DB02 /* NoDuelsView.swift */; };
 		4C3D27B9285110FA00F8FD09 /* StandardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D27B8285110F800F8FD09 /* StandardButton.swift */; };
 		4C3D27BC28511BB700F8FD09 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D27BB28511BB600F8FD09 /* Title.swift */; };
 		4C3D27BE28511DCA00F8FD09 /* HeaderText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D27BD28511DCA00F8FD09 /* HeaderText.swift */; };
@@ -404,6 +405,7 @@
 		4C2ED4F528F72C150057DB02 /* GeocodingApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodingApiService.swift; sourceTree = "<group>"; };
 		4C2ED4F828F87CEF0057DB02 /* UserLocationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationScreen.swift; sourceTree = "<group>"; };
 		4C2ED4FA28F87D080057DB02 /* UserLocationMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationMediator.swift; sourceTree = "<group>"; };
+		4C2ED4FC28FBE00E0057DB02 /* NoDuelsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDuelsView.swift; sourceTree = "<group>"; };
 		4C3D27B8285110F800F8FD09 /* StandardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardButton.swift; sourceTree = "<group>"; };
 		4C3D27BB28511BB600F8FD09 /* Title.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
 		4C3D27BD28511DCA00F8FD09 /* HeaderText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderText.swift; sourceTree = "<group>"; };
@@ -1662,6 +1664,7 @@
 			children = (
 				4CF02853288B09EE002C59EE /* DuelScreen.swift */,
 				4CF02855288B0B10002C59EE /* DuelMediator.swift */,
+				4C2ED4FC28FBE00E0057DB02 /* NoDuelsView.swift */,
 			);
 			path = duel;
 			sourceTree = "<group>";
@@ -2030,6 +2033,7 @@
 				4C2DC94028C11F8100DD15C2 /* PushScreen.swift in Sources */,
 				4C9E5AF928D37DBD00E4E9FF /* BlackListMediator.swift in Sources */,
 				4C09803028EDF9BE0025D729 /* QuestionnaireTypes.swift in Sources */,
+				4C2ED4FD28FBE00E0057DB02 /* NoDuelsView.swift in Sources */,
 				4C8E7DA8284D23D200D6E58D /* Store.swift in Sources */,
 				4CBF5929289ECC97006BDE53 /* ImagesListView.swift in Sources */,
 				4CB9FF502877472A004F1BF6 /* ChatListScreen.swift in Sources */,

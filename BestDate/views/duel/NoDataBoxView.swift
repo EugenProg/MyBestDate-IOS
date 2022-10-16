@@ -11,26 +11,21 @@ struct NoDataBoxView: View {
     @Binding var loadingMode: Bool
     var text: String
 
-    var size = UIScreen.main.bounds.width - 100
-
     var body: some View {
-        if loadingMode {
-            ProgressView()
-                .tint(ColorList.white.color)
-                .frame(width: 80, height: 80)
-        } else {
-            Text(NSLocalizedString(text, comment: "Text"))
-                .foregroundColor(ColorList.white.color)
-                .multilineTextAlignment(.center)
-                .font(MyFont.getFont(.BOLD, 22))
-                .lineSpacing(5)
-                .padding(.init(top: 16, leading: 16, bottom: 16, trailing: 16))
-                .frame(width: size)
-                .background(RoundedRectangle(cornerRadius: 16)
-                    .stroke(MyColor.getColor(255, 255, 255, 0.04), lineWidth: 1)
-                    .background(MyColor.getColor(34, 45, 51))
-                    .cornerRadius(16)
-                    .shadow(color: MyColor.getColor(12, 28, 33, 0.24), radius: 2, y: 3))
-        }
+        ZStack {
+            if loadingMode {
+                ProgressView()
+                    .tint(ColorList.white.color)
+                    .frame(width: 80, height: 80)
+            } else {
+                Text(NSLocalizedString(text, comment: "Text"))
+                    .foregroundColor(ColorList.white.color)
+                    .multilineTextAlignment(.center)
+                    .font(MyFont.getFont(.BOLD, 22))
+                    .lineSpacing(5)
+                    .padding(.init(top: 16, leading: 16, bottom: 16, trailing: 16))
+            }
+        }.frame(width: UIScreen.main.bounds.width - 36)
+            .background(MyColor.getColor(41, 50, 54))
     }
 }

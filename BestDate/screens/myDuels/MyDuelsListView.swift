@@ -11,6 +11,9 @@ struct MyDuelsListView: View {
     var list: [MyDuel]
     @Binding var loadingMode: Bool
 
+    var clickVoiter: (ShortUserInfo) -> Void
+   // var clickLoser: (ShortUserInfo) -> Void
+
     var items: [GridItem] = [
             GridItem(.fixed(UIScreen.main.bounds.width), spacing: 10)]
 
@@ -23,7 +26,7 @@ struct MyDuelsListView: View {
             LazyVGrid(columns: items, alignment: .center, spacing: 10,
                       pinnedViews: [.sectionHeaders, .sectionFooters]) {
                 ForEach(list, id: \.id) { duel in
-                    MyDuelsListItemView(item: duel)
+                    MyDuelsListItemView(item: duel, clickVoiter: clickVoiter)
                 }
             }
         }

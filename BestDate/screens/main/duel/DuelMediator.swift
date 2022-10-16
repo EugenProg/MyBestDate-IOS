@@ -20,7 +20,7 @@ class DuelMediator: ObservableObject {
     @Published var secondDuelImage: ProfileImage? = nil
 
     @Published var activeGender: GenderType = .woman
-    @Published var place: String = "Europe"
+    @Published var place: String = NSLocalizedString("universe", comment: "Top")
 
     @Published var hasADuelAction: Bool = false
     @Published var loadingMode: Bool = true
@@ -59,6 +59,7 @@ class DuelMediator: ObservableObject {
     }
 
     func getVotePhotos(completion: @escaping (Bool) -> Void) {
+        loadingMode = true
         TopApiService.shared.getVotePhotos(gender: activeGender) { success, users in
             DispatchQueue.main.async {
                 self.hasADuelAction = success
@@ -68,6 +69,7 @@ class DuelMediator: ObservableObject {
                         self.secondDuelImage = users[1].getImage()
                     }
                 }
+                self.loadingMode = false
                 completion(success)
             }
         }

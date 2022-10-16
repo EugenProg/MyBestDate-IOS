@@ -28,16 +28,18 @@ struct SearchListView: View {
             LazyVGrid(columns: items, alignment: .center, spacing: 10,
                       pinnedViews: [.sectionHeaders, .sectionFooters]) {
                 ForEach(list.indices, id: \.self) { i in
-                    let user = list[i]
-                    UserSearchItemView(user: $list[i])
-                        .onTapGesture {
-                            withAnimation { clickAction(user ?? ShortUserInfo()) }
-                        }
-                        .onAppear {
-                            if (user?.id ?? 0) == (list.last??.id ?? 0) && !list.isEmpty {
-                                showLoadingBlock = true
+                    if i >= 0 && i < list.count {
+                        let user = list[i]
+                        UserSearchItemView(user: $list[i])
+                            .onTapGesture {
+                                withAnimation { clickAction(user ?? ShortUserInfo()) }
                             }
-                        }
+                            .onAppear {
+                                if (user?.id ?? 0) == (list.last??.id ?? 0) && !list.isEmpty {
+                                    showLoadingBlock = true
+                                }
+                            }
+                    }
                 }
             }
 
