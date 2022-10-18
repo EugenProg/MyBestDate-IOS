@@ -65,7 +65,7 @@ struct DuelScreen: View {
 
                         Spacer()
 
-                        ProfileButtonView(name: "my_duels", image: "ic_my_duels", isActive: true, size: CGSize(width: 57, height: 54)) {
+                        ProfileButtonView(name: "my_duels", image: "ic_my_duels", isActive: (ProfileMediator.shared.user.new_duels ?? 0) > 0, size: CGSize(width: 57, height: 54)) {
                             withAnimation {
                                 store.dispatch(action: .navigate(screen: .MY_DUELS))
                             }

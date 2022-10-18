@@ -12,7 +12,7 @@ class MainMediator: ObservableObject {
     static let shared = MainMediator()
 
     @Published var currentScreen: MainScreensType = .SEARCH
-    @Published var hasNewMessages: Bool = true
+    @Published var hasNewMessages: Bool = false
     @Published var hasNewGuests: Bool = false
     @Published var user: UserInfo = UserInfo()
     @Published var mainPhoto: ProfileImage? = nil
@@ -29,6 +29,9 @@ class MainMediator: ObservableObject {
         self.user = user
         SettingsMediator.shared.getUserSettings()
         LocationMediator.shared.updateItemsList()
+        if !PusherMediator.shared.isConnected() {
+            PusherMediator.shared.startPusher()
+        }
     }
 
     func clearUserData() {

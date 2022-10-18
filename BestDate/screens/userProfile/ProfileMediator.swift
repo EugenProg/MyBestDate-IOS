@@ -49,6 +49,7 @@ class ProfileMediator: ObservableObject {
         LikeListMediator.shared.clearData()
         InvitationMediator.shared.clearData()
         UserDataHolder.setSearchLocation(filter: .all)
+        PusherMediator.shared.closePusherConnection()
     }
 
     func updateUserData(completion: @escaping () -> Void) {

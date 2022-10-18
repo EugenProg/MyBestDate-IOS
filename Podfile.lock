@@ -111,8 +111,13 @@ PODS:
     - nanopb/encode (= 2.30909.0)
   - nanopb/decode (2.30909.0)
   - nanopb/encode (2.30909.0)
+  - NWWebSocket (0.5.2)
   - PromisesObjC (2.1.1)
-  - Protobuf (3.21.6)
+  - Protobuf (3.21.7)
+  - PusherSwift (10.1.1):
+    - NWWebSocket (~> 0.5.2)
+    - TweetNacl (~> 1.0.0)
+  - TweetNacl (1.0.2)
 
 DEPENDENCIES:
   - Firebase/Messaging (= 9.3.0)
@@ -120,6 +125,7 @@ DEPENDENCIES:
   - GooglePlaces (= 7.0.0)
   - GoogleSignIn (= 6.2.3)
   - Kingfisher (= 7.3.0)
+  - PusherSwift (= 10.1.1)
 
 SPEC REPOS:
   trunk:
@@ -145,8 +151,11 @@ SPEC REPOS:
     - MLKitFaceDetection
     - MLKitVision
     - nanopb
+    - NWWebSocket
     - PromisesObjC
     - Protobuf
+    - PusherSwift
+    - TweetNacl
 
 SPEC CHECKSUMS:
   AppAuth: 8fca6b5563a5baef2c04bee27538025e4ceb2add
@@ -171,9 +180,12 @@ SPEC CHECKSUMS:
   MLKitFaceDetection: 2698721de95805902cac5e018a01fe95dc76d615
   MLKitVision: 639a171d937241f3fcf92bc1b3ef8f179f49916c
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
+  NWWebSocket: 21f0c73639815da3272862c912275b26102aa80c
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
-  Protobuf: e7846f61e8542750cf311385fc633c1d00928f9f
+  Protobuf: f4128517d7a42302e106cc3afe614ee3a7513e94
+  PusherSwift: 70a805a950ab49381e164c54ac19c3b9c1d288e3
+  TweetNacl: 3abf4d1d2082b0114e7a67410e300892448951e6
 
-PODFILE CHECKSUM: fd9e4ace19cc58ba9c7077898897923da7d8703b
+PODFILE CHECKSUM: 11a4116804c6cc3443e778e4edb3e233230509e2
 
 COCOAPODS: 1.10.1

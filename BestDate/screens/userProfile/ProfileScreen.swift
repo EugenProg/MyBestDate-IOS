@@ -77,7 +77,7 @@ struct ProfileScreen: View {
 
                                         }
 
-                                        ProfileButtonView(name: "matches_list", image: "ic_matches", isActive: (mediator.user.new_messages ?? 0) > 0) {
+                                        ProfileButtonView(name: "matches_list", image: "ic_matches", isActive: (mediator.user.new_matches ?? 0) > 0) {
                                             store.dispatch(action: .navigate(screen: .MATCHES_LIST))
                                         }
 

@@ -78,6 +78,7 @@
 		4C2ED4F928F87CEF0057DB02 /* UserLocationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2ED4F828F87CEF0057DB02 /* UserLocationScreen.swift */; };
 		4C2ED4FB28F87D080057DB02 /* UserLocationMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2ED4FA28F87D080057DB02 /* UserLocationMediator.swift */; };
 		4C2ED4FD28FBE00E0057DB02 /* NoDuelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2ED4FC28FBE00E0057DB02 /* NoDuelsView.swift */; };
+		4C2ED4FF28FC66E40057DB02 /* PusherMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2ED4FE28FC66E40057DB02 /* PusherMediator.swift */; };
 		4C3D27B9285110FA00F8FD09 /* StandardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D27B8285110F800F8FD09 /* StandardButton.swift */; };
 		4C3D27BC28511BB700F8FD09 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D27BB28511BB600F8FD09 /* Title.swift */; };
 		4C3D27BE28511DCA00F8FD09 /* HeaderText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D27BD28511DCA00F8FD09 /* HeaderText.swift */; };
@@ -406,6 +407,7 @@
 		4C2ED4F828F87CEF0057DB02 /* UserLocationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationScreen.swift; sourceTree = "<group>"; };
 		4C2ED4FA28F87D080057DB02 /* UserLocationMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationMediator.swift; sourceTree = "<group>"; };
 		4C2ED4FC28FBE00E0057DB02 /* NoDuelsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDuelsView.swift; sourceTree = "<group>"; };
+		4C2ED4FE28FC66E40057DB02 /* PusherMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PusherMediator.swift; sourceTree = "<group>"; };
 		4C3D27B8285110F800F8FD09 /* StandardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardButton.swift; sourceTree = "<group>"; };
 		4C3D27BB28511BB600F8FD09 /* Title.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
 		4C3D27BD28511DCA00F8FD09 /* HeaderText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderText.swift; sourceTree = "<group>"; };
@@ -692,6 +694,7 @@
 				4CB9FFA028842FC6004F1BF6 /* DateUtils.swift */,
 				4CD34F5A289689B600504396 /* ChatUtils.swift */,
 				4C878F1B28B7F75300043680 /* ActivityViewController.swift */,
+				4C2ED4FE28FC66E40057DB02 /* PusherMediator.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -1902,6 +1905,7 @@
 				4C92CB1D28B2143F00E5DF52 /* InvitatinsScreen.swift in Sources */,
 				4C2DC94A28C2528100DD15C2 /* PushUserDataView.swift in Sources */,
 				4C9C57C028DCC86800688F4B /* ChangePasswordScreen.swift in Sources */,
+				4C2ED4FF28FC66E40057DB02 /* PusherMediator.swift in Sources */,
 				4C9C57C428DCCAF900688F4B /* ChangePasswordInputView.swift in Sources */,
 				4C5C86E52875E20D006DE024 /* ImagesApiService.swift in Sources */,
 				4CD34F36288D111F00504396 /* ChatListItemView.swift in Sources */,

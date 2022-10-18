@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct NavigationView: View {
+    @Environment(\.scenePhase) var scenePhase
     @EnvironmentObject var store: Store
 
     var body: some View {
@@ -66,6 +67,16 @@ struct NavigationView: View {
             }.onTapGesture(perform: { store.dispatch(action: .hideKeyboard) })
         }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
             .padding(.init(top: store.state.statusBarHeight, leading: 0, bottom: 0, trailing: 0))
+            .onChange(of: scenePhase) { newValue in
+                if newValue != .active {
+                    PusherMediator.shared.closePusherConnection()
+                } else {
+                    PusherMediator.shared.setStore(store: store)
+                    if MainMediator.shared.user.id != nil {
+                        PusherMediator.shared.startPusher()
+                    }
+                }
+            }
     }
 
     private func getBlur() -> CGFloat {

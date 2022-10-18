@@ -66,6 +66,7 @@ struct UserInfo: Codable {
     var new_messages: Int? = nil
     var new_invitations: Int? = nil
     var new_duels: Int? = nil
+    var new_matches: Int? = nil
     var distance: Double? = nil
     var photos: [ProfileImage]? = nil
     var location: Location? = nil
@@ -157,6 +158,11 @@ struct Message: Codable {
     var image: ChatImage? = nil
     var read_at: String? = nil
     var created_at: String? = nil
+}
+
+struct SocketMessage: Codable {
+    var id: Int? = nil
+    var message: Message? = nil
 }
 
 struct ChatImage: Codable {

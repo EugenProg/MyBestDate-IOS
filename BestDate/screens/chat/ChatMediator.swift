@@ -50,15 +50,19 @@ class ChatMediator: ObservableObject {
         ChatApiService.shared.sendTextMessage(userId: user.id ?? 0, parentId: parentId, message: message) { success, savedMessage in
             DispatchQueue.main.async {
                 if success {
-                    withAnimation {
-                        self.messages.add(message: savedMessage)
-                        self.replyMode = false
-                        self.editMode = false
-                        self.selectedMessage = nil
-                    }
+                    self.addMessage(message: savedMessage)
                 }
                 completion(success)
             }
+        }
+    }
+
+    func addMessage(message: Message) {
+        withAnimation {
+            self.messages.add(message: message)
+            self.replyMode = false
+            self.editMode = false
+            self.selectedMessage = nil
         }
     }
 

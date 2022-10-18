@@ -26,7 +26,7 @@ struct MatchesScreen: View {
 
                     Spacer()
 
-                    ProfileButtonView(image: "ic_matches", isActive: true, size: CGSize(width: 48, height: 46)) {
+                    ProfileButtonView(image: "ic_matches", isActive: (ProfileMediator.shared.user.new_matches ?? 0) > 0, size: CGSize(width: 48, height: 46)) {
                         store.dispatch(action: .navigate(screen: .MATCHES_LIST))
                     }
                 }
