@@ -19,9 +19,7 @@ struct AddImageButton: View {
         }) {
             ZStack {
                 Rectangle()
-                    .stroke(MyColor.getColor(255, 255, 255, 0.2), lineWidth: 1)
-                    .background(ColorList.white_10.color)
-                    .cornerRadius(radius: 16, corners: [.topRight, .bottomRight])
+                    .fill(ColorList.white_10.color)
 
                 Rectangle()
                     .fill(ColorList.white.color)
@@ -30,7 +28,7 @@ struct AddImageButton: View {
                 Rectangle()
                     .fill(ColorList.white.color)
                     .frame(width: 3, height: 15)
-            }.frame(width: height / 2, height: height)
+            }.frame(width: height, height: height)
         }
     }
 }

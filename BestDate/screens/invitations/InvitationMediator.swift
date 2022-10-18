@@ -21,44 +21,55 @@ class InvitationMediator: ObservableObject {
         if newInvitations.isEmpty &&
             answerdInvitations.isEmpty &&
             sentInvitations.isEmpty {
-            getNewInvitations()
-            getAnsweredInvitations()
-            getSentInvitations()
+            getNewInvitations { }
+            getAnsweredInvitations { }
+            getSentInvitations { }
         }
     }
 
-    func getNewInvitations() {
+    func refreshList(completion: @escaping () -> Void) {
+        switch activeType {
+        case .new: getNewInvitations { completion() }
+        case .answered: getAnsweredInvitations { completion() }
+        case .sended: getSentInvitations { completion() }
+        }
+    }
+
+    func getNewInvitations(completion: @escaping () -> Void) {
         loadingMode = true
         InvitationApiService.shared.getUserInvitationList(filter: .new) { success, invitations in
             DispatchQueue.main.async {
                 withAnimation {
                     self.newInvitations.clearAndAddAll(list: invitations)
                 }
+                completion()
                 self.loadingMode = false
             }
         }
     }
 
-    func getAnsweredInvitations() {
+    func getAnsweredInvitations(completion: @escaping () -> Void) {
         loadingMode = true
         InvitationApiService.shared.getUserInvitationList(filter: .answered) { success, invitations in
             DispatchQueue.main.async {
                 withAnimation {
                     self.answerdInvitations.clearAndAddAll(list: invitations)
                 }
-        self.loadingMode = false
+                completion()
+                self.loadingMode = false
             }
         }
     }
 
-    func getSentInvitations() {
+    func getSentInvitations(completion: @escaping () -> Void) {
         loadingMode = true
         InvitationApiService.shared.getUserInvitationList(filter: .sent) { success, invitations in
             DispatchQueue.main.async {
                 withAnimation {
                     self.sentInvitations.clearAndAddAll(list: invitations)
                 }
-        self.loadingMode = false
+                completion()
+                self.loadingMode = false
             }
         }
     }
@@ -67,23 +78,18 @@ class InvitationMediator: ObservableObject {
         loadingMode = true
         InvitationApiService.shared.answerTheInvitation(invitationId: invitationId, answer: answer) { _ in
             DispatchQueue.main.async {
-                self.getNewInvitations()
-                self.getAnsweredInvitations()
+                self.newInvitations.removeAll { card in
+                    card.id == invitationId
+                }
+                self.getAnsweredInvitations { }
                 self.loadingMode = false
                 completion()
             }
         }
     }
 
-    func getStatus(id: Int?) -> Bool? {
-        switch (id ?? 0) % 3 {
-        case 0: return true
-        case 1: return false
-        default: return nil
-        }
-    }
-
     func clearData() {
+        activeType = .new
         newInvitations.removeAll()
         answerdInvitations.removeAll()
         sentInvitations.removeAll()

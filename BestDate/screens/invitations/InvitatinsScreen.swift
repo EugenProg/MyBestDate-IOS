@@ -30,7 +30,9 @@ struct InvitatinsScreen: View {
                 .fill(MyColor.getColor(190, 239, 255, 0.15))
                 .frame(height: 1)
 
-            ScrollView(.vertical, showsIndicators: false) {
+            SaveAndSetPositionScrollView(onRefresh: { done in
+                mediator.refreshList() { done() }
+            }) {
                 InvitationsListView(
                     newList: $mediator.newInvitations,
                     answerdList: $mediator.answerdInvitations,

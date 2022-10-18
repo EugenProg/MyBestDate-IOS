@@ -76,7 +76,7 @@ struct AnsweredInvitationItemView: View {
             HStack() {
                 Spacer()
                 VStack(spacing: 11) {
-                    let answer = InvitationAnswer.getAnswer(id: invitationCard.id ?? 0)
+                    let answer = InvitationAnswer.getAnswer(id: invitationCard.answer?.id ?? 0)
                     if answer == .yes || answer == .yes_next_time {
                         SuccessItemView()
                     } else if answer == .no || answer == .not_yet {
