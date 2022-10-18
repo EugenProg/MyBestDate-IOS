@@ -59,12 +59,13 @@ struct AnotherProfileNavigationPanelView: View {
                         }
 
                         Button(action: {
-                            if !isLiked {
-                                withAnimation {
-                                    likeClick()
+                            withAnimation {
+                                likeClick()
+                                if !isLiked {
                                     showProcess = true
-                                    isLiked = true
+                                    unactivate()
                                 }
+                                isLiked.toggle()
                             }
                         }) {
                             buttonContent(bg: "ic_button_bg_small", image: isLiked ? "ic_is_liked" : "ic_like", size: 62)
@@ -83,6 +84,12 @@ struct AnotherProfileNavigationPanelView: View {
             }.frame(width: UIScreen.main.bounds.width, height: 130)
                 .background(opacity ? ColorList.main_90.color : MyColor.getColor(0, 0, 0, 0))
                 .padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight, trailing: 0))
+        }
+    }
+
+    private func unactivate() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            showProcess.toggle()
         }
     }
 }

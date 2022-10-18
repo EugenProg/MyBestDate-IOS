@@ -48,7 +48,7 @@ struct AnotherProfileImagesScreen: View {
             .onAppear {
                 store.dispatch(action:
                         .setScreenColors(status: MyColor.getColor(23, 28, 31), style: .lightContent))
-                isLiked = mediator.imageList.isEmpty ? false : (mediator.imageList[mediator.selectedImage].liked ?? false)
+                isLiked = mediator.imageList.isEmpty ? false : (mediator.imageList[mediator.selectedImage].liked == true)
             }
     }
 }
