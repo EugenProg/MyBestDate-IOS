@@ -11,6 +11,7 @@ struct UserLocationScreen: View {
     @EnvironmentObject var store: Store
     @ObservedObject var searchMediator = CitySearchMediator.shared
     @ObservedObject var mediator = UserLocationMediator.shared
+    @State private var offsetValue: CGFloat = 0.0
 
     @State var selectedItem: CityListItem? = nil
 
@@ -63,6 +64,8 @@ struct UserLocationScreen: View {
             }.frame(width: UIScreen.main.bounds.width)
                 .padding(.init(top: 8, leading: 0, bottom: 16 + store.state.statusBarHeight, trailing: 0))
         }
+        .padding(.init(top: offsetValue / 2, leading: 0, bottom: 0, trailing: 0))
+        .keyboardTopOffset($offsetValue)
         .background(ColorList.main.color)
         .onAppear {
             searchMediator.initSearch()

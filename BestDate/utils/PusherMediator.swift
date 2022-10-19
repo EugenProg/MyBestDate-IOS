@@ -50,9 +50,10 @@ class PusherMediator {
 
             let message = self.parceMessageData(event: event)
 
-            if self.store?.state.activeScreen == .CHAT &&
-                message?.sender_id == ChatMediator.shared.user.id {
+            if self.isInTheChat(id: message?.sender_id) {
                 ChatMediator.shared.addMessage(message: message ?? Message())
+            } else if self.inTheChatList() {
+                ChatListMediator.shared.getChatList()
             }
         })
     }
@@ -61,8 +62,7 @@ class PusherMediator {
         channel?.bind(eventName: "private-update", eventCallback: { event in
             let message = self.parceMessageData(event: event)
 
-            if self.store?.state.activeScreen == .CHAT &&
-                message?.sender_id == ChatMediator.shared.user.id {
+            if self.isInTheChat(id: message?.sender_id) {
                 var newList: [ChatItem] = []
                 for item in ChatMediator.shared.messages {
                     if item.message?.id == message?.id {
@@ -81,6 +81,8 @@ class PusherMediator {
                 }
 
                 ChatMediator.shared.messages = newList
+            } else if self.inTheChatList() {
+                ChatListMediator.shared.getChatList()
             }
         })
     }
@@ -89,9 +91,10 @@ class PusherMediator {
         channel?.bind(eventName: "private-delete", eventCallback: { event in
             let message = self.parceMessageData(event: event)
 
-            if self.store?.state.activeScreen == .CHAT &&
-                message?.sender_id == ChatMediator.shared.user.id {
+            if self.isInTheChat(id: message?.sender_id) {
                 ChatMediator.shared.messages.delete(id: message?.id)
+            } else if self.inTheChatList() {
+                ChatListMediator.shared.getChatList()
             }
         })
     }
@@ -104,6 +107,14 @@ class PusherMediator {
             return messageObject?.message
         }
         return nil
+    }
+
+    func isInTheChat(id: Int?) -> Bool {
+        self.store?.state.activeScreen == .CHAT && id == ChatMediator.shared.user.id
+    }
+
+    func inTheChatList() -> Bool {
+        self.store?.state.activeScreen == .MAIN && MainMediator.shared.currentScreen == .CHAT_LIST
     }
 
     func isConnected() -> Bool {

@@ -97,7 +97,7 @@ struct MatchesScreen: View {
                             store.dispatch(action: .navigate(screen: .ANOTHER_QUESTIONNAIRE))
                         }
                     }
-                }
+                }.padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight + 60, trailing: 0))
             } else {
                 NoDataBoxView(loadingMode: $mediator.loadingMode, text: "sorry_you_voted_for_all_the_photos")
                     .padding(.init(top: 50, leading: 50, bottom: ((UIScreen.main.bounds.width - 9) / 2) - 69, trailing: 50))

@@ -190,7 +190,9 @@ struct ChatScreen: View {
     }
 
     private func getTopPadding() -> CGFloat {
-        let bottomBoxHeight = mediator.user.getRole() == .user ? (mediator.editMode || mediator.replyMode ? 135 : 85) + additionalHeight + (offsetValue / 2) + (offsetValue > 0 ? 32 : 0) : 16
+        var bottomBoxHeight = (mediator.editMode || mediator.replyMode ? 135 : 85) + additionalHeight + (offsetValue / 2) + (offsetValue > 0 ? 32 : 0)
+        if mediator.user.getRole() != .user { bottomBoxHeight = 16 }
+        else if mediator.cardsOnlyMode { bottomBoxHeight = 150 }
         return store.state.statusBarHeight + bottomBoxHeight
     }
 

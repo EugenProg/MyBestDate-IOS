@@ -11,6 +11,7 @@ struct SearchFilterScreen: View {
     @EnvironmentObject var store: Store
     @ObservedObject var mediator = CitySearchMediator.shared
     @State var distance: Int = SearchMediator.shared.searchFilter?.location.range ?? 150
+    @State private var offsetValue: CGFloat = 0.0
 
     @State var selectedItem: CityListItem? = nil
 
@@ -68,6 +69,8 @@ struct SearchFilterScreen: View {
             }.frame(width: UIScreen.main.bounds.width)
                 .padding(.init(top: 8, leading: 0, bottom: 16 + store.state.statusBarHeight, trailing: 0))
         }
+        .padding(.init(top: offsetValue / 2, leading: 0, bottom: 0, trailing: 0))
+        .keyboardTopOffset($offsetValue)
         .background(ColorList.main.color)
         .onAppear {
             mediator.initSearch()

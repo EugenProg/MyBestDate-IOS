@@ -32,7 +32,7 @@ struct MatchSliderView: View {
                     .onTapGesture {
                         withAnimation { openProfile(user) }
                     }
-            }.padding(.init(top: 18, leading: 18, bottom: 18, trailing: 18))
+            }.padding(.init(top: 5, leading: 5, bottom: 5, trailing: 5))
 
             VStack {
                 Spacer()
@@ -120,6 +120,8 @@ struct MatchSliderView: View {
                     nextUser(liked: true)
                 } else if value.translation.width < -50 {
                     nextUser(liked: false)
+                } else {
+                    users[index].offset = CGSize(width: 0, height: 0)
                 }
             }
     }
