@@ -39,13 +39,15 @@ struct MessageListView: View {
             case .my_text_message_with_parent: MyTextMessageWithParentView(message: item.message, isLast: item.last, parentMessage: parentMessage, topOffset: topOffset, bottomOffset: bottomOffset)
             case .my_voice_message: MyTextMessageView(message: item.message, isLast: item.last)
             case .my_voice_message_with_parent: MyTextMessageView(message: item.message, isLast: item.last)
-            case .my_image_message: MyImageMessageView(message: item.message, isLast: item.last) { message in imageClick(message) }
+            case .my_image_message: MyImageMessageView(message: item.message, isLast: item.last, selectClick: {
+                clickAction(item.wrappedValue) }) { message in imageClick(message) }
             case .my_image_message_with_parent: MyTextMessageWithParentView(message: item.message, isLast: item.last, parentMessage: parentMessage, topOffset: topOffset, bottomOffset: bottomOffset)
             case .user_text_message: CompanionTextMessageView(message: item.message, isLast: item.last)
             case .user_text_message_with_parent: CompanionTextMessageWithParentView(message: item.message, isLast: item.last, parentMessage: parentMessage, topOffset: topOffset, bottomOffset: bottomOffset)
             case .user_voice_message: CompanionTextMessageView(message: item.message, isLast: item.last)
             case .user_voice_message_with_parent: CompanionTextMessageView(message: item.message, isLast: item.last)
-            case .user_image_message: CompanionImageMessageView(message: item.message, isLast: item.last) { message in imageClick(message) }
+            case .user_image_message: CompanionImageMessageView(message: item.message, isLast: item.last, selectClick: { clickAction(item.wrappedValue) })
+                { message in imageClick(message) }
             case .user_image_message_with_parent: CompanionTextMessageWithParentView(message: item.message, isLast: item.last, parentMessage: parentMessage, topOffset: topOffset, bottomOffset: bottomOffset)
             case .date_block: DateBlockView(date: item.date)
             }

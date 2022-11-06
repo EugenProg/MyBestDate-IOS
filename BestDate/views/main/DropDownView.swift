@@ -21,7 +21,7 @@ struct DropDownView: View {
                 .shadow(color: style.shadowColor, radius: 16, y: 3)
 
             HStack(spacing: 2) {
-                Text(NSLocalizedString(text, comment: "Text"))
+                Text(text.localized())
                     .foregroundColor(style.textColor)
                     .font(MyFont.getFont(.BOLD, 14))
                     .lineLimit(1)

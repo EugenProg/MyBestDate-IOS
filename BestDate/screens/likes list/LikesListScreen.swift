@@ -36,6 +36,7 @@ struct LikesListScreen: View {
         .onAppear {
             store.dispatch(action:
                     .setScreenColors(status: ColorList.main.color, style: .lightContent))
+            ProfileMediator.shared.hasNewLikes = false
         }
     }
 }

@@ -19,7 +19,7 @@ struct SettingsInputView: View {
         VStack(spacing: 5) {
             HStack {
                 VStack(alignment: .leading, spacing: 6) {
-                    Text(NSLocalizedString(hint, comment: "location"))
+                    Text(hint.localized())
                         .foregroundColor(ColorList.white_50.color)
                         .font(MyFont.getFont(.NORMAL, 12))
 

@@ -17,7 +17,6 @@ struct SocialNetworkBottomSheet: View {
     var body: some View {
         VStack(spacing: 10) {
             SignInWithAppleButton(.signIn) { request in
-                print(">>> click")
                 store.dispatch(action: .startProcess)
                 request.requestedScopes = [.fullName, .email]
             } onCompletion: { result in

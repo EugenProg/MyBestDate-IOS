@@ -19,7 +19,7 @@ struct SearchInputView: View {
                 .fill(light ? ColorList.main_5.color : ColorList.white_5.color)
 
             VStack(alignment: .leading, spacing: 5) {
-                Text(NSLocalizedString(hint, comment: "Question"))
+                Text(hint.localized())
                     .foregroundColor(light ? ColorList.main_60.color : ColorList.white_60.color)
                     .font(MyFont.getFont(.NORMAL, 12))
 

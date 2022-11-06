@@ -90,7 +90,7 @@ extension Date {
     }
 
     func getZodiacSign() -> String {
-        NSLocalizedString(DateUtils().getZodiacSignByDate(date: self), comment: "Zodiac")
+        DateUtils().getZodiacSignByDate(date: self).localized()
     }
 
     func toShortString() -> String {
@@ -120,11 +120,11 @@ extension Date {
         if days > 6 {
             return self.toShortString()
         } else if days > 0 {
-            return String.localizedStringWithFormat(NSLocalizedString("was_n_days_ago", comment: "Days"), days)
+            return String.localizedStringWithFormat("was_n_days_ago".localized(), days)
         } else if hours > 0 {
-            return String.localizedStringWithFormat(NSLocalizedString("was_n_hours_ago", comment: "Hours"), hours)
+            return String.localizedStringWithFormat("was_n_hours_ago".localized(), hours)
         } else if minutes > 0 {
-            return String.localizedStringWithFormat(NSLocalizedString("was_n_min_ago", comment: "Minute"), minutes)
+            return String.localizedStringWithFormat("was_n_min_ago".localized(), minutes)
         } else {
             return ""
         }
@@ -202,6 +202,10 @@ extension String {
                     context: nil
                 )
     }
+
+    func localized() -> String {
+        NSLocalizedString(self, comment: self)
+    }
 }
 
 extension Int {
@@ -234,10 +238,14 @@ extension UserInfo {
         Calendar.current.dateComponents([.year], from: self.birthday?.toDate() ?? Date.now, to: Date.now).year ?? 0
     }
 
+    func getCoins() -> Int {
+        (self.coins ?? "0").toInt()
+    }
+
     func getDistance() -> String {
         String.localizedStringWithFormat(
-            NSLocalizedString("disatnce_unit", comment: "Mask"),
-            NSLocalizedString(String(format: "%.0f", self.distance ?? 0.0), comment: "Distance")
+            "disatnce_unit".localized(),
+            String(format: "%.0f", self.distance ?? 0.0).localized()
         )
     }
 
@@ -249,6 +257,13 @@ extension UserInfo {
         incomingFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
 
         return dateFormatter.string(from: incomingFormatter.date(from: self.birthday ?? "") ?? Date())
+    }
+
+    func getBirthday() -> Date {
+        let incomingFormatter = DateFormatter()
+        incomingFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+
+        return incomingFormatter.date(from: self.birthday ?? "") ?? Date.getEithteenYearsAgoDate()
     }
 
     func getLocation() -> String {
@@ -308,8 +323,8 @@ extension ShortUserInfo {
 
     func getDistance() -> String {
         String.localizedStringWithFormat(
-            NSLocalizedString("disatnce_unit", comment: "Mask"),
-            NSLocalizedString(String(format: "%.0f", self.distance ?? 0.0), comment: "Distance")
+            "disatnce_unit".localized(),
+            String(format: "%.0f", self.distance ?? 0.0).localized()
         )
     }
 

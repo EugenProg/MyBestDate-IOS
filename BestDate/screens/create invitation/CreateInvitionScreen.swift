@@ -28,7 +28,7 @@ struct CreateInvitionScreen: View {
                 Image("ic_logo_name_pink")
                     .padding(.init(top: 50, leading: 0, bottom: 7, trailing: 0))
 
-                Text(NSLocalizedString("invitation_card", comment: "card").uppercased())
+                Text("invitation_card".localized().uppercased())
                     .foregroundColor(ColorList.white.color)
                     .font(MyFont.getFont(.BOLD, 19))
                     .padding(.init(top: 7, leading: 0, bottom: 116, trailing: 0))
@@ -50,7 +50,7 @@ struct CreateInvitionScreen: View {
                         mediator.sendInvitation(invitaionId: invitation.id) {
                             DispatchQueue.main.async {
                                 withAnimation {
-                                    store.dispatch(action: .show(message: NSLocalizedString("your_invitation_was_send", comment: "Message")))
+                                    store.dispatch(action: .show(message: "your_invitation_was_send".localized()))
                                     store.state.showInvitationDialog = false
                                 }
                             }
@@ -71,6 +71,7 @@ struct CreateInvitionScreen: View {
             Text(invitation.name ?? "Sex")
                 .foregroundColor(ColorList.white.color)
                 .font(MyFont.getFont(.BOLD, 18))
+                .padding(.init(top: 0, leading: 0, bottom: 5, trailing: 0))
         }.frame(width: 223, height: 44)
         .padding(5)
     }

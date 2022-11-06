@@ -27,12 +27,12 @@ struct ConfirmationSocialInfoView: View {
 
             HStack(spacing: 5) {
                 VStack(alignment: .leading, spacing: 1) {
-                    Text(NSLocalizedString(questionInfo.question, comment: "Question"))
+                    Text(questionInfo.question.localized())
                         .foregroundColor(ColorList.main.color)
                         .font(MyFont.getFont(.BOLD, 20))
 
                     if mediator.socialNetworkes.isEmpty {
-                        Text(NSLocalizedString(questionInfo.ansfers.first ?? "", comment: "Answer"))
+                        Text((questionInfo.ansfers.first ?? "").localized())
                             .foregroundColor(ColorList.main_60.color)
                             .font(MyFont.getFont(.NORMAL, 12))
                     } else {

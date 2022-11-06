@@ -25,10 +25,10 @@ struct SwichSelectorView: View {
             
             HStack {
                 VStack(alignment: .leading, spacing: 0) {
-                    Text(NSLocalizedString(hint, comment: "hint"))
+                    Text(hint.localized())
                         .foregroundColor(ColorList.white_60.color)
                         .font(MyFont.getFont(.NORMAL, 12))
-                    Text(NSLocalizedString(text, comment: "text"))
+                    Text(text.localized())
                         .foregroundColor(ColorList.white.color)
                         .font(MyFont.getFont(.NORMAL, 18))
                 }

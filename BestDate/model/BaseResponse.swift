@@ -34,6 +34,7 @@ struct ProfileImage: Codable {
     var main: Bool? = nil
     var top: Bool? = nil
     var liked: Bool? = nil
+    var likes: Int? = nil
 }
 
 struct UserDataResponse: Codable {
@@ -67,6 +68,7 @@ struct UserInfo: Codable {
     var new_invitations: Int? = nil
     var new_duels: Int? = nil
     var new_matches: Int? = nil
+    var coins: String? = nil
     var distance: Double? = nil
     var photos: [ProfileImage]? = nil
     var location: Location? = nil
@@ -163,6 +165,21 @@ struct Message: Codable {
 struct SocketMessage: Codable {
     var id: Int? = nil
     var message: Message? = nil
+}
+
+struct ReadMessage: Codable {
+    var id: Int? = nil
+    var last_message: Message? = nil
+}
+
+struct TypingEventResponse: Codable {
+    var id: Int
+    var sender_id: Int
+}
+
+struct CoinsEventResponse: Codable {
+    var id: Int
+    var coins: String
 }
 
 struct ChatImage: Codable {

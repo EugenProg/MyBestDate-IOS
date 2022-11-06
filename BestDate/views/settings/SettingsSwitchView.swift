@@ -22,11 +22,11 @@ struct SettingsSwitchView: View {
             Image(image)
 
             VStack(alignment: .leading, spacing: 0) {
-                Text(NSLocalizedString(title, comment: "title"))
+                Text(title.localized())
                     .foregroundColor(ColorList.white_80.color)
                     .font(MyFont.getFont(.BOLD, 16))
 
-                Text(NSLocalizedString(isActive == true ? "active" : "deactive", comment: "active"))
+                Text(isActive == true ? "active".localized() : "deactive".localized())
                     .foregroundColor(isActive == true ? ColorList.light_blue.color : ColorList.pink.color)
                     .font(MyFont.getFont(.NORMAL, 16))
                     .opacity(0.9)

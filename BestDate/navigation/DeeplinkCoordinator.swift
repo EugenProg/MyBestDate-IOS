@@ -69,7 +69,7 @@ final class UserProfileDeeplinkHandler: DeeplinkHandlerProtocol {
                         }
                     } else {
                         self.store?.dispatch(action:
-                                .show(message: NSLocalizedString("default_error_message", comment: "Error"))
+                                .show(message: "default_error_message".localized())
                         )
                     }
                 }

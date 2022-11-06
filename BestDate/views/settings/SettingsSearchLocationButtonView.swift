@@ -17,7 +17,7 @@ struct SettingsSearchLocationButtonView: View {
 
             HStack {
                 VStack(alignment: .leading, spacing: 6) {
-                    Text(NSLocalizedString("location", comment: "location"))
+                    Text("location".localized())
                         .foregroundColor(ColorList.white_50.color)
                         .font(MyFont.getFont(.NORMAL, 12))
 
@@ -34,7 +34,7 @@ struct SettingsSearchLocationButtonView: View {
             Button(action: {
                 withAnimation { clickAction() }
             }) {
-                Text(NSLocalizedString("change_location", comment: "Title"))
+                Text("change_location".localized())
                     .foregroundColor(ColorList.main.color)
                     .font(MyFont.getFont(.BOLD, 14))
                     .padding(.init(top: 7, leading: 24, bottom: 6, trailing: 24))

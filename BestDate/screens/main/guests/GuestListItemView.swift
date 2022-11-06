@@ -35,7 +35,7 @@ struct GuestListItemView: View {
                             .font(MyFont.getFont(.BOLD, 16))
                             .padding(.init(top: 0, leading: 8, bottom: 0, trailing: 0))
 
-                        Text(NSLocalizedString("years_short", comment: "age"))
+                        Text("years_short".localized())
                             .foregroundColor(ColorList.white_80.color)
                             .font(MyFont.getFont(.BOLD, 10))
                             .padding(.init(top: 5, leading: 0, bottom: 0, trailing: 0))
@@ -48,7 +48,7 @@ struct GuestListItemView: View {
                     HStack(spacing: 4) {
                         Image("ic_time")
 
-                        Text(NSLocalizedString("visited", comment: "visited"))
+                        Text("visited".localized())
                             .foregroundColor(ColorList.white.color)
                             .font(MyFont.getFont(.NORMAL, 12))
 
@@ -66,7 +66,7 @@ struct GuestListItemView: View {
                         Spacer()
                         ZStack {
                             HStack(spacing: 6) {
-                                Text(NSLocalizedString("new_visit", comment: "New visit"))
+                                Text("new_visit".localized())
                                     .foregroundColor(ColorList.white.color)
                                     .font(MyFont.getFont(.NORMAL, 10))
 

@@ -74,8 +74,8 @@ class ChatUtils {
         let days = components.day ?? 0
 
         switch days {
-            case 0: return NSLocalizedString("today", comment: "Today")
-            case 1: return NSLocalizedString("yesterday", comment: "Yesterday")
+            case 0: return "today".localized()
+            case 1: return "yesterday".localized()
             default: return date?.toShortDateString() ?? ""
         }
     }

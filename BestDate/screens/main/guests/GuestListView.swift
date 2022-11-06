@@ -16,7 +16,7 @@ struct GuestListView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text(NSLocalizedString(title, comment: "Title"))
+            Text(title.localized())
                 .foregroundColor(ColorList.white.color)
                 .font(MyFont.getFont(.BOLD, 20))
                 .padding(.init(top: 20, leading: 18, bottom: 10, trailing: 18))

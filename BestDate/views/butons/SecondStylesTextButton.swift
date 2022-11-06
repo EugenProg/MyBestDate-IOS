@@ -19,11 +19,11 @@ struct SecondStylesTextButton: View {
             withAnimation { clickAction() }
         }) {
             HStack(spacing: 12) {
-                Text(NSLocalizedString(firstText, comment: "text"))
+                Text(firstText.localized())
                     .foregroundColor(firstTextColor)
                     .font(MyFont.getFont(.NORMAL, 16))
                 
-                Text(NSLocalizedString(secondText, comment: "text"))
+                Text(secondText.localized())
                     .foregroundColor(secondTextColor)
                     .font(MyFont.getFont(.BOLD, 16))
             }.padding(.init(top: 10, leading: 45, bottom: 10, trailing: 45))

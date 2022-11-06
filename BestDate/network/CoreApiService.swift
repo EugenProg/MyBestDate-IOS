@@ -712,4 +712,22 @@ class CoreApiService {
 
         task.resume()
     }
+
+    func storeDeviceToken(token: String) {
+        var request = CoreApiTypes.deviceToken.getRequest(withAuth: true)
+
+        let data = try! encoder.encode(StoreTokenRequest(token: token))
+        encoder.outputFormatting = .prettyPrinted
+        NetworkLogger.printLog(data: data)
+        request.httpBody = data
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            NetworkLogger.printLog(response: response)
+            if let data = data, let _ = try? JSONDecoder().decode(BaseResponse.self, from: data) {
+                NetworkLogger.printLog(data: data)
+            }
+        }
+
+        task.resume()
+    }
 }

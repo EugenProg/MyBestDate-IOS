@@ -20,7 +20,7 @@ struct DeleteUserDialog: View {
                     .fill(ColorList.white.color)
                     .frame(height: 25)
 
-                Text(NSLocalizedString(name, comment: "Name"))
+                Text(name.localized())
                     .foregroundColor(ColorList.main.color)
                     .font(MyFont.getFont(.BOLD, 14))
                     .padding(.init(top: 6, leading: 14, bottom: 6, trailing: 14))
@@ -38,11 +38,11 @@ struct DeleteUserDialog: View {
                         .cornerRadius(16)
 
                     VStack(spacing: 16) {
-                        Text(NSLocalizedString("attention", comment: "Attention"))
+                        Text("attention".localized())
                             .foregroundColor(ColorList.white.color)
                             .font(MyFont.getFont(.BOLD, 22))
                         
-                        Text(NSLocalizedString("all_your_data_will_be_deleted", comment: "Attention"))
+                        Text("all_your_data_will_be_deleted".localized())
                             .foregroundColor(ColorList.white_80.color)
                             .multilineTextAlignment(.center)
                             .font(MyFont.getFont(.BOLD, 16))

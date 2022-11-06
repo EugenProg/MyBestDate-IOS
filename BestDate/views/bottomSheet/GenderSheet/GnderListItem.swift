@@ -13,7 +13,7 @@ struct GnderListItem: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(NSLocalizedString(text, comment: "text"))
+            Text(text.localized())
                 .foregroundColor(ColorList.white.color)
                 .font(MyFont.getFont(.BOLD, 20))
                 .padding(.init(top: 0, leading: 14, bottom: 0, trailing: 14))
@@ -24,7 +24,7 @@ struct GnderListItem: View {
         }.frame(width: UIScreen.main.bounds.width - 36, height: 61)
             .padding(.init(top: 0, leading: 18, bottom: 0, trailing: 18))
             .onTapGesture {
-                clickAction(NSLocalizedString(text, comment: "text"))
+                clickAction(text.localized())
             }
     }
 }

@@ -14,11 +14,13 @@ final class Reducer {
         
         switch action {
         case .navigate(screen: let screen, clearBackStack: let clear):
-            print(">> Navigation -> \(screen.rawValue)\n")
-            state.inProcess = false
-            state.screenStack.append(state.activeScreen)
-            if (clear ?? false) { state.screenStack.removeAll() }
-            state.activeScreen = screen
+            if screen != state.activeScreen {
+                print(">> Navigation -> \(screen.rawValue)\n")
+                state.inProcess = false
+                state.screenStack.append(state.activeScreen)
+                if (clear ?? false) { state.screenStack.removeAll() }
+                state.activeScreen = screen
+            }
 
         case .navigationBack: do {
             let lastScreen = state.screenStack.last

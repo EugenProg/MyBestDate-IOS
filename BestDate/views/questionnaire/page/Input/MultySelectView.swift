@@ -22,7 +22,7 @@ struct MultySelectView: View {
                 let isUnActive = questionInfo.selectedAnsfer.isEmpty
 
                 VStack(alignment: .leading, spacing: 5) {
-                    Text(NSLocalizedString(questionInfo.question, comment: "Question"))
+                    Text(questionInfo.question.localized())
                         .foregroundColor(isUnActive ? ColorList.main_20.color : ColorList.main_60.color)
                         .font(isUnActive ? MyFont.getFont(.BOLD, 20) : MyFont.getFont(.NORMAL, 12))
                         .padding(.init(top: isUnActive ? 20 : 0, leading: 0, bottom: 0, trailing: 0))

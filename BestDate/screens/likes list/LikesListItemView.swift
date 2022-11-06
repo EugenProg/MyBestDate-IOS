@@ -28,7 +28,7 @@ struct LikesListItemView: View {
                     .foregroundColor(ColorList.white_90.color)
                     .font(MyFont.getFont(.BOLD, 14))
 
-                Text(NSLocalizedString("this_user_liked_your_photo", comment: "like"))
+                Text("this_user_liked_your_photo".localized())
                     .foregroundColor(ColorList.white_50.color)
                     .font(MyFont.getFont(.NORMAL, 12))
             }

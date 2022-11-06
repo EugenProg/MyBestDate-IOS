@@ -10,12 +10,11 @@ import SwiftUI
 struct ProfileScreen: View {
     @EnvironmentObject var store: Store
     @ObservedObject var mediator = ProfileMediator.shared
+    @ObservedObject var mainMediator = MainMediator.shared
     @ObservedObject var editorMediator = PhotoEditorMediator.shared
     @ObservedObject var photoMediator = PhotoSettingsSheetMediator.shared
     @State var showHeader = false
     @State var logoutProccess: Bool = false
-
-    @State var isShowingPhotoLibrary = false
 
     var body: some View {
         ZStack {
@@ -23,7 +22,7 @@ struct ProfileScreen: View {
                 BluredImageHeaderView(image: $mediator.mainPhoto, enableBlur: false)
             }
 
-            SaveAndSetPositionScrollView(onRefresh: { done in
+            SaveRefreshAndSetPositionScrollView(onRefresh: { done in
                 mediator.updateUserData { done() }
             } ) {
                 ZStack {
@@ -73,23 +72,23 @@ struct ProfileScreen: View {
 
                                 ScrollView(.horizontal, showsIndicators: false) {
                                     HStack(alignment: .top, spacing: 15) {
-                                        CoinsBoxView(coinsCount: 1000) {
+                                        CoinsBoxView(coinsCount: $mainMediator.coinsCount) {
 
                                         }
 
-                                        ProfileButtonView(name: "matches_list", image: "ic_matches", isActive: (mediator.user.new_matches ?? 0) > 0) {
+                                        ProfileButtonView(name: "matches_list", image: "ic_matches", isActive: mediator.hasNewMatches) {
                                             store.dispatch(action: .navigate(screen: .MATCHES_LIST))
                                         }
 
-                                        ProfileButtonView(name: "cards", image: "ic_add", isActive: (mediator.user.new_invitations ?? 0) > 0) {
+                                        ProfileButtonView(name: "cards", image: "ic_add", isActive: mediator.hasNewInvitations) {
                                             store.dispatch(action: .navigate(screen: .INVITATION))
                                         }
 
-                                        ProfileButtonView(name: "like", image: "ic_is_liked", isActive: (mediator.user.new_likes ?? 0) > 0) {
+                                        ProfileButtonView(name: "likes", image: "ic_is_liked", isActive: mediator.hasNewLikes) {
                                             store.dispatch(action: .navigate(screen: .LIKES_LIST))
                                         }
 
-                                        ProfileButtonView(name: "my_duels", image: "ic_my_duels", isActive: (mediator.user.new_duels ?? 0) > 0) {
+                                        ProfileButtonView(name: "my_duels", image: "ic_my_duels", isActive: mediator.hasNewDuels) {
                                             store.dispatch(action: .navigate(screen: .MY_DUELS))
                                         }
                                     }.padding(.init(top: 28, leading: 18, bottom: 3, trailing: 18))
@@ -166,9 +165,8 @@ struct ProfileScreen: View {
                         .setScreenColors(status: ColorList.main.color, style: .lightContent))
 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: { withAnimation { showHeader = true } })
-            }
-            .sheet(isPresented: $isShowingPhotoLibrary) {
-                ImagePicker(sourceType: .photoLibrary) { image in
+
+                ImageListMediator.shared.imageIsSelect = { image in
                     editorMediator.newPhoto = image
                     photoMediator.callPage = .PROFILE
                     store.dispatch(action: .navigate(screen: .PHOTO_EDITING))
@@ -178,7 +176,7 @@ struct ProfileScreen: View {
 
     private func addImage() -> () -> Void {
         {
-            isShowingPhotoLibrary.toggle()
+            store.dispatch(action: .showBottomSheet(view: .IMAGE_LIST))
         }
     }
 

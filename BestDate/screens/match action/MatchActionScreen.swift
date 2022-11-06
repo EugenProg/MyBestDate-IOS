@@ -79,19 +79,19 @@ struct MatchActionScreen: View {
                             }
                         }.padding(.init(top: 36, leading: 85, bottom: 0, trailing: 28))
 
-                        Text(NSLocalizedString("matching_you", comment: "Match").uppercased())
+                        Text("matching_you".localized().uppercased())
                             .foregroundColor(ColorList.pink.color)
                             .font(MyFont.getFont(.BOLD, 16))
                             .padding(.init(top: 38, leading: 0, bottom: 0, trailing: 0))
 
-                        Text(NSLocalizedString("congratulation", comment: "Congratulation").uppercased())
+                        Text("congratulation".localized().uppercased())
                             .foregroundColor(MyColor.getColor(198, 222, 235))
                             .font(MyFont.getFont(.BOLD, 22))
                             .padding(.init(top: 7, leading: 0, bottom: 0, trailing: 0))
 
                         Spacer()
 
-                        Text(NSLocalizedString("you_have_a_match_write_to_the_user", comment: "Message"))
+                        Text("you_have_a_match_write_to_the_user".localized())
                             .foregroundColor(MyColor.getColor(139, 160, 172))
                             .font(MyFont.getFont(.NORMAL, 16))
                             .multilineTextAlignment(.center)
@@ -113,7 +113,7 @@ struct MatchActionScreen: View {
                                         .resizable()
                                         .frame(width: 19, height: 19)
 
-                                    Text(NSLocalizedString("write_a_message", comment: "Message"))
+                                    Text("write_a_message".localized())
                                         .foregroundColor(ColorList.white.color)
                                         .font(MyFont.getFont(.BOLD, 18))
                                 }

@@ -103,10 +103,10 @@ final class RegistrationMediator: ObservableObject {
 
     private func getGender() -> String {
         switch gender {
-        case NSLocalizedString("woman_looking_for_a_man", comment: "Gender"): return "female"
-        case NSLocalizedString("woman_looking_for_a_woman", comment: "Gender"): return "female"
-        case NSLocalizedString("man_looking_for_a_man", comment: "Gender"): return "male"
-        case NSLocalizedString("man_looking_for_a_woman", comment: "Gender"): return "male"
+        case "woman_looking_for_a_man".localized(): return "female"
+        case "woman_looking_for_a_woman".localized(): return "female"
+        case "man_looking_for_a_man".localized(): return "male"
+        case "man_looking_for_a_woman".localized(): return "male"
         default: return "male"
         }
     }
@@ -117,10 +117,10 @@ final class RegistrationMediator: ObservableObject {
 
     private func getAim() -> [String] {
         switch gender {
-        case NSLocalizedString("woman_looking_for_a_man", comment: "Gender"): return ["male"]
-        case NSLocalizedString("woman_looking_for_a_woman", comment: "Gender"): return ["female"]
-        case NSLocalizedString("man_looking_for_a_man", comment: "Gender"): return ["male"]
-        case NSLocalizedString("man_looking_for_a_woman", comment: "Gender"): return ["female"]
+        case "woman_looking_for_a_man".localized(): return ["male"]
+        case "woman_looking_for_a_woman".localized(): return ["female"]
+        case "man_looking_for_a_man".localized(): return ["male"]
+        case "man_looking_for_a_woman".localized(): return ["female"]
         default: return ["male", "female"]
         }
     }
@@ -136,12 +136,12 @@ final class RegistrationMediator: ObservableObject {
     private func setGender(gender: String, lookFor: [String]) {
         if gender == "male" {
             self.gender = lookFor.contains("male") ?
-            NSLocalizedString("man_looking_for_a_man", comment: "Gender") :
-            NSLocalizedString("man_looking_for_a_woman", comment: "Gender")
+            "man_looking_for_a_man".localized() :
+            "man_looking_for_a_woman".localized()
         } else {
             self.gender = lookFor.contains("male") ?
-            NSLocalizedString("woman_looking_for_a_man", comment: "Gender") :
-            NSLocalizedString("woman_looking_for_a_woman", comment: "Gender")
+            "woman_looking_for_a_man".localized() :
+            "woman_looking_for_a_woman".localized()
         }
     }
 }

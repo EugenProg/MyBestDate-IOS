@@ -44,7 +44,7 @@ struct InputPageView: View {
 
                     if text.isEmpty {
                         VStack(alignment: .leading, spacing: 0) {
-                            Text(NSLocalizedString("tell_us_about_yourself_what_you_find_interesting", comment: "About you"))
+                            Text("tell_us_about_yourself_what_you_find_interesting".localized())
                                 .foregroundColor(ColorList.main_30.color)
                                 .font(MyFont.getFont(.BOLD, 20))
                                 .lineSpacing(6)

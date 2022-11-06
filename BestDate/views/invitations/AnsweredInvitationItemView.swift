@@ -36,7 +36,7 @@ struct AnsweredInvitationItemView: View {
                             .foregroundColor(ColorList.main.color)
                             .font(MyFont.getFont(.BOLD, 26))
                         
-                        Text(NSLocalizedString("we_have_transmitted_your_reply_to_the_sender", comment: "answer please"))
+                        Text("we_have_transmitted_your_reply_to_the_sender".localized())
                             .foregroundColor(ColorList.main_60.color)
                             .font(MyFont.getFont(.NORMAL, 13))
                     }

@@ -30,7 +30,7 @@ struct LogoutButtonView: View {
                     HStack(spacing: 15) {
                         Image("ic_sign_out")
                         
-                        Text("sign_out")
+                        Text("sign_out".localized())
                             .foregroundColor(ColorList.white_70.color)
                             .font(MyFont.getFont(.BOLD, 14))
                     }.padding(.init(top: 0, leading: 16, bottom: 0, trailing: 16))

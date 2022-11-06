@@ -13,7 +13,6 @@ struct ChatImageViewer: View {
     @State private var offsetValue: CGFloat = 0.0
 
     @State var additionalHeight: CGFloat = 0
-    @State var text: String = ""
     @State var sendTextProcess: Bool = false
     @State var translateProcess: Bool = false
 
@@ -25,6 +24,7 @@ struct ChatImageViewer: View {
                         BackButton(style: .white) {
                             mediator.selectedImage = nil
                             mediator.editImageMode = false
+                            store.dispatch(action: .showBottomSheet(view: .IMAGE_LIST))
                         }
 
                         Spacer()
@@ -55,8 +55,8 @@ struct ChatImageViewer: View {
 
                     HStack(spacing: 0) {
                         ZStack(alignment: .leading) {
-                            if text.isEmpty {
-                                Text(NSLocalizedString("add_a_caption", comment: "Type Message"))
+                            if mediator.inputText.isEmpty {
+                                Text("add_a_caption".localized())
                                     .foregroundColor(ColorList.white_30.color)
                                     .font(MyFont.getFont(.NORMAL, 18))
                                     .padding(.init(top: 0, leading: 23, bottom: 0, trailing: 5))
@@ -66,7 +66,7 @@ struct ChatImageViewer: View {
                                 .padding(.init(top: 9, leading: 18, bottom: 8, trailing: 3))
                         }
                         Button(action: {
-                            if !text.isEmpty && !translateProcess && !sendTextProcess {
+                            if !mediator.inputText.isEmpty && !translateProcess && !sendTextProcess {
                                 withAnimation {
                                     translateProcess.toggle()
                                     //translateAction(text)
@@ -118,11 +118,11 @@ struct ChatImageViewer: View {
     private func send() {
         mediator.sendImageMessage(
             image: mediator.selectedImage ?? UIImage(),
-            message: text.isEmpty ? nil : text) { success in
+            message: mediator.inputText.isEmpty ? nil : mediator.inputText) { success in
                 DispatchQueue.main.async {
                     withAnimation {
                         sendTextProcess = false
-                        text = ""
+                        mediator.inputText = ""
                         mediator.selectedImage = nil
                         mediator.editImageMode = false
                         store.dispatch(action: .hideKeyboard)
@@ -133,7 +133,7 @@ struct ChatImageViewer: View {
     }
 
     private func calculateSize() {
-        let size = self.text.getLinesHeight(viewVidth: UIScreen.main.bounds.width - 131, fontSize: 18)
+        let size = mediator.inputText.getLinesHeight(viewVidth: UIScreen.main.bounds.width - 131, fontSize: 18)
 
         let linesCount = Int(size.height / 21.48)
         if linesCount <= 3 {
@@ -149,22 +149,22 @@ struct ChatImageViewer: View {
 
     fileprivate func Editor() -> some View {
         if #available(iOS 16.0, *) {
-            return TextEditor(text: $text)
+            return TextEditor(text: $mediator.inputText)
                 .foregroundColor(ColorList.white.color)
                 .autocapitalization(.sentences)
                 .scrollContentBackground(.hidden)
                 .background(MyColor.getColor(0, 0, 0, 0))
                 .font(MyFont.getFont(.BOLD, 18))
-                .onChange(of: text) { _ in
+                .onChange(of: mediator.inputText) { _ in
                     calculateSize()
                 }
         } else {
-            return TextEditor(text: $text)
+            return TextEditor(text: $mediator.inputText)
                 .foregroundColor(ColorList.white.color)
                 .autocapitalization(.sentences)
                 .font(MyFont.getFont(.BOLD, 18))
                 .background(MyColor.getColor(0, 0, 0, 0))
-                .onChange(of: text) { _ in
+                .onChange(of: mediator.inputText) { _ in
                     calculateSize()
                 }
         }

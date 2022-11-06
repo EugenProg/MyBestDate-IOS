@@ -25,7 +25,7 @@ struct StandardButton: View {
                         .tint(style.contentColor)
                         .frame(width: 50, height: 50)
                 } else {
-                    Text(NSLocalizedString(title, comment: "title"))
+                    Text(title.localized())
                         .foregroundColor(style.contentColor)
                         .font(MyFont.getFont(.BOLD, 18))
                 }

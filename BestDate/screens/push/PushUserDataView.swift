@@ -37,7 +37,7 @@ struct PushUserDataView: View {
 
             Spacer()
 
-            Text(NSLocalizedString("watch", comment: "Watch"))
+            Text("watch".localized())
                 .foregroundColor(ColorList.white_80.color)
                 .font(MyFont.getFont(.NORMAL, 16))
                 .padding(.init(top: 0, leading: 0, bottom: 5, trailing: 0))

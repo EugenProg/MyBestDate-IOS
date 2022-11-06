@@ -16,7 +16,7 @@ struct LikesListView: View {
         GridItem(.fixed(72), spacing: 3)]
 
     var body: some View {
-        SaveAndSetPositionScrollView(
+        SaveRefreshAndSetPositionScrollView(
             startPosition: mediator.savedPosition,
             offsetChanged: { it in mediator.savePosition(it) },
             onRefresh: { done in mediator.getLikesList { done() } }) {

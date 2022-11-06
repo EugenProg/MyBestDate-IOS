@@ -24,7 +24,7 @@ struct SettingsSaveButtonView: View {
                         .tint(ColorList.white.color)
                         .frame(width: 20, height: 20)
                 } else {
-                    Text(NSLocalizedString("save_persoanl_data", comment: "Save"))
+                    Text("save_persoanl_data".localized())
                         .foregroundColor(saveEnabled ? ColorList.white.color : ColorList.main.color)
                         .font(MyFont.getFont(.BOLD, 14))
                         .padding(.init(top: 0, leading: 6, bottom: 0, trailing: 6))

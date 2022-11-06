@@ -129,10 +129,10 @@ enum InvitationAnswer: String {
 
     var text: String {
         switch self {
-        case .yes: return NSLocalizedString("yes_i_agree", comment: "yes")
-        case .yes_next_time: return NSLocalizedString("yes_i_will_but_next_time", comment: "yes")
-        case .no: return NSLocalizedString("no", comment: "no")
-        case .not_yet: return NSLocalizedString("thanks_but_i_cant_yet", comment: "no")
+        case .yes: return "yes_i_agree".localized()
+        case .yes_next_time: return "yes_i_will_but_next_time".localized()
+        case .no: return "no".localized()
+        case .not_yet: return "thanks_but_i_cant_yet".localized()
         case .none: return ""
         }
     }

@@ -19,7 +19,7 @@ struct RangeSelectView: View {
                 .fill(ColorList.main_5.color)
 
             VStack(alignment: .leading, spacing: 1) {
-                Text(NSLocalizedString(questionInfo.question, comment: "Question"))
+                Text(questionInfo.question.localized())
                     .foregroundColor(ColorList.main_60.color)
                     .font(MyFont.getFont(.NORMAL, 12))
                     .padding(.init(top: 0, leading: 0, bottom: 5, trailing: 0))

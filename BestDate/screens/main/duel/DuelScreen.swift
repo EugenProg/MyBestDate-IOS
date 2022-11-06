@@ -10,6 +10,7 @@ import SwiftUI
 struct DuelScreen: View {
     @EnvironmentObject var store: Store
     @ObservedObject var mediator = DuelMediator.shared
+    @ObservedObject var mainMediator = MainMediator.shared
     @State var showResult: Bool = false
 
     @State var firstProgress: Bool = false
@@ -61,11 +62,11 @@ struct DuelScreen: View {
             ScrollView(.vertical, showsIndicators: true) {
                 VStack(alignment: .leading, spacing: 0) {
                     HStack {
-                        DuelCoinsView()
+                        DuelCoinsView(coinsCount: $mainMediator.coinsCount)
 
                         Spacer()
 
-                        ProfileButtonView(name: "my_duels", image: "ic_my_duels", isActive: (ProfileMediator.shared.user.new_duels ?? 0) > 0, size: CGSize(width: 57, height: 54)) {
+                        ProfileButtonView(name: "my_duels", image: "ic_my_duels", isActive: ProfileMediator.shared.hasNewDuels, size: CGSize(width: 57, height: 54)) {
                             withAnimation {
                                 store.dispatch(action: .navigate(screen: .MY_DUELS))
                             }
@@ -89,7 +90,7 @@ struct DuelScreen: View {
                     }
 
                     if mediator.firstUser != nil && mediator.secondUser != nil {
-                        Text(NSLocalizedString("result", comment: "Result"))
+                        Text("result".localized())
                             .foregroundColor(ColorList.white.color)
                             .font(MyFont.getFont(.BOLD, 20))
                             .padding(.init(top: 15, leading: 18, bottom: 5, trailing: 16))

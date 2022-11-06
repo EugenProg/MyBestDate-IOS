@@ -25,7 +25,7 @@ struct LikePushView: View {
                         Image("ic_notify_like")
                     }.frame(width: 47, height: 44)
 
-                    Text(NSLocalizedString("like", comment: "like"))
+                    Text("like".localized())
                         .foregroundColor(ColorList.white.color)
                         .font(MyFont.getFont(.BOLD, 20))
 

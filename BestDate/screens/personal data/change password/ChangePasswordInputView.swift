@@ -19,7 +19,7 @@ struct ChangePasswordInputView: View {
         VStack(spacing: 5) {
             HStack {
                 VStack(alignment: .leading, spacing: 8) {
-                    Text(NSLocalizedString(hint, comment: "location"))
+                    Text(hint.localized())
                         .foregroundColor(errorState ? errorColor.color : ColorList.white_50.color)
                         .font(MyFont.getFont(.NORMAL, 12))
 

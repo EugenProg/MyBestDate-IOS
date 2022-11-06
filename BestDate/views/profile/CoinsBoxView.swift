@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CoinsBoxView: View {
-    var coinsCount: Int
+    @Binding var coinsCount: Int
     var clickAction: () -> Void
 
     var body: some View {
@@ -32,7 +32,7 @@ struct CoinsBoxView: View {
                 }.frame(width: 88, height: 58, alignment: .leading)
             }
 
-            Text(NSLocalizedString("balance", comment: "Balance"))
+            Text("balance".localized())
                 .foregroundColor(ColorList.white.color)
                 .font(MyFont.getFont(.BOLD, 10))
         }

@@ -105,7 +105,7 @@ struct AuthScreen: View {
                 store.dispatch(action: .navigate(screen: UserDataHolder.startScreen))
             }
         } else {
-            store.dispatch(action: .show(message: NSLocalizedString(message, comment: "Message")))
+            store.dispatch(action: .show(message: message.localized()))
         }
     }
 
@@ -121,7 +121,7 @@ struct AuthScreen: View {
             } else {
                 DispatchQueue.main.async {
                     store.dispatch(action:
-                            .show(message: NSLocalizedString("default_error_message", comment: "Message")))
+                            .show(message: "default_error_message".localized()))
                 }
             }
         }

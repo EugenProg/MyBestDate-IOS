@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SaveAndSetPositionScrollView<Content: View>: View {
+struct SaveRefreshAndSetPositionScrollView<Content: View>: View {
     var startPosition: CGFloat
     let offsetChanged: (CGFloat) -> Void
     let onRefresh: OnRefresh
@@ -117,4 +117,55 @@ private let THRESHOLD: CGFloat = 50
 
 public enum RefreshState {
     case waiting, primed, loading
+}
+
+struct SaveAndSetPositionScrollView<Content: View>: View {
+    var startPosition: CGFloat
+    let offsetChanged: (CGFloat) -> Void
+    let content: Content
+
+    @State private var state = RefreshState.waiting
+    @State private var currentOffset: CGFloat = 0
+
+    init(
+            startPosition: CGFloat = 0,
+            offsetChanged: @escaping (CGFloat) -> Void = { _ in },
+            @ViewBuilder content: () -> Content
+        ) {
+            self.startPosition = startPosition
+            self.offsetChanged = offsetChanged
+            self.content = content()
+        }
+
+    var body: some View {
+        ScrollViewReader { proxy in
+            ScrollView(.vertical, showsIndicators: false) {
+                ZStack(alignment: .top) {
+                    PositionIndicators(type: .moving)
+                        .frame(height: 0)
+
+                    content
+                        .alignmentGuide(.top, computeValue: { _ in
+                            (state == .loading) ? -THRESHOLD : 0
+                        })
+                }
+            }
+            .background(PositionIndicators(type: .fixed))
+            .onPreferenceChange(PositionPreferenceKey.self) { values in
+                DispatchQueue.main.async {
+                    let movingY = values.first { $0.type == .moving }?.y ?? 0
+                    let fixedY = values.first { $0.type == .fixed }?.y ?? 0
+                    let offset = movingY - fixedY
+
+                    currentOffset = offset
+                    if offset < 0 {
+                        offsetChanged(offset)
+                    }
+                }
+            }
+            .onAppear {
+                proxy.scrollTo(Int(round(startPosition)), anchor: .top)
+            }
+        }
+    }
 }

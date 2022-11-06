@@ -15,7 +15,7 @@ struct SettingsInputOtpView: View {
         VStack(spacing: 5) {
             HStack {
                 VStack(alignment: .leading, spacing: 6) {
-                    Text(NSLocalizedString("confirmation_code", comment: "location"))
+                    Text("confirmation_code".localized())
                         .foregroundColor(ColorList.white_50.color)
                         .font(MyFont.getFont(.NORMAL, 12))
 

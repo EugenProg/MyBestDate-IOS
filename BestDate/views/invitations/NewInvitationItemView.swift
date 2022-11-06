@@ -37,7 +37,7 @@ struct NewInvitationItemView: View {
                             .foregroundColor(ColorList.main.color)
                             .font(MyFont.getFont(.BOLD, 26))
 
-                        Text(NSLocalizedString("you_have_received_an_invitation_please_give_an_answer", comment: "answer please"))
+                        Text("you_have_received_an_invitation_please_give_an_answer".localized())
                             .foregroundColor(ColorList.main_60.color)
                             .font(MyFont.getFont(.NORMAL, 13))
                     }
@@ -121,7 +121,7 @@ struct NewInvitationItemView: View {
         Button(action: {
             withAnimation { clickAction() }
         }) {
-            Text(NSLocalizedString(text, comment: "text"))
+            Text(text.localized())
                 .foregroundColor(ColorList.white.color)
                 .font(MyFont.getFont(.BOLD, 14))
                 .padding(.init(top: 7, leading: 22, bottom: 6, trailing: 22))

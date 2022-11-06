@@ -12,14 +12,13 @@ struct AnotherAdditionallyBottomSheet: View {
     @ObservedObject var mediator = AdditionallyMediator.shared
 
     var clickAction: () -> Void
-    var padding: CGFloat = (UIScreen.main.bounds.width - 220) / 2
 
     fileprivate func button(title: String, textColor: Color, click: @escaping () -> Void) -> some View {
         VStack(spacing: 8) {
-            Text(NSLocalizedString(title, comment: "text"))
+            Text(title.localized())
                 .foregroundColor(textColor)
                 .font(MyFont.getFont(.BOLD, 20))
-                .padding(.init(top: 20, leading: padding, bottom: 0, trailing: padding))
+                .padding(.init(top: 20, leading: 0, bottom: 0, trailing: 0))
 
             Rectangle()
                 .fill(ColorList.white_10.color)

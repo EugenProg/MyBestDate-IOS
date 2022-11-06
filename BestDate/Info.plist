@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>My app uses photos for select your profile photo</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -42,12 +44,12 @@
 		<string>SansPro_bold.otf</string>
 		<string>SansPro_italic.otf</string>
 		<string>SansPro_regular.otf</string>
-        <string>ValueSansPro-Italic.ttf</string>
-        <string>ValueSansPro-Bold.ttf</string>
-        <string>ValueSansPro-Regular.ttf</string>
-        <string>NotoSansDisplay-Italic.ttf</string>
-        <string>NotoSansDisplay-Bold.ttf</string>
-        <string>NotoSansDisplay-Regular.ttf</string>
+		<string>ValueSansPro-Italic.ttf</string>
+		<string>ValueSansPro-Bold.ttf</string>
+		<string>ValueSansPro-Regular.ttf</string>
+		<string>NotoSansDisplay-Italic.ttf</string>
+		<string>NotoSansDisplay-Bold.ttf</string>
+		<string>NotoSansDisplay-Regular.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

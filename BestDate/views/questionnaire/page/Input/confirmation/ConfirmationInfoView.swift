@@ -27,7 +27,7 @@ struct ConfirmationInfoView: View {
 
             HStack(spacing: 5) {
                 VStack(alignment: .leading, spacing: 0) {
-                    Text(NSLocalizedString(questionInfo.question, comment: "Question"))
+                    Text(questionInfo.question.localized())
                         .foregroundColor(ColorList.main.color)
                         .font(MyFont.getFont(.BOLD, 20))
                     Text(getAnsfer())
@@ -57,9 +57,9 @@ struct ConfirmationInfoView: View {
 
     private func getAnsfer() -> String {
         if questionInfo.selectedAnsfer.isEmpty {
-            return NSLocalizedString(questionInfo.ansfers.first ?? "", comment: "Answer")
+            return (questionInfo.ansfers.first ?? "").localized()
         } else {
-            return NSLocalizedString(questionInfo.selectedAnsfer, comment: "Answer")
+            return questionInfo.selectedAnsfer.localized()
         }
     }
 }

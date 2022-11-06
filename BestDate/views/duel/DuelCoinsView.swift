@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct DuelCoinsView: View {
+    @Binding var coinsCount: Int
+
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 23)
@@ -28,7 +30,7 @@ struct DuelCoinsView: View {
                 }
 
                 VStack(spacing: 1) {
-                    Text("10.14")
+                    Text(coinsCount.toString())
                         .foregroundColor(ColorList.white.color)
                         .font(MyFont.getFont(.BOLD, 16))
 
@@ -40,11 +42,5 @@ struct DuelCoinsView: View {
                 Spacer()
             }
         }.frame(width: 153)
-    }
-}
-
-struct DuelCoinsContainer_Previews: PreviewProvider {
-    static var previews: some View {
-        DuelCoinsView()
     }
 }

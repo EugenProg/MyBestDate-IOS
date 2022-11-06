@@ -19,7 +19,7 @@ struct DarkBottomSheetItem: View {
 
             VStack(alignment: .leading, spacing: 8) {
                 HStack(spacing: 0) {
-                    Text(NSLocalizedString(text, comment: "text"))
+                    Text(text.localized())
                         .foregroundColor(ColorList.white.color)
                         .font(MyFont.getFont(.BOLD, 20))
                         .lineLimit(1)
@@ -42,7 +42,7 @@ struct DarkBottomSheetItem: View {
             .padding(.init(top: 0, leading: 18, bottom: 0, trailing: 18))
             .onTapGesture {
                 withAnimation {
-                    clickAction(NSLocalizedString(text, comment: "text"))
+                    clickAction(text.localized())
                 }
             }
     }

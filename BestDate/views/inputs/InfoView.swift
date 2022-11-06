@@ -25,10 +25,10 @@ struct InfoView: View {
     
             HStack {
                 VStack(alignment: .leading, spacing: 5) {
-                    Text(NSLocalizedString(hint, comment: "hint"))
+                    Text(hint.localized())
                         .foregroundColor(errorState ? errorColor.color : ColorList.white_60.color)
                         .font(MyFont.getFont(.NORMAL, 12))
-                    Text(NSLocalizedString(infoText, comment: "info"))
+                    Text(infoText.localized())
                         .onChange(of: infoText) { text in
                             setDefault()
                         }

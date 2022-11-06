@@ -20,7 +20,7 @@ class DuelMediator: ObservableObject {
     @Published var secondDuelImage: ProfileImage? = nil
 
     @Published var activeGender: GenderType = .woman
-    @Published var place: String = NSLocalizedString("universe", comment: "Top")
+    @Published var place: String = "universe".localized()
 
     @Published var hasADuelAction: Bool = false
     @Published var loadingMode: Bool = true

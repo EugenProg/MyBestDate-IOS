@@ -31,7 +31,7 @@ class PersonalDataMediator: ObservableObject {
         self.name = MainMediator.shared.user.name ?? ""
         self.email = MainMediator.shared.user.email ?? ""
         self.phone = MainMediator.shared.user.phone ?? ""
-        self.birthday = MainMediator.shared.user.birthday?.toDate() ?? Date.getEithteenYearsAgoDate()
+        self.birthday = MainMediator.shared.user.getBirthday()
 
         self.gender = getGender(gender: MainMediator.shared.user.gender, lookFor: MainMediator.shared.user.look_for)
     }
@@ -44,12 +44,12 @@ class PersonalDataMediator: ObservableObject {
     private func getGender(gender: String?, lookFor: [String]?) -> String {
         if gender == "male" {
             return (lookFor?.contains("male") == true) ?
-            NSLocalizedString("man_looking_for_a_man", comment: "Gender") :
-            NSLocalizedString("man_looking_for_a_woman", comment: "Gender")
+            "man_looking_for_a_man".localized() :
+            "man_looking_for_a_woman".localized()
         } else {
             return (lookFor?.contains("male") == true) ?
-            NSLocalizedString("woman_looking_for_a_man", comment: "Gender") :
-            NSLocalizedString("woman_looking_for_a_woman", comment: "Gender")
+            "woman_looking_for_a_man".localized() :
+            "woman_looking_for_a_woman".localized()
         }
     }
 
@@ -67,20 +67,20 @@ class PersonalDataMediator: ObservableObject {
 
     private func getAim() -> [String] {
         switch gender {
-        case NSLocalizedString("woman_looking_for_a_man", comment: "Gender"): return ["male"]
-        case NSLocalizedString("woman_looking_for_a_woman", comment: "Gender"): return ["female"]
-        case NSLocalizedString("man_looking_for_a_man", comment: "Gender"): return ["male"]
-        case NSLocalizedString("man_looking_for_a_woman", comment: "Gender"): return ["female"]
+        case "woman_looking_for_a_man".localized(): return ["male"]
+        case "woman_looking_for_a_woman".localized(): return ["female"]
+        case "man_looking_for_a_man".localized(): return ["male"]
+        case "man_looking_for_a_woman".localized(): return ["female"]
         default: return ["male", "female"]
         }
     }
 
     private func getNewGender() -> String {
         switch gender {
-        case NSLocalizedString("woman_looking_for_a_man", comment: "Gender"): return "female"
-        case NSLocalizedString("woman_looking_for_a_woman", comment: "Gender"): return "female"
-        case NSLocalizedString("man_looking_for_a_man", comment: "Gender"): return "male"
-        case NSLocalizedString("man_looking_for_a_woman", comment: "Gender"): return "male"
+        case "woman_looking_for_a_man".localized(): return "female"
+        case "woman_looking_for_a_woman".localized(): return "female"
+        case "man_looking_for_a_man".localized(): return "male"
+        case "man_looking_for_a_woman".localized(): return "male"
         default: return "male"
         }
     }

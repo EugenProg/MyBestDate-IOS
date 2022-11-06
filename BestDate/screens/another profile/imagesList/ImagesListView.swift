@@ -10,6 +10,7 @@ import SwiftUI
 struct ImagesListView: View {
     @Binding var images: [ProfileImage]
     @Binding var selectedImage: Int
+    var showLikesCount: Bool = false
     var selectAction: () -> Void
     var closeAction:() -> Void
 
@@ -25,7 +26,7 @@ struct ImagesListView: View {
     @State private var offset = CGSize.zero
 
     var body: some View {
-        VStack(spacing: 42) {
+        VStack(spacing: 15) {
             HStack(spacing: 0) {
                 ForEach(images.indices, id: \.self) { index in
                     let image = images[index]
@@ -36,6 +37,18 @@ struct ImagesListView: View {
                         .scaleEffect(scaleState)
                 }.offset(x: offset.width)
             }.frame(height: size)
+
+            if showLikesCount {
+                HStack(spacing: 9) {
+                    Spacer()
+
+                    Text("\(images[selectedImage].likes ?? 0)")
+                        .foregroundColor(ColorList.white.color)
+                        .font(MyFont.getFont(.BOLD, 16))
+
+                    Image("ic_hearts_empty")
+                }.frame(width: UIScreen.main.bounds.width - 36)
+            }
 
             if images.count > 1 {
                 HStack(spacing: 6) {

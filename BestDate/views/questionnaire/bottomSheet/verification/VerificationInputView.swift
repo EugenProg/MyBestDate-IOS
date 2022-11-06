@@ -37,7 +37,7 @@ struct VerificationInputView: View {
 
                 ZStack(alignment: .leading) {
                     if input.isEmpty {
-                        Text(NSLocalizedString(hint, comment: "hint"))
+                        Text(hint.localized())
                             .foregroundColor(errorState ? errorColor.color : ColorList.main_70.color)
                             .font(MyFont.getFont(.BOLD, 20))
                     }

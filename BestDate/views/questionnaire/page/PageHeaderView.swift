@@ -19,7 +19,7 @@ struct PageHeaderView: View {
                     .foregroundColor(ColorList.main.color)
                     .font(MyFont.getFont(.BOLD, 38))
 
-                Text(NSLocalizedString("of", comment: "of"))
+                Text("of".localized())
                     .foregroundColor(ColorList.main_60.color)
                     .font(MyFont.getFont(.BOLD, 16))
                     .padding(.init(top: 10, leading: 0, bottom: 0, trailing: 0))
@@ -30,7 +30,7 @@ struct PageHeaderView: View {
                     .padding(.init(top: 10, leading: 0, bottom: 0, trailing: 0))
             }
 
-            Text(NSLocalizedString(title, comment: "Title"))
+            Text(title.localized())
                 .foregroundColor(ColorList.main.color)
                 .font(MyFont.getFont(.BOLD, 26))
         }.padding(.init(top: 13, leading: 23, bottom: 0, trailing: 23))

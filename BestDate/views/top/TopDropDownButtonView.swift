@@ -81,8 +81,8 @@ enum TopDropDownButtonViewStyle {
 
     var title: String {
         switch self {
-        case .blue: return NSLocalizedString("mister", comment: "Mister")
-        case .pink: return NSLocalizedString("miss", comment: "Miss")
+        case .blue: return "mister".localized()
+        case .pink: return "miss".localized()
         }
     }
 }

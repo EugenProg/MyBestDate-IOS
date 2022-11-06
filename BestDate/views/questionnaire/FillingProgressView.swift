@@ -13,7 +13,7 @@ struct FillingProgressView: View {
     var body: some View {
         VStack(spacing: 4) {
             HStack {
-                Text(NSLocalizedString(mediator.title, comment: "comment"))
+                Text(mediator.title.localized())
                     .foregroundColor(ColorList.white.color)
                     .font(MyFont.getFont(.BOLD, 26))
 

@@ -36,7 +36,7 @@ struct VoiterInfoView: View {
                             .font(MyFont.getFont(.BOLD, 16))
                             .padding(.init(top: 0, leading: 8, bottom: 0, trailing: 0))
 
-                        Text(NSLocalizedString("years_short", comment: "age"))
+                        Text("years_short".localized())
                             .foregroundColor(ColorList.white_80.color)
                             .font(MyFont.getFont(.BOLD, 10))
                             .padding(.init(top: 5, leading: 0, bottom: 0, trailing: 0))
@@ -49,7 +49,7 @@ struct VoiterInfoView: View {
                     HStack(spacing: 4) {
                         Image("ic_time")
 
-                        Text(NSLocalizedString("you_where_voted_for", comment: "voted Time"))
+                        Text("you_where_voted_for".localized())
                             .foregroundColor(ColorList.white.color)
                             .font(MyFont.getFont(.NORMAL, 12))
 

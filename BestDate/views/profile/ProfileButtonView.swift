@@ -41,7 +41,7 @@ struct ProfileButtonView: View {
             }
 
             if name != nil {
-            Text(NSLocalizedString(name ?? "Name", comment: "Name"))
+                Text(name!.localized())
                 .foregroundColor(ColorList.white.color)
                 .font(MyFont.getFont(.BOLD, 10))
             }

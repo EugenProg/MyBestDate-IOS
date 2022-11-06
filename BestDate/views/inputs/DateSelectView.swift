@@ -21,7 +21,7 @@ struct DateSelectView: View {
     
             HStack {
                 VStack(alignment: .leading, spacing: 5) {
-                    Text(NSLocalizedString(hint, comment: "hint"))
+                    Text(hint.localized())
                         .foregroundColor(ColorList.white_60.color)
                         .font(MyFont.getFont(.NORMAL, 12))
                     ZStack {

@@ -51,7 +51,7 @@ struct SearchFilterScreen: View {
 
             Title(textColor: ColorList.white.color, text: "search_distance", textSize: 32, paddingV: 0, paddingH: 32)
 
-            Text(NSLocalizedString("possibility_from_to_km", comment: "Distance"))
+            Text("possibility_from_to_km".localized())
                 .foregroundColor(ColorList.white_30.color)
                 .font(MyFont.getFont(.BOLD, 18))
                 .frame(width: UIScreen.main.bounds.width - 64, alignment: .leading)

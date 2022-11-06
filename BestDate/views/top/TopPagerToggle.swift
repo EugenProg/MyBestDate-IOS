@@ -76,8 +76,8 @@ enum GenderType {
 
     var title: String {
         switch self {
-        case .man: return NSLocalizedString("man", comment: "Man")
-        case .woman: return NSLocalizedString("woman", comment: "Woman")
+        case .man: return "man".localized()
+        case .woman: return "woman".localized()
         }
     }
 

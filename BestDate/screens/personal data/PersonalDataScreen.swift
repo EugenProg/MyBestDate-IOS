@@ -128,7 +128,7 @@ struct PersonalDataScreen: View {
     }
 
     private func showSuccessMessage() {
-        let successMessage = NSLocalizedString("save_successfully", comment: "message")
+        let successMessage = "save_successfully".localized()
         store.dispatch(action: .show(message: successMessage))
     }
 }

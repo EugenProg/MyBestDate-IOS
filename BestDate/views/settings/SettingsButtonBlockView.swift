@@ -21,7 +21,7 @@ struct SettingsButtonBlockView: View {
             Button(action: {
                 withAnimation { clickAction() }
             }) {
-                Text(NSLocalizedString(buttonTitle, comment: "Title"))
+                Text(buttonTitle.localized())
                     .foregroundColor(ColorList.main.color)
                     .font(MyFont.getFont(.BOLD, 14))
                     .padding(.init(top: 7, leading: 24, bottom: 6, trailing: 24))

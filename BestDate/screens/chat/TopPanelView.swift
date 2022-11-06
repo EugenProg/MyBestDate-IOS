@@ -25,7 +25,7 @@ struct TopPanelView: View {
                     .resizable()
                     .frame(width: 31, height: 21)
 
-                Text(NSLocalizedString("invitation_card", comment: "title").uppercased())
+                Text("invitation_card".localized().uppercased())
                     .foregroundColor(ColorList.white.color)
                     .font(MyFont.getFont(.BOLD, 14))
 

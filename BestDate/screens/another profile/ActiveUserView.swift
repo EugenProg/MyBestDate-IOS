@@ -40,7 +40,7 @@ struct ActiveUserView: View {
                                 .foregroundColor(ColorList.white.color)
                                 .font(MyFont.getFont(.BOLD, 26))
 
-                            Text(NSLocalizedString("years_short", comment: "age"))
+                            Text("years_short".localized())
                                 .foregroundColor(ColorList.white_80.color)
                                 .font(MyFont.getFont(.BOLD, 13))
                         }.padding(.init(top: 0, leading: 6, bottom: 0, trailing: 0))
@@ -80,9 +80,11 @@ struct ActiveUserView: View {
     }
 
     private func goToImageViewer(index: Int) {
-        withAnimation {
-            mediator.selectedImage = index
-            store.dispatch(action: .navigate(screen: .ANOTHER_IMAGES))
+        if !mediator.imageList.isEmpty {
+            withAnimation {
+                mediator.selectedImage = index
+                store.dispatch(action: .navigate(screen: .ANOTHER_IMAGES))
+            }
         }
     }
 }

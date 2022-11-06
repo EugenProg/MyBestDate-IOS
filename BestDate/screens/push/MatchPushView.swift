@@ -25,7 +25,7 @@ struct MatchPushView: View {
                         Image("ic_notify_match")
                     }.frame(width: 47, height: 44)
 
-                    Text("\(NSLocalizedString("matches", comment: "Matches"))!")
+                    Text("\("matches".localized())!")
                         .foregroundColor(ColorList.white.color)
                         .font(MyFont.getFont(.BOLD, 20))
 

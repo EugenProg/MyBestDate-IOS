@@ -40,6 +40,7 @@ struct BaseBottomSheet: View {
                         case .ANOTHER_ADDITIONALLY: AnotherAdditionallyBottomSheet { dismiss() }
                         case .LANGUAGE: LanguageBottomSheet { dismiss() }
                         case .SOCIAL: SocialNetworkBottomSheet { dismiss() }
+                        case .IMAGE_LIST: ImageListBottomSheet { dismiss() }
                         }
                     }.frame(width: width, height: store.state.activeBottomSheet.heightMode.height)
                     .padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight + 16, trailing: 0))

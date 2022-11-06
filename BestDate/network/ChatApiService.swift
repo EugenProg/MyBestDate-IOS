@@ -117,4 +117,30 @@ class ChatApiService {
 
         task.resume()
     }
+
+    func sendTypingEvent(recepient: Int) {
+        let request = CoreApiTypes.chatTypingEvent.getRequest(path: recepient.toString(), withAuth: true)
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            NetworkLogger.printLog(response: response)
+            if let data = data, let _ = try? JSONDecoder().decode(BaseResponse.self, from: data) {
+                NetworkLogger.printLog(data: data)
+            }
+        }
+
+        task.resume()
+    }
+
+    func sendReadEvent(recepient: Int) {
+        let request = CoreApiTypes.chatReadEvent.getRequest(path: recepient.toString(), withAuth: true)
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            NetworkLogger.printLog(response: response)
+            if let data = data, let _ = try? JSONDecoder().decode(BaseResponse.self, from: data) {
+                NetworkLogger.printLog(data: data)
+            }
+        }
+
+        task.resume()
+    }
 }

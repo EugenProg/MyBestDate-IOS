@@ -32,12 +32,12 @@ struct ChatOnlyCardBottomView: View {
                             .clipShape(Circle())
                             .frame(width: 29, height: 29)
 
-                        Text(NSLocalizedString("chat_closed", comment: "text").uppercased())
+                        Text("chat_closed".localized().uppercased())
                             .foregroundColor(ColorList.white.color)
                             .font(MyFont.getFont(.BOLD, 16))
                     }
 
-                    Text(NSLocalizedString("this_user_craves_only_real_meetengs", comment: "text"))
+                    Text("this_user_craves_only_real_meetengs".localized())
                         .foregroundColor(ColorList.white_70.color)
                         .font(MyFont.getFont(.NORMAL, 18))
                         .multilineTextAlignment(.center)

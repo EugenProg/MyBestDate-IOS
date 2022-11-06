@@ -11,6 +11,7 @@ struct CompanionImageMessageView: View {
     @Binding var message: Message?
     @Binding var isLast: Bool
 
+    var selectClick: () -> Void
     var imageClick: (Message?) -> Void
 
     var body: some View {
@@ -22,6 +23,9 @@ struct CompanionImageMessageView: View {
                     .padding(.init(top: 6, leading: 6, bottom: 6, trailing: 6))
                     .onTapGesture {
                         withAnimation { imageClick(message) }
+                    }
+                    .onLongPressGesture {
+                        withAnimation { selectClick() }
                     }
 
                 if !(message?.text?.isEmpty ?? true) {

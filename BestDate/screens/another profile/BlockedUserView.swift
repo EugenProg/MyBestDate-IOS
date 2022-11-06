@@ -33,7 +33,7 @@ struct BlockedUserView: View {
                                 .foregroundColor(ColorList.white.color)
                                 .font(MyFont.getFont(.BOLD, 26))
 
-                            Text(NSLocalizedString("years_short", comment: "age"))
+                            Text("years_short".localized())
                                 .foregroundColor(ColorList.white_80.color)
                                 .font(MyFont.getFont(.BOLD, 13))
                         }.padding(.init(top: 0, leading: 6, bottom: 0, trailing: 0))
@@ -66,7 +66,7 @@ struct BlockedUserView: View {
 
                 let topPadding = (UIScreen.main.bounds.height - (UIScreen.main.bounds.width + 321)) / 2
 
-                Text(NSLocalizedString("blacklist", comment: "blacklist").uppercased())
+                Text("blacklist".localized().uppercased())
                     .foregroundColor(MyColor.getColor(142, 154, 160))
                     .font(MyFont.getFont(.NORMAL, 18))
                     .rotationEffect(Angle(degrees: -90))
@@ -80,12 +80,12 @@ struct BlockedUserView: View {
                     Image("ic_sad_emoji_pink")
                 }.padding(.init(top: 40, leading: 0, bottom: 0, trailing: 0))
 
-                Text(NSLocalizedString("ops_sorry", comment: "ops_sorry"))
+                Text("ops_sorry".localized())
                     .foregroundColor(ColorList.white.color)
                     .font(MyFont.getFont(.BOLD, 24))
                     .padding(.init(top: 24, leading: 0, bottom: 10, trailing: 0))
 
-                Text(NSLocalizedString("you_have_been_added_to_the_backlist", comment: "blakclist"))
+                Text("you_have_been_added_to_the_backlist".localized())
                     .foregroundColor(ColorList.white_60.color)
                     .font(MyFont.getFont(.NORMAL, 18))
                     .multilineTextAlignment(.center)

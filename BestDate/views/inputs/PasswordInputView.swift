@@ -24,7 +24,7 @@ struct PasswordInputView: View {
     
             HStack {
                 VStack(alignment: .leading, spacing: 5) {
-                    Text(NSLocalizedString(hint, comment: "hint"))
+                    Text(hint.localized())
                         .foregroundColor(errorState ? errorColor.color : ColorList.white_60.color)
                         .font(MyFont.getFont(.NORMAL, 12))
                     if passVisibility {

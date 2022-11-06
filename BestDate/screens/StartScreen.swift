@@ -52,7 +52,7 @@ struct StartScreen: View {
                 if success {
                     if startScreen == .MAIN {
                         if languageIsNotTheSame(user: user) {
-                            let newUser = changeUserLanguage(user: user, lang: NSLocalizedString("lang_code", comment: "Lang"))
+                            let newUser = changeUserLanguage(user: user, lang: "lang_code".localized())
                             MainMediator.shared.setUserInfo(user: newUser)
                         } else {
                             MainMediator.shared.setUserInfo(user: user)
@@ -62,6 +62,7 @@ struct StartScreen: View {
                         RegistrationMediator.shared.setUserData(user: user)
                         QuestionnaireMediator.shared.setEditInfo(user: user, editMode: false)
                     }
+                    CoreApiService.shared.storeDeviceToken(token: UserDataHolder.notificationToken)
                 }
                 navigate(screen: startScreen)
             }
@@ -69,7 +70,7 @@ struct StartScreen: View {
     }
 
     private func languageIsNotTheSame(user: UserInfo) -> Bool {
-        user.language != NSLocalizedString("lang_code", comment: "Lang")
+        user.language != "lang_code".localized()
     }
 
     private func changeUserLanguage(user: UserInfo, lang: String) -> UserInfo {

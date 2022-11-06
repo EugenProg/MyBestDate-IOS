@@ -78,13 +78,16 @@ enum CoreApiTypes {
     case getUserSettings
     case saveSettings
     case updateLanguage
+    case saveUserLocation
 
     case logout
 
     case deleteUserProfile
     case changePassword
 
-    case saveUserLocation
+    case deviceToken
+    case chatTypingEvent
+    case chatReadEvent
 
     var BaseURL: String {
         "https://dev-api.bestdate.info/api/v1/"
@@ -149,6 +152,9 @@ enum CoreApiTypes {
         case .deleteUserProfile: return "user"
         case .changePassword: return "user/password"
         case .saveUserLocation: return "user/location"
+        case .chatTypingEvent: return "chat-typing-event/"
+        case .deviceToken: return "device-token"
+        case .chatReadEvent: return "chat-read-event/"
         }
     }
 
@@ -211,6 +217,9 @@ enum CoreApiTypes {
         case .deleteUserProfile: return "DELETE"
         case .changePassword: return "PUT"
         case .saveUserLocation: return "PUT"
+        case .chatTypingEvent: return "POST"
+        case .deviceToken: return "POST"
+        case .chatReadEvent: return "POST"
         }
     }
 
@@ -259,7 +268,7 @@ enum CoreApiTypes {
     }
 
     private func getLanguage() -> String {
-        NSLocalizedString("lang_code", comment: "Lang")
+        "lang_code".localized()
     }
 }
 

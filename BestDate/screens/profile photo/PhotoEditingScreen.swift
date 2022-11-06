@@ -21,7 +21,10 @@ struct PhotoEditingScreen: View {
                 
                 VStack(alignment: .leading, spacing: 0) {
                     VStack(alignment: .leading, spacing: 0) {
-                        BackButton(style: .white)
+                        BackButton(style: .white) {
+                            store.dispatch(action: .showBottomSheet(view: .IMAGE_LIST))
+                            store.dispatch(action: .navigationBack)
+                        }
                             .padding(.init(top: 32, leading: 32, bottom: 15, trailing: 32))
 
                         Title(textColor: ColorList.white.color, text: "adding_and_editing_a_photo", textSize: 26)

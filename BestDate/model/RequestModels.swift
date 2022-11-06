@@ -146,3 +146,8 @@ struct SetUserLocationRequest: Codable {
     var state_name: String? = nil
     var city: String
 }
+
+struct StoreTokenRequest: Codable {
+    var type: String = "ios"
+    var token: String
+}

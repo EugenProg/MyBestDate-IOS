@@ -11,6 +11,7 @@ class UserDataHolder {
 
     private(set) static var accessToken: String = getSettings(type: .ACCESS_TOKEN) ?? ""
     private(set) static var refreshToken: String = getSettings(type: .REFRESH_TOKEN) ?? ""
+    private(set) static var notificationToken: String = getSettings(type: .NOTIFICATION_TOKEN) ?? ""
     private(set) static var startScreen: ScreenList = ScreenList(rawValue: getSettings(type: .START_SCREEN) ?? ScreenList.START.rawValue) ?? ScreenList.START
     private(set) static var searchOnline: OnlineFilterTypes = OnlineFilterTypes(rawValue: getSettings(type: .SEARCH_ONLINE) ?? OnlineFilterTypes.all.rawValue) ?? OnlineFilterTypes.all
     private(set) static var searchLocation: LocationFilterTypes = LocationFilterTypes(rawValue: getSettings(type: .SEARCH_LOCATION) ?? LocationFilterTypes.all.rawValue) ?? LocationFilterTypes.all
@@ -21,6 +22,13 @@ class UserDataHolder {
 
         refreshToken = response.refresh_token ?? ""
         setSettings(type: .REFRESH_TOKEN, value: refreshToken)
+    }
+
+    static func setNotificationToken(token: String?) {
+        if token != nil {
+            notificationToken = token!
+            setSettings(type: .NOTIFICATION_TOKEN, value: token!)
+        }
     }
 
     static func setStartScreen(screen: ScreenList) {
@@ -58,6 +66,7 @@ class UserDataHolder {
 enum HolderTypes: String {
     case ACCESS_TOKEN
     case REFRESH_TOKEN
+    case NOTIFICATION_TOKEN
     case START_SCREEN
     case SEARCH_LOCATION
     case SEARCH_ONLINE

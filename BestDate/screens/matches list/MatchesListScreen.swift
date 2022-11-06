@@ -38,6 +38,7 @@ struct MatchesListScreen: View {
         .onAppear {
             store.dispatch(action:
                     .setScreenColors(status: ColorList.main.color, style: .lightContent))
+            ProfileMediator.shared.hasNewMatches = false
         }
     }
 }

@@ -16,6 +16,7 @@ class MainMediator: ObservableObject {
     @Published var hasNewGuests: Bool = false
     @Published var user: UserInfo = UserInfo()
     @Published var mainPhoto: ProfileImage? = nil
+    @Published var coinsCount: Int = 0
 
     var searchPage: (() -> Void)? = nil
     var matchPage: (() -> Void)? = nil
@@ -27,6 +28,7 @@ class MainMediator: ObservableObject {
         hasNewGuests = (user.new_guests ?? 0) > 0
         mainPhoto = user.getMainPhoto()
         self.user = user
+        self.coinsCount = user.getCoins()
         SettingsMediator.shared.getUserSettings()
         LocationMediator.shared.updateItemsList()
         if !PusherMediator.shared.isConnected() {

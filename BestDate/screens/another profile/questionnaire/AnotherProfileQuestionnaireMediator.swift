@@ -53,11 +53,11 @@ class AnotherProfileQuestionnaireMediator: ObservableObject {
 
     private func getGeneralParagraph(questionnaire: Questionnaire) -> QuestionnaireParagraph {
         QuestionnaireParagraph(
-            title: NSLocalizedString("general_information", comment: "Title").uppercased(),
+            title: "general_information".localized().uppercased(),
             points: [
                 QuestionnairePoint(
                     id: 0,
-                    title: NSLocalizedString("about_me", comment: "Title"),
+                    title: "about_me".localized(),
                     value: questionnaire.about_me,
                     trnaslatableView: true,
                     translatable: questionnaire.about_me?.isEmpty == false &&
@@ -65,31 +65,31 @@ class AnotherProfileQuestionnaireMediator: ObservableObject {
                 ),
                 QuestionnairePoint(
                     id: 1,
-                    title: NSLocalizedString("height", comment: "Title"),
+                    title: "height".localized(),
                     value: String.localizedStringWithFormat(
-                        NSLocalizedString("cm_unit", comment: "Mask"), questionnaire.height?.toString() ?? ""
+                        "cm_unit".localized(), questionnaire.height?.toString() ?? ""
                     )
                 ),
                 QuestionnairePoint(
                     id: 2,
-                    title: NSLocalizedString("weight", comment: "Title"),
+                    title: "weight".localized(),
                     value: String.localizedStringWithFormat(
-                        NSLocalizedString("kg_unit", comment: "Mask"), questionnaire.weight?.toString() ?? ""
+                        "kg_unit".localized(), questionnaire.weight?.toString() ?? ""
                     )
                 ),
                 QuestionnairePoint(
                     id: 3,
-                    title: NSLocalizedString("eye_color", comment: "Title"),
+                    title: "eye_color".localized(),
                     value:  EyeColorType().getName(questionnaire.eye_color)
                 ),
                 QuestionnairePoint(
                     id: 4,
-                    title: NSLocalizedString("hair_color", comment: "Title"),
+                    title: "hair_color".localized(),
                     value: HeirColorType().getName(questionnaire.hair_color)
                 ),
                 QuestionnairePoint(
                     id: 5,
-                    title: NSLocalizedString("hair_length", comment: "Title"),
+                    title: "hair_length".localized(),
                     value: HeirLengthType().getName(questionnaire.hair_length)
                 )
             ]
@@ -98,26 +98,26 @@ class AnotherProfileQuestionnaireMediator: ObservableObject {
 
     private func getDataVerification(questionnaire: Questionnaire) -> QuestionnaireParagraph {
         QuestionnaireParagraph(
-            title: NSLocalizedString("data_verification", comment: "Title").uppercased(),
+            title: "data_verification".localized().uppercased(),
             points: [
                 QuestionnairePoint(
                     id: 0,
-                    title: NSLocalizedString("photo", comment: "Title"),
+                    title: "photo".localized(),
                     value: "Photo"
                 ),
                 QuestionnairePoint(
                     id: 1,
-                    title: NSLocalizedString("email", comment: "Title"),
+                    title: "email".localized(),
                     value: self.user.email
                 ),
                 QuestionnairePoint(
                     id: 2,
-                    title: NSLocalizedString("social_network", comment: "Title"),
+                    title: "social_network".localized(),
                     value: questionnaire.hair_color
                 ),
                 QuestionnairePoint(
                     id: 3,
-                    title: NSLocalizedString("phone_number", comment: "Title"),
+                    title: "phone_number".localized(),
                     value: questionnaire.hair_length
                 )
             ]
@@ -126,31 +126,31 @@ class AnotherProfileQuestionnaireMediator: ObservableObject {
 
     private func getPersonalInfo(questionnaire: Questionnaire) -> QuestionnaireParagraph {
         QuestionnaireParagraph(
-            title: NSLocalizedString("personal_information", comment: "Title").uppercased(),
+            title: "personal_information".localized().uppercased(),
             points: [
                 QuestionnairePoint(
                     id: 0,
-                    title: NSLocalizedString("marital_status", comment: "Title"),
+                    title: "marital_status".localized(),
                     value: MaritalStatus().getName(questionnaire.marital_status)
                 ),
                 QuestionnairePoint(
                     id: 1,
-                    title: NSLocalizedString("having_kids", comment: "Title"),
+                    title: "having_kids".localized(),
                     value: KidsCount().getName(questionnaire.kids)
                 ),
                 QuestionnairePoint(
                     id: 2,
-                    title: NSLocalizedString("plase_of_residence", comment: "Title"),
+                    title: "plase_of_residence".localized(),
                     value: NationalityTypes().getName(questionnaire.nationality)
                 ),
                 QuestionnairePoint(
                     id: 3,
-                    title: NSLocalizedString("education", comment: "Title"),
+                    title: "education".localized(),
                     value: EducationStatus().getName(questionnaire.education)
                 ),
                 QuestionnairePoint(
                     id: 4,
-                    title: NSLocalizedString("occupational_status", comment: "Title"),
+                    title: "occupational_status".localized(),
                     value: OccupationalStatus().getName(questionnaire.occupation)
                 )
             ]
@@ -159,21 +159,21 @@ class AnotherProfileQuestionnaireMediator: ObservableObject {
 
     private func getFreeTime(questionnaire: Questionnaire) -> QuestionnaireParagraph {
         QuestionnaireParagraph(
-            title: NSLocalizedString("your_free_time", comment: "Title").uppercased(),
+            title: "your_free_time".localized().uppercased(),
             points: [
                 QuestionnairePoint(
                     id: 0,
-                    title: NSLocalizedString("hobby", comment: "Title"),
+                    title: "hobby".localized(),
                     value: HobbyType().getNameLine(questionnaire.hobby)
                 ),
                 QuestionnairePoint(
                     id: 1,
-                    title: NSLocalizedString("types_of_sports", comment: "Title"),
+                    title: "types_of_sports".localized(),
                     value: SportTypes().getNameLine(questionnaire.sport)
                 ),
                 QuestionnairePoint(
                     id: 2,
-                    title: NSLocalizedString("evening_time", comment: "Title"),
+                    title: "evening_time".localized(),
                     value: EveningTimeTypes().getName(questionnaire.evening_time)
                 )
             ]

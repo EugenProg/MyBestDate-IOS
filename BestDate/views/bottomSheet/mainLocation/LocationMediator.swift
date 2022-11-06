@@ -51,8 +51,8 @@ enum LocationFilterTypes: String {
 
     var name: String {
         switch self {
-        case .all: return NSLocalizedString("all_world", comment: "All")
-        case .nearby: return NSLocalizedString("next_to_me", comment: "nearby")
+        case .all: return "all_world".localized()
+        case .nearby: return "next_to_me".localized()
         case .country: return MainMediator.shared.user.location?.country ?? ""
         case .city: return MainMediator.shared.user.location?.city ?? ""
         case .filter: return "Filter"

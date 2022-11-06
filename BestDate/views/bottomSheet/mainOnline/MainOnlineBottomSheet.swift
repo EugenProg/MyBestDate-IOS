@@ -29,6 +29,6 @@ struct MainOnlineBottomSheet: View {
     }
 
     private func equals(item: String) -> Bool {
-        NSLocalizedString(item, comment: "text").lowercased() == NSLocalizedString(mediator.selectedItem.name, comment: "text").lowercased()
+        item.localized().lowercased() == mediator.selectedItem.name.localized().lowercased()
     }
 }

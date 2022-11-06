@@ -24,10 +24,10 @@ struct NotifySettingsSelectorView: View {
                 Image(isActive == true ? "ic_message_active" : "ic_message_unactive")
 
                 VStack(alignment: .leading, spacing: 3) {
-                    Text(NSLocalizedString("prohibit_incoming_messages", comment: "hint"))
+                    Text("prohibit_incoming_messages".localized())
                         .foregroundColor(isActive == true ? ColorList.white.color : ColorList.white_50.color)
                         .font(MyFont.getFont(.NORMAL, 16))
-                    Text(NSLocalizedString(isActive == true ? "active" : "deactive", comment: "text"))
+                    Text(isActive == true ? "active".localized() : "deactive".localized())
                         .foregroundColor(isActive == true ? ColorList.light_blue.color : ColorList.pink.color)
                         .font(MyFont.getFont(.NORMAL, 16))
                 }

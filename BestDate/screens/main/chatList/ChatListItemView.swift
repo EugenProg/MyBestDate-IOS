@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ChatListItemView: View {
     @Binding var item: Chat
+    @Binding var typingMode: Bool
+    @Binding var isOnline: Bool
     var type: ChatItemType
 
     @Binding var deleteProccess: Bool
@@ -49,7 +51,7 @@ struct ChatListItemView: View {
                         UserImageView(user: $item.user)
                             .clipShape(Circle())
 
-                        if item.user?.is_online ?? false {
+                        if isOnline {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 7)
                                     .fill(ColorList.main.color)
@@ -67,7 +69,12 @@ struct ChatListItemView: View {
                             .foregroundColor(type.nameColor)
                             .font(MyFont.getFont(.BOLD, 20))
 
-                        if item.last_message?.image != nil {
+                        if typingMode {
+                            Text("typing".localized())
+                                .foregroundColor(ColorList.green.color)
+                                .font(MyFont.getFont(.NORMAL, 18))
+                                .opacity(type.typingOpacity)
+                        } else if item.last_message?.image != nil {
                             HStack {
                                 Image("ic_picture")
                                     .resizable()
@@ -225,6 +232,13 @@ enum ChatItemType {
         switch self {
         case .new: return ColorList.white_90.color
         case .old: return ColorList.white_30.color
+        }
+    }
+
+    var typingOpacity: Double {
+        switch self {
+        case .new: return 0.9
+        case .old: return 0.6
         }
     }
 }

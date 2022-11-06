@@ -30,7 +30,7 @@ struct MyDuelsScreen: View {
 
             ScrollView(.vertical, showsIndicators: true) {
                 VStack(spacing: 0) {
-                    Text(NSLocalizedString("who_voted_for_me", comment: "For me"))
+                    Text("who_voted_for_me".localized())
                         .foregroundColor(ColorList.white.color)
                         .font(MyFont.getFont(.BOLD, 20))
                         .padding(.init(top: 22, leading: 18, bottom: 23, trailing: 3))
@@ -53,6 +53,7 @@ struct MyDuelsScreen: View {
             if mediator.duelList.isEmpty {
                 mediator.getMyDuels()
             }
+            ProfileMediator.shared.hasNewDuels = false
         }
     }
 }

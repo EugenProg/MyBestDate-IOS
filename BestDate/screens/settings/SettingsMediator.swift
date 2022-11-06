@@ -11,7 +11,7 @@ import SwiftUI
 class SettingsMediator: ObservableObject {
     static var shared = SettingsMediator()
 
-    @Published var language: String = NSLocalizedString("app_lang", comment: "Localisation")
+    @Published var language: String = "app_lang".localized()
     @Published var settings: UserSettings = UserSettings()
 
     func getUserSettings() {

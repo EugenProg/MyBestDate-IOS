@@ -119,15 +119,14 @@ struct ChatBottomView: View {
                             .frame(width: 1.3, height: 23 + additionalHeight)
 
                         ZStack(alignment: .leading) {
-                        if text.isEmpty {
-                            Text(NSLocalizedString("type_message", comment: "Type Message"))
-                                .foregroundColor(ColorList.white_30.color)
-                                .font(MyFont.getFont(.NORMAL, 18))
-                                .padding(.init(top: 0, leading: 13, bottom: 0, trailing: 5))
-                                .zIndex(2)
-                        }
+                            if text.isEmpty {
+                                Text("type_message".localized())
+                                    .foregroundColor(ColorList.white_30.color)
+                                    .font(MyFont.getFont(.NORMAL, 18))
+                                    .padding(.init(top: 0, leading: 13, bottom: 0, trailing: 5))
+                            }
 
-                        Editor()
+                            Editor()
                                 .frame(height: 40 + additionalHeight)
                                 .padding(.init(top: 9, leading: 8, bottom: 8, trailing: 3))
                         }
@@ -203,7 +202,7 @@ struct ChatBottomView: View {
                 .foregroundColor(ColorList.white.color)
                 .autocapitalization(.sentences)
                 .scrollContentBackground(.hidden)
-                .background(MyColor.getColor(42, 51, 55))
+                .background(MyColor.getColor(0, 0, 0, 0))
                 .font(MyFont.getFont(.BOLD, 18))
                 .onChange(of: text) { _ in
                     calculateSize()
@@ -212,7 +211,7 @@ struct ChatBottomView: View {
             return TextEditor(text: $text)
                 .foregroundColor(ColorList.white.color)
                 .autocapitalization(.sentences)
-                .background(MyColor.getColor(42, 51, 55))
+                .background(MyColor.getColor(0, 0, 0, 0))
                 .font(MyFont.getFont(.BOLD, 18))
                 .onChange(of: text) { _ in
                     calculateSize()

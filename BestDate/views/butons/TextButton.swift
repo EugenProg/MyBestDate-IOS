@@ -16,7 +16,7 @@ struct TextButton: View {
         Button(action: {
             withAnimation { clickAction() }
         }) {
-            Text(NSLocalizedString(text, comment: "text"))
+            Text(text.localized())
                 .foregroundColor(textColor)
                 .font(MyFont.getFont(.NORMAL, 18))
         }

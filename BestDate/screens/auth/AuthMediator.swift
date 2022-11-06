@@ -60,6 +60,7 @@ class AuthMediator: ObservableObject {
                         RegistrationMediator.shared.setUserData(user: user)
                         QuestionnaireMediator.shared.setEditInfo(user: user, editMode: false)
                     }
+                    CoreApiService.shared.storeDeviceToken(token: UserDataHolder.notificationToken)
                 }
                 complete(success)
             }

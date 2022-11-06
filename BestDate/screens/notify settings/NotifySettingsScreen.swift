@@ -40,25 +40,25 @@ struct NotifySettingsScreen: View {
                         UserDataHolder.setStartScreen(screen: .MAIN)
                         withAnimation { store.dispatch(action: .navigate(screen: .MAIN)) }
                     }) {
-                        Text(NSLocalizedString("cancel", comment: "Cancel"))
+                        Text("cancel".localized())
                             .foregroundColor(ColorList.white.color)
                             .font(MyFont.getFont(.NORMAL, 18))
                     }.padding(16)
                 }.padding(.init(top: 20, leading: 32, bottom: 0, trailing: 32))
 
 
-                Text(NSLocalizedString("this_will_be_your_best_date", comment: "Date").uppercased())
+                Text("this_will_be_your_best_date".localized().uppercased())
                     .foregroundColor(ColorList.white_70.color)
                     .font(MyFont.getFont(.NORMAL, 18))
                     .frame(width: UIScreen.main.bounds.width)
                     .padding(.init(top: 210, leading: 32, bottom: 8, trailing: 32))
 
-                Text(NSLocalizedString("we_are_for_live_communication", comment: "Date"))
+                Text("we_are_for_live_communication".localized())
                     .foregroundColor(ColorList.white.color)
                     .font(MyFont.getFont(.BOLD, 28))
                     .padding(.init(top: 9, leading: 32, bottom: 8, trailing: 32))
 
-                Text(NSLocalizedString("if_you_turn_off_the_chat, then_you_can_only_be_called_on_a_date", comment: "off"))
+                Text("if_you_turn_off_the_chat, then_you_can_only_be_called_on_a_date".localized())
                     .foregroundColor(ColorList.white_70.color)
                     .font(MyFont.getFont(.NORMAL, 18))
                     .multilineTextAlignment(.center)
@@ -68,10 +68,10 @@ struct NotifySettingsScreen: View {
                 Spacer()
 
                 VStack(alignment: .leading, spacing: 0) {
-                    Text(NSLocalizedString("or_everyone_can_write_to_you", comment: "Date"))
+                    Text("or_everyone_can_write_to_you".localized())
                         .foregroundColor(ColorList.white_70.color)
                         .font(MyFont.getFont(.NORMAL, 18)) +
-                    Text(NSLocalizedString("settings", comment: "Date").lowercased())
+                    Text("settings".localized().lowercased())
                         .foregroundColor(ColorList.pink.color)
                         .font(MyFont.getFont(.BOLD, 18))
                 }.frame(width: UIScreen.main.bounds.width - 64, alignment: .leading)

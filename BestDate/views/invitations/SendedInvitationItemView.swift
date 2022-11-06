@@ -26,7 +26,7 @@ struct SendedInvitationItemView: View {
             Image("ic_invitation_decor")
 
             VStack(alignment: .leading, spacing: 6) {
-                Text(NSLocalizedString("you_invited", comment: "Title"))
+                Text("you_invited".localized())
                     .foregroundColor(ColorList.main_60.color)
                     .font(MyFont.getFont(.NORMAL, 13))
 
@@ -86,7 +86,7 @@ struct SendedInvitationItemView: View {
     private func getStatusText(answer: InvitationAnswer) -> String {
         if answer == .none {
             return String.localizedStringWithFormat(
-                NSLocalizedString("any_has_not_given_an_answer_yet", comment: "Answer"),
+                "any_has_not_given_an_answer_yet".localized(),
                 invitationCard.to_user?.name ?? ""
             )
         }

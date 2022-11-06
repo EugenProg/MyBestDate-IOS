@@ -13,11 +13,11 @@ struct SettingsHeaderView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
-            Text(NSLocalizedString(title, comment: "title"))
+            Text(title.localized())
                 .foregroundColor(ColorList.white_90.color)
                 .font(MyFont.getFont(.BOLD, 20))
 
-            Text(NSLocalizedString(description, comment: "description"))
+            Text(description.localized())
                 .foregroundColor(ColorList.white_40.color)
                 .font(MyFont.getFont(.NORMAL, 20))
         }.frame(width: UIScreen.main.bounds.width - 64, alignment: .leading)

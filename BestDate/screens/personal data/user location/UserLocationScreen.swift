@@ -26,7 +26,7 @@ struct UserLocationScreen: View {
                     mediator.saveUserLocation(location: selectedItem ?? getDefaultItem()) { success in
                         DispatchQueue.main.async {
                             let message = success ? "save_successfully" : "failed_save_data"
-                            store.dispatch(action: .show(message: NSLocalizedString(message, comment: "Message")))
+                            store.dispatch(action: .show(message: message.localized()))
                             withAnimation { store.dispatch(action: .navigationBack) }
                         }
                     }

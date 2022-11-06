@@ -24,7 +24,7 @@ struct SurprizeBoxView: View {
                 HStack(spacing: 4) {
                     Image("ic_surprize")
 
-                    Text(NSLocalizedString("surprise", comment: "Surprise"))
+                    Text("surprise".localized())
                         .foregroundColor(ColorList.pink.color)
                         .font(MyFont.getFont(.BOLD, 12))
                 }

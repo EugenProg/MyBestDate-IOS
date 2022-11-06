@@ -41,7 +41,7 @@ struct GuestsScreen: View {
                     .padding(.init(top: 50, leading: 50, bottom: ((UIScreen.main.bounds.width - 9) / 2) - 69, trailing: 50))
                 Spacer()
             } else {
-                SaveAndSetPositionScrollView(onRefresh: { done in
+                SaveRefreshAndSetPositionScrollView(onRefresh: { done in
                     mediator.getGuests { done() }
                 }) {
                     VStack(alignment: .leading, spacing: 0) {
@@ -68,6 +68,7 @@ struct GuestsScreen: View {
                 if mediator.oldGuests.isEmpty && mediator.newGuests.isEmpty {
                     mediator.getGuests { }
                 }
+                MainMediator.shared.hasNewGuests = false
             }
     }
 }

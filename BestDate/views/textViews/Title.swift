@@ -15,7 +15,7 @@ struct Title: View {
     var paddingH: CGFloat = 32
     
     var body: some View {
-        Text(NSLocalizedString(text, comment: "title"))
+        Text(text.localized())
             .foregroundColor(textColor)
             .font(MyFont.getFont(.BOLD, textSize))
             .padding(.init(top: paddingV, leading: paddingH, bottom: paddingV, trailing: paddingH))

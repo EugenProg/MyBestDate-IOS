@@ -17,6 +17,7 @@ protocol QuestionnaireArrayType {
     func getNameLine(_ names: [String?]?) -> String
     func getNameArray(_ names: [String?]?) -> [String]?
     func getServerArray(_ answers: [String?]?) -> [String]?
+    func getServerName(_ answer: String?) -> String
 }
 
 class MaritalStatus: QuestionnaireType {
@@ -34,7 +35,7 @@ class MaritalStatus: QuestionnaireType {
     }
 
     func getName(_ name: String?) -> String {
-        NSLocalizedString(getNameKey(name), comment: "Status")
+        getNameKey(name).localized()
     }
 
     func getServerName(_ answer: String?) -> String? {
@@ -65,7 +66,7 @@ class KidsCount: QuestionnaireType {
     }
 
     func getName(_ name: String?) -> String {
-        NSLocalizedString(getNameKey(name), comment: "Status")
+        getNameKey(name).localized()
     }
 
     func getServerName(_ answer: String?) -> String? {
@@ -92,7 +93,7 @@ class EducationStatus: QuestionnaireType {
     }
 
     func getName(_ name: String?) -> String {
-        NSLocalizedString(getNameKey(name), comment: "Status")
+        getNameKey(name).localized()
     }
 
     func getServerName(_ answer: String?) -> String? {
@@ -119,7 +120,7 @@ class OccupationalStatus: QuestionnaireType {
     }
 
     func getName(_ name: String?) -> String {
-        NSLocalizedString(getNameKey(name), comment: "Status")
+        getNameKey(name).localized()
     }
 
     func getServerName(_ answer: String?) -> String? {
@@ -147,7 +148,7 @@ class HeirColorType: QuestionnaireType {
     }
 
     func getName(_ name: String?) -> String {
-        NSLocalizedString(getNameKey(name), comment: "Status")
+        getNameKey(name).localized()
     }
 
     func getServerName(_ answer: String?) -> String? {
@@ -173,7 +174,7 @@ class HeirLengthType: QuestionnaireType {
     }
 
     func getName(_ name: String?) -> String {
-        NSLocalizedString(getNameKey(name), comment: "Status")
+        getNameKey(name).localized()
     }
 
     func getServerName(_ answer: String?) -> String? {
@@ -202,7 +203,7 @@ class EyeColorType: QuestionnaireType {
     }
 
     func getName(_ name: String?) -> String {
-        NSLocalizedString(getNameKey(name), comment: "Status")
+        getNameKey(name).localized()
     }
 
     func getServerName(_ answer: String?) -> String? {
@@ -231,7 +232,7 @@ class PorposeOfDatingType: QuestionnaireType {
     }
 
     func getName(_ name: String?) -> String {
-        NSLocalizedString(getNameKey(name), comment: "Status")
+        getNameKey(name).localized()
     }
 
     func getServerName(_ answer: String?) -> String? {
@@ -251,13 +252,14 @@ class AwaitFromDatingType: QuestionnaireType {
         case "Having a fun": return "having_a_fun"
         case "Interesting communication": return "interesting_communication"
         case "Serious relationship only": return "serious_relationship_only"
+        case "Serious relationship": return "serious_relationship"
         case "One time sex": return "one_time_sex"
         default: return ""
         }
     }
 
     func getName(_ name: String?) -> String {
-        NSLocalizedString(getNameKey(name), comment: "Status")
+        getNameKey(name).localized()
     }
 
     func getServerName(_ answer: String?) -> String? {
@@ -265,6 +267,7 @@ class AwaitFromDatingType: QuestionnaireType {
         case "having_a_fun": return "Having a fun"
         case "interesting_communication": return "Interesting communication"
         case "serious_relationship_only": return "Serious relationship only"
+        case "serious_relationship": return "Serious relationship"
         case "one_time_sex": return "One time sex"
         default: return nil
         }
@@ -272,11 +275,37 @@ class AwaitFromDatingType: QuestionnaireType {
 }
 
 class HobbyType: QuestionnaireArrayType {
+    func getServerName(_ answer: String?) -> String {
+        switch answer {
+        case "music": return "Music"
+        case "dancing": return "Dancing"
+        case "stand_up": return "Stand up"
+        case "fishing": return "Fishing"
+        case "diggering": return "Diggering"
+        case "hunting": return "Hunting"
+        case "blogging": return "Blogging"
+        case "hike": return "Hike"
+        case "quest": return "Quest"
+        case "gardening": return "Gardening"
+        case "watching_movies": return "Watching movies"
+        case "bike": return "Bike"
+        case "nature_watching": return "Nature Watching"
+        case "spotting": return "Spotting"
+        case "sailing": return "Sailing"
+        case "rap": return "Rap"
+        case "road_trips": return "Road trips"
+        case "pickup": return "Pick-up"
+        case "sauna": return "Bath or sauna"
+        case "radio": return "Radio amateurism"
+        default: return ""
+        }
+    }
+
     func getNameLine(_ names: [String?]?) -> String {
         if names?.isEmpty == true { return "" }
         var result = ""
         for item in getNameArray(names) ?? [] {
-            result += "\(NSLocalizedString(item, comment: "Item")), "
+            result += "\(item.localized()), "
         }
         if !result.isEmpty {
             return String(result.prefix(result.count - 2))
@@ -292,6 +321,23 @@ class HobbyType: QuestionnaireArrayType {
             case "Music": list.append("music")
             case "Dancing": list.append("dancing")
             case "Stand up": list.append("stand_up")
+            case "Fishing": list.append("fishing")
+            case "Diggering": list.append("diggering")
+            case "Hunting": list.append("hunting")
+            case "Blogging": list.append("blogging")
+            case "Hike": list.append("hike")
+            case "Quest": list.append("quest")
+            case "Gardening": list.append("gardening")
+            case "Watching movies": list.append("watching_movies")
+            case "Bike": list.append("bike")
+            case "Nature Watching": list.append("nature_watching")
+            case "Spotting": list.append("spotting")
+            case "Sailing": list.append("sailing")
+            case "Rap": list.append("rap")
+            case "Road trips": list.append("road_trips")
+            case "Pick-up": list.append("pickup")
+            case "Bath or sauna": list.append("sauna")
+            case "Radio amateurism": list.append("radio")
             default: do {}
             }
         }
@@ -305,7 +351,7 @@ class HobbyType: QuestionnaireArrayType {
 
         for item in answers ?? [] {
             if item != nil {
-                serverArray.append(NSLocalizedString(item ?? "", comment: "Item"))
+                serverArray.append(getServerName(item))
             }
         }
 
@@ -314,11 +360,39 @@ class HobbyType: QuestionnaireArrayType {
 }
 
 class SportTypes: QuestionnaireArrayType {
+    func getServerName(_ answer: String?) -> String {
+        switch answer {
+        case "badminton": return "Badminton"
+        case "basketball": return "Basketball"
+        case "baseball": return "Baseball"
+        case "billiards": return "Billiards"
+        case "boxing": return "Boxing"
+        case "wrestling": return "Wrestling"
+        case "bowling": return "Bowling"
+        case "cycling": return "Cycling"
+        case "volleyball": return "Volleyball"
+        case "gymnastics": return "Gymnastics"
+        case "golf": return "Golf"
+        case "rowing": return "Rowing"
+        case "darts": return "Darts"
+        case "skating": return "Skating"
+        case "karate": return "Karate"
+        case "tennis": return "Tennis"
+        case "swimming": return "Swimming"
+        case "judo": return "Judo"
+        case "climbing": return "Climbing"
+        case "soccer": return "Soccer"
+        case "chess": return "Chess"
+        case "checkers": return "Checkers"
+        default: return ""
+        }
+    }
+
     func getNameLine(_ names: [String?]?) -> String {
         if names?.isEmpty == true { return "" }
         var result = ""
         for item in getNameArray(names) ?? [] {
-            result += "\(NSLocalizedString(item, comment: "Item")), "
+            result += "\(item.localized()), "
         }
         if !result.isEmpty {
             return String(result.prefix(result.count - 2))
@@ -345,6 +419,14 @@ class SportTypes: QuestionnaireArrayType {
             case "Rowing": list.append("rowing")
             case "Darts": list.append("darts")
             case "Skating": list.append("skating")
+            case "Karate": list.append("karate")
+            case "Tennis": list.append("tennis")
+            case "Swimming": list.append("swimming")
+            case "Judo": list.append("judo")
+            case "Climbing": list.append("climbing")
+            case "Soccer": list.append("soccer")
+            case "Chess": list.append("chess")
+            case "Checkers": list.append("checkers")
             default: do {}
             }
         }
@@ -359,7 +441,7 @@ class SportTypes: QuestionnaireArrayType {
 
         for item in answers ?? [] {
             if item != nil {
-                serverArray.append(NSLocalizedString(item ?? "", comment: "Item"))
+                serverArray.append(getServerName(item))
             }
         }
 
@@ -371,17 +453,27 @@ class EveningTimeTypes: QuestionnaireType {
     func getNameKey(_ name: String?) -> String {
         switch name {
         case "Walking around the city": return "walking_around_the_city"
+        case "Sitting in Bestdate": return "sitting_in_best_date"
+        case "Going on dates": return "going_on_dates"
+        case "Netflix": return "netflix"
+        case "Youtube": return "youtube"
+        case "Meditating": return "meditating"
         default: return ""
         }
     }
 
     func getName(_ name: String?) -> String {
-        NSLocalizedString(getNameKey(name), comment: "Status")
+        getNameKey(name).localized()
     }
 
     func getServerName(_ answer: String?) -> String? {
         switch answer {
         case "walking_around_the_city": return "Walking around the city"
+        case "sitting_in_best_date": return "Sitting in Bestdate"
+        case "going_on_dates": return "Going on dates"
+        case "netflix": return "Netflix"
+        case "youtube": return "Youtube"
+        case "meditating": return "Meditating"
         default: return nil
         }
     }
@@ -389,7 +481,7 @@ class EveningTimeTypes: QuestionnaireType {
 
 class NationalityTypes: QuestionnaireType {
     func getName(_ name: String?) -> String {
-        NSLocalizedString(getNameKey(name), comment: "Status")
+        getNameKey(name).localized()
     }
 
     func getServerName(_ answer: String?) -> String? {

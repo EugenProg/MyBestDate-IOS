@@ -25,7 +25,7 @@ struct InvitationPushView: View {
                         Image("ic_add")
                     }.frame(width: 47, height: 44)
 
-                    Text(NSLocalizedString("invitation_card", comment: "Invitations"))
+                    Text("invitation_card".localized())
                         .foregroundColor(ColorList.white.color)
                         .font(MyFont.getFont(.BOLD, 20))
 

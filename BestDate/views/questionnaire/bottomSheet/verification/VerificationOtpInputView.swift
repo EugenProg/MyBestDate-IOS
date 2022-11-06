@@ -20,7 +20,7 @@ struct VerificationOtpInputView: View {
             HStack(spacing: 0) {
                 ZStack(alignment: .leading) {
                     if otpInput.isEmpty {
-                        Text(NSLocalizedString("enter_the_confirmation_code", comment: "hint"))
+                        Text("enter_the_confirmation_code".localized())
                             .foregroundColor(ColorList.main_70.color)
                             .font(MyFont.getFont(.BOLD, 20))
                     }

@@ -18,7 +18,7 @@ struct NoDataBoxView: View {
                     .tint(ColorList.white.color)
                     .frame(width: 80, height: 80)
             } else {
-                Text(NSLocalizedString(text, comment: "Text"))
+                Text(text.localized())
                     .foregroundColor(ColorList.white.color)
                     .multilineTextAlignment(.center)
                     .font(MyFont.getFont(.BOLD, 22))

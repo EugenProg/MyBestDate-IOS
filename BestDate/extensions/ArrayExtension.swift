@@ -61,6 +61,16 @@ extension Array where Element == Top {
     }
 }
 
+extension Array where Element == Chat {
+    mutating func clearAndAddAll(list: [Chat]?) {
+        self.removeAll()
+
+        for item in list ?? [] {
+            self.append(item)
+        }
+    }
+}
+
 extension Array where Element == Invitation {
     mutating func clearAndAddAll(list: [Invitation]?) {
         self.removeAll()

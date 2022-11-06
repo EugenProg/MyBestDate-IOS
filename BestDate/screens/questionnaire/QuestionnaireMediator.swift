@@ -420,7 +420,7 @@ class QuestionnaireMediator: ObservableObject {
                 question: "purpose_of_dating",
                 percent: 8,
                 viewType: .SINGLE_SELECT,
-                ansfers: ["friendship", "love", "communication", "sex"]
+                ansfers: ["friendship", "love", "communication", "serious_relationship", "sex"]
             )
         )
         list.append(
@@ -462,7 +462,7 @@ class QuestionnaireMediator: ObservableObject {
                 question: "hobby",
                 percent: 7,
                 viewType: .MULTY_SELECT,
-                ansfers: ["music", "dancing", "stand_up"]
+                ansfers: ["music", "dancing", "stand_up", "fishing", "diggering", "hunting", "blogging", "hike", "quest", "gardening", "watching_movies", "bike", "nature_watching", "spotting", "sailing", "rap", "road_trips", "pickup", "sauna", "radio"]
             )
         )
         list.append(
@@ -471,7 +471,7 @@ class QuestionnaireMediator: ObservableObject {
                 question: "types_of_sports",
                 percent: 8,
                 viewType: .MULTY_SELECT,
-                ansfers: ["badminton", "basketball", "baseball", "billiards", "boxing", "wrestling", "bowling", "cycling", "volleyball", "gymnastics", "golf", "rowing", "darts", "skating"]
+                ansfers: ["badminton", "basketball", "baseball", "billiards", "boxing", "wrestling", "bowling", "cycling", "volleyball", "gymnastics", "golf", "rowing", "darts", "skating", "karate", "tennis", "swimming", "judo", "climbing", "soccer", "chess", "checkers"]
             )
         )
         list.append(
@@ -480,7 +480,7 @@ class QuestionnaireMediator: ObservableObject {
                 question: "evening_time",
                 percent: 7,
                 viewType: .SINGLE_SELECT,
-                ansfers: ["walking_around_the_city"]
+                ansfers: ["walking_around_the_city", "going_on_dates", "sitting_in_best_date", "netflix", "youtube", "meditating"]
             )
         )
 

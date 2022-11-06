@@ -43,7 +43,7 @@ struct MyDuelsListItemView: View {
                         Image("ic_winner")
                             .padding(.init(top: 0, leading: 0, bottom: 15, trailing: 0))
 
-                        Text(NSLocalizedString("winner", comment: "Winner").uppercased())
+                        Text("winner".localized().uppercased())
                             .foregroundColor(ColorList.light_blue.color)
                             .font(MyFont.getFont(.BOLD, 10))
                     }.padding(.init(top: 0, leading: 0, bottom: 5, trailing: 24))
@@ -66,7 +66,7 @@ struct MyDuelsListItemView: View {
                     Image("bg_right_rectangle")
 
                     HStack(spacing: 15) {
-                        Text(NSLocalizedString("loser", comment: "Loser").uppercased())
+                        Text("loser".localized().uppercased())
                             .foregroundColor(ColorList.pink.color)
                             .font(MyFont.getFont(.BOLD, 10))
 

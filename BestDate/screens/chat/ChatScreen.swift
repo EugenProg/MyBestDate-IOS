@@ -15,7 +15,6 @@ struct ChatScreen: View {
     @State var sendTextProcess: Bool = false
     @State var translateProcess: Bool = false
 
-    @State var isShowingPhotoLibrary = false
     @State var additionalHeight: CGFloat = 0
 
     @State var showImage: Bool = false
@@ -36,6 +35,7 @@ struct ChatScreen: View {
                         ChatListMediator.shared.getChatList()
                         mediator.messages.removeAll()
                         mediator.loadingMode = true
+                        mediator.typingMode = false
                         withAnimation {
                             store.dispatch(action: .navigationBack)
                         }
@@ -50,9 +50,11 @@ struct ChatScreen: View {
 
                         if mediator.user.getRole() == .user {
                             let visitTime = mediator.user.last_online_at?.toDate().getVisitPeriod() ?? ""
+                            let lastVisit = "\("last_visit".localized()) \(visitTime)"
+                            let text = mediator.isOnline ? "Online" : lastVisit
 
-                            Text((mediator.user.is_online ?? false) ? "Online" : "Last visit \(visitTime)")
-                                .foregroundColor((mediator.user.is_online ?? false) ? ColorList.green.color : ColorList.white_80.color)
+                            Text(mediator.typingMode ? "typing".localized() : text)
+                                .foregroundColor(mediator.isOnline ? ColorList.green.color : ColorList.white_80.color)
                                 .font(MyFont.getFont(.NORMAL, 14))
                         }
                     }.padding(.init(top: 0, leading: 5, bottom: 0, trailing: 18))
@@ -72,7 +74,7 @@ struct ChatScreen: View {
                             AsyncImageView(url: mediator.user.main_photo?.thumb_url)
                                 .clipShape(Circle())
 
-                            if mediator.user.is_online ?? false {
+                            if mediator.isOnline {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 6)
                                         .fill(ColorList.main.color)
@@ -131,7 +133,7 @@ struct ChatScreen: View {
                                    replyMode: $mediator.replyMode,
                                    selectedMessage: $mediator.selectedMessage,
                                    loadImageAction: {
-                        withAnimation { isShowingPhotoLibrary.toggle() }
+                        store.dispatch(action: .showBottomSheet(view: .IMAGE_LIST))
                     },
                                    translateAction: { text in
                         mediator.translate(text: text) { success, translatedText in
@@ -140,8 +142,7 @@ struct ChatScreen: View {
                                 if success { mediator.inputText = translatedText }
                             }
                         }
-                    },
-                                   sendAction: { text in
+                    }, sendAction: { text in
                         mediator.saveMessage(message: text) { success in
                             DispatchQueue.main.async {
                                 sendTextProcess.toggle()
@@ -166,13 +167,11 @@ struct ChatScreen: View {
         .onAppear {
             store.dispatch(action:
                     .setScreenColors(status: ColorList.main.color, style: .lightContent))
-        }
-        .sheet(isPresented: $isShowingPhotoLibrary) {
-            ImagePicker(sourceType: .photoLibrary,
-                        isSelectAction: { image in
+
+            ImageListMediator.shared.imageIsSelect = { image in
                 mediator.selectedImage = image
                 mediator.editImageMode.toggle()
-            })
+            }
         }
     }
 

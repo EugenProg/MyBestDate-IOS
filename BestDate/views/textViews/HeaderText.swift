@@ -13,7 +13,7 @@ struct HeaderText: View {
     var textSize: CGFloat = 18
     
     var body: some View {
-        Text(NSLocalizedString(text, comment: "text"))
+        Text(text.localized())
             .foregroundColor(textColor)
             .font(MyFont.getFont(.NORMAL, textSize))
             .lineSpacing(5)

@@ -64,7 +64,7 @@ struct SearchScreen: View {
                 .fill(MyColor.getColor(190, 239, 255, 0.15))
                 .frame(height: 1)
 
-                SaveAndSetPositionScrollView(startPosition: mediator.savedPosition,
+                SaveRefreshAndSetPositionScrollView(startPosition: mediator.savedPosition,
                                              offsetChanged: { mediator.savePosition($0) },
                                              onRefresh: { done in mediator.getUserList(withClear: true, page: 0) { done() }}) {
                     SearchListView(list: $mediator.users, meta: $mediator.meta, loadingMode: $mediator.loadingMode) { user in

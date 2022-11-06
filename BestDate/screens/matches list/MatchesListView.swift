@@ -17,7 +17,7 @@ struct MatchesListView: View {
         GridItem(.fixed(99), spacing: 3)]
     
     var body: some View {
-        SaveAndSetPositionScrollView(
+        SaveRefreshAndSetPositionScrollView(
             startPosition: mediator.savedPosition,
             offsetChanged: { it in mediator.savePosition(it) },
             onRefresh: { done in mediator.getMatchesList { done() } }) {

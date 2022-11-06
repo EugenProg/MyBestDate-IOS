@@ -17,18 +17,18 @@ struct InvitationChatView: View {
             Image("ic_card_pink")
 
             if onlyCards {
-                Text(NSLocalizedString("only_cards", comment: "cards"))
+                Text("only_cards".localized())
                     .foregroundColor(ColorList.white.color)
                     .font(MyFont.getFont(.BOLD, 28))
                     .padding(.init(top: 19, leading: 0, bottom: 3, trailing: 0))
 
-                Text(NSLocalizedString("this_user_agrees_to_accept_only_cards", comment: "cards"))
+                Text("this_user_agrees_to_accept_only_cards".localized())
                     .foregroundColor(ColorList.white_70.color)
                     .font(MyFont.getFont(.NORMAL, 18))
                     .multilineTextAlignment(.center)
                     .padding(.init(top: 3, leading: 0, bottom: 30, trailing: 0))
             } else {
-                Text(NSLocalizedString("you_can_always_send_an_invitation_in_the_form_of_a_card", comment: "cards"))
+                Text("you_can_always_send_an_invitation_in_the_form_of_a_card".localized())
                     .foregroundColor(ColorList.white.color)
                     .font(MyFont.getFont(.NORMAL, 18))
                     .multilineTextAlignment(.center)

@@ -26,7 +26,7 @@ struct DirrectionLineButtonView: View {
                 Image(icon)
             }.frame(width: 46, height: 46)
 
-            Text(NSLocalizedString(name, comment: "name"))
+            Text(name.localized())
                 .foregroundColor(ColorList.white_90.color)
                 .font(MyFont.getFont(.BOLD, 16))
 

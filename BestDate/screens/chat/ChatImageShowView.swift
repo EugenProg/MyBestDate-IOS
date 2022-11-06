@@ -30,11 +30,23 @@ struct ChatImageShowView: View {
                 ChatImageView(message: $message, smallUrl: false)
                     .aspectRatio(contentMode: .fit)
                     .frame(width: UIScreen.main.bounds.width)
-            }
+            }.gesture(dragGesture)
+            
         }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
             .background(ColorList.main.color)
             .onTapGesture {
                 withAnimation { show = false }
+            }
+    }
+
+    var dragGesture: some Gesture {
+        DragGesture()
+            .onEnded { value in
+                if value.translation.height > 80 &&
+                    value.translation.width < 50 &&
+                    value.translation.width > -50 {
+                    withAnimation { show = false }
+                }
             }
     }
 }

@@ -14,7 +14,6 @@ struct ProfilePhotoScreen: View {
     @ObservedObject var mediator = PhotoEditorMediator.shared
     
     @State var process: Bool = false
-    @State var isShowingPhotoLibrary = false
     
     var body: some View {
         VStack {
@@ -102,9 +101,9 @@ struct ProfilePhotoScreen: View {
                             
                             StandardButton(style: .white, title: "upload_a_photo", loadingProcess: $process) {
                                 if mediator.imageList.count < 9 {
-                                    isShowingPhotoLibrary.toggle()
+                                    store.dispatch(action: .showBottomSheet(view: .IMAGE_LIST))
                                 } else {
-                                    store.dispatch(action: .show(message: NSLocalizedString("you_can_upload_only_9_photo", comment: "Only 9")))
+                                    store.dispatch(action: .show(message: "you_can_upload_only_9_photo".localized()))
                                 }
                             }.padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight + 32, trailing: 0))
                             
@@ -118,9 +117,8 @@ struct ProfilePhotoScreen: View {
             .onAppear {
                 store.dispatch(action:
                         .setScreenColors(status: ColorList.white.color, style: mediator.mainPhoto != nil ? .lightContent : .darkContent))
-            }
-            .sheet(isPresented: $isShowingPhotoLibrary) {
-                ImagePicker(sourceType: .photoLibrary) { image in
+
+                ImageListMediator.shared.imageIsSelect = { image in
                     mediator.newPhoto = image
                     photoSettingsMediator.callPage = .PROFILE_PHOTO
                     store.dispatch(action: .navigate(screen: .PHOTO_EDITING))

@@ -26,9 +26,6 @@ struct SettingsScreen: View {
                 }
 
                 Title(textColor: ColorList.white.color, text: "settings", textSize: 20, paddingV: 0, paddingH: 0)
-                    .onTapGesture {
-                        changesEnabled.toggle()
-                    }
             }.frame(width: UIScreen.main.bounds.width - 50, height: 60)
                 .padding(.init(top: 16, leading: 32, bottom: 16, trailing: 18))
 
@@ -38,7 +35,7 @@ struct SettingsScreen: View {
 
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(spacing: 30) {
-                    Text(NSLocalizedString("main_settings", comment: "main").uppercased())
+                    Text("main_settings".localized().uppercased())
                         .foregroundColor(ColorList.white.color)
                         .font(MyFont.getFont(.BOLD, 22))
                         .frame(width: UIScreen.main.bounds.width - 64, alignment: .leading)

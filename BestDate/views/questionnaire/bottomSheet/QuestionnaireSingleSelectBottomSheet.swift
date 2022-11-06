@@ -49,7 +49,7 @@ struct QuestionnaireSingleSelectBottomSheet: View {
 
     private func equals(ansfer: String) -> Bool {
         ansfer == mediator.questionInfo.selectedAnsfer ||
-        NSLocalizedString(ansfer, comment: "Ansfer") == mediator.questionInfo.selectedAnsfer
+        ansfer.localized() == mediator.questionInfo.selectedAnsfer
     }
 
     private func calculateProgress() {

@@ -26,11 +26,11 @@ class CitySearchMediator: NSObject, ObservableObject {
         GMSPlacesClient.provideAPIKey("AIzaSyCAvbkXsVq1FQuiLdwbwJxiM6WoYfYSX8I")
 
         let filter = GMSAutocompleteFilter()
-        filter.accessibilityLanguage = NSLocalizedString("lang_code", comment: "Lang")
+        filter.accessibilityLanguage = "lang_code".localized()
         filter.type = .city
 
         fetcher = GMSAutocompleteFetcher(filter: filter)
-        fetcher?.accessibilityLanguage = NSLocalizedString("lang_code", comment: "Lang")
+        fetcher?.accessibilityLanguage = "lang_code".localized()
         fetcher?.provide(token)
     }
 
@@ -71,7 +71,7 @@ extension CitySearchMediator: GMSAutocompleteFetcherDelegate {
             let city = prediction.attributedPrimaryText.string
             let country = getItemFromLine(line: prediction.attributedSecondaryText?.string)
             let result = CityListItem(id: cityList.count, country: country,city: city)
-            if !cityList.contains(where: { item in item.city == result.city && item.country == result.country }) {
+            if !cityList.contains(where: { item in item.city == result.city && item.country == result.country }) && result.getCityLine() != searchText {
                 cityList.append(result)
             }
 

@@ -26,7 +26,7 @@ struct MatchesScreen: View {
 
                     Spacer()
 
-                    ProfileButtonView(image: "ic_matches", isActive: (ProfileMediator.shared.user.new_matches ?? 0) > 0, size: CGSize(width: 48, height: 46)) {
+                    ProfileButtonView(image: "ic_matches", isActive: ProfileMediator.shared.hasNewMatches, size: CGSize(width: 48, height: 46)) {
                         store.dispatch(action: .navigate(screen: .MATCHES_LIST))
                     }
                 }
@@ -65,7 +65,7 @@ struct MatchesScreen: View {
                                 .foregroundColor(ColorList.white_80.color)
                                 .font(MyFont.getFont(.BOLD, 19))
 
-                            Text(NSLocalizedString("years_short", comment: "age"))
+                            Text("years_short".localized())
                                 .foregroundColor(ColorList.white_80.color)
                                 .font(MyFont.getFont(.BOLD, 12))
                                 .padding(.init(top: 0, leading: 3, bottom: 0, trailing: 0))

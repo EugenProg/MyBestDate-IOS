@@ -95,7 +95,7 @@ struct RegistrationStartScreen: View {
                 store.dispatch(action: .navigate(screen: UserDataHolder.startScreen))
             }
         } else {
-            store.dispatch(action: .show(message: NSLocalizedString(message, comment: "Message")))
+            store.dispatch(action: .show(message: message.localized()))
         }
     }
 
@@ -105,13 +105,13 @@ struct RegistrationStartScreen: View {
                 DispatchQueue.main.async { store.dispatch(action: .startProcess) }
                 authMediator.getUserData { success in
                     DispatchQueue.main.async {
-                        goIn(success: success, registrationMode: registrationMode, message: "default_error_message")
+                        goIn(success: success, registrationMode: registrationMode, message: "default_error_message".localized())
                     }
                 }
             } else {
                 DispatchQueue.main.async {
                     store.dispatch(action:
-                            .show(message: NSLocalizedString("default_error_message", comment: "Message")))
+                            .show(message: "default_error_message".localized()))
                 }
             }
         }

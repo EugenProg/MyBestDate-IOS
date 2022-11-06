@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import SwiftUI
+import Combine
 
 class ChatMediator: ObservableObject {
     static var shared = ChatMediator()
@@ -26,11 +27,64 @@ class ChatMediator: ObservableObject {
     @Published var selectedImage: UIImage? = nil
 
     @Published var cardsOnlyMode: Bool = false
+    @Published var isOnline: Bool = false
+    @Published var typingMode: Bool = false
+    @Published var ping: Int = 0
+    var lastTypingUpdate: Int64 = Int64(Date().timeIntervalSince1970)
+    var lastInputUpdate: Int64 = Int64(Date().timeIntervalSince1970)
+
+    private var cancellableSet: Set<AnyCancellable> = []
+    private var inputCancelableSet: Set<AnyCancellable> = []
 
     func setUser(user: ShortUserInfo) {
         CreateInvitationMediator.shared.getInvitations()
         self.user = user
         self.getMessageList()
+        self.initInputListener()
+        self.initTypingListener()
+        self.isOnline = user.is_online == true
+    }
+
+    func initInputListener() {
+        $inputText
+            .sink { (_) in
+            } receiveValue: { _ in
+                if self.getTimeIntervale(interval: self.lastInputUpdate) > 3 || self.inputText.count == 1 {
+                    if !self.inputText.isEmpty {
+                        ChatApiService.shared.sendTypingEvent(recepient: self.user.id ?? 0)
+                    }
+                    self.lastInputUpdate = Int64(Date().timeIntervalSince1970)
+                }
+            }
+            .store(in: &inputCancelableSet)
+    }
+
+    func setTypingMode() {
+        self.typingMode = true
+        self.ping += 1
+        self.lastTypingUpdate = Int64(Date().timeIntervalSince1970)
+        self.isOnline = true
+    }
+
+    private func getTimeIntervale(interval: Int64) -> Int {
+        Int(Int64(Date().timeIntervalSince1970) - interval)
+    }
+
+    func initTypingListener() {
+        $ping
+            .debounce(for: 1, scheduler: RunLoop.main)
+            .sink { (_) in
+            } receiveValue: { _ in
+                if self.getTimeIntervale(interval: self.lastTypingUpdate) > 3 &&
+                    self.typingMode == true {
+                    self.typingMode = false
+                } else if self.typingMode == true {
+                    self.ping += 1
+                } else if self.ping > 1234 {
+                    self.ping = 0
+                }
+            }
+            .store(in: &cancellableSet)
     }
 
     func setUser(user: UserInfo) {

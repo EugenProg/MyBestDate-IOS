@@ -32,7 +32,7 @@ struct BottomMainNavigationItemView: View {
                         Image("ic_active_pink")
                             .padding(.init(top: 5, leading: 0, bottom: 4, trailing: 0))
                     } else {
-                        Text(NSLocalizedString(text, comment: "Name"))
+                        Text(text.localized())
                             .foregroundColor(ColorList.white_50.color)
                             .font(MyFont.getFont(.NORMAL, 12))
                     }

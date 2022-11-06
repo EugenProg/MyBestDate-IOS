@@ -17,7 +17,7 @@ class MultySelectMediator: ObservableObject {
         var line = ""
         for ansferInfo in ansfersList {
             if ansferInfo.isSelect {
-                let name = translate ? NSLocalizedString(ansferInfo.ansfer, comment: "Ansfer") : ansferInfo.ansfer
+                let name = translate ? ansferInfo.ansfer.localized() : ansferInfo.ansfer
                 line.append("\(name), ")
             }
         }
@@ -34,7 +34,7 @@ class MultySelectMediator: ObservableObject {
         for index in ansfers.indices {
             let ansfer = ansfers[index]
             let isSelect = questionInfo.selectedAnsfer.contains(ansfer) ||
-                            questionInfo.selectedAnsfer.contains(NSLocalizedString(ansfer, comment: "Ansfer"))
+                            questionInfo.selectedAnsfer.contains(ansfer.localized())
             ansfersList.append(
                 AnsferInfo(id: index,
                            ansfer: ansfer,

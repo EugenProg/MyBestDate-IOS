@@ -14,12 +14,21 @@ class ProfileMediator: ObservableObject {
     @Published var user: UserInfo = UserInfo()
     @Published var profileImages: [ProfileImage] = []
     @Published var mainPhoto: ProfileImage? = nil
-    
+
+    @Published var hasNewMatches: Bool = false
+    @Published var hasNewInvitations: Bool = false
+    @Published var hasNewLikes: Bool = false
+    @Published var hasNewDuels: Bool = false
+
     @Published var selectedImage: Int = 0
 
     func setUser(user: UserInfo) {
         self.user = user
         self.mainPhoto = user.getMainPhoto()
+        self.hasNewMatches = (user.new_matches ?? 0) > 0
+        self.hasNewInvitations = (user.new_invitations ?? 0) > 0
+        self.hasNewLikes = (user.new_likes ?? 0) > 0
+        self.hasNewDuels = (user.new_duels ?? 0) > 0
 
         withAnimation {
             self.profileImages.clearAndAddAll(list: user.photos)

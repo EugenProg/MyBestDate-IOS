@@ -14,7 +14,7 @@ struct BlackListItemView: View {
     var clickAction: (_ id: Int) -> Void
 
     var body: some View {
-        HStack(spacing: 13) {
+        HStack(spacing: 0) {
             ZStack {
                 UserImageView(user: $user)
                     .clipShape(Circle())
@@ -24,14 +24,14 @@ struct BlackListItemView: View {
                     .frame(width: 7, height: 7)
                     .padding(.init(top: 22, leading: 23, bottom: 0, trailing: 0))
             }.frame(width: 32, height: 32)
-                .padding(.init(top: 0, leading: 18, bottom: 0, trailing: 0))
+                .padding(.init(top: 0, leading: 18, bottom: 0, trailing: 13))
 
             VStack(alignment: .leading, spacing: 1) {
                 Text(user?.name ?? "")
                     .foregroundColor(ColorList.white_90.color)
                     .font(MyFont.getFont(.BOLD, 14))
 
-                Text(NSLocalizedString("this_user_is_blocked", comment: "blocked"))
+                Text("this_user_is_blocked".localized())
                     .foregroundColor(ColorList.white_50.color)
                     .font(MyFont.getFont(.NORMAL, 12))
             }
@@ -51,7 +51,7 @@ struct BlackListItemView: View {
                         .tint(ColorList.main.color)
                         .frame(width: 20, height: 20)
                 } else {
-                    Text(NSLocalizedString("unblock", comment: "Title"))
+                    Text("unblock".localized())
                         .foregroundColor(ColorList.main.color)
                         .font(MyFont.getFont(.BOLD, 14))
                         .padding(.init(top: 7, leading: 24, bottom: 6, trailing: 24))

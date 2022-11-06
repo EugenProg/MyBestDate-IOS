@@ -15,7 +15,7 @@ struct NotCorrectPhotoBottomSheet: View {
     fileprivate func reasonsItem(text: String) -> some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
-                Text(NSLocalizedString(text, comment: "text"))
+                Text(text.localized())
                     .foregroundColor(ColorList.white.color)
                     .font(MyFont.getFont(.BOLD, 20))
 
@@ -44,12 +44,12 @@ struct NotCorrectPhotoBottomSheet: View {
             reasonsItem(text: "not_a_person_s_face")
             reasonsItem(text: "more_than_one_person")
 
-            Text(NSLocalizedString("recommendation", comment: "recommenadation"))
+            Text("recommendation".localized())
                 .foregroundColor(ColorList.white_70.color)
                 .font(MyFont.getFont(.NORMAL, 14))
                 .padding(.init(top: 50, leading: 24, bottom: 16, trailing: 24))
 
-            Text(NSLocalizedString("upload_photos_where_only_you_are_alone_and_at_a_close_distance_so_that_your_face_is_clearly_visible", comment: "recommenadation"))
+            Text("upload_photos_where_only_you_are_alone_and_at_a_close_distance_so_that_your_face_is_clearly_visible".localized())
                 .foregroundColor(ColorList.white_70.color)
                 .font(MyFont.getFont(.NORMAL, 14))
                 .lineSpacing(8)

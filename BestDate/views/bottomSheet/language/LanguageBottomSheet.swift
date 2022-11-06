@@ -27,6 +27,6 @@ struct LanguageBottomSheet: View {
     }
 
     private func equals(item: String) -> Bool {
-        item.lowercased() == NSLocalizedString("app_lang", comment: "Language")
+        item.lowercased() == "app_lang".localized()
     }
 }
