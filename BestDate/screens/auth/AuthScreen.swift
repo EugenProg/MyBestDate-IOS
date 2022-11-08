@@ -115,7 +115,7 @@ struct AuthScreen: View {
                 DispatchQueue.main.async { store.dispatch(action: .startProcess) }
                 mediator.getUserData { success in
                     DispatchQueue.main.async {
-                        goIn(success: success, registrationMode: registrationMode, message: "default_error_message")
+                        goIn(success: success, registrationMode: registrationMode, message: "default_error_message".localized())
                     }
                 }
             } else {

@@ -18,8 +18,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         FirebaseApp.configure()
 
-        Messaging.messaging().delegate = self
-
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)
             UNUserNotificationCenter.current().delegate = self
@@ -38,6 +36,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             application.registerUserNotificationSettings(settings)
         }
 
+        Messaging.messaging().delegate = self
+
       //  ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
 
         application.registerForRemoteNotifications()
@@ -46,7 +46,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-
+        print(">>> remote")
       if let messageID = userInfo[gcmMessageIDKey] {
         print("Message ID: \(messageID)")
       }
@@ -69,8 +69,15 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 extension AppDelegate: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
 
-        UserDataHolder.setNotificationToken(token: fcmToken)
-        print("Device token: ", fcmToken ?? "") // This token can be used for testing notifications on FCM
+        Messaging.messaging().token { token, error in
+            if let error = error {
+                print(">>> FCM regiatration error \(error)")
+            } else if let token = token {
+                UserDataHolder.setNotificationToken(token: token)
+                print("Device token: ", token)
+            }
+        }
+         // This token can be used for testing notifications on FCM
     }
 }
 
@@ -108,11 +115,11 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     }
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-
+        Messaging.messaging().apnsToken = deviceToken
     }
 
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-
+        print(">>> error \(error)")
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter,

@@ -19,6 +19,7 @@ struct DefaultPushView: View {
                     .resizable()
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                     .frame(width: 44, height: 44)
+                    .shadow(color: ColorList.white.color, radius: 6)
 
                 VStack(alignment: .leading, spacing: 6) {
                     Text(mediator.title ?? "")
