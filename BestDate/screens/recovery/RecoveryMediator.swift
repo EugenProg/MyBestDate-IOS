@@ -18,9 +18,9 @@ class RecoveryMediator: ObservableObject {
 
     func sendCode(complete: @escaping (Bool, String) -> Void) {
         if StringUtils.isPhoneNumber(phone: login) {
-            resetPhone(phone: login) { success in complete(success, "default_error_message") }
+            resetPhone(phone: login) { success in complete(success, "default_error_message".localized()) }
         } else if StringUtils.isAEmail(email: login) {
-            resetEmail(email: login) { success in complete(success, "default_error_message") }
+            resetEmail(email: login) { success in complete(success, "default_error_message".localized()) }
         } else {
             complete(false, "enter_email_or_phone")
         }
@@ -47,14 +47,14 @@ class RecoveryMediator: ObservableObject {
     func confirm(complete: @escaping (Bool, String) -> Void) {
         if email.isEmpty {
             confirmPhone(code: code) { success in
-                complete(success, "default_error_message")
+                complete(success, "default_error_message".localized())
             }
         } else if phone.isEmpty {
             confirmEmail(code: code) { success in
-                complete(success, "default_error_message")
+                complete(success, "default_error_message".localized())
             }
         } else {
-            complete(false, "default_error_message")
+            complete(false, "default_error_message".localized())
         }
     }
 

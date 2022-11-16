@@ -352,6 +352,7 @@ struct GeocodingResponse: Codable {
 
 struct Address: Codable {
     var city: String? = nil
+    var town: String? = nil
     var county: String? = nil
     var state_district: String? = nil
     var state: String? = nil

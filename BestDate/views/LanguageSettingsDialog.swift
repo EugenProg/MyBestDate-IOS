@@ -1,13 +1,13 @@
 //
-//  DeleteUserDialog.swift
+//  LanguageSettingsDialog.swift
 //  BestDate
 //
-//  Created by Евгений on 21.09.2022.
+//  Created by Евгений on 16.11.2022.
 //
 
 import SwiftUI
 
-struct DeleteUserDialog: View {
+struct LanguageSettingsDialog: View {
     @EnvironmentObject var store: Store
     @State var visible = false
 
@@ -41,8 +41,8 @@ struct DeleteUserDialog: View {
                         Text("attention".localized())
                             .foregroundColor(ColorList.white.color)
                             .font(MyFont.getFont(.BOLD, 22))
-                        
-                        Text("all_your_data_will_be_deleted".localized())
+
+                        Text("the_application_language_is_changed_in_the_app_settings".localized())
                             .foregroundColor(ColorList.white_80.color)
                             .multilineTextAlignment(.center)
                             .font(MyFont.getFont(.BOLD, 16))
@@ -53,12 +53,14 @@ struct DeleteUserDialog: View {
                                 closeDialog()
                             }
 
-                            actionButton(name: "delete") {
-                                deleteUserProfile()
+                            actionButton(name: "settings") {
+                                let settingsURL = URL(string: UIApplication.openSettingsURLString)!
+                                UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
+                                closeDialog()
                             }
                         }.padding(.init(top: 0, leading: 16, bottom: 0, trailing: 16))
                     }
-                }.frame(minWidth: 246, maxWidth: 246, minHeight: 164, maxHeight: 184)
+                }.frame(minWidth: 246, maxWidth: 256, minHeight: 225, maxHeight: 265)
             }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 100)
                 .opacity(visible ? 1 : 0)
         }.onTapGesture { }
@@ -67,20 +69,11 @@ struct DeleteUserDialog: View {
             }
     }
 
-    func deleteUserProfile() {
-        CoreApiService.shared.deleteUserProfile {
-            DispatchQueue.main.async {
-                ProfileMediator.shared.clearUserData()
-                closeDialog()
-                store.dispatch(action: .navigate(screen: .AUTH, clearBackStack: true))
-            }
-        }
-    }
-
     func closeDialog() {
         withAnimation { visible = false }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            store.state.showDeleteDialog = false
+            store.state.showLanguageSettingDialog = false
         }
     }
 }
+

@@ -63,7 +63,7 @@ struct AuthScreen: View {
                 VStack {
                     SocialView(
                         gooleClickAction: { loginSocial(provider: .google) },
-                        appleClickAction: { },//loginSocial(provider: .apple) },
+                        appleClickAction: { loginSocial(provider: .apple) },
                         facebookClickAction: { })//loginSocial(provider: .facebook) })
                 }.frame(height: UIScreen.main.bounds.height, alignment: .bottom)
             }
@@ -72,6 +72,10 @@ struct AuthScreen: View {
             .onAppear {
                 store.dispatch(action:
                         .setScreenColors(status: ColorList.white.color, style: .darkContent))
+
+                socialMediator.appleSignAppAction = { success, mode in
+                    getUserData(success: success, mode: mode)
+                }
             }
     }
     
@@ -111,18 +115,22 @@ struct AuthScreen: View {
 
     private func loginSocial(provider: SocialOAuthType) {
         socialMediator.loginSocial(provider: provider) { success, registrationMode in
-            if success {
-                DispatchQueue.main.async { store.dispatch(action: .startProcess) }
-                mediator.getUserData { success in
-                    DispatchQueue.main.async {
-                        goIn(success: success, registrationMode: registrationMode, message: "default_error_message".localized())
-                    }
-                }
-            } else {
+            getUserData(success: success, mode: registrationMode)
+        }
+    }
+
+    private func getUserData(success: Bool, mode: Bool) {
+        if success {
+            DispatchQueue.main.async { store.dispatch(action: .startProcess) }
+            mediator.getUserData { success in
                 DispatchQueue.main.async {
-                    store.dispatch(action:
-                            .show(message: "default_error_message".localized()))
+                    goIn(success: success, registrationMode: mode, message: "default_error_message".localized())
                 }
+            }
+        } else {
+            DispatchQueue.main.async {
+                store.dispatch(action:
+                        .show(message: "default_error_message".localized()))
             }
         }
     }

@@ -13,6 +13,8 @@ import FBSDKLoginKit
 class SocialSignInMediator: NSObject, ObservableObject {
     static let shared = SocialSignInMediator()
 
+    var appleSignAppAction: ((Bool, Bool) -> Void)? = nil
+
     func loginSocial(provider: SocialOAuthType, completion: @escaping (Bool, Bool) -> Void) {
         switch provider {
         case .google: signInWithGoogle(complete: completion)
@@ -91,6 +93,10 @@ extension SocialSignInMediator: ASAuthorizationControllerDelegate {
                 print(appleIdCredential.user)  // This is a user identifier
                 print(appleIdCredential.identityToken?.base64EncodedString() ?? "Identity token not available") //JWT Token
                 print(appleIdCredential.authorizationCode?.base64EncodedString() ?? "Authorization code not available")
+                let token = appleIdCredential.authorizationCode != nil ? String(decoding: appleIdCredential.authorizationCode!, as: UTF8.self) : ""
+                CoreApiService.shared.signInWithSocial(provider: .apple, token: token) { success, mode in
+                    if self.appleSignAppAction != nil { self.appleSignAppAction!(success, mode) }
+                }
                 break
 
             case let passwordCredential as ASPasswordCredential:

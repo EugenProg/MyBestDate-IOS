@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ImageListBottomSheet: View {
+    @EnvironmentObject var store: Store
     @ObservedObject var mediator = ImageListMediator.shared
 
     var size: CGFloat = (UIScreen.main.bounds.width - 12) / 3
@@ -53,6 +54,10 @@ struct ImageListBottomSheet: View {
             }
 
         }.onAppear {
+            mediator.requestPermission = {
+                store.dispatch(action: .show(message: "default_error_message".localized()))
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { clickAction() }
+            }
             mediator.getImages()
         }
     }

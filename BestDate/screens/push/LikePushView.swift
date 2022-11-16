@@ -54,8 +54,7 @@ struct LikePushView: View {
         .onTapGesture {
             closeAction()
             withAnimation {
-                AnotherProfileMediator.shared.setUser(user: mediator.user ?? ShortUserInfo())
-                store.dispatch(action: .navigate(screen: .ANOTHER_PROFILE))
+                store.dispatch(action: .navigate(screen: .LIKES_LIST))
             }
         }
     }

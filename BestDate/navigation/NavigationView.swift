@@ -25,6 +25,7 @@ struct NavigationView: View {
                 if store.state.showMatchActionDialog { MatchActionScreen().zIndex(1) }
                 if store.state.showPushNotification { PushScreen().zIndex(1) }
                 if store.state.showDeleteDialog { DeleteUserDialog().zIndex(1) }
+                if store.state.showLanguageSettingDialog { LanguageSettingsDialog().zIndex(1) }
                 if store.state.inProcess { LoadingProgressScreen().zIndex(1) }
                 Group {
                     switch store.state.activeScreen {
@@ -86,6 +87,8 @@ struct NavigationView: View {
         store.state.showPushNotification ||
         store.state.inProcess ||
         store.state.showDeleteDialog ||
+        store.state.showLanguageSettingDialog ||
+        store.state.showSetPermissionDialog ||
         store.state.showInvitationDialog ? 1.8 : 0
     }
 }

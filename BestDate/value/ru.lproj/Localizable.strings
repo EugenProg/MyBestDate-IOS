@@ -22,7 +22,7 @@
 "sign_up" = "Зарегистрируйтесь";
 "email_or_phone_number" = "E-mail / номер телефона";
 "password" = "Пароль";
-"login" = "Сбросить";
+"login" = "Войти";
 "geolocation_must_be_enabled" = "Геолокация должна быть включена";
 "this_is_necessary_so_that_we_can_make_a_more_suitable_selection" = "Это необходимо для того, чтобы мы могли сделать более подходящий выбор партнеров, которые находятся рядом с Вами";
 "enable_geolocation" = "Включить геолокацию";
@@ -541,7 +541,7 @@
 "today" = "Сегодня";
 "yesterday" = "Вчера";
 "you_can_always_send_an_invitation_in_the_form_of_a_card" = "Вы всегда можете отправить приглашение в виде открытки, в более удобной для Вас форме";
-"go_to" = "Заглянуть";
+"go_to" = "Пригласить";
 "add_a_caption" = "Добавьте надпись...";
 "sorry_you_voted_for_all_the_photos" = "Извините, вы проголосовали за все фотографии";
 "enter_email" = "Введите E-mail";
@@ -651,3 +651,4 @@
 "typing" = "печатает...";
 "you_dont_have_any_blocked_users_yet" = "У вас пока нет заблокированных пользователей";
 "chat_actions" = "Действия в чате";
+"the_application_language_is_changed_in_the_app_settings" = "Язык приложения меняется в настройках приложения.\n\nЕсли доступных языков нет, откройте общие настройки iPhone и выберите предпочтительный язык";

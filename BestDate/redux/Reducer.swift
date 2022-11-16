@@ -90,6 +90,12 @@ final class Reducer {
 
         case .showDeleteDialog:
             state.showDeleteDialog = true
+
+        case .showLanguageSettingDialog:
+            state.showLanguageSettingDialog = true
+
+        case .showSetPermissionDialog:
+            state.showSetPermissionDialog = true
         }
         
         return state

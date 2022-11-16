@@ -21,11 +21,11 @@ final class RegistrationMediator: ObservableObject {
 
     func sendCode(complete: @escaping (Bool, String) -> Void) {
         if StringUtils.isPhoneNumber(phone: login) {
-            registrPhone(phone: login) { success in complete(success, "default_error_message") }
+            registrPhone(phone: login) { success in complete(success, "default_error_message".localized()) }
         } else if StringUtils.isAEmail(email: login) {
-            registrEmail(email: login) { success in complete(success, "default_error_message") }
+            registrEmail(email: login) { success in complete(success, "default_error_message".localized()) }
         } else {
-            complete(false, "enter_email_or_phone")
+            complete(false, "enter_email_or_phone".localized())
         }
     }
 
@@ -50,14 +50,14 @@ final class RegistrationMediator: ObservableObject {
     func confirm(code: String, complete: @escaping (Bool, String) -> Void) {
         if email.isEmpty {
             confirmPhone(code: code) { success in
-                complete(success, "default_error_message")
+                complete(success, "default_error_message".localized())
             }
         } else if phone.isEmpty {
             confirmEmail(code: code) { success in
-                complete(success, "default_error_message")
+                complete(success, "default_error_message".localized())
             }
         } else {
-            complete(false, "default_error_message")
+            complete(false, "default_error_message".localized())
         }
     }
 

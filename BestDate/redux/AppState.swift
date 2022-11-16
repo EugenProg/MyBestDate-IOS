@@ -24,4 +24,6 @@ struct AppState {
     var hasADeepLink: Bool = false
     var showPushNotification: Bool = false
     var showDeleteDialog: Bool = false
+    var showLanguageSettingDialog: Bool = false
+    var showSetPermissionDialog: Bool = false
 }

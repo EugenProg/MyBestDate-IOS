@@ -44,6 +44,7 @@ struct SearchFilterScreen: View {
                             .onTapGesture {
                                 selectedItem = item
                                 mediator.searchText = item.getCityLine()
+                                store.dispatch(action: .hideKeyboard)
                             }
                     }
                 }

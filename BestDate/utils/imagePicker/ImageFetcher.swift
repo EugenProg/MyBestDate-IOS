@@ -11,6 +11,13 @@ import UIKit
 
 class ImageFetcher {
     var size: CGSize = CGSize(width: 800, height: 800)
+    var addImage: ((ImageItem) -> Void)? = nil
+
+    func getPermission(completion: @escaping (Bool) -> Void) {
+        PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
+            completion(status == .authorized || status == .limited)
+        }
+    }
 
     private func getAssets() -> PHFetchResult<PHAsset> {
         let fetchOptions = PHFetchOptions()
@@ -20,21 +27,23 @@ class ImageFetcher {
         return PHAsset.fetchAssets(with: fetchOptions)
     }
 
-    private func getImagesFromAssets(assets: PHFetchResult<PHAsset>) -> [ImageItem] {
-        var images: [ImageItem] = []
+    private func getImagesFromAssets(assets: PHFetchResult<PHAsset>) {
         var id: Int = 0
 
         assets.enumerateObjects({ (object, count, stop) in
             PHImageManager.default().requestImage(for: object, targetSize: self.size, contentMode: .aspectFill, options: self.imageRequestOptions) { image, info in
-                images.append(ImageItem(id: id, image: image ?? UIImage()))
+                if self.addImage != nil {
+                    self.addImage!(ImageItem(id: id, image: image ?? UIImage()))
+                }
                 id += 1
             }
         })
-        return images
     }
 
-    func getImageList() -> [ImageItem] {
-        getImagesFromAssets(assets: getAssets())
+    func getImageList() {
+        DispatchQueue.global().async {
+            self.getImagesFromAssets(assets: self.getAssets())
+        }
     }
 
     var imageRequestOptions: PHImageRequestOptions {

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct DefaultPushView: View {
+    @EnvironmentObject var store: Store
     @ObservedObject var mediator = PushMediator.shared
 
     var closeAction: () -> Void
@@ -42,6 +43,18 @@ struct DefaultPushView: View {
         )
         .onTapGesture {
             closeAction()
+            withAnimation {
+                let type = store.state.activePush
+                if type == .message {
+                    ChatMediator.shared.setUser(user: mediator.user ?? ShortUserInfo())
+                    store.dispatch(action: .navigate(screen: .CHAT))
+                } else if type == .guest {
+                    MainMediator.shared.currentScreen = .GUESTS
+                    if store.state.activeScreen != .MAIN {
+                        store.dispatch(action: .navigate(screen: .MAIN))
+                    }
+                }
+            }
         }
     }
 }

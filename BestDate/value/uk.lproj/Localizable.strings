@@ -651,3 +651,4 @@
 "typing" = "друкую...";
 "you_dont_have_any_blocked_users_yet" = "У вас поки що немає заблокованих користувачів";
 "chat_actions" = "Дії в чаті";
+"the_application_language_is_changed_in_the_app_settings" = "Мова програми змінюється в налаштуваннях програми.\n\nЯкщо доступних мов немає, відкрийте загальні налаштування iPhone і виберіть бажану мову";

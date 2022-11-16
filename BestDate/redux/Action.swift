@@ -25,4 +25,6 @@ enum Action {
     case hasADeepLink
     case showPushNotification(type: NotificationType)
     case showDeleteDialog
+    case showLanguageSettingDialog
+    case showSetPermissionDialog
 }

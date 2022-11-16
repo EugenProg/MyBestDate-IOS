@@ -651,3 +651,4 @@
 "typing" = "typing...";
 "you_dont_have_any_blocked_users_yet" = "You don't have any blocked users yet";
 "chat_actions" = "Chat actions";
+"the_application_language_is_changed_in_the_app_settings" = "The application language is changed in the application settings.\n\nIf no languages are available, open the general iPhone settings and select your preferred language";

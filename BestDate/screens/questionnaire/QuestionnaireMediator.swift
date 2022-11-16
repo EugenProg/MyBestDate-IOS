@@ -182,7 +182,7 @@ class QuestionnaireMediator: ObservableObject {
                     completion(success, "")
                 }
             } else {
-                completion(success, "default_error_message")
+                completion(success, "default_error_message".localized())
             }
         }
     }

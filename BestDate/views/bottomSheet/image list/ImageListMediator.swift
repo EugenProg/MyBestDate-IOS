@@ -13,16 +13,39 @@ class ImageListMediator: ObservableObject {
 
     @Published var imageList: [ImageItem] = []
     var savedPosition: CGFloat = 0
+    var fetcher: ImageFetcher? = nil
+    var requestPermission: (() -> Void)? = nil
+    private var hasPermission: Bool = false
     private let itemHeight: CGFloat = ((UIScreen.main.bounds.width - 12) / 3)
 
     var imageIsSelect: ((UIImage) -> Void)? = nil
 
-    func getImages() {
-        DispatchQueue.global().async {
-            let images = ImageFetcher().getImageList()
+    func initFetcher() {
+        fetcher = ImageFetcher()
+        fetcher?.addImage = { image in
             DispatchQueue.main.async {
-                self.imageList = images
+                self.imageList.removeAll { oldImage in oldImage.id == image.id }
+                self.imageList.append(image)
             }
+        }
+
+        fetcher?.getPermission(completion: { hasPermission in
+            self.hasPermission = hasPermission
+            if hasPermission {
+                self.getImages()
+            } else {
+                if self.requestPermission != nil {
+                    self.requestPermission!()
+                }
+            }
+        })
+    }
+
+    func getImages() {
+        if hasPermission {
+            fetcher?.getImageList()
+        } else {
+            initFetcher()
         }
     }
 

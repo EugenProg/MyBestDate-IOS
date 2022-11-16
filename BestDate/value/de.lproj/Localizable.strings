@@ -101,10 +101,10 @@
 "guests" = "Gäste";
 "location" = "Standort";
 "next_to_me" = "In meiner Nähe";
-"all_world" = "Alle Welt";
+"all_world" = "Gesamte Welt";
 "online" = "Online";
 "not_selected" = "Nicht ausgewählt";
-"was_recently" = "War kürzlich";
+"was_recently" = "Kürzlich online gewesen";
 "new_guests" = "Neue Gäste";
 "previous_views" = "Frühere Ansichten";
 "more_than_one_person" = "Mehr als eine Person auf dem Bild";
@@ -541,7 +541,7 @@
 "today" = "Heute";
 "yesterday" = "Gestern";
 "you_can_always_send_an_invitation_in_the_form_of_a_card" = "Sie können jederzeit eine Einladung in Form einer Karte verschicken, in einer bequemeren Form";
-"go_to" = "Reingehen";
+"go_to" = "Einladen";
 "add_a_caption" = "Beschriftung hinzufügen...";
 "sorry_you_voted_for_all_the_photos" = "Tut mir leid, dass Sie für alle Fotos gestimmt haben";
 "enter_email" = "E-Mail eingeben";
@@ -624,11 +624,11 @@
 "this_user_is_blocked" = "Dieser Benutzer ist gesperrt";
 "unblock" = "Entsperren";
 "save_successfully" = "Änderungen erfolgreich gespeichert";
-"failed_save_data" = "Daten wurden nicht gespeichert";
+"failed_save_data" = "Daten wurden nicht gessentpeichert";
 "attention" = "Achtung";
 "all_your_data_will_be_deleted" = "Alle Ihre Daten, einschließlich Ihres Kontos, werden gelöscht.";
 "any_has_not_given_an_answer_yet" = "%@ hat noch nicht geantwortet";
-"you_have_no_new_invitations" = "Sie haben leider keine neuen Einladungen";
+"you_have_no_new_invitations" = "Sie haben leider keine neue Einladungen";
 "you_have_no_answered_invitations" = "Sie haben leider keine Einladungen beantwortet";
 "you_have_no_invitations_sent" = "Sie haben leider keine Einladungen verschickt";
 "enter_a_old_pass" = "Geben Sie das alte Passwort ein";
@@ -651,3 +651,4 @@
 "typing" = "tippen...";
 "you_dont_have_any_blocked_users_yet" = "Sie haben noch keine gesperrten Benutzer";
 "chat_actions" = "Chat-Aktionen";
+"the_application_language_is_changed_in_the_app_settings" = "Die Sprache der App wird in den Einstellungen der App geändert.\n\nWenn keine Sprachen verfügbar sind, öffnen Sie die allgemeinen iPhone-Einstellungen und wählen Sie Ihre bevorzugte Sprache";

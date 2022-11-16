@@ -53,6 +53,7 @@ struct QuestionnaireSearchBotomSheet: View {
                             .onTapGesture {
                                 self.selectedItem = item
                                 searchMediator.searchText = item.getCityLine()
+                                store.dispatch(action: .hideKeyboard)
                             }
                     }
                 }

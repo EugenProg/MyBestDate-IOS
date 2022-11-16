@@ -14,11 +14,7 @@ class PushMediator: ObservableObject {
     @Published var body: String? = nil
     @Published var title: String? = nil
 
-    func setUser(jsonString: String) {
-        if jsonString.isEmpty { return }
-
-        let user = try? JSONDecoder().decode(ShortUserInfo.self, from: jsonString.data(using: .utf8)!)
-
+    func setUser(user: ShortUserInfo?) {
         self.user = user
     }
 
@@ -33,12 +29,17 @@ enum NotificationType: String {
     case like
     case match
     case invitation
+    case message
+    case guest
 
     static func getNotificationType(type: String) -> NotificationType {
+        print(">>> type: \(type)")
         switch type {
         case "like": return .like
         case "match": return .match
         case "invitation": return .invitation
+        case "message": return .message
+        case "guest": return .guest
         default: return .defaultPush
         }
     }

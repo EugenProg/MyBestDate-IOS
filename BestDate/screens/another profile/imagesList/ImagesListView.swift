@@ -10,7 +10,7 @@ import SwiftUI
 struct ImagesListView: View {
     @Binding var images: [ProfileImage]
     @Binding var selectedImage: Int
-    var showLikesCount: Bool = false
+    var showLikesCount: Bool = true
     var selectAction: () -> Void
     var closeAction:() -> Void
 

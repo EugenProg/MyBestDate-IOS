@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import UIKit
 
 class ChatListMediator: ObservableObject {
     static var shared = ChatListMediator()
@@ -29,10 +30,15 @@ class ChatListMediator: ObservableObject {
                     self.allChatsList.clearAndAddAll(list: chatList)
                     self.refillChatsLists()
                     MainMediator.shared.hasNewMessages = self.newChats.count > 0
+                    self.setBadgeCount()
                 }
                 self.loadingMode = false
             }
         }
+    }
+
+    private func setBadgeCount() {
+        UIApplication.shared.applicationIconBadgeNumber = self.newChats.count > 0 ? MainMediator.shared.user.new_messages ?? 0 : 0
     }
 
     private func refillChatsLists() {

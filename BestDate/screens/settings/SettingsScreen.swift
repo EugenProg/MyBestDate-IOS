@@ -98,8 +98,7 @@ struct SettingsScreen: View {
                     SettingsButtonBlockView(title: "language",
                                             description: "here_you_can_select_the_language",
                                             buttonTitle: mediator.language) {
-                        let settingsURL = URL(string: UIApplication.openSettingsURLString)!
-                        UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
+                        store.dispatch(action: .showLanguageSettingDialog)
                     }
 
                     SettingsButtonBlockView(title: "delete_profile",

@@ -78,17 +78,17 @@ struct SaveRefreshAndSetPositionScrollView<Content: View>: View {
     }
 }
 
-private enum PositionType {
+enum PositionType {
     case fixed
     case moving
 }
 
-private struct Position: Equatable {
+struct Position: Equatable {
     let type: PositionType
     let y: CGFloat
 }
 
-private struct PositionPreferenceKey: PreferenceKey {
+struct PositionPreferenceKey: PreferenceKey {
     typealias Value = [Position]
     static var defaultValue: Value = [Position]()
 
@@ -97,7 +97,7 @@ private struct PositionPreferenceKey: PreferenceKey {
     }
 }
 
-private struct PositionIndicators: View {
+struct PositionIndicators: View {
     let type: PositionType
 
     var body: some View {

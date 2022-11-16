@@ -49,6 +49,7 @@ struct UserLocationScreen: View {
                             .onTapGesture {
                                 selectedItem = item
                                 searchMediator.searchText = item.getCityLine()
+                                store.dispatch(action: .hideKeyboard)
                             }
                     }
                 }

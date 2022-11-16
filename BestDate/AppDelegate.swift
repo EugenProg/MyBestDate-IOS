@@ -98,12 +98,13 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
 
         if UIApplication.shared.applicationState == .active {
             let pushType = NotificationType.getNotificationType(type: userInfo["type"] as? String ?? "")
-            if pushType == .defaultPush {
-                PushMediator.shared.setDefaultMessage(body: notification.request.content.body, title: notification.request.content.title)
-            } else {
-                PushMediator.shared.setUser(jsonString: userInfo["user"] as? String ?? "")
+            PushMediator.shared.setUser(user: (userInfo["user"] as? String ?? "").getUserFromJson())
+            if !(pushType == .message && self.isInChatOrChatList(userInfo: userInfo)) {
+                if pushType == .message || pushType == .guest {
+                    PushMediator.shared.setDefaultMessage(body: notification.request.content.body, title: notification.request.content.title)
+                }
+                store?.dispatch(action: .showPushNotification(type: pushType))
             }
-            store?.dispatch(action: .showPushNotification(type: pushType))
         } else {
             let pushType = NotificationType.getNotificationType(type: userInfo["type"] as? String ?? "")
             if pushType != .defaultPush {
@@ -112,6 +113,14 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
             }
             completionHandler([[.banner, .badge, .sound]])
         }
+        ProfileMediator.shared.updateUserData { }
+    }
+
+    func isInChatOrChatList(userInfo: [AnyHashable : Any]) -> Bool {
+        let user = (userInfo["user"] as? String ?? "").getUserFromJson()
+        return (store?.state.activeScreen == .MAIN &&
+                MainMediator.shared.currentScreen == .CHAT_LIST) ||
+        (store?.state.activeScreen == .CHAT && user?.id == ChatMediator.shared.user.id)
     }
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
@@ -127,11 +136,27 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo
 
-        if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID from userNotificationCenter didReceive: \(messageID) 4321")
+        let pushType = NotificationType.getNotificationType(type: userInfo["type"] as? String ?? "")
+        var screen: ScreenList = store?.state.activeScreen ?? .MAIN
+        switch pushType {
+        case .like: screen = .LIKES_LIST
+        case .match: screen = .MATCHES_LIST
+        case .invitation: screen = .INVITATION
+        case .message: do {
+            ChatMediator.shared.setUser(user: (userInfo["user"] as? String ?? "").getUserFromJson() ?? ShortUserInfo())
+            screen = .CHAT
+        }
+        case .guest: do {
+            MainMediator.shared.currentScreen = .GUESTS
+            screen = .MAIN
+        }
+        case .defaultPush:
+            screen = store?.state.activeScreen ?? .MAIN
         }
 
-        print(userInfo)
+        if screen != store?.state.activeScreen ?? .MAIN {
+            store?.dispatch(action: .navigate(screen: screen))
+        }
 
         completionHandler()
     }

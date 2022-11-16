@@ -206,6 +206,12 @@ extension String {
     func localized() -> String {
         NSLocalizedString(self, comment: self)
     }
+
+    func getUserFromJson() -> ShortUserInfo? {
+        if self.isEmpty { return nil }
+
+        return try? JSONDecoder().decode(ShortUserInfo.self, from: self.data(using: .utf8)!)
+    }
 }
 
 extension Int {
@@ -499,7 +505,7 @@ extension GeocodingResponse {
                                country: self.address?.country ?? "",
                                state: self.address?.country_code ?? "",
                                state_name: self.address?.state_district,
-                               city: self.address?.city ?? "")
+                               city: self.address?.city ?? (self.address?.town ?? ""))
     }
 
     func getSearchFilter(range: Int) -> Filter {
