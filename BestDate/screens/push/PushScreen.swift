@@ -45,6 +45,10 @@ struct PushScreen: View {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     offsetReaderActive = true
                 }
+
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                    dismiss()
+                }
             }
         }
     }

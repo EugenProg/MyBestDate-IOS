@@ -21,12 +21,16 @@ struct QuestionnaireMultySelectBottomSheet: View {
         let height: CGFloat = itemsHeight > viewHeight ? viewHeight : itemsHeight
 
         VStack(alignment: .leading, spacing: 0) {
+
             HStack {
                 Title(textColor: ColorList.main.color, text: mediator.questionInfo.question, textSize: 32, paddingV: 0, paddingH: 24)
 
                 Spacer()
 
-                PercentView(questionInfo: $mediator.questionInfo, isAlwaisActive: true)
+                TextButton(text: "save", textColor: ColorList.main.color) {
+                    save()
+                    clickAction()
+                }
             }.padding(.init(top: 0, leading: 0, bottom: 18, trailing: 24))
 
             ScrollView(.vertical, showsIndicators: false) {
@@ -44,13 +48,17 @@ struct QuestionnaireMultySelectBottomSheet: View {
             .onAppear {
                 baseMediator.closeAction = { type in
                     if type == .QUESTIONNAIRE_MULTY_SELECT {
-                        let ansferLine = mediator.getAnsferLine()
-                        calculateProgress(ansferLine: ansferLine)
-                        questionnaireMediator.saveSelection(questionInfo: mediator.questionInfo, ansfer: ansferLine)
-                        mediator.questionInfo.selectAction!(mediator.getAnsferLine(true))
+                        save()
                     }
                 }
             }
+    }
+
+    private func save() {
+        let ansferLine = mediator.getAnsferLine()
+        calculateProgress(ansferLine: ansferLine)
+        questionnaireMediator.saveSelection(questionInfo: mediator.questionInfo, ansfer: ansferLine)
+        mediator.questionInfo.selectAction!(mediator.getAnsferLine(true))
     }
 
     private func calculateProgress(ansferLine: String) {

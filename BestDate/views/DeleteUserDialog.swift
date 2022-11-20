@@ -31,12 +31,8 @@ struct DeleteUserDialog: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 0) {
+                Spacer()
                 ZStack {
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(MyColor.getColor(190, 239, 255, 0.15), lineWidth: 2)
-                        .background(ColorList.main.color)
-                        .cornerRadius(16)
-
                     VStack(spacing: 16) {
                         Text("attention".localized())
                             .foregroundColor(ColorList.white.color)
@@ -46,7 +42,6 @@ struct DeleteUserDialog: View {
                             .foregroundColor(ColorList.white_80.color)
                             .multilineTextAlignment(.center)
                             .font(MyFont.getFont(.BOLD, 16))
-                            .padding(.init(top: 0, leading: 16, bottom: 3, trailing: 16))
 
                         HStack(spacing: 16) {
                             actionButton(name: "cancel") {
@@ -56,9 +51,18 @@ struct DeleteUserDialog: View {
                             actionButton(name: "delete") {
                                 deleteUserProfile()
                             }
-                        }.padding(.init(top: 0, leading: 16, bottom: 0, trailing: 16))
+                        }
                     }
-                }.frame(minWidth: 246, maxWidth: 246, minHeight: 164, maxHeight: 184)
+                }.frame(width: 246)
+                    .padding(.init(top: 16, leading: 16, bottom: 16, trailing: 16))
+                    .background {
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke(MyColor.getColor(190, 239, 255, 0.15), lineWidth: 2)
+                            .background(ColorList.main.color)
+                            .cornerRadius(16)
+                    }
+
+                    Spacer()
             }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 100)
                 .opacity(visible ? 1 : 0)
         }.onTapGesture { }

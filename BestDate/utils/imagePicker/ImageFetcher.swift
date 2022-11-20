@@ -11,7 +11,7 @@ import UIKit
 
 class ImageFetcher {
     var size: CGSize = CGSize(width: 800, height: 800)
-    var addImage: ((ImageItem) -> Void)? = nil
+    var addImage: (([ImageItem]) -> Void)? = nil
 
     func getPermission(completion: @escaping (Bool) -> Void) {
         PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
@@ -29,15 +29,18 @@ class ImageFetcher {
 
     private func getImagesFromAssets(assets: PHFetchResult<PHAsset>) {
         var id: Int = 0
+        var images: [ImageItem] = []
 
         assets.enumerateObjects({ (object, count, stop) in
             PHImageManager.default().requestImage(for: object, targetSize: self.size, contentMode: .aspectFill, options: self.imageRequestOptions) { image, info in
-                if self.addImage != nil {
-                    self.addImage!(ImageItem(id: id, image: image ?? UIImage()))
-                }
+                images.append(ImageItem(id: id, image: image ?? UIImage()))
                 id += 1
             }
         })
+
+        if self.addImage != nil {
+            self.addImage!(images)
+        }
     }
 
     func getImageList() {

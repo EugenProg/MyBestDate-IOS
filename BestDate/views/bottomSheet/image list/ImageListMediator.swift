@@ -22,10 +22,10 @@ class ImageListMediator: ObservableObject {
 
     func initFetcher() {
         fetcher = ImageFetcher()
-        fetcher?.addImage = { image in
+        fetcher?.addImage = { images in
             DispatchQueue.main.async {
-                self.imageList.removeAll { oldImage in oldImage.id == image.id }
-                self.imageList.append(image)
+                self.imageList.removeAll()
+                self.imageList = images
             }
         }
 
