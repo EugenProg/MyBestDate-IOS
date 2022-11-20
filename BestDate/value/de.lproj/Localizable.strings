@@ -652,3 +652,7 @@
 "you_dont_have_any_blocked_users_yet" = "Sie haben noch keine gesperrten Benutzer";
 "chat_actions" = "Chat-Aktionen";
 "the_application_language_is_changed_in_the_app_settings" = "Die Sprache der App wird in den Einstellungen der App geändert.\n\nWenn keine Sprachen verfügbar sind, öffnen Sie die allgemeinen iPhone-Einstellungen und wählen Sie Ihre bevorzugte Sprache";
+"you_have_not_given_permission_to_access_images" = "Sie haben keine Genehmigung für den Zugriff auf Bilder erteilt. Sie können dies in den Einstellungen einschalten";
+"new" = "Neue";
+"answered" = "Reagiert";
+"sent" = "Gesendet";

@@ -55,7 +55,7 @@ struct ImageListBottomSheet: View {
 
         }.onAppear {
             mediator.requestPermission = {
-                store.dispatch(action: .show(message: "default_error_message".localized()))
+                store.dispatch(action: .showSetPermissionDialog)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { clickAction() }
             }
             mediator.getImages()

@@ -652,3 +652,7 @@
 "you_dont_have_any_blocked_users_yet" = "У вас поки що немає заблокованих користувачів";
 "chat_actions" = "Дії в чаті";
 "the_application_language_is_changed_in_the_app_settings" = "Мова програми змінюється в налаштуваннях програми.\n\nЯкщо доступних мов немає, відкрийте загальні налаштування iPhone і виберіть бажану мову";
+"you_have_not_given_permission_to_access_images" = "Ви не дали дозвіл на доступ до зображень. Ви можете ввімкнути це в налаштуваннях";
+"new" = "Нові";
+"answered" = "Відповідальні";
+"sent" = "Відправлені";

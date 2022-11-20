@@ -10,6 +10,7 @@ import SwiftUI
 struct FillRegistrationDataScreen: View {
     @EnvironmentObject var store: Store
     @ObservedObject var mediator = FillRegistrationDataMediator.shared
+    @State private var offsetValue: CGFloat = 0.0
 
     @State var nameInputError: Bool = false
     @State var genderInputError: Bool = false
@@ -46,7 +47,9 @@ struct FillRegistrationDataScreen: View {
                 }.padding(.init(top: 16, leading: 0, bottom: 25, trailing: 0))
 
             }.padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight, trailing: 0))
-        }.background(ColorList.main.color.edgesIgnoringSafeArea(.bottom))
+        }.padding(.init(top: offsetValue / 2, leading: 0, bottom: 0, trailing: 0))
+        .keyboardTopOffset($offsetValue)
+        .background(ColorList.main.color.edgesIgnoringSafeArea(.bottom))
         .onAppear {
             store.dispatch(action:
                     .setScreenColors(status: ColorList.main.color, style: .lightContent))

@@ -44,7 +44,9 @@ class SocialSignInMediator: NSObject, ObservableObject {
 
             print(">>> SUCCESS\nname = \(user?.profile?.name ?? "")\nemail = \(user?.profile?.email ?? "")\ntoken = \(user?.authentication.accessToken ?? "")")
 
-            CoreApiService.shared.signInWithSocial(provider: .google, token: user?.authentication.accessToken ?? "") { success, registrationMode in complete(success, registrationMode)
+            if !(user?.authentication.accessToken ?? "").isEmpty {
+                CoreApiService.shared.signInWithSocial(provider: .google, token: user?.authentication.accessToken ?? "") { success, registrationMode in complete(success, registrationMode)
+                }
             }
         }
     }
@@ -52,32 +54,17 @@ class SocialSignInMediator: NSObject, ObservableObject {
     func signInWithFacebook(complete: @escaping (Bool, Bool) -> Void) {
         let loginManager = LoginManager()
 
-        loginManager.logIn(permissions: ["public_profile", "email"], from: nil) { result, error in
-            print(">>> ready")
-            GraphRequest(graphPath: "me", parameters: ["fields": "email, first_name, last_name, gender, picture"]).start(completionHandler: { (connection, result, error) -> Void in
-                if (error == nil) {
-                    let fbDetails = result as! NSDictionary
-                    print(fbDetails)
-                }
-            })
-//            switch request {
-//            case .failed(let error):
-//                print(error)
-//            case .cancelled:
-//                print("User cancelled login.")
-//            case .success(let grantedPermissions, let declinedPermissions, let accessToken):
-//                print("Logged in! \(grantedPermissions) \(declinedPermissions) \(accessToken)")
-//                GraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name"]).start(completionHandler: { (connection, result, error) -> Void in
-//                    if (error == nil) {
-//                        let fbDetails = result as! NSDictionary
-//                        print(fbDetails)
-//                    }
-//                })
-//            }
+        loginManager.logIn(permissions: ["public_profile", "email"], from: nil) { loginResult, error  in
+            if loginResult?.isCancelled == false {
+                GraphRequest(graphPath: "me", parameters: ["fields": "email, first_name, last_name, gender, picture"]).start(completionHandler: { (connection, result, error) -> Void in
+                    if (error == nil) {
+                        CoreApiService.shared.signInWithSocial(provider: .facebook, token: loginResult?.token?.tokenString ?? "") { success, registrationMode in complete(success, registrationMode)
+                        }
+                    }
+                })
+            }
         }
-
     }
-
 }
 
 extension SocialSignInMediator: ASAuthorizationControllerDelegate {
@@ -93,7 +80,7 @@ extension SocialSignInMediator: ASAuthorizationControllerDelegate {
                 print(appleIdCredential.user)  // This is a user identifier
                 print(appleIdCredential.identityToken?.base64EncodedString() ?? "Identity token not available") //JWT Token
                 print(appleIdCredential.authorizationCode?.base64EncodedString() ?? "Authorization code not available")
-                let token = appleIdCredential.authorizationCode != nil ? String(decoding: appleIdCredential.authorizationCode!, as: UTF8.self) : ""
+                let token = appleIdCredential.identityToken != nil ? String(decoding: appleIdCredential.identityToken!, as: UTF8.self) : ""
                 CoreApiService.shared.signInWithSocial(provider: .apple, token: token) { success, mode in
                     if self.appleSignAppAction != nil { self.appleSignAppAction!(success, mode) }
                 }

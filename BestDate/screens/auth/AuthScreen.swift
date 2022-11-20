@@ -64,7 +64,7 @@ struct AuthScreen: View {
                     SocialView(
                         gooleClickAction: { loginSocial(provider: .google) },
                         appleClickAction: { loginSocial(provider: .apple) },
-                        facebookClickAction: { })//loginSocial(provider: .facebook) })
+                        facebookClickAction: { loginSocial(provider: .facebook) })
                 }.frame(height: UIScreen.main.bounds.height, alignment: .bottom)
             }
         }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .topLeading)

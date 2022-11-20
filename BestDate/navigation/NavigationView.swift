@@ -26,6 +26,7 @@ struct NavigationView: View {
                 if store.state.showPushNotification { PushScreen().zIndex(1) }
                 if store.state.showDeleteDialog { DeleteUserDialog().zIndex(1) }
                 if store.state.showLanguageSettingDialog { LanguageSettingsDialog().zIndex(1) }
+                if store.state.showSetPermissionDialog { PermissionDialog().zIndex(1) }
                 if store.state.inProcess { LoadingProgressScreen().zIndex(1) }
                 Group {
                     switch store.state.activeScreen {

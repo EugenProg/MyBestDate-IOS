@@ -103,9 +103,9 @@ enum InvitationType: String {
 
     var title: String {
         switch self {
-        case .new: return "new"
-        case .answered: return "answered"
-        case .sended: return "sent"
+        case .new: return "new".localized()
+        case .answered: return "answered".localized()
+        case .sended: return "sent".localized()
         }
     }
 }

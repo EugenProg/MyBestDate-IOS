@@ -61,8 +61,9 @@ struct RegistrationStartScreen: View {
                 VStack {
                     SocialView(
                         gooleClickAction: { loginSocial(provider: .google) },
-                        appleClickAction: { store.dispatch(action: .show(message: "apple")) },
-                        facebookClickAction: { store.dispatch(action: .show(message: "facebook")) })
+                        appleClickAction: { loginSocial(provider: .apple) },
+                        facebookClickAction: { loginSocial(provider: .facebook) }
+                    )
                 }.frame(height: UIScreen.main.bounds.height, alignment: .bottom)
             }
         }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .topLeading)
