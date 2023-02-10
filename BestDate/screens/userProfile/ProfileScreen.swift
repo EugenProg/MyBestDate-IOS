@@ -181,9 +181,11 @@ struct ProfileScreen: View {
     }
 
     private func goToImageViewer(index: Int) {
-        withAnimation {
-            mediator.selectedImage = index
-            store.dispatch(action: .navigate(screen: .PROFILE_IMAGES))
+        if mediator.user.photos?.isEmpty != true {
+            withAnimation {
+                mediator.selectedImage = index
+                store.dispatch(action: .navigate(screen: .PROFILE_IMAGES))
+            }
         }
     }
 }

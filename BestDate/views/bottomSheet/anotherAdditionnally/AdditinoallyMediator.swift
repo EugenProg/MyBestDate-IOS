@@ -23,15 +23,21 @@ class AdditionallyMediator: ObservableObject {
         else { blockProfile() }
     }
 
-    func blockProfile() {
+    private func blockProfile() {
         CoreApiService.shared.blockUser(id: userId) { success in
             AnotherProfileMediator.shared.getUserById(id: self.userId ?? 0)
         }
     }
 
-    func unlockProfile() {
+    private func unlockProfile() {
         CoreApiService.shared.unlockUser(id: userId) { success in
             AnotherProfileMediator.shared.getUserById(id: self.userId ?? 0)
         }
     }
+
+    func compline(completion: @escaping (Bool) -> Void) {
+            CoreApiService.shared.compline(id: userId) { success in
+                completion(success)
+            }
+        }
 }

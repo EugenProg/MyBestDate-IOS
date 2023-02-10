@@ -45,6 +45,18 @@ struct AnotherAdditionallyBottomSheet: View {
                 mediator.blockAction()
                 clickAction()
             }
+
+            button(title: "complation_about_content", textColor: MyColor.getColor(242, 138, 182)) {
+                store.dispatch(action: .startProcess)
+                mediator.compline { success in
+                    DispatchQueue.main.async {
+                        if success {
+                            store.dispatch(action: .show(message: "complain_is_send_successful".localized()))
+                        }
+                        clickAction()
+                    }
+                }
+            }
         }.frame(width: UIScreen.main.bounds.width, alignment: .topLeading)
     }
 }

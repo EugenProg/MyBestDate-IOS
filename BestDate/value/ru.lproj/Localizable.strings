@@ -658,3 +658,5 @@
 "new" = "Новые";
 "answered" = "Отвеченные";
 "sent" = "Отправленные";
+"complation_about_content" = "Пожаловаться на контент";
+"complain_is_send_successful" = "Жалоба успешно отправлена";

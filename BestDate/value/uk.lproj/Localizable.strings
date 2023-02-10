@@ -658,3 +658,5 @@
 "new" = "Нові";
 "answered" = "Відповідальні";
 "sent" = "Відправлені";
+"complation_about_content" = "Поскаржитися на зміст";
+"complain_is_send_successful" = "Скаргу успішно надіслано";

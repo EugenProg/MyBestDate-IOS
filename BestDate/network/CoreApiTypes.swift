@@ -68,6 +68,8 @@ enum CoreApiTypes {
     case unlockUser
     case getBlockedList
 
+    case compline
+
     case getInvitationsList
     case sendInvitation
     case answerTheInvitation
@@ -142,6 +144,7 @@ enum CoreApiTypes {
         case .blockUser: return "block-user/"
         case .unlockUser: return "unlock-user/"
         case .getBlockedList: return "blocked-users"
+        case .compline: return "complaint"
         case .getInvitationsList: return "invitations"
         case .sendInvitation: return "invitations"
         case .answerTheInvitation: return "invitations/"
@@ -207,6 +210,7 @@ enum CoreApiTypes {
         case .blockUser: return "POST"
         case .unlockUser: return "POST"
         case .getBlockedList: return "GET"
+        case .compline: return "POST"
         case .getInvitationsList: return "GET"
         case .sendInvitation: return "POST"
         case .answerTheInvitation: return "PUT"
