@@ -11,7 +11,7 @@ import Foundation
 import Kingfisher
 
 struct AsyncImageView: View {
-    private let defaultUrl: String = "https://as2.ftcdn.net/jpg/03/46/93/61/220_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg"
+    private let defaultUrl: String = "https://dev-api.bestdate.info/images/default_photo.jpg"
 
     @State var url: String?
 
@@ -36,7 +36,7 @@ struct AsyncImageView: View {
 }
 
 struct UpdateImageView: View {
-    private let defaultUrl: String = "https://as2.ftcdn.net/jpg/03/46/93/61/220_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg"
+    private let defaultUrl: String = "https://dev-api.bestdate.info/images/default_photo.jpg"
 
     @Binding var image: ProfileImage?
     var smallUrl: Bool = true
@@ -63,7 +63,7 @@ struct UpdateImageView: View {
 }
 
 struct UserImageView: View {
-    private let defaultUrl: String = "https://as2.ftcdn.net/jpg/03/46/93/61/220_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg"
+    private let defaultUrl: String = "https://dev-api.bestdate.info/images/default_photo.jpg"
 
     @Binding var user: ShortUserInfo?
 
@@ -89,7 +89,7 @@ struct UserImageView: View {
 }
 
 struct ChatImageView: View {
-    private let defaultUrl: String = "https://as2.ftcdn.net/jpg/03/46/93/61/220_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg"
+    private let defaultUrl: String = "https://dev-api.bestdate.info/images/default_photo.jpg"
 
     @Binding var message: Message?
     var smallUrl: Bool = true
@@ -116,7 +116,7 @@ struct ChatImageView: View {
 }
 
 struct MatchImageView: View {
-    private let defaultUrl: String = "https://as2.ftcdn.net/jpg/03/46/93/61/220_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg"
+    private let defaultUrl: String = "https://dev-api.bestdate.info/images/default_photo.jpg"
 
     @Binding var match: MatchItem
 

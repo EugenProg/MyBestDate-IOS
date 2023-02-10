@@ -64,8 +64,8 @@ struct AnotherProfileHeader: View {
                             Text(birthday.toDate().getZodiacSign().localized())
                                 .foregroundColor(ColorList.white.color)
                                 .font(MyFont.getFont(.NORMAL, 14))
-                        }.padding(.init(top: 0, leading: 32, bottom: 0, trailing: 32))
-                    }.frame(height: 46)
+                        }.padding(.init(top: 50, leading: 32, bottom: 0, trailing: 32))
+                    }.frame(height: 100)
                 }.frame(height: UIScreen.main.bounds.width)
             }.frame(height: UIScreen.main.bounds.width)
         }

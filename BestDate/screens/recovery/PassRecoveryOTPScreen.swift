@@ -14,7 +14,7 @@ struct PassRecoveryOTPScreen: View {
     @State var process: Bool = false
     
     var body: some View {
-        BaseOTPScreen(title: "code_send_to_your_email", description: "confirmation_code_sent_to_email_address", email: mediator.email, confirmAction: confirmAction(), resendAction: resendAction(), process: $process)
+        BaseOTPScreen(otpType: .recovery, authType: mediator.authType, login: mediator.getLogin(), confirmAction: confirmAction(), resendAction: resendAction(), process: $process)
     }
     
     private func confirmAction() -> (String) -> Void {

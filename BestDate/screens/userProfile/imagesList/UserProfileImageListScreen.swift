@@ -26,7 +26,7 @@ struct UserProfileImageListScreen: View {
                 ImagesListView(
                     images: $mediator.profileImages,
                     selectedImage: $mediator.selectedImage,
-                    showLikesCount: true) { }
+                    showTopPlace: true) { }
                     closeAction: {
                         store.dispatch(action: .navigationBack)
                     }

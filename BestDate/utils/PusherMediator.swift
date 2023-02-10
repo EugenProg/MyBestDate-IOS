@@ -209,7 +209,10 @@ class AuthRequestBuilder: AuthRequestBuilderProtocol {
         var request = URLRequest(url: url)
         request.setValue(UserDataHolder.accessToken, forHTTPHeaderField: "Authorization")
         request.httpMethod = "POST"
-        request.httpBody = "socket_id=\(socketID)&channel_name=\(channelName)".data(using: String.Encoding.utf8)
+        print(">>>")
+        let data = "socket_id=\(socketID)&channel_name=\(channelName)".data(using: String.Encoding.utf8)
+        NetworkLogger.printLog(data: data)
+        request.httpBody = data
         return request
     }
 }

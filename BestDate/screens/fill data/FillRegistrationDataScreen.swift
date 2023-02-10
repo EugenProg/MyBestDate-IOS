@@ -18,14 +18,10 @@ struct FillRegistrationDataScreen: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            ZStack {
-                HStack {
-                    BackButton(style: .white)
+            HStack {
+                BackButton(style: .white)
 
-                    Spacer()
-                }
-
-                Title(textColor: ColorList.white.color, text: "fill_the_required_data", textSize: 20, paddingV: 0, paddingH: 0)
+                Spacer()
             }.frame(width: UIScreen.main.bounds.width - 50, height: 60)
                 .padding(.init(top: 16, leading: 32, bottom: 16, trailing: 18))
 
@@ -34,9 +30,10 @@ struct FillRegistrationDataScreen: View {
                 .frame(height: 1)
 
             ScrollView(.vertical, showsIndicators: false) {
+                Title(textColor: ColorList.white.color, text: "fill_the_required_data", textSize: 20, paddingV: 0, paddingH: 0)
+                    .padding(.top, 16)
 
                 StandardInputView(hint: "name", imageName: "ic_user", inputText: $mediator.name, errorState: $nameInputError)
-                    .padding(.top, 16)
 
                 InfoView(hint: "gender", imageName: "ic_gender", infoText: $mediator.gender, errorState: $genderInputError) { store.dispatch(action: .showBottomSheet(view: .GENDER)) }
 

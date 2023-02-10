@@ -40,9 +40,10 @@ struct NewInvitationItemView: View {
                         Text("you_have_received_an_invitation_please_give_an_answer".localized())
                             .foregroundColor(ColorList.main_60.color)
                             .font(MyFont.getFont(.NORMAL, 13))
+                            .frame(height: 30)
                     }
                 }
-                .padding(.init(top: 18, leading: 36, bottom: 18, trailing: 36))
+                .padding(.init(top: 18, leading: 36, bottom: 0, trailing: 36))
 
                 Spacer()
 

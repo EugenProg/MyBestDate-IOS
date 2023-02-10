@@ -11,10 +11,14 @@ import UIKit
 
 class ImageFetcher {
     var size: CGSize = CGSize(width: 800, height: 800)
-    var addImage: (([ImageItem]) -> Void)? = nil
+    var addImages: (([ImageItem]) -> Void)? = nil
+    var addImage: ((ImageItem) -> Void)? = nil
+    var noImages: (() -> Void)? = nil
+    var permissionStatus: PHAuthorizationStatus = .denied
 
     func getPermission(completion: @escaping (Bool) -> Void) {
         PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
+            self.permissionStatus = status
             completion(status == .authorized || status == .limited)
         }
     }
@@ -23,6 +27,7 @@ class ImageFetcher {
         let fetchOptions = PHFetchOptions()
         fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         fetchOptions.includeAssetSourceTypes = .typeUserLibrary
+        fetchOptions
 
         return PHAsset.fetchAssets(with: fetchOptions)
     }
@@ -32,20 +37,51 @@ class ImageFetcher {
         var images: [ImageItem] = []
 
         assets.enumerateObjects({ (object, count, stop) in
-            PHImageManager.default().requestImage(for: object, targetSize: self.size, contentMode: .aspectFill, options: self.imageRequestOptions) { image, info in
-                images.append(ImageItem(id: id, image: image ?? UIImage()))
-                id += 1
+            if object.mediaType == .image {
+                PHImageManager.default().requestImage(for: object, targetSize: self.size, contentMode: .aspectFill, options: self.imageRequestOptions) { image, info in
+                    images.append(ImageItem(id: id, image: image ?? UIImage()))
+                    id += 1
+                }
             }
         })
 
-        if self.addImage != nil {
-            self.addImage!(images)
+        if images.isEmpty && self.noImages != nil {
+            self.noImages!()
+        }
+
+        if self.addImages != nil {
+            self.addImages!(images)
+        }
+    }
+
+    private func getImagesFromAssetsAsync(assets: PHFetchResult<PHAsset>) {
+        var id: Int = 0
+
+        assets.enumerateObjects({ (object, count, stop) in
+            if object.mediaType == .image {
+                PHImageManager.default().requestImage(for: object, targetSize: self.size, contentMode: .aspectFill, options: self.imageRequestOptions) { image, info in
+                    if self.addImage != nil {
+                        self.addImage!(ImageItem(id: id, image: image ?? UIImage()))
+                    }
+                    id += 1
+                }
+            }
+        })
+
+        if id == 0 && self.noImages != nil {
+            self.noImages!()
         }
     }
 
     func getImageList() {
         DispatchQueue.global().async {
             self.getImagesFromAssets(assets: self.getAssets())
+        }
+    }
+
+    func getImageListAsync() {
+        DispatchQueue.global().async {
+            self.getImagesFromAssetsAsync(assets: self.getAssets())
         }
     }
 

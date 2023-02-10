@@ -21,6 +21,16 @@ struct Meta: Codable {
     var total: Int? = nil
 }
 
+struct SendCodeResponse: Codable {
+    var success: Bool
+    var message: String
+    var data: Expirition? = nil
+}
+
+struct Expirition: Codable {
+    var timer: Int
+}
+
 struct ProfileImageResponse: Codable {
     var success: Bool
     var message: String
@@ -35,6 +45,7 @@ struct ProfileImage: Codable {
     var top: Bool? = nil
     var liked: Bool? = nil
     var likes: Int? = nil
+    var top_place: Int? = nil
 }
 
 struct UserDataResponse: Codable {
@@ -74,6 +85,7 @@ struct UserInfo: Codable {
     var location: Location? = nil
     var block_messages: Bool? = nil
     var blocked: Bool? = nil
+    var allow_chat: Bool? = nil
     var role: String? = nil
     var blocked_me: Bool? = nil
     var questionnaire: Questionnaire? = nil
@@ -94,8 +106,8 @@ struct ShortUserInfo: Codable {
     var last_online_at: String? = nil
     var location: Location? = nil
     var language: String? = nil
-    var block_messages: Bool? = nil
     var blocked: Bool? = nil
+    var blocked_me: Bool? = nil
     var allow_chat: Bool? = nil
     var full_questionnaire: Bool? = nil
     var role: String? = nil

@@ -15,11 +15,14 @@ class RecoveryMediator: ObservableObject {
     @Published var phone: String = ""
     @Published var newPass: String = ""
     var code: String = ""
+    var authType: AuthType = .email
 
     func sendCode(complete: @escaping (Bool, String) -> Void) {
         if StringUtils.isPhoneNumber(phone: login) {
+            authType = .phone
             resetPhone(phone: login) { success in complete(success, "default_error_message".localized()) }
         } else if StringUtils.isAEmail(email: login) {
+            authType = .email
             resetEmail(email: login) { success in complete(success, "default_error_message".localized()) }
         } else {
             complete(false, "enter_email_or_phone")
@@ -72,5 +75,9 @@ class RecoveryMediator: ObservableObject {
                 CoreApiService.shared.loginByEmail(userName: self.email, password: self.newPass) { success in complete(success) }
             } else { complete(false) }
         }
+    }
+
+    func getLogin() -> String {
+        authType == .email ? email : phone
     }
 }

@@ -14,18 +14,24 @@ class ImageListMediator: ObservableObject {
     @Published var imageList: [ImageItem] = []
     var savedPosition: CGFloat = 0
     var fetcher: ImageFetcher? = nil
-    var requestPermission: (() -> Void)? = nil
+    var noPermissionAction: (() -> Void)? = nil
     private var hasPermission: Bool = false
-    private let itemHeight: CGFloat = ((UIScreen.main.bounds.width - 12) / 3)
+    private let itemHeight: CGFloat = ((UIScreen.main.bounds.width) / 3)
 
     var imageIsSelect: ((UIImage) -> Void)? = nil
 
     func initFetcher() {
         fetcher = ImageFetcher()
-        fetcher?.addImage = { images in
+        fetcher?.addImages = { images in
             DispatchQueue.main.async {
                 self.imageList.removeAll()
                 self.imageList = images
+            }
+        }
+        fetcher?.addImage = { image in
+            DispatchQueue.main.async {
+                self.imageList.removeAll { oldImage in oldImage.id == image.id }
+                self.imageList.append(image)
             }
         }
 
@@ -34,22 +40,32 @@ class ImageListMediator: ObservableObject {
             if hasPermission {
                 self.getImages()
             } else {
-                if self.requestPermission != nil {
-                    self.requestPermission!()
+                if self.noPermissionAction != nil {
+                    self.noPermissionAction!()
                 }
             }
         })
+
+        fetcher?.noImages = {
+            if self.noPermissionAction != nil {
+                self.noPermissionAction!()
+            }
+        }
     }
 
     func getImages() {
         if hasPermission {
-            fetcher?.getImageList()
+            if savedPosition == 0 {
+                fetcher?.getImageListAsync()
+            } else {
+                fetcher?.getImageList()
+            }
         } else {
             initFetcher()
         }
     }
 
     func savePosition(_ offset: CGFloat) {
-        savedPosition = -((offset / itemHeight) * 3)
+        savedPosition = -(((offset / itemHeight) * 3) + 3)
     }
 }

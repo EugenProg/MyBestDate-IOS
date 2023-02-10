@@ -48,8 +48,10 @@
 "enter_the_confirmation_code" = "Введіть код підтвердження";
 "confirmation_code" = "Код підтвердження";
 "on_the_email_you_specified_we_send_the_confirmation_code" = "На вказаний вами Email ми відправили\nкод підтвердження, який необхідно ввести";
+"on_the_phone_you_specified_we_send_the_confirmation_code" = "На вказаний вами телефон ми відправили\nкод підтвердження, який необхідно ввести";
 "confirm" = "Підтвердити";
 "code_send_to_your_email" = "Код відправлено на Ваш Email";
+"code_send_to_your_phone" = "Код відправлено на Ваш телефон";
 "confirmation_code_sent_to_email_address" = "Код підтвердження відправлено на Email:";
 "confirmation_code_sent_to_phone" = "Код підтвердження відправлено на телефон:";
 "set_new_password" = "Встановіть новий пароль";
@@ -540,7 +542,7 @@
 "edit" = "Редагувати";
 "today" = "Сьогодні";
 "yesterday" = "Вчора";
-"you_can_always_send_an_invitation_in_the_form_of_a_card" = "Ви завжди можете надіслати запрошення у вигляді листівки, у зручнішій для Вас формі";
+"you_can_always_send_an_invitation_in_the_form_of_a_card" = "Ви завжди можете надіслати\nзапрошення у вигляді листівки,\nу зручнішій для Вас формі";
 "go_to" = "Заглянути";
 "add_a_caption" = "Додати підпис...";
 "sorry_you_voted_for_all_the_photos" = "Вибачте, ви проголосували за всі фото";
@@ -562,10 +564,10 @@
 "answer_choice" = "Варіанти відповіді";
 "you_invited" = "Ви запрошені";
 "we_have_transmitted_your_reply_to_the_sender" = "Ми передали вашу\nвідповідь відправнику";
-"this_user_craves_only_real_meetengs" = "Цей користувач жадає тільки реальних зустрічей і не готовий витрачати час на довге листування";
+"this_user_craves_only_real_meetengs" = "Цей користувач жадає тільки реальних зустрічей\nі не готовий витрачати час на\nдовге листування";
 "chat_closed" = "ЧАТ ЗАКРИТИЙ!";
 "only_cards" = "ЗАПРОШУВАЛЬНА ЛИСТІВКА";
-"this_user_agrees_to_accept_only_cards" = "Цей користувач згоден приймати тільки картки";
+"this_user_agrees_to_accept_only_cards" = "Цей користувач згоден приймати\nтільки картки";
 "invitation_card" = "Запрошувальна листівка";
 "additionally" = "Додатково";
 "block_profile" = "Заблокувати профіль";

@@ -285,8 +285,8 @@ extension UserInfo {
             main_photo: self.getMainPhoto(),
             is_online: self.is_online,
             last_online_at: self.last_online_at,
-            block_messages: self.block_messages,
             blocked: self.blocked,
+            allow_chat: self.allow_chat,
             full_questionnaire: self.questionnaire?.isFull(),
             distance: self.distance)
     }
@@ -345,8 +345,7 @@ extension ShortUserInfo {
             gender: self.gender,
             birthday: self.birthday,
             is_online: self.is_online,
-            last_online_at: self.last_online_at,
-            block_messages: self.block_messages
+            last_online_at: self.last_online_at
         )
     }
 

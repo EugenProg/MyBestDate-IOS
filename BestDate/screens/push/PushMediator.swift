@@ -33,7 +33,6 @@ enum NotificationType: String {
     case guest
 
     static func getNotificationType(type: String) -> NotificationType {
-        print(">>> type: \(type)")
         switch type {
         case "like": return .like
         case "match": return .match

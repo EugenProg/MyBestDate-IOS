@@ -14,8 +14,7 @@ struct RegistrationOtpScreen: View {
     @State var process: Bool = false
     
     var body: some View {
-        BaseOTPScreen(title: "confirmation_code",
-                      description: "on_the_email_you_specified_we_send_the_confirmation_code", email: mediator.email, confirmAction: confirmAction(), resendAction: resendAction(), process: $process)
+        BaseOTPScreen(otpType: .registration, authType: mediator.authType, login: mediator.getLogin(), confirmAction: confirmAction(), resendAction: resendAction(), process: $process)
     }
     
     private func confirmAction() -> (String) -> Void {

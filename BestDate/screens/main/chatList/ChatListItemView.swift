@@ -96,7 +96,7 @@ struct ChatListItemView: View {
 
                     VStack(alignment: .trailing, spacing: 12) {
                         Text(item.getLastMessageTime())
-                            .foregroundColor(ColorList.white.color)
+                            .foregroundColor(ColorList.white_80.color)
                             .font(MyFont.getFont(.NORMAL, 16))
 
                         if type == .new {

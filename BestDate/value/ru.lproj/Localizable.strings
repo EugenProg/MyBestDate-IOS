@@ -48,8 +48,10 @@
 "enter_the_confirmation_code" = "Введите код подтверждения";
 "confirmation_code" = "Код подтверждения";
 "on_the_email_you_specified_we_send_the_confirmation_code" = "На указанный вами Email мы отправили код\nподтверждения, который необходимо ввести";
+"on_the_phone_you_specified_we_send_the_confirmation_code" = "На указанный вами телефон мы отправили код\nподтверждения, который необходимо ввести";
 "confirm" = "Подтвердить";
 "code_send_to_your_email" = "Код отправлен на Ваш Email";
+"code_send_to_your_phone" = "Код отправлен на Ваш телефон";
 "confirmation_code_sent_to_email_address" = "Код подтверждения отправлен на email адрес:";
 "confirmation_code_sent_to_phone" = "Код подтверждения отправлен на телефон:";
 "set_new_password" = "Установите новый пароль";
@@ -540,7 +542,7 @@
 "edit" = "Редактировать";
 "today" = "Сегодня";
 "yesterday" = "Вчера";
-"you_can_always_send_an_invitation_in_the_form_of_a_card" = "Вы всегда можете отправить приглашение в виде открытки, в более удобной для Вас форме";
+"you_can_always_send_an_invitation_in_the_form_of_a_card" = "Вы всегда можете отправить\nприглашение в виде открытки,\nв более удобной для Вас форме";
 "go_to" = "Пригласить";
 "add_a_caption" = "Добавьте надпись...";
 "sorry_you_voted_for_all_the_photos" = "Извините, вы проголосовали за все фотографии";
@@ -558,14 +560,14 @@
 "yes_i_will_but_next_time" = "Да, я согласен, но в следующий раз";
 "thanks_but_i_cant_yet" = "Спасибо, но пока не могу";
 "no" = "Нет";
-"you_have_received_an_invitation_please_give_an_answer" = "Вы получили приглашение, пожалуйста, дайте ответ";
+"you_have_received_an_invitation_please_give_an_answer" = "Вы получили приглашение,\nпожалуйста, дайте ответ";
 "answer_choice" = "Варианты ответа";
 "you_invited" = "Вы приглашены";
 "we_have_transmitted_your_reply_to_the_sender" = "Мы передали ваш\nответ отправителю";
-"this_user_craves_only_real_meetengs" = "Этот пользователь жаждет только реальных встреч и не готов тратить время на долгую переписку";
+"this_user_craves_only_real_meetengs" = "Этот пользователь жаждет только реальных встреч\nи не готов тратить время на\nдолгую переписку";
 "chat_closed" = "Чат закрыт!";
 "only_cards" = "Только приглашения";
-"this_user_agrees_to_accept_only_cards" = "Этот пользователь согласен принимать только приглашения";
+"this_user_agrees_to_accept_only_cards" = "Этот пользователь согласен принимать\nтолько приглашения";
 "invitation_card" = "Пригласительная открытка";
 "additionally" = "Дополнительно";
 "block_profile" = "Заблокировать профиль";

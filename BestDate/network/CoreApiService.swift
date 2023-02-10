@@ -89,7 +89,7 @@ class CoreApiService {
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             NetworkLogger.printLog(response: response)
-            if let data = data, let response = try? JSONDecoder().decode(BaseResponse.self, from: data) {
+            if let data = data, let response = try? JSONDecoder().decode(SendCodeResponse.self, from: data) {
                 NetworkLogger.printLog(data: data)
                 completion(response.success)
             } else {
@@ -132,7 +132,7 @@ class CoreApiService {
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             NetworkLogger.printLog(response: response)
-            if let data = data, let response = try? JSONDecoder().decode(BaseResponse.self, from: data) {
+            if let data = data, let response = try? JSONDecoder().decode(SendCodeResponse.self, from: data) {
                 NetworkLogger.printLog(data: data)
                 completion(response.success)
             } else {
@@ -300,7 +300,7 @@ class CoreApiService {
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             NetworkLogger.printLog(response: response)
-            if let data = data, let response = try? JSONDecoder().decode(BaseResponse.self, from: data) {
+            if let data = data, let response = try? JSONDecoder().decode(SendCodeResponse.self, from: data) {
                 NetworkLogger.printLog(data: data)
                 completion(response.success)
             } else {
@@ -321,7 +321,7 @@ class CoreApiService {
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             NetworkLogger.printLog(response: response)
-            if let data = data, let response = try? JSONDecoder().decode(BaseResponse.self, from: data) {
+            if let data = data, let response = try? JSONDecoder().decode(SendCodeResponse.self, from: data) {
                 NetworkLogger.printLog(data: data)
                 completion(response.success)
             } else {

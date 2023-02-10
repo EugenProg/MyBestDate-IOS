@@ -20,9 +20,9 @@ enum FontType {
 
     var name: String {
         switch self {
-        case .BOLD: return "notosansdisplay-bold"//"valuesanspro-bold"//"cronospro-bold"
-        case .ITALIC: return "notosansdisplay-italic"//"valuesanspro-italic"// "cronospro-italic"
-        case .NORMAL: return "notosansdisplay-regular"//"valuesanspro-regular"//"cronospro-regular"
+        case .BOLD: return "notosansdisplay-bold"
+        case .ITALIC: return "notosansdisplay-italic"
+        case .NORMAL: return "notosansdisplay-regular"
         }
     }
 }

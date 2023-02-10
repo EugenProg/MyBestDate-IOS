@@ -20,6 +20,7 @@ struct InvitationChatView: View {
                 Text("only_cards".localized())
                     .foregroundColor(ColorList.white.color)
                     .font(MyFont.getFont(.BOLD, 28))
+                    .multilineTextAlignment(.center)
                     .padding(.init(top: 19, leading: 0, bottom: 3, trailing: 0))
 
                 Text("this_user_agrees_to_accept_only_cards".localized())
@@ -48,7 +49,7 @@ struct InvitationChatView: View {
                         .font(MyFont.getFont(.BOLD, 14))
                 }
             }
-        }.frame(width: 240)
+        }.frame(width: UIScreen.main.bounds.width - 64)
             .padding(.init(top: 0, leading: 0, bottom: onlyCards ? 50 : 0, trailing: 0))
     }
 }

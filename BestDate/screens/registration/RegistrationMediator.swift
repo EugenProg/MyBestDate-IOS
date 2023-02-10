@@ -18,11 +18,14 @@ final class RegistrationMediator: ObservableObject {
     @Published var birthDate: Date = Date.getEithteenYearsAgoDate()
     @Published var name: String = ""
     @Published var password: String = ""
+    var authType: AuthType = .email
 
     func sendCode(complete: @escaping (Bool, String) -> Void) {
         if StringUtils.isPhoneNumber(phone: login) {
+            authType = .phone
             registrPhone(phone: login) { success in complete(success, "default_error_message".localized()) }
         } else if StringUtils.isAEmail(email: login) {
+            authType = .email
             registrEmail(email: login) { success in complete(success, "default_error_message".localized()) }
         } else {
             complete(false, "enter_email_or_phone".localized())
@@ -99,6 +102,10 @@ final class RegistrationMediator: ObservableObject {
                 }
             } else { complete(success) }
         }
+    }
+
+    func getLogin() -> String {
+        authType == .email ? email : phone
     }
 
     private func getGender() -> String {

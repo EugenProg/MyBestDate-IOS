@@ -41,7 +41,7 @@ struct ChatOnlyCardBottomView: View {
                         .foregroundColor(ColorList.white_70.color)
                         .font(MyFont.getFont(.NORMAL, 18))
                         .multilineTextAlignment(.center)
-                        .padding(.init(top: 0, leading: 76, bottom: 10, trailing: 65))
+                        .padding(.init(top: 0, leading: 43, bottom: 10, trailing: 32))
                 }
 
             }.frame(width: UIScreen.main.bounds.width, height: 161)

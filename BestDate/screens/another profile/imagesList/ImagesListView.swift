@@ -10,7 +10,7 @@ import SwiftUI
 struct ImagesListView: View {
     @Binding var images: [ProfileImage]
     @Binding var selectedImage: Int
-    var showLikesCount: Bool = true
+    var showTopPlace: Bool = false
     var selectAction: () -> Void
     var closeAction:() -> Void
 
@@ -38,17 +38,37 @@ struct ImagesListView: View {
                 }.offset(x: offset.width)
             }.frame(height: size)
 
-            if showLikesCount {
-                HStack(spacing: 9) {
-                    Spacer()
+            HStack(spacing: 9) {
+                let image = images[selectedImage]
+                if showTopPlace && (image.top_place ?? 0) > 0 {
+                    ZStack {
+                        Image("bg_top_rectangle")
+                            .resizable()
+                            .frame(width: 181, height: 36)
 
-                    Text("\(images[selectedImage].likes ?? 0)")
-                        .foregroundColor(ColorList.white.color)
-                        .font(MyFont.getFont(.BOLD, 16))
+                        HStack(spacing: 9) {
+                            Image("ic_cup")
 
-                    Image("ic_hearts_empty")
-                }.frame(width: UIScreen.main.bounds.width - 36)
-            }
+                            Text("top_50".localized())
+                                .foregroundColor(MyColor.getColor(183, 213, 230))
+                                .font(MyFont.getFont(.BOLD, 15))
+
+                            Spacer()
+
+                            Text("№\(image.top_place ?? 0)")
+                                .foregroundColor(ColorList.white.color)
+                                .font(MyFont.getFont(.BOLD, 15))
+                        }.padding(.init(top: 0, leading: 18, bottom: 4, trailing: 18))
+                    }.frame(width: 181, height: 36)
+                }
+                Spacer()
+
+                Text("\(images[selectedImage].likes ?? 0)")
+                    .foregroundColor(ColorList.white.color)
+                    .font(MyFont.getFont(.BOLD, 16))
+
+                Image("ic_hearts_empty")
+            }.frame(width: UIScreen.main.bounds.width - 36)
 
             if images.count > 1 {
                 HStack(spacing: 6) {

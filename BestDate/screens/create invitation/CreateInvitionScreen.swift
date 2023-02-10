@@ -15,6 +15,7 @@ struct CreateInvitionScreen: View {
     @State var showFrontSide = true
 
     @State var loadingProcess: Bool = false
+    @State var sendProcess: Bool = false
 
     fileprivate func frontSide() -> some View {
         ZStack {
@@ -47,13 +48,9 @@ struct CreateInvitionScreen: View {
             VStack(spacing: 3) {
                 ForEach(mediator.invitations, id: \.id) { invitation in
                     Button(action: {
-                        mediator.sendInvitation(invitaionId: invitation.id) {
-                            DispatchQueue.main.async {
-                                withAnimation {
-                                    store.dispatch(action: .show(message: "your_invitation_was_send".localized()))
-                                    store.state.showInvitationDialog = false
-                                }
-                            }
+                        if !self.sendProcess {
+                            self.sendProcess = true
+                            sendInvitation(invitationId: invitation.id)
                         }
                     }) {
                         invitationItem(invitation: invitation)
@@ -113,6 +110,19 @@ struct CreateInvitionScreen: View {
         if visible && showFrontSide { return Angle(degrees: 0) }
         else if visible && !showFrontSide { return Angle(degrees: -180) }
         else { return Angle(degrees: 180) }
+    }
+
+    private func sendInvitation(invitationId: Int?) {
+        store.dispatch(action: .startProcess)
+        mediator.sendInvitation(invitaionId: invitationId) {
+            DispatchQueue.main.async {
+                store.dispatch(action: .endProcess)
+                withAnimation {
+                    store.dispatch(action: .show(message: "your_invitation_was_send".localized()))
+                    store.state.showInvitationDialog = false
+                }
+            }
+        }
     }
 }
 
