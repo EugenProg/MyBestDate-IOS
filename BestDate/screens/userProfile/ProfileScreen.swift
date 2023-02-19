@@ -149,7 +149,7 @@ struct ProfileScreen: View {
                     Spacer()
 
                     Button(action: {
-
+                        store.dispatch(action: .showBottomSheet(view: .PROFILE_ADDITIONALLY))
                     }) {
                         Image("ic_menu_dots")
                             .padding(.init(top: 8, leading: 8, bottom: 8, trailing: 0))
@@ -160,6 +160,11 @@ struct ProfileScreen: View {
 
         }.frame(width: UIScreen.main.bounds.width)
             .background(ColorList.main.color.edgesIgnoringSafeArea(.bottom))
+            .sheet(isPresented: $mediator.showShareSheet) {
+                ActivityViewController(activityItems:
+                                        [DeeplinkCreator().get(userId: mediator.user.id, userName: mediator.user.name ?? "")]
+                )
+            }
             .onAppear {
                 store.dispatch(action:
                         .setScreenColors(status: ColorList.main.color, style: .lightContent))

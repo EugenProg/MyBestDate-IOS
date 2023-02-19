@@ -36,8 +36,6 @@ struct RegistrationStartScreen: View {
                         
                         Title(textColor: ColorList.main.color, text: "create_new_account")
                         
-                        HeaderText(textColor: ColorList.main_70.color, text: "when_creating_a_new_account_we_recommend_that_you_read_our_privacy_policy")
-                        
                         ZStack {
                             Rectangle()
                                 .fill(Color(ColorList.main.uiColor))

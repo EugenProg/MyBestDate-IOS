@@ -318,6 +318,8 @@
 		4CF02859288B0D71002C59EE /* DuelCoinsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF02858288B0D71002C59EE /* DuelCoinsView.swift */; };
 		4CF0285B288B1450002C59EE /* DuelItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF0285A288B1450002C59EE /* DuelItemView.swift */; };
 		4CFD001929A21D470015F86C /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFD001829A21D470015F86C /* CheckBoxView.swift */; };
+		4CFD001B29A22DE60015F86C /* DeeplinkCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFD001A29A22DE50015F86C /* DeeplinkCreator.swift */; };
+		4CFD001D29A2348B0015F86C /* ProfileAdditionaly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFD001C29A2348B0015F86C /* ProfileAdditionaly.swift */; };
 		AE31A162FAB8F8BB7D8331B3 /* Pods_BestDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2E3F437A955CB989F011FB3 /* Pods_BestDate.framework */; };
 /* End PBXBuildFile section */
 
@@ -655,6 +657,8 @@
 		4CF02858288B0D71002C59EE /* DuelCoinsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuelCoinsView.swift; sourceTree = "<group>"; };
 		4CF0285A288B1450002C59EE /* DuelItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuelItemView.swift; sourceTree = "<group>"; };
 		4CFD001829A21D470015F86C /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
+		4CFD001A29A22DE50015F86C /* DeeplinkCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeeplinkCreator.swift; sourceTree = "<group>"; };
+		4CFD001C29A2348B0015F86C /* ProfileAdditionaly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAdditionaly.swift; sourceTree = "<group>"; };
 		57B6918188D30C9506A27549 /* Pods-BestDate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestDate.debug.xcconfig"; path = "Target Support Files/Pods-BestDate/Pods-BestDate.debug.xcconfig"; sourceTree = "<group>"; };
 		A2E3F437A955CB989F011FB3 /* Pods_BestDate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BestDate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6A3407C823176C322F12FDB /* Pods-BestDate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestDate.release.xcconfig"; path = "Target Support Files/Pods-BestDate/Pods-BestDate.release.xcconfig"; sourceTree = "<group>"; };
@@ -700,6 +704,7 @@
 				4CD34F5A289689B600504396 /* ChatUtils.swift */,
 				4C878F1B28B7F75300043680 /* ActivityViewController.swift */,
 				4C2ED4FE28FC66E40057DB02 /* PusherMediator.swift */,
+				4CFD001A29A22DE50015F86C /* DeeplinkCreator.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -925,6 +930,7 @@
 				4C022A552864D3370043E49D /* NotCorrectPhotoBottomSheet.swift */,
 				4C5C86AD28715A12006DE024 /* BaseBotomSheetMediator.swift */,
 				4CB9FF6F287B3582004F1BF6 /* DarkBottomSheetItem.swift */,
+				4CFD001C29A2348B0015F86C /* ProfileAdditionaly.swift */,
 			);
 			path = bottomSheet;
 			sourceTree = "<group>";
@@ -1941,6 +1947,7 @@
 				4C1B7C21286B51F8000DB5D4 /* PercentView.swift in Sources */,
 				4CD34F4228903E7600504396 /* AnotherProfileQuestionnaireScreen.swift in Sources */,
 				4C8E7DA2284D222200D6E58D /* Action.swift in Sources */,
+				4CFD001B29A22DE60015F86C /* DeeplinkCreator.swift in Sources */,
 				4C3D27B9285110FA00F8FD09 /* StandardButton.swift in Sources */,
 				4CD34F5E289698EC00504396 /* ChatActionsBottomSheet.swift in Sources */,
 				4CF028472889CFBF002C59EE /* TopDropDownButtonView.swift in Sources */,
@@ -1993,6 +2000,7 @@
 				4C1458F028547DE600558B6B /* BaseBottomSheet.swift in Sources */,
 				4C421E0C29254E5800F2F6CD /* LanguageSettingsDialog.swift in Sources */,
 				4CB9FF5E287AAD7D004F1BF6 /* MainHeaderImage.swift in Sources */,
+				4CFD001D29A2348B0015F86C /* ProfileAdditionaly.swift in Sources */,
 				4CBF593528A2DC75006BDE53 /* MatchSliderView.swift in Sources */,
 				4CD3F1DF288BCE5900DF8755 /* MyDuelsMediator.swift in Sources */,
 				4C92CB2828B2785800E5DF52 /* AnsweredInvitationItemView.swift in Sources */,

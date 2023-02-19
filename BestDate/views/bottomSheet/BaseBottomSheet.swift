@@ -39,6 +39,7 @@ struct BaseBottomSheet: View {
                         case .CHAT_ACTIONS: ChatActionsBottomSheet { dismiss() }
                         case .ANOTHER_ADDITIONALLY: AnotherAdditionallyBottomSheet { dismiss() }
                         case .LANGUAGE: LanguageBottomSheet { dismiss() }
+                        case .PROFILE_ADDITIONALLY: ProfileAdditionaly { dismiss() }
                         case .SOCIAL: SocialNetworkBottomSheet { dismiss() }
                         case .IMAGE_LIST: ImageListBottomSheet { dismiss() }
                         }

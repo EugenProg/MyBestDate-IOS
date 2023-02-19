@@ -22,6 +22,8 @@ class ProfileMediator: ObservableObject {
 
     @Published var selectedImage: Int = 0
 
+    @Published var showShareSheet: Bool = false
+
     func setUser(user: UserInfo) {
         self.user = user
         self.mainPhoto = user.getMainPhoto()

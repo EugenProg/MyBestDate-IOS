@@ -27,6 +27,8 @@ enum BottomSheetList: String {
     case ANOTHER_ADDITIONALLY
     case LANGUAGE
 
+    case PROFILE_ADDITIONALLY
+
     case SOCIAL
 
     case IMAGE_LIST
@@ -46,6 +48,7 @@ enum BottomSheetList: String {
         case .CHAT_ACTIONS: return .AUTO
         case .ANOTHER_ADDITIONALLY: return .AUTO
         case .LANGUAGE: return .AUTO
+        case .PROFILE_ADDITIONALLY: return .AUTO
         case .SOCIAL: return .AUTO
         case .IMAGE_LIST: return .FULL
         }
@@ -66,6 +69,7 @@ enum BottomSheetList: String {
         case .CHAT_ACTIONS: return .BLACK
         case .ANOTHER_ADDITIONALLY: return .BLACK
         case .LANGUAGE: return .BLACK
+        case .PROFILE_ADDITIONALLY: return .BLACK
         case .SOCIAL: return .BLACK
         case .IMAGE_LIST: return .BLACK
         }

@@ -35,8 +35,9 @@ struct AnotherProfileScreen: View {
         }.frame(width: UIScreen.main.bounds.width)
             .background(ColorList.main.color.edgesIgnoringSafeArea(.all))
             .sheet(isPresented: $mediator.showShareSheet) {
-                let userId = mediator.user.id ?? 0
-                ActivityViewController(activityItems: ["best-date://user/\(userId.toString())"])
+                ActivityViewController(activityItems:
+                                        [DeeplinkCreator().get(userId: mediator.user.id, userName: mediator.user.name ?? "")]
+                )
             }
             .onAppear {
                 store.dispatch(action:
