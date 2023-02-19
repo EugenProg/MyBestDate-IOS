@@ -16,6 +16,10 @@ struct RegistrationStartScreen: View {
     @State var process: Bool = false
     @State var nameInputError = false
     @State var genderInputError = false
+    @State var termsOfUseError = false
+    @State var privacyPolicyError = false
+    @State var termsOfUseSelect = false
+    @State var privacyPolicySelect = false
     
     var body: some View {
         VStack {
@@ -44,6 +48,14 @@ struct RegistrationStartScreen: View {
                                 InfoView(hint: "gender", imageName: "ic_gender", infoText: $mediator.gender, errorState: $genderInputError) { store.dispatch(action: .showBottomSheet(view: .GENDER)) }
                                 
                                 DateSelectView(hint: "birth_date", imageName: "ic_calendar", date: $mediator.birthDate)
+
+                                CheckBoxView(linkText: "terms_of_use", isSelect: $termsOfUseSelect, errorState: $termsOfUseError) {
+                                    store.dispatch(action: .openLink(link: "https://dev-api.bestdate.info/use-agreement"))
+                                }
+
+                                CheckBoxView(linkText: "privacy_policy", isSelect: $privacyPolicySelect, errorState: $privacyPolicyError) {
+                                    store.dispatch(action: .openLink(link: "https://dev-api.bestdate.info/privacy-policy"))
+                                }
                                 
                                 StandardButton(style: .white, title: "next", loadingProcess: $process) {
                                     validate()
@@ -55,7 +67,7 @@ struct RegistrationStartScreen: View {
                                 
                                 Spacer()
                             }.padding(.init(top: 25, leading: 0, bottom: 0, trailing: 0))
-                        }.frame(width: UIScreen.main.bounds.width, height: 615 + store.state.statusBarHeight)
+                        }.frame(width: UIScreen.main.bounds.width, height: 700 + store.state.statusBarHeight)
                     }
                 }
                 VStack {
@@ -77,6 +89,8 @@ struct RegistrationStartScreen: View {
     private func validate() {
         if mediator.name.isEmpty { nameInputError = true }
         else if mediator.gender.isEmpty { genderInputError = true }
+        else if !termsOfUseSelect { termsOfUseError = true }
+        else if !privacyPolicySelect { privacyPolicyError = true }
         else { store.dispatch(action: .navigate(screen: .REGISTRATION_CONTINUE)) }
     }
 

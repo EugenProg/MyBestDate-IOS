@@ -317,6 +317,7 @@
 		4CF02856288B0B10002C59EE /* DuelMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF02855288B0B10002C59EE /* DuelMediator.swift */; };
 		4CF02859288B0D71002C59EE /* DuelCoinsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF02858288B0D71002C59EE /* DuelCoinsView.swift */; };
 		4CF0285B288B1450002C59EE /* DuelItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF0285A288B1450002C59EE /* DuelItemView.swift */; };
+		4CFD001929A21D470015F86C /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFD001829A21D470015F86C /* CheckBoxView.swift */; };
 		AE31A162FAB8F8BB7D8331B3 /* Pods_BestDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2E3F437A955CB989F011FB3 /* Pods_BestDate.framework */; };
 /* End PBXBuildFile section */
 
@@ -653,6 +654,7 @@
 		4CF02855288B0B10002C59EE /* DuelMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuelMediator.swift; sourceTree = "<group>"; };
 		4CF02858288B0D71002C59EE /* DuelCoinsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuelCoinsView.swift; sourceTree = "<group>"; };
 		4CF0285A288B1450002C59EE /* DuelItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuelItemView.swift; sourceTree = "<group>"; };
+		4CFD001829A21D470015F86C /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
 		57B6918188D30C9506A27549 /* Pods-BestDate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestDate.debug.xcconfig"; path = "Target Support Files/Pods-BestDate/Pods-BestDate.debug.xcconfig"; sourceTree = "<group>"; };
 		A2E3F437A955CB989F011FB3 /* Pods_BestDate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BestDate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6A3407C823176C322F12FDB /* Pods-BestDate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestDate.release.xcconfig"; path = "Target Support Files/Pods-BestDate/Pods-BestDate.release.xcconfig"; sourceTree = "<group>"; };
@@ -1184,6 +1186,7 @@
 		4C8E7DAA284D24C600D6E58D /* views */ = {
 			isa = PBXGroup;
 			children = (
+				4CFD001729A21D060015F86C /* checkBox */,
 				4C9E5AE028D0E5D600E4E9FF /* settings */,
 				4C92CB2028B267E900E5DF52 /* invitations */,
 				4CD34F532895125600504396 /* chat */,
@@ -1696,6 +1699,14 @@
 			path = duel;
 			sourceTree = "<group>";
 		};
+		4CFD001729A21D060015F86C /* checkBox */ = {
+			isa = PBXGroup;
+			children = (
+				4CFD001829A21D470015F86C /* CheckBoxView.swift */,
+			);
+			path = checkBox;
+			sourceTree = "<group>";
+		};
 		8AAFA1B0BD0B01F2CA3053CD /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1964,6 +1975,7 @@
 				4C878F1428B7DA7F00043680 /* CreateInvitationMediator.swift in Sources */,
 				4C9E5B0228D38C2800E4E9FF /* LanguageBottomSheet.swift in Sources */,
 				4C022A4128590BE10043E49D /* Media.swift in Sources */,
+				4CFD001929A21D470015F86C /* CheckBoxView.swift in Sources */,
 				4C1458F32855222A00558B6B /* GnderListItem.swift in Sources */,
 				4CD34F46289050C100504396 /* QuestionnaireParagraphView.swift in Sources */,
 				4C92CB2228B2683500E5DF52 /* InvitationsPagerToggleView.swift in Sources */,

@@ -660,3 +660,6 @@
 "sent" = "Отправленные";
 "complation_about_content" = "Пожаловаться на контент";
 "complain_is_send_successful" = "Жалоба успешно отправлена";
+"i_agree_and_accept" = "Я согласен и принимаю  ";
+"privacy_policy" = "Политику конфиденциальности";
+"terms_of_use" = "Правила использования";

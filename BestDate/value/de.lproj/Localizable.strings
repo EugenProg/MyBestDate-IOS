@@ -660,4 +660,6 @@
 "sent" = "Gesendet";
 "complation_about_content" = "Sich über den Inhalt beschweren";
 "complain_is_send_successful" = "Reklamation erfolgreich abgeschickt";
-
+"i_agree_and_accept" = "Ich bin einverstanden und akzeptiere  ";
+"privacy_policy" = "Datenschutzbestimmungen";
+"terms_of_use" = "Nutzungsbedingungen";
