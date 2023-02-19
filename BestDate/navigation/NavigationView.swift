@@ -75,10 +75,20 @@ struct NavigationView: View {
                 } else {
                     PusherMediator.shared.setStore(store: store)
                     if MainMediator.shared.user.id != nil {
-                        PusherMediator.shared.startPusher()
+                        CoreApiService.shared.refreshToken { _ in
+                            self.updateUser()
+                        }
                     }
                 }
             }
+    }
+
+    private func updateUser() {
+        CoreApiService.shared.updateLanguage(lang: "lang_code".localized()) { _, user in
+            DispatchQueue.main.async {
+                MainMediator.shared.setUserInfo(user: user)
+            }
+        }
     }
 
     private func getBlur() -> CGFloat {

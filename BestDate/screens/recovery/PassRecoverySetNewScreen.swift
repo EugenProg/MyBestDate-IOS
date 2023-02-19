@@ -10,6 +10,7 @@ import SwiftUI
 struct PassRecoverySetNewScreen: View {
     @EnvironmentObject var store: Store
     @ObservedObject var mediator = RecoveryMediator.shared
+    @ObservedObject var authMediator = AuthMediator.shared
     
     @State var process: Bool = false
     @State var passInputError: Bool = false
@@ -58,12 +59,32 @@ struct PassRecoverySetNewScreen: View {
                 DispatchQueue.main.async {
                     process.toggle()
                     if success {
-                        store.dispatch(action: .show(message: "YES IT IS SUCCESSFUL"))
+                        goIn(success: success, registrationMode: false, message: message)
                     } else {
                         store.dispatch(action: .show(message: message))
                     }
                 }
             }
+        }
+    }
+
+    private func goIn(success: Bool, registrationMode: Bool, message: String) {
+        store.dispatch(action: .endProcess)
+        if success {
+            if !authMediator.hasFullData {
+                UserDataHolder.setStartScreen(screen: .FILL_REGISTRATION_DATA)
+            } else if !authMediator.hasImages {
+                UserDataHolder.setStartScreen(screen: .PROFILE_PHOTO)
+            } else if !authMediator.hasQuestionnaire {
+                UserDataHolder.setStartScreen(screen: .QUESTIONNAIRE)
+            } else {
+                UserDataHolder.setStartScreen(screen: .MAIN)
+            }
+            withAnimation {
+                store.dispatch(action: .navigate(screen: UserDataHolder.startScreen))
+            }
+        } else {
+            store.dispatch(action: .show(message: message.localized()))
         }
     }
 }

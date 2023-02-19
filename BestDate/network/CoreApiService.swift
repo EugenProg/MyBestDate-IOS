@@ -633,7 +633,7 @@ class CoreApiService {
         task.resume()
     }
 
-    func updateLanguage(lang: String, completion: @escaping (Bool) -> Void) {
+    func updateLanguage(lang: String, completion: @escaping (Bool, UserInfo) -> Void) {
         var request = CoreApiTypes.updateLanguage.getRequest(withAuth: true)
 
         let data = try! encoder.encode(UpdateLanguageRequest(language: lang))
@@ -643,11 +643,11 @@ class CoreApiService {
 
         let task = URLSession.shared.dataTask(with: request) {data, response, error in
             NetworkLogger.printLog(response: response)
-            if let data = data, let response = try? JSONDecoder().decode(BaseResponse.self, from: data) {
+            if let data = data, let response = try? JSONDecoder().decode(UserDataResponse.self, from: data) {
                 NetworkLogger.printLog(data: data)
-                completion(response.success)
+                completion(response.success, response.data ?? UserInfo())
             } else {
-                completion(false)
+                completion(false, UserInfo())
             }
         }
 

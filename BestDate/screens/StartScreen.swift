@@ -46,17 +46,12 @@ struct StartScreen: View {
     }
 
     private func getUserData() {
-        CoreApiService.shared.getUserData { success, user in
+        CoreApiService.shared.updateLanguage(lang: "lang_code".localized()) { success, user in
             DispatchQueue.main.async {
                 let startScreen = UserDataHolder.startScreen
                 if success {
                     if startScreen == .MAIN {
-                        if languageIsNotTheSame(user: user) {
-                            let newUser = changeUserLanguage(user: user, lang: "lang_code".localized())
-                            MainMediator.shared.setUserInfo(user: newUser)
-                        } else {
-                            MainMediator.shared.setUserInfo(user: user)
-                        }
+                        MainMediator.shared.setUserInfo(user: user)
                     } else {
                         PhotoEditorMediator.shared.setImages(images: user.photos ?? [])
                         RegistrationMediator.shared.setUserData(user: user)
@@ -71,13 +66,6 @@ struct StartScreen: View {
 
     private func languageIsNotTheSame(user: UserInfo) -> Bool {
         user.language != "lang_code".localized()
-    }
-
-    private func changeUserLanguage(user: UserInfo, lang: String) -> UserInfo {
-        CoreApiService.shared.updateLanguage(lang: lang) { _ in }
-        var newUser = user.copy()
-        newUser.language = lang
-        return newUser
     }
 
     private func navigate(screen: ScreenList) {

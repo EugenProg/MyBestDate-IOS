@@ -64,7 +64,9 @@ class RecoveryMediator: ObservableObject {
     private func confirmPhone(code: String, complete: @escaping (Bool) -> Void) {
         CoreApiService.shared.confirmPhoneReset(phone: phone, code: code, password: newPass) { success in
             if success {
-                CoreApiService.shared.loginByPhone(phone: self.phone, password: self.newPass) { success in complete(success) }
+                AuthMediator.shared.loginByPhone(phone: self.phone, password: self.newPass) { success in
+                    complete(success)
+                }
             } else { complete(false) }
         }
     }
@@ -72,7 +74,9 @@ class RecoveryMediator: ObservableObject {
     private func confirmEmail(code: String, complete: @escaping (Bool) -> Void) {
         CoreApiService.shared.confirmEmailReset(email: email, code: code, password: newPass) { success in
             if success {
-                CoreApiService.shared.loginByEmail(userName: self.email, password: self.newPass) { success in complete(success) }
+                AuthMediator.shared.loginByEmail(email: self.email, password: self.newPass) { success in
+                    complete(success)
+                }
             } else { complete(false) }
         }
     }

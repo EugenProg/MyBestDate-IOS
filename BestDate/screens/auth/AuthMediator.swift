@@ -41,7 +41,7 @@ class AuthMediator: ObservableObject {
     }
 
     func getUserData(complete: @escaping (Bool) -> Void) {
-        CoreApiService.shared.getUserData { success, user in
+        CoreApiService.shared.updateLanguage(lang: "lang_code".localized()) { success, user in
             DispatchQueue.main.async {
                 if success {
                     self.hasImages = user.photos?.isEmpty == false
