@@ -66,31 +66,27 @@ class AnotherProfileQuestionnaireMediator: ObservableObject {
                 QuestionnairePoint(
                     id: 1,
                     title: "height".localized(),
-                    value: String.localizedStringWithFormat(
-                        "cm_unit".localized(), questionnaire.height?.toString() ?? ""
-                    )
+                    value: getLineWithFormat(param: questionnaire.height?.toString(), format: "cm_unit")
                 ),
                 QuestionnairePoint(
                     id: 2,
                     title: "weight".localized(),
-                    value: String.localizedStringWithFormat(
-                        "kg_unit".localized(), questionnaire.weight?.toString() ?? ""
-                    )
+                    value: getLineWithFormat(param: questionnaire.weight?.toString(), format: "kg_unit")
                 ),
                 QuestionnairePoint(
                     id: 3,
                     title: "eye_color".localized(),
-                    value:  EyeColorType().getName(questionnaire.eye_color)
+                    value: getLine(param: EyeColorType().getName(questionnaire.eye_color))
                 ),
                 QuestionnairePoint(
                     id: 4,
                     title: "hair_color".localized(),
-                    value: HeirColorType().getName(questionnaire.hair_color)
+                    value: getLine(param: HeirColorType().getName(questionnaire.hair_color))
                 ),
                 QuestionnairePoint(
                     id: 5,
                     title: "hair_length".localized(),
-                    value: HeirLengthType().getName(questionnaire.hair_length)
+                    value: getLine(param: HeirLengthType().getName(questionnaire.hair_length))
                 )
             ]
         )
@@ -131,27 +127,27 @@ class AnotherProfileQuestionnaireMediator: ObservableObject {
                 QuestionnairePoint(
                     id: 0,
                     title: "marital_status".localized(),
-                    value: MaritalStatus().getName(questionnaire.marital_status)
+                    value: getLine(param: MaritalStatus().getName(questionnaire.marital_status))
                 ),
                 QuestionnairePoint(
                     id: 1,
                     title: "having_kids".localized(),
-                    value: KidsCount().getName(questionnaire.kids)
+                    value: getLine(param: KidsCount().getName(questionnaire.kids))
                 ),
                 QuestionnairePoint(
                     id: 2,
                     title: "plase_of_residence".localized(),
-                    value: NationalityTypes().getName(questionnaire.nationality)
+                    value: getLine(param: NationalityTypes().getName(questionnaire.nationality))
                 ),
                 QuestionnairePoint(
                     id: 3,
                     title: "education".localized(),
-                    value: EducationStatus().getName(questionnaire.education)
+                    value: getLine(param: EducationStatus().getName(questionnaire.education))
                 ),
                 QuestionnairePoint(
                     id: 4,
                     title: "occupational_status".localized(),
-                    value: OccupationalStatus().getName(questionnaire.occupation)
+                    value: getLine(param: OccupationalStatus().getName(questionnaire.occupation))
                 )
             ]
         )
@@ -164,17 +160,17 @@ class AnotherProfileQuestionnaireMediator: ObservableObject {
                 QuestionnairePoint(
                     id: 0,
                     title: "hobby".localized(),
-                    value: HobbyType().getNameLine(questionnaire.hobby)
+                    value: getLine(param: HobbyType().getNameLine(questionnaire.hobby))
                 ),
                 QuestionnairePoint(
                     id: 1,
                     title: "types_of_sports".localized(),
-                    value: SportTypes().getNameLine(questionnaire.sport)
+                    value: getLine(param: SportTypes().getNameLine(questionnaire.sport))
                 ),
                 QuestionnairePoint(
                     id: 2,
                     title: "evening_time".localized(),
-                    value: EveningTimeTypes().getName(questionnaire.evening_time)
+                    value: getLine(param: EveningTimeTypes().getName(questionnaire.evening_time))
                 )
             ]
         )
@@ -186,6 +182,20 @@ class AnotherProfileQuestionnaireMediator: ObservableObject {
             socialNetworks.append(
                 SocialNet(type: SocialTypes.getSocialTypeByLink(link: link),
                           link: link)
+            )
+        }
+    }
+
+    private func getLine(param: String?) -> String {
+        if param == nil || param?.isEmpty == true { return "-" }
+        else { return param! }
+    }
+
+    private func getLineWithFormat(param: String?, format: String) -> String {
+        if param == nil || param?.isEmpty == true || param == "0" { return "-" }
+        else {
+            return String.localizedStringWithFormat(
+                format.localized(), param!
             )
         }
     }

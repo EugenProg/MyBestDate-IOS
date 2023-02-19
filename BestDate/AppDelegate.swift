@@ -7,7 +7,9 @@
 
 import Foundation
 import SwiftUI
+import FirebaseCore
 import Firebase
+import FirebaseDynamicLinks
 import UserNotifications
 import FacebookCore
 
@@ -56,13 +58,63 @@ class AppDelegate: NSObject, UIApplicationDelegate {
       completionHandler(UIBackgroundFetchResult.newData)
     }
 
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        ApplicationDelegate.shared.application(
-            app, open: url,
-            sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
+//    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+//        ApplicationDelegate.shared.application(
+//            app, open: url,
+//            sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
+//
+//            annotation: options[UIApplication.OpenURLOptionsKey.annotation]
+//        )
+//    }
 
-            annotation: options[UIApplication.OpenURLOptionsKey.annotation]
-        )
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity,
+                     restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+      let handled = DynamicLinks.dynamicLinks()
+        .handleUniversalLink(userActivity.webpageURL!) { dynamiclink, error in
+          // ...
+        }
+
+      return handled
+    }
+
+    @available(iOS 9.0, *)
+    func application(_ app: UIApplication, open url: URL,
+                     options: [UIApplication.OpenURLOptionsKey: Any]) -> Bool {
+      return application(app, open: url,
+                         sourceApplication: options[UIApplication.OpenURLOptionsKey
+                           .sourceApplication] as? String,
+                         annotation: "")
+    }
+
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?,
+                     annotation: Any) -> Bool {
+        if DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url) != nil {
+          store?.dispatch(action: .startProcess)
+
+          let userId = url.absoluteString.suffix(url.absoluteString.count - 30)
+
+          CoreApiService.shared.getUsersById(id: String(userId).toInt()) { success, user in
+              DispatchQueue.main.async {
+                  withAnimation {
+                      if success {
+                          AnotherProfileMediator.shared.setUser(user: user)
+                          if self.store?.state.activeScreen == .START {
+                              self.store?.dispatch(action: .hasADeepLink)
+                          } else {
+                              self.store?.dispatch(action: .navigate(screen: .ANOTHER_PROFILE))
+                          }
+                      } else {
+                          self.store?.dispatch(action:
+                                  .show(message: "default_error_message".localized())
+                          )
+                      }
+                  }
+              }
+          }
+
+        return true
+      }
+      return false
     }
 }
 

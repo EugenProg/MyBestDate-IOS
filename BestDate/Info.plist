@@ -24,6 +24,16 @@
 				<string>com.googleusercontent.apps.320734338059-5llkt240p9ev4v67dngnbehj4lnki47b</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>Deep link</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>applinks:mybestdate.page.link</string>
+			</array>
+		</dict>
 	</array>
 	<key>FacebookAppID</key>
 	<string>1234729153762453</string>
