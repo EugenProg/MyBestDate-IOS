@@ -662,3 +662,7 @@
 "i_agree_and_accept" = "I agree and accept  ";
 "privacy_policy" = "Privacy Policy";
 "terms_of_use" = "Terms of Use";
+"you_have_three_messages_per_day" = "You have three messages\navailable per day";
+"you_have_one_card_per_day" = "You have one invitation card\nper day";
+"choose_the_plan" = "Choose the plan";
+"activate_" = "Activate ";

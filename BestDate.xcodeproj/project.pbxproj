@@ -92,6 +92,10 @@
 		4C421E0E29268AD200F2F6CD /* PermissionDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C421E0D29268AD200F2F6CD /* PermissionDialog.swift */; };
 		4C421E10292BD95700F2F6CD /* BaseOtpMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C421E0F292BD95700F2F6CD /* BaseOtpMediator.swift */; };
 		4C421E13292BE03B00F2F6CD /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 4C421E15292BE03B00F2F6CD /* Localizable.stringsdict */; };
+		4C48EABB29ABB560009199ED /* BanningMessagesDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48EABA29ABB560009199ED /* BanningMessagesDialog.swift */; };
+		4C48EABD29ABC062009199ED /* DialogsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48EABC29ABC061009199ED /* DialogsView.swift */; };
+		4C48EABF29ABD2D9009199ED /* BunningModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48EABE29ABD2D9009199ED /* BunningModalView.swift */; };
+		4C48EAC129ABD4E3009199ED /* BunningInvitationsDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48EAC029ABD4E3009199ED /* BunningInvitationsDialog.swift */; };
 		4C5C86AE28715A13006DE024 /* BaseBotomSheetMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5C86AD28715A12006DE024 /* BaseBotomSheetMediator.swift */; };
 		4C5C86B228717200006DE024 /* RangeSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5C86B1287171FF006DE024 /* RangeSelectView.swift */; };
 		4C5C86B5287174DD006DE024 /* RangeBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5C86B4287174DD006DE024 /* RangeBarView.swift */; };
@@ -427,6 +431,10 @@
 		4C421E16292BE04900F2F6CD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = de; path = de.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		4C421E17292BE04D00F2F6CD /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ru; path = ru.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		4C421E18292BE04E00F2F6CD /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = uk; path = uk.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		4C48EABA29ABB560009199ED /* BanningMessagesDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanningMessagesDialog.swift; sourceTree = "<group>"; };
+		4C48EABC29ABC061009199ED /* DialogsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogsView.swift; sourceTree = "<group>"; };
+		4C48EABE29ABD2D9009199ED /* BunningModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BunningModalView.swift; sourceTree = "<group>"; };
+		4C48EAC029ABD4E3009199ED /* BunningInvitationsDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BunningInvitationsDialog.swift; sourceTree = "<group>"; };
 		4C5C86AD28715A12006DE024 /* BaseBotomSheetMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseBotomSheetMediator.swift; sourceTree = "<group>"; };
 		4C5C86B1287171FF006DE024 /* RangeSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeSelectView.swift; sourceTree = "<group>"; };
 		4C5C86B4287174DD006DE024 /* RangeBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeBarView.swift; sourceTree = "<group>"; };
@@ -935,6 +943,16 @@
 			path = bottomSheet;
 			sourceTree = "<group>";
 		};
+		4C48EAB929ABB4D3009199ED /* banning modals */ = {
+			isa = PBXGroup;
+			children = (
+				4C48EABA29ABB560009199ED /* BanningMessagesDialog.swift */,
+				4C48EABE29ABD2D9009199ED /* BunningModalView.swift */,
+				4C48EAC029ABD4E3009199ED /* BunningInvitationsDialog.swift */,
+			);
+			path = "banning modals";
+			sourceTree = "<group>";
+		};
 		4C5C86B82871A32E006DE024 /* search */ = {
 			isa = PBXGroup;
 			children = (
@@ -1139,6 +1157,7 @@
 			children = (
 				4C950D60284E78E8004E2C13 /* NavigationView.swift */,
 				4C2DC8D328BCA9E900DD15C2 /* DeeplinkCoordinator.swift */,
+				4C48EABC29ABC061009199ED /* DialogsView.swift */,
 			);
 			path = navigation;
 			sourceTree = "<group>";
@@ -1157,6 +1176,7 @@
 		4C8E7DA9284D24BC00D6E58D /* screens */ = {
 			isa = PBXGroup;
 			children = (
+				4C48EAB929ABB4D3009199ED /* banning modals */,
 				4C9C57CE28E0B15300688F4B /* fill data */,
 				4C1459062857926700558B6B /* SplashScreen.storyboard */,
 				4C1459022856627E00558B6B /* GeolocationScreen.swift */,
@@ -1942,6 +1962,7 @@
 				4C6CFF1F28B6862500BA33E0 /* AnotherAdditionallyBottomSheet.swift in Sources */,
 				4CF028432889BB1F002C59EE /* TopBottomButtonView.swift in Sources */,
 				4CB9FFA828847808004F1BF6 /* AnotherProfileImageLineView.swift in Sources */,
+				4C48EAC129ABD4E3009199ED /* BunningInvitationsDialog.swift in Sources */,
 				4C5C86CA287359A5006DE024 /* CoreApiTypes.swift in Sources */,
 				4C5C86C528734CE3006DE024 /* ConfirmationInfoView.swift in Sources */,
 				4C1B7C21286B51F8000DB5D4 /* PercentView.swift in Sources */,
@@ -2076,6 +2097,7 @@
 				4CBB9E0D2917BEA70028DF42 /* ImageListMediator.swift in Sources */,
 				4CF02851288AFDE0002C59EE /* SearchListView.swift in Sources */,
 				4C0E71EF284FC394004099D4 /* CircleImageButton.swift in Sources */,
+				4C48EABD29ABC062009199ED /* DialogsView.swift in Sources */,
 				4CB9FF5228774739004F1BF6 /* MatchesScreen.swift in Sources */,
 				4CF028452889BB84002C59EE /* DuelColorfullTitle.swift in Sources */,
 				4CB9FFAE2885BBFA004F1BF6 /* GuestListItemView.swift in Sources */,
@@ -2140,6 +2162,7 @@
 				4C2DC93E28C11C2B00DD15C2 /* PushMediator.swift in Sources */,
 				4C9E5AFF28D389BB00E4E9FF /* SettingsMediator.swift in Sources */,
 				4C9E5ADF28D0E1EA00E4E9FF /* BlackListScreen.swift in Sources */,
+				4C48EABB29ABB560009199ED /* BanningMessagesDialog.swift in Sources */,
 				4C6CFF2428B699AB00BA33E0 /* AlertScreen.swift in Sources */,
 				4CB9FF882881DDCB004F1BF6 /* NetworkLogger.swift in Sources */,
 				4CD34F3D288D730300504396 /* ChatBottomView.swift in Sources */,
@@ -2163,6 +2186,7 @@
 				4CDD3B9F288874F200793466 /* ProfileButtonView.swift in Sources */,
 				4CDD3B9D288867DA00793466 /* GuestListView.swift in Sources */,
 				4C2ED4F928F87CEF0057DB02 /* UserLocationScreen.swift in Sources */,
+				4C48EABF29ABD2D9009199ED /* BunningModalView.swift in Sources */,
 				4CD34F30288C171000504396 /* VoiterInfoView.swift in Sources */,
 				4C8E7D90284D1C4000D6E58D /* Font.swift in Sources */,
 				4C92CB2A28B2787300E5DF52 /* SendedInvitationItemView.swift in Sources */,

@@ -96,6 +96,12 @@ final class Reducer {
 
         case .showSetPermissionDialog:
             state.showSetPermissionDialog = true
+
+        case .showMessageBunningDialog:
+            state.showMessageBunningDialog = true
+
+        case .showInvitationBunningDialog:
+            state.showInvitationBunningDialog = true
         }
         
         return state

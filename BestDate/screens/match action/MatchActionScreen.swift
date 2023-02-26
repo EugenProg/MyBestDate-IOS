@@ -63,19 +63,8 @@ struct MatchActionScreen: View {
 
                             Spacer()
 
-                            Button(action: {
-                                withAnimation {
-                                    store.state.showMatchActionDialog = false
-                                }
-                            }) {
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 16)
-                                        .fill(ColorList.white_5.color)
-
-                                    Image("ic_close_white")
-                                        .resizable()
-                                        .frame(width: 16, height: 16)
-                                }.frame(width: 48, height: 46)
+                            DialogCloseButton {
+                                store.state.showMatchActionDialog = false
                             }
                         }.padding(.init(top: 36, leading: 85, bottom: 0, trailing: 28))
 

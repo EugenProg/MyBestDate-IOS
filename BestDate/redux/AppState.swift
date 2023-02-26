@@ -26,4 +26,6 @@ struct AppState {
     var showDeleteDialog: Bool = false
     var showLanguageSettingDialog: Bool = false
     var showSetPermissionDialog: Bool = false
+    var showMessageBunningDialog: Bool = false
+    var showInvitationBunningDialog: Bool = false
 }

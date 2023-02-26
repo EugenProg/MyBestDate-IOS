@@ -663,3 +663,7 @@
 "i_agree_and_accept" = "Я согласен и принимаю  ";
 "privacy_policy" = "Политику конфиденциальности";
 "terms_of_use" = "Правила использования";
+"you_have_three_messages_per_day" = "Вам доступны три сообщения\nв день";
+"you_have_one_card_per_day" = "У вас есть один пригласительный билет\nв день";
+"choose_the_plan" = "Выберите план";
+"activate_" = "Активируйте ";

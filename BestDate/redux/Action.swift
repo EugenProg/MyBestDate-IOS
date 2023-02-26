@@ -27,4 +27,6 @@ enum Action {
     case showDeleteDialog
     case showLanguageSettingDialog
     case showSetPermissionDialog
+    case showMessageBunningDialog
+    case showInvitationBunningDialog
 }
