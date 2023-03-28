@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct ImageLineItemView: View {
-    var image: ProfileImage
+    @State var image: ProfileImage?
     var imageSize: CGFloat
     var showText: Bool = true
 
     var body: some View {
         ZStack {
-            AsyncImageView(url: image.thumb_url)
+            UpdateImageView(image: $image)
                 .frame(width: imageSize, height: imageSize)
 
             if showText {
@@ -23,7 +23,7 @@ struct ImageLineItemView: View {
                     ZStack(alignment: .leading) {
                         OverlayView(reverse: true)
                         
-                        if (image.top ?? false) {
+                        if (image?.top ?? false) {
                             Text("top_50".localized())
                                 .foregroundColor(ColorList.white.color)
                                 .font(MyFont.getFont(.NORMAL, 14))

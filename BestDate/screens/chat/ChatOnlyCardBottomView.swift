@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ChatOnlyCardBottomView: View {
-    var user: ShortUserInfo
+    @State var user: ShortUserInfo?
 
     var body: some View {
         VStack {
@@ -28,7 +28,7 @@ struct ChatOnlyCardBottomView: View {
 
                 VStack(spacing: 12) {
                     HStack(spacing: 12) {
-                        AsyncImageView(url: user.main_photo?.thumb_url)
+                        UserImageView(user: $user)
                             .clipShape(Circle())
                             .frame(width: 29, height: 29)
 

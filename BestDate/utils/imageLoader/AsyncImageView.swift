@@ -127,7 +127,7 @@ struct MatchImageView: View {
     }
 
     var body: some View {
-        let url = match.user?.main_photo?.thumb_url
+        let url = match.user?.main_photo?.full_url
         let realUrl = URL(string: (url == nil || url?.isEmpty == true) ? defaultUrl : url ?? defaultUrl)
         KFImage.url(realUrl)
             .placeholder(placeholder)

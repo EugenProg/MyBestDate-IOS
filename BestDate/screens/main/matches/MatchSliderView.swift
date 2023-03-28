@@ -112,7 +112,9 @@ struct MatchSliderView: View {
             .updating($offsetState) { currentState, gestureState, _ in
                 gestureState = currentState.translation
                 if index < users.count {
-                    users[index].offset = offsetState
+                    DispatchQueue.main.async {
+                        users[index].offset = offsetState
+                    }
                 }
             }.onEnded { value in
                 if value.translation.width > 50 {

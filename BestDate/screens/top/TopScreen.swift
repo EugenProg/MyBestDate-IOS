@@ -39,23 +39,26 @@ struct TopScreen: View {
                 .frame(height: 1)
 
             ScrollView(.vertical, showsIndicators: false) {
-                TopListView(page: $mediator.activePage,
-                            womanList: $mediator.womanTopList,
-                            manList: $mediator.manTopList, loadingMode: $mediator.loadingMode) { user in
-                    AnotherProfileMediator.shared.setUser(user: user)
-                    store.dispatch(action: .navigate(screen: .ANOTHER_PROFILE))
+                if mediator.manLoadingMode && mediator.manTopList.isEmpty && mediator.activePage == .man ||
+                    mediator.womanLoadingMode && mediator.womanTopList.isEmpty && mediator.activePage == .woman {
+                    ProgressView()
+                        .tint(ColorList.white.color)
+                        .frame(width: 80, height: 80)
+                } else {
+                    TopListView(page: $mediator.activePage,
+                                womanList: $mediator.womanTopList,
+                                manList: $mediator.manTopList) { user in
+                        AnotherProfileMediator.shared.setUser(user: user)
+                        store.dispatch(action: .navigate(screen: .ANOTHER_PROFILE))
+                    }
+                    .padding(.init(top: 14, leading: 3, bottom: 16, trailing: 3))
                 }
-                .padding(.init(top: 14, leading: 3, bottom: 16, trailing: 3))
             }.padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight, trailing: 0))
         }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
             .background(ColorList.main.color.edgesIgnoringSafeArea(.bottom))
             .onAppear {
-                if mediator.womanTopList.isEmpty {
-                    mediator.getWomanList()
-                }
-                if mediator.manTopList.isEmpty {
-                    mediator.getManList()
-                }
+                mediator.getWomanList()
+                mediator.getManList()
             }
     }
 }

@@ -13,7 +13,7 @@ import Combine
 class ChatMediator: ObservableObject {
     static var shared = ChatMediator()
 
-    @Published var user: ShortUserInfo = ShortUserInfo()
+    @Published var user: ShortUserInfo? = ShortUserInfo()
     @Published var messages: [ChatItem] = []
     @Published var selectedMessage: Message? = nil
 
@@ -51,7 +51,7 @@ class ChatMediator: ObservableObject {
             } receiveValue: { _ in
                 if self.getTimeIntervale(interval: self.lastInputUpdate) > 3 || self.inputText.count == 1 {
                     if !self.inputText.isEmpty {
-                        ChatApiService.shared.sendTypingEvent(recepient: self.user.id ?? 0)
+                        ChatApiService.shared.sendTypingEvent(recepient: self.user?.id ?? 0)
                     }
                     self.lastInputUpdate = Int64(Date().timeIntervalSince1970)
                 }
@@ -101,7 +101,7 @@ class ChatMediator: ObservableObject {
 
     func sendMessage(message: String, completion: @escaping (Bool) -> Void) {
         let parentId = replyMode ? selectedMessage?.id : nil
-        ChatApiService.shared.sendTextMessage(userId: user.id ?? 0, parentId: parentId, message: message) { success, savedMessage in
+        ChatApiService.shared.sendTextMessage(userId: user?.id ?? 0, parentId: parentId, message: message) { success, savedMessage in
             DispatchQueue.main.async {
                 if success {
                     self.addMessage(message: savedMessage)
@@ -139,7 +139,7 @@ class ChatMediator: ObservableObject {
     func sendImageMessage(image: UIImage, message: String?, completion: @escaping (Bool) -> Void) {
         let parentId = replyMode ? selectedMessage?.id ?? 0 : nil
         ImageUtils.resizeForChat(image: image) { newImage in
-            ImagesApiService.shared.sendImageMessage(image: newImage, userId: self.user.id ?? 0, parentId: parentId, message: message) { success, message in
+            ImagesApiService.shared.sendImageMessage(image: newImage, userId: self.user?.id ?? 0, parentId: parentId, message: message) { success, message in
                 DispatchQueue.main.async {
                     if success {
                         withAnimation {
@@ -167,7 +167,7 @@ class ChatMediator: ObservableObject {
     }
 
     func translate(text: String, completion: @escaping (Bool, String) -> Void) {
-        TranslateTextApiService.shared.translate(text: text, lang: user.language ?? "en") { success, translatedText in
+        TranslateTextApiService.shared.translate(text: text, lang: user?.language ?? "en") { success, translatedText in
             completion(success, translatedText)
         }
     }
@@ -196,19 +196,19 @@ class ChatMediator: ObservableObject {
     }
 
     func isMyMessage() -> Bool {
-        selectedMessage?.sender_id != user.id
+        selectedMessage?.sender_id != user?.id
     }
 
     func getMessageList() {
         loadingMode = true
-        ChatApiService.shared.getChatMessages(userId: user.id ?? 0) { success, list in
+        ChatApiService.shared.getChatMessages(userId: user?.id ?? 0) { success, list in
             DispatchQueue.main.async {
                 if success {
                     withAnimation {
                         self.messages.addAll(list: list, clear: true)
                     }
                 }
-                self.cardsOnlyMode = self.user.allow_chat == false
+                self.cardsOnlyMode = self.user?.allow_chat == false
                 self.loadingMode = false
             }
         }

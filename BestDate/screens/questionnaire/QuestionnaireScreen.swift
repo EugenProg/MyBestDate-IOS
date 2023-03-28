@@ -68,6 +68,7 @@ struct QuestionnaireScreen: View {
                 }
             }
         } else {
+            mediator.clearData()
             navigate()
         }
     }

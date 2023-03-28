@@ -185,7 +185,7 @@ class PusherMediator {
     }
 
     func isInTheChat(id: Int?) -> Bool {
-        return self.store?.state.activeScreen == .CHAT && id == ChatMediator.shared.user.id
+        return self.store?.state.activeScreen == .CHAT && id == ChatMediator.shared.user?.id
     }
 
     func inTheChatList() -> Bool {

@@ -46,10 +46,10 @@ struct ChatListView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            if newList.isEmpty && previousList.isEmpty {
-                let topPadding = ((UIScreen.main.bounds.height - 260) / 2) - 100
-                NoDataView(loadingMode: $loadingMode)
-                    .padding(.init(top: topPadding, leading: 0, bottom: 0, trailing: 0))
+            if loadingMode {
+                ProgressView()
+                    .tint(ColorList.white.color)
+                    .frame(width: 80, height: 80)
             } else {
                 if !newList.isEmpty {
                     chatListBlock(header: "new_message", list: $newList, itemsType: .new)

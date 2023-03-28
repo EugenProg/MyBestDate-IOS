@@ -152,10 +152,13 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
             let pushType = NotificationType.getNotificationType(type: userInfo["type"] as? String ?? "")
             PushMediator.shared.setUser(user: (userInfo["user"] as? String ?? "").getUserFromJson())
             if !(pushType == .message && self.isInChatOrChatList(userInfo: userInfo)) {
-                if pushType == .message || pushType == .guest {
-                    PushMediator.shared.setDefaultMessage(body: notification.request.content.body, title: notification.request.content.title)
+                if pushType == .message {
+                    MainMediator.shared.hasNewMessages = true
+                } else if pushType == .guest {
+                    MainMediator.shared.hasNewGuests = true
+                } else {
+                    store?.dispatch(action: .showPushNotification(type: pushType))
                 }
-                store?.dispatch(action: .showPushNotification(type: pushType))
             }
         } else {
             let pushType = NotificationType.getNotificationType(type: userInfo["type"] as? String ?? "")
@@ -172,7 +175,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         let user = (userInfo["user"] as? String ?? "").getUserFromJson()
         return (store?.state.activeScreen == .MAIN &&
                 MainMediator.shared.currentScreen == .CHAT_LIST) ||
-        (store?.state.activeScreen == .CHAT && user?.id == ChatMediator.shared.user.id)
+        (store?.state.activeScreen == .CHAT && user?.id == ChatMediator.shared.user?.id ?? 0)
     }
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
@@ -195,6 +198,10 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         case .match: screen = .MATCHES_LIST
         case .invitation: do {
             InvitationMediator.shared.activeType = .new
+            screen = .INVITATION
+        }
+        case .invitation_answer: do {
+            InvitationMediator.shared.activeType = .sended
             screen = .INVITATION
         }
         case .message: do {

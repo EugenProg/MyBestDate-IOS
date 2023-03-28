@@ -21,7 +21,7 @@ struct SearchListView: View {
         GridItem(.fixed((UIScreen.main.bounds.width - 9) / 2), spacing: 3)]
 
     var body: some View {
-        VStack(spacing: 5) {
+        VStack(spacing: 10) {
             if list.isEmpty {
                 NoDataBoxView(loadingMode: $loadingMode, text: "nothing_was_found_by_these_parameters")
                     .padding(.init(top: 50, leading: 50, bottom: ((UIScreen.main.bounds.width - 9) / 2) - 69, trailing: 50))

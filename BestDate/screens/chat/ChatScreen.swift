@@ -22,9 +22,9 @@ struct ChatScreen: View {
     
     var body: some View {
         ZStack(alignment: .top) {
-            if !mediator.messages.isEmpty && mediator.user.getRole() != .bot {
+            if !mediator.messages.isEmpty && mediator.user?.getRole() != .bot {
                 TopPanelView(offsetValue: $offsetValue) {
-                    CreateInvitationMediator.shared.setUser(user: mediator.user)
+                    CreateInvitationMediator.shared.setUser(user: mediator.user ?? ShortUserInfo())
                     store.dispatch(action: .createInvitation)
                 }
             }
@@ -44,12 +44,12 @@ struct ChatScreen: View {
                     Spacer()
 
                     VStack(alignment: .trailing, spacing: 2) {
-                        Text(mediator.user.name ?? "NONAME")
+                        Text(mediator.user?.name ?? "NONAME")
                             .foregroundColor(ColorList.white.color)
                             .font(MyFont.getFont(.BOLD, 18))
 
-                        if mediator.user.getRole() == .user {
-                            let visitTime = mediator.user.last_online_at?.toDate().getVisitPeriod() ?? ""
+                        if mediator.user?.getRole() == .user {
+                            let visitTime = mediator.user?.last_online_at?.toDate().getVisitPeriod() ?? ""
                             let lastVisit = "\("last_visit".localized()) \(visitTime)"
                             let text = mediator.isOnline ? "Online" : lastVisit
 
@@ -59,19 +59,19 @@ struct ChatScreen: View {
                         }
                     }.padding(.init(top: 0, leading: 5, bottom: 0, trailing: 18))
                         .onTapGesture {
-                            if mediator.user.getRole() == .user {
+                            if mediator.user?.getRole() == .user {
                                 goToUserProfile()
                             }
                         }
 
-                    if mediator.user.getRole() == .bot {
+                    if mediator.user?.getRole() == .bot {
                         Image("icon")
                             .resizable()
                             .clipShape(Circle())
                             .frame(width: 45, height: 45)
                     } else {
                         ZStack {
-                            AsyncImageView(url: mediator.user.main_photo?.thumb_url)
+                            UserImageView(user: $mediator.user)
                                 .clipShape(Circle())
 
                             if mediator.isOnline {
@@ -102,7 +102,7 @@ struct ChatScreen: View {
             if mediator.messages.isEmpty && !mediator.loadingMode {
                 VStack {
                     InvitationChatView(onlyCards: $mediator.cardsOnlyMode) {
-                        CreateInvitationMediator.shared.setUser(user: mediator.user)
+                        CreateInvitationMediator.shared.setUser(user: mediator.user ?? ShortUserInfo())
                         store.dispatch(action: .createInvitation)
                     }
                 }.frame(height: UIScreen.main.bounds.height)
@@ -119,7 +119,7 @@ struct ChatScreen: View {
                     .rotationEffect(Angle(degrees: 180))
             }
 
-            if mediator.user.getRole() == .user {
+            if mediator.user?.getRole() == .user {
                 if mediator.cardsOnlyMode {
                     ChatOnlyCardBottomView(user: mediator.user)
                         .padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight, trailing: 0))
@@ -176,7 +176,7 @@ struct ChatScreen: View {
     }
 
     private func goToUserProfile() {
-        AnotherProfileMediator.shared.setUser(user: mediator.user)
+        AnotherProfileMediator.shared.setUser(user: mediator.user ?? ShortUserInfo())
         if store.state.screenStack.last == .ANOTHER_PROFILE {
             withAnimation {
                 store.dispatch(action: .navigationBack)
@@ -190,13 +190,13 @@ struct ChatScreen: View {
 
     private func getTopPadding() -> CGFloat {
         var bottomBoxHeight = (mediator.editMode || mediator.replyMode ? 135 : 85) + additionalHeight + (offsetValue / 2) + (offsetValue > 0 ? 32 : 0)
-        if mediator.user.getRole() != .user { bottomBoxHeight = 16 }
+        if mediator.user?.getRole() != .user { bottomBoxHeight = 16 }
         else if mediator.cardsOnlyMode { bottomBoxHeight = 150 }
         return store.state.statusBarHeight + bottomBoxHeight
     }
 
     private func getBottomPadding() -> CGFloat {
-        (offsetValue / 2) + 90 + ((mediator.messages.isEmpty || mediator.user.getRole() == .bot) ? 0 : 41)
+        (offsetValue / 2) + 90 + ((mediator.messages.isEmpty || mediator.user?.getRole() == .bot) ? 0 : 41)
     }
 }
 

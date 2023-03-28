@@ -141,7 +141,6 @@ class QuestionnaireMediator: ObservableObject {
     }
 
     func saveSelection(questionInfo: QuestionInfo, ansfer: String) {
-        print(">>> answer is: \(ansfer)")
         switch (questionInfo.question) {
         case "marital_status": userQuestinnaire.marital_status = ansfer
         case "having_kids": userQuestinnaire.kids = ansfer
@@ -180,6 +179,7 @@ class QuestionnaireMediator: ObservableObject {
         CoreApiService.shared.saveQuestionnaire(questionnaire: questionnaire) { success, user in
             if success {
                 self.getUserData { success in
+                    self.clearData()
                     completion(success, "")
                 }
             } else {

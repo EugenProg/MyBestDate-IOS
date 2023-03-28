@@ -20,8 +20,11 @@ class ImageListMediator: ObservableObject {
 
     var imageIsSelect: ((UIImage) -> Void)? = nil
 
-    func initFetcher() {
+    init() {
         fetcher = ImageFetcher()
+    }
+
+    func initFetcher() {
         fetcher?.addImages = { images in
             DispatchQueue.main.async {
                 self.imageList.removeAll()

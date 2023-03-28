@@ -29,6 +29,7 @@ enum NotificationType: String {
     case like
     case match
     case invitation
+    case invitation_answer
     case message
     case guest
 
@@ -37,6 +38,7 @@ enum NotificationType: String {
         case "like": return .like
         case "match": return .match
         case "invitation": return .invitation
+        case "invitation_answer": return .invitation_answer
         case "message": return .message
         case "guest": return .guest
         default: return .defaultPush

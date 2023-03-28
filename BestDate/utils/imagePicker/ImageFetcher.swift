@@ -27,7 +27,6 @@ class ImageFetcher {
         let fetchOptions = PHFetchOptions()
         fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         fetchOptions.includeAssetSourceTypes = .typeUserLibrary
-        fetchOptions
 
         return PHAsset.fetchAssets(with: fetchOptions)
     }
@@ -89,7 +88,7 @@ class ImageFetcher {
     var imageRequestOptions: PHImageRequestOptions {
             let options = PHImageRequestOptions()
             options.version = .current
-            options.resizeMode = .exact
+            options.resizeMode = .fast
             options.deliveryMode = .highQualityFormat
             options.isNetworkAccessAllowed = true
             options.isSynchronous = true

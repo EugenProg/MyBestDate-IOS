@@ -30,7 +30,7 @@ struct ChatImageViewer: View {
                         Spacer()
                     }
 
-                    Title(textColor: ColorList.white.color, text: mediator.user.name ?? "", textSize: 20, paddingV: 0, paddingH: 0)
+                    Title(textColor: ColorList.white.color, text: mediator.user?.name ?? "", textSize: 20, paddingV: 0, paddingH: 0)
                 }.frame(width: UIScreen.main.bounds.width - 64, height: 60)
                     .padding(.init(top: 16, leading: 32, bottom: 0, trailing: 32))
 

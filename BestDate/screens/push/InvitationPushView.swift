@@ -64,7 +64,7 @@ struct InvitationPushView: View {
     }
 
     private func openInvitationCard() {
-        InvitationMediator.shared.activeType = .new
+        InvitationMediator.shared.activeType = store.state.activePush == .invitation ? .new : .sended
         store.dispatch(action: .navigate(screen: .INVITATION))
     }
 }
