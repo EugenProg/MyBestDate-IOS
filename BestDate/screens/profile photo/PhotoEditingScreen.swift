@@ -68,15 +68,16 @@ struct PhotoEditingScreen: View {
     private func validatePhoto() {
         process.toggle()
         mediator.cropImage()
-        mediator.searchFaces { success in
-            if success {
-                saveImage()
-            } else {
-                process.toggle()
-                store.dispatch(action: .showBottomSheet(view: .NOT_CORRECT_PHOTO))
-                mediator.croppedPhoto = UIImage()
-            }
-        }
+        saveImage()
+//        mediator.searchFaces { success in
+//            if success {
+//                saveImage()
+//            } else {
+//                process.toggle()
+//                store.dispatch(action: .showBottomSheet(view: .NOT_CORRECT_PHOTO))
+//                mediator.croppedPhoto = UIImage()
+//            }
+//        }
     }
 
     private func saveImage() {

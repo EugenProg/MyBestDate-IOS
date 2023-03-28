@@ -21,33 +21,33 @@ struct SearchListView: View {
         GridItem(.fixed((UIScreen.main.bounds.width - 9) / 2), spacing: 3)]
 
     var body: some View {
-        if list.isEmpty {
-            NoDataBoxView(loadingMode: $loadingMode, text: "nothing_was_found_by_these_parameters")
-                .padding(.init(top: 50, leading: 50, bottom: ((UIScreen.main.bounds.width - 9) / 2) - 69, trailing: 50))
-        } else {
-            LazyVGrid(columns: items, alignment: .center, spacing: 10,
-                      pinnedViews: [.sectionHeaders, .sectionFooters]) {
-                ForEach(list.indices, id: \.self) { i in
-                    if i >= 0 && i < list.count {
-                        let user = list[i]
-                        UserSearchItemView(user: $list[i])
-                            .onTapGesture {
-                                withAnimation { clickAction(user ?? ShortUserInfo()) }
-                            }
-                            .onAppear {
-                                if (user?.id ?? 0) == (list.last??.id ?? 0) && !list.isEmpty {
-                                    showLoadingBlock = true
+        VStack(spacing: 5) {
+            if list.isEmpty {
+                NoDataBoxView(loadingMode: $loadingMode, text: "nothing_was_found_by_these_parameters")
+                    .padding(.init(top: 50, leading: 50, bottom: ((UIScreen.main.bounds.width - 9) / 2) - 69, trailing: 50))
+            } else {
+                LazyVGrid(columns: items, alignment: .center, spacing: 10,
+                          pinnedViews: [.sectionHeaders, .sectionFooters]) {
+                    ForEach(list.indices, id: \.self) { i in
+                        if i >= 0 && i < list.count {
+                            let user = list[i]
+                            UserSearchItemView(user: $list[i])
+                                .onTapGesture {
+                                    withAnimation { clickAction(user ?? ShortUserInfo()) }
                                 }
-                            }
+                                .onAppear {
+                                    if (user?.id ?? 0) == (list.last??.id ?? 0) && !list.isEmpty {
+                                        showLoadingBlock = true
+                                        loadNextPage()
+                                    }
+                                }
+                        }
                     }
                 }
-            }
 
-            if (meta.current_page ?? 0) < (meta.last_page ?? 0) && showLoadingBlock {
-                LoadingNextPageView()
-                    .onAppear {
-                        loadNextPage()
-                    }
+                if (meta.current_page ?? 0) < (meta.last_page ?? 0) && showLoadingBlock {
+                    LoadingNextPageView()
+                }
             }
         }
     }

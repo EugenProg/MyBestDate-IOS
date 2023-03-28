@@ -43,6 +43,7 @@ struct SingleSelectInfoView: View {
                 mediator.questionInfo = questionInfo
                 switch questionInfo.viewType {
                 case .SINGLE_SELECT: store.dispatch(action: .showBottomSheet(view: .QUESTIONNAIRE_SINGLE_SELECT))
+                case .COUNTRY_SELECT: store.dispatch(action: .showBottomSheet(view: .QUESTIONNAIRE_COUNTRY))
                 case .SEEK_BAR_SELECT: store.dispatch(action: .showBottomSheet(view: .QUESTIONNAIRE_SEEK_BAR))
                 case .SEARCH_SELECT: store.dispatch(action: .showBottomSheet(view: .QUESTIONNAIRE_SEARCH))
                 default: store.dispatch(action: .showBottomSheet(view: .QUESTIONNAIRE_SINGLE_SELECT))

@@ -38,12 +38,14 @@ struct StandardButton: View {
         case white
         case black
         case blue
+        case pink
         
         var buttonColor: Color {
             switch self {
             case .white: return ColorList.white.color
             case .black: return ColorList.main.color
             case .blue: return ColorList.light_blue.color
+            case .pink: return ColorList.pink.color
             }
         }
         
@@ -52,6 +54,7 @@ struct StandardButton: View {
             case .white: return ColorList.main.color
             case .black: return ColorList.white.color
             case .blue: return ColorList.main.color
+            case .pink: return ColorList.main.color
             }
         }
     }

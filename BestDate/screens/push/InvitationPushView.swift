@@ -59,14 +59,12 @@ struct InvitationPushView: View {
         )
         .onTapGesture {
             closeAction()
-            withAnimation {
-                AnotherProfileMediator.shared.setUser(user: mediator.user ?? ShortUserInfo())
-                store.dispatch(action: .navigate(screen: .ANOTHER_PROFILE))
-            }
+            openInvitationCard()
         }
     }
 
     private func openInvitationCard() {
+        InvitationMediator.shared.activeType = .new
         store.dispatch(action: .navigate(screen: .INVITATION))
     }
 }

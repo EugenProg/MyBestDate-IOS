@@ -141,6 +141,7 @@ class QuestionnaireMediator: ObservableObject {
     }
 
     func saveSelection(questionInfo: QuestionInfo, ansfer: String) {
+        print(">>> answer is: \(ansfer)")
         switch (questionInfo.question) {
         case "marital_status": userQuestinnaire.marital_status = ansfer
         case "having_kids": userQuestinnaire.kids = ansfer
@@ -191,6 +192,7 @@ class QuestionnaireMediator: ObservableObject {
         CoreApiService.shared.getUserData { success, user in
             if success {
                 MainMediator.shared.setUserInfo(user: user)
+                ProfileMediator.shared.setUser(user: user)
             }
             completion(success)
         }
@@ -315,7 +317,7 @@ class QuestionnaireMediator: ObservableObject {
                 id: 1,
                 question: "having_kids",
                 percent: 7,
-                ansfers: ["no", "one", "two", "three", "four", "five_or_more"]
+                ansfers: ["no_kids", "one", "two", "three", "four", "five_or_more"]
             )
         )
         list.append(
@@ -323,6 +325,7 @@ class QuestionnaireMediator: ObservableObject {
                 id: 2,
                 question: "plase_of_residence",
                 percent: 4,
+                viewType: .COUNTRY_SELECT,
                 ansfers: ["AB", "AU", "AT", "AZ", "AL", "DZ", "AS", "AI", "AO", "AD", "AR", "AG", "AM", "AW", "AF",
                           "BS", "BD", "BB", "BH", "BY", "BZ", "BE", "BJ", "BM", "BG", "BO", "BQ", "BA", "BW", "BR",
                           "IO", "BN", "BF", "BI", "BT", "VU", "HU", "VE", "VG", "VI", "VN", "GA", "HT", "GY", "GM",
@@ -601,6 +604,7 @@ enum QuestionnairePageType {
 enum QuestionViewType {
     case SINGLE_SELECT
     case MULTY_SELECT
+    case COUNTRY_SELECT
     case SEEK_BAR_SELECT
     case SEARCH_SELECT
     case RANGE_SEEK_BAR

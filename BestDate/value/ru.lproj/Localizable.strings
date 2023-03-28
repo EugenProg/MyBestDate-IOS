@@ -597,7 +597,7 @@
 "main_settings" = "основные настройки";
 "settings_applied" = "Примененные настройки";
 "blocking_messages" = "Блокировка сообщений";
-"you_will_not_be_able_to_send_messages" = "Вы не сможете отправлять сообщения, а только лишь приглашения.";
+"you_will_not_be_able_to_send_messages" = "Вы не сможете получать сообщения, а только лишь приглашения.";
 "disabling_notifications" = "Отключение уведомлений";
 "you_will_not_receive_notifications" = "Вы не будете получать уведомления из выбранных категорий.";
 "invite_cards" = "Пригласительные открытки";
@@ -667,3 +667,15 @@
 "you_have_one_card_per_day" = "У вас есть один пригласительный билет\nв день";
 "choose_the_plan" = "Выберите план";
 "activate_" = "Активируйте ";
+"montly_plan" = "Monthly plan";
+"per_montly" = "Per monthly";
+"three_months_plan" = "Three months plan";
+"per_three_monthly" = "Per three monthly";
+"six_months_plan" = "Six months plan";
+"per_six_monthly" = "Per six monthly";
+"features" = "Features";
+"everything_in_this_plan" = "Everything in this plan";
+"unlimited_invite_cards" = "Unlimited Invite Cards";
+"unlimited_messages" = "Unlimited Messages";
+"messages_blocked" = "Сообщения заблокированы";
+"messages_unblocked" = "Сообщения разблокированы";

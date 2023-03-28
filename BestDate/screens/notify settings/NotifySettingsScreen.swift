@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NotifySettingsScreen: View {
     @EnvironmentObject var store: Store
-    @ObservedObject var mediator = NotifySettingsMediator()
+    @ObservedObject var mediator = NotifySettingsMediator.shared
 
     @State var process: Bool = false
     @State var notificationEnbaled: Bool? = false

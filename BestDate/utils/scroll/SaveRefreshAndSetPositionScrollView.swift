@@ -72,7 +72,7 @@ struct SaveRefreshAndSetPositionScrollView<Content: View>: View {
                 }
             }
             .onAppear {
-                proxy.scrollTo(Int(round(startPosition)), anchor: .top)
+                proxy.scrollTo(Int(round(startPosition) * 0.99), anchor: .top)
             }
         }
     }

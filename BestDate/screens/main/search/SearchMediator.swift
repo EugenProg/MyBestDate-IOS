@@ -40,6 +40,7 @@ class SearchMediator: ObservableObject {
     }
 
     func getNextPage() {
+        print("current: \(meta.current_page ?? 0), last: \(meta.last_page ?? 0)")
         if (meta.current_page ?? 0) >= (meta.last_page ?? 0) { return }
 
         getUserList(withClear: false, page: (meta.current_page ?? 0) + 1) { }

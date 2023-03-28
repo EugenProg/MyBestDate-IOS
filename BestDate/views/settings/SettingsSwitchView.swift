@@ -10,6 +10,8 @@ import SwiftUI
 struct SettingsSwitchView: View {
     let image: String
     let title: String
+    @State var activeText: String = "active".localized()
+    @State var unactiveText: String = "deactive".localized()
 
     @Binding var isActive: Bool?
     @Binding var saveProgress: Bool
@@ -26,7 +28,7 @@ struct SettingsSwitchView: View {
                     .foregroundColor(ColorList.white_80.color)
                     .font(MyFont.getFont(.BOLD, 16))
 
-                Text(isActive == true ? "active".localized() : "deactive".localized())
+                Text(isActive == true ? activeText : unactiveText)
                     .foregroundColor(isActive == true ? ColorList.light_blue.color : ColorList.pink.color)
                     .font(MyFont.getFont(.NORMAL, 16))
                     .opacity(0.9)

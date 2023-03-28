@@ -91,7 +91,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         if DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url) != nil {
           store?.dispatch(action: .startProcess)
 
-          let userId = url.absoluteString.suffix(url.absoluteString.count - 30)
+          let userId = url.absoluteString.suffix(url.absoluteString.count - 21)
 
           CoreApiService.shared.getUsersById(id: String(userId).toInt()) { success, user in
               DispatchQueue.main.async {
@@ -193,7 +193,10 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         switch pushType {
         case .like: screen = .LIKES_LIST
         case .match: screen = .MATCHES_LIST
-        case .invitation: screen = .INVITATION
+        case .invitation: do {
+            InvitationMediator.shared.activeType = .new
+            screen = .INVITATION
+        }
         case .message: do {
             ChatMediator.shared.setUser(user: (userInfo["user"] as? String ?? "").getUserFromJson() ?? ShortUserInfo())
             screen = .CHAT

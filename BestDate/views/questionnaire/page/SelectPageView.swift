@@ -31,7 +31,8 @@ struct SelectPageView: View {
                             ZStack {
                                 Group {
                                     switch page.questions[index].viewType {
-                                        case .SINGLE_SELECT: SingleSelectInfoView(questionInfo: $page.questions[index])
+                                        case .SINGLE_SELECT,
+                                            .COUNTRY_SELECT: SingleSelectInfoView(questionInfo: $page.questions[index])
                                         case .RANGE_SEEK_BAR: RangeSelectView(questionInfo: $page.questions[index])
                                         case .MULTY_SELECT: MultySelectView(questionInfo: $page.questions[index])
                                         case .CONFIRMATION_SELECT,

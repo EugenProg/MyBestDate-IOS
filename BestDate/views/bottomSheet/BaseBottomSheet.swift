@@ -30,6 +30,7 @@ struct BaseBottomSheet: View {
                         case .PHOTO_SETTINGS: PhotoSettingsBottomSheet { dismiss() }
                         case .NOT_CORRECT_PHOTO: NotCorrectPhotoBottomSheet { dismiss() }
                         case .QUESTIONNAIRE_SINGLE_SELECT: QuestionnaireSingleSelectBottomSheet { dismiss() }
+                        case .QUESTIONNAIRE_COUNTRY: QuestionnaireCountrySelectBottomSheet { dismiss() }
                         case .QUESTIONNAIRE_SEEK_BAR: QuestionnaireSeekBarBottomSheet { dismiss() }
                         case .QUESTIONNAIRE_SEARCH: QuestionnaireSearchBotomSheet { dismiss() }
                         case .QUESTIONNAIRE_MULTY_SELECT: QuestionnaireMultySelectBottomSheet { dismiss() }

@@ -92,7 +92,11 @@ enum CoreApiTypes {
     case chatReadEvent
 
     var BaseURL: String {
-        "https://dev-api.bestdate.info/api/v1/"
+        "\(serverAddress)/api/v1/" //"\(serverAddress)/api/v1/"
+    }
+
+    var serverAddress: String {
+        "https://api.bestdate.info" //"https://dev-api.bestdate.info"
     }
 
     var getPath: String {

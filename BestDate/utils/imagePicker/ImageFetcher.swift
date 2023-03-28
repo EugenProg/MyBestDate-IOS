@@ -38,7 +38,8 @@ class ImageFetcher {
 
         assets.enumerateObjects({ (object, count, stop) in
             if object.mediaType == .image {
-                PHImageManager.default().requestImage(for: object, targetSize: self.size, contentMode: .aspectFill, options: self.imageRequestOptions) { image, info in
+                let size = CGSize(width: object.pixelWidth, height: object.pixelHeight)
+                PHImageManager.default().requestImage(for: object, targetSize: size, contentMode: .aspectFill, options: self.imageRequestOptions) { image, info in
                     images.append(ImageItem(id: id, image: image ?? UIImage()))
                     id += 1
                 }

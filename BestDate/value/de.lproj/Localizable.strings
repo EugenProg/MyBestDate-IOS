@@ -220,7 +220,7 @@
 "no_hair" = "Kein Haar";
 "blond" = "Blond";
 "brunette" = "Brünett";
-"redhead" = "Rotschopf";
+"redhead" = "Rotkopf";
 "friendship" = "Freundschaft";
 "love" = "Liebe";
 "communication" = "Kommunikation";
@@ -233,8 +233,8 @@
 "do_not_specify_height" = "Höhe nicht angeben";
 "cancel" = "Abbrechen";
 "no_education" = "Keine Bildung";
-"secondary" = "Sekundarschulbildung";
-"higher" = "Höhere";
+"secondary" = "Abitur";
+"higher" = "Uni/Fachhochschule";
 "walking_around_the_city" = "Spaziergang durch die Stadt";
 "sitting_in_best_date" = "Sitzen in Bestdate";
 "going_on_dates" = "Auf Verabredungen gehen";
@@ -573,7 +573,7 @@
 "block_profile" = "Profil sperren";
 "share" = "Teilen";
 "unlock_profile" = "Profil freischalten";
-"matches_list" = "Treffer Liste";
+"matches_list" = "Matches Liste";
 "balance" = "Guthaben";
 "likes" = "Likes";
 "this_user_liked_your_photo" = "Dieser Benutzer liked Ihr Foto";
@@ -597,7 +597,7 @@
 "main_settings" = "HAUPTEINSTELLUNGEN";
 "settings_applied" = "Verwendete Einstellungen";
 "blocking_messages" = "Blockierung von Nachrichten";
-"you_will_not_be_able_to_send_messages" = "Sie können keine Nachrichten senden, sondern nur Einladungen.";
+"you_will_not_be_able_to_send_messages" = "Sie können keine Nachrichten bekommen, sondern nur Einladungen.";
 "disabling_notifications" = "Deaktivieren von Benachrichtigungen";
 "you_will_not_receive_notifications" = "Sie erhalten keine Benachrichtigungen aus den ausgewählten Kategorien.";
 "invite_cards" = "Einladungskarten";
@@ -631,7 +631,7 @@
 "all_your_data_will_be_deleted" = "Alle Ihre Daten, einschließlich Ihres Kontos, werden gelöscht.";
 "any_has_not_given_an_answer_yet" = "%@ hat noch nicht geantwortet";
 "you_have_no_new_invitations" = "Sie haben leider keine neue Einladungen";
-"you_have_no_answered_invitations" = "Sie haben leider keine Einladungen beantwortet";
+"you_have_no_answered_invitations" = "Sie haben leider noch keine Einladungen gekriegt";
 "you_have_no_invitations_sent" = "Sie haben leider keine Einladungen verschickt";
 "enter_a_old_pass" = "Geben Sie das alte Passwort ein";
 "confirm_the_new_pass" = "Bestätigen Sie das neue Passwort";
@@ -667,3 +667,15 @@
 "you_have_one_card_per_day" = "Sie haben eine Einladungskarte\npro Tag";
 "choose_the_plan" = "Wählen Sie den Plan";
 "activate_" = "Aktivieren Sie ";
+"montly_plan" = "Monthly plan";
+"per_montly" = "Per monthly";
+"three_months_plan" = "Three months plan";
+"per_three_monthly" = "Per three monthly";
+"six_months_plan" = "Six months plan";
+"per_six_monthly" = "Per six monthly";
+"features" = "Features";
+"everything_in_this_plan" = "Everything in this plan";
+"unlimited_invite_cards" = "Unlimited Invite Cards";
+"unlimited_messages" = "Unlimited Messages";
+"messages_blocked" = "Nachrichten sind blockiert";
+"messages_unblocked" = "Nachrichten freigeschaltet";

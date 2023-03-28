@@ -66,7 +66,7 @@ struct SendedInvitationItemView: View {
                     .padding(.init(top: 10, leading: 0, bottom: 10, trailing: 0))
 
                 HStack(spacing: 9) {
-                    let answer = InvitationAnswer.getAnswer(id: invitationCard.id ?? 0)
+                    let answer = InvitationAnswer.getAnswer(id: invitationCard.answer?.id ?? 0)
                     if answer == .yes || answer == .yes_next_time {
                         SuccessItemView()
                     } else if answer == .no || answer == .not_yet {
@@ -77,8 +77,6 @@ struct SendedInvitationItemView: View {
                         .foregroundColor(ColorList.main.color)
                         .font(MyFont.getFont(.BOLD, 14))
                 }
-
-
             }.frame(width: UIScreen.main.bounds.width - 72, height: 140, alignment: .leading)
         }
     }

@@ -15,6 +15,8 @@ struct SettingsSwitchBlockView: View {
     @Binding var isActive: Bool?
     @Binding var saveProgress: Bool
     @Binding var isEnabled: Bool
+    @State var activeText: String = "active".localized()
+    @State var unactiveText: String = "deactive".localized()
 
     var checkAction: (Bool) -> Void
 
@@ -22,7 +24,7 @@ struct SettingsSwitchBlockView: View {
         VStack(spacing: 0) {
             SettingsHeaderView(title: title, description: description)
 
-            SettingsSwitchView(image: image, title: switchTitle, isActive: $isActive, saveProgress: $saveProgress, isEnabled: $isEnabled) { checked in
+            SettingsSwitchView(image: image, title: switchTitle, activeText: activeText, unactiveText: unactiveText, isActive: $isActive, saveProgress: $saveProgress, isEnabled: $isEnabled) { checked in
                 isActive = checked
                 checkAction(checked)
             }.padding(.init(top: 20, leading: 0, bottom: 15, trailing: 0))

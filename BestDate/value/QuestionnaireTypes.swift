@@ -226,6 +226,7 @@ class PorposeOfDatingType: QuestionnaireType {
         case "Friendship": return "friendship"
         case "Love": return "love"
         case "Communication": return "communication"
+        case "Serious relationship": return "serious_relationship"
         case "Sex": return "sex"
         default: return ""
         }
@@ -240,6 +241,7 @@ class PorposeOfDatingType: QuestionnaireType {
         case "friendship": return "Friendship"
         case "love": return "Love"
         case "communication": return "Communication"
+        case "serious_relationship": return "Serious relationship"
         case "sex": return "Sex"
         default: return nil
         }
@@ -252,7 +254,6 @@ class AwaitFromDatingType: QuestionnaireType {
         case "Having a fun": return "having_a_fun"
         case "Interesting communication": return "interesting_communication"
         case "Serious relationship only": return "serious_relationship_only"
-        case "Serious relationship": return "serious_relationship"
         case "One time sex": return "one_time_sex"
         default: return ""
         }
@@ -267,7 +268,6 @@ class AwaitFromDatingType: QuestionnaireType {
         case "having_a_fun": return "Having a fun"
         case "interesting_communication": return "Interesting communication"
         case "serious_relationship_only": return "Serious relationship only"
-        case "serious_relationship": return "Serious relationship"
         case "one_time_sex": return "One time sex"
         default: return nil
         }

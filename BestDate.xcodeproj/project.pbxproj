@@ -96,6 +96,10 @@
 		4C48EABD29ABC062009199ED /* DialogsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48EABC29ABC061009199ED /* DialogsView.swift */; };
 		4C48EABF29ABD2D9009199ED /* BunningModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48EABE29ABD2D9009199ED /* BunningModalView.swift */; };
 		4C48EAC129ABD4E3009199ED /* BunningInvitationsDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48EAC029ABD4E3009199ED /* BunningInvitationsDialog.swift */; };
+		4C48EAC429B3A321009199ED /* TariffListMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48EAC329B3A321009199ED /* TariffListMediator.swift */; };
+		4C48EAC629B3A393009199ED /* TariffListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48EAC529B3A393009199ED /* TariffListScreen.swift */; };
+		4C48EAC829B3A7B8009199ED /* TariffItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48EAC729B3A7B8009199ED /* TariffItemView.swift */; };
+		4C48EACA29B466C5009199ED /* TariffSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48EAC929B466C5009199ED /* TariffSliderView.swift */; };
 		4C5C86AE28715A13006DE024 /* BaseBotomSheetMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5C86AD28715A12006DE024 /* BaseBotomSheetMediator.swift */; };
 		4C5C86B228717200006DE024 /* RangeSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5C86B1287171FF006DE024 /* RangeSelectView.swift */; };
 		4C5C86B5287174DD006DE024 /* RangeBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5C86B4287174DD006DE024 /* RangeBarView.swift */; };
@@ -219,6 +223,7 @@
 		4CA2E23A286765D900E514C4 /* InputPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA2E239286765D900E514C4 /* InputPageView.swift */; };
 		4CA2E23D286766EF00E514C4 /* PageHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA2E23C286766EF00E514C4 /* PageHeaderView.swift */; };
 		4CA2E23F28676FA400E514C4 /* PageButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA2E23E28676FA400E514C4 /* PageButtonsView.swift */; };
+		4CAB27CA29CDD6540075B4F4 /* QuestionnaireCountrySelectBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB27C929CDD6540075B4F4 /* QuestionnaireCountrySelectBottomSheet.swift */; };
 		4CB9FF412877437F004F1BF6 /* SearchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB9FF402877437E004F1BF6 /* SearchScreen.swift */; };
 		4CB9FF44287743C3004F1BF6 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB9FF43287743C3004F1BF6 /* MainScreen.swift */; };
 		4CB9FF46287743D9004F1BF6 /* MainMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB9FF45287743D9004F1BF6 /* MainMediator.swift */; };
@@ -435,6 +440,10 @@
 		4C48EABC29ABC061009199ED /* DialogsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogsView.swift; sourceTree = "<group>"; };
 		4C48EABE29ABD2D9009199ED /* BunningModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BunningModalView.swift; sourceTree = "<group>"; };
 		4C48EAC029ABD4E3009199ED /* BunningInvitationsDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BunningInvitationsDialog.swift; sourceTree = "<group>"; };
+		4C48EAC329B3A321009199ED /* TariffListMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TariffListMediator.swift; sourceTree = "<group>"; };
+		4C48EAC529B3A393009199ED /* TariffListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TariffListScreen.swift; sourceTree = "<group>"; };
+		4C48EAC729B3A7B8009199ED /* TariffItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TariffItemView.swift; sourceTree = "<group>"; };
+		4C48EAC929B466C5009199ED /* TariffSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TariffSliderView.swift; sourceTree = "<group>"; };
 		4C5C86AD28715A12006DE024 /* BaseBotomSheetMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseBotomSheetMediator.swift; sourceTree = "<group>"; };
 		4C5C86B1287171FF006DE024 /* RangeSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeSelectView.swift; sourceTree = "<group>"; };
 		4C5C86B4287174DD006DE024 /* RangeBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeBarView.swift; sourceTree = "<group>"; };
@@ -563,6 +572,7 @@
 		4CA2E239286765D900E514C4 /* InputPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputPageView.swift; sourceTree = "<group>"; };
 		4CA2E23C286766EF00E514C4 /* PageHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageHeaderView.swift; sourceTree = "<group>"; };
 		4CA2E23E28676FA400E514C4 /* PageButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageButtonsView.swift; sourceTree = "<group>"; };
+		4CAB27C929CDD6540075B4F4 /* QuestionnaireCountrySelectBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireCountrySelectBottomSheet.swift; sourceTree = "<group>"; };
 		4CB9FF402877437E004F1BF6 /* SearchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreen.swift; sourceTree = "<group>"; };
 		4CB9FF43287743C3004F1BF6 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		4CB9FF45287743D9004F1BF6 /* MainMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMediator.swift; sourceTree = "<group>"; };
@@ -817,6 +827,7 @@
 				4C1B7C25286B6AFF000DB5D4 /* AnsferItemView.swift */,
 				4C1B7C2B286CD5BD000DB5D4 /* QuestionnaireSeekBarBottomSheet.swift */,
 				4C5C86BD287202A4006DE024 /* QuestionnaireMultySelectBottomSheet.swift */,
+				4CAB27C929CDD6540075B4F4 /* QuestionnaireCountrySelectBottomSheet.swift */,
 			);
 			path = bottomSheet;
 			sourceTree = "<group>";
@@ -951,6 +962,17 @@
 				4C48EAC029ABD4E3009199ED /* BunningInvitationsDialog.swift */,
 			);
 			path = "banning modals";
+			sourceTree = "<group>";
+		};
+		4C48EAC229B3A2FB009199ED /* tariff list */ = {
+			isa = PBXGroup;
+			children = (
+				4C48EAC329B3A321009199ED /* TariffListMediator.swift */,
+				4C48EAC529B3A393009199ED /* TariffListScreen.swift */,
+				4C48EAC729B3A7B8009199ED /* TariffItemView.swift */,
+				4C48EAC929B466C5009199ED /* TariffSliderView.swift */,
+			);
+			path = "tariff list";
 			sourceTree = "<group>";
 		};
 		4C5C86B82871A32E006DE024 /* search */ = {
@@ -1176,6 +1198,7 @@
 		4C8E7DA9284D24BC00D6E58D /* screens */ = {
 			isa = PBXGroup;
 			children = (
+				4C48EAC229B3A2FB009199ED /* tariff list */,
 				4C48EAB929ABB4D3009199ED /* banning modals */,
 				4C9C57CE28E0B15300688F4B /* fill data */,
 				4C1459062857926700558B6B /* SplashScreen.storyboard */,
@@ -2029,6 +2052,7 @@
 				4CB9FF412877437F004F1BF6 /* SearchScreen.swift in Sources */,
 				4C92CB1128AD4FAD00E5DF52 /* PhoneVerificationView.swift in Sources */,
 				4CD3F1D6288BA9E600DF8755 /* DuelCompareItem.swift in Sources */,
+				4C48EACA29B466C5009199ED /* TariffSliderView.swift in Sources */,
 				4C022A51285F0AF10043E49D /* EdiorView.swift in Sources */,
 				4CF028402889BACE002C59EE /* TopButtonView.swift in Sources */,
 				4C022A54285F90CC0043E49D /* PhotoViewer.swift in Sources */,
@@ -2093,12 +2117,15 @@
 				4CB9FF502877472A004F1BF6 /* ChatListScreen.swift in Sources */,
 				4CB9FF70287B3582004F1BF6 /* DarkBottomSheetItem.swift in Sources */,
 				4CA2E23228672F4100E514C4 /* QuestionnaireMediator.swift in Sources */,
+				4CAB27CA29CDD6540075B4F4 /* QuestionnaireCountrySelectBottomSheet.swift in Sources */,
 				4CB9FFA62884608E004F1BF6 /* AnotherProfileHeader.swift in Sources */,
 				4CBB9E0D2917BEA70028DF42 /* ImageListMediator.swift in Sources */,
+				4C48EAC629B3A393009199ED /* TariffListScreen.swift in Sources */,
 				4CF02851288AFDE0002C59EE /* SearchListView.swift in Sources */,
 				4C0E71EF284FC394004099D4 /* CircleImageButton.swift in Sources */,
 				4C48EABD29ABC062009199ED /* DialogsView.swift in Sources */,
 				4CB9FF5228774739004F1BF6 /* MatchesScreen.swift in Sources */,
+				4C48EAC829B3A7B8009199ED /* TariffItemView.swift in Sources */,
 				4CF028452889BB84002C59EE /* DuelColorfullTitle.swift in Sources */,
 				4CB9FFAE2885BBFA004F1BF6 /* GuestListItemView.swift in Sources */,
 				4CD34F2E288C13F000504396 /* MyDuelsListItemView.swift in Sources */,
@@ -2112,6 +2139,7 @@
 				4CBF592F28A2AD7A006BDE53 /* CompanionImageMessageView.swift in Sources */,
 				4C421E10292BD95700F2F6CD /* BaseOtpMediator.swift in Sources */,
 				4C878F1E28B7FC3600043680 /* SuccessItemView.swift in Sources */,
+				4C48EAC429B3A321009199ED /* TariffListMediator.swift in Sources */,
 				4C022A4B285A470B0043E49D /* PhotoSettingsBottomSheet.swift in Sources */,
 				4C950D5F284E7318004E2C13 /* AuthScreen.swift in Sources */,
 				4C5C86DA2874AA5B006DE024 /* StringUtils.swift in Sources */,
@@ -2364,7 +2392,7 @@
 				CODE_SIGN_ENTITLEMENTS = BestDate/BestDateDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_ASSET_PATHS = "\"BestDate/Preview Content\"";
 				DEVELOPMENT_TEAM = 7869H74LP9;
 				ENABLE_PREVIEWS = YES;
@@ -2406,7 +2434,7 @@
 				CODE_SIGN_ENTITLEMENTS = BestDate/BestDate.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_ASSET_PATHS = "\"BestDate/Preview Content\"";
 				DEVELOPMENT_TEAM = 7869H74LP9;
 				ENABLE_PREVIEWS = YES;

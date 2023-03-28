@@ -596,7 +596,7 @@
 "main_settings" = "main settings";
 "settings_applied" = "Settings applied";
 "blocking_messages" = "Blocking messages";
-"you_will_not_be_able_to_send_messages" = "You will not be able to send messages, but only invitations.";
+"you_will_not_be_able_to_send_messages" = "You will not be able to receive messages, but only invitations.";
 "disabling_notifications" = "Disabling notifications";
 "you_will_not_receive_notifications" = "You will not receive notifications from the selected categories.";
 "invite_cards" = "Invite Cards";
@@ -666,3 +666,15 @@
 "you_have_one_card_per_day" = "You have one invitation card\nper day";
 "choose_the_plan" = "Choose the plan";
 "activate_" = "Activate ";
+"montly_plan" = "Monthly plan";
+"per_montly" = "Per monthly";
+"three_months_plan" = "Three months plan";
+"per_three_monthly" = "Per three monthly";
+"six_months_plan" = "Six months plan";
+"per_six_monthly" = "Per six monthly";
+"features" = "Features";
+"everything_in_this_plan" = "Everything in this plan";
+"unlimited_invite_cards" = "Unlimited Invite Cards";
+"unlimited_messages" = "Unlimited Messages";
+"messages_blocked" = "Messages blocked";
+"messages_unblocked" = "Messages unlocked";

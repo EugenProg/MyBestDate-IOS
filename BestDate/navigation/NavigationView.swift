@@ -56,6 +56,7 @@ struct NavigationView: View {
                     case .FILL_REGISTRATION_DATA: FillRegistrationDataScreen().transition(.opacity)
                     case .SEARCH_FILTER: SearchFilterScreen().transition(.move(edge: .bottom))
                     case .USER_LOCATION: UserLocationScreen().transition(.move(edge: .bottom))
+                    case .TARIFF_LIST: TariffListScreen().transition(.move(edge: .bottom))
                     }
                 }.blur(radius: getBlur())
             }.onTapGesture(perform: { store.dispatch(action: .hideKeyboard) })

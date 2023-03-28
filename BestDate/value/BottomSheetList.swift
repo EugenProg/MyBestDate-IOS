@@ -14,6 +14,7 @@ enum BottomSheetList: String {
     case NOT_CORRECT_PHOTO
 
     case QUESTIONNAIRE_SINGLE_SELECT
+    case QUESTIONNAIRE_COUNTRY
     case QUESTIONNAIRE_SEEK_BAR
     case QUESTIONNAIRE_SEARCH
     case QUESTIONNAIRE_MULTY_SELECT
@@ -39,6 +40,7 @@ enum BottomSheetList: String {
         case .PHOTO_SETTINGS: return .AUTO
         case .NOT_CORRECT_PHOTO: return .AUTO
         case .QUESTIONNAIRE_SINGLE_SELECT: return .AUTO
+        case .QUESTIONNAIRE_COUNTRY: return .FULL
         case .QUESTIONNAIRE_SEEK_BAR: return .AUTO
         case .QUESTIONNAIRE_SEARCH: return .AUTO
         case .QUESTIONNAIRE_MULTY_SELECT: return .AUTO
@@ -60,6 +62,7 @@ enum BottomSheetList: String {
         case .PHOTO_SETTINGS: return .BLACK
         case .NOT_CORRECT_PHOTO: return .BLACK
         case .QUESTIONNAIRE_SINGLE_SELECT: return .WHITE
+        case .QUESTIONNAIRE_COUNTRY: return .WHITE
         case .QUESTIONNAIRE_SEEK_BAR: return .WHITE
         case .QUESTIONNAIRE_SEARCH: return .WHITE
         case .QUESTIONNAIRE_MULTY_SELECT: return .WHITE

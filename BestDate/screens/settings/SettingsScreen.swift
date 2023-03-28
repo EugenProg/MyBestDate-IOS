@@ -47,7 +47,9 @@ struct SettingsScreen: View {
                                             image: "ic_settings_message",
                                             isActive: $mediator.settings.block_messages,
                                             saveProgress: $messageBlockingProccess,
-                                            isEnabled: $changesEnabled) { checked in
+                                            isEnabled: $changesEnabled,
+                                            activeText: "messages_blocked".localized(),
+                                            unactiveText: "messages_unblocked".localized()) { checked in
                         messageBlockingProccess.toggle()
                         changesEnabled = false
                         mediator.saveSettings(type: .messages, enable: checked) {
