@@ -38,27 +38,32 @@ struct TopScreen: View {
                 .fill(MyColor.getColor(190, 239, 255, 0.15))
                 .frame(height: 1)
 
-            ScrollView(.vertical, showsIndicators: false) {
-                if mediator.manLoadingMode && mediator.manTopList.isEmpty && mediator.activePage == .man ||
-                    mediator.womanLoadingMode && mediator.womanTopList.isEmpty && mediator.activePage == .woman {
-                    ProgressView()
-                        .tint(ColorList.white.color)
-                        .frame(width: 80, height: 80)
-                } else {
-                    TopListView(page: $mediator.activePage,
-                                womanList: $mediator.womanTopList,
-                                manList: $mediator.manTopList) { user in
-                        AnotherProfileMediator.shared.setUser(user: user)
-                        store.dispatch(action: .navigate(screen: .ANOTHER_PROFILE))
-                    }
-                    .padding(.init(top: 14, leading: 3, bottom: 16, trailing: 3))
-                }
-            }.padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight, trailing: 0))
+            if mediator.activePage == .man {
+                TopListView(list: $mediator.manTopList, loadingMode: $mediator.manLoadingMode,
+                            savedPosition: $mediator.manSavedPosition, offsetChanged: savePosition()) { user in
+                    AnotherProfileMediator.shared.setUser(user: user)
+                    store.dispatch(action: .navigate(screen: .ANOTHER_PROFILE))
+                }.transition(.move(edge: .trailing))
+                    .padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight, trailing: 0))
+            } else {
+                TopListView(list: $mediator.womanTopList, loadingMode: $mediator.womanLoadingMode,
+                            savedPosition: $mediator.womanSavedPosition, offsetChanged: savePosition()) { user in
+                    AnotherProfileMediator.shared.setUser(user: user)
+                    store.dispatch(action: .navigate(screen: .ANOTHER_PROFILE))
+
+                }.padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight, trailing: 0))
+            }
         }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
             .background(ColorList.main.color.edgesIgnoringSafeArea(.bottom))
             .onAppear {
                 mediator.getWomanList()
                 mediator.getManList()
             }
+    }
+
+    func savePosition() -> (CGFloat) -> Void {
+        { position in
+            mediator.savePosition(position)
+        }
     }
 }
