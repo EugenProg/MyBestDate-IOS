@@ -22,6 +22,7 @@ enum BottomSheetList: String {
 
     case MAIN_LOCATION
     case MAIN_ONLINE
+    case MAIN_GENDER
 
     case CHAT_ACTIONS
 
@@ -47,6 +48,7 @@ enum BottomSheetList: String {
         case .QUESTIONNAIRE_VERIFICATION: return .AUTO
         case .MAIN_LOCATION: return .AUTO
         case .MAIN_ONLINE: return .AUTO
+        case .MAIN_GENDER: return .AUTO
         case .CHAT_ACTIONS: return .AUTO
         case .ANOTHER_ADDITIONALLY: return .AUTO
         case .LANGUAGE: return .AUTO
@@ -69,6 +71,7 @@ enum BottomSheetList: String {
         case .QUESTIONNAIRE_VERIFICATION: return .WHITE
         case .MAIN_LOCATION: return .BLACK
         case .MAIN_ONLINE: return .BLACK
+        case .MAIN_GENDER: return .BLACK
         case .CHAT_ACTIONS: return .BLACK
         case .ANOTHER_ADDITIONALLY: return .BLACK
         case .LANGUAGE: return .BLACK

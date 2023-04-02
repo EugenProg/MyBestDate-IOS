@@ -412,12 +412,13 @@ class CoreApiService {
     }
 
     func getUsersList(location: LocationFilterTypes, online: OnlineFilterTypes,
-                      filter: Filter? = nil, page: Int, completion: @escaping (Bool, [ShortUserInfo], Meta) -> Void) {
+                      filter: Filter? = nil, genderFilter: FilterGender, page: Int,
+                      completion: @escaping (Bool, [ShortUserInfo], Meta) -> Void) {
         var request = CoreApiTypes.getUserList.getRequest(withAuth: true, params: CoreApiTypes.getPageParams(page: page))
 
         let location = location == .filter ? LocationFilterTypes.all : location
         let online = online == .filter ? OnlineFilterTypes.all : online
-        let data = try! encoder.encode(SearchFilter(location: location.rawValue, online: online.rawValue, filters: filter))
+        let data = try! encoder.encode(SearchFilter(location: location.rawValue, online: online.rawValue, gender: genderFilter.getServerName, filters: filter))
         encoder.outputFormatting = .prettyPrinted
         NetworkLogger.printLog(data: data)
         request.httpBody = data

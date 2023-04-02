@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainOnlineBottomSheet: View {
+    @EnvironmentObject var store: Store
     @ObservedObject var mediator = OnlineMediator.shared
 
     var clickAction: () -> Void
@@ -21,8 +22,13 @@ struct MainOnlineBottomSheet: View {
                 DarkBottomSheetItem(text: item.name, isSelect: equals(item: item.name)) { name in
                     clickAction()
                     mediator.selectedItem = item
+                    store.dispatch(action: .startProcess)
                     UserDataHolder.setSearchOnline(filter: item.type)
-                    SearchMediator.shared.updateUserList(location: nil, online: item.type)
+                    SearchMediator.shared.updateUserList(location: nil, online: item.type) {
+                        DispatchQueue.main.async {
+                            store.dispatch(action: .endProcess)
+                        }
+                    }
                 }
             }
         }.frame(width: UIScreen.main.bounds.width, alignment: .topLeading)

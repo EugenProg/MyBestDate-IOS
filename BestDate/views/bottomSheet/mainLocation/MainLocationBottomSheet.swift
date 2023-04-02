@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainLocationBottomSheet: View {
+    @EnvironmentObject var store: Store
     @ObservedObject var mediator = LocationMediator.shared
 
     var clickAction: () -> Void
@@ -21,8 +22,13 @@ struct MainLocationBottomSheet: View {
                 DarkBottomSheetItem(text: item.name, isSelect: equals(item: item.name)) { name in
                     clickAction()
                     mediator.selectedItem = item
+                    store.dispatch(action: .startProcess)
                     UserDataHolder.setSearchLocation(filter: item.type)
-                    SearchMediator.shared.updateUserList(location: item.type, online: nil)
+                    SearchMediator.shared.updateUserList(location: item.type, online: nil) {
+                        DispatchQueue.main.async {
+                            store.dispatch(action: .endProcess)
+                        }
+                    }
                 }
             }
         }.frame(width: UIScreen.main.bounds.width, alignment: .topLeading)

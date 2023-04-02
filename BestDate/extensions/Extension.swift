@@ -319,6 +319,11 @@ extension UserInfo {
             questionnaire: self.questionnaire
         )
     }
+
+    func getSearchGender() -> FilterGender {
+        if self.look_for?.contains("male") == true { return .men }
+        else { return .women }
+    }
 }
 
 

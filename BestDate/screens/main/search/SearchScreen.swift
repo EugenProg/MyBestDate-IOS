@@ -28,6 +28,10 @@ struct SearchScreen: View {
                     }
 
                     Spacer()
+
+                    TextButton(text: mediator.selectedGender?.getName ?? FilterGender.all_gender.getName, textColor: ColorList.white.color) {
+                        store.dispatch(action: .showBottomSheet(view: .MAIN_GENDER))
+                    }
                 }
 
                 Title(textColor: ColorList.white.color, text: "search", textSize: 20, paddingV: 0, paddingH: 0)

@@ -29,6 +29,7 @@ class MainMediator: ObservableObject {
         mainPhoto = user.getMainPhoto()
         self.user = user
         self.coinsCount = user.getCoins()
+        SearchMediator.shared.setSearchGender(searchGender: self.user.getSearchGender())
         SettingsMediator.shared.getUserSettings()
         LocationMediator.shared.updateItemsList()
         if !PusherMediator.shared.isConnected() {

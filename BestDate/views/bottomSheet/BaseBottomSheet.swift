@@ -37,6 +37,7 @@ struct BaseBottomSheet: View {
                         case .QUESTIONNAIRE_VERIFICATION: QuestionnaireVerificationBottomSheet { dismiss() }
                         case .MAIN_LOCATION: MainLocationBottomSheet { dismiss() }
                         case .MAIN_ONLINE: MainOnlineBottomSheet { dismiss() }
+                        case .MAIN_GENDER: GenderFilterSheet { dismiss() }
                         case .CHAT_ACTIONS: ChatActionsBottomSheet { dismiss() }
                         case .ANOTHER_ADDITIONALLY: AnotherAdditionallyBottomSheet { dismiss() }
                         case .LANGUAGE: LanguageBottomSheet { dismiss() }

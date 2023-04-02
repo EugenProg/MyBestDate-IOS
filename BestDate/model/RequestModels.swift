@@ -67,6 +67,7 @@ struct PhotoStatusUpdateRequest: Codable {
 struct SearchFilter: Codable {
     var location: String = "all"
     var online: String = "all"
+    var gender: String? = nil
     var filters: Filter? = nil
 }
 

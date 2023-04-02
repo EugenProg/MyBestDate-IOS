@@ -19,6 +19,7 @@ class SearchMediator: ObservableObject {
 
     var searchFilter: Filter? = nil
     var searchCity: CityListItem? = nil
+    var selectedGender: FilterGender? = nil
     var savedPosition: CGFloat = 0
 
     var locationType: LocationFilterTypes = UserDataHolder.searchLocation
@@ -27,7 +28,7 @@ class SearchMediator: ObservableObject {
     func getUserList(withClear: Bool, page: Int, completion: @escaping () -> Void) {
         loadingMode = true
         self.savedPosition = 0
-        CoreApiService.shared.getUsersList(location: locationType, online: onlineType, filter: searchFilter, page: page) { success, userList, meta in
+        CoreApiService.shared.getUsersList(location: locationType, online: onlineType, filter: searchFilter, genderFilter: selectedGender ?? .all_gender, page: page) { success, userList, meta in
             DispatchQueue.main.async {
                 withAnimation {
                     self.users.addAll(list: userList, clear: withClear)
@@ -46,17 +47,17 @@ class SearchMediator: ObservableObject {
         getUserList(withClear: false, page: (meta.current_page ?? 0) + 1) { }
     }
 
-    func updateUserList(location: LocationFilterTypes?, online: OnlineFilterTypes?) {
+    func updateUserList(location: LocationFilterTypes?, online: OnlineFilterTypes?, completion: @escaping () -> Void) {
         if location != nil && location != locationType {
             searchFilter = nil
             locationType = location ?? .all
             if onlineType == .filter { OnlineMediator.shared.setSelectedItem(type: OnlineFilterTypes.all) }
-            getUserList(withClear: true, page: 0) { }
+            getUserList(withClear: true, page: 0) { completion() }
         } else if online != nil && online != onlineType {
             searchFilter = nil
             onlineType = online ?? .all
             if locationType == .filter { LocationMediator.shared.setSelectedItem(type: LocationFilterTypes.all) }
-            getUserList(withClear: true, page: 0) { }
+            getUserList(withClear: true, page: 0) { completion() }
         }
     }
 
@@ -80,5 +81,18 @@ class SearchMediator: ObservableObject {
 
     func clearData() {
         users.removeAll()
+    }
+
+    func setSearchGender(searchGender: FilterGender) {
+        if self.selectedGender == nil {
+            self.selectedGender = searchGender
+        }
+    }
+
+    func setGender(gender: FilterGender, completion: @escaping () -> Void) {
+        self.selectedGender = gender
+        self.getUserList(withClear: true, page: 0) {
+            completion()
+        }
     }
 }

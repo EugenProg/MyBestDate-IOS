@@ -90,6 +90,7 @@
 		4C3D27D52853B0B500F8FD09 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D27D42853B0B500F8FD09 /* InfoView.swift */; };
 		4C417A3129D93B940059F959 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C417A3029D93B940059F959 /* ImagePicker.swift */; };
 		4C417A3329D945070059F959 /* ImagePickerMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C417A3229D945070059F959 /* ImagePickerMediator.swift */; };
+		4C417A3629D956DD0059F959 /* GenderFilterSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C417A3529D956DD0059F959 /* GenderFilterSheet.swift */; };
 		4C421E0C29254E5800F2F6CD /* LanguageSettingsDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C421E0B29254E5800F2F6CD /* LanguageSettingsDialog.swift */; };
 		4C421E0E29268AD200F2F6CD /* PermissionDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C421E0D29268AD200F2F6CD /* PermissionDialog.swift */; };
 		4C421E10292BD95700F2F6CD /* BaseOtpMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C421E0F292BD95700F2F6CD /* BaseOtpMediator.swift */; };
@@ -433,6 +434,7 @@
 		4C3D27D42853B0B500F8FD09 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		4C417A3029D93B940059F959 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		4C417A3229D945070059F959 /* ImagePickerMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerMediator.swift; sourceTree = "<group>"; };
+		4C417A3529D956DD0059F959 /* GenderFilterSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderFilterSheet.swift; sourceTree = "<group>"; };
 		4C421E0B29254E5800F2F6CD /* LanguageSettingsDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSettingsDialog.swift; sourceTree = "<group>"; };
 		4C421E0D29268AD200F2F6CD /* PermissionDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionDialog.swift; sourceTree = "<group>"; };
 		4C421E0F292BD95700F2F6CD /* BaseOtpMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseOtpMediator.swift; sourceTree = "<group>"; };
@@ -942,6 +944,7 @@
 		4C3D27D12853A62700F8FD09 /* bottomSheet */ = {
 			isa = PBXGroup;
 			children = (
+				4C417A3429D956BB0059F959 /* genderFilterSheet */,
 				4CBB9E092917BE0D0028DF42 /* image list */,
 				4C9C57C528DCDC7900688F4B /* social */,
 				4C9E5B0028D38C0C00E4E9FF /* language */,
@@ -958,6 +961,14 @@
 				4CFD001C29A2348B0015F86C /* ProfileAdditionaly.swift */,
 			);
 			path = bottomSheet;
+			sourceTree = "<group>";
+		};
+		4C417A3429D956BB0059F959 /* genderFilterSheet */ = {
+			isa = PBXGroup;
+			children = (
+				4C417A3529D956DD0059F959 /* GenderFilterSheet.swift */,
+			);
+			path = genderFilterSheet;
 			sourceTree = "<group>";
 		};
 		4C48EAB929ABB4D3009199ED /* banning modals */ = {
@@ -2161,6 +2172,7 @@
 				4C92CB2428B275D500E5DF52 /* InvitationsListView.swift in Sources */,
 				4C1458FA2855E17100558B6B /* BaseOTPScreen.swift in Sources */,
 				4CA2E22E2867286000E514C4 /* FillingProgressView.swift in Sources */,
+				4C417A3629D956DD0059F959 /* GenderFilterSheet.swift in Sources */,
 				4C2DC94628C1221600DD15C2 /* InvitationPushView.swift in Sources */,
 				4CB9FF4C287746F9004F1BF6 /* GuestsScreen.swift in Sources */,
 				4C3D27BE28511DCA00F8FD09 /* HeaderText.swift in Sources */,
