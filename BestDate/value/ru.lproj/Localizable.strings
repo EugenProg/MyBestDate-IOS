@@ -556,8 +556,8 @@
 "new" = "Новые";
 "answered" = "Отвеченные";
 "sent" = "Отправленные";
-"yes_i_agree" = "Да, я согласен";
-"yes_i_will_but_next_time" = "Да, я согласен, но в следующий раз";
+"yes_i_agree" = "Да, я соглас(ен)/на";
+"yes_i_will_but_next_time" = "Да, я соглас(ен)/на, но в следующий раз";
 "thanks_but_i_cant_yet" = "Спасибо, но пока не могу";
 "no" = "Нет";
 "you_have_received_an_invitation_please_give_an_answer" = "Вы получили приглашение,\nпожалуйста, дайте ответ";
@@ -629,7 +629,7 @@
 "failed_save_data" = "Не удалось сохранить данные";
 "attention" = "Внимание";
 "all_your_data_will_be_deleted" = "Все ваши данные, включая вашу учетную запись, будут удалены";
-"any_has_not_given_an_answer_yet" = "%@ еще не ответила";
+"any_has_not_given_an_answer_yet" = "%@ еще не ответил(а)";
 "you_have_no_new_invitations" = "Извините, у вас нет новых приглашений";
 "you_have_no_answered_invitations" = "Извините, у вас нет ответов на приглашения";
 "you_have_no_invitations_sent" = "Извините, у вас нет отправленных приглашений";
