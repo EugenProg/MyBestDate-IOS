@@ -22,6 +22,7 @@ class AnotherProfileMediator: ObservableObject {
 
     func setUser(user: ShortUserInfo) {
         self.mainPhoto = user.main_photo ?? ProfileImage()
+        setMainImageToImageList()
         self.mainLiked = self.mainPhoto.liked ?? false
         self.user = user.toUser()
         getUserById(id: user.id ?? 0)
@@ -29,6 +30,7 @@ class AnotherProfileMediator: ObservableObject {
 
     func setUser(user: UserInfo) {
         self.mainPhoto = user.getMainPhoto() ?? ProfileImage()
+        setMainImageToImageList()
         self.user = user
         getUserById(id: user.id ?? 0)
     }
@@ -72,5 +74,11 @@ class AnotherProfileMediator: ObservableObject {
         self.user = UserInfo()
         self.imageList.removeAll()
         self.selectedImage = 0
+    }
+
+    private func setMainImageToImageList() {
+        if self.mainPhoto.id != nil {
+            self.imageList = [self.mainPhoto]
+        }
     }
 }

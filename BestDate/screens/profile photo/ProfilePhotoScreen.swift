@@ -12,6 +12,7 @@ struct ProfilePhotoScreen: View {
     @ObservedObject var photoSettingsMediator = PhotoSettingsSheetMediator.shared
     @ObservedObject var registrationMediator = RegistrationMediator.shared
     @ObservedObject var mediator = PhotoEditorMediator.shared
+    @ObservedObject var pickerMediator = ImagePickerMediator.shared
     
     @State var process: Bool = false
     
@@ -101,7 +102,7 @@ struct ProfilePhotoScreen: View {
                             
                             StandardButton(style: .white, title: "upload_a_photo", loadingProcess: $process) {
                                 if mediator.imageList.count < 9 {
-                                    store.dispatch(action: .showBottomSheet(view: .IMAGE_LIST))
+                                    pickerMediator.isShowingPhotoLibrary.toggle()
                                 } else {
                                     store.dispatch(action: .show(message: "you_can_upload_only_9_photo".localized()))
                                 }
@@ -117,8 +118,9 @@ struct ProfilePhotoScreen: View {
             .onAppear {
                 store.dispatch(action:
                         .setScreenColors(status: ColorList.white.color, style: mediator.mainPhoto != nil ? .lightContent : .darkContent))
-
-                ImageListMediator.shared.imageIsSelect = { image in
+            }
+            .sheet(isPresented: $pickerMediator.isShowingPhotoLibrary) {
+                ImagePicker { image in
                     mediator.newPhoto = image
                     photoSettingsMediator.callPage = .PROFILE_PHOTO
                     store.dispatch(action: .navigate(screen: .PHOTO_EDITING))

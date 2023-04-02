@@ -88,6 +88,8 @@
 		4C3D27D02853A37F00F8FD09 /* BottomSheetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D27CF2853A37F00F8FD09 /* BottomSheetList.swift */; };
 		4C3D27D32853A66A00F8FD09 /* GenderBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D27D22853A66A00F8FD09 /* GenderBottomSheet.swift */; };
 		4C3D27D52853B0B500F8FD09 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3D27D42853B0B500F8FD09 /* InfoView.swift */; };
+		4C417A3129D93B940059F959 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C417A3029D93B940059F959 /* ImagePicker.swift */; };
+		4C417A3329D945070059F959 /* ImagePickerMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C417A3229D945070059F959 /* ImagePickerMediator.swift */; };
 		4C421E0C29254E5800F2F6CD /* LanguageSettingsDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C421E0B29254E5800F2F6CD /* LanguageSettingsDialog.swift */; };
 		4C421E0E29268AD200F2F6CD /* PermissionDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C421E0D29268AD200F2F6CD /* PermissionDialog.swift */; };
 		4C421E10292BD95700F2F6CD /* BaseOtpMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C421E0F292BD95700F2F6CD /* BaseOtpMediator.swift */; };
@@ -429,6 +431,8 @@
 		4C3D27CF2853A37F00F8FD09 /* BottomSheetList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetList.swift; sourceTree = "<group>"; };
 		4C3D27D22853A66A00F8FD09 /* GenderBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderBottomSheet.swift; sourceTree = "<group>"; };
 		4C3D27D42853B0B500F8FD09 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		4C417A3029D93B940059F959 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		4C417A3229D945070059F959 /* ImagePickerMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerMediator.swift; sourceTree = "<group>"; };
 		4C421E0B29254E5800F2F6CD /* LanguageSettingsDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSettingsDialog.swift; sourceTree = "<group>"; };
 		4C421E0D29268AD200F2F6CD /* PermissionDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionDialog.swift; sourceTree = "<group>"; };
 		4C421E0F292BD95700F2F6CD /* BaseOtpMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseOtpMediator.swift; sourceTree = "<group>"; };
@@ -733,6 +737,8 @@
 				4C022A4028590BE10043E49D /* Media.swift */,
 				4C5C86E22875DF43006DE024 /* ImageUtils.swift */,
 				4CBB9E0729179C810028DF42 /* ImageFetcher.swift */,
+				4C417A3029D93B940059F959 /* ImagePicker.swift */,
+				4C417A3229D945070059F959 /* ImagePickerMediator.swift */,
 			);
 			path = imagePicker;
 			sourceTree = "<group>";
@@ -1963,6 +1969,7 @@
 				4CB9FF72287F4028004F1BF6 /* StartScreen.swift in Sources */,
 				4C878F2028B7FEB300043680 /* CloseItemView.swift in Sources */,
 				4CF02856288B0B10002C59EE /* DuelMediator.swift in Sources */,
+				4C417A3329D945070059F959 /* ImagePickerMediator.swift in Sources */,
 				4C8E7D99284D1E7B00D6E58D /* Color.swift in Sources */,
 				4C9C57C728DCDCA100688F4B /* SocialNetworkBottomSheet.swift in Sources */,
 				4C2DC94228C121AC00DD15C2 /* LikePushView.swift in Sources */,
@@ -1978,6 +1985,7 @@
 				4C9E5AEE28D2347100E4E9FF /* PerasonalDataMediator.swift in Sources */,
 				4C1459012856620300558B6B /* PassRecoverySetNewScreen.swift in Sources */,
 				4C022A4328591A2B0043E49D /* BluredImageHeaderView.swift in Sources */,
+				4C417A3129D93B940059F959 /* ImagePicker.swift in Sources */,
 				4CB9FF60287AE104004F1BF6 /* DropDownView.swift in Sources */,
 				4CB9FF8F28832DAF004F1BF6 /* CoinsBoxView.swift in Sources */,
 				4C92CB2628B2783200E5DF52 /* NewInvitationItemView.swift in Sources */,
@@ -2392,7 +2400,7 @@
 				CODE_SIGN_ENTITLEMENTS = BestDate/BestDateDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_ASSET_PATHS = "\"BestDate/Preview Content\"";
 				DEVELOPMENT_TEAM = 7869H74LP9;
 				ENABLE_PREVIEWS = YES;
@@ -2434,7 +2442,7 @@
 				CODE_SIGN_ENTITLEMENTS = BestDate/BestDate.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_ASSET_PATHS = "\"BestDate/Preview Content\"";
 				DEVELOPMENT_TEAM = 7869H74LP9;
 				ENABLE_PREVIEWS = YES;

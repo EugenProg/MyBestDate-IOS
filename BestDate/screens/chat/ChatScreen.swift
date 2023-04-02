@@ -10,6 +10,7 @@ import SwiftUI
 struct ChatScreen: View {
     @EnvironmentObject var store: Store
     @ObservedObject var mediator = ChatMediator.shared
+    @ObservedObject var pickerMediator = ImagePickerMediator.shared
     @State private var offsetValue: CGFloat = 0.0
 
     @State var sendTextProcess: Bool = false
@@ -133,7 +134,7 @@ struct ChatScreen: View {
                                    replyMode: $mediator.replyMode,
                                    selectedMessage: $mediator.selectedMessage,
                                    loadImageAction: {
-                        store.dispatch(action: .showBottomSheet(view: .IMAGE_LIST))
+                        pickerMediator.isShowingPhotoLibrary.toggle()
                     },
                                    translateAction: { text in
                         mediator.translate(text: text) { success, translatedText in
@@ -167,8 +168,9 @@ struct ChatScreen: View {
         .onAppear {
             store.dispatch(action:
                     .setScreenColors(status: ColorList.main.color, style: .lightContent))
-
-            ImageListMediator.shared.imageIsSelect = { image in
+        }
+        .sheet(isPresented: $pickerMediator.isShowingPhotoLibrary) {
+            ImagePicker { image in
                 mediator.selectedImage = image
                 mediator.editImageMode.toggle()
             }
@@ -197,11 +199,5 @@ struct ChatScreen: View {
 
     private func getBottomPadding() -> CGFloat {
         (offsetValue / 2) + 90 + ((mediator.messages.isEmpty || mediator.user?.getRole() == .bot) ? 0 : 41)
-    }
-}
-
-struct ChatScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        ChatScreen()
     }
 }

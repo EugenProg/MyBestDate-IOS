@@ -13,6 +13,7 @@ struct ProfileScreen: View {
     @ObservedObject var mainMediator = MainMediator.shared
     @ObservedObject var editorMediator = PhotoEditorMediator.shared
     @ObservedObject var photoMediator = PhotoSettingsSheetMediator.shared
+    @ObservedObject var pickerMediator = ImagePickerMediator.shared
     @State var showHeader = false
     @State var logoutProccess: Bool = false
 
@@ -170,8 +171,9 @@ struct ProfileScreen: View {
                         .setScreenColors(status: ColorList.main.color, style: .lightContent))
 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: { withAnimation { showHeader = true } })
-
-                ImageListMediator.shared.imageIsSelect = { image in
+            }
+            .sheet(isPresented: $pickerMediator.isShowingPhotoLibrary) {
+                ImagePicker { image in
                     editorMediator.newPhoto = image
                     photoMediator.callPage = .PROFILE
                     store.dispatch(action: .navigate(screen: .PHOTO_EDITING))
@@ -181,7 +183,7 @@ struct ProfileScreen: View {
 
     private func addImage() -> () -> Void {
         {
-            store.dispatch(action: .showBottomSheet(view: .IMAGE_LIST))
+            pickerMediator.isShowingPhotoLibrary.toggle()
         }
     }
 

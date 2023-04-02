@@ -22,7 +22,7 @@ struct PhotoEditingScreen: View {
                 VStack(alignment: .leading, spacing: 0) {
                     VStack(alignment: .leading, spacing: 0) {
                         BackButton(style: .white) {
-                            store.dispatch(action: .showBottomSheet(view: .IMAGE_LIST))
+                            ImagePickerMediator.shared.isShowingPhotoLibrary.toggle()
                             store.dispatch(action: .navigationBack)
                         }
                             .padding(.init(top: 32, leading: 32, bottom: 15, trailing: 32))

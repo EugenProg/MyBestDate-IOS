@@ -24,7 +24,7 @@ struct ChatImageViewer: View {
                         BackButton(style: .white) {
                             mediator.selectedImage = nil
                             mediator.editImageMode = false
-                            store.dispatch(action: .showBottomSheet(view: .IMAGE_LIST))
+                            ImagePickerMediator.shared.isShowingPhotoLibrary.toggle()
                         }
 
                         Spacer()

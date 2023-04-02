@@ -46,17 +46,11 @@ struct ChatListView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            if loadingMode {
-                ProgressView()
-                    .tint(ColorList.white.color)
-                    .frame(width: 80, height: 80)
-            } else {
-                if !newList.isEmpty {
-                    chatListBlock(header: "new_message", list: $newList, itemsType: .new)
-                }
-                if !previousList.isEmpty {
-                    chatListBlock(header: "all_message", list: $previousList, itemsType: .old)
-                }
+            if !newList.isEmpty {
+                chatListBlock(header: "new_message", list: $newList, itemsType: .new)
+            }
+            if !previousList.isEmpty {
+                chatListBlock(header: "all_message", list: $previousList, itemsType: .old)
             }
         }
     }
