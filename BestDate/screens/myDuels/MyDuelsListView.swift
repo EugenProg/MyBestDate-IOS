@@ -18,7 +18,7 @@ struct MyDuelsListView: View {
             GridItem(.fixed(UIScreen.main.bounds.width), spacing: 10)]
 
     var body: some View {
-        if list.isEmpty && !loadingMode {
+        if list.isEmpty {
             let topPadding = ((UIScreen.main.bounds.height - 260) / 2) - 100
             NoDataBoxView(loadingMode: $loadingMode, text: "nobody_voted_for_you_yet")
                 .padding(.init(top: 50, leading: 50, bottom: ((UIScreen.main.bounds.width - 9) / 2) - 69, trailing: 50))
