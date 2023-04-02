@@ -26,7 +26,7 @@ class SearchMediator: ObservableObject {
     var onlineType: OnlineFilterTypes = UserDataHolder.searchOnline
 
     func getUserList(withClear: Bool, page: Int, completion: @escaping () -> Void) {
-        loadingMode = true
+        loadingMode = withClear
         self.savedPosition = 0
         CoreApiService.shared.getUsersList(location: locationType, online: onlineType, filter: searchFilter, genderFilter: selectedGender ?? .all_gender, page: page) { success, userList, meta in
             DispatchQueue.main.async {
@@ -35,29 +35,28 @@ class SearchMediator: ObservableObject {
                     self.meta = meta
                 }
                 self.loadingMode = false
+                completion()
             }
-            completion()
         }
     }
 
     func getNextPage() {
-        print("current: \(meta.current_page ?? 0), last: \(meta.last_page ?? 0)")
         if (meta.current_page ?? 0) >= (meta.last_page ?? 0) { return }
 
         getUserList(withClear: false, page: (meta.current_page ?? 0) + 1) { }
     }
 
-    func updateUserList(location: LocationFilterTypes?, online: OnlineFilterTypes?, completion: @escaping () -> Void) {
+    func updateUserList(location: LocationFilterTypes?, online: OnlineFilterTypes?) {
         if location != nil && location != locationType {
             searchFilter = nil
             locationType = location ?? .all
             if onlineType == .filter { OnlineMediator.shared.setSelectedItem(type: OnlineFilterTypes.all) }
-            getUserList(withClear: true, page: 0) { completion() }
+            getUserList(withClear: true, page: 0) { }
         } else if online != nil && online != onlineType {
             searchFilter = nil
             onlineType = online ?? .all
             if locationType == .filter { LocationMediator.shared.setSelectedItem(type: LocationFilterTypes.all) }
-            getUserList(withClear: true, page: 0) { completion() }
+            getUserList(withClear: true, page: 0) { }
         }
     }
 
@@ -89,10 +88,8 @@ class SearchMediator: ObservableObject {
         }
     }
 
-    func setGender(gender: FilterGender, completion: @escaping () -> Void) {
+    func setGender(gender: FilterGender) {
         self.selectedGender = gender
-        self.getUserList(withClear: true, page: 0) {
-            completion()
-        }
+        self.getUserList(withClear: true, page: 0) { }
     }
 }

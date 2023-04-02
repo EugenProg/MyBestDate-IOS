@@ -10,11 +10,12 @@ import SwiftUI
 struct SearchListView: View {
     @Binding var list: [ShortUserInfo?]
     @Binding var meta: Meta
-    @Binding var loadingMode: Bool
+    @State var loadingMode: Bool = false
     var clickAction: (ShortUserInfo) -> Void
     var loadNextPage: () -> Void
 
     @State var showLoadingBlock: Bool = false
+
 
     var items: [GridItem] = [
         GridItem(.fixed((UIScreen.main.bounds.width - 9) / 2), spacing: 3),

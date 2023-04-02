@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct GenderFilterSheet: View {
-    @EnvironmentObject var store: Store
     var clickAction: () -> Void
 
     var genderList: [FilterGender] = [.men, .women, .all_gender]
@@ -20,12 +19,7 @@ struct GenderFilterSheet: View {
 
             ForEach(genderList, id: \.self) { gender in
                 DarkBottomSheetItem(text: gender.getName, isSelect: equals(gender: gender)) { item in
-                    store.dispatch(action: .startProcess)
-                    SearchMediator.shared.setGender(gender: gender) {
-                        DispatchQueue.main.async {
-                            store.dispatch(action: .endProcess)
-                        }
-                    }
+                    SearchMediator.shared.setGender(gender: gender)
                     clickAction()
                 }
             }

@@ -2412,7 +2412,7 @@
 				CODE_SIGN_ENTITLEMENTS = BestDate/BestDateDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_ASSET_PATHS = "\"BestDate/Preview Content\"";
 				DEVELOPMENT_TEAM = 7869H74LP9;
 				ENABLE_PREVIEWS = YES;
@@ -2454,7 +2454,7 @@
 				CODE_SIGN_ENTITLEMENTS = BestDate/BestDate.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_ASSET_PATHS = "\"BestDate/Preview Content\"";
 				DEVELOPMENT_TEAM = 7869H74LP9;
 				ENABLE_PREVIEWS = YES;

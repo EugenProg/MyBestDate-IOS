@@ -70,14 +70,25 @@ struct SearchScreen: View {
 
                 SaveRefreshAndSetPositionScrollView(startPosition: mediator.savedPosition,
                                              offsetChanged: { mediator.savePosition($0) },
-                                             onRefresh: { done in mediator.getUserList(withClear: true, page: 0) { done() }}) {
-                    SearchListView(list: $mediator.users, meta: $mediator.meta, loadingMode: $mediator.loadingMode) { user in
-                        AnotherProfileMediator.shared.setUser(user: user)
-                        store.dispatch(action: .navigate(screen: .ANOTHER_PROFILE))
-                    } loadNextPage: {
-                        mediator.getNextPage()
+                                             onRefresh: { done in
+                    refreshingProcess = true
+                    mediator.getUserList(withClear: true, page: 0) {
+                        refreshingProcess = false
+                        done()
                     }
-                    .padding(.init(top: 14, leading: 3, bottom: 45, trailing: 3))
+                }) {
+                    if mediator.loadingMode && !refreshingProcess {
+                        LoadingView()
+                            .padding(.top, 50)
+                    } else {
+                        SearchListView(list: $mediator.users, meta: $mediator.meta) { user in
+                            AnotherProfileMediator.shared.setUser(user: user)
+                            store.dispatch(action: .navigate(screen: .ANOTHER_PROFILE))
+                        } loadNextPage: {
+                            mediator.getNextPage()
+                        }
+                        .padding(.init(top: 14, leading: 3, bottom: 45, trailing: 3))
+                    }
                 }.padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight + 60, trailing: 0))
         }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         .background(ColorList.main.color.edgesIgnoringSafeArea(.bottom))

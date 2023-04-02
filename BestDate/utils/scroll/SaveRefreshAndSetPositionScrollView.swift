@@ -40,15 +40,9 @@ struct SaveRefreshAndSetPositionScrollView<Content: View>: View {
                             (state == .loading) ? -THRESHOLD : 0
                         })
 
-                    ZStack {
-                        Circle()
-                            .foregroundColor(Color(red: 1, green: 1, blue: 1, opacity: 0.1))
-                            .frame(width: THRESHOLD, height: THRESHOLD)
-                        ProgressView()
-                            .tint(ColorList.white.color)
-                            .frame(width: 50, height: 50)
-                    }.offset(y: (state == .loading) ? 0 : -THRESHOLD)
-                        .opacity((currentOffset < 1) ? 0 : 1)
+                    LoadingView()
+                        .offset(y: (state == .loading) ? 10 : -THRESHOLD)
+                        .opacity(state == .waiting ? 0 : 1)
                 }
             }
             .background(PositionIndicators(type: .fixed))
@@ -67,7 +61,8 @@ struct SaveRefreshAndSetPositionScrollView<Content: View>: View {
                         state = .primed
                     } else if offset < THRESHOLD && state == .primed {
                         state = .loading
-                        onRefresh { withAnimation{ state = .waiting } }
+                        onRefresh {
+                            withAnimation{ state = .waiting } }
                     }
                 }
             }
@@ -166,6 +161,20 @@ struct SaveAndSetPositionScrollView<Content: View>: View {
             .onAppear {
                 proxy.scrollTo(Int(round(startPosition)), anchor: .top)
             }
+        }
+    }
+}
+
+struct LoadingView: View {
+
+    var body: some View {
+        ZStack {
+            Circle()
+                .foregroundColor(Color(red: 1, green: 1, blue: 1, opacity: 0.1))
+                .frame(width: 50, height: 50)
+            ProgressView()
+                .tint(ColorList.white.color)
+                .frame(width: 50, height: 50)
         }
     }
 }
