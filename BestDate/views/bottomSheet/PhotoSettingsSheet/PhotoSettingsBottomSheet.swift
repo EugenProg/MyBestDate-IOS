@@ -14,6 +14,8 @@ struct PhotoSettingsBottomSheet: View {
     
     @State var saveProcess: Bool = false
     @State var deleteProcess: Bool = false
+
+    @State var saveAction: Bool = false
     var clickAction: () -> Void
     
     var body: some View {
@@ -53,6 +55,7 @@ struct PhotoSettingsBottomSheet: View {
              }
             
             StandardButton(style: .white, title: "save_changes", loadingProcess: $saveProcess) {
+                self.saveAction = true
                 save()
             }.padding(.init(top: 36, leading: 0, bottom: 22, trailing: 0))
         }
@@ -61,11 +64,14 @@ struct PhotoSettingsBottomSheet: View {
                 withAnimation { ready.toggle() }
             })
         }
+        .onDisappear {
+            if !self.saveAction { mediator.updateDataAction() }
+        }
     }
     
     private func infoClickAction() -> () -> Void {
         {
-            store.dispatch(action: .show(message: "info is clicked"))
+            //store.dispatch(action: .show(message: "info is clicked"))
         }
     }
 

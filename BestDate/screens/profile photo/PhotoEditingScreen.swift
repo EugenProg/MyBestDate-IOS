@@ -82,7 +82,7 @@ struct PhotoEditingScreen: View {
 
     private func saveImage() {
         ImageUtils.resize(image: mediator.croppedPhoto) { image in
-            mediator.saveImage(image: mediator.croppedPhoto) { success in
+            mediator.saveImage(image: image) { success in
                 DispatchQueue.main.async {
                     process.toggle()
                     if success {

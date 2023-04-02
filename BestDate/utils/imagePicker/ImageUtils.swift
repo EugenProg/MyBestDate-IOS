@@ -10,7 +10,7 @@ import UIKit
 
 class ImageUtils {
     static func resize(image: UIImage, completion: @escaping (UIImage) -> Void) {
-           ImageResizer.resize(image: image, maxByte: 900000) { saveImage in
+           ImageResizer.resize(image: image, maxByte: 1000000) { saveImage in
                completion(saveImage ?? image)
            }
        }

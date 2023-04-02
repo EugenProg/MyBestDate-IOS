@@ -41,7 +41,7 @@ class PhotoSettingsSheetMediator: ObservableObject {
         }
     }
 
-    private func updateDataAction() {
+    func updateDataAction() {
         if callPage == .PROFILE_PHOTO {
             PhotoEditorMediator.shared.updateUserData()
         } else if callPage == .PROFILE {
