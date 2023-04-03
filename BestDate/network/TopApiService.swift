@@ -11,8 +11,8 @@ class TopApiService {
     static var shared = TopApiService()
     private let encoder = JSONEncoder()
 
-    func getTopList(gender: GenderType, completion: @escaping (Bool, [Top]) -> Void) {
-        var request = CoreApiTypes.getTopList.getRequest(withAuth: true)
+    func getTopList(gender: GenderType, page: Int, completion: @escaping (Bool, [Top], Meta?) -> Void) {
+        var request = CoreApiTypes.getTopList.getRequest(withAuth: true, params: CoreApiTypes.getPageParams(page: page))
 
         let data = try! encoder.encode(TopRequest(gender: gender.typeName))
         encoder.outputFormatting = .prettyPrinted
@@ -23,9 +23,9 @@ class TopApiService {
             NetworkLogger.printLog(response: response)
             if let data = data, let response = try? JSONDecoder().decode(TopListResponse.self, from: data) {
                 NetworkLogger.printLog(data: data)
-                completion(response.success, response.data)
+                completion(response.success, response.data, response.meta)
             } else {
-                completion(false, [])
+                completion(false, [], nil)
             }
         }
 

@@ -15,7 +15,11 @@ struct TopScreen: View {
         VStack(spacing: 0) {
             ZStack {
                 HStack {
-                    BackButton(style: .white)
+                    BackButton(style: .white) {
+                        mediator.manSavedPosition = 0
+                        mediator.womanSavedPosition = 0
+                        store.dispatch(action: .navigationBack)
+                    }
 
                     Spacer()
                 }
@@ -39,26 +43,25 @@ struct TopScreen: View {
                 .frame(height: 1)
 
             if mediator.activePage == .man {
-                TopListView(list: $mediator.manTopList, loadingMode: $mediator.manLoadingMode,
+                TopListView(list: $mediator.manTopList, meta: $mediator.manListMeta, loadingMode: $mediator.manLoadingMode,
                             savedPosition: $mediator.manSavedPosition, offsetChanged: savePosition()) { user in
                     AnotherProfileMediator.shared.setUser(user: user)
                     store.dispatch(action: .navigate(screen: .ANOTHER_PROFILE))
+                } loadNextPage: {
+                    mediator.getManNextPage()
                 }.transition(.move(edge: .trailing))
                     .padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight, trailing: 0))
             } else {
-                TopListView(list: $mediator.womanTopList, loadingMode: $mediator.womanLoadingMode,
+                TopListView(list: $mediator.womanTopList, meta: $mediator.womanListMeta, loadingMode: $mediator.womanLoadingMode,
                             savedPosition: $mediator.womanSavedPosition, offsetChanged: savePosition()) { user in
                     AnotherProfileMediator.shared.setUser(user: user)
                     store.dispatch(action: .navigate(screen: .ANOTHER_PROFILE))
-
+                } loadNextPage: {
+                    mediator.getWomanNextPage()
                 }.padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight, trailing: 0))
             }
         }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
             .background(ColorList.main.color.edgesIgnoringSafeArea(.bottom))
-            .onAppear {
-                mediator.getWomanList()
-                mediator.getManList()
-            }
     }
 
     func savePosition() -> (CGFloat) -> Void {

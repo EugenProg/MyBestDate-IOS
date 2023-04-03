@@ -205,7 +205,7 @@ class PusherMediator {
 
 class AuthRequestBuilder: AuthRequestBuilderProtocol {
     func requestFor(socketID: String, channelName: String) -> URLRequest? {
-        let url = URL(string: "\(CoreApiTypes.blockUser.serverAddress)/broadcasting/auth")!
+        let url = URL(string: "\(CoreApiTypes.serverAddress)/broadcasting/auth")!
         var request = URLRequest(url: url)
         request.setValue(UserDataHolder.accessToken, forHTTPHeaderField: "Authorization")
         request.httpMethod = "POST"

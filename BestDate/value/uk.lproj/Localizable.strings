@@ -679,6 +679,6 @@
 "unlimited_messages" = "Unlimited Messages";
 "messages_blocked" = "Повідомлення заблоковані";
 "messages_unblocked" = "Повідомлення розблоковано";
-"mans" = "Чоловіки";
-"womans" = "Жінки";
+"mans" = "Чоловічий";
+"womans" = "Жіночий";
 "all_genders" = "Все";

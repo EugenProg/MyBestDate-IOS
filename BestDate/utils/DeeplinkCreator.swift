@@ -22,7 +22,7 @@ class DeeplinkCreator {
         linkBuilder?.socialMetaTagParameters = DynamicLinkSocialMetaTagParameters()
         linkBuilder?.socialMetaTagParameters?.title = "Link to \(userName)'s profile in My Best Date"
         linkBuilder?.socialMetaTagParameters?.descriptionText = "This link opens the user profile in My Best Date application"
-        linkBuilder?.socialMetaTagParameters?.imageURL = URL(string: "https://dev-api.bestdate.info/images/ic_launcher-playstore.png")
+        linkBuilder?.socialMetaTagParameters?.imageURL = URL(string: "\(CoreApiTypes.serverAddress)/images/ic_launcher-playstore.png")
 
         guard let longDynamicLink = linkBuilder?.url else { return "" }
         return longDynamicLink.absoluteString

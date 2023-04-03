@@ -74,8 +74,4 @@ class DuelMediator: ObservableObject {
             }
         }
     }
-
-    func updateTopLists() {
-        TopListMediator.shared.updateChangedList(isManUpdate: manVoted, isWomanUpdate: womanVoted)
-    }
 }

@@ -231,6 +231,7 @@ struct TopListResponse: Codable {
     var success: Bool
     var message: String
     var data: [Top] = []
+    var meta: Meta? = nil
 }
 
 struct Top: Codable {

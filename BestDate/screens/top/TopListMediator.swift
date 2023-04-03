@@ -19,40 +19,35 @@ class TopListMediator: ObservableObject {
     @Published var manTopList: [Top] = []
     @Published var manLoadingMode: Bool = true
     @Published var womanLoadingMode: Bool = true
+    @Published var manListMeta: Meta = Meta()
+    @Published var womanListMeta: Meta = Meta()
 
     var manSavedPosition: CGFloat = 0
     var womanSavedPosition: CGFloat = 0
 
-    func getManList() {
-        manLoadingMode = true
-        TopApiService.shared.getTopList(gender: .man) { success, list in
+    func getManList(withClear: Bool, page: Int) {
+        manLoadingMode = withClear
+        TopApiService.shared.getTopList(gender: .man, page: page) { success, list, meta in
             DispatchQueue.main.async {
                 if success {
-                    self.manTopList.clearAndAddAll(list: list)
+                    self.manTopList.addAll(list: list, clear: withClear)
+                    self.manListMeta = meta ?? Meta()
                 }
                 self.manLoadingMode = false
             }
         }
     }
 
-    func getWomanList() {
-        womanLoadingMode = true
-        TopApiService.shared.getTopList(gender: .woman) { success, list in
+    func getWomanList(withClear: Bool, page: Int) {
+        womanLoadingMode = withClear
+        TopApiService.shared.getTopList(gender: .woman, page: page) { success, list, meta in
             DispatchQueue.main.async {
                 if success {
-                    self.womanTopList.clearAndAddAll(list: list)
+                    self.womanTopList.addAll(list: list, clear: withClear)
+                    self.womanListMeta = meta ?? Meta()
                 }
                 self.womanLoadingMode = false
             }
-        }
-    }
-
-    func updateChangedList(isManUpdate: Bool, isWomanUpdate: Bool) {
-        if isManUpdate {
-            getManList()
-        }
-        if isWomanUpdate {
-            getWomanList()
         }
     }
 
@@ -64,5 +59,17 @@ class TopListMediator: ObservableObject {
     func savePosition(_ offset: CGFloat) {
         if activePage == .man { manSavedPosition = -((offset / itemHeight) * 2) }
         else { womanSavedPosition = -((offset / itemHeight) * 2) }
+    }
+
+    func getManNextPage() {
+        if (manListMeta.current_page ?? 0) >= (manListMeta.last_page ?? 0) { return }
+
+        getManList(withClear: false, page: (manListMeta.current_page ?? 0) + 1)
+    }
+
+    func getWomanNextPage() {
+        if (womanListMeta.current_page ?? 0) >= (womanListMeta.last_page ?? 0) { return }
+
+        getWomanList(withClear: false, page: (womanListMeta.current_page ?? 0) + 1)
     }
 }

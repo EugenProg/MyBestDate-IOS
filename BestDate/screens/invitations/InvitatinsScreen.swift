@@ -10,6 +10,7 @@ import SwiftUI
 struct InvitatinsScreen: View {
     @EnvironmentObject var store: Store
     @ObservedObject var mediator = InvitationMediator.shared
+    @State var refreshingMode: Bool = false
 
     var body: some View {
         VStack(spacing: 0) {
@@ -30,18 +31,32 @@ struct InvitatinsScreen: View {
                 .fill(MyColor.getColor(190, 239, 255, 0.15))
                 .frame(height: 1)
 
-            SaveRefreshAndSetPositionScrollView(onRefresh: { done in
-                mediator.refreshList() { done() }
+            RefreshScrollView(onRefresh: { done in
+                refreshingMode = true
+                mediator.refreshList() {
+                    refreshingMode = false
+                    done()
+                }
             }) {
-                InvitationsListView(
-                    newList: $mediator.newInvitations,
-                    answerdList: $mediator.answerdInvitations,
-                    sentList: $mediator.sentInvitations,
-                    page: $mediator.activeType,
-                    loadingMode: $mediator.loadingMode,
-                    answerAction: answer(),
-                    showUserAction: showUser())
-                .padding(.init(top: 14, leading: 0, bottom: 16, trailing: 0))
+                if mediator.newInvitations.isEmpty && mediator.activeType == .new && !refreshingMode {
+                    NoDataBoxView(loadingMode: $mediator.newLoadingMode, text: "you_have_no_new_invitations")
+                        .padding(.init(top: 50, leading: 50, bottom: ((UIScreen.main.bounds.width - 9) / 2) - 69, trailing: 50))
+                } else if mediator.answerdInvitations.isEmpty && mediator.activeType == .answered && !refreshingMode {
+                    NoDataBoxView(loadingMode: $mediator.answerdLoadingMode, text: "you_have_no_answered_invitations")
+                        .padding(.init(top: 50, leading: 50, bottom: ((UIScreen.main.bounds.width - 9) / 2) - 69, trailing: 50))
+                } else if mediator.sentInvitations.isEmpty && mediator.activeType == .sended && !refreshingMode {
+                    NoDataBoxView(loadingMode: $mediator.sentLoadingMode, text: "you_have_no_invitations_sent")
+                        .padding(.init(top: 50, leading: 50, bottom: ((UIScreen.main.bounds.width - 9) / 2) - 69, trailing: 50))
+                } else {
+                    InvitationsListView(
+                        newList: $mediator.newInvitations,
+                        answerdList: $mediator.answerdInvitations,
+                        sentList: $mediator.sentInvitations,
+                        page: $mediator.activeType,
+                        answerAction: answer(),
+                        showUserAction: showUser())
+                    .padding(.init(top: 14, leading: 0, bottom: 16, trailing: 0))
+                }
             }.padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight, trailing: 0))
         }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
             .background(ColorList.main.color.edgesIgnoringSafeArea(.bottom))

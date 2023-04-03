@@ -165,6 +165,58 @@ struct SaveAndSetPositionScrollView<Content: View>: View {
     }
 }
 
+struct RefreshScrollView<Content: View>: View {
+    let onRefresh: OnRefresh
+    let content: Content
+
+    @State private var state = RefreshState.waiting
+    @State private var currentOffset: CGFloat = 0
+
+    init(
+            onRefresh: @escaping OnRefresh,
+            @ViewBuilder content: () -> Content
+        ) {
+            self.onRefresh = onRefresh
+            self.content = content()
+        }
+
+    var body: some View {
+        ScrollViewReader { proxy in
+            ScrollView(.vertical, showsIndicators: false) {
+                ZStack(alignment: .top) {
+                    PositionIndicators(type: .moving)
+                        .frame(height: 0)
+
+                    content
+                        .alignmentGuide(.top, computeValue: { _ in
+                            (state == .loading) ? -THRESHOLD : 0
+                        })
+
+                    LoadingView()
+                        .offset(y: (state == .loading) ? 10 : -THRESHOLD)
+                        .opacity(state == .waiting ? 0 : 1)
+                }
+            }
+            .background(PositionIndicators(type: .fixed))
+            .onPreferenceChange(PositionPreferenceKey.self) { values in
+                DispatchQueue.main.async {
+                    let movingY = values.first { $0.type == .moving }?.y ?? 0
+                    let fixedY = values.first { $0.type == .fixed }?.y ?? 0
+                    let offset = movingY - fixedY
+
+                    if offset > THRESHOLD && state == .waiting {
+                        state = .primed
+                    } else if offset < THRESHOLD && state == .primed {
+                        state = .loading
+                        onRefresh {
+                            withAnimation{ state = .waiting } }
+                    }
+                }
+            }
+        }
+    }
+}
+
 struct LoadingView: View {
 
     var body: some View {

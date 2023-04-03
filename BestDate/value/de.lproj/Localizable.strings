@@ -679,6 +679,6 @@
 "unlimited_messages" = "Unlimited Messages";
 "messages_blocked" = "Nachrichten sind blockiert";
 "messages_unblocked" = "Nachrichten freigeschaltet";
-"mans" = "Männer";
-"womans" = "Frauen";
+"mans" = "Mann";
+"womans" = "Frau";
 "all_genders" = "Alle";

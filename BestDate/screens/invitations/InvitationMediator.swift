@@ -15,6 +15,9 @@ class InvitationMediator: ObservableObject {
     @Published var newInvitations: [InvitationCard] = []
     @Published var answerdInvitations: [InvitationCard] = []
     @Published var sentInvitations: [InvitationCard] = []
+    @Published var newLoadingMode: Bool = true
+    @Published var answerdLoadingMode: Bool = true
+    @Published var sentLoadingMode: Bool = true
     @Published var loadingMode: Bool = true
 
     func getAllInvitations() {
@@ -36,40 +39,40 @@ class InvitationMediator: ObservableObject {
     }
 
     func getNewInvitations(completion: @escaping () -> Void) {
-        loadingMode = true
+        newLoadingMode = true
         InvitationApiService.shared.getUserInvitationList(filter: .new) { success, invitations in
             DispatchQueue.main.async {
                 withAnimation {
                     self.newInvitations.clearAndAddAll(list: invitations)
                 }
                 completion()
-                self.loadingMode = false
+                self.newLoadingMode = false
             }
         }
     }
 
     func getAnsweredInvitations(completion: @escaping () -> Void) {
-        loadingMode = true
+        answerdLoadingMode = true
         InvitationApiService.shared.getUserInvitationList(filter: .answered) { success, invitations in
             DispatchQueue.main.async {
                 withAnimation {
                     self.answerdInvitations.clearAndAddAll(list: invitations)
                 }
                 completion()
-                self.loadingMode = false
+                self.answerdLoadingMode = false
             }
         }
     }
 
     func getSentInvitations(completion: @escaping () -> Void) {
-        loadingMode = true
+        sentLoadingMode = true
         InvitationApiService.shared.getUserInvitationList(filter: .sent) { success, invitations in
             DispatchQueue.main.async {
                 withAnimation {
                     self.sentInvitations.clearAndAddAll(list: invitations)
                 }
                 completion()
-                self.loadingMode = false
+                self.sentLoadingMode = false
             }
         }
     }

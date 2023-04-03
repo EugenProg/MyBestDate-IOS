@@ -150,7 +150,8 @@ struct DuelScreen: View {
     private func navigateToTopList() {
         withAnimation {
             TopListMediator.shared.activePage = mediator.activeGender
-            mediator.updateTopLists()
+            TopListMediator.shared.getManList(withClear: true, page: 0)
+            TopListMediator.shared.getWomanList(withClear: true, page: 0)
             store.dispatch(action: .navigate(screen: .TOP_LIST))
         }
     }

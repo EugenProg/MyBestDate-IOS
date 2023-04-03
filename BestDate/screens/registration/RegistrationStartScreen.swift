@@ -48,11 +48,11 @@ struct RegistrationStartScreen: View {
                                 DateSelectView(hint: "birth_date", imageName: "ic_calendar", date: $mediator.birthDate)
 
                                 CheckBoxView(linkText: "terms_of_use", isSelect: $termsOfUseSelect, errorState: $termsOfUseError) {
-                                    store.dispatch(action: .openLink(link: "https://dev-api.bestdate.info/use-agreement"))
+                                    store.dispatch(action: .openLink(link: "\(CoreApiTypes.serverAddress)/use-agreement"))
                                 }
 
                                 CheckBoxView(linkText: "privacy_policy", isSelect: $privacyPolicySelect, errorState: $privacyPolicyError) {
-                                    store.dispatch(action: .openLink(link: "https://dev-api.bestdate.info/privacy-policy"))
+                                    store.dispatch(action: .openLink(link: "\(CoreApiTypes.serverAddress)/privacy-policy"))
                                 }
                                 
                                 StandardButton(style: .white, title: "next", loadingProcess: $process) {
