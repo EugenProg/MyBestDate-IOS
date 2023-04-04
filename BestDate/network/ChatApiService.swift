@@ -11,16 +11,16 @@ class ChatApiService {
     static var shared = ChatApiService()
     private let encoder = JSONEncoder()
 
-    func getChatList(completion: @escaping (Bool, [Chat]) -> Void) {
-        let request = CoreApiTypes.getChatList.getRequest(withAuth: true)
+    func getChatList(page: Int, completion: @escaping (Bool, [Chat], Meta) -> Void) {
+        let request = CoreApiTypes.getChatList.getRequest(withAuth: true, params: CoreApiTypes.getPageParams(page: page))
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             NetworkLogger.printLog(response: response)
             if let data = data, let response = try? JSONDecoder().decode(ChatListResponse.self, from: data) {
                 NetworkLogger.printLog(data: data)
-                completion(response.success, response.data)
+                completion(response.success, response.data, response.meta ?? Meta())
             } else {
-                completion(false, [])
+                completion(false, [], Meta())
             }
         }
 

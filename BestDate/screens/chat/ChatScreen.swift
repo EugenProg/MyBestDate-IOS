@@ -33,7 +33,7 @@ struct ChatScreen: View {
             VStack(spacing: 0) {
                 HStack {
                     BackButton(style: .white) {
-                        ChatListMediator.shared.getChatList()
+                        ChatListMediator.shared.getChatList(withClear: true, page: 0)
                         mediator.messages.removeAll()
                         mediator.loadingMode = true
                         mediator.typingMode = false

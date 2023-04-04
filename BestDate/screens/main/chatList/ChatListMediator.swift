@@ -14,6 +14,8 @@ class ChatListMediator: ObservableObject {
 
     @Published var newChats: [ChatListItem] = []
     @Published var previousChats: [ChatListItem] = []
+    @Published var lastChatId: Int = 0
+    @Published var meta: Meta = Meta()
     private var allChatsList: [Chat] = []
     @Published var loadingMode: Bool = true
     var typingList: [TypingState] = []
@@ -21,13 +23,15 @@ class ChatListMediator: ObservableObject {
 
     private var cancellableSet: Set<AnyCancellable> = []
 
-    func getChatList() {
+    func getChatList(withClear: Bool, page: Int) {
         loadingMode = true
         self.initTypingListener()
-        ChatApiService.shared.getChatList { success, chatList in
+        ChatApiService.shared.getChatList(page: page) { success, chatList, meta in
             DispatchQueue.main.async {
                 if success {
-                    self.allChatsList.clearAndAddAll(list: chatList)
+                    self.allChatsList.addAll(list: chatList, clear: withClear)
+                    self.meta = meta
+                    self.lastChatId = chatList.last?.user?.id ?? 0
                     self.refillChatsLists()
                     MainMediator.shared.hasNewMessages = self.newChats.count > 0
                     self.setBadgeCount()
@@ -60,7 +64,7 @@ class ChatListMediator: ObservableObject {
         ChatApiService.shared.deleteChat(id: chat.user?.id ?? 0) { success in
             DispatchQueue.main.async {
                 if success {
-                    self.getChatList()
+                    self.getChatList(withClear: true, page: 0)
                     completion()
                 }
             }
@@ -102,6 +106,12 @@ class ChatListMediator: ObservableObject {
                 }
             }
             .store(in: &cancellableSet)
+    }
+
+    func loadNextPage() {
+        if (meta.current_page ?? 0) >= (meta.last_page ?? 0) { return }
+
+        getChatList(withClear: false, page: (meta.current_page ?? 0) + 1)
     }
 
     private func getTimeIntervale(state: TypingState) -> Int {

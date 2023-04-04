@@ -11,10 +11,14 @@ struct ChatListView: View {
     @Binding var newList: [ChatListItem]
     @Binding var previousList: [ChatListItem]
     @Binding var deleteProcess: Bool
-    @Binding var loadingMode: Bool
+    @Binding var meta: Meta
+    @Binding var lastChatId: Int
 
     var deleteAction: (Chat) -> Void
     var clickAction: (Chat) -> Void
+    var loadNextPage: () -> Void
+
+    @State var showLoadingBlock: Bool = false
     
     var items: [GridItem] = [
             GridItem(.fixed(UIScreen.main.bounds.width), spacing: 10)]
@@ -34,9 +38,21 @@ struct ChatListView: View {
                         } clickAction: { chat in
                             clickAction(chat)
                         }
+                        .onAppear {
+                            if (item.chat.user.wrappedValue?.id ?? 0) == lastChatId && !list.isEmpty {
+                                showLoadingBlock = true
+                                loadNextPage()
+                            }
+                        }
                     } else {
                         ChatBotItemView(item: item.chat, type: itemsType) { chat in
                             clickAction(chat)
+                        }
+                        .onAppear {
+                            if (item.chat.user.wrappedValue?.id ?? 0) == lastChatId && !list.isEmpty {
+                                showLoadingBlock = true
+                                loadNextPage()
+                            }
                         }
                     }
                 }
@@ -51,6 +67,11 @@ struct ChatListView: View {
             }
             if !previousList.isEmpty {
                 chatListBlock(header: "all_message", list: $previousList, itemsType: .old)
+            }
+
+            if (meta.current_page ?? 0) < (meta.last_page ?? 0) && showLoadingBlock {
+                LoadingNextPageView()
+                    .padding(.top, 5)
             }
         }
     }

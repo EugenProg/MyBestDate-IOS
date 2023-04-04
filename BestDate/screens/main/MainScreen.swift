@@ -37,7 +37,7 @@ struct MainScreen: View {
 
                 if ChatListMediator.shared.newChats.isEmpty &&
                     ChatListMediator.shared.previousChats.isEmpty {
-                    ChatListMediator.shared.getChatList()
+                    ChatListMediator.shared.getChatList(withClear: true, page: 0)
                 }
 
                 if store.state.hasADeepLink {

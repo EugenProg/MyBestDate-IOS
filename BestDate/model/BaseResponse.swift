@@ -155,6 +155,7 @@ struct ChatListResponse: Codable {
     var success: Bool
     var message: String
     var data: [Chat] = []
+    var meta: Meta? = nil
 }
 
 struct Chat: Codable {

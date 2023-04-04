@@ -40,10 +40,13 @@ struct ChatListScreen: View {
                 ChatListView(newList: $mediator.newChats,
                              previousList: $mediator.previousChats,
                              deleteProcess: $deleteProcess,
-                             loadingMode: $mediator.loadingMode,
+                             meta: $mediator.meta,
+                             lastChatId: $mediator.lastChatId,
                              deleteAction: delete()) { chat in
                     ChatMediator.shared.setUser(user: chat.user ?? ShortUserInfo())
                     store.dispatch(action: .navigate(screen: .CHAT))
+                } loadNextPage: {
+                    mediator.loadNextPage()
                 }
                 .padding(.init(top: 0, leading: 0, bottom: 45, trailing: 0))
             }.padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight + 60, trailing: 0))
@@ -51,11 +54,11 @@ struct ChatListScreen: View {
             .background(ColorList.main.color.edgesIgnoringSafeArea(.bottom))
             .onAppear {
                 if mediator.newChats.isEmpty && mediator.previousChats.isEmpty {
-                    mediator.getChatList()
+                    mediator.getChatList(withClear: true, page: 0)
                 }
 
                 MainMediator.shared.chatListPage = {
-                    mediator.getChatList()
+                    mediator.getChatList(withClear: true, page: 0)
                 }
             }
     }
