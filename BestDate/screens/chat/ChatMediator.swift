@@ -16,12 +16,13 @@ class ChatMediator: ObservableObject {
     @Published var user: ShortUserInfo? = ShortUserInfo()
     @Published var messages: [ChatItem] = []
     @Published var selectedMessage: Message? = nil
+    @Published var meta: Meta = Meta()
 
     @Published var inputText: String = ""
 
     @Published var editMode: Bool = false
     @Published var replyMode: Bool = false
-    @Published var loadingMode: Bool = true
+    @Published var loadingMode: Bool = false
 
     @Published var editImageMode: Bool = false
     @Published var selectedImage: UIImage? = nil
@@ -30,6 +31,8 @@ class ChatMediator: ObservableObject {
     @Published var isOnline: Bool = false
     @Published var typingMode: Bool = false
     @Published var ping: Int = 0
+    var origionalList: [Message] = []
+    var typingIventSent: Bool = false
     var lastTypingUpdate: Int64 = Int64(Date().timeIntervalSince1970)
     var lastInputUpdate: Int64 = Int64(Date().timeIntervalSince1970)
 
@@ -39,7 +42,7 @@ class ChatMediator: ObservableObject {
     func setUser(user: ShortUserInfo) {
         CreateInvitationMediator.shared.getInvitations()
         self.user = user
-        self.getMessageList()
+        self.getMessageList(withClear: true, page: 0)
         self.initInputListener()
         self.initTypingListener()
         self.isOnline = user.is_online == true
@@ -50,8 +53,13 @@ class ChatMediator: ObservableObject {
             .sink { (_) in
             } receiveValue: { _ in
                 if self.getTimeIntervale(interval: self.lastInputUpdate) > 3 || self.inputText.count == 1 {
-                    if !self.inputText.isEmpty {
-                        ChatApiService.shared.sendTypingEvent(recepient: self.user?.id ?? 0)
+                    if !self.inputText.isEmpty && !self.typingIventSent {
+                        self.typingIventSent = true
+                        ChatApiService.shared.sendTypingEvent(recepient: self.user?.id ?? 0) {
+                            DispatchQueue.main.async {
+                                self.typingIventSent = false
+                            }
+                        }
                     }
                     self.lastInputUpdate = Int64(Date().timeIntervalSince1970)
                 }
@@ -199,19 +207,29 @@ class ChatMediator: ObservableObject {
         selectedMessage?.sender_id != user?.id
     }
 
-    func getMessageList() {
-        loadingMode = true
-        ChatApiService.shared.getChatMessages(userId: user?.id ?? 0) { success, list in
+    func getMessageList(withClear: Bool, page: Int) {
+        if self.loadingMode { return }
+        self.loadingMode = true
+        ChatApiService.shared.getChatMessages(userId: user?.id ?? 0, page: page) { success, list, meta in
             DispatchQueue.main.async {
                 if success {
+                    self.origionalList.addAll(list: list, clear: withClear)
+                    self.meta = meta
+
                     withAnimation {
-                        self.messages.addAll(list: list, clear: true)
+                        self.messages = ChatUtils().getChatItemsFromMessages(messageList: self.origionalList)
                     }
                 }
                 self.cardsOnlyMode = self.user?.allow_chat == false
                 self.loadingMode = false
             }
         }
+    }
+
+    func getNextPage() {
+        if (meta.current_page ?? 0) >= (meta.last_page ?? 0) { return }
+
+        getMessageList(withClear: false, page: (meta.current_page ?? 0) + 1)
     }
 }
 

@@ -9,22 +9,40 @@ import SwiftUI
 
 struct MessageListView: View {
     @Binding var messageList: [ChatItem]
+    @Binding var meta: Meta
     var clickAction: (ChatItem) -> Void
 
     var imageClick: (Message?) -> Void
+    var loadNextPage: () -> Void
+
+    @State var showLoadingBlock: Bool = false
 
     var items: [GridItem] = [GridItem(.fixed(UIScreen.main.bounds.width), spacing: 5)]
 
     var body: some View {
-        LazyVGrid(columns: items, alignment: .center, spacing: 6, pinnedViews: [.sectionHeaders, .sectionFooters]) {
-            ForEach($messageList, id: \.id) { item in
-                getMessageViewByType(item: item)
-                    .rotationEffect(Angle(degrees: 180))
-                    .onTapGesture {
-                        if item.wrappedValue.messageType != .date_block {
-                            clickAction(item.wrappedValue)
+        VStack(spacing: 5) {
+            LazyVGrid(columns: items, alignment: .center, spacing: 6, pinnedViews: [.sectionHeaders, .sectionFooters]) {
+                ForEach($messageList, id: \.id) { item in
+                    getMessageViewByType(item: item)
+                        .rotationEffect(Angle(degrees: 180))
+                        .onTapGesture {
+                            if item.wrappedValue.messageType != .date_block {
+                                clickAction(item.wrappedValue)
+                            }
                         }
-                    }
+                        .onAppear {
+                            if item.wrappedValue.id == (messageList.last?.id ?? 0) && !messageList.isEmpty {
+                                showLoadingBlock = true
+                                loadNextPage()
+                            }
+                        }
+                }
+            }
+
+            if (meta.current_page ?? 0) < (meta.last_page ?? 0) && showLoadingBlock {
+                ProgressView()
+                    .tint(ColorList.white.color)
+                    .frame(width: 50, height: 50)
             }
         }
     }
@@ -62,8 +80,5 @@ struct MessageListView: View {
             }
         }
         return $messageList.first!.message
-//        $messageList.first { item in
-//            item.wrappedValue.message.id == id ?? 0
-//        }?.message ?? $messageList.first.message
     }
 }

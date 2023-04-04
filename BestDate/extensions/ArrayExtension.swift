@@ -121,6 +121,16 @@ extension Array where Element == MyDuel {
     }
 }
 
+extension Array where Element == Message {
+    mutating func addAll(list: [Message], clear: Bool) {
+        if clear { self.removeAll() }
+
+        for item in list {
+            self.append(item)
+        }
+    }
+}
+
 extension Array where Element == ChatItem {
     mutating func addAll(list: [Message], clear: Bool? = nil) {
         if clear == true {

@@ -26,7 +26,7 @@ class ChatUtils {
                 additionIndex += 1
                 type = getMessageType(current: current, previous: previous, withDate: false)
             }
-
+            
             listItems.append(
                 ChatItem(
                     id: item + additionIndex,
@@ -38,10 +38,10 @@ class ChatUtils {
             )
 
             if dateItem != nil {
-                listItems.append(dateItem ?? ChatItem(id: 0, messageType: .date_block, last: false))
+                listItems.append(dateItem ?? ChatItem(id: item + additionIndex, messageType: .date_block, last: false))
             }
         }
-        
+
         return listItems
     }
 

@@ -35,7 +35,6 @@ struct ChatScreen: View {
                     BackButton(style: .white) {
                         ChatListMediator.shared.getChatList(withClear: true, page: 0)
                         mediator.messages.removeAll()
-                        mediator.loadingMode = true
                         mediator.typingMode = false
                         withAnimation {
                             store.dispatch(action: .navigationBack)
@@ -109,12 +108,16 @@ struct ChatScreen: View {
                 }.frame(height: UIScreen.main.bounds.height)
             } else {
                 ScrollView(.vertical, showsIndicators: false) {
-                    MessageListView(messageList: $mediator.messages) { item in
-                        mediator.selectedMessage = item.message
-                        store.dispatch(action: .showBottomSheet(view: .CHAT_ACTIONS))
+                    MessageListView(messageList: $mediator.messages, meta: $mediator.meta) { item in
+                        if mediator.user?.getRole() != .bot {
+                            mediator.selectedMessage = item.message
+                            store.dispatch(action: .showBottomSheet(view: .CHAT_ACTIONS))
+                        }
                     } imageClick: { image in
                         showingImage = image
                         showImage = true
+                    } loadNextPage: {
+                        mediator.getNextPage()
                     }.padding(.init(top: 6, leading: 0, bottom: 16, trailing: 0))
                 }.padding(.init(top: getTopPadding(), leading: 0, bottom: getBottomPadding(), trailing: 0))
                     .rotationEffect(Angle(degrees: 180))

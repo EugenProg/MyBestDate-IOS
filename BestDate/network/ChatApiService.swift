@@ -102,23 +102,23 @@ class ChatApiService {
         task.resume()
     }
 
-    func getChatMessages(userId: Int, completion: @escaping (Bool, [Message]) -> Void) {
-        let request = CoreApiTypes.getChatMessages.getRequest(path: userId.toString(), withAuth: true)
+    func getChatMessages(userId: Int, page: Int, completion: @escaping (Bool, [Message], Meta) -> Void) {
+        let request = CoreApiTypes.getChatMessages.getRequest(path: userId.toString(), withAuth: true, params: CoreApiTypes.getPageParams(page: page))
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             NetworkLogger.printLog(response: response)
             if let data = data, let response = try? JSONDecoder().decode(GetChatMessagesResponse.self, from: data) {
                 NetworkLogger.printLog(data: data)
-                completion(response.success, response.data)
+                completion(response.success, response.data, response.meta ?? Meta())
             } else {
-                completion(false, [])
+                completion(false, [], Meta())
             }
         }
 
         task.resume()
     }
 
-    func sendTypingEvent(recepient: Int) {
+    func sendTypingEvent(recepient: Int, completion: @escaping () -> Void) {
         let request = CoreApiTypes.chatTypingEvent.getRequest(path: recepient.toString(), withAuth: true)
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -126,6 +126,7 @@ class ChatApiService {
             if let data = data, let _ = try? JSONDecoder().decode(BaseResponse.self, from: data) {
                 NetworkLogger.printLog(data: data)
             }
+            completion()
         }
 
         task.resume()
