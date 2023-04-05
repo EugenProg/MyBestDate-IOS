@@ -53,8 +53,13 @@ struct InvitatinsScreen: View {
                         answerdList: $mediator.answerdInvitations,
                         sentList: $mediator.sentInvitations,
                         page: $mediator.activeType,
+                        newMeta: $mediator.newsMeta,
+                        answeredMeta: $mediator.answeredMeta,
+                        sentMeta: $mediator.sentMeta,
                         answerAction: answer(),
-                        showUserAction: showUser())
+                        showUserAction: showUser()) { type in
+                            mediator.getNextPage(type: type)
+                        }
                     .padding(.init(top: 14, leading: 0, bottom: 16, trailing: 0))
                 }
             }.padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight, trailing: 0))

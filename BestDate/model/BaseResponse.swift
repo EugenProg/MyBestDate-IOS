@@ -290,6 +290,7 @@ struct UserInvitationListResponse: Codable {
     var success: Bool
     var message: String? = nil
     var data: [InvitationCard] = []
+    var meta: Meta? = nil
 }
 
 struct MatchesListResponse: Codable {

@@ -69,8 +69,8 @@ class InvitationApiService {
         task.resume()
     }
 
-    func getUserInvitationList(filter: InvitationFilter, completion: @escaping (Bool, [InvitationCard]) -> Void) {
-        var request = CoreApiTypes.getUserInvitationList.getRequest(withAuth: true)
+    func getUserInvitationList(filter: InvitationFilter, page: Int, completion: @escaping (Bool, [InvitationCard], Meta) -> Void) {
+        var request = CoreApiTypes.getUserInvitationList.getRequest(withAuth: true, params: CoreApiTypes.getPageParams(page: page))
 
         let data = try! encoder.encode(GetUserInvitationFilter(filter: filter.rawValue))
         encoder.outputFormatting = .prettyPrinted
@@ -81,9 +81,9 @@ class InvitationApiService {
             NetworkLogger.printLog(response: response)
             if let data = data, let response = try? JSONDecoder().decode(UserInvitationListResponse.self, from: data) {
                 NetworkLogger.printLog(data: data)
-                completion(response.success, response.data)
+                completion(response.success, response.data, response.meta ?? Meta())
             } else {
-                completion(false, [])
+                completion(false, [], Meta())
             }
         }
 

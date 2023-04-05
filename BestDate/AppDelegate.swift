@@ -209,6 +209,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
             screen = .CHAT
         }
         case .guest: do {
+            GuestsMediator.shared.getGuests(withClear: true, page: 0) { }
             MainMediator.shared.currentScreen = .GUESTS
             screen = .MAIN
         }

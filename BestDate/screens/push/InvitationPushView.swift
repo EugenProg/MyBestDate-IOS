@@ -64,7 +64,10 @@ struct InvitationPushView: View {
     }
 
     private func openInvitationCard() {
-        InvitationMediator.shared.activeType = store.state.activePush == .invitation ? .new : .sended
+        let activePush: InvitationType = store.state.activePush == .invitation ? .new : .sended
+        InvitationMediator.shared.activeType = activePush
+        if activePush == .new { InvitationMediator.shared.getNewInvitations(withClear: true, page: 0) { } }
+        else { InvitationMediator.shared.getAnsweredInvitations(withClear: true, page: 0) { } }
         store.dispatch(action: .navigate(screen: .INVITATION))
     }
 }

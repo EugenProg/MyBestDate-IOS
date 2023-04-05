@@ -20,30 +20,35 @@ class InvitationMediator: ObservableObject {
     @Published var sentLoadingMode: Bool = true
     @Published var loadingMode: Bool = true
 
+    @Published var newsMeta: Meta = Meta()
+    @Published var answeredMeta: Meta = Meta()
+    @Published var sentMeta: Meta = Meta()
+
     func getAllInvitations() {
         if newInvitations.isEmpty &&
             answerdInvitations.isEmpty &&
             sentInvitations.isEmpty {
-            getNewInvitations { }
-            getAnsweredInvitations { }
-            getSentInvitations { }
+            getNewInvitations(withClear: true, page: 0) { }
+            getAnsweredInvitations(withClear: true, page: 0) { }
+            getSentInvitations(withClear: true, page: 0) { }
         }
     }
 
     func refreshList(completion: @escaping () -> Void) {
         switch activeType {
-        case .new: getNewInvitations { completion() }
-        case .answered: getAnsweredInvitations { completion() }
-        case .sended: getSentInvitations { completion() }
+        case .new: getNewInvitations(withClear: true, page: 0) { completion() }
+        case .answered: getAnsweredInvitations(withClear: true, page: 0) { completion() }
+        case .sended: getSentInvitations(withClear: true, page: 0) { completion() }
         }
     }
 
-    func getNewInvitations(completion: @escaping () -> Void) {
+    func getNewInvitations(withClear: Bool, page: Int, completion: @escaping () -> Void) {
         newLoadingMode = true
-        InvitationApiService.shared.getUserInvitationList(filter: .new) { success, invitations in
+        InvitationApiService.shared.getUserInvitationList(filter: .new, page: page) { success, invitations, meta in
             DispatchQueue.main.async {
                 withAnimation {
-                    self.newInvitations.clearAndAddAll(list: invitations)
+                    self.newInvitations.addAll(list: invitations, clear: withClear)
+                    self.newsMeta = meta
                 }
                 completion()
                 self.newLoadingMode = false
@@ -51,12 +56,13 @@ class InvitationMediator: ObservableObject {
         }
     }
 
-    func getAnsweredInvitations(completion: @escaping () -> Void) {
+    func getAnsweredInvitations(withClear: Bool, page: Int, completion: @escaping () -> Void) {
         answerdLoadingMode = true
-        InvitationApiService.shared.getUserInvitationList(filter: .answered) { success, invitations in
+        InvitationApiService.shared.getUserInvitationList(filter: .answered, page: page) { success, invitations, meta in
             DispatchQueue.main.async {
                 withAnimation {
-                    self.answerdInvitations.clearAndAddAll(list: invitations)
+                    self.answerdInvitations.addAll(list: invitations, clear: withClear)
+                    self.answeredMeta = meta
                 }
                 completion()
                 self.answerdLoadingMode = false
@@ -64,12 +70,13 @@ class InvitationMediator: ObservableObject {
         }
     }
 
-    func getSentInvitations(completion: @escaping () -> Void) {
+    func getSentInvitations(withClear: Bool, page: Int, completion: @escaping () -> Void) {
         sentLoadingMode = true
-        InvitationApiService.shared.getUserInvitationList(filter: .sent) { success, invitations in
+        InvitationApiService.shared.getUserInvitationList(filter: .sent, page: page) { success, invitations, meta in
             DispatchQueue.main.async {
                 withAnimation {
-                    self.sentInvitations.clearAndAddAll(list: invitations)
+                    self.sentInvitations.addAll(list: invitations, clear: withClear)
+                    self.sentMeta = meta
                 }
                 completion()
                 self.sentLoadingMode = false
@@ -84,10 +91,30 @@ class InvitationMediator: ObservableObject {
                 self.newInvitations.removeAll { card in
                     card.id == invitationId
                 }
-                self.getAnsweredInvitations { }
+                self.getAnsweredInvitations(withClear: true, page: 0) { }
                 self.loadingMode = false
                 completion()
             }
+        }
+    }
+
+    func getNextPage(type: InvitationType) {
+        switch type {
+        case .new: do {
+            if (newsMeta.current_page ?? 0) >= (newsMeta.last_page ?? 0) { return }
+
+            getNewInvitations(withClear: false, page: (newsMeta.current_page ?? 0) + 1) { }
+        }
+        case .answered: do {
+            if (answeredMeta.current_page ?? 0) >= (answeredMeta.last_page ?? 0) { return }
+
+            getAnsweredInvitations(withClear: false, page: (answeredMeta.current_page ?? 0) + 1) { }
+        }
+        case .sended: do {
+            if (sentMeta.current_page ?? 0) >= (sentMeta.last_page ?? 0) { return }
+
+            getSentInvitations(withClear: false, page: (sentMeta.current_page ?? 0) + 1) { }
+        }
         }
     }
 
