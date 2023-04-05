@@ -13,19 +13,27 @@ class LikeListMediator: ObservableObject {
 
     @Published var likeList: [Like] = []
     @Published var loadingMode: Bool = true
+    @Published var meta: Meta = Meta()
     var savedPosition: CGFloat = 0
 
-    func getLikesList(completion: @escaping () -> Void) {
+    func getLikesList(withClear: Bool, page: Int, completion: @escaping () -> Void) {
         loadingMode = true
-        MatchesApiService.shared.getUserLikes { success, likes in
+        MatchesApiService.shared.getUserLikes(page: page) { success, likes, meta in
             DispatchQueue.main.async {
                 withAnimation {
-                    self.likeList.clearAndAddAll(list: likes)
+                    self.likeList.addAll(list: likes, clear: withClear)
+                    self.meta = meta
                     completion()
                     self.loadingMode = false
                 }
             }
         }
+    }
+
+    func getNextPage() {
+        if (meta.current_page ?? 0) >= (meta.last_page ?? 0) { return }
+
+        getLikesList(withClear: false, page: (meta.current_page ?? 0) + 1) { }
     }
 
     func savePosition(_ offset: CGFloat) {

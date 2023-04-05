@@ -325,6 +325,7 @@ struct LikesListResponse: Codable {
     var success: Bool
     var message: String? = nil
     var data: [Like] = []
+    var meta: Meta? = nil
 }
 
 struct UserSettingsResponse: Codable {

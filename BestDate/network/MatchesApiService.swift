@@ -43,16 +43,16 @@ class MatchesApiService {
         task.resume()
     }
 
-    func getUserLikes(completion: @escaping (Bool, [Like]) -> Void) {
-        let request = CoreApiTypes.getUserLikes.getRequest(withAuth: true)
+    func getUserLikes(page: Int, completion: @escaping (Bool, [Like], Meta) -> Void) {
+        let request = CoreApiTypes.getUserLikes.getRequest(withAuth: true, params: CoreApiTypes.getPageParams(page: page))
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             NetworkLogger.printLog(response: response)
             if let data = data, let response = try? JSONDecoder().decode(LikesListResponse.self, from: data) {
                 NetworkLogger.printLog(data: data)
-                completion(response.success, response.data)
+                completion(response.success, response.data, response.meta ?? Meta())
             } else {
-                completion(false, [])
+                completion(false, [], Meta())
             }
         }
 
