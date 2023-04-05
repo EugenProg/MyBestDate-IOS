@@ -14,20 +14,28 @@ class MatchesListMediator: ObservableObject {
     @Published var matches: [Match] = []
     @Published var myPhoto: ProfileImage? = nil
     @Published var loadingMode: Bool = true
+    @Published var meta: Meta = Meta()
     var savedPosition: CGFloat = 0
 
-    func getMatchesList(completion: @escaping () -> Void) {
+    func getMatchesList(withClear: Bool, page: Int, completion: @escaping () -> Void) {
         myPhoto = MainMediator.shared.mainPhoto
         loadingMode = true
-        MatchesApiService.shared.getUserMatches { success, matchesList in
+        MatchesApiService.shared.getUserMatches(page: page) { success, matchesList, meta in
             DispatchQueue.main.async {
                 withAnimation {
-                    self.matches.clearAndAddAll(list: matchesList)
+                    self.matches.addAll(list: matchesList, clear: withClear)
+                    self.meta = meta
                     completion()
                     self.loadingMode = false
                 }
             }
         }
+    }
+
+    func getNextPage() {
+        if (meta.current_page ?? 0) >= (meta.last_page ?? 0) { return }
+
+        getMatchesList(withClear: false, page: (meta.current_page ?? 0) + 1) { }
     }
 
     func savePosition(_ offset: CGFloat) {

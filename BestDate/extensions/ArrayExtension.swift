@@ -92,8 +92,8 @@ extension Array where Element == InvitationCard {
 }
 
 extension Array where Element == Match {
-    mutating func clearAndAddAll(list: [Match]?) {
-        self.removeAll()
+    mutating func addAll(list: [Match]?, clear: Bool) {
+        if clear { self.removeAll() }
 
         for item in list ?? [] {
             self.append(item)

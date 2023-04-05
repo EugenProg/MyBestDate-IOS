@@ -9,7 +9,7 @@ import Foundation
 
 struct BaseResponse: Codable {
     var success: Bool
-    var message: String
+    var message: String? = nil
 }
 
 struct Meta: Codable {
@@ -23,7 +23,7 @@ struct Meta: Codable {
 
 struct SendCodeResponse: Codable {
     var success: Bool
-    var message: String
+    var message: String? = nil
     var data: Expirition? = nil
 }
 
@@ -33,7 +33,7 @@ struct Expirition: Codable {
 
 struct ProfileImageResponse: Codable {
     var success: Bool
-    var message: String
+    var message: String? = nil
     var data: ProfileImage? = nil
 }
 
@@ -50,13 +50,13 @@ struct ProfileImage: Codable {
 
 struct UserDataResponse: Codable {
     var success: Bool
-    var message: String
+    var message: String? = nil
     var data: UserInfo? = nil
 }
 
 struct ShortUserDataResponse: Codable {
     var success: Bool
-    var message: String
+    var message: String? = nil
     var data: ShortUserInfo? = nil
 }
 
@@ -146,14 +146,14 @@ struct Location: Codable {
 
 struct UserListResponse: Codable {
     var success: Bool
-    var message: String
+    var message: String? = nil
     var data: [ShortUserInfo] = []
     var meta: Meta? = nil
 }
 
 struct ChatListResponse: Codable {
     var success: Bool
-    var message: String
+    var message: String? = nil
     var data: [Chat] = []
     var meta: Meta? = nil
 }
@@ -282,25 +282,26 @@ struct Translation: Codable {
 
 struct InvitationListResponse: Codable {
     var success: Bool
-    var message: String
+    var message: String? = nil
     var data: [Invitation] = []
 }
 
 struct UserInvitationListResponse: Codable {
     var success: Bool
-    var message: String
+    var message: String? = nil
     var data: [InvitationCard] = []
 }
 
 struct MatchesListResponse: Codable {
     var success: Bool
-    var message: String
+    var message: String? = nil
     var data: [Match] = []
+    var meta: Meta? = nil
 }
 
 struct MatchResponse: Codable {
     var success: Bool
-    var message: String
+    var message: String? = nil
     var data: Match? = nil
 }
 
@@ -321,14 +322,14 @@ struct Like: Codable {
 
 struct LikesListResponse: Codable {
     var success: Bool
-    var message: String
+    var message: String? = nil
     var data: [Like] = []
 }
 
 struct UserSettingsResponse: Codable {
     var success: Bool
-    var message: String
-    var data: UserSettings
+    var message: String? = nil
+    var data: UserSettings? = nil
 }
 
 struct UserSettings: Codable {

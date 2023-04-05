@@ -113,7 +113,7 @@ class CoreApiService {
             NetworkLogger.printLog(response: response)
             if let data = data, let response = try? JSONDecoder().decode(BaseResponse.self, from: data) {
                 NetworkLogger.printLog(data: data)
-                completion(response.success, response.message)
+                completion(response.success, response.message ?? "")
             } else {
                 completion(false, "")
             }
@@ -155,7 +155,7 @@ class CoreApiService {
             NetworkLogger.printLog(response: response)
             if let data = data, let response = try? JSONDecoder().decode(BaseResponse.self, from: data) {
                 NetworkLogger.printLog(data: data)
-                completion(response.success, response.message)
+                completion(response.success, response.message ?? "")
             } else {
                 completion(false, "")
             }
@@ -197,7 +197,7 @@ class CoreApiService {
             NetworkLogger.printLog(response: response)
             if let data = data, let response = try? JSONDecoder().decode(BaseResponse.self, from: data) {
                 NetworkLogger.printLog(data: data)
-                completion(response.success, response.message)
+                completion(response.success, response.message ?? "")
             } else {
                 completion(false, "")
             }
@@ -239,7 +239,7 @@ class CoreApiService {
             NetworkLogger.printLog(response: response)
             if let data = data, let response = try? JSONDecoder().decode(BaseResponse.self, from: data) {
                 NetworkLogger.printLog(data: data)
-                completion(response.success, response.message)
+                completion(response.success, response.message ?? "")
             } else {
                 completion(false, "")
             }
@@ -604,7 +604,7 @@ class CoreApiService {
             NetworkLogger.printLog(response: response)
             if let data = data, let response = try? JSONDecoder().decode(UserSettingsResponse.self, from: data) {
                 NetworkLogger.printLog(data: data)
-                completion(response.success, response.data)
+                completion(response.success, response.data ?? UserSettings())
             } else {
                 completion(false, UserSettings())
             }
@@ -705,7 +705,7 @@ class CoreApiService {
             NetworkLogger.printLog(response: response)
             if let data = data, let response = try? JSONDecoder().decode(BaseResponse.self, from: data) {
                 NetworkLogger.printLog(data: data)
-                completion(response.success, response.message)
+                completion(response.success, response.message ?? "")
             } else {
                 completion(false, "")
             }

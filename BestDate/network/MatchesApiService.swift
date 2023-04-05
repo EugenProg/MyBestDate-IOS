@@ -27,16 +27,16 @@ class MatchesApiService {
         task.resume()
     }
 
-    func getUserMatches(completion: @escaping (Bool, [Match]) -> Void) {
-        let request = CoreApiTypes.getMatchList.getRequest(withAuth: true)
+    func getUserMatches(page: Int, completion: @escaping (Bool, [Match], Meta) -> Void) {
+        let request = CoreApiTypes.getMatchList.getRequest(withAuth: true, params: CoreApiTypes.getPageParams(page: page))
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             NetworkLogger.printLog(response: response)
             if let data = data, let response = try? JSONDecoder().decode(MatchesListResponse.self, from: data) {
                 NetworkLogger.printLog(data: data)
-                completion(response.success, response.data)
+                completion(response.success, response.data, response.meta ?? Meta())
             } else {
-                completion(false, [])
+                completion(false, [], Meta())
             }
         }
 
