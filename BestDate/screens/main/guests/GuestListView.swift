@@ -35,7 +35,7 @@ struct GuestListView: View {
                             }
                         }
                         .onAppear {
-                            if (guest.id ?? 0) == (lastItemId) && !list.isEmpty {
+                            if (guest.id ?? 0) == lastItemId && !list.isEmpty {
                                 showLoadingBlock = true
                                 loadNextPage()
                             }

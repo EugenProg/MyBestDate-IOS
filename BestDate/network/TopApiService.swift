@@ -74,16 +74,16 @@ class TopApiService {
         task.resume()
     }
 
-    func getMyDuelsList(completion: @escaping (Bool, [MyDuel]) -> Void) {
-        let request = CoreApiTypes.getMyVoits.getRequest(withAuth: true)
+    func getMyDuelsList(page: Int, completion: @escaping (Bool, [MyDuel], Meta) -> Void) {
+        let request = CoreApiTypes.getMyVoits.getRequest(withAuth: true, params: CoreApiTypes.getPageParams(page: page))
 
         let task = URLSession.shared.dataTask(with: request) {data, response, error in
             NetworkLogger.printLog(response: response)
             if let data = data, let response = try? JSONDecoder().decode(MyDuelsListResponse.self, from: data) {
                 NetworkLogger.printLog(data: data)
-                completion(response.success, response.data)
+                completion(response.success, response.data, response.meta ?? Meta())
             } else {
-                completion(false, [])
+                completion(false, [], Meta())
             }
         }
 

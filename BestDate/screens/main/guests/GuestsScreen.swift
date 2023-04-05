@@ -41,7 +41,7 @@ struct GuestsScreen: View {
                     .padding(.init(top: 50, leading: 50, bottom: ((UIScreen.main.bounds.width - 9) / 2) - 69, trailing: 50))
                 Spacer()
             } else {
-                SaveRefreshAndSetPositionScrollView(onRefresh: { done in
+                RefreshScrollView(onRefresh: { done in
                     mediator.getGuests(withClear: true, page: 0) { done() }
                 }) {
                     VStack(alignment: .leading, spacing: 0) {

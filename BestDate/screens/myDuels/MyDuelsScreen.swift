@@ -28,7 +28,9 @@ struct MyDuelsScreen: View {
                 .fill(MyColor.getColor(190, 239, 255, 0.15))
                 .frame(height: 1)
 
-            ScrollView(.vertical, showsIndicators: true) {
+            RefreshScrollView(onRefresh: { done in
+                mediator.getMyDuels(withClear: true, page: 0) { done() }
+            }) {
                 VStack(spacing: 0) {
                     Text("who_voted_for_me".localized())
                         .foregroundColor(ColorList.white.color)
@@ -36,14 +38,13 @@ struct MyDuelsScreen: View {
                         .padding(.init(top: 22, leading: 18, bottom: 23, trailing: 3))
                         .frame(width: UIScreen.main.bounds.width, alignment: .leading)
 
-                    MyDuelsListView(list: mediator.duelList, loadingMode: $mediator.loadingMode) { user in
+                    MyDuelsListView(list: mediator.duelList, meta: $mediator.meta, loadingMode: $mediator.loadingMode) { user in
                         AnotherProfileMediator.shared.setUser(user: user)
                         store.dispatch(action: .navigate(screen: .ANOTHER_PROFILE))
+                    } loadNextPage: {
+                        mediator.getNextPage()
                     }
-//                    } clickLoser: { user in
-//                        AnotherProfileMediator.shared.setUser(user: user)
-//                        store.dispatch(action: .navigate(screen: .ANOTHER_PROFILE))
-//                    }
+
                 }
             }.padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight, trailing: 0))
         }.background(ColorList.main.color.edgesIgnoringSafeArea(.bottom))
@@ -51,7 +52,7 @@ struct MyDuelsScreen: View {
             store.dispatch(action:
                     .setScreenColors(status: ColorList.main.color, style: .lightContent))
             if mediator.duelList.isEmpty {
-                mediator.getMyDuels()
+                mediator.getMyDuels(withClear: true, page: 0) { }
             }
             ProfileMediator.shared.hasNewDuels = false
         }

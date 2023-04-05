@@ -112,8 +112,8 @@ extension Array where Element == Like {
 }
 
 extension Array where Element == MyDuel {
-    mutating func clearAndAddAll(list: [MyDuel]?) {
-        self.removeAll()
+    mutating func addAll(list: [MyDuel]?, clear: Bool) {
+        if clear { self.removeAll() }
 
         for item in list ?? [] {
             self.append(item)
