@@ -203,22 +203,22 @@ struct ChatImage: Codable {
 
 struct SendMessageResponse: Codable {
     var success: Bool
-    var message: String
+    var message: String? = nil
     var data: Message? = nil
 }
 
 struct GetChatMessagesResponse: Codable {
     var success: Bool
-    var message: String
+    var message: String? = nil
     var data: [Message] = []
     var meta: Meta? = nil
 }
 
 struct GuestListResponse: Codable {
     var success: Bool
-    var message: String
+    var message: String? = nil
     var data: [Guest] = []
-    var meta: Meta
+    var meta: Meta? = nil
 }
 
 struct Guest: Codable {
@@ -230,7 +230,7 @@ struct Guest: Codable {
 
 struct TopListResponse: Codable {
     var success: Bool
-    var message: String
+    var message: String? = nil
     var data: [Top] = []
     var meta: Meta? = nil
 }
@@ -245,7 +245,7 @@ struct Top: Codable {
 
 struct MyDuelsListResponse: Codable {
     var success: Bool
-    var message: String
+    var message: String? = nil
     var data: [MyDuel] = []
     var meta: Meta? = nil
 }

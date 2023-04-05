@@ -16,7 +16,7 @@ struct LoadingNextPageView: View {
 
             ProgressView()
                 .tint(ColorList.white.color)
-                .frame(width: 50, height: 50)
+                .scaleEffect(1.2)
         }.frame(width: UIScreen.main.bounds.width - 12, height: 84)
     }
 }

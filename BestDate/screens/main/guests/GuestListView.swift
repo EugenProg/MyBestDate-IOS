@@ -12,7 +12,12 @@ struct GuestListView: View {
 
     var title: String
     @Binding var list: [Guest]
+    @Binding var meta: Meta
+    @Binding var lastItemId: Int
     var clickAction: (Guest) -> Void
+    var loadNextPage: () -> Void
+
+    @State var showLoadingBlock: Bool = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -28,8 +33,19 @@ struct GuestListView: View {
                             withAnimation {
                                 clickAction(guest)
                             }
-                    }
+                        }
+                        .onAppear {
+                            if (guest.id ?? 0) == (lastItemId) && !list.isEmpty {
+                                showLoadingBlock = true
+                                loadNextPage()
+                            }
+                        }
                 }
+            }
+
+            if (meta.current_page ?? 0) < (meta.last_page ?? 0) && showLoadingBlock {
+                LoadingNextPageView()
+                    .padding(.top, 5)
             }
         }
     }

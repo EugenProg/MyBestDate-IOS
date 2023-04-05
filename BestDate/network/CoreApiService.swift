@@ -491,16 +491,16 @@ class CoreApiService {
         task.resume()
     }
 
-    func getGuests(completion: @escaping (Bool, [Guest]) -> Void) {
-        let request = CoreApiTypes.getGuestList.getRequest(withAuth: true)
+    func getGuests(page: Int, completion: @escaping (Bool, [Guest], Meta) -> Void) {
+        let request = CoreApiTypes.getGuestList.getRequest(withAuth: true, params: CoreApiTypes.getPageParams(page: page))
 
         let task = URLSession.shared.dataTask(with: request) {data, response, error in
             NetworkLogger.printLog(response: response)
             if let data = data, let response = try? JSONDecoder().decode(GuestListResponse.self, from: data) {
                 NetworkLogger.printLog(data: data)
-                completion(response.success, response.data)
+                completion(response.success, response.data, response.meta ?? Meta())
             } else {
-                completion(false, [])
+                completion(false, [], Meta())
             }
         }
 

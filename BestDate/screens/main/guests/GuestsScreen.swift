@@ -42,20 +42,26 @@ struct GuestsScreen: View {
                 Spacer()
             } else {
                 SaveRefreshAndSetPositionScrollView(onRefresh: { done in
-                    mediator.getGuests { done() }
+                    mediator.getGuests(withClear: true, page: 0) { done() }
                 }) {
                     VStack(alignment: .leading, spacing: 0) {
                         if !mediator.newGuests.isEmpty {
-                            GuestListView(title: "new_guests", list: $mediator.newGuests) { guest in
+                            GuestListView(title: "new_guests", list: $mediator.newGuests, meta: $mediator.meta,
+                                          lastItemId: $mediator.lastGuestId) { guest in
                                 AnotherProfileMediator.shared.setUser(user: guest.guest ?? ShortUserInfo())
                                 store.dispatch(action: .navigate(screen: .ANOTHER_PROFILE))
+                            } loadNextPage: {
+                                mediator.getNextPage()
                             }
                         }
 
                         if !mediator.oldGuests.isEmpty {
-                            GuestListView(title: "previous_views", list: $mediator.oldGuests) { guest in
+                            GuestListView(title: "previous_views", list: $mediator.oldGuests, meta: $mediator.meta,
+                                          lastItemId: $mediator.lastGuestId) { guest in
                                 AnotherProfileMediator.shared.setUser(user: guest.guest ?? ShortUserInfo())
                                 store.dispatch(action: .navigate(screen: .ANOTHER_PROFILE))
+                            } loadNextPage: {
+                                mediator.getNextPage()
                             }
                         }
                     }.frame(width: UIScreen.main.bounds.width, alignment: .leading)
@@ -66,7 +72,7 @@ struct GuestsScreen: View {
             .background(ColorList.main.color.edgesIgnoringSafeArea(.bottom))
             .onAppear {
                 if mediator.oldGuests.isEmpty && mediator.newGuests.isEmpty {
-                    mediator.getGuests { }
+                    mediator.getGuests(withClear: true, page: 0) { }
                 }
                 MainMediator.shared.hasNewGuests = false
             }

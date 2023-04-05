@@ -13,13 +13,17 @@ class GuestsMediator: ObservableObject {
     @Published var newGuests: [Guest] = []
     @Published var oldGuests: [Guest] = []
     @Published var loadingMode: Bool = true
+    @Published var lastGuestId: Int = 0
+    @Published var meta: Meta = Meta()
 
-    func getGuests(completion: @escaping () -> Void) {
+    func getGuests(withClear: Bool, page: Int, completion: @escaping () -> Void) {
         loadingMode = true
-        CoreApiService.shared.getGuests { success, guests in
+        CoreApiService.shared.getGuests(page: page) { success, guests, meta in
             DispatchQueue.main.async {
                 if success {
-                    self.setGuests(guests: guests)
+                    self.lastGuestId = guests.last?.id ?? 0
+                    self.setGuests(withClear: withClear, guests: guests)
+                    self.meta = meta
                 }
                 self.loadingMode = false
             }
@@ -27,9 +31,15 @@ class GuestsMediator: ObservableObject {
         }
     }
 
-    private func setGuests(guests: [Guest]) {
-        self.oldGuests.removeAll()
-        self.newGuests.removeAll()
+    func getNextPage() {
+        if (meta.current_page ?? 0) >= (meta.last_page ?? 0) { return }
+
+        getGuests(withClear: false, page: (meta.current_page ?? 0) + 1) { }
+    }
+
+    private func setGuests(withClear: Bool, guests: [Guest]) {
+        if withClear { self.oldGuests.removeAll() }
+        if withClear { self.newGuests.removeAll() }
         for guest in guests {
             if !(guest.viewed ?? false) {
                 self.newGuests.append(guest)
@@ -46,8 +56,7 @@ class GuestsMediator: ObservableObject {
             ids.append(guest.id ?? 0)
         }
         if !ids.isEmpty {
-            CoreApiService.shared.setGuestViewed(ids: ids) { success in
-            }
+            CoreApiService.shared.setGuestViewed(ids: ids) { success in }
         }
     }
 
