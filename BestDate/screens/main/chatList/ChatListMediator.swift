@@ -122,6 +122,12 @@ class ChatListMediator: ObservableObject {
         let typingMode = typingList.contains { item in item.userId == chat.user?.id }
         return ChatListItem(id: chat.id, typingMode: typingMode, isOnline: chat.user?.is_online == true || typingMode, chat: chat)
     }
+
+    func clearData() {
+        newChats.removeAll()
+        previousChats.removeAll()
+        allChatsList.removeAll()
+    }
 }
 
 struct ChatListItem {

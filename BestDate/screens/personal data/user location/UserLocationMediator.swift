@@ -18,7 +18,10 @@ class UserLocationMediator: ObservableObject {
             GeocodingApiService().getLocationByAddress(address: location) { response in
                 CoreApiService.shared.saveUserLocation(location: response.getSaveLocationRequest()) { success, user in
                     DispatchQueue.main.async {
-                        if success { MainMediator.shared.setUserInfo(user: user) }
+                        if success {
+                            MainMediator.shared.setUserInfo(user: user)
+                            ProfileMediator.shared.setUser(user: user)
+                        }
                         completion(success)
                     }
                 }

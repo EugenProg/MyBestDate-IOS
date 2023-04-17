@@ -113,7 +113,7 @@
 "default_error_message" = "Ups, das ist ein Fehler";
 "settings" = "Einstellungen";
 "personal_data" = "Persönliche Daten";
-"questionnaire" = "Fragebogen";
+"questionnaire" = "Profilfragen";
 "sympathy" = "Sympathie";
 "aries" = "Widder";
 "taurus" = "Stier";
@@ -190,7 +190,7 @@
 //ANSWERS
 "married" = "Verheiratet";
 "divorced" = "Geschieden";
-"single" = "Einzeln";
+"single" = "Ledig";
 "it_s_complicated" = "Es ist kompliziert";
 "in_love" = "Verliebt";
 "engaged" = "Engagiert";
@@ -202,7 +202,7 @@
 "four" = "4";
 "five_or_more" = "5 oder mehr";
 "student" = "Studenten";
-"working" = "Arbeiten";
+"working" = "Angestellter";
 "unemployed" = "Arbeitslos";
 "businessman" = "Geschäftsmann";
 "looking_for_my_self" = "Suche nach mir selbst";
@@ -545,7 +545,8 @@
 "you_can_always_send_an_invitation_in_the_form_of_a_card" = "Sie können jederzeit eine\nEinladung in Form einer Karte verschicken,\nin einer bequemeren Form";
 "go_to" = "Einladen";
 "add_a_caption" = "Beschriftung hinzufügen...";
-"sorry_you_voted_for_all_the_photos" = "Tut mir leid, dass Sie für alle Fotos gestimmt haben";
+"sorry_you_voted_for_all_the_photos" = "Sie haben für alle Fotos gestimmt, besuchen Sie es später";
+"sorry_you_voted_for_all_the_photos_" = "Sie haben für alle Fotos gestimmt, besuchen Sie es später noch einmal";
 "enter_email" = "E-Mail eingeben";
 "insta" = "Instagram";
 "facebook" = "Facebook";
@@ -556,9 +557,9 @@
 "new" = "Neue";
 "answered" = "Beantwortete";
 "sent" = "Gesendete";
-"yes_i_agree" = "Ja, ich bin einverstanden";
+"yes_i_agree" = "Ja, ich bin dafür";
 "yes_i_will_but_next_time" = "Ja, ich will, aber das nächste Mal";
-"thanks_but_i_cant_yet" = "Danke, aber ich kann noch nicht";
+"thanks_but_i_cant_yet" = "Danke, aber leider keine Zeit";
 "no" = "Nein";
 "you_have_received_an_invitation_please_give_an_answer" = "Sie haben eine Einladung erhalten,\nbitte geben Sie eine Antwort";
 "answer_choice" = "Antwort wählen";
@@ -648,7 +649,7 @@
 "search_distance" = "Entfernung suchen";
 "possibility_from_to_km" = "Möglichkeit von 0 bis 300 Kilometer";
 "duels_are_over" = "Duelle sind vorbei";
-"you_can_go_to_the_top" = "Aber Sie können auch zu den\nTop 50 gehen";
+"you_can_go_to_the_top" = "Sie können auch gerne unsere\nTop 50 anschauen";
 "last_visit" = "Letzter Besuch";
 "typing" = "tippen...";
 "you_dont_have_any_blocked_users_yet" = "Sie haben noch keine gesperrten Benutzer";

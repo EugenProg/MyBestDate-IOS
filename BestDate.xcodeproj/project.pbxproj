@@ -332,7 +332,7 @@
 		4CFD001929A21D470015F86C /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFD001829A21D470015F86C /* CheckBoxView.swift */; };
 		4CFD001B29A22DE60015F86C /* DeeplinkCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFD001A29A22DE50015F86C /* DeeplinkCreator.swift */; };
 		4CFD001D29A2348B0015F86C /* ProfileAdditionaly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFD001C29A2348B0015F86C /* ProfileAdditionaly.swift */; };
-		AE31A162FAB8F8BB7D8331B3 /* Pods_BestDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2E3F437A955CB989F011FB3 /* Pods_BestDate.framework */; };
+		CBBBFD3F8B9D52BA6E4734C1 /* Pods_BestDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 272A26CE4F9868E3D07C5D0C /* Pods_BestDate.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -349,6 +349,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		272A26CE4F9868E3D07C5D0C /* Pods_BestDate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BestDate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		343F8540C938C4C140871AD4 /* Pods-BestDate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestDate.debug.xcconfig"; path = "Target Support Files/Pods-BestDate/Pods-BestDate.debug.xcconfig"; sourceTree = "<group>"; };
 		4C022A362858EE2B0043E49D /* ProfilePhotoScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoScreen.swift; sourceTree = "<group>"; };
 		4C022A382858EE510043E49D /* PhotoEditingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoEditingScreen.swift; sourceTree = "<group>"; };
 		4C022A3A285903530043E49D /* HorisontalPhotoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorisontalPhotoListView.swift; sourceTree = "<group>"; };
@@ -683,9 +685,7 @@
 		4CFD001829A21D470015F86C /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
 		4CFD001A29A22DE50015F86C /* DeeplinkCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeeplinkCreator.swift; sourceTree = "<group>"; };
 		4CFD001C29A2348B0015F86C /* ProfileAdditionaly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAdditionaly.swift; sourceTree = "<group>"; };
-		57B6918188D30C9506A27549 /* Pods-BestDate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestDate.debug.xcconfig"; path = "Target Support Files/Pods-BestDate/Pods-BestDate.debug.xcconfig"; sourceTree = "<group>"; };
-		A2E3F437A955CB989F011FB3 /* Pods_BestDate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BestDate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F6A3407C823176C322F12FDB /* Pods-BestDate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestDate.release.xcconfig"; path = "Target Support Files/Pods-BestDate/Pods-BestDate.release.xcconfig"; sourceTree = "<group>"; };
+		76E91AA3E17A2DD5CC8752FE /* Pods-BestDate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestDate.release.xcconfig"; path = "Target Support Files/Pods-BestDate/Pods-BestDate.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -696,8 +696,8 @@
 				4C2DC95328C399D700DD15C2 /* FacebookLogin in Frameworks */,
 				4C2DC94C28C2764C00DD15C2 /* AuthenticationServices.framework in Frameworks */,
 				4CB9FF7528808B3C004F1BF6 /* Lottie in Frameworks */,
-				AE31A162FAB8F8BB7D8331B3 /* Pods_BestDate.framework in Frameworks */,
 				4C2DC95128C399D700DD15C2 /* FacebookCore in Frameworks */,
+				CBBBFD3F8B9D52BA6E4734C1 /* Pods_BestDate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1776,8 +1776,8 @@
 		8AAFA1B0BD0B01F2CA3053CD /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				57B6918188D30C9506A27549 /* Pods-BestDate.debug.xcconfig */,
-				F6A3407C823176C322F12FDB /* Pods-BestDate.release.xcconfig */,
+				343F8540C938C4C140871AD4 /* Pods-BestDate.debug.xcconfig */,
+				76E91AA3E17A2DD5CC8752FE /* Pods-BestDate.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -1786,9 +1786,9 @@
 			isa = PBXGroup;
 			children = (
 				4C2DC94B28C2764500DD15C2 /* AuthenticationServices.framework */,
-				A2E3F437A955CB989F011FB3 /* Pods_BestDate.framework */,
 				4C2DC8F728BD0C4E00DD15C2 /* UserNotifications.framework */,
 				4C2DC8F928BD0C4E00DD15C2 /* UserNotificationsUI.framework */,
+				272A26CE4F9868E3D07C5D0C /* Pods_BestDate.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1800,13 +1800,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4C8E7D8B284CC94900D6E58D /* Build configuration list for PBXNativeTarget "BestDate" */;
 			buildPhases = (
-				7ED489B8572C1F95BF6785AB /* [CP] Check Pods Manifest.lock */,
+				D6485BFBF8673FAF446F2348 /* [CP] Check Pods Manifest.lock */,
 				4C8E7D79284CC93F00D6E58D /* Sources */,
 				4C8E7D7A284CC93F00D6E58D /* Frameworks */,
 				4C8E7D7B284CC93F00D6E58D /* Resources */,
-				8E500D8B5C43A1640B34A71F /* [CP] Embed Pods Frameworks */,
-				82DD87D7959F2DF69E8272AC /* [CP] Copy Pods Resources */,
 				4C2DC8EE28BD0A6000DD15C2 /* Embed App Extensions */,
+				0B569DFDDC93AD691C947F8E /* [CP] Embed Pods Frameworks */,
+				81B20D957EC9DBAB94081346 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1887,7 +1887,41 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		7ED489B8572C1F95BF6785AB /* [CP] Check Pods Manifest.lock */ = {
+		0B569DFDDC93AD691C947F8E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BestDate/Pods-BestDate-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BestDate/Pods-BestDate-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BestDate/Pods-BestDate-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		81B20D957EC9DBAB94081346 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BestDate/Pods-BestDate-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BestDate/Pods-BestDate-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BestDate/Pods-BestDate-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D6485BFBF8673FAF446F2348 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1907,40 +1941,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		82DD87D7959F2DF69E8272AC /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BestDate/Pods-BestDate-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BestDate/Pods-BestDate-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BestDate/Pods-BestDate-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8E500D8B5C43A1640B34A71F /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BestDate/Pods-BestDate-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BestDate/Pods-BestDate-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BestDate/Pods-BestDate-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -2405,14 +2405,14 @@
 		};
 		4C8E7D8C284CC94900D6E58D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 57B6918188D30C9506A27549 /* Pods-BestDate.debug.xcconfig */;
+			baseConfigurationReference = 343F8540C938C4C140871AD4 /* Pods-BestDate.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BestDate/BestDateDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_ASSET_PATHS = "\"BestDate/Preview Content\"";
 				DEVELOPMENT_TEAM = 7869H74LP9;
 				ENABLE_PREVIEWS = YES;
@@ -2447,14 +2447,14 @@
 		};
 		4C8E7D8D284CC94900D6E58D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F6A3407C823176C322F12FDB /* Pods-BestDate.release.xcconfig */;
+			baseConfigurationReference = 76E91AA3E17A2DD5CC8752FE /* Pods-BestDate.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BestDate/BestDate.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_ASSET_PATHS = "\"BestDate/Preview Content\"";
 				DEVELOPMENT_TEAM = 7869H74LP9;
 				ENABLE_PREVIEWS = YES;

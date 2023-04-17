@@ -53,6 +53,7 @@ class PhotoEditorMediator: ObservableObject {
             if success {
                 DispatchQueue.main.async {
                     MainMediator.shared.setUserInfo(user: user)
+                    ProfileMediator.shared.setUser(user: user)
                     self.setUser(user: user)
                 }
             }

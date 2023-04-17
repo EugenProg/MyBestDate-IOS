@@ -546,6 +546,7 @@
 "go_to" = "Пригласить";
 "add_a_caption" = "Добавьте надпись...";
 "sorry_you_voted_for_all_the_photos" = "Извините, вы проголосовали за все фотографии";
+"sorry_you_voted_for_all_the_photos_" = "Извините, вы проголосовали за все фотографии";
 "enter_email" = "Введите E-mail";
 "insta" = "Instagram";
 "facebook" = "Facebook";

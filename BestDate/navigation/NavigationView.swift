@@ -72,6 +72,10 @@ struct NavigationView: View {
                             self.updateUser()
                         }
                     }
+                    if store.state.activeScreen == .MAIN &&
+                        MainMediator.shared.currentScreen == .CHAT_LIST {
+                        ChatListMediator.shared.getChatList(withClear: true, page: 0)
+                    }
                 }
             }
     }
@@ -80,6 +84,7 @@ struct NavigationView: View {
         CoreApiService.shared.updateLanguage(lang: "lang_code".localized()) { _, user in
             DispatchQueue.main.async {
                 MainMediator.shared.setUserInfo(user: user)
+                ProfileMediator.shared.setUser(user: user)
             }
         }
     }

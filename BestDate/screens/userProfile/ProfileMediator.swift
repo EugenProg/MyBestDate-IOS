@@ -49,6 +49,7 @@ class ProfileMediator: ObservableObject {
     func clearUserData() {
         self.user = UserInfo()
         self.profileImages.removeAll()
+        self.mainPhoto = nil
         GuestsMediator.shared.clearGuestData()
         SearchMediator.shared.clearData()
         MainMediator.shared.clearUserData()
@@ -58,6 +59,7 @@ class ProfileMediator: ObservableObject {
         MatchMediator.shared.clearData()
         MatchesListMediator.shared.clearData()
         LikeListMediator.shared.clearData()
+        ChatListMediator.shared.clearData()
         InvitationMediator.shared.clearData()
         UserDataHolder.setSearchLocation(filter: .all)
         PusherMediator.shared.closePusherConnection()

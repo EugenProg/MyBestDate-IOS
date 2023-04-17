@@ -52,6 +52,7 @@ struct StartScreen: View {
                 if success {
                     if startScreen == .MAIN {
                         MainMediator.shared.setUserInfo(user: user)
+                        ProfileMediator.shared.setUser(user: user)
                     } else {
                         PhotoEditorMediator.shared.setImages(images: user.photos ?? [])
                         RegistrationMediator.shared.setUserData(user: user)

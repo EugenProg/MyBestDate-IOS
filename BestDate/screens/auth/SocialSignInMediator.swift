@@ -35,17 +35,19 @@ class SocialSignInMediator: NSObject, ObservableObject {
 
     func signInWithGoogle(complete: @escaping (Bool, Bool) -> Void) {
         let signInConfig = GIDConfiguration(clientID: "320734338059-5llkt240p9ev4v67dngnbehj4lnki47b.apps.googleusercontent.com")
+        GIDSignIn.sharedInstance.configuration = signInConfig
         guard let presentingViewController = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first?.rootViewController else { return }
 
-        GIDSignIn.sharedInstance.signIn(with: signInConfig, presenting: presentingViewController) { user, error in
+        GIDSignIn.sharedInstance.signIn(withPresenting: presentingViewController) { auth, error in
             if let error = error {
                 print(">>> error: \(error.localizedDescription)")
             }
+            let user = auth?.user
 
-            print(">>> SUCCESS\nname = \(user?.profile?.name ?? "")\nemail = \(user?.profile?.email ?? "")\ntoken = \(user?.authentication.accessToken ?? "")")
+            print(">>> SUCCESS\nname = \(user?.profile?.name ?? "")\nemail = \(user?.profile?.email ?? "")\ntoken = \(user?.accessToken.tokenString ?? "")")
 
-            if !(user?.authentication.accessToken ?? "").isEmpty {
-                CoreApiService.shared.signInWithSocial(provider: .google, token: user?.authentication.accessToken ?? "") { success, registrationMode in complete(success, registrationMode)
+            if !(user?.accessToken.tokenString ?? "").isEmpty {
+                CoreApiService.shared.signInWithSocial(provider: .google, token: user?.accessToken.tokenString ?? "") { success, registrationMode in complete(success, registrationMode)
                 }
             }
         }

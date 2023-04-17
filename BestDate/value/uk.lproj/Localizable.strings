@@ -546,6 +546,7 @@
 "go_to" = "Заглянути";
 "add_a_caption" = "Додати підпис...";
 "sorry_you_voted_for_all_the_photos" = "Вибачте, ви проголосували за всі фото";
+"sorry_you_voted_for_all_the_photos_" = "Вибачте, ви проголосували за всі фото";
 "enter_email" = "Введіть E-mail";
 "insta" = "Instagram";
 "facebook" = "Facebook";

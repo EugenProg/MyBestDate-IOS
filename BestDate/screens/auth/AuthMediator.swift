@@ -55,6 +55,7 @@ class AuthMediator: ObservableObject {
                         FillRegistrationDataMediator.shared.setUserData(user: user)
                     } else if self.hasImages && self.hasQuestionnaire {
                         MainMediator.shared.setUserInfo(user: user)
+                        ProfileMediator.shared.setUser(user: user)
                     } else {
                         PhotoEditorMediator.shared.setImages(images: user.photos ?? [])
                         RegistrationMediator.shared.setUserData(user: user)
