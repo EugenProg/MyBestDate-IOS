@@ -32,8 +32,8 @@ struct MatchesScreen: View {
                 }
 
                 Title(textColor: ColorList.white.color, text: "matches", textSize: 20, paddingV: 0, paddingH: 0)
-            }.frame(width: UIScreen.main.bounds.width - 64, height: 60)
-                .padding(.init(top: 16, leading: 0, bottom: 16, trailing: 0))
+            }.frame(width: UIScreen.main.bounds.width - 67, height: 60)
+                .padding(.init(top: 16, leading: 0, bottom: 16, trailing: 3))
 
             Rectangle()
                 .fill(MyColor.getColor(190, 239, 255, 0.15))

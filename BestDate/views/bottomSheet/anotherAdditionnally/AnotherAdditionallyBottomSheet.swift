@@ -33,7 +33,7 @@ struct AnotherAdditionallyBottomSheet: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Title(textColor: ColorList.white.color, text: "additionally", textSize: 32, paddingV: 0, paddingH: 24)
+            Title(textColor: ColorList.white.color, text: "additionally", textSize: 28, paddingV: 0, paddingH: 24)
                 .padding(.init(top: 0, leading: 0, bottom: 13, trailing: 0))
 
             button(title: "share", textColor: ColorList.white.color) {

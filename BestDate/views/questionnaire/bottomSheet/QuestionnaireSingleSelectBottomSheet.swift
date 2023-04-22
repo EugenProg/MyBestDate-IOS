@@ -21,7 +21,7 @@ struct QuestionnaireSingleSelectBottomSheet: View {
 
         VStack(alignment: .leading, spacing: 0) {
             HStack {
-                Title(textColor: ColorList.main.color, text: mediator.questionInfo.question, textSize: 32, paddingV: 0, paddingH: 24)
+                Title(textColor: ColorList.main.color, text: mediator.questionInfo.question, textSize: 28, paddingV: 0, paddingH: 24)
 
                 Spacer()
 

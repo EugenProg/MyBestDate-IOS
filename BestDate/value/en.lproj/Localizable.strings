@@ -682,3 +682,5 @@
 "mans" = "Men";
 "womans" = "Women";
 "all_genders" = "All";
+"copy" = "Copy";
+"message_is_copied_to_clipboard" = "Message is copied to clipboard";

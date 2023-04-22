@@ -167,10 +167,17 @@ struct ChatScreen: View {
                 .opacity(showImage ? 1 : 0)
                 .scaleEffect(showImage ? 1 : 0)
         }
-            .background(Image("bg_chat_decor").edgesIgnoringSafeArea(.bottom))
+            .background(
+                Image("bg_chat_decor")
+                    .resizable()
+            ).edgesIgnoringSafeArea(.bottom)
         .onAppear {
             store.dispatch(action:
                     .setScreenColors(status: ColorList.main.color, style: .lightContent))
+
+            mediator.showMessage = { message in
+                store.dispatch(action: .show(message: message))
+            }
         }
         .sheet(isPresented: $pickerMediator.isShowingPhotoLibrary) {
             ImagePicker { image in

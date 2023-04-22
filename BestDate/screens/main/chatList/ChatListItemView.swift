@@ -130,7 +130,7 @@ struct ChatListItemView: View {
         DragGesture()
             .onChanged { value in
                 let width = value.translation.width
-                if width < 0 && !deleteProccess { offset = width }
+                if width <= 0 && !deleteProccess { offset = width }
             }
             .onEnded { value in
                 withAnimation {

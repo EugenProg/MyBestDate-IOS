@@ -11,9 +11,7 @@ struct LoadingProgressScreen: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 0) {
-                ProgressView()
-                    .tint(ColorList.white.color)
-                    .frame(width: 150, height: 150)
+                LoadingDotsView()
             }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 100)
                 .onTapGesture { }
         }

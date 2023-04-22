@@ -23,7 +23,7 @@ struct ProfileScreen: View {
                 BluredImageHeaderView(image: $mediator.mainPhoto, enableBlur: false)
             }
 
-            SaveRefreshAndSetPositionScrollView(onRefresh: { done in
+            RefreshScrollView(onRefresh: { done in
                 mediator.updateUserData { done() }
             } ) {
                 ZStack {

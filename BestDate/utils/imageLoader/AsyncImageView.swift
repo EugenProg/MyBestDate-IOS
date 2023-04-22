@@ -16,9 +16,7 @@ struct AsyncImageView: View {
     @State var url: String?
 
     fileprivate func placeholder() -> some View {
-        Text("loading...")
-            .foregroundColor(ColorList.blue.color)
-            .font(MyFont.getFont(.ITALIC, 12))
+        LoadingDotsView()
     }
 
     var body: some View {
@@ -42,9 +40,7 @@ struct UpdateImageView: View {
     var smallUrl: Bool = true
 
     fileprivate func placeholder() -> some View {
-        Text("loading...")
-            .foregroundColor(ColorList.blue.color)
-            .font(MyFont.getFont(.ITALIC, 12))
+        LoadingDotsView()
     }
 
     var body: some View {
@@ -68,9 +64,7 @@ struct UserImageView: View {
     @Binding var user: ShortUserInfo?
 
     fileprivate func placeholder() -> some View {
-        Text("loading...")
-            .foregroundColor(ColorList.blue.color)
-            .font(MyFont.getFont(.ITALIC, 12))
+        LoadingDotsView()
     }
 
     var body: some View {
@@ -95,9 +89,7 @@ struct ChatImageView: View {
     var smallUrl: Bool = true
 
     fileprivate func placeholder() -> some View {
-        Text("loading...")
-            .foregroundColor(ColorList.blue.color)
-            .font(MyFont.getFont(.ITALIC, 12))
+        LoadingDotsView()
     }
 
     var body: some View {
@@ -121,9 +113,7 @@ struct MatchImageView: View {
     @Binding var match: MatchItem
 
     fileprivate func placeholder() -> some View {
-        Text("loading...")
-            .foregroundColor(ColorList.blue.color)
-            .font(MyFont.getFont(.ITALIC, 12))
+        LoadingDotsView()
     }
 
     var body: some View {

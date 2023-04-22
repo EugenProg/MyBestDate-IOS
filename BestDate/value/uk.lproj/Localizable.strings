@@ -683,3 +683,5 @@
 "mans" = "Чоловічий";
 "womans" = "Жіночий";
 "all_genders" = "Все";
+"copy" = "Копіювати";
+"message_is_copied_to_clipboard" = "Повідомлення скопійовано";

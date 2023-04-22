@@ -41,6 +41,16 @@ class AnotherProfileQuestionnaireMediator: ObservableObject {
         }
     }
 
+    func clearData() {
+        self.user = UserInfo()
+
+        self.generalInfo = nil
+        self.dataVerification = nil
+        self.personalInfo = nil
+        self.freeTime = nil
+        self.socialNetworks = []
+    }
+
     func translate(text: String) {
         TranslateTextApiService.shared.translate(text: text, lang: MainMediator.shared.user.language ?? "en") { success, translatedText in
             DispatchQueue.main.async {

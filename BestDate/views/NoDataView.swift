@@ -12,12 +12,7 @@ struct NoDataView: View {
 
     var body: some View {
         if loadingMode {
-            ProgressView()
-                .tint(ColorList.white.color)
-                .frame(width: 80, height: 80)
-        } else {
-            LottieView(name: "no_data")
-                .frame(width: 150, height: 150)
+            LoadingDotsView()
         }
     }
 }

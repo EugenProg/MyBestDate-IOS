@@ -40,9 +40,7 @@ struct MessageListView: View {
             }
 
             if (meta.current_page ?? 0) < (meta.last_page ?? 0) && showLoadingBlock {
-                ProgressView()
-                    .tint(ColorList.white.color)
-                    .frame(width: 50, height: 50)
+                LoadingDotsView()
             }
         }
     }

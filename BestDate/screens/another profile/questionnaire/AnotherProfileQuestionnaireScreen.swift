@@ -18,6 +18,7 @@ struct AnotherProfileQuestionnaireScreen: View {
                     HStack {
                         BackButton(style: .white) {
                             AnotherProfileMediator.shared.setUser(user: mediator.user)
+                            mediator.clearData()
                             store.dispatch(action: .navigationBack)
                         }
 
@@ -59,7 +60,10 @@ struct AnotherProfileQuestionnaireScreen: View {
                     }
                 }
             }.padding(.init(top: 94, leading: 0, bottom: store.state.statusBarHeight, trailing: 0))
-        }.background(Image("bg_chat_decor").edgesIgnoringSafeArea(.bottom))
+        }.background(
+            Image("bg_chat_decor")
+                .resizable()
+        ).edgesIgnoringSafeArea(.bottom)
         .onAppear {
             store.dispatch(action:
                     .setScreenColors(status: ColorList.main.color, style: .lightContent))

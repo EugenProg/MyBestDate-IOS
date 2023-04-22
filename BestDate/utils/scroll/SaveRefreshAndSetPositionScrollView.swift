@@ -221,12 +221,12 @@ struct LoadingView: View {
 
     var body: some View {
         ZStack {
-            Circle()
-                .foregroundColor(Color(red: 1, green: 1, blue: 1, opacity: 0.1))
-                .frame(width: 50, height: 50)
-            ProgressView()
-                .tint(ColorList.white.color)
-                .frame(width: 50, height: 50)
+            LoadingDotsView()
+                .background(
+                    RoundedRectangle(cornerRadius: 16)
+                        .foregroundColor(Color(red: 1, green: 1, blue: 1, opacity: 0.1))
+                        .padding(8)
+                )
         }
     }
 }

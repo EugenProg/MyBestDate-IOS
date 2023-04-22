@@ -10,7 +10,7 @@
 "skip" = "Überspringen";
 "communicate_and_get_to_know_people_from_all_over_the_world" = "Kommunizieren Sie und lernen Sie Menschen aus der ganzen Welt kennen, und ein praktischer automatischer Sprachübersetzer wird Ihnen dabei helfen.";
 "no_loneliness_just_reality" = "Keine Einsamkeit, nur Realität";
-"it_s_very_simple_i_signed_off_threw_an_invitation_card_and_got_a_meeting_of_my_destiny" = "Es ist ganz einfach, man schreibt sich ab, wirft eine Einladungskarte ein und bekommt ein Treffen seines Schicksals.";
+"it_s_very_simple_i_signed_off_threw_an_invitation_card_and_got_a_meeting_of_my_destiny" = "Es ist ganz einfach, man schreibt sich an, wirft eine Einladungskarte ein und bekommt ein Treffen seines Schicksals.";
 "back" = "Zurück";
 "hello_login_now" = "Hallo!\nMelden Sie sich jetzt an.";
 "enter_email_or_phone" = "Geben Sie eine E-Mail oder eine Telefonnummer ein";
@@ -683,3 +683,5 @@
 "mans" = "Mann";
 "womans" = "Frau";
 "all_genders" = "Alle";
+"copy" = "Kopieren";
+"message_is_copied_to_clipboard" = "Nachricht in Zwischenablage kopiert";

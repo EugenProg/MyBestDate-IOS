@@ -110,7 +110,7 @@
 "new_guests" = "Новые гости";
 "previous_views" = "Предыдущие просмотры";
 "more_than_one_person" = "Больше одого человека на фотографии";
-"default_error_message" = "Упс, что-то пошл не так";
+"default_error_message" = "Упс, что-то пошло не так";
 "settings" = "Настройки";
 "personal_data" = "Личные данные";
 "questionnaire" = "Анкета";
@@ -683,3 +683,5 @@
 "mans" = "Мужской";
 "womans" = "Женский";
 "all_genders" = "Все";
+"copy" = "Копировать";
+"message_is_copied_to_clipboard" = "Сообщение скопировано в буфер обмена";

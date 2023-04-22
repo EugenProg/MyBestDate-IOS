@@ -14,9 +14,7 @@ struct LoadingNextPageView: View {
                 .stroke(MyColor.getColor(255, 255, 255, 0.04))
                 .background(MyColor.getColor(41, 50, 54))
 
-            ProgressView()
-                .tint(ColorList.white.color)
-                .scaleEffect(1.2)
+            LoadingDotsView()
         }.frame(width: UIScreen.main.bounds.width - 12, height: 84)
     }
 }

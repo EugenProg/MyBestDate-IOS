@@ -285,7 +285,10 @@ extension UserInfo {
             main_photo: self.getMainPhoto(),
             is_online: self.is_online,
             last_online_at: self.last_online_at,
+            location: self.location,
+            language: self.language,
             blocked: self.blocked,
+            blocked_me: self.blocked_me,
             allow_chat: self.allow_chat,
             full_questionnaire: self.questionnaire?.isFull(),
             distance: self.distance)
@@ -348,9 +351,16 @@ extension ShortUserInfo {
             id: self.id,
             name: self.name,
             gender: self.gender,
+            language: self.language,
             birthday: self.birthday,
             is_online: self.is_online,
-            last_online_at: self.last_online_at
+            last_online_at: self.last_online_at,
+            distance: self.distance,
+            photos: [self.main_photo ?? ProfileImage()],
+            location: self.location,
+            blocked: self.blocked,
+            allow_chat: self.allow_chat,
+            blocked_me: self.blocked_me
         )
     }
 

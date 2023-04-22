@@ -20,7 +20,7 @@ struct GenderBottomSheet: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Title(textColor: ColorList.white.color, text: "gender", textSize: 32, paddingV: 0, paddingH: 24)
+            Title(textColor: ColorList.white.color, text: "gender", textSize: 28, paddingV: 0, paddingH: 24)
                 .padding(.init(top: 0, leading: 0, bottom: 14, trailing: 0))
             
             ForEach(genderList, id: \.self) { gender in

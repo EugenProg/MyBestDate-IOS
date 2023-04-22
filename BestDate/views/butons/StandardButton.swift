@@ -21,9 +21,7 @@ struct StandardButton: View {
                 RoundedRectangle(cornerRadius: 33)
                     .fill(style.buttonColor)
                 if loadingProcess {
-                    ProgressView()
-                        .tint(style.contentColor)
-                        .frame(width: 50, height: 50)
+                    LoadingDotsView()
                 } else {
                     Text(title.localized())
                         .foregroundColor(style.contentColor)

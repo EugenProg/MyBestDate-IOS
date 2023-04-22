@@ -316,6 +316,8 @@
 		4CDD3B9B2888608D00793466 /* NoDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDD3B9A2888608D00793466 /* NoDataView.swift */; };
 		4CDD3B9D288867DA00793466 /* GuestListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDD3B9C288867DA00793466 /* GuestListView.swift */; };
 		4CDD3B9F288874F200793466 /* ProfileButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDD3B9E288874F200793466 /* ProfileButtonView.swift */; };
+		4CE9FB9B29F402C80094AA47 /* loading_dots.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CE9FB9A29F402C70094AA47 /* loading_dots.json */; };
+		4CE9FB9D29F402FE0094AA47 /* LoadingDotsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE9FB9C29F402FE0094AA47 /* LoadingDotsView.swift */; };
 		4CF028402889BACE002C59EE /* TopButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF0283F2889BACE002C59EE /* TopButtonView.swift */; };
 		4CF028432889BB1F002C59EE /* TopBottomButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF028422889BB1F002C59EE /* TopBottomButtonView.swift */; };
 		4CF028452889BB84002C59EE /* DuelColorfullTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF028442889BB84002C59EE /* DuelColorfullTitle.swift */; };
@@ -669,6 +671,8 @@
 		4CDD3B9A2888608D00793466 /* NoDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDataView.swift; sourceTree = "<group>"; };
 		4CDD3B9C288867DA00793466 /* GuestListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestListView.swift; sourceTree = "<group>"; };
 		4CDD3B9E288874F200793466 /* ProfileButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileButtonView.swift; sourceTree = "<group>"; };
+		4CE9FB9A29F402C70094AA47 /* loading_dots.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading_dots.json; sourceTree = "<group>"; };
+		4CE9FB9C29F402FE0094AA47 /* LoadingDotsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingDotsView.swift; sourceTree = "<group>"; };
 		4CF0283F2889BACE002C59EE /* TopButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopButtonView.swift; sourceTree = "<group>"; };
 		4CF028422889BB1F002C59EE /* TopBottomButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBottomButtonView.swift; sourceTree = "<group>"; };
 		4CF028442889BB84002C59EE /* DuelColorfullTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuelColorfullTitle.swift; sourceTree = "<group>"; };
@@ -1280,6 +1284,7 @@
 				4C9E5B0B28DA44A000E4E9FF /* DeleteUserDialog.swift */,
 				4C421E0B29254E5800F2F6CD /* LanguageSettingsDialog.swift */,
 				4C421E0D29268AD200F2F6CD /* PermissionDialog.swift */,
+				4CE9FB9C29F402FE0094AA47 /* LoadingDotsView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -1594,6 +1599,7 @@
 		4CB9FF7628808D6E004F1BF6 /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
+				4CE9FB9A29F402C70094AA47 /* loading_dots.json */,
 				4C2DC92D28BE944D00DD15C2 /* loading.json */,
 				4C2DC8D128BA9F3D00DD15C2 /* match_action_anim.json */,
 				4CD34F63289C22C700504396 /* love_burst_pink.json */,
@@ -1866,6 +1872,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CE9FB9B29F402C80094AA47 /* loading_dots.json in Resources */,
 				4CDD3B992888601000793466 /* no_data.json in Resources */,
 				4C2DC93128BE944F00DD15C2 /* loading.json in Resources */,
 				4CD34F65289C22C800504396 /* love_burst_pink.json in Resources */,
@@ -2036,6 +2043,7 @@
 				4C8E7DAC284D252300D6E58D /* OnboardStartScreen.swift in Sources */,
 				4CD34F32288D0A0E00504396 /* ChatListView.swift in Sources */,
 				4C5C86DD2874B18D006DE024 /* AuthMediator.swift in Sources */,
+				4CE9FB9D29F402FE0094AA47 /* LoadingDotsView.swift in Sources */,
 				4C878F1628B7DD3000043680 /* InvitationApiService.swift in Sources */,
 				4CBB9E0829179C810028DF42 /* ImageFetcher.swift in Sources */,
 				4CB9FF92288331A2004F1BF6 /* ProfilePhotoLineView.swift in Sources */,

@@ -15,9 +15,7 @@ struct NoDuelsView: View {
         ZStack {
             if loading {
                 VStack {
-                    ProgressView()
-                        .tint(ColorList.white.color)
-                        .frame(width: 80, height: 80)
+                    LoadingDotsView()
                 }.frame(width: UIScreen.main.bounds.width - 36, height: 100)
             } else {
                 VStack {

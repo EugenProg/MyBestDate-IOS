@@ -33,7 +33,7 @@ struct QuestionnaireSearchBotomSheet: View {
             }.frame(width: UIScreen.main.bounds.width - 64)
                 .padding(.init(top: 32, leading: 32, bottom: 25, trailing: 32))
             HStack {
-                Title(textColor: ColorList.main.color, text: mediator.questionInfo.question, textSize: 32, paddingV: 0, paddingH: 32)
+                Title(textColor: ColorList.main.color, text: mediator.questionInfo.question, textSize: 28, paddingV: 0, paddingH: 32)
 
                 Spacer()
 

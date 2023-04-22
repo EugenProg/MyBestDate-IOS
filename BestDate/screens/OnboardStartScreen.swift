@@ -15,6 +15,7 @@ struct OnboardStartScreen: View {
     var body: some View {
         ZStack {
             Image("ic_decor_pink")
+                .resizable()
             VStack(spacing: 0) {
                 HStack {
                     Image("ic_logoName")

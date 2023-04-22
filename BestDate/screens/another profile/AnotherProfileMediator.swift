@@ -51,6 +51,7 @@ class AnotherProfileMediator: ObservableObject {
                     self.user = user
                     self.mainLiked = user.getMainPhoto()?.liked ?? false
                     self.imageList.clearAndAddAll(list: user.photos)
+                    AnotherProfileQuestionnaireMediator.shared.setUser(user: user)
                 }
             }
         }

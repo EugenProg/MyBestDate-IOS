@@ -15,6 +15,7 @@ struct OnboardSecondScreen: View {
     var body: some View {
         ZStack {
             Image("ic_decor_blue")
+                .resizable()
             VStack(spacing: 0) {
                 HStack {
                     Image("ic_logoName")

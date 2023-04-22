@@ -26,9 +26,8 @@ struct TopListView: View {
         SaveAndSetPositionScrollView(startPosition: savedPosition,
                                      offsetChanged: { offsetChanged($0) }) {
             if loadingMode {
-                ProgressView()
-                    .tint(ColorList.white.color)
-                    .frame(width: 80, height: 80)
+                LoadingView()
+                    .padding(.top, 50)
             } else {
                 VStack {
                     LazyVGrid(columns: items, alignment: .center, spacing: 3,

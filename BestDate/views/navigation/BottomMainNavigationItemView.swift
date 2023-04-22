@@ -21,7 +21,9 @@ struct BottomMainNavigationItemView: View {
     
     var body: some View {
         Button(action: {
-            withAnimation { clickAction(type) }
+            if MainMediator.shared.currentScreen != type {
+                withAnimation { clickAction(type) }
+            }
         }) {
             ZStack {
                 VStack(spacing: 8) {

@@ -14,9 +14,8 @@ struct NoDataBoxView: View {
     var body: some View {
         ZStack {
             if loadingMode {
-                ProgressView()
-                    .tint(ColorList.white.color)
-                    .frame(width: 80, height: 80)
+                LoadingDotsView()
+                    .frame(minHeight: 80)
             } else {
                 Text(text.localized())
                     .foregroundColor(ColorList.white.color)

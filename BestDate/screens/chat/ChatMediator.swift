@@ -31,6 +31,9 @@ class ChatMediator: ObservableObject {
     @Published var isOnline: Bool = false
     @Published var typingMode: Bool = false
     @Published var ping: Int = 0
+
+    var showMessage: ((String) -> Void)? = nil
+
     var origionalList: [Message] = []
     var typingIventSent: Bool = false
     var lastTypingUpdate: Int64 = Int64(Date().timeIntervalSince1970)
@@ -195,11 +198,19 @@ class ChatMediator: ObservableObject {
         }
     }
 
+    func copy() {
+        UIPasteboard.general.string = selectedMessage?.text ?? ""
+        if showMessage != nil {
+            showMessage!("message_is_copied_to_clipboard".localized())
+        }
+    }
+
     func doActionByType(type: ChatActions) {
         switch type {
         case .edit: editMessage()
         case .delete: deleteMessage()
         case .reply: reply()
+        case .copy: copy()
         }
     }
 
