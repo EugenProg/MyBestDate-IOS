@@ -129,6 +129,9 @@ struct ChatScreen: View {
                         .padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight, trailing: 0))
                         .edgesIgnoringSafeArea(.bottom)
                 } else {
+                    VStack {
+                        Spacer()
+
                     ChatBottomView(text: $mediator.inputText,
                                    sendTextProcess: $sendTextProcess,
                                    translateProcess: $translateProcess,
@@ -153,8 +156,9 @@ struct ChatScreen: View {
                                 if success { mediator.inputText = "" }
                             }
                         }
-                    }).keyboardSensible($offsetValue)
+                    })
                         .padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight, trailing: 0))
+                    }.keyboardSensible($offsetValue)
                         .edgesIgnoringSafeArea(.bottom)
                 }
             }
@@ -200,14 +204,14 @@ struct ChatScreen: View {
         }
     }
 
-    private func getTopPadding() -> CGFloat {
-        var bottomBoxHeight = (mediator.editMode || mediator.replyMode ? 135 : 85) + additionalHeight + (offsetValue / 2) + (offsetValue > 0 ? 32 : 0)
+    private func getTopPadding() -> CGFloat { //Its the bottom padding, becose the view is rotate at 180 degree
+        var bottomBoxHeight = (mediator.editMode || mediator.replyMode ? 135 : 85) + additionalHeight + offsetValue
         if mediator.user?.getRole() != .user { bottomBoxHeight = 16 }
         else if mediator.cardsOnlyMode { bottomBoxHeight = 150 }
         return store.state.statusBarHeight + bottomBoxHeight
     }
 
-    private func getBottomPadding() -> CGFloat {
+    private func getBottomPadding() -> CGFloat {//Its the top padding, becose the view is rotate at 180 degree
         (offsetValue / 2) + 90 + ((mediator.messages.isEmpty || mediator.user?.getRole() == .bot) ? 0 : 41)
     }
 }

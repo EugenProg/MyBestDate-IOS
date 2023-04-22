@@ -44,9 +44,6 @@ struct ChatBottomView: View {
     }
 
     var body: some View {
-        VStack {
-            Spacer()
-            
             ZStack(alignment: .bottom) {
                 if editMode || replyMode {
                     Rectangle()
@@ -178,7 +175,6 @@ struct ChatBottomView: View {
                 .frame(width: UIScreen.main.bounds.width, height: 101 + additionalHeight)
             }
             .frame(width: UIScreen.main.bounds.width, height: ((editMode || replyMode) ? 151 : 101) + additionalHeight)
-        }.edgesIgnoringSafeArea(.bottom)
     }
 
     private func calculateSize() {

@@ -13,7 +13,7 @@ extension View {
   func keyboardSensible(_ offsetValue: Binding<CGFloat>) -> some View {
 
     return self
-        .padding(.bottom, offsetValue.wrappedValue - 10)
+          .padding(.bottom, offsetValue.wrappedValue - 16)
         .onAppear {
             withAnimation(.spring()) {
                 NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main) { notification in
