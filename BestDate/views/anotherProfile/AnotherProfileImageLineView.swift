@@ -16,11 +16,22 @@ struct AnotherProfileImageLineView: View {
         ZStack {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 3) {
-                    ForEach(imagesList.indices, id: \.self) { index in
-                        ImageLineItemView(image: imagesList[index], imageSize: imageSize, showText: false)
-                            .onTapGesture {
-                                selectAction(index)
-                            }
+                    if imagesList.isEmpty {
+                        ForEach(0...2, id: \.self) { index in
+                            ZStack {
+                                Rectangle()
+                                    .fill(ColorList.white_10.color)
+
+                                LoadingDotsView()
+                            }.frame(width: imageSize, height: imageSize)
+                        }
+                    } else {
+                        ForEach(imagesList.indices, id: \.self) { index in
+                            ImageLineItemView(image: imagesList[index], imageSize: imageSize, showText: false)
+                                .onTapGesture {
+                                    selectAction(index)
+                                }
+                        }
                     }
                     Spacer()
                 }.padding(.init(top: 0, leading: 3, bottom: 0, trailing: 3))

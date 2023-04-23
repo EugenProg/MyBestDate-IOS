@@ -20,7 +20,7 @@ struct AnotherProfileHeader: View {
 
     var body: some View {
         ZStack {
-            AsyncImageView(url: image.full_url)
+            AsyncWithThumbImageView(thumbUrl: image.thumb_url, fullUrl: image.full_url)
                 .cornerRadius(radius: 33, corners: [.bottomLeft, .bottomRight])
                 .frame(height: UIScreen.main.bounds.width)
 

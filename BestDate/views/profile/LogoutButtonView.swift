@@ -23,9 +23,7 @@ struct LogoutButtonView: View {
                     .cornerRadius(16)
 
                 if loadingProcess {
-                    ProgressView()
-                        .tint(ColorList.white.color)
-                        .frame(width: 50, height: 50)
+                    LoadingDotsView()
                 } else {
                     HStack(spacing: 15) {
                         Image("ic_sign_out")

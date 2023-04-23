@@ -27,7 +27,7 @@ struct ChatImageShowView: View {
             }
 
             VStack {
-                ChatImageView(message: $message, smallUrl: false)
+                ChatWithThumbImageView(message: $message)
                     .aspectRatio(contentMode: .fit)
                     .frame(width: UIScreen.main.bounds.width)
             }.gesture(dragGesture)

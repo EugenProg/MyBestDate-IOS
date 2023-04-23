@@ -30,7 +30,7 @@ struct ImagesListView: View {
             HStack(spacing: 0) {
                 ForEach(images.indices, id: \.self) { index in
                     let image = images[index]
-                    AsyncImageView(url: image.full_url)
+                    AsyncWithThumbImageView(thumbUrl: image.thumb_url, fullUrl: image.full_url)
                         .frame(width: size, height: size)
                         .padding(.init(top: 0, leading: 2, bottom: 0, trailing: 2))
                         .opacity(selectedImage == index ? 1 : 0)

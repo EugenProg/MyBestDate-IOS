@@ -19,7 +19,7 @@ struct BluredImageHeaderView: View {
                 
             }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width)
                 .background(
-                    UpdateImageView(image: $image, smallUrl: false)
+                    UpdateWithThumbImageView(image: $image)
                         .blur(radius: enableBlur ? 50 : 0)
                         .edgesIgnoringSafeArea(.all))
             Spacer()
