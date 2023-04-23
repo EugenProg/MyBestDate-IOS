@@ -53,10 +53,6 @@ struct ChatListScreen: View {
         }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
             .background(ColorList.main.color.edgesIgnoringSafeArea(.bottom))
             .onAppear {
-                if mediator.newChats.isEmpty && mediator.previousChats.isEmpty {
-                    mediator.getChatList(withClear: true, page: 0)
-                }
-
                 MainMediator.shared.chatListPage = {
                     mediator.getChatList(withClear: true, page: 0)
                 }

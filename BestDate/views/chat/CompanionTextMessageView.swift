@@ -11,20 +11,29 @@ struct CompanionTextMessageView: View {
     @Binding var message: Message?
     @Binding var isLast: Bool
 
+    var translateClick: (Message?) -> Void
+
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
-            ZStack(alignment: .leading) {
-                Text(message?.text ?? "")
-                    .foregroundColor(ColorList.main.color)
-                    .font(MyFont.getFont(.NORMAL, 18))
-                    .padding(.init(top: 9, leading: 18, bottom: 9, trailing: 18))
-            }.background(
-                RoundedRectangle(cornerRadius: 28)
-                    .stroke(ColorList.chat_blue_55.color, lineWidth: 2)
-                    .background(ColorList.white.color)
-                    .cornerRadius(28)
-            )
-            .padding(.init(top: 0, leading: 18, bottom: 0, trailing: 60))
+            HStack(spacing: 14) {
+                ZStack(alignment: .leading) {
+                    Text(message?.translatedMessage ?? message?.text ?? "")
+                        .foregroundColor(ColorList.main.color)
+                        .font(MyFont.getFont(.NORMAL, 18))
+                        .padding(.init(top: 9, leading: 18, bottom: 9, trailing: 18))
+                }.background(
+                    RoundedRectangle(cornerRadius: 28)
+                        .stroke(ColorList.chat_blue_55.color, lineWidth: 2)
+                        .background(ColorList.white.color)
+                        .cornerRadius(28)
+                )
+
+                MessageTranslateButtonView(message: $message) {
+                    translateClick(message)
+                }
+            }
+            .padding(.init(top: 0, leading: 18, bottom: 0, trailing: 18))
+
 
             if isLast {
                 Text(message?.created_at?.getTime() ?? "???")

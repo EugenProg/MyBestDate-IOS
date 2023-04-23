@@ -542,3 +542,26 @@ extension HTTPURLResponse {
         return 200 ... 299 ~= statusCode
     }
 }
+
+extension Message {
+    func setTranslatedText(text: String?) -> Message {
+        Message(
+            id: self.id,
+            sender_id: self.sender_id,
+            recipient_id: self.recipient_id,
+            parent_id: self.parent_id,
+            text: self.text,
+            image: self.image,
+            read_at: self.read_at,
+            created_at: self.created_at,
+            translatedMessage: text,
+            translationStatus: text != nil ? .translated : .un_active
+        )
+    }
+    
+    func getStatus() -> TranslateButtonStatus {
+        if self.translationStatus != nil { return self.translationStatus! }
+        else if self.translatedMessage != nil { return .translated }
+        else { return .un_active }
+    }
+}

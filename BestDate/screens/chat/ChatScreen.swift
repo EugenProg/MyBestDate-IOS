@@ -118,6 +118,8 @@ struct ChatScreen: View {
                         showImage = true
                     } loadNextPage: {
                         mediator.getNextPage()
+                    } translateClick: { message in
+                        mediator.translateMessage(message: message)
                     }.padding(.init(top: 6, leading: 0, bottom: 16, trailing: 0))
                 }.padding(.init(top: getTopPadding(), leading: 0, bottom: getBottomPadding(), trailing: 0))
                     .rotationEffect(Angle(degrees: 180))

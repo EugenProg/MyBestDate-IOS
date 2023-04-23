@@ -15,6 +15,8 @@ struct MessageListView: View {
     var imageClick: (Message?) -> Void
     var loadNextPage: () -> Void
 
+    var translateClick: (Message?) -> Void
+
     @State var showLoadingBlock: Bool = false
 
     var items: [GridItem] = [GridItem(.fixed(UIScreen.main.bounds.width), spacing: 5)]
@@ -58,13 +60,16 @@ struct MessageListView: View {
             case .my_image_message: MyImageMessageView(message: item.message, isLast: item.last, selectClick: {
                 clickAction(item.wrappedValue) }) { message in imageClick(message) }
             case .my_image_message_with_parent: MyTextMessageWithParentView(message: item.message, isLast: item.last, parentMessage: parentMessage, topOffset: topOffset, bottomOffset: bottomOffset)
-            case .user_text_message: CompanionTextMessageView(message: item.message, isLast: item.last)
-            case .user_text_message_with_parent: CompanionTextMessageWithParentView(message: item.message, isLast: item.last, parentMessage: parentMessage, topOffset: topOffset, bottomOffset: bottomOffset)
-            case .user_voice_message: CompanionTextMessageView(message: item.message, isLast: item.last)
-            case .user_voice_message_with_parent: CompanionTextMessageView(message: item.message, isLast: item.last)
-            case .user_image_message: CompanionImageMessageView(message: item.message, isLast: item.last, selectClick: { clickAction(item.wrappedValue) })
-                { message in imageClick(message) }
-            case .user_image_message_with_parent: CompanionTextMessageWithParentView(message: item.message, isLast: item.last, parentMessage: parentMessage, topOffset: topOffset, bottomOffset: bottomOffset)
+            case .user_text_message: CompanionTextMessageView(message: item.message, isLast: item.last,
+                                    translateClick: { m in translateClick(m) })
+            case .user_text_message_with_parent: CompanionTextMessageWithParentView(message: item.message, isLast: item.last, parentMessage: parentMessage, topOffset: topOffset, bottomOffset: bottomOffset, translateClick: { m in translateClick(m) })
+            case .user_voice_message: CompanionTextMessageView(message: item.message, isLast: item.last,
+                                                               translateClick: { m in translateClick(m) })
+            case .user_voice_message_with_parent: CompanionTextMessageView(message: item.message, isLast: item.last,
+                                                                           translateClick: { m in translateClick(m) })
+            case .user_image_message: CompanionImageMessageView(message: item.message, isLast: item.last, selectClick: { clickAction(item.wrappedValue) },
+                imageClick: { message in imageClick(message) }, translateClick: { m in translateClick(m) })
+            case .user_image_message_with_parent: CompanionTextMessageWithParentView(message: item.message, isLast: item.last, parentMessage: parentMessage, topOffset: topOffset, bottomOffset: bottomOffset, translateClick: { m in translateClick(m) })
             case .date_block: DateBlockView(date: item.date)
             }
         }

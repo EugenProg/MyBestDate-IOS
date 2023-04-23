@@ -227,6 +227,7 @@
 		4CA2E23D286766EF00E514C4 /* PageHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA2E23C286766EF00E514C4 /* PageHeaderView.swift */; };
 		4CA2E23F28676FA400E514C4 /* PageButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA2E23E28676FA400E514C4 /* PageButtonsView.swift */; };
 		4CAB27CA29CDD6540075B4F4 /* QuestionnaireCountrySelectBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB27C929CDD6540075B4F4 /* QuestionnaireCountrySelectBottomSheet.swift */; };
+		4CAD366029F57D0500A7B6D9 /* MessageTranslateButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD365F29F57D0500A7B6D9 /* MessageTranslateButtonView.swift */; };
 		4CB9FF412877437F004F1BF6 /* SearchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB9FF402877437E004F1BF6 /* SearchScreen.swift */; };
 		4CB9FF44287743C3004F1BF6 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB9FF43287743C3004F1BF6 /* MainScreen.swift */; };
 		4CB9FF46287743D9004F1BF6 /* MainMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB9FF45287743D9004F1BF6 /* MainMediator.swift */; };
@@ -583,6 +584,7 @@
 		4CA2E23C286766EF00E514C4 /* PageHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageHeaderView.swift; sourceTree = "<group>"; };
 		4CA2E23E28676FA400E514C4 /* PageButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageButtonsView.swift; sourceTree = "<group>"; };
 		4CAB27C929CDD6540075B4F4 /* QuestionnaireCountrySelectBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireCountrySelectBottomSheet.swift; sourceTree = "<group>"; };
+		4CAD365F29F57D0500A7B6D9 /* MessageTranslateButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTranslateButtonView.swift; sourceTree = "<group>"; };
 		4CB9FF402877437E004F1BF6 /* SearchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreen.swift; sourceTree = "<group>"; };
 		4CB9FF43287743C3004F1BF6 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		4CB9FF45287743D9004F1BF6 /* MainMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMediator.swift; sourceTree = "<group>"; };
@@ -1712,6 +1714,7 @@
 				4CBF5921289E9754006BDE53 /* InvitationChatView.swift */,
 				4CBF592C28A17A99006BDE53 /* MyImageMessageView.swift */,
 				4CBF592E28A2AD79006BDE53 /* CompanionImageMessageView.swift */,
+				4CAD365F29F57D0500A7B6D9 /* MessageTranslateButtonView.swift */,
 			);
 			path = chat;
 			sourceTree = "<group>";
@@ -2151,6 +2154,7 @@
 				4CF02851288AFDE0002C59EE /* SearchListView.swift in Sources */,
 				4C0E71EF284FC394004099D4 /* CircleImageButton.swift in Sources */,
 				4C48EABD29ABC062009199ED /* DialogsView.swift in Sources */,
+				4CAD366029F57D0500A7B6D9 /* MessageTranslateButtonView.swift in Sources */,
 				4CB9FF5228774739004F1BF6 /* MatchesScreen.swift in Sources */,
 				4C48EAC829B3A7B8009199ED /* TariffItemView.swift in Sources */,
 				4CF028452889BB84002C59EE /* DuelColorfullTitle.swift in Sources */,

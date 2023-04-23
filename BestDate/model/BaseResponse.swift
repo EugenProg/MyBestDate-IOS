@@ -173,6 +173,8 @@ struct Message: Codable {
     var image: ChatImage? = nil
     var read_at: String? = nil
     var created_at: String? = nil
+    var translatedMessage: String? = nil
+    var translationStatus: TranslateButtonStatus? = .un_active
 }
 
 struct SocketMessage: Codable {
