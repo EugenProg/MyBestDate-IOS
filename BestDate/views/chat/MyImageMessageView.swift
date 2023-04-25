@@ -12,7 +12,7 @@ struct MyImageMessageView: View {
     @Binding var isLast: Bool
 
     var selectClick: () -> Void
-    var imageClick: (Message?) -> Void
+    var imageClick: (ChatImage?) -> Void
     
     var body: some View {
         VStack(alignment: .trailing, spacing: 2) {
@@ -22,7 +22,7 @@ struct MyImageMessageView: View {
                     .cornerRadius(25)
                     .padding(.init(top: 6, leading: 6, bottom: 6, trailing: 6))
                     .onTapGesture {
-                        withAnimation { imageClick(message) }
+                        withAnimation { imageClick(message?.image) }
                     }
                     .onLongPressGesture {
                         withAnimation { selectClick() }

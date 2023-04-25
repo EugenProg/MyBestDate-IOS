@@ -19,7 +19,7 @@ struct ChatScreen: View {
     @State var additionalHeight: CGFloat = 0
 
     @State var showImage: Bool = false
-    @State var showingImage: Message? = nil
+    @State var showingImage: ChatImage? = nil
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -169,7 +169,7 @@ struct ChatScreen: View {
                 .opacity(mediator.editImageMode ? 1 : 0)
                 .offset(y: mediator.editImageMode ? 0 : UIScreen.main.bounds.height)
 
-            ChatImageShowView(message: $showingImage, show: $showImage)
+            ChatImageShowView(image: $showingImage, show: $showImage)
                 .opacity(showImage ? 1 : 0)
                 .scaleEffect(showImage ? 1 : 0)
         }

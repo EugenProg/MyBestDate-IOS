@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ChatImageShowView: View {
-    @Binding var message: Message?
+    @Binding var image: ChatImage?
     @Binding var show: Bool
 
     var body: some View {
@@ -27,7 +27,7 @@ struct ChatImageShowView: View {
             }
 
             VStack {
-                ChatWithThumbImageView(message: $message)
+                ChatWithThumbImageView(image: $image)
                     .aspectRatio(contentMode: .fit)
                     .frame(width: UIScreen.main.bounds.width)
             }.gesture(dragGesture)

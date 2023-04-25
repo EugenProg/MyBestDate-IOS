@@ -71,6 +71,18 @@ class ChatListMediator: ObservableObject {
         }
     }
 
+    func setNewMessage(message: Message?) {
+        var chatIndex = self.allChatsList.firstIndex { chat in
+            chat.user?.id == message?.sender_id || chat.user?.id == message?.recipient_id
+        }
+        if chatIndex != nil {
+            allChatsList[chatIndex!].last_message = message
+            refillChatsLists()
+        } else {
+            getChatList(withClear: true, page: 0)
+        }
+    }
+
     func setTypingEvent(userId: Int) {
         if typingList.contains(where: { item in item.userId == userId }) {
             let index = typingList.firstIndex { item in item.userId == userId }

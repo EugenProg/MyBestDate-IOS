@@ -45,6 +45,7 @@ class ChatMediator: ObservableObject {
     func setUser(user: ShortUserInfo) {
         CreateInvitationMediator.shared.getInvitations()
         self.user = user
+        self.sendReadingEvent(recepientId: user.id)
         self.getMessageList(withClear: true, page: 0)
         self.initInputListener()
         self.initTypingListener()
@@ -116,6 +117,8 @@ class ChatMediator: ObservableObject {
             DispatchQueue.main.async {
                 if success {
                     self.addMessage(message: savedMessage)
+
+                    ChatListMediator.shared.setNewMessage(message: savedMessage)
                 }
                 completion(success)
             }
@@ -142,6 +145,8 @@ class ChatMediator: ObservableObject {
                         self.selectedMessage = nil
                     }
                 }
+
+                ChatListMediator.shared.setNewMessage(message: message)
                 completion(success)
             }
         }
@@ -160,6 +165,8 @@ class ChatMediator: ObservableObject {
                             self.selectedMessage = nil
                         }
                     }
+
+                    ChatListMediator.shared.setNewMessage(message: message)
                     completion(success)
                 }
             }
@@ -255,6 +262,10 @@ class ChatMediator: ObservableObject {
         if (meta.current_page ?? 0) >= (meta.last_page ?? 0) { return }
 
         getMessageList(withClear: false, page: (meta.current_page ?? 0) + 1)
+    }
+
+    func sendReadingEvent(recepientId: Int?) {
+        ChatApiService.shared.sendReadEvent(recepient: recepientId ?? 0)
     }
 }
 

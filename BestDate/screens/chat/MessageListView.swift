@@ -12,7 +12,7 @@ struct MessageListView: View {
     @Binding var meta: Meta
     var clickAction: (ChatItem) -> Void
 
-    var imageClick: (Message?) -> Void
+    var imageClick: (ChatImage?) -> Void
     var loadNextPage: () -> Void
 
     var translateClick: (Message?) -> Void
@@ -58,7 +58,7 @@ struct MessageListView: View {
             case .my_voice_message: MyTextMessageView(message: item.message, isLast: item.last)
             case .my_voice_message_with_parent: MyTextMessageView(message: item.message, isLast: item.last)
             case .my_image_message: MyImageMessageView(message: item.message, isLast: item.last, selectClick: {
-                clickAction(item.wrappedValue) }) { message in imageClick(message) }
+                clickAction(item.wrappedValue) }) { image in imageClick(image) }
             case .my_image_message_with_parent: MyTextMessageWithParentView(message: item.message, isLast: item.last, parentMessage: parentMessage, topOffset: topOffset, bottomOffset: bottomOffset)
             case .user_text_message: CompanionTextMessageView(message: item.message, isLast: item.last,
                                     translateClick: { m in translateClick(m) })
@@ -68,7 +68,7 @@ struct MessageListView: View {
             case .user_voice_message_with_parent: CompanionTextMessageView(message: item.message, isLast: item.last,
                                                                            translateClick: { m in translateClick(m) })
             case .user_image_message: CompanionImageMessageView(message: item.message, isLast: item.last, selectClick: { clickAction(item.wrappedValue) },
-                imageClick: { message in imageClick(message) }, translateClick: { m in translateClick(m) })
+                imageClick: { image in imageClick(image) }, translateClick: { m in translateClick(m) })
             case .user_image_message_with_parent: CompanionTextMessageWithParentView(message: item.message, isLast: item.last, parentMessage: parentMessage, topOffset: topOffset, bottomOffset: bottomOffset, translateClick: { m in translateClick(m) })
             case .date_block: DateBlockView(date: item.date)
             }

@@ -59,9 +59,9 @@ class PusherMediator {
             if self.isInTheChat(id: message?.sender_id) {
                 ChatMediator.shared.addMessage(message: message ?? Message())
                 ChatApiService.shared.sendReadEvent(recepient: message?.sender_id ?? 0)
-            } else if self.inTheChatList() {
-                ChatListMediator.shared.getChatList(withClear: true, page: 0)
             }
+
+            ChatListMediator.shared.setNewMessage(message: message)
         })
     }
 
@@ -71,9 +71,9 @@ class PusherMediator {
 
             if self.isInTheChat(id: message?.sender_id) {
                 self.editMessage(message: message)
-            } else if self.inTheChatList() {
-                ChatListMediator.shared.getChatList(withClear: true, page: 0)
             }
+
+            ChatListMediator.shared.setNewMessage(message: message)
         })
     }
 
@@ -104,9 +104,9 @@ class PusherMediator {
 
             if self.isInTheChat(id: message?.sender_id) {
                 ChatMediator.shared.messages.delete(id: message?.id)
-            } else if self.inTheChatList() {
-                ChatListMediator.shared.getChatList(withClear: true, page: 0)
             }
+
+            ChatListMediator.shared.getChatList(withClear: true, page: 0)
         })
     }
 
@@ -116,9 +116,9 @@ class PusherMediator {
 
             if self.isInTheChat(id: message?.recipient_id) {
                 self.editMessage(message: message)
-            } else if self.inTheChatList() {
-                ChatListMediator.shared.getChatList(withClear: true, page: 0)
             }
+
+            ChatListMediator.shared.setNewMessage(message: message)
         })
     }
 

@@ -152,7 +152,7 @@ struct ChatImageView: View {
 struct ChatWithThumbImageView: View {
     private let defaultUrl: String = "\(CoreApiTypes.serverAddress)/images/default_photo.jpg"
 
-    @Binding var message: Message?
+    @Binding var image: ChatImage?
 
     @State var fullImageIsLoaded: Bool = false
 
@@ -163,7 +163,7 @@ struct ChatWithThumbImageView: View {
     var body: some View {
         ZStack {
             if !fullImageIsLoaded {
-                KFImage.url(getUrl(message?.image?.thumb_url))
+                KFImage.url(getUrl(image?.thumb_url))
                     .placeholder(placeholder)
                     .loadDiskFileSynchronously()
                     .cacheMemoryOnly()
@@ -174,7 +174,7 @@ struct ChatWithThumbImageView: View {
                     .resizable()
             }
 
-            KFImage.url(getUrl(message?.image?.full_url))
+            KFImage.url(getUrl(image?.full_url))
                 .loadDiskFileSynchronously()
                 .cacheMemoryOnly()
                 .onProgress { receivedSize, totalSize in }

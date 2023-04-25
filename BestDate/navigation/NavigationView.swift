@@ -75,6 +75,8 @@ struct NavigationView: View {
                     if store.state.activeScreen == .MAIN &&
                         MainMediator.shared.currentScreen == .CHAT_LIST {
                         ChatListMediator.shared.getChatList(withClear: true, page: 0)
+                    } else if store.state.activeScreen == .CHAT {
+                        ChatMediator.shared.getMessageList(withClear: true, page: 0)
                     }
                 }
             }

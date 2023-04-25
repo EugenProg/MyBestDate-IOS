@@ -12,7 +12,7 @@ struct CompanionImageMessageView: View {
     @Binding var isLast: Bool
 
     var selectClick: () -> Void
-    var imageClick: (Message?) -> Void
+    var imageClick: (ChatImage?) -> Void
 
     var translateClick: (Message?) -> Void
 
@@ -25,7 +25,7 @@ struct CompanionImageMessageView: View {
                         .cornerRadius(25)
                         .padding(.init(top: 6, leading: 6, bottom: 6, trailing: 6))
                         .onTapGesture {
-                            withAnimation { imageClick(message) }
+                            withAnimation { imageClick(message?.image) }
                         }
                         .onLongPressGesture {
                             withAnimation { selectClick() }
