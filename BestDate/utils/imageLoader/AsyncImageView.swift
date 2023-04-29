@@ -195,8 +195,7 @@ struct MatchImageView: View {
     private let defaultUrl: String = "\(CoreApiTypes.serverAddress)/images/default_photo.jpg"
 
     @Binding var match: MatchItem
-
-    @State var fullImageIsLoaded: Bool = false
+    @Binding var currentIndex: Int
 
     fileprivate func placeholder() -> some View {
         LoadingDotsView()
@@ -204,7 +203,7 @@ struct MatchImageView: View {
 
     var body: some View {
         ZStack {
-            if !fullImageIsLoaded {
+            if ((currentIndex - 1)...(currentIndex + 2)) ~= currentIndex {
                 KFImage.url(getUrl(match.user?.main_photo?.thumb_url))
                     .placeholder(placeholder)
                     .loadDiskFileSynchronously()
@@ -214,18 +213,19 @@ struct MatchImageView: View {
                     .onSuccess { result in  }
                     .onFailure { error in }
                     .resizable()
-            }
 
-            KFImage.url(getUrl(match.user?.main_photo?.full_url))
-                .loadDiskFileSynchronously()
-                .cacheMemoryOnly()
-                .onProgress { receivedSize, totalSize in }
-                .onSuccess { result in
-                    fullImageIsLoaded = true
-                }
-                .onFailure { error in }
-                .resizable()
-        }
+                KFImage.url(getUrl(match.user?.main_photo?.full_url))
+                    .loadDiskFileSynchronously()
+                    .cacheMemoryOnly()
+                    .onProgress { receivedSize, totalSize in }
+                    .onSuccess { result in }
+                    .onFailure { error in }
+                    .resizable()
+            }
+        }.background(
+            RoundedRectangle(cornerRadius: 32)
+                .fill(ColorList.main.color)
+        )
     }
 
     private func getUrl(_ url: String?) -> URL {

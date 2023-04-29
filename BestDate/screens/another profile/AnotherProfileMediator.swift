@@ -15,6 +15,7 @@ class AnotherProfileMediator: ObservableObject {
     @Published var imageList: [ProfileImage] = []
     @Published var mainPhoto: ProfileImage = ProfileImage()
     @Published var mainLiked: Bool = false
+    @Published var photoCount: Int = 3
 
     @Published var selectedImage: Int = 0
 
@@ -22,7 +23,7 @@ class AnotherProfileMediator: ObservableObject {
 
     func setUser(user: ShortUserInfo) {
         self.mainPhoto = user.main_photo ?? ProfileImage()
-        self.mainLiked = self.mainPhoto.liked ?? false
+        self.photoCount = (user.photos_count ?? 3) >= 3 ? 3 : user.photos_count ?? 3
         self.user = user.toUser()
         getUserById(id: user.id ?? 0)
     }
@@ -75,5 +76,6 @@ class AnotherProfileMediator: ObservableObject {
         self.user = UserInfo()
         self.imageList.removeAll()
         self.selectedImage = 0
+        CoreApiService.shared.cancelCurrentTask()
     }
 }

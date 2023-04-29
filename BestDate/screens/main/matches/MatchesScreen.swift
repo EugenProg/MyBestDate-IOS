@@ -49,6 +49,8 @@ struct MatchesScreen: View {
                             mediator.matchAction(id: id) { match in
                                 showMatchAction(match: match)
                             }
+                        } nextPage: {
+                            mediator.getNextPage()
                         }.padding(.init(top: 18, leading: 0, bottom: 21, trailing: 0))
 
                         HStack(spacing: 0) {

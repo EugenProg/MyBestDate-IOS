@@ -61,7 +61,7 @@ struct AnotherProfileHeader: View {
 
                             Spacer()
 
-                            Text(birthday.toDate().getZodiacSign().localized())
+                            Text(DateUtils().getZodiacSignByDate(birthdate: birthday).localized())
                                 .foregroundColor(ColorList.white.color)
                                 .font(MyFont.getFont(.NORMAL, 14))
                         }.padding(.init(top: 50, leading: 32, bottom: 0, trailing: 32))

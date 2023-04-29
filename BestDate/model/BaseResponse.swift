@@ -112,6 +112,7 @@ struct ShortUserInfo: Codable {
     var full_questionnaire: Bool? = nil
     var role: String? = nil
     var distance: Double? = nil
+    var photos_count: Int? = nil
 }
 
 struct Questionnaire: Codable {

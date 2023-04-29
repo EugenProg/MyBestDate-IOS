@@ -12,6 +12,7 @@ import UIKit
 class CoreApiService {
     static var shared = CoreApiService()
     private let encoder = JSONEncoder()
+    private var currentTask: URLSessionDataTask? = nil
 
     func loginByEmail(userName: String, password: String, completion: @escaping (Bool) -> Void) {
         var request = CoreApiTypes.loginByEmail.getRequest()
@@ -447,9 +448,11 @@ class CoreApiService {
             } else {
                 completion(false, UserInfo())
             }
+            self.currentTask = nil
         }
 
         task.resume()
+        currentTask = task
     }
 
     func refreshToken(completion: @escaping (Bool) -> Void) {
@@ -751,5 +754,12 @@ class CoreApiService {
         }
 
         task.resume()
+    }
+
+    func cancelCurrentTask() {
+        if currentTask != nil {
+            currentTask?.cancel()
+            currentTask = nil
+        }
     }
 }

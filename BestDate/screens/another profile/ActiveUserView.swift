@@ -70,7 +70,7 @@ struct ActiveUserView: View {
                 }
                 .padding(.init(top: 8, leading: 18, bottom: 8, trailing: 18))
 
-                AnotherProfileImageLineView(imagesList: $mediator.imageList) { index in
+                AnotherProfileImageLineView(imagesList: $mediator.imageList, imagesCount: $mediator.photoCount) { index in
                     goToImageViewer(index: index)
                 }
                 .padding(.init(top: 0, leading: 0, bottom: 100, trailing: 0))

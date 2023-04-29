@@ -10,14 +10,15 @@ import SwiftUI
 struct AnotherProfileImageLineView: View {
     var imageSize = (UIScreen.main.bounds.width - 12) / 3
     @Binding var imagesList: [ProfileImage]
+    @Binding var imagesCount: Int
     var selectAction: (Int) -> Void
 
     var body: some View {
         ZStack {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 3) {
-                    if imagesList.isEmpty {
-                        ForEach(0...2, id: \.self) { index in
+                    if imagesList.isEmpty && imagesCount > 0 {
+                        ForEach(1...imagesCount, id: \.self) { index in
                             ZStack {
                                 Rectangle()
                                     .fill(ColorList.white_10.color)

@@ -8,27 +8,21 @@
 import Foundation
 
 class DateUtils {
-    func getZodiacSignByDate(date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy"
-        let year = formatter.string(from: date)
+    func getZodiacSignByDate(birthdate: String) -> String {
+        let date = String(birthdate.prefix(10).suffix(5))
 
-        var zodiak: ZodiacSigns = .aries
-
-        if date.isBetween("\(year)-03-21".toShortDate(), "\(year)-04-20".toShortDate()) { zodiak = .aries }
-        if date.isBetween("\(year)-04-21".toShortDate(), "\(year)-05-21".toShortDate()) { zodiak = .taurus }
-        if date.isBetween("\(year)-05-22".toShortDate(), "\(year)-06-21".toShortDate()) { zodiak = .gemini }
-        if date.isBetween("\(year)-06-22".toShortDate(), "\(year)-07-22".toShortDate()) { zodiak = .cancer }
-        if date.isBetween("\(year)-07-23".toShortDate(), "\(year)-08-23".toShortDate()) { zodiak = .leo }
-        if date.isBetween("\(year)-08-24".toShortDate(), "\(year)-09-22".toShortDate()) { zodiak = .virgo }
-        if date.isBetween("\(year)-09-23".toShortDate(), "\(year)-10-23".toShortDate()) { zodiak = .libra }
-        if date.isBetween("\(year)-10-24".toShortDate(), "\(year)-11-22".toShortDate()) { zodiak = .scorpio }
-        if date.isBetween("\(year)-11-23".toShortDate(), "\(year)-12-21".toShortDate()) { zodiak = .sagittarius }
-        if date.isBetween("\(year)-12-22".toShortDate(), "\(year)-01-20".toShortDate()) { zodiak = .capricorn }
-        if date.isBetween("\(year)-01-21".toShortDate(), "\(year)-02-18".toShortDate()) { zodiak = .aquarius }
-        if date.isBetween("\(year)-02-19".toShortDate(), "\(year)-03-20".toShortDate()) { zodiak = .pisces }
-
-        return zodiak.rawValue
+        if ZodiacSigns.aries.isThisZodiac(day: date) { return ZodiacSigns.aries.rawValue }
+        else if ZodiacSigns.taurus.isThisZodiac(day: date) { return ZodiacSigns.taurus.rawValue }
+        else if ZodiacSigns.gemini.isThisZodiac(day: date) { return ZodiacSigns.gemini.rawValue }
+        else if ZodiacSigns.cancer.isThisZodiac(day: date) { return ZodiacSigns.cancer.rawValue }
+        else if ZodiacSigns.leo.isThisZodiac(day: date) { return ZodiacSigns.leo.rawValue }
+        else if ZodiacSigns.virgo.isThisZodiac(day: date) { return ZodiacSigns.virgo.rawValue }
+        else if ZodiacSigns.libra.isThisZodiac(day: date) { return ZodiacSigns.libra.rawValue }
+        else if ZodiacSigns.scorpio.isThisZodiac(day: date) { return ZodiacSigns.scorpio.rawValue }
+        else if ZodiacSigns.sagittarius.isThisZodiac(day: date) { return ZodiacSigns.sagittarius.rawValue }
+        else if ZodiacSigns.aquarius.isThisZodiac(day: date) { return ZodiacSigns.aquarius.rawValue }
+        else if ZodiacSigns.pisces.isThisZodiac(day: date) { return ZodiacSigns.pisces.rawValue }
+        else { return ZodiacSigns.capricorn.rawValue }
     }
 }
 
@@ -45,6 +39,48 @@ enum ZodiacSigns: String {
     case capricorn
     case aquarius
     case pisces
+
+    var start: String {
+        switch self {
+        case .aries: return "03-21"
+        case .taurus: return "04-21"
+        case .gemini: return "05-22"
+        case .cancer: return "06-22"
+        case .leo: return "07-23"
+        case .virgo: return "08-24"
+        case .libra: return "09-23"
+        case .scorpio: return "10-24"
+        case .sagittarius: return "11-23"
+        case .capricorn: return "12-22"
+        case .aquarius: return "01-21"
+        case .pisces: return "02-19"
+        }
+    }
+
+    var end: String {
+        switch self {
+        case .aries: return "04-20"
+        case .taurus: return "05-21"
+        case .gemini: return "06-21"
+        case .cancer: return "07-22"
+        case .leo: return "08-23"
+        case .virgo: return "09-22"
+        case .libra: return "10-23"
+        case .scorpio: return "11-22"
+        case .sagittarius: return "12-21"
+        case .capricorn: return "01-20"
+        case .aquarius: return "02-18"
+        case .pisces: return "03-20"
+        }
+    }
+
+    func isThisZodiac(day: String) -> Bool {
+        if self == .capricorn {
+            return day >= self.start || day <= self.end
+        } else {
+            return day >= self.start && day <= self.end
+        }
+    }
 }
 
 /*

@@ -16,6 +16,7 @@ struct MatchSliderView: View {
 
     var openProfile: (ShortUserInfo?) -> Void
     var likeClick: (_ id: Int?) -> Void
+    var nextPage: () -> Void
 
     var size: CGFloat = UIScreen.main.bounds.width
     @GestureState private var offsetState = CGSize.zero
@@ -23,12 +24,13 @@ struct MatchSliderView: View {
     var body: some View {
         ZStack {
             ForEach($users, id: \.id) { item in
-                MatchImageView(match: item)
+                MatchImageView(match: item, currentIndex: $index)
                     .clipShape(RoundedRectangle(cornerRadius: 32))
                     .opacity(getImageOpacity(id: item.wrappedValue.id))
                     .offset(item.wrappedValue.offset)
                     .rotationEffect(item.wrappedValue.rotation)
                     .gesture(dragGesture)
+                    .zIndex(getImageZIndex(id: item.wrappedValue.id))
                     .onTapGesture {
                         withAnimation { openProfile(user) }
                     }
@@ -53,6 +55,7 @@ struct MatchSliderView: View {
                     }
                 }.padding(.init(top: 0, leading: 16, bottom: 16, trailing: 16))
             }.padding(.init(top: 18, leading: 18, bottom: 18, trailing: 18))
+                .zIndex(6)
 
             if clickProcess {
                 LottieView(name: "love_burst_pink", loopMode: .playOnce)
@@ -88,12 +91,20 @@ struct MatchSliderView: View {
                 unblockButton()
             }
         }
+        if index == users.count {
+            nextPage()
+        }
     }
 
     private func getImageOpacity(id: Int) -> CGFloat {
-        if id == index - 1 { return 1 }
-        else if id == index { return 1 }
+        if (index - 1)...(index + 1) ~= id { return 1 }
         else { return 0 }
+    }
+
+    private func getImageZIndex(id: Int) -> CGFloat {
+        if (index - 1) == id { return 3 }
+        else if index == id { return 2 }
+        else { return 1 }
     }
 
     private func modify(liked: Bool) {

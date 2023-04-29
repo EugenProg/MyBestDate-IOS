@@ -89,10 +89,6 @@ extension Date {
         return formatter.string(from: self)
     }
 
-    func getZodiacSign() -> String {
-        DateUtils().getZodiacSignByDate(date: self).localized()
-    }
-
     func toShortString() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd MMM"
@@ -241,7 +237,8 @@ extension UserInfo {
     }
 
     func getAge() -> Int {
-        Calendar.current.dateComponents([.year], from: self.birthday?.toDate() ?? Date.now, to: Date.now).year ?? 0
+        let age = Calendar.current.dateComponents([.year], from: self.birthday?.toDate() ?? Date.now, to: Date.now).year ?? 18
+        return age < 18 ? 18 : age
     }
 
     func getCoins() -> Int {
@@ -291,7 +288,9 @@ extension UserInfo {
             blocked_me: self.blocked_me,
             allow_chat: self.allow_chat,
             full_questionnaire: self.questionnaire?.isFull(),
-            distance: self.distance)
+            distance: self.distance,
+            photos_count: self.photos?.count
+        )
     }
 
     func copy() -> UserInfo {
@@ -332,7 +331,8 @@ extension UserInfo {
 
 extension ShortUserInfo {
     func getAge() -> Int {
-        Calendar.current.dateComponents([.year], from: self.birthday?.toDate() ?? Date.now, to: Date.now).year ?? 0
+        let age = Calendar.current.dateComponents([.year], from: self.birthday?.toDate() ?? Date.now, to: Date.now).year ?? 18
+        return age < 18 ? 18 : age
     }
 
     func getDistance() -> String {

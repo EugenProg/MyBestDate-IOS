@@ -94,11 +94,12 @@ class PersonalDataMediator: ObservableObject {
 
     private func getSaveTypes() -> [SaveTypes] {
         var types: [SaveTypes] = []
-        if email != savedUser.email && savedUser.email != nil { types.append(.email) }
-        if phone != savedUser.phone && savedUser.phone != nil { types.append(.phone) }
-        if (name != savedUser.name || birthday != savedUser.birthday?.toDate() || genderIsChanged()) {
+        if email != savedUser.email && email != "" { types.append(.email) }
+        if phone != savedUser.phone && phone != "" { types.append(.phone) }
+        if (name != savedUser.name || birthday.toServerDate() != savedUser.birthday?.toDate().toServerDate() || genderIsChanged()) {
             types.append(.data)
         }
+        
         return types
     }
 

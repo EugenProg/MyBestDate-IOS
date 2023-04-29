@@ -16,6 +16,9 @@ class MatchMediator: ObservableObject {
     @Published var currentIndex: Int = 0
     @Published var loadingMode: Bool = true
 
+    private let pageSize: Int = 35
+    var fullList: [ShortUserInfo] = []
+
     func setMatchUsers(list: [ShortUserInfo]) {
         users.removeAll()
         for index in list.indices {
@@ -31,12 +34,20 @@ class MatchMediator: ObservableObject {
         MatchesApiService.shared.getMatchesList() { success, users in
             if success {
                 DispatchQueue.main.async {
-                    self.setMatchUsers(list: users)
+                    self.fullList = users
                     self.currentIndex = 0
                     self.loadingMode = false
+                    self.getNextPage()
                 }
             }
         }
+    }
+
+    func getNextPage() {
+        let currentMatchesPage = fullList.count < pageSize ? Array(fullList.prefix(fullList.count)) : Array(fullList.prefix(pageSize))
+        self.setMatchUsers(list: currentMatchesPage)
+        self.currentIndex = 0
+        if !fullList.isEmpty { fullList = fullList.count < pageSize ? [] : Array(fullList.suffix(fullList.count - pageSize)) }
     }
 
     func matchAction(id: Int?, completion: @escaping (Match) -> Void) {
