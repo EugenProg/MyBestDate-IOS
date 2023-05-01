@@ -61,7 +61,7 @@ class ProfileMediator: ObservableObject {
         LikeListMediator.shared.clearData()
         ChatListMediator.shared.clearData()
         InvitationMediator.shared.clearData()
-        UserDataHolder.setSearchLocation(filter: .all)
+        UserDataHolder.shared.setSearchLocation(filter: .all)
         PusherMediator.shared.closePusherConnection()
     }
 
@@ -69,7 +69,7 @@ class ProfileMediator: ObservableObject {
         CoreApiService.shared.getUserData { success, user in
             if success {
                 DispatchQueue.main.async {
-                    MainMediator.shared.setUserInfo(user: user)
+                    MainMediator.shared.setUserInfo()
                     self.setUser(user: user)
                 }
             }

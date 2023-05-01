@@ -21,7 +21,7 @@ struct MainLocationBottomSheet: View {
                 DarkBottomSheetItem(text: item.name, isSelect: equals(item: item.name)) { name in
                     clickAction()
                     mediator.selectedItem = item
-                    UserDataHolder.setSearchLocation(filter: item.type)
+                    UserDataHolder.shared.setSearchLocation(filter: item.type)
                     SearchMediator.shared.updateUserList(location: item.type, online: nil)
                 }
             }

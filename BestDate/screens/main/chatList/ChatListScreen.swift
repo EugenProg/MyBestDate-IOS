@@ -18,7 +18,6 @@ struct ChatListScreen: View {
                 HStack {
                     Button(action: {
                         withAnimation {
-                            ProfileMediator.shared.setUser(user: MainMediator.shared.user)
                             store.dispatch(action: .navigate(screen: .PROFILE))
                         }
                     }) {

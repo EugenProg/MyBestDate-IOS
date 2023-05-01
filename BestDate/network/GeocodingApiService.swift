@@ -7,22 +7,14 @@
 
 import Foundation
 
-class GeocodingApiService {
+class GeocodingApiService: NetworkRequest {
 
     func getLocationByAddress(address: CityListItem, completion: @escaping (GeocodingResponse) -> Void) {
         let request = getRequest(address: address)
 
-        let task = URLSession.shared.dataTask(with: request) {data, response, error in
-            NetworkLogger.printLog(response: response)
-            if let data = data, let response = try? JSONDecoder().decode([GeocodingResponse].self, from: data) {
-                NetworkLogger.printLog(data: data)
-                completion(response.first ?? GeocodingResponse())
-            } else {
-                completion(GeocodingResponse())
-            }
+        makeRequest(request: request, type: [GeocodingResponse].self) { response in
+            completion(response?.first ?? GeocodingResponse())
         }
-
-        task.resume()
     }
 
     private func getRequest(address: CityListItem) -> URLRequest {

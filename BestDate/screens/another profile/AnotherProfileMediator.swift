@@ -35,11 +35,7 @@ class AnotherProfileMediator: ObservableObject {
     }
 
     func setUser(jsonString: String) {
-        if jsonString.isEmpty { return }
-
-        let user = try? JSONDecoder().decode(ShortUserInfo.self, from: jsonString.data(using: .utf8)!)
-
-        setUser(user: user ?? ShortUserInfo())
+        setUser(user: jsonString.getUserFromJson() ?? ShortUserInfo())
     }
 
     func getUserById(id: Int) {

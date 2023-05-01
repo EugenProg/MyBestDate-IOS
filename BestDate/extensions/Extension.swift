@@ -206,7 +206,7 @@ extension String {
     func getUserFromJson() -> ShortUserInfo? {
         if self.isEmpty { return nil }
 
-        return try? JSONDecoder().decode(ShortUserInfo.self, from: self.data(using: .utf8)!)
+        return Kson.shared.fromJson(json: self, type: ShortUserInfo.self)
     }
 }
 

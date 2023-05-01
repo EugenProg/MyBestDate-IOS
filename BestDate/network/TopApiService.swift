@@ -7,86 +7,41 @@
 
 import Foundation
 
-class TopApiService {
+class TopApiService : NetworkRequest {
     static var shared = TopApiService()
-    private let encoder = JSONEncoder()
 
     func getTopList(gender: GenderType, page: Int, completion: @escaping (Bool, [Top], Meta?) -> Void) {
         var request = CoreApiTypes.getTopList.getRequest(withAuth: true, params: CoreApiTypes.getPageParams(page: page))
 
-        let data = try! encoder.encode(TopRequest(gender: gender.typeName))
-        encoder.outputFormatting = .prettyPrinted
-        NetworkLogger.printLog(data: data)
-        request.httpBody = data
-
-        let task = URLSession.shared.dataTask(with: request) {data, response, error in
-            NetworkLogger.printLog(response: response)
-            if let data = data, let response = try? JSONDecoder().decode(TopListResponse.self, from: data) {
-                NetworkLogger.printLog(data: data)
-                completion(response.success, response.data, response.meta)
-            } else {
-                completion(false, [], nil)
-            }
+        let body = TopRequest(gender: gender.typeName)
+        makeRequest(request: request, body: body, type: TopListResponse.self) { response in
+            completion(response?.success == true, response?.data ?? [], response?.meta)
         }
-
-        task.resume()
     }
 
     func getVotePhotos(gender: GenderType, completion: @escaping (Bool, [Top]) -> Void) {
         var request = CoreApiTypes.getVotingPhotos.getRequest(withAuth: true)
 
-        let data = try! encoder.encode(TopRequest(gender: gender.typeName))
-        encoder.outputFormatting = .prettyPrinted
-        NetworkLogger.printLog(data: data)
-        request.httpBody = data
-
-        let task = URLSession.shared.dataTask(with: request) {data, response, error in
-            NetworkLogger.printLog(response: response)
-            if let data = data, let response = try? JSONDecoder().decode(TopListResponse.self, from: data) {
-                NetworkLogger.printLog(data: data)
-                completion(response.success, response.data)
-            } else {
-                completion(false, [])
-            }
+        let body = TopRequest(gender: gender.typeName)
+        makeRequest(request: request, body: body, type: TopListResponse.self) { response in
+            completion(response?.success == true, response?.data ?? [])
         }
-
-        task.resume()
     }
 
     func voteAction(winnerId: Int, luserId: Int, completion: @escaping (Bool, [Top]) -> Void) {
         var request = CoreApiTypes.voteAction.getRequest(withAuth: true)
 
-        let data = try! encoder.encode(VotePhotos(winning_photo: winnerId, loser_photo: luserId))
-        encoder.outputFormatting = .prettyPrinted
-        NetworkLogger.printLog(data: data)
-        request.httpBody = data
-
-        let task = URLSession.shared.dataTask(with: request) {data, response, error in
-            NetworkLogger.printLog(response: response)
-            if let data = data, let response = try? JSONDecoder().decode(TopListResponse.self, from: data) {
-                NetworkLogger.printLog(data: data)
-                completion(response.success, response.data)
-            } else {
-                completion(false, [])
-            }
+        let body = VotePhotos(winning_photo: winnerId, loser_photo: luserId)
+        makeRequest(request: request, body: body, type: TopListResponse.self) { response in
+            completion(response?.success == true, response?.data ?? [])
         }
-
-        task.resume()
     }
 
     func getMyDuelsList(page: Int, completion: @escaping (Bool, [MyDuel], Meta) -> Void) {
         let request = CoreApiTypes.getMyVoits.getRequest(withAuth: true, params: CoreApiTypes.getPageParams(page: page))
 
-        let task = URLSession.shared.dataTask(with: request) {data, response, error in
-            NetworkLogger.printLog(response: response)
-            if let data = data, let response = try? JSONDecoder().decode(MyDuelsListResponse.self, from: data) {
-                NetworkLogger.printLog(data: data)
-                completion(response.success, response.data, response.meta ?? Meta())
-            } else {
-                completion(false, [], Meta())
-            }
+        makeRequest(request: request, type: MyDuelsListResponse.self) { response in
+            completion(response?.success == true, response?.data ?? [], response?.meta ?? Meta())
         }
-
-        task.resume()
     }
 }

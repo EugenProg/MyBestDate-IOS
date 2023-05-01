@@ -123,9 +123,9 @@ extension AppDelegate: MessagingDelegate {
 
         Messaging.messaging().token { token, error in
             if let error = error {
-                print(">>> FCM regiatration error \(error)")
+                print("FCM regiatration error \(error)")
             } else if let token = token {
-                UserDataHolder.setNotificationToken(token: token)
+                UserDataHolder.shared.setNotificationToken(token: token)
                 print("Device token: ", token)
             }
         }

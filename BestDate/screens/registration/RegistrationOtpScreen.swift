@@ -24,7 +24,7 @@ struct RegistrationOtpScreen: View {
                 DispatchQueue.main.async {
                     process.toggle()
                     if success {
-                        UserDataHolder.setStartScreen(screen: .GEO_LOCATION)
+                        UserDataHolder.shared.setStartScreen(screen: .GEO_LOCATION)
                         withAnimation { store.dispatch(action: .navigate(screen: .GEO_LOCATION)) }
                     } else {
                         store.dispatch(action: .show(message: message))

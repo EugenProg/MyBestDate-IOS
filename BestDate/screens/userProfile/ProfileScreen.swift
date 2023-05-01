@@ -170,6 +170,7 @@ struct ProfileScreen: View {
                 store.dispatch(action:
                         .setScreenColors(status: ColorList.main.color, style: .lightContent))
 
+                mediator.setUser(user: UserDataHolder.shared.getUser())
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: { withAnimation { showHeader = true } })
             }
             .sheet(isPresented: $pickerMediator.isShowingPhotoLibrary) {

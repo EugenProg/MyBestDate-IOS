@@ -67,7 +67,7 @@ struct NavigationView: View {
                     PusherMediator.shared.closePusherConnection()
                 } else {
                     PusherMediator.shared.setStore(store: store)
-                    if MainMediator.shared.user.id != nil {
+                    if !UserDataHolder.shared.getRefreshToken().isEmpty {
                         CoreApiService.shared.refreshToken { _ in
                             self.updateUser()
                         }
@@ -85,7 +85,7 @@ struct NavigationView: View {
     private func updateUser() {
         CoreApiService.shared.updateLanguage(lang: "lang_code".localized()) { _, user in
             DispatchQueue.main.async {
-                MainMediator.shared.setUserInfo(user: user)
+                MainMediator.shared.setUserInfo()
                 ProfileMediator.shared.setUser(user: user)
             }
         }

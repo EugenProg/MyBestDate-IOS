@@ -24,10 +24,10 @@ class MainMediator: ObservableObject {
     var duelPage: (() -> Void)? = nil
     var guestsPage: (() -> Void)? = nil
 
-    func setUserInfo(user: UserInfo) {
+    func setUserInfo() {
+        self.user = UserDataHolder.shared.getUser()
         hasNewGuests = (user.new_guests ?? 0) > 0
         mainPhoto = user.getMainPhoto()
-        self.user = user
         self.coinsCount = user.getCoins()
         SearchMediator.shared.setSearchGender(searchGender: self.user.getSearchGender())
         SettingsMediator.shared.getUserSettings()

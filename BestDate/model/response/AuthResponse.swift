@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct AuthResponse: Decodable {
+struct AuthResponse: Codable {
     var token_type: String? = nil
     var expires_in: Int? = nil
     var access_token: String? = nil

@@ -8,36 +8,40 @@
 import Foundation
 
 class UserDataHolder {
+    static var shared: UserDataHolder = UserDataHolder()
 
-    private(set) static var accessToken: String = getSettings(type: .ACCESS_TOKEN) ?? ""
-    private(set) static var refreshToken: String = getSettings(type: .REFRESH_TOKEN) ?? ""
-    private(set) static var notificationToken: String = getSettings(type: .NOTIFICATION_TOKEN) ?? ""
-    private(set) static var startScreen: ScreenList = ScreenList(rawValue: getSettings(type: .START_SCREEN) ?? ScreenList.START.rawValue) ?? ScreenList.START
-    private(set) static var searchOnline: OnlineFilterTypes = OnlineFilterTypes(rawValue: getSettings(type: .SEARCH_ONLINE) ?? OnlineFilterTypes.all.rawValue) ?? OnlineFilterTypes.all
-    private(set) static var searchLocation: LocationFilterTypes = LocationFilterTypes(rawValue: getSettings(type: .SEARCH_LOCATION) ?? LocationFilterTypes.all.rawValue) ?? LocationFilterTypes.all
-
-    static func setAuthData(response: AuthResponse) {
-        accessToken = "Bearer \(response.access_token ?? "")"
-        setSettings(type: .ACCESS_TOKEN, value: accessToken)
-
-        refreshToken = response.refresh_token ?? ""
-        setSettings(type: .REFRESH_TOKEN, value: refreshToken)
+    func setAuthData(response: AuthResponse) {
+        setSettings(type: .ACCESS_TOKEN, value: "Bearer \(response.access_token ?? "")")
+        setSettings(type: .REFRESH_TOKEN, value: response.refresh_token ?? "")
     }
 
-    static func setNotificationToken(token: String?) {
+    func getAccessToken() -> String {
+        getSettings(type: .ACCESS_TOKEN) ?? ""
+    }
+
+    func getRefreshToken() -> String {
+        getSettings(type: .REFRESH_TOKEN) ?? ""
+    }
+
+    func setNotificationToken(token: String?) {
         if token != nil {
-            notificationToken = token!
             setSettings(type: .NOTIFICATION_TOKEN, value: token!)
         }
     }
 
-    static func setStartScreen(screen: ScreenList) {
-        startScreen = screen
+    func getNotificationToken() -> String {
+        getSettings(type: .NOTIFICATION_TOKEN) ?? ""
+    }
+
+    func setStartScreen(screen: ScreenList) {
         setSettings(type: .START_SCREEN, value: screen.rawValue)
     }
 
-    static func setSearchOnline(filter: OnlineFilterTypes) {
-        searchOnline = filter
+    func getStartScreen() -> ScreenList {
+        ScreenList(rawValue: getSettings(type: .START_SCREEN) ?? ScreenList.START.rawValue) ?? ScreenList.START
+    }
+
+    func setSearchOnline(filter: OnlineFilterTypes) {
         if filter == .filter {
             setSettings(type: .SEARCH_ONLINE, value: OnlineFilterTypes.all.rawValue)
         } else {
@@ -45,8 +49,11 @@ class UserDataHolder {
         }
     }
 
-    static func setSearchLocation(filter: LocationFilterTypes) {
-        searchLocation = filter
+    func getSearchOnlineFilter() -> OnlineFilterTypes {
+        OnlineFilterTypes(rawValue: getSettings(type: .SEARCH_ONLINE) ?? OnlineFilterTypes.all.rawValue) ?? OnlineFilterTypes.all
+    }
+
+    func setSearchLocation(filter: LocationFilterTypes) {
         if filter == .filter {
             setSettings(type: .SEARCH_LOCATION, value: LocationFilterTypes.all.rawValue)
         } else {
@@ -54,12 +61,40 @@ class UserDataHolder {
         }
     }
 
-    private static func getSettings(type: HolderTypes) -> String? {
+    func getSearchLocationFilter() -> LocationFilterTypes {
+        LocationFilterTypes(rawValue: getSettings(type: .SEARCH_LOCATION) ?? LocationFilterTypes.all.rawValue) ?? LocationFilterTypes.all
+    }
+
+    func setUserInfo(user: UserInfo?) {
+        setSettings(type: .USER_THUMB_PHOTO, value: user?.getMainPhoto()?.thumb_url ?? "")
+        setSettings(type: .USER, value: Kson.shared.toJson(value: user) ?? "")
+    }
+
+    func getUserThumbUrl() -> String {
+        getSettings(type: .USER_THUMB_PHOTO) ?? ""
+    }
+
+    func getUser() -> UserInfo {
+        let jsonString = getSettings(type: .USER) ?? ""
+        if jsonString.isEmpty { return UserInfo() }
+        return Kson.shared.fromJson(json: jsonString, type: UserInfo.self) ?? UserInfo()
+    }
+
+    func clearUserData() {
+        setSettings(type: .ACCESS_TOKEN, value: "")
+        setSettings(type: .REFRESH_TOKEN, value: "")
+        setSettings(type: .USER_THUMB_PHOTO, value: "")
+        setSettings(type: .USER, value: "")
+    }
+
+    private func getSettings(type: HolderTypes) -> String? {
         UserDefaults.standard.string(forKey: type.rawValue)
     }
 
-    private static func setSettings(type: HolderTypes, value: String) {
-        UserDefaults.standard.setValue(value, forKey: type.rawValue)
+    private func setSettings(type: HolderTypes, value: String) {
+        DispatchQueue.main.async {
+            UserDefaults.standard.setValue(value, forKey: type.rawValue)
+        }
     }
 }
 
@@ -70,4 +105,6 @@ enum HolderTypes: String {
     case START_SCREEN
     case SEARCH_LOCATION
     case SEARCH_ONLINE
+    case USER_THUMB_PHOTO
+    case USER
 }

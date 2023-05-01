@@ -19,7 +19,7 @@ class UserLocationMediator: ObservableObject {
                 CoreApiService.shared.saveUserLocation(location: response.getSaveLocationRequest()) { success, user in
                     DispatchQueue.main.async {
                         if success {
-                            MainMediator.shared.setUserInfo(user: user)
+                            MainMediator.shared.setUserInfo()
                             ProfileMediator.shared.setUser(user: user)
                         }
                         completion(success)

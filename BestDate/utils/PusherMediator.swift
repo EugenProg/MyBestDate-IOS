@@ -147,7 +147,7 @@ class PusherMediator {
     private func parceCoinsEventData(event: PusherEvent) -> Int {
         if event.data != nil {
             let jsonData = event.data?.replacingOccurrences(of: "\\\"", with: "\"") ?? ""
-            let coinsObject = try? JSONDecoder().decode(CoinsEventResponse.self, from: jsonData.data(using: .unicode)!)
+            let coinsObject = Kson.shared.fromJson(json: jsonData, type: CoinsEventResponse.self)
 
             return coinsObject?.coins.toInt() ?? 0
         }
@@ -157,7 +157,7 @@ class PusherMediator {
     private func parceTypingEventData(event: PusherEvent) -> Int? {
         if event.data != nil {
             let jsonData = event.data?.replacingOccurrences(of: "\\\"", with: "\"") ?? ""
-            let typingObject = try? JSONDecoder().decode(TypingEventResponse.self, from: jsonData.data(using: .unicode)!)
+            let typingObject = Kson.shared.fromJson(json: jsonData, type: TypingEventResponse.self)
 
             return typingObject?.sender_id
         }
@@ -167,7 +167,7 @@ class PusherMediator {
     private func parceMessageData(event: PusherEvent) -> Message? {
         if event.data != nil {
             let jsonData = event.data?.replacingOccurrences(of: "\\\"", with: "\"") ?? ""
-            let messageObject = try? JSONDecoder().decode(SocketMessage.self, from: jsonData.data(using: .unicode)!)
+            let messageObject = Kson.shared.fromJson(json: jsonData, type: SocketMessage.self)
 
             return messageObject?.message
         }
@@ -177,7 +177,7 @@ class PusherMediator {
     private func parceReadMessageData(event: PusherEvent) -> Message? {
         if event.data != nil {
             let jsonData = event.data?.replacingOccurrences(of: "\\\"", with: "\"") ?? ""
-            let messageObject = try? JSONDecoder().decode(ReadMessage.self, from: jsonData.data(using: .unicode)!)
+            let messageObject = Kson.shared.fromJson(json: jsonData, type: ReadMessage.self)
 
             return messageObject?.last_message
         }
@@ -199,7 +199,7 @@ class PusherMediator {
     func closePusherConnection() {
         pusher?.unbindAll()
         pusher?.disconnect()
-        print(">>> Stop connection")
+        print("Stop connection")
     }
 }
 
@@ -207,9 +207,8 @@ class AuthRequestBuilder: AuthRequestBuilderProtocol {
     func requestFor(socketID: String, channelName: String) -> URLRequest? {
         let url = URL(string: "\(CoreApiTypes.serverAddress)/broadcasting/auth")!
         var request = URLRequest(url: url)
-        request.setValue(UserDataHolder.accessToken, forHTTPHeaderField: "Authorization")
+        request.setValue(UserDataHolder.shared.getAccessToken(), forHTTPHeaderField: "Authorization")
         request.httpMethod = "POST"
-        print(">>>")
         let data = "socket_id=\(socketID)&channel_name=\(channelName)".data(using: String.Encoding.utf8)
         NetworkLogger.printLog(data: data)
         request.httpBody = data
@@ -223,13 +222,13 @@ extension PusherMediator: PusherDelegate {
     }
 
     func subscribedToChannel(name: String) {
-        print(">>> Subscribed to \(name)")
+        print("Subscribed to \(name)")
     }
 
     func receivedError(error: PusherError) {
         let message = error.message
         if error.code != nil {
-            print(">>> error: \(message)")
+            print("error: \(message)")
         }
     }
 }

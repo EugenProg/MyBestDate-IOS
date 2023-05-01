@@ -7,86 +7,41 @@
 
 import Foundation
 
-class InvitationApiService {
+class InvitationApiService : NetworkRequest {
     static var shared = InvitationApiService()
-    private let encoder = JSONEncoder()
 
     func getInvitationList(completion: @escaping (Bool, [Invitation]) -> Void) {
         let request = CoreApiTypes.getInvitationsList.getRequest(withAuth: true)
 
-        let task = URLSession.shared.dataTask(with: request) {data, response, error in
-            NetworkLogger.printLog(response: response)
-            if let data = data, let response = try? JSONDecoder().decode(InvitationListResponse.self, from: data) {
-                NetworkLogger.printLog(data: data)
-                completion(response.success, response.data)
-            } else {
-                completion(false, [])
-            }
+        makeRequest(request: request, type: InvitationListResponse.self) { response in
+            completion(response?.success == true, response?.data ?? [])
         }
-
-        task.resume()
     }
 
     func sendInvitation(invitationId: Int, userId: Int, completion: @escaping (Bool) -> Void) {
         var request = CoreApiTypes.sendInvitation.getRequest(withAuth: true)
 
-        let data = try! encoder.encode(SendInvitationRequest(invitation_id: invitationId, user_id: userId))
-        encoder.outputFormatting = .prettyPrinted
-        NetworkLogger.printLog(data: data)
-        request.httpBody = data
-
-        let task = URLSession.shared.dataTask(with: request) {data, response, error in
-            NetworkLogger.printLog(response: response)
-            if let data = data, let response = try? JSONDecoder().decode(BaseResponse.self, from: data) {
-                NetworkLogger.printLog(data: data)
-                completion(response.success)
-            } else {
-                completion(false)
-            }
+        let body = SendInvitationRequest(invitation_id: invitationId, user_id: userId)
+        makeRequest(request: request, body: body, type: BaseResponse.self) { response in
+            completion(response?.success == true)
         }
-
-        task.resume()
     }
 
     func answerTheInvitation(invitationId: Int, answer: InvitationAnswer, completion: @escaping (Bool) -> Void) {
         var request = CoreApiTypes.answerTheInvitation.getRequest(path: invitationId.toString(), withAuth: true)
 
-        let data = try! encoder.encode(AnswerTheInvitationRequest(answer_id: answer.id))
-        encoder.outputFormatting = .prettyPrinted
-        NetworkLogger.printLog(data: data)
-        request.httpBody = data
-
-        let task = URLSession.shared.dataTask(with: request) {data, response, error in
-            NetworkLogger.printLog(response: response)
-            if let data = data, let response = try? JSONDecoder().decode(BaseResponse.self, from: data) {
-                NetworkLogger.printLog(data: data)
-                completion(response.success)
-            } else {
-                completion(false)
-            }
+        let body = AnswerTheInvitationRequest(answer_id: answer.id)
+        makeRequest(request: request, body: body, type: BaseResponse.self) { response in
+            completion(response?.success == true)
         }
-
-        task.resume()
     }
 
     func getUserInvitationList(filter: InvitationFilter, page: Int, completion: @escaping (Bool, [InvitationCard], Meta) -> Void) {
         var request = CoreApiTypes.getUserInvitationList.getRequest(withAuth: true, params: CoreApiTypes.getPageParams(page: page))
 
-        let data = try! encoder.encode(GetUserInvitationFilter(filter: filter.rawValue))
-        encoder.outputFormatting = .prettyPrinted
-        NetworkLogger.printLog(data: data)
-        request.httpBody = data
-
-        let task = URLSession.shared.dataTask(with: request) {data, response, error in
-            NetworkLogger.printLog(response: response)
-            if let data = data, let response = try? JSONDecoder().decode(UserInvitationListResponse.self, from: data) {
-                NetworkLogger.printLog(data: data)
-                completion(response.success, response.data, response.meta ?? Meta())
-            } else {
-                completion(false, [], Meta())
-            }
+        let body = GetUserInvitationFilter(filter: filter.rawValue)
+        makeRequest(request: request, body: body, type: UserInvitationListResponse.self) { response in
+            completion(response?.success == true, response?.data ?? [], response?.meta ?? Meta())
         }
-
-        task.resume()
     }
 }

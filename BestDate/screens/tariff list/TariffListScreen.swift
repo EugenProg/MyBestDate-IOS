@@ -24,7 +24,7 @@ struct TariffListScreen: View {
                     Spacer()
 
                     Button(action: {
-                        UserDataHolder.setStartScreen(screen: .MAIN)
+                        UserDataHolder.shared.setStartScreen(screen: .MAIN)
                         withAnimation { store.dispatch(action: .navigationBack) }
                     }) {
                         Text("cancel".localized())

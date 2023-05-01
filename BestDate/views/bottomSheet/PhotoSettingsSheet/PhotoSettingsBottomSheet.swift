@@ -65,7 +65,7 @@ struct PhotoSettingsBottomSheet: View {
             })
         }
         .onDisappear {
-            if !self.saveAction { mediator.updateDataAction() }
+            if !self.saveAction { mediator.updateDataAction { } }
         }
     }
     
@@ -77,9 +77,11 @@ struct PhotoSettingsBottomSheet: View {
 
     private func save() {
         saveProcess.toggle()
+        store.dispatch(action: .startProcess)
         mediator.updateImageStatus(image: mediator.selectedPhoto) { success in
             DispatchQueue.main.async {
                 saveProcess.toggle()
+                store.dispatch(action: .endProcess)
                 clickAction()
             }
         }

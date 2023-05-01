@@ -41,22 +41,24 @@ class PhotoEditorMediator: ObservableObject {
         }
     }
 
-    private func setUser(user: UserInfo) {
+    private func setUser() {
         withAnimation {
+            let user = UserDataHolder.shared.getUser()
             self.mainPhoto = user.getMainPhoto()
             self.imageList.clearAndAddAll(list: user.photos)
         }
     }
 
-    func updateUserData() {
+    func updateUserData(completion: @escaping () -> Void) {
         CoreApiService.shared.getUserData { success, user in
             if success {
                 DispatchQueue.main.async {
-                    MainMediator.shared.setUserInfo(user: user)
+                    MainMediator.shared.setUserInfo()
                     ProfileMediator.shared.setUser(user: user)
-                    self.setUser(user: user)
+                    self.setUser()
                 }
             }
+            completion()
         }
     }
 

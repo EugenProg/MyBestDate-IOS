@@ -7,75 +7,39 @@
 
 import Foundation
 
-class MatchesApiService {
+class MatchesApiService : NetworkRequest {
     static var shared = MatchesApiService()
-    private let encoder = JSONEncoder()
 
     func getMatchesList(completion: @escaping (Bool, [ShortUserInfo]) -> Void) {
         let request = CoreApiTypes.getMatchUsers.getRequest(withAuth: true)
 
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            NetworkLogger.printLog(response: response)
-            if let data = data, let response = try? JSONDecoder().decode(UserListResponse.self, from: data) {
-                NetworkLogger.printLog(data: data)
-                completion(response.success, response.data)
-            } else {
-                completion(false, [])
-            }
+        makeRequest(request: request, type: UserListResponse.self) { response in
+            completion(response?.success == true, response?.data ?? [])
         }
-
-        task.resume()
     }
 
     func getUserMatches(page: Int, completion: @escaping (Bool, [Match], Meta) -> Void) {
         let request = CoreApiTypes.getMatchList.getRequest(withAuth: true, params: CoreApiTypes.getPageParams(page: page))
 
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            NetworkLogger.printLog(response: response)
-            if let data = data, let response = try? JSONDecoder().decode(MatchesListResponse.self, from: data) {
-                NetworkLogger.printLog(data: data)
-                completion(response.success, response.data, response.meta ?? Meta())
-            } else {
-                completion(false, [], Meta())
-            }
+        makeRequest(request: request, type: MatchesListResponse.self) { response in
+            completion(response?.success == true, response?.data ?? [], response?.meta ?? Meta())
         }
-
-        task.resume()
     }
 
     func getUserLikes(page: Int, completion: @escaping (Bool, [Like], Meta) -> Void) {
         let request = CoreApiTypes.getUserLikes.getRequest(withAuth: true, params: CoreApiTypes.getPageParams(page: page))
 
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            NetworkLogger.printLog(response: response)
-            if let data = data, let response = try? JSONDecoder().decode(LikesListResponse.self, from: data) {
-                NetworkLogger.printLog(data: data)
-                completion(response.success, response.data, response.meta ?? Meta())
-            } else {
-                completion(false, [], Meta())
-            }
+        makeRequest(request: request, type: LikesListResponse.self) { response in
+            completion(response?.success == true, response?.data ?? [], response?.meta ?? Meta())
         }
-
-        task.resume()
     }
 
     func matchAction(userId: Int, completion: @escaping (Bool, Match) -> Void) {
         var request = CoreApiTypes.matchAction.getRequest(withAuth: true)
 
-        let data = try! encoder.encode(MatchActionRequest(user_id: userId))
-        encoder.outputFormatting = .prettyPrinted
-        request.httpBody = data
-
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            NetworkLogger.printLog(response: response)
-            if let data = data, let response = try? JSONDecoder().decode(MatchResponse.self, from: data) {
-                NetworkLogger.printLog(data: data)
-                completion(response.success, response.data ?? Match())
-            } else {
-                completion(false, Match())
-            }
+        let body = MatchActionRequest(user_id: userId)
+        makeRequest(request: request, type: MatchResponse.self) { response in
+            completion(response?.success == true, response?.data ?? Match())
         }
-
-        task.resume()
     }
 }

@@ -26,26 +26,32 @@ class PhotoSettingsSheetMediator: ObservableObject {
     func deleteImage(id: Int, completion: @escaping (Bool) -> Void) {
         ImagesApiService.shared.deleteProfileImage(id: id) { success in
             if success {
-                self.updateDataAction()
+                self.updateDataAction {
+                    completion(success)
+                }
             }
-            completion(success)
         }
     }
 
     func updateImageStatus(image: ProfileImage?, completion: @escaping (Bool) -> Void) {
         ImagesApiService.shared.updateImageStatus(id: image?.id ?? 0, requestData: PhotoStatusUpdateRequest(main: image?.main, top: image?.top)) { success in
             if success {
-                self.updateDataAction()
+                self.updateDataAction {
+                    completion(success)
+                }
             }
-            completion(success)
         }
     }
 
-    func updateDataAction() {
+    func updateDataAction(completion: @escaping () -> Void) {
         if callPage == .PROFILE_PHOTO {
-            PhotoEditorMediator.shared.updateUserData()
+            PhotoEditorMediator.shared.updateUserData {
+                completion()
+            }
         } else if callPage == .PROFILE {
-            ProfileMediator.shared.updateUserData { }
+            ProfileMediator.shared.updateUserData {
+                completion()
+            }
         }
     }
 }

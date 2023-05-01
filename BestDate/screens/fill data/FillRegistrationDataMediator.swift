@@ -16,8 +16,8 @@ class FillRegistrationDataMediator: ObservableObject {
     @Published var name: String = ""
     @Published var nameInputMode: Bool = false
 
-    func setUserData(user: UserInfo) {
-        self.user = user
+    func setUserData() {
+        self.user = UserDataHolder.shared.getUser()
         self.name = user.name ?? ""
         self.nameInputMode = user.name?.isEmpty == true
         self.birthday = MainMediator.shared.user.birthday?.toDate() ?? Date.getEithteenYearsAgoDate()
@@ -75,7 +75,7 @@ class FillRegistrationDataMediator: ObservableObject {
                     RegistrationMediator.shared.setUserData(user: user)
                     QuestionnaireMediator.shared.setEditInfo(user: user, editMode: false)
                     ProfileMediator.shared.setUser(user: user)
-                    MainMediator.shared.setUserInfo(user: user)
+                    MainMediator.shared.setUserInfo()
                 }
             }
             completion()

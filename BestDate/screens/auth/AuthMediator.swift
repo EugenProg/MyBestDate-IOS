@@ -52,16 +52,16 @@ class AuthMediator: ObservableObject {
                                         user.birthday?.isEmpty == false
 
                     if !self.hasFullData {
-                        FillRegistrationDataMediator.shared.setUserData(user: user)
+                        FillRegistrationDataMediator.shared.setUserData()
                     } else if self.hasImages && self.hasQuestionnaire {
-                        MainMediator.shared.setUserInfo(user: user)
+                        MainMediator.shared.setUserInfo()
                         ProfileMediator.shared.setUser(user: user)
                     } else {
                         PhotoEditorMediator.shared.setImages(images: user.photos ?? [])
                         RegistrationMediator.shared.setUserData(user: user)
                         QuestionnaireMediator.shared.setEditInfo(user: user, editMode: false)
                     }
-                    CoreApiService.shared.storeDeviceToken(token: UserDataHolder.notificationToken)
+                    CoreApiService.shared.storeDeviceToken(token: UserDataHolder.shared.getNotificationToken())
                 }
                 complete(success)
             }

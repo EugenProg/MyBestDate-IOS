@@ -37,7 +37,7 @@ struct NotifySettingsScreen: View {
                     Spacer()
 
                     Button(action: {
-                        UserDataHolder.setStartScreen(screen: .MAIN)
+                        UserDataHolder.shared.setStartScreen(screen: .MAIN)
                         withAnimation { store.dispatch(action: .navigate(screen: .MAIN)) }
                     }) {
                         Text("cancel".localized())
@@ -86,7 +86,7 @@ struct NotifySettingsScreen: View {
                     mediator.saveSettings(enable: notificationEnbaled ?? false) {
                         DispatchQueue.main.async {
                             process.toggle()
-                            UserDataHolder.setStartScreen(screen: .MAIN)
+                            UserDataHolder.shared.setStartScreen(screen: .MAIN)
                             withAnimation { store.dispatch(action: .navigate(screen: .MAIN)) }
                         }
                     }

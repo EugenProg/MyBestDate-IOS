@@ -30,7 +30,7 @@ struct QuestionnaireScreen: View {
                         TextButton(text: "skip", textColor: ColorList.white.color) {
                             mediator.getUserData { _ in
                                 DispatchQueue.main.async {
-                                    UserDataHolder.setStartScreen(screen: .NOTIFY_SETTINGS)
+                                    UserDataHolder.shared.setStartScreen(screen: .NOTIFY_SETTINGS)
                                     store.dispatch(action: .navigate(screen: .NOTIFY_SETTINGS))
                                 }
                             }
@@ -80,7 +80,7 @@ struct QuestionnaireScreen: View {
             }
         } else {
             withAnimation {
-                UserDataHolder.setStartScreen(screen: .NOTIFY_SETTINGS)
+                UserDataHolder.shared.setStartScreen(screen: .NOTIFY_SETTINGS)
                 store.dispatch(action: .navigate(screen: .NOTIFY_SETTINGS))
             }
         }

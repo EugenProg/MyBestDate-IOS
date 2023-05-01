@@ -61,7 +61,7 @@ struct FillRegistrationDataScreen: View {
             mediator.saveData {
                 DispatchQueue.main.async {
                     process = false
-                    UserDataHolder.setStartScreen(screen: .GEO_LOCATION)
+                    UserDataHolder.shared.setStartScreen(screen: .GEO_LOCATION)
                     withAnimation { store.dispatch(action: .navigate(screen: .GEO_LOCATION)) }
                 }
             }

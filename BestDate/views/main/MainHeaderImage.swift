@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct MainHeaderImage: View {
-    @EnvironmentObject var store: Store
-    @ObservedObject var mediator = MainMediator.shared
 
     var body: some View {
         ZStack {
@@ -23,7 +21,7 @@ struct MainHeaderImage: View {
                         .shadow(color: MyColor.getColor(17, 24, 28, 0.6), radius: 16, y: 3)
                         .frame(width: 50, height: 50)
 
-                    AsyncImageView(url: mediator.mainPhoto?.thumb_url)
+                    AsyncImageView(url: UserDataHolder.shared.getUserThumbUrl())
                         .aspectRatio(contentMode: .fill)
                         .clipShape(Circle())
                         .frame(width: 44, height: 44, alignment: .center)

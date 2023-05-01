@@ -52,7 +52,7 @@ struct ProfilePhotoScreen: View {
                         Spacer()
 
                         TextButton(text: "next", textColor: mediator.mainPhoto != nil ? ColorList.white.color : ColorList.main.color) {
-                            UserDataHolder.setStartScreen(screen: .QUESTIONNAIRE)
+                            UserDataHolder.shared.setStartScreen(screen: .QUESTIONNAIRE)
                             store.dispatch(action: .navigate(screen: .QUESTIONNAIRE))
                         }
                     }.padding(.init(top: 32, leading: 32, bottom: 0, trailing: 32))

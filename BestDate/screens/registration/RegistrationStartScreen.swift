@@ -95,17 +95,17 @@ struct RegistrationStartScreen: View {
     private func goIn(success: Bool, registrationMode: Bool, message: String) {
         store.dispatch(action: .endProcess)
         if success {
+            var startScreen: ScreenList = .MAIN
             if !authMediator.hasFullData {
-                UserDataHolder.setStartScreen(screen: .FILL_REGISTRATION_DATA)
+                startScreen = .FILL_REGISTRATION_DATA
             } else if !authMediator.hasImages {
-                UserDataHolder.setStartScreen(screen: .PROFILE_PHOTO)
+                startScreen = .PROFILE_PHOTO
             } else if !authMediator.hasQuestionnaire {
-                UserDataHolder.setStartScreen(screen: .QUESTIONNAIRE)
-            } else {
-                UserDataHolder.setStartScreen(screen: .MAIN)
+                startScreen = .QUESTIONNAIRE
             }
             withAnimation {
-                store.dispatch(action: .navigate(screen: UserDataHolder.startScreen))
+                UserDataHolder.shared.setStartScreen(screen: startScreen)
+                store.dispatch(action: .navigate(screen: startScreen))
             }
         } else {
             store.dispatch(action: .show(message: message.localized()))

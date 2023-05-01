@@ -99,7 +99,7 @@ class PersonalDataMediator: ObservableObject {
         if (name != savedUser.name || birthday.toServerDate() != savedUser.birthday?.toDate().toServerDate() || genderIsChanged()) {
             types.append(.data)
         }
-        
+
         return types
     }
 
@@ -133,7 +133,7 @@ class PersonalDataMediator: ObservableObject {
             DispatchQueue.main.async {
                 if !self.saveTypes.contains(.email) && !self.saveTypes.contains(.phone) {
                     ProfileMediator.shared.setUser(user: user)
-                    MainMediator.shared.setUserInfo(user: user)
+                    MainMediator.shared.setUserInfo()
                     self.setUserData()
                     self.checkChanges()
                     completion()
@@ -176,8 +176,8 @@ class PersonalDataMediator: ObservableObject {
         self.savedUser.email = self.email
         self.savedUser.phone = self.phone
         if self.saveTypes.contains(.data) {
-            ProfileMediator.shared.setUser(user: self.savedUser)
-            MainMediator.shared.setUserInfo(user: self.savedUser)
+            ProfileMediator.shared.setUser(user: savedUser)
+            MainMediator.shared.setUserInfo()
             self.setUserData()
         }
         self.checkChanges()

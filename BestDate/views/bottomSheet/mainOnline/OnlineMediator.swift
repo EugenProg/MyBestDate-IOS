@@ -19,7 +19,7 @@ class OnlineMediator: ObservableObject {
         itemList.append(OnlineTypesListItem(id: 2, name:  "was_recently", type: .recently))
 
         selectedItem = itemList.first(where: { item in
-            item.type == UserDataHolder.searchOnline
+            item.type == UserDataHolder.shared.getSearchOnlineFilter()
         }) ?? itemList[1]
     }
 

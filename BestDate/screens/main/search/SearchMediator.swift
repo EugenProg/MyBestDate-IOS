@@ -22,8 +22,8 @@ class SearchMediator: ObservableObject {
     var selectedGender: FilterGender? = nil
     var savedPosition: CGFloat = 0
 
-    var locationType: LocationFilterTypes = UserDataHolder.searchLocation
-    var onlineType: OnlineFilterTypes = UserDataHolder.searchOnline
+    var locationType: LocationFilterTypes = UserDataHolder.shared.getSearchLocationFilter()
+    var onlineType: OnlineFilterTypes = UserDataHolder.shared.getSearchOnlineFilter()
 
     func getUserList(withClear: Bool, page: Int, completion: @escaping () -> Void) {
         loadingMode = withClear

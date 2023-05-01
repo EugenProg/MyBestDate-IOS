@@ -19,7 +19,7 @@ struct StartScreen: View {
                 store.dispatch(action:
                         .setScreenColors(status: ColorList.main.color, style: .lightContent))
 
-                if UserDataHolder.startScreen != .START {
+                if UserDataHolder.shared.getStartScreen() != .START {
                     refreshToken()
                 } else {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.6, execute: {
@@ -30,7 +30,7 @@ struct StartScreen: View {
     }
 
     private func refreshToken() {
-        if UserDataHolder.refreshToken.isEmpty {
+        if UserDataHolder.shared.getRefreshToken().isEmpty {
             navigate(screen: .AUTH)
         } else {
             CoreApiService.shared.refreshToken { success in
@@ -48,17 +48,17 @@ struct StartScreen: View {
     private func getUserData() {
         CoreApiService.shared.updateLanguage(lang: "lang_code".localized()) { success, user in
             DispatchQueue.main.async {
-                let startScreen = UserDataHolder.startScreen
+                let startScreen = UserDataHolder.shared.getStartScreen()
                 if success {
                     if startScreen == .MAIN {
-                        MainMediator.shared.setUserInfo(user: user)
+                        MainMediator.shared.setUserInfo()
                         ProfileMediator.shared.setUser(user: user)
                     } else {
                         PhotoEditorMediator.shared.setImages(images: user.photos ?? [])
                         RegistrationMediator.shared.setUserData(user: user)
                         QuestionnaireMediator.shared.setEditInfo(user: user, editMode: false)
                     }
-                    CoreApiService.shared.storeDeviceToken(token: UserDataHolder.notificationToken)
+                    CoreApiService.shared.storeDeviceToken(token: UserDataHolder.shared.getNotificationToken())
                 }
                 navigate(screen: startScreen)
             }

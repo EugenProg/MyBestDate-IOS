@@ -7,7 +7,7 @@
 
 import Foundation
 
-class TranslateTextApiService {
+class TranslateTextApiService : NetworkRequest {
     static var shared = TranslateTextApiService()
 
     private let key: String = "9b770114-c5bb-cc0d-de5c-c7c2cdbad9c6:fx"
@@ -16,17 +16,9 @@ class TranslateTextApiService {
     func translate(text: String, lang: String, completion: @escaping (Bool, String) -> Void) {
         let request = createRequest(text: text, lang: lang)
 
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            NetworkLogger.printLog(response: response)
-            if let data = data, let response = try? JSONDecoder().decode(TranslationResponse.self, from: data) {
-                NetworkLogger.printLog(data: data)
-                completion(!(response.translations?.isEmpty ?? true), response.translations?.first?.text ?? text)
-            } else {
-                completion(false, text)
-            }
+        makeRequest(request: request, type: TranslationResponse.self) { response in
+            completion(!(response?.translations?.isEmpty == true), response?.translations?.first?.text ?? text)
         }
-
-        task.resume()
     }
 
     private func createRequest(text: String, lang: String) -> URLRequest {

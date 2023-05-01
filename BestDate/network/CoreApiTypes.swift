@@ -248,7 +248,7 @@ enum CoreApiTypes {
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.setValue(getLanguage(), forHTTPHeaderField: "X-Localization")
         if withAuth == true {
-            request.setValue(UserDataHolder.accessToken, forHTTPHeaderField: "Authorization")
+            request.setValue(UserDataHolder.shared.getAccessToken(), forHTTPHeaderField: "Authorization")
         }
         request.httpMethod = getMethod
 
@@ -265,7 +265,7 @@ enum CoreApiTypes {
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.setValue(getLanguage(), forHTTPHeaderField: "X-Localization")
         if withAuth == true {
-            request.setValue(UserDataHolder.accessToken, forHTTPHeaderField: "Authorization")
+            request.setValue(UserDataHolder.shared.getAccessToken(), forHTTPHeaderField: "Authorization")
         }
         request.httpMethod = getMethod
         return request

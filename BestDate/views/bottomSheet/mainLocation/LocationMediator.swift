@@ -26,7 +26,7 @@ class LocationMediator: ObservableObject {
 
         if selectedItem.type != .filter {
             selectedItem = itemList.first(where: { item in
-                item.type == UserDataHolder.searchLocation
+                item.type == UserDataHolder.shared.getSearchLocationFilter()
             }) ?? itemList[1]
         }
     }
