@@ -49,7 +49,8 @@ struct SearchScreen: View {
                 Spacer()
 
                 Button(action: {
-                    withAnimation { store.dispatch(action: .navigate(screen: .SEARCH_FILTER)) }
+                    store.dispatch(action: .navigate(screen: .TARIFF_LIST))
+                    //withAnimation { store.dispatch(action: .navigate(screen: .SEARCH_FILTER)) }
                 }) {
                     ZStack {
                         Image("ic_button_decor")

@@ -35,10 +35,10 @@ class MatchesApiService : NetworkRequest {
     }
 
     func matchAction(userId: Int, completion: @escaping (Bool, Match) -> Void) {
-        var request = CoreApiTypes.matchAction.getRequest(withAuth: true)
+        let request = CoreApiTypes.matchAction.getRequest(withAuth: true)
 
         let body = MatchActionRequest(user_id: userId)
-        makeRequest(request: request, type: MatchResponse.self) { response in
+        makeRequest(request: request, body: body, type: MatchResponse.self) { response in
             completion(response?.success == true, response?.data ?? Match())
         }
     }

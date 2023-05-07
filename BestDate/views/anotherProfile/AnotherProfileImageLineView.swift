@@ -30,6 +30,7 @@ struct AnotherProfileImageLineView: View {
                         ForEach(imagesList.indices, id: \.self) { index in
                             ImageLineItemView(image: imagesList[index], imageSize: imageSize, showText: false)
                                 .onTapGesture {
+                                    print(">>> index: \(index)")
                                     selectAction(index)
                                 }
                         }

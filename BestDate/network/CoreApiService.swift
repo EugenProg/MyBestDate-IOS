@@ -13,7 +13,7 @@ class CoreApiService : NetworkRequest {
     static var shared = CoreApiService()
 
     func loginByEmail(userName: String, password: String, completion: @escaping (Bool) -> Void) {
-        var request = CoreApiTypes.loginByEmail.getRequest()
+        let request = CoreApiTypes.loginByEmail.getRequest()
 
         let body = LoginByEmailRequest(username: userName, password: password)
         makeRequest(request: request, body: body, type: AuthResponse.self) { response in
@@ -23,17 +23,17 @@ class CoreApiService : NetworkRequest {
     }
 
     func loginByPhone(phone: String, password: String, completion: @escaping (Bool) -> Void) {
-        var request = CoreApiTypes.loginByPhone.getRequest()
+        let request = CoreApiTypes.loginByPhone.getRequest()
 
         let body = LoginByPhoneRequest(phone: phone, password: password)
-        makeRequest(request: request, type: AuthResponse.self) { response in
+        makeRequest(request: request, body: body, type: AuthResponse.self) { response in
             UserDataHolder.shared.setAuthData(response: response ?? AuthResponse())
             completion(response?.error == nil)
         }
     }
 
     func signInWithSocial(provider: SocialOAuthType, token: String, completion: @escaping (Bool, Bool) -> Void) {
-        var request = CoreApiTypes.signInWithSocial.getRequest()
+        let request = CoreApiTypes.signInWithSocial.getRequest()
 
         let body = SocialOAuthRequest(provider: provider.rawValue, access_token: token)
         makeRequest(request: request, body: body, type: AuthResponse.self) { response in
@@ -43,7 +43,7 @@ class CoreApiService : NetworkRequest {
     }
 
     func registrEmail(email: String, completion: @escaping (Bool) -> Void) {
-        var request = CoreApiTypes.registerEmail.getRequest()
+        let request = CoreApiTypes.registerEmail.getRequest()
 
         let body = SendCodeRequest(email: email)
         makeRequest(request: request, body: body, type: SendCodeResponse.self) { response in
@@ -53,7 +53,7 @@ class CoreApiService : NetworkRequest {
 
 
     func registrUserEmail(email: String, completion: @escaping (Bool, String) -> Void) {
-        var request = CoreApiTypes.registerUserEmail.getRequest(withAuth: true)
+        let request = CoreApiTypes.registerUserEmail.getRequest(withAuth: true)
 
         let body = SendCodeRequest(email: email)
         makeRequest(request: request, body: body, type: BaseResponse.self) { response in
@@ -62,7 +62,7 @@ class CoreApiService : NetworkRequest {
     }
 
     func registrPhone(phone: String, completion: @escaping (Bool) -> Void) {
-        var request = CoreApiTypes.registerPhone.getRequest()
+        let request = CoreApiTypes.registerPhone.getRequest()
 
         let body = SendCodeRequest(phone: phone)
         makeRequest(request: request, body: body, type: SendCodeResponse.self) { response in
@@ -71,7 +71,7 @@ class CoreApiService : NetworkRequest {
     }
 
     func registrUserPhone(phone: String, completion: @escaping (Bool, String) -> Void) {
-        var request = CoreApiTypes.registerUserPhone.getRequest(withAuth: true)
+        let request = CoreApiTypes.registerUserPhone.getRequest(withAuth: true)
 
         let body = SendCodeRequest(phone: phone)
         makeRequest(request: request, body: body, type: BaseResponse.self) { response in
@@ -80,7 +80,7 @@ class CoreApiService : NetworkRequest {
     }
 
     func confirmEmail(email: String, code: String, completion: @escaping (Bool) -> Void) {
-        var request = CoreApiTypes.confirmEmail.getRequest()
+        let request = CoreApiTypes.confirmEmail.getRequest()
 
         let body = ConfirmRequest(email: email, code: code)
         makeRequest(request: request, body: body, type: BaseResponse.self) { response in
@@ -89,7 +89,7 @@ class CoreApiService : NetworkRequest {
     }
 
     func confirmUserEmail(email: String, code: String, completion: @escaping (Bool, String) -> Void) {
-        var request = CoreApiTypes.confirmUserEmail.getRequest(withAuth: true)
+        let request = CoreApiTypes.confirmUserEmail.getRequest(withAuth: true)
 
         let body = ConfirmRequest(email: email, code: code)
         makeRequest(request: request, body: body, type: BaseResponse.self) { response in
@@ -98,7 +98,7 @@ class CoreApiService : NetworkRequest {
     }
 
     func confirmPhone(phone: String, code: String, completion: @escaping (Bool) -> Void) {
-        var request = CoreApiTypes.confirmPhone.getRequest()
+        let request = CoreApiTypes.confirmPhone.getRequest()
 
         let body = ConfirmRequest(phone: phone, code: code)
         makeRequest(request: request, body: body, type: BaseResponse.self) { response in
@@ -107,7 +107,7 @@ class CoreApiService : NetworkRequest {
     }
 
     func confirmUserPhone(phone: String, code: String, completion: @escaping (Bool, String) -> Void) {
-        var request = CoreApiTypes.confirmUserPhone.getRequest(withAuth: true)
+        let request = CoreApiTypes.confirmUserPhone.getRequest(withAuth: true)
 
         let body = ConfirmRequest(phone: phone, code: code)
         makeRequest(request: request, body: body, type: BaseResponse.self) { response in
@@ -116,7 +116,7 @@ class CoreApiService : NetworkRequest {
     }
 
     func registerByPhone(requestModel: RegistrationRequest, completion: @escaping (Bool) -> Void) {
-        var request = CoreApiTypes.registerByPhone.getRequest()
+        let request = CoreApiTypes.registerByPhone.getRequest()
 
         makeRequest(request: request, body: requestModel, type: BaseResponse.self) { response in
             completion(response?.success == true)
@@ -124,7 +124,7 @@ class CoreApiService : NetworkRequest {
     }
 
     func registerByEmail(requestModel: RegistrationRequest, completion: @escaping (Bool) -> Void) {
-        var request = CoreApiTypes.registerByEmail.getRequest()
+        let request = CoreApiTypes.registerByEmail.getRequest()
 
         makeRequest(request: request, body: requestModel, type: BaseResponse.self) { response in
             completion(response?.success == true)
@@ -132,7 +132,7 @@ class CoreApiService : NetworkRequest {
     }
 
     func resetEmail(email: String, completion: @escaping (Bool) -> Void) {
-        var request = CoreApiTypes.resetEmail.getRequest()
+        let request = CoreApiTypes.resetEmail.getRequest()
 
         let body = SendCodeRequest(email: email)
         makeRequest(request: request, body: body, type: SendCodeResponse.self) { response in
@@ -141,7 +141,7 @@ class CoreApiService : NetworkRequest {
     }
 
     func resetPhone(phone: String, completion: @escaping (Bool) -> Void) {
-        var request = CoreApiTypes.resetPhone.getRequest()
+        let request = CoreApiTypes.resetPhone.getRequest()
 
         let body = SendCodeRequest(phone: phone)
         makeRequest(request: request, body: body, type: SendCodeResponse.self) { response in
@@ -150,7 +150,7 @@ class CoreApiService : NetworkRequest {
     }
 
     func confirmEmailReset(email: String, code: String, password: String, completion: @escaping (Bool) -> Void) {
-        var request = CoreApiTypes.confirmEmailReset.getRequest()
+        let request = CoreApiTypes.confirmEmailReset.getRequest()
 
         let body = ConfirmRequest(email: email, code: code, password: password, password_confirmation: password)
         makeRequest(request: request, body: body, type: BaseResponse.self) { response in
@@ -159,7 +159,7 @@ class CoreApiService : NetworkRequest {
     }
 
     func confirmPhoneReset(phone: String, code: String, password: String, completion: @escaping (Bool) -> Void) {
-        var request = CoreApiTypes.confirmPhoneReset.getRequest()
+        let request = CoreApiTypes.confirmPhoneReset.getRequest()
 
         let body = ConfirmRequest(phone: phone, code: code, password: password, password_confirmation: password)
         makeRequest(request: request, body: body, type: BaseResponse.self) { response in
@@ -177,7 +177,7 @@ class CoreApiService : NetworkRequest {
     }
 
     func saveQuestionnaire(questionnaire: Questionnaire, completion: @escaping (Bool) -> Void) {
-        var request = CoreApiTypes.saveQuestionnaire.getRequest(withAuth: true)
+        let request = CoreApiTypes.saveQuestionnaire.getRequest(withAuth: true)
 
         makeRequest(request: request, body: questionnaire, type: BaseResponse.self) { response in
             completion(response?.success == true)
@@ -187,7 +187,7 @@ class CoreApiService : NetworkRequest {
     func getUsersList(location: LocationFilterTypes, online: OnlineFilterTypes,
                       filter: Filter? = nil, genderFilter: FilterGender, page: Int,
                       completion: @escaping (Bool, [ShortUserInfo], Meta) -> Void) {
-        var request = CoreApiTypes.getUserList.getRequest(withAuth: true, params: CoreApiTypes.getPageParams(page: page))
+        let request = CoreApiTypes.getUserList.getRequest(withAuth: true, params: CoreApiTypes.getPageParams(page: page))
 
         let location = location == .filter ? LocationFilterTypes.all : location
         let online = online == .filter ? OnlineFilterTypes.all : online
@@ -209,7 +209,7 @@ class CoreApiService : NetworkRequest {
 
     func refreshToken(completion: @escaping (Bool) -> Void) {
         if currentTask != nil { return }
-        var request = CoreApiTypes.refreshToken.getRequest()
+        let request = CoreApiTypes.refreshToken.getRequest()
 
         let body = RefreshTokenRequest(refresh_token: UserDataHolder.shared.getRefreshToken())
         currentTask = makeTaskRequest(request: request, body: body, type: AuthResponse.self) { response in
@@ -237,7 +237,7 @@ class CoreApiService : NetworkRequest {
     }
 
     func setGuestViewed(ids: [Int], completion: @escaping (Bool) -> Void) {
-        var request = CoreApiTypes.setViewedAction.getRequest(withAuth: true)
+        let request = CoreApiTypes.setViewedAction.getRequest(withAuth: true)
 
         let body = IdListRequest(ids: ids)
         makeRequest(request: request, body: body, type: BaseResponse.self) { response in
@@ -270,7 +270,7 @@ class CoreApiService : NetworkRequest {
     }
 
     func compline(id: Int?, completion: @escaping (Bool) -> Void) {
-        var request = CoreApiTypes.compline.getRequest(withAuth: true)
+        let request = CoreApiTypes.compline.getRequest(withAuth: true)
 
         let body = MatchActionRequest(user_id: id ?? 0)
         makeRequest(request: request, body: body, type: BaseResponse.self) { response in
@@ -287,7 +287,7 @@ class CoreApiService : NetworkRequest {
     }
 
     func saveSettings(model: SaveSettingsRequest, completion: @escaping (Bool) -> Void) {
-        var request = CoreApiTypes.saveSettings.getRequest(withAuth: true)
+        let request = CoreApiTypes.saveSettings.getRequest(withAuth: true)
 
         makeRequest(request: request, body: model, type: BaseResponse.self) { response in
             completion(response?.success == true)
@@ -295,7 +295,7 @@ class CoreApiService : NetworkRequest {
     }
 
     func updateLanguage(lang: String, completion: @escaping (Bool, UserInfo) -> Void) {
-        var request = CoreApiTypes.updateLanguage.getRequest(withAuth: true)
+        let request = CoreApiTypes.updateLanguage.getRequest(withAuth: true)
 
         let body = UpdateLanguageRequest(language: lang)
         makeRequest(request: request, body: body, type: UserDataResponse.self) { response in
@@ -305,7 +305,7 @@ class CoreApiService : NetworkRequest {
     }
 
     func updateUserData(data: UpdateUserDataRequest, completion: @escaping (Bool, UserInfo) -> Void) {
-        var request = CoreApiTypes.updateUserData.getRequest(withAuth: true)
+        let request = CoreApiTypes.updateUserData.getRequest(withAuth: true)
 
         makeRequest(request: request, body: data, type: UserDataResponse.self) { response in
             UserDataHolder.shared.setUserInfo(user: response?.data)
@@ -323,7 +323,7 @@ class CoreApiService : NetworkRequest {
     }
 
     func changePassword(oldPass: String, newPass: String, completion: @escaping (Bool, String) -> Void) {
-        var request = CoreApiTypes.changePassword.getRequest(withAuth: true)
+        let request = CoreApiTypes.changePassword.getRequest(withAuth: true)
 
         let body = ChangePasswordRequest(old_password: oldPass, password: newPass, password_confirmation: newPass)
         makeRequest(request: request, body: body, type: BaseResponse.self) { response in
@@ -332,7 +332,7 @@ class CoreApiService : NetworkRequest {
     }
 
     func saveUserLocation(location: SetUserLocationRequest, completion: @escaping (Bool, UserInfo) -> Void) {
-        var request = CoreApiTypes.saveUserLocation.getRequest(withAuth: true)
+        let request = CoreApiTypes.saveUserLocation.getRequest(withAuth: true)
 
         makeRequest(request: request, body: location, type: UserDataResponse.self) { response in
             UserDataHolder.shared.setUserInfo(user: response?.data ?? UserInfo())
@@ -341,7 +341,7 @@ class CoreApiService : NetworkRequest {
     }
 
     func storeDeviceToken(token: String) {
-        var request = CoreApiTypes.deviceToken.getRequest(withAuth: true)
+        let request = CoreApiTypes.deviceToken.getRequest(withAuth: true)
 
         let body = StoreTokenRequest(token: token)
         makeRequest(request: request, body: body, type: BaseResponse.self) { _ in }

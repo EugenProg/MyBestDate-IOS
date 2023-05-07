@@ -28,6 +28,7 @@ class NetworkLogger {
 
 class NetworkRequest : NetworkLogger {
     var currentTask: URLSessionDataTask? = nil
+    var refreshMode: Bool = false
 
     func makeRequest<BT: Codable, RT: Codable>(request: URLRequest, body: BT, type: RT.Type, completion: @escaping (RT?) -> Void) {
 
@@ -36,31 +37,15 @@ class NetworkRequest : NetworkLogger {
         self.printLog(data: data)
         request.httpBody = data
 
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            self.printLog(response: response)
-            if let data = data, let response = Kson.shared.fromJson(json: data, type: type) {
-                self.printLog(data: data)
-                completion(response)
-            } else {
-                completion(nil)
-            }
+        _ = resumeTask(request: request, type: type) { response in
+            completion(response)
         }
-
-        task.resume()
     }
 
     func makeRequest<RT: Codable>(request: URLRequest, type: RT.Type, completion: @escaping (RT?) -> Void) {
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            self.printLog(response: response)
-            if let data = data, let response = Kson.shared.fromJson(json: data, type: type) {
-                self.printLog(data: data)
-                completion(response)
-            } else {
-                completion(nil)
-            }
+        _ = resumeTask(request: request, type: type) { response in
+            completion(response)
         }
-
-        task.resume()
     }
 
     func makeTaskRequest<BT: Codable, RT: Codable>(request: URLRequest, body: BT, type: RT.Type, completion: @escaping (RT?) -> Void) -> URLSessionDataTask {
@@ -70,32 +55,16 @@ class NetworkRequest : NetworkLogger {
         self.printLog(data: data)
         request.httpBody = data
 
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            self.printLog(response: response)
-            if let data = data, let response = Kson.shared.fromJson(json: data, type: type) {
-                self.printLog(data: data)
-                completion(response)
-            } else {
-                completion(nil)
-            }
+        let task = resumeTask(request: request, type: type) { response in
+            completion(response)
         }
-
-        task.resume()
         return task
     }
 
     func makeTaskRequest<RT: Codable>(request: URLRequest, type: RT.Type, completion: @escaping (RT?) -> Void) -> URLSessionDataTask {
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            self.printLog(response: response)
-            if let data = data, let response = Kson.shared.fromJson(json: data, type: type) {
-                self.printLog(data: data)
-                completion(response)
-            } else {
-                completion(nil)
-            }
+        let task = resumeTask(request: request, type: type) { response in
+            completion(response)
         }
-
-        task.resume()
         return task
     }
 
@@ -109,6 +78,31 @@ class NetworkRequest : NetworkLogger {
         }
         body.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
         return body
+    }
+
+    private func resumeTask<RT: Codable>(request: URLRequest, type: RT.Type, completion: @escaping (RT?) -> Void) -> URLSessionDataTask {
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            self.printLog(response: response)
+            if response?.http?.isUnAuth == true && !self.refreshMode {
+                self.refreshMode = true
+                CoreApiService.shared.refreshToken { success in
+                    _ = self.resumeTask(request: request, type: type) { response in
+                        completion(response)
+                    }
+                }
+            } else {
+                self.refreshMode = false
+                if let data = data, let response = Kson.shared.fromJson(json: data, type: type) {
+                    self.printLog(data: data)
+                    completion(response)
+                } else {
+                    completion(nil)
+                }
+            }
+        }
+
+        task.resume()
+        return task
     }
 
     func cancelCurrentTask() {

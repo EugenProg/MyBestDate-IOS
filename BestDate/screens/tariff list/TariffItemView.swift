@@ -10,6 +10,7 @@ import SwiftUI
 struct TariffItemView: View {
 
     var tariff: TariffType
+    var width: CGFloat
     @State var buttonLoading: Bool = false
 
     var body: some View {
@@ -76,7 +77,7 @@ struct TariffItemView: View {
             itemPoints(imageName: "ic_settings_message", text: "unlimited_messages", switchName: tariff.switchImage)
                 .padding(.bottom, 32)
 
-        }.frame(width: UIScreen.main.bounds.width - 105)
+        }.frame(width: width, height: 668)
             .background(
                 RoundedRectangle(cornerRadius: 28)
                     .stroke(MyColor.getColor(255, 255, 255, 0.1), lineWidth: 1)

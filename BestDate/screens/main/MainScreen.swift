@@ -35,8 +35,7 @@ struct MainScreen: View {
                 store.dispatch(action:
                         .setScreenColors(status: ColorList.main.color, style: .lightContent))
 
-                if ChatListMediator.shared.newChats.isEmpty &&
-                    ChatListMediator.shared.previousChats.isEmpty {
+                if ChatListMediator.shared.chatList.isEmpty {
                     ChatListMediator.shared.getChatList(withClear: true, page: 0)
                 }
 

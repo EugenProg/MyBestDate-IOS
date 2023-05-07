@@ -541,6 +541,10 @@ extension HTTPURLResponse {
     var isSuccessful: Bool {
         return 200 ... 299 ~= statusCode
     }
+
+    var isUnAuth: Bool {
+        return statusCode == 401
+    }
 }
 
 extension Message {

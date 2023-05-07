@@ -16,7 +16,6 @@ struct BlackListView: View {
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
                 if mediator.list.isEmpty {
-                    let topPadding = ((UIScreen.main.bounds.height - 260) / 2) - 100
                     NoDataBoxView(loadingMode: $mediator.loadingMode, text: "you_dont_have_any_blocked_users_yet")
                         .padding(.init(top: 50, leading: 50, bottom: ((UIScreen.main.bounds.width - 9) / 2) - 69, trailing: 50))
                 } else {

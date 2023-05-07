@@ -42,6 +42,10 @@ struct AnotherProfileScreen: View {
             .onAppear {
                 store.dispatch(action:
                         .setScreenColors(status: ColorList.main.color, style: .lightContent))
+                mediator.clear = false
+            }
+            .onDisappear {
+                if mediator.clear { mediator.cleanUserData() }
             }
     }
 }

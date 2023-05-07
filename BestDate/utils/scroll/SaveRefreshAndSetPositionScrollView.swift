@@ -81,6 +81,7 @@ enum PositionType {
 struct Position: Equatable {
     let type: PositionType
     let y: CGFloat
+    let x: CGFloat
 }
 
 struct PositionPreferenceKey: PreferenceKey {
@@ -99,7 +100,13 @@ struct PositionIndicators: View {
         GeometryReader { proxy in
             Color.clear
                 .preference(key: PositionPreferenceKey.self,
-                            value: [Position(type: type, y: proxy.frame(in: .global).minY)])
+                            value: [
+                                Position(type: type,
+                                         y: proxy.frame(in: .global).minY,
+                                         x: proxy.frame(in: .global).minX
+                                        )
+                            ]
+                )
         }
     }
 }
@@ -160,6 +167,57 @@ struct SaveAndSetPositionScrollView<Content: View>: View {
             }
             .onAppear {
                 proxy.scrollTo(Int(round(startPosition)), anchor: .top)
+            }
+        }
+    }
+}
+
+struct SaveAndSetPositionHorizontalScrollView<Content: View>: View {
+    var startPosition: CGFloat
+    let offsetChanged: (CGFloat) -> Void
+    let content: Content
+
+    @State private var state = RefreshState.waiting
+    @State private var currentOffset: CGFloat = 0
+
+    init(
+            startPosition: CGFloat = 0,
+            offsetChanged: @escaping (CGFloat) -> Void = { _ in },
+            @ViewBuilder content: () -> Content
+        ) {
+            self.startPosition = startPosition
+            self.offsetChanged = offsetChanged
+            self.content = content()
+        }
+
+    var body: some View {
+        ScrollViewReader { proxy in
+            ScrollView(.horizontal, showsIndicators: false) {
+                ZStack(alignment: .top) {
+                    PositionIndicators(type: .moving)
+                        .frame(height: 0)
+
+                    content
+                        .alignmentGuide(.top, computeValue: { _ in
+                            (state == .loading) ? -THRESHOLD : 0
+                        })
+                }
+            }
+            .background(PositionIndicators(type: .fixed))
+            .onPreferenceChange(PositionPreferenceKey.self) { values in
+                DispatchQueue.main.async {
+                    let movingX = values.first { $0.type == .moving }?.x ?? 0
+                    let fixedX = values.first { $0.type == .fixed }?.x ?? 0
+                    let offset = movingX - fixedX
+
+                    currentOffset = offset
+                    if offset < 0 {
+                        offsetChanged(offset)
+                    }
+                }
+            }
+            .onAppear {
+                proxy.scrollTo(Int(round(startPosition)), anchor: .center)
             }
         }
     }

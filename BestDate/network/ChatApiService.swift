@@ -35,7 +35,7 @@ class ChatApiService : NetworkRequest {
     }
 
     func updateMessage(id: Int, message: String, completion: @escaping (Bool, Message) -> Void) {
-        var request = CoreApiTypes.updateMessage.getRequest(path: id.toString(), withAuth: true)
+        let request = CoreApiTypes.updateMessage.getRequest(path: id.toString(), withAuth: true)
 
         let body = SendMessageRequest(text: message)
         makeRequest(request: request, body: body, type: SendMessageResponse.self) { response in
@@ -45,7 +45,7 @@ class ChatApiService : NetworkRequest {
 
     func sendTextMessage(userId: Int, parentId: Int?, message: String, completion: @escaping (Bool, Message) -> Void) {
         let path = parentId == nil ? userId.toString() : "\(userId)/\(parentId!)"
-        var request = CoreApiTypes.sendMessage.getRequest(path: path, withAuth: true)
+        let request = CoreApiTypes.sendMessage.getRequest(path: path, withAuth: true)
 
         let body = SendMessageRequest(text: message)
         makeRequest(request: request, body: body, type: SendMessageResponse.self) { response in
