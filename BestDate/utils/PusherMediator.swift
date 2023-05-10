@@ -19,8 +19,8 @@ class PusherMediator {
     func startPusher() {
         if !isConnected() {
             self.createConnection()
-            let chatChannelName = "private-chat.\(MainMediator.shared.user.id ?? 0)"
-            let userChannelName = "private-user.\(MainMediator.shared.user.id ?? 0)"
+            let chatChannelName = "private-chat.\(UserDataHolder.shared.getUserId())"
+            let userChannelName = "private-user.\(UserDataHolder.shared.getUserId())"
             self.chatChannel = pusher?.subscribe(chatChannelName)
             self.userChannel = pusher?.subscribe(userChannelName)
             self.listener()

@@ -25,8 +25,7 @@ struct ChatScreen: View {
         ZStack(alignment: .top) {
             if !mediator.messages.isEmpty && mediator.user?.getRole() != .bot {
                 TopPanelView(offsetValue: $offsetValue) {
-                    CreateInvitationMediator.shared.setUser(user: mediator.user ?? ShortUserInfo())
-                    store.dispatch(action: .createInvitation)
+                    openInvitationDialog()
                 }
             }
 
@@ -102,8 +101,7 @@ struct ChatScreen: View {
             if mediator.messages.isEmpty && !mediator.loadingMode {
                 VStack {
                     InvitationChatView(onlyCards: $mediator.cardsOnlyMode) {
-                        CreateInvitationMediator.shared.setUser(user: mediator.user ?? ShortUserInfo())
-                        store.dispatch(action: .createInvitation)
+                        openInvitationDialog()
                     }
                 }.frame(height: UIScreen.main.bounds.height)
             } else {
@@ -134,31 +132,35 @@ struct ChatScreen: View {
                     VStack {
                         Spacer()
 
-                    ChatBottomView(text: $mediator.inputText,
-                                   sendTextProcess: $sendTextProcess,
-                                   translateProcess: $translateProcess,
-                                   additionalHeight: $additionalHeight,
-                                   editMode: $mediator.editMode,
-                                   replyMode: $mediator.replyMode,
-                                   selectedMessage: $mediator.selectedMessage,
-                                   loadImageAction: {
-                        pickerMediator.isShowingPhotoLibrary.toggle()
-                    },
-                                   translateAction: { text in
-                        mediator.translate(text: text) { success, translatedText in
-                            DispatchQueue.main.async {
-                                translateProcess.toggle()
-                                if success { mediator.inputText = translatedText }
+                        ChatBottomView(text: $mediator.inputText,
+                                       sendTextProcess: $sendTextProcess,
+                                       translateProcess: $translateProcess,
+                                       additionalHeight: $additionalHeight,
+                                       editMode: $mediator.editMode,
+                                       replyMode: $mediator.replyMode,
+                                       selectedMessage: $mediator.selectedMessage,
+                                       loadImageAction: {
+                            pickerMediator.isShowingPhotoLibrary.toggle()
+                        }, translateAction: { text in
+                            mediator.translate(text: text) { success, translatedText in
+                                DispatchQueue.main.async {
+                                    translateProcess.toggle()
+                                    if success { mediator.inputText = translatedText }
+                                }
                             }
-                        }
-                    }, sendAction: { text in
-                        mediator.saveMessage(message: text) { success in
-                            DispatchQueue.main.async {
+                        }, sendAction: { text in
+                            if UserDataHolder.shared.messageSendAllowed() {
+                                mediator.saveMessage(message: text) { success in
+                                    DispatchQueue.main.async {
+                                        sendTextProcess.toggle()
+                                        if success { mediator.inputText = "" }
+                                    }
+                                }
+                            } else {
                                 sendTextProcess.toggle()
-                                if success { mediator.inputText = "" }
+                                store.dispatch(action: .showMessageBunningDialog)
                             }
-                        }
-                    })
+                        })
                         .padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight, trailing: 0))
                     }.keyboardSensible($offsetValue)
                         .edgesIgnoringSafeArea(.bottom)
@@ -203,6 +205,15 @@ struct ChatScreen: View {
             withAnimation {
                 store.dispatch(action: .navigate(screen: .ANOTHER_PROFILE))
             }
+        }
+    }
+
+    private func openInvitationDialog() {
+        if UserDataHolder.shared.invitationSendAllowed() {
+            CreateInvitationMediator.shared.setUser(user: mediator.user ?? ShortUserInfo())
+            store.dispatch(action: .createInvitation)
+        } else {
+            store.dispatch(action: .showInvitationBunningDialog)
         }
     }
 

@@ -32,6 +32,7 @@ struct BestDateApp: App {
                 .onAppear {
                     appDelegate.store = store
                 }
+                .background(ColorList.main.color)
         }
     }
 }

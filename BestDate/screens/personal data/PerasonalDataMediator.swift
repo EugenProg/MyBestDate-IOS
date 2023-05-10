@@ -26,14 +26,14 @@ class PersonalDataMediator: ObservableObject {
     var saveTypes: [SaveTypes] = []
 
     func setUserData() {
-        self.savedUser = MainMediator.shared.user
+        self.savedUser = UserDataHolder.shared.getUser()
         
-        self.name = MainMediator.shared.user.name ?? ""
-        self.email = MainMediator.shared.user.email ?? ""
-        self.phone = MainMediator.shared.user.phone ?? ""
-        self.birthday = MainMediator.shared.user.getBirthday()
+        self.name = UserDataHolder.shared.getUser().name ?? ""
+        self.email = UserDataHolder.shared.getUser().email ?? ""
+        self.phone = UserDataHolder.shared.getUser().phone ?? ""
+        self.birthday = UserDataHolder.shared.getUser().getBirthday()
 
-        self.gender = getGender(gender: MainMediator.shared.user.gender, lookFor: MainMediator.shared.user.look_for)
+        self.gender = getGender(gender: UserDataHolder.shared.getUser().gender, lookFor: UserDataHolder.shared.getUser().look_for)
     }
 
     func setGender(gender: String) {
@@ -103,44 +103,64 @@ class PersonalDataMediator: ObservableObject {
         return types
     }
 
-    func saveData(completion: @escaping () -> Void) {
+    func saveData(completion: @escaping (Bool, String) -> Void) {
         saveTypes = getSaveTypes()
-        if saveTypes.contains(.data) { updateMainUserData { completion() } }
-        else if saveTypes.contains(.email) { saveEmail { completion() } }
-        else if saveTypes.contains(.phone) { savePhone { completion() } }
-    }
-
-    func saveEmail(completion: @escaping () -> Void) {
-        CoreApiService.shared.registrUserEmail(email: self.email) { _, _ in
-            DispatchQueue.main.async {
-                self.emailConfirmMode = true
-                completion()
+        if saveTypes.contains(.data) {
+            updateMainUserData {  success, message in
+                completion(success, message)
+            }
+        }
+        else if saveTypes.contains(.email) {
+            saveEmail { success, message in
+                completion(success, message)
+            }
+        }
+        else if saveTypes.contains(.phone) {
+            savePhone { success, message in
+                completion(success, message)
             }
         }
     }
 
-    func savePhone(completion: @escaping () -> Void) {
-        CoreApiService.shared.registrUserPhone(phone: self.phone) { _, _ in
+    func saveEmail(completion: @escaping (Bool, String) -> Void) {
+        CoreApiService.shared.registrUserEmail(email: self.email) { success, message in
             DispatchQueue.main.async {
-                self.phoneConfirmMode = true
-                completion()
+                self.emailConfirmMode = success
+                completion(success, message)
             }
         }
     }
 
-    func updateMainUserData(completion: @escaping () -> Void) {
-        CoreApiService.shared.updateUserData(data: getUserDataRequest()) { _, user in
+    func savePhone(completion: @escaping (Bool, String) -> Void) {
+        CoreApiService.shared.registrUserPhone(phone: self.phone.toPhoneFormat()) { success, message in
+            DispatchQueue.main.async {
+                self.phoneConfirmMode = success
+                completion(success, message)
+            }
+        }
+    }
+
+    func updateMainUserData(completion: @escaping (Bool, String) -> Void) {
+        CoreApiService.shared.updateUserData(data: getUserDataRequest()) { success, user in
             DispatchQueue.main.async {
                 if !self.saveTypes.contains(.email) && !self.saveTypes.contains(.phone) {
                     ProfileMediator.shared.setUser(user: user)
                     MainMediator.shared.setUserInfo()
                     self.setUserData()
                     self.checkChanges()
-                    completion()
+                    completion(success, "default_error_message".localized())
                 } else {
                     self.savedUser = user
-                    if self.saveTypes.contains(.email) { self.saveEmail { completion() } }
-                    else if self.saveTypes.contains(.phone) { self.savePhone { completion() } }
+                    if self.saveTypes.contains(.email) {
+                        self.saveEmail { success, message in
+                            completion(success, message)
+                        }
+                    }
+                    else if self.saveTypes.contains(.phone) {
+                        self.savePhone { success, message in
+                            completion(success, message)
+                        }
+                    }
                 }
             }
         }
@@ -152,7 +172,8 @@ class PersonalDataMediator: ObservableObject {
                 if success {
                     self.emailConfirmMode = !success
                     if self.saveTypes.contains(.phone) {
-                        self.savePhone { completion(success, message) }
+                        self.savePhone {  success, message in
+                            completion(success, message) }
                     } else {
                         self.checkUserUpdates()
                     }

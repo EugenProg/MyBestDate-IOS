@@ -17,7 +17,9 @@ class CoreApiService : NetworkRequest {
 
         let body = LoginByEmailRequest(username: userName, password: password)
         makeRequest(request: request, body: body, type: AuthResponse.self) { response in
-            UserDataHolder.shared.setAuthData(response: response ?? AuthResponse())
+            if response?.error == nil {
+                UserDataHolder.shared.setAuthData(response: response)
+            }
             completion(response?.error == nil)
         }
     }
@@ -27,7 +29,9 @@ class CoreApiService : NetworkRequest {
 
         let body = LoginByPhoneRequest(phone: phone, password: password)
         makeRequest(request: request, body: body, type: AuthResponse.self) { response in
-            UserDataHolder.shared.setAuthData(response: response ?? AuthResponse())
+            if response?.error == nil {
+                UserDataHolder.shared.setAuthData(response: response)
+            }
             completion(response?.error == nil)
         }
     }
@@ -37,7 +41,9 @@ class CoreApiService : NetworkRequest {
 
         let body = SocialOAuthRequest(provider: provider.rawValue, access_token: token)
         makeRequest(request: request, body: body, type: AuthResponse.self) { response in
-            UserDataHolder.shared.setAuthData(response: response ?? AuthResponse())
+            if response?.error == nil {
+                UserDataHolder.shared.setAuthData(response: response)
+            }
             completion(response?.error == nil, response?.registration == true)
         }
     }
@@ -213,7 +219,9 @@ class CoreApiService : NetworkRequest {
 
         let body = RefreshTokenRequest(refresh_token: UserDataHolder.shared.getRefreshToken())
         currentTask = makeTaskRequest(request: request, body: body, type: AuthResponse.self) { response in
-            UserDataHolder.shared.setAuthData(response: response ?? AuthResponse())
+            if response?.error == nil {
+                UserDataHolder.shared.setAuthData(response: response)
+            }
             completion(response?.error == nil)
             self.currentTask = nil
         }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct GuestListItemView: View {
     var guest: Guest
+    var hide: Bool
 
     var body: some View {
         ZStack {
@@ -17,33 +18,42 @@ struct GuestListItemView: View {
 
             HStack(spacing: 14) {
                 AsyncImageView(url: guest.guest?.main_photo?.thumb_url)
+                    .blur(radius: hide ? 3 : 0)
                     .frame(width: 64, height: 64)
 
                 VStack(alignment: .leading, spacing: 5) {
-                    HStack(spacing: 0) {
-                        Text(guest.guest?.name ?? "Noname")
-                            .foregroundColor(ColorList.white.color)
-                            .font(MyFont.getFont(.BOLD, 16))
+                    if hide {
+                        nameBluredView()
+                    } else {
+                        HStack(spacing: 0) {
+                            Text(guest.guest?.name ?? "Noname")
+                                .foregroundColor(ColorList.white.color)
+                                .font(MyFont.getFont(.BOLD, 16))
 
-                        Image((guest.guest?.full_questionnaire ?? false) ? "ic_verify_active" : "ic_verify_gray")
-                            .resizable()
-                            .frame(width: 14, height: 14)
-                            .padding(.init(top: 0, leading: 5, bottom: 0, trailing: 0))
+                            Image((guest.guest?.full_questionnaire ?? false) ? "ic_verify_active" : "ic_verify_gray")
+                                .resizable()
+                                .frame(width: 14, height: 14)
+                                .padding(.init(top: 0, leading: 5, bottom: 0, trailing: 0))
 
-                        Text("\(guest.guest?.getAge() ?? 18)")
-                            .foregroundColor(ColorList.white.color)
-                            .font(MyFont.getFont(.BOLD, 16))
-                            .padding(.init(top: 0, leading: 8, bottom: 0, trailing: 0))
+                            Text("\(guest.guest?.getAge() ?? 18)")
+                                .foregroundColor(ColorList.white.color)
+                                .font(MyFont.getFont(.BOLD, 16))
+                                .padding(.init(top: 0, leading: 8, bottom: 0, trailing: 0))
 
-                        Text("years_short".localized())
-                            .foregroundColor(ColorList.white_80.color)
-                            .font(MyFont.getFont(.BOLD, 10))
-                            .padding(.init(top: 5, leading: 0, bottom: 0, trailing: 0))
+                            Text("years_short".localized())
+                                .foregroundColor(ColorList.white_80.color)
+                                .font(MyFont.getFont(.BOLD, 10))
+                                .padding(.init(top: 5, leading: 0, bottom: 0, trailing: 0))
+                        }
                     }
 
-                    Text(guest.guest?.getLocation() ?? "")
-                        .foregroundColor(ColorList.white_40.color)
-                        .font(MyFont.getFont(.NORMAL, 12))
+                    if hide {
+                        locationBluredView()
+                    } else {
+                        Text(guest.guest?.getLocation() ?? "")
+                            .foregroundColor(ColorList.white_40.color)
+                            .font(MyFont.getFont(.NORMAL, 12))
+                    }
 
                     HStack(spacing: 4) {
                         Image("ic_time")
@@ -89,5 +99,31 @@ struct GuestListItemView: View {
             }
             .padding(.init(top: 0, leading: 18, bottom: 0, trailing: 13))
         }.frame(height: 84)
+    }
+
+    fileprivate func nameBluredView() -> some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(MyColor.getColor(255, 255, 255, 0.13), lineWidth: 1)
+                .background(ColorList.white_10.color)
+                .cornerRadius(10)
+                .shadow(color: MyColor.getColor(0, 0, 0, 0.16), radius: 6, y: 3)
+                .blur(radius: 2)
+
+            Image("ic_hide_guest_name_hearts")
+        }.frame(width: 162, height: 19)
+    }
+
+    fileprivate func locationBluredView() -> some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 7)
+                .stroke(MyColor.getColor(255, 255, 255, 0.13), lineWidth: 1)
+                .background(ColorList.white_10.color)
+                .cornerRadius(7)
+                .shadow(color: MyColor.getColor(0, 0, 0, 0.16), radius: 6, y: 3)
+                .blur(radius: 2)
+
+            Image("ic_hide_guest_location_hearts")
+        }.frame(width: 99, height: 13)
     }
 }

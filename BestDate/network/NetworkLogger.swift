@@ -18,23 +18,36 @@ class NetworkLogger {
     }
 
     func printLog(response: URLResponse?) {
-        print("\n\(String(describing: response?.http?.statusCode)) \(String(describing: response?.url))\n")
+        print("\n------------------------------------------------------------------")
+        print("\(response?.http?.statusCode ?? 0) \(response?.url?.absoluteString ?? "") \(response?.http?.isSuccessful == true ? "✅" : "🚫")\n")
+    }
+
+    func printLog(request: URLRequest) {
+        print("\n------------------------------------------------------------------")
+        print("\(request.httpMethod ?? "") \(request.url?.absoluteString ?? "")\n")
+        print("headers: ")
+        for (key, value) in request.allHTTPHeaderFields ?? [:] {
+            print("\(key): \(value)")
+        }
+        if request.httpBody != nil {
+            print("body: \(String(data: request.httpBody!, encoding: .utf8) ?? "")")
+        }
+        print("------------------------------------------------------------------\n")
     }
 
     func printLog(data: Data?) {
         print("jsonData: ", String(data: data!, encoding: .utf8) ?? "")
+        print("------------------------------------------------------------------\n")
     }
 }
 
 class NetworkRequest : NetworkLogger {
     var currentTask: URLSessionDataTask? = nil
-    var refreshMode: Bool = false
 
     func makeRequest<BT: Codable, RT: Codable>(request: URLRequest, body: BT, type: RT.Type, completion: @escaping (RT?) -> Void) {
 
         var request = request
         let data = Kson.shared.toJsonData(value: body)
-        self.printLog(data: data)
         request.httpBody = data
 
         _ = resumeTask(request: request, type: type) { response in
@@ -52,7 +65,6 @@ class NetworkRequest : NetworkLogger {
 
         var request = request
         let data = Kson.shared.toJsonData(value: body)
-        self.printLog(data: data)
         request.httpBody = data
 
         let task = resumeTask(request: request, type: type) { response in
@@ -81,17 +93,20 @@ class NetworkRequest : NetworkLogger {
     }
 
     private func resumeTask<RT: Codable>(request: URLRequest, type: RT.Type, completion: @escaping (RT?) -> Void) -> URLSessionDataTask {
+        printLog(request: request)
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             self.printLog(response: response)
-            if response?.http?.isUnAuth == true && !self.refreshMode {
-                self.refreshMode = true
+            if response?.http?.isUnAuth == true {
                 CoreApiService.shared.refreshToken { success in
-                    _ = self.resumeTask(request: request, type: type) { response in
-                        completion(response)
+                    if success {
+                        _ = self.resumeTask(request: request.refreshToken(), type: type) { response in
+                            completion(response)
+                        }
+                    } else {
+                        completion(nil)
                     }
                 }
             } else {
-                self.refreshMode = false
                 if let data = data, let response = Kson.shared.fromJson(json: data, type: type) {
                     self.printLog(data: data)
                     completion(response)

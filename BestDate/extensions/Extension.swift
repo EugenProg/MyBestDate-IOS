@@ -208,6 +208,15 @@ extension String {
 
         return Kson.shared.fromJson(json: self, type: ShortUserInfo.self)
     }
+
+    func toPhoneFormat() -> String {
+        var phone = self.replacingOccurrences(of: " ", with: "")
+        phone = phone.replacingOccurrences(of: "(", with: "")
+        phone = phone.replacingOccurrences(of: ")", with: "")
+        phone = phone.replacingOccurrences(of: "-", with: "")
+
+        return phone
+    }
 }
 
 extension Int {
@@ -528,6 +537,15 @@ extension GeocodingResponse {
                                lat: self.lat ?? "",
                                lng: self.lon ?? "")
         )
+    }
+}
+
+extension URLRequest {
+    func refreshToken() -> URLRequest {
+        var request = self
+        request.allHTTPHeaderFields?.updateValue(UserDataHolder.shared.getAccessToken(), forKey: "Authorization")
+        
+        return request
     }
 }
 

@@ -20,7 +20,7 @@ class FillRegistrationDataMediator: ObservableObject {
         self.user = UserDataHolder.shared.getUser()
         self.name = user.name ?? ""
         self.nameInputMode = user.name?.isEmpty == true
-        self.birthday = MainMediator.shared.user.birthday?.toDate() ?? Date.getEithteenYearsAgoDate()
+        self.birthday = UserDataHolder.shared.getUser().birthday?.toDate() ?? Date.getEithteenYearsAgoDate()
         self.gender = self.getGender(gender: user.gender, lookFor: user.look_for)
     }
 

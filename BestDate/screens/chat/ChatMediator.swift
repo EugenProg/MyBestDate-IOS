@@ -193,7 +193,7 @@ class ChatMediator: ObservableObject {
     }
 
     func translateMessage(message: Message?) {
-        TranslateTextApiService.shared.translate(text: message?.text ?? "", lang: MainMediator.shared.user.language ?? "en") { success, translatedText in
+        TranslateTextApiService.shared.translate(text: message?.text ?? "", lang: UserDataHolder.shared.getUser().language ?? "en") { success, translatedText in
             DispatchQueue.main.async {
                 withAnimation {
                     if success {

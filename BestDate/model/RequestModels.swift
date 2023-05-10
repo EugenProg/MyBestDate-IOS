@@ -152,3 +152,9 @@ struct StoreTokenRequest: Codable {
     var type: String = "ios"
     var token: String
 }
+
+struct UpdateSubscriptionInfoRequest: Codable {
+    var device: String = "ios"
+    var start_at: String? = nil
+    var end_at: String? = nil
+}

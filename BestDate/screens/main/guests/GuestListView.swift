@@ -15,6 +15,7 @@ struct GuestListView: View {
     @Binding var meta: Meta
     @Binding var lastItemId: Int
     var clickAction: (Guest) -> Void
+    var buySubscription: () -> Void
     var loadNextPage: () -> Void
 
     @State var showLoadingBlock: Bool = false
@@ -28,10 +29,11 @@ struct GuestListView: View {
 
             LazyVGrid(columns: items, alignment: .center, spacing: 10, pinnedViews: [.sectionHeaders, .sectionFooters]) {
                 ForEach(list, id: \.id) { guest in
-                    GuestListItemView(guest: guest)
+                    GuestListItemView(guest: guest, hide: UserDataHolder.shared.hideGuests())
                         .onTapGesture {
                             withAnimation {
-                                clickAction(guest)
+                                if UserDataHolder.shared.hideGuests() { buySubscription() }
+                                else { clickAction(guest) }
                             }
                         }
                         .onAppear {

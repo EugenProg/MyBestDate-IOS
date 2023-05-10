@@ -49,6 +49,7 @@ class ChatApiService : NetworkRequest {
 
         let body = SendMessageRequest(text: message)
         makeRequest(request: request, body: body, type: SendMessageResponse.self) { response in
+            UserDataHolder.shared.setSentMessagesCount(count: response?.data?.sent_messages_today ?? 0)
             completion(response?.success == true, response?.data ?? Message())
         }
     }

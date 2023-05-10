@@ -41,7 +41,11 @@ struct ProfileScreen: View {
                                 .clipShape(Circle())
                                 .frame(width: 104, height: 104, alignment: .center)
                                 .onTapGesture {
-                                    goToImageViewer(index: mediator.getMainPhotoIndex())
+                                    if mediator.user.photos?.isEmpty == true {
+                                        pickerMediator.isShowingPhotoLibrary.toggle()
+                                    } else {
+                                        goToImageViewer(index: mediator.getMainPhotoIndex())
+                                    }
                                 }
 
                         }.padding(.init(top: 84, leading: 32, bottom: 32, trailing: 32))

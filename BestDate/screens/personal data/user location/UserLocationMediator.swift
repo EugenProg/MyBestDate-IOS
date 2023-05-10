@@ -11,8 +11,8 @@ class UserLocationMediator: ObservableObject {
     static var shared = UserLocationMediator()
 
     func saveUserLocation(location: CityListItem, completion: @escaping (Bool) -> Void) {
-        if location.city == MainMediator.shared.user.location?.city &&
-            location.country == MainMediator.shared.user.location?.country {
+        if location.city == UserDataHolder.shared.getUser().location?.city &&
+            location.country == UserDataHolder.shared.getUser().location?.country {
             completion(true)
         } else {
             GeocodingApiService().getLocationByAddress(address: location) { response in

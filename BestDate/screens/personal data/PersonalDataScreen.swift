@@ -90,11 +90,15 @@ struct PersonalDataScreen: View {
 
     private func saveData() {
         saveProcess.toggle()
-        mediator.saveData {
+        mediator.saveData { success, message in
             DispatchQueue.main.async {
                 saveProcess.toggle()
-                if !mediator.saveTypes.contains(.email) && !mediator.saveTypes.contains(.phone) {
-                    showSuccessMessage()
+                if success {
+                    if !mediator.saveTypes.contains(.email) && !mediator.saveTypes.contains(.phone) {
+                        showSuccessMessage()
+                    }
+                } else {
+                    store.dispatch(action: .show(message: message))
                 }
             }
         }

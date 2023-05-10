@@ -91,6 +91,10 @@ enum CoreApiTypes {
     case chatTypingEvent
     case chatReadEvent
 
+    case getAppSettings
+    case updateSubscriptionInfo
+    case getUserSubscriptionInfo
+
     var BaseURL: String {
         "\(CoreApiTypes.serverAddress)/api/v1/"
     }
@@ -162,6 +166,9 @@ enum CoreApiTypes {
         case .chatTypingEvent: return "chat-typing-event/"
         case .deviceToken: return "device-token"
         case .chatReadEvent: return "chat-read-event/"
+        case .getAppSettings: return "app/settings"
+        case .updateSubscriptionInfo: return "subscriptions"
+        case .getUserSubscriptionInfo: return "user/subscription"
         }
     }
 
@@ -228,6 +235,9 @@ enum CoreApiTypes {
         case .chatTypingEvent: return "POST"
         case .deviceToken: return "POST"
         case .chatReadEvent: return "POST"
+        case .getAppSettings: return "GET"
+        case .updateSubscriptionInfo: return "POST"
+        case .getUserSubscriptionInfo: return "POST"
         }
     }
 
@@ -252,13 +262,11 @@ enum CoreApiTypes {
         }
         request.httpMethod = getMethod
 
-        print("\n\(getMethod) \(BaseURL)\(getPath + path)\(params?.getParamsString() ?? "")\n")
         return request
     }
 
 
     func getRequest(withAuth: Bool? = nil, params: [RequestParams]? = nil) -> URLRequest {
-        print("\n\(getMethod) \(BaseURL)\(getPath)\(params?.getParamsString() ?? "")\n")
         let url = URL(string: getPath + (params?.getParamsString() ?? ""), relativeTo: URL(string: BaseURL)!)!
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")

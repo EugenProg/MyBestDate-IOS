@@ -70,9 +70,10 @@ class AnotherProfileMediator: ObservableObject {
     }
 
     func cleanUserData() {
-            self.user = UserInfo()
-            self.imageList.removeAll()
-            self.selectedImage = 0
+        self.user = UserInfo()
+        self.imageList.removeAll()
+        self.mainPhoto = ProfileImage()
+        self.selectedImage = 0
         CoreApiService.shared.cancelCurrentTask()
     }
 }

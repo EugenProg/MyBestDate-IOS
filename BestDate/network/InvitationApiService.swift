@@ -22,7 +22,8 @@ class InvitationApiService : NetworkRequest {
         let request = CoreApiTypes.sendInvitation.getRequest(withAuth: true)
 
         let body = SendInvitationRequest(invitation_id: invitationId, user_id: userId)
-        makeRequest(request: request, body: body, type: BaseResponse.self) { response in
+        makeRequest(request: request, body: body, type: SendInvitationResponse.self) { response in
+            UserDataHolder.shared.setSentInvitationsCount(count: response?.data?.sent_invitations_today ?? 0)
             completion(response?.success == true)
         }
     }

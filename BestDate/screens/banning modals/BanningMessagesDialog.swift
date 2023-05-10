@@ -23,6 +23,7 @@ struct BanningMessagesDialog: View {
                 store.state.showMessageBunningDialog = false
             } activateAction: {
                 store.state.showMessageBunningDialog = false
+                store.dispatch(action: .navigate(screen: .TARIFF_LIST))
             }
     }
 }

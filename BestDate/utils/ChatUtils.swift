@@ -50,7 +50,7 @@ class ChatUtils {
             return .date_block
         }
 
-        if current.sender_id != MainMediator.shared.user.id {
+        if current.sender_id != UserDataHolder.shared.getUserId() {
             if current.image == nil {
                 return current.parent_id == nil ? .user_text_message : .user_text_message_with_parent
             } else {

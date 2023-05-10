@@ -44,7 +44,7 @@ class ChatListMediator: ObservableObject {
     }
 
     private func setBadgeCount() {
-        UIApplication.shared.applicationIconBadgeNumber = self.newChatsCount > 0 ? MainMediator.shared.user.new_messages ?? 0 : 0
+        UIApplication.shared.applicationIconBadgeNumber = self.newChatsCount > 0 ? UserDataHolder.shared.getUser().new_messages ?? 0 : 0
     }
 
     private func refillChatsLists() {
@@ -56,7 +56,7 @@ class ChatListMediator: ObservableObject {
             var chat = allChatsList[index]
             chat.id = index
             if chat.last_message?.read_at == nil &&
-                chat.last_message?.sender_id != MainMediator.shared.user.id {
+                chat.last_message?.sender_id != UserDataHolder.shared.getUserId() {
                 self.newChatsCount += 1
                 self.chatList.append(self.getChatListItem(chat: chat, type: ChatItemType.new))
             } else {

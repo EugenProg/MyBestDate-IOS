@@ -88,33 +88,35 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?,
                      annotation: Any) -> Bool {
+
         if DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url) != nil {
-          store?.dispatch(action: .startProcess)
+            store?.dispatch(action: .startProcess)
 
-          let userId = url.absoluteString.suffix(url.absoluteString.count - 21)
+            let userId = url.absoluteString.suffix(url.absoluteString.count - 21)
+            if String(userId).toInt() > 0 {
+                CoreApiService.shared.getUsersById(id: String(userId).toInt()) { success, user in
+                    DispatchQueue.main.async {
+                        withAnimation {
+                            if success {
+                                AnotherProfileMediator.shared.setUser(user: user)
+                                if self.store?.state.activeScreen == .START {
+                                    self.store?.dispatch(action: .hasADeepLink)
+                                } else {
+                                    self.store?.dispatch(action: .navigate(screen: .ANOTHER_PROFILE))
+                                }
+                            } else {
+                                self.store?.dispatch(action:
+                                        .show(message: "default_error_message".localized())
+                                )
+                            }
+                        }
+                    }
+                }
+            }
 
-          CoreApiService.shared.getUsersById(id: String(userId).toInt()) { success, user in
-              DispatchQueue.main.async {
-                  withAnimation {
-                      if success {
-                          AnotherProfileMediator.shared.setUser(user: user)
-                          if self.store?.state.activeScreen == .START {
-                              self.store?.dispatch(action: .hasADeepLink)
-                          } else {
-                              self.store?.dispatch(action: .navigate(screen: .ANOTHER_PROFILE))
-                          }
-                      } else {
-                          self.store?.dispatch(action:
-                                  .show(message: "default_error_message".localized())
-                          )
-                      }
-                  }
-              }
-          }
-
-        return true
-      }
-      return false
+            return true
+        }
+        return false
     }
 }
 
