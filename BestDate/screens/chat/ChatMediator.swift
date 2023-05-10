@@ -126,11 +126,13 @@ class ChatMediator: ObservableObject {
     }
 
     func addMessage(message: Message) {
-        withAnimation {
-            self.messages.add(message: message)
-            self.replyMode = false
-            self.editMode = false
-            self.selectedMessage = nil
+        if self.messages.last?.message?.id != message.id {
+            withAnimation {
+                self.messages.add(message: message)
+                self.replyMode = false
+                self.editMode = false
+                self.selectedMessage = nil
+            }
         }
     }
 
@@ -191,7 +193,7 @@ class ChatMediator: ObservableObject {
     }
 
     func translateMessage(message: Message?) {
-        TranslateTextApiService.shared.translate(text: message?.text ?? "", lang: MainMediator.shared.user.language ?? "en") { success, translatedText in
+        TranslateTextApiService.shared.translate(text: message?.text ?? "", lang: UserDataHolder.shared.getUser().language ?? "en") { success, translatedText in
             DispatchQueue.main.async {
                 withAnimation {
                     if success {

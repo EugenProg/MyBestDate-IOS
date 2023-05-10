@@ -39,7 +39,7 @@ struct ImagesListView: View {
             }.frame(height: size)
 
             HStack(spacing: 9) {
-                let image = images[selectedImage]
+                let image = images[selectedImage]//
                 if showTopPlace && (image.top_place ?? 0) > 0 {
                     ZStack {
                         Image("bg_top_rectangle")

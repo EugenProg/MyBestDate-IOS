@@ -93,8 +93,8 @@ struct SearchFilterScreen: View {
 
     private func getDefaultItem() -> CityListItem {
         CityListItem(id: 0,
-                     country: MainMediator.shared.user.location?.country,
-                     city: MainMediator.shared.user.location?.city ?? "")
+                     country: UserDataHolder.shared.getUser().location?.country,
+                     city: UserDataHolder.shared.getUser().location?.city ?? "")
     }
 }
 

@@ -44,6 +44,7 @@ struct BaseBottomSheet: View {
                         case .PROFILE_ADDITIONALLY: ProfileAdditionaly { dismiss() }
                         case .SOCIAL: SocialNetworkBottomSheet { dismiss() }
                         case .IMAGE_LIST: ImageListBottomSheet { dismiss() }
+                        case .BUY_SUBSCRIPTION: BuySubscriptionBottomSheet { dismiss() }
                         }
                     }.frame(width: width, height: store.state.activeBottomSheet.heightMode.height)
                     .padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight + 16, trailing: 0))

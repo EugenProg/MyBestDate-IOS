@@ -21,8 +21,8 @@ class LocationMediator: ObservableObject {
         itemList.removeAll()
         itemList.append(LocationTypesListItem(id: 0, name: "next_to_me", type: .nearby))
         itemList.append(LocationTypesListItem(id: 1, name: "all_world", type: .all))
-        itemList.append(LocationTypesListItem(id: 2, name: MainMediator.shared.user.location?.country ?? "", type: .country))
-        itemList.append(LocationTypesListItem(id: 3, name: MainMediator.shared.user.location?.city ?? "", type: .city))
+        itemList.append(LocationTypesListItem(id: 2, name: UserDataHolder.shared.getUser().location?.country ?? "", type: .country))
+        itemList.append(LocationTypesListItem(id: 3, name: UserDataHolder.shared.getUser().location?.city ?? "", type: .city))
 
         if selectedItem.type != .filter {
             selectedItem = itemList.first(where: { item in
@@ -53,8 +53,8 @@ enum LocationFilterTypes: String {
         switch self {
         case .all: return "all_world".localized()
         case .nearby: return "next_to_me".localized()
-        case .country: return MainMediator.shared.user.location?.country ?? ""
-        case .city: return MainMediator.shared.user.location?.city ?? ""
+        case .country: return UserDataHolder.shared.getUser().location?.country ?? ""
+        case .city: return UserDataHolder.shared.getUser().location?.city ?? ""
         case .filter: return "Filter"
         }
     }

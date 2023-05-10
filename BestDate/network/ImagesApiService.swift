@@ -51,6 +51,7 @@ class ImagesApiService : NetworkRequest {
         request.httpBody = createDataBody(media: media, boundary: boundary)
 
         makeRequest(request: request, type: SendMessageResponse.self) { response in
+            UserDataHolder.shared.setSentMessagesCount(count: response?.data?.sent_messages_today ?? 0)
             if message != nil {
                 ChatApiService.shared.updateMessage(id: response?.data?.id ?? 0, message: message ?? "") { success, savedMessage in
                     completion(success, savedMessage)

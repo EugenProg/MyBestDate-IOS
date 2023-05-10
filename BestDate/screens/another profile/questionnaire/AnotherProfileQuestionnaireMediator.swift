@@ -52,7 +52,7 @@ class AnotherProfileQuestionnaireMediator: ObservableObject {
     }
 
     func translate(text: String) {
-        TranslateTextApiService.shared.translate(text: text, lang: MainMediator.shared.user.language ?? "en") { success, translatedText in
+        TranslateTextApiService.shared.translate(text: text, lang: UserDataHolder.shared.getUser().language ?? "en") { success, translatedText in
             DispatchQueue.main.async {
                 var questionnaire = self.user.questionnaire ?? Questionnaire()
                 questionnaire.about_me = translatedText
@@ -71,7 +71,7 @@ class AnotherProfileQuestionnaireMediator: ObservableObject {
                     value: questionnaire.about_me,
                     trnaslatableView: true,
                     translatable: questionnaire.about_me?.isEmpty == false &&
-                                    user.language != MainMediator.shared.user.language
+                                    user.language != UserDataHolder.shared.getUser().language
                 ),
                 QuestionnairePoint(
                     id: 1,

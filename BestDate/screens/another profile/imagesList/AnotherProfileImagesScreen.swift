@@ -39,8 +39,12 @@ struct AnotherProfileImagesScreen: View {
             } likeClick: {
                 mediator.likePhoto(id: mediator.imageList[mediator.selectedImage].id ?? 0) { }
             } createClick: {
-                CreateInvitationMediator.shared.setUser(user: mediator.user.toShortUser())
-                store.dispatch(action: .createInvitation)
+                if UserDataHolder.shared.invitationSendAllowed() {
+                    CreateInvitationMediator.shared.setUser(user: mediator.user.toShortUser())
+                    store.dispatch(action: .createInvitation)
+                } else {
+                    store.dispatch(action: .showInvitationBunningDialog)
+                }
             }.zIndex(15)
 
         }.frame(width: UIScreen.main.bounds.width)

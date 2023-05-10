@@ -116,20 +116,25 @@ struct ChatImageViewer: View {
     }
 
     private func send() {
-        mediator.sendImageMessage(
-            image: mediator.selectedImage ?? UIImage(),
-            message: mediator.inputText.isEmpty ? nil : mediator.inputText) { success in
-                DispatchQueue.main.async {
-                    withAnimation {
-                        sendTextProcess = false
-                        mediator.inputText = ""
-                        mediator.selectedImage = nil
-                        mediator.editImageMode = false
-                        store.dispatch(action: .hideKeyboard)
+        if UserDataHolder.shared.messageSendAllowed() {
+            mediator.sendImageMessage(
+                image: mediator.selectedImage ?? UIImage(),
+                message: mediator.inputText.isEmpty ? nil : mediator.inputText) { success in
+                    DispatchQueue.main.async {
+                        withAnimation {
+                            sendTextProcess = false
+                            mediator.inputText = ""
+                            mediator.selectedImage = nil
+                            mediator.editImageMode = false
+                            store.dispatch(action: .hideKeyboard)
+                        }
                     }
-                }
 
-            }
+                }
+        } else {
+            sendTextProcess = false
+            store.dispatch(action: .showMessageBunningDialog)
+        }
     }
 
     private func calculateSize() {

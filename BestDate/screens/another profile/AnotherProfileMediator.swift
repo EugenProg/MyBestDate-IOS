@@ -20,6 +20,7 @@ class AnotherProfileMediator: ObservableObject {
     @Published var selectedImage: Int = 0
 
     @Published var showShareSheet: Bool = false
+    var clear: Bool = false
 
     func setUser(user: ShortUserInfo) {
         self.mainPhoto = user.main_photo ?? ProfileImage()
@@ -71,6 +72,7 @@ class AnotherProfileMediator: ObservableObject {
     func cleanUserData() {
         self.user = UserInfo()
         self.imageList.removeAll()
+        self.mainPhoto = ProfileImage()
         self.selectedImage = 0
         CoreApiService.shared.cancelCurrentTask()
     }

@@ -36,8 +36,9 @@ struct ChatListScreen: View {
                 .frame(height: 1)
 
             ScrollView(.vertical, showsIndicators: false) {
-                ChatListView(newList: $mediator.newChats,
-                             previousList: $mediator.previousChats,
+                ChatListView(//newList: $mediator.newChats,
+                             //previousList: $mediator.previousChats,
+                    list: $mediator.chatList,
                              deleteProcess: $deleteProcess,
                              meta: $mediator.meta,
                              lastChatId: $mediator.lastChatId,

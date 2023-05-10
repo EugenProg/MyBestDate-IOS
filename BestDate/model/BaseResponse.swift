@@ -89,6 +89,8 @@ struct UserInfo: Codable {
     var role: String? = nil
     var blocked_me: Bool? = nil
     var questionnaire: Questionnaire? = nil
+    var sent_messages_today: Int? = nil
+    var sent_invitations_today: Int? = nil
 }
 
 enum UserRole: String {
@@ -176,6 +178,7 @@ struct Message: Codable {
     var created_at: String? = nil
     var translatedMessage: String? = nil
     var translationStatus: TranslateButtonStatus? = .un_active
+    var sent_messages_today: Int? = nil
 }
 
 struct SocketMessage: Codable {
@@ -267,11 +270,18 @@ struct InvitationCard: Codable {
     var from_user: ShortUserInfo? = nil
     var to_user: ShortUserInfo? = nil
     var answer: Invitation? = nil
+    var sent_invitations_today: Int? = nil
 }
 
 struct Invitation: Codable {
     var id: Int? = nil
     var name: String? = nil
+}
+
+struct SendInvitationResponse: Codable {
+    var success: Bool
+    var message: String? = nil
+    var data: InvitationCard? = nil
 }
 
 struct TranslationResponse: Codable {
@@ -378,4 +388,29 @@ struct Address: Codable {
     var state: String? = nil
     var country: String? = nil
     var country_code: String? = nil
+}
+
+struct AppSettings: Codable {
+    var subscription: Bool? = nil
+    var free_messages_count: Int? = nil
+    var free_invitations_count: Int? = nil
+}
+
+struct AppSettingsResponse: Codable {
+    var success: Bool
+    var message: String? = nil
+    var data: AppSettings? = nil
+}
+
+struct SubscriptionInfo: Codable {
+    var id: Int? = nil
+    var device: String? = nil
+    var start_at: String? = nil
+    var end_at: String? = nil
+}
+
+struct SubscribtionInfoResponse : Codable {
+    var success: Bool
+    var message: String? = nil
+    var data: SubscriptionInfo? = nil
 }

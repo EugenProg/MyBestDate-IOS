@@ -23,6 +23,7 @@ struct BunningInvitationsDialog: View {
                 store.state.showInvitationBunningDialog = false
             } activateAction: {
                 store.state.showInvitationBunningDialog = false
+                store.dispatch(action: .navigate(screen: .TARIFF_LIST))
             }
     }
 }

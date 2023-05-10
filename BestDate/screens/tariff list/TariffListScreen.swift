@@ -31,9 +31,10 @@ struct TariffListScreen: View {
                             .foregroundColor(ColorList.white.color)
                             .font(MyFont.getFont(.NORMAL, 18))
                     }.padding(16)
-                }.padding(.init(top: 20, leading: 32, bottom: 0, trailing: 32))
+                }.padding(.init(top: 20, leading: 32, bottom: 16, trailing: 32))
 
                 TariffSliderView()
+                    .frame(height: 668)
 
                 Spacer()
             }

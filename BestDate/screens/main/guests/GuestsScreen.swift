@@ -49,6 +49,8 @@ struct GuestsScreen: View {
                                           lastItemId: $mediator.lastGuestId) { guest in
                                 AnotherProfileMediator.shared.setUser(user: guest.guest ?? ShortUserInfo())
                                 store.dispatch(action: .navigate(screen: .ANOTHER_PROFILE))
+                            } buySubscription: {
+                                store.dispatch(action: .showBottomSheet(view: .BUY_SUBSCRIPTION))
                             } loadNextPage: {
                                 mediator.getNextPage()
                             }
@@ -59,6 +61,8 @@ struct GuestsScreen: View {
                                           lastItemId: $mediator.lastGuestId) { guest in
                                 AnotherProfileMediator.shared.setUser(user: guest.guest ?? ShortUserInfo())
                                 store.dispatch(action: .navigate(screen: .ANOTHER_PROFILE))
+                            } buySubscription: {
+                                store.dispatch(action: .showBottomSheet(view: .BUY_SUBSCRIPTION))
                             } loadNextPage: {
                                 mediator.getNextPage()
                             }

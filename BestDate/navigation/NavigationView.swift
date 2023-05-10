@@ -67,13 +67,12 @@ struct NavigationView: View {
                     PusherMediator.shared.closePusherConnection()
                 } else {
                     PusherMediator.shared.setStore(store: store)
-                    if !UserDataHolder.shared.getRefreshToken().isEmpty {
-                        CoreApiService.shared.refreshToken { _ in
-                            self.updateUser()
-                        }
-                    }
+                    self.updateUser()
+                    SubscriptionApiService.shared.getAppSettings()
+
                     if store.state.activeScreen == .MAIN &&
                         MainMediator.shared.currentScreen == .CHAT_LIST {
+                        ChatListMediator.shared.chatList.removeAll()
                         ChatListMediator.shared.getChatList(withClear: true, page: 0)
                     } else if store.state.activeScreen == .CHAT {
                         ChatMediator.shared.getMessageList(withClear: true, page: 0)
@@ -83,6 +82,7 @@ struct NavigationView: View {
     }
 
     private func updateUser() {
+        if UserDataHolder.shared.getUserId() == 0 { return }
         CoreApiService.shared.updateLanguage(lang: "lang_code".localized()) { _, user in
             DispatchQueue.main.async {
                 MainMediator.shared.setUserInfo()

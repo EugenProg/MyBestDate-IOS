@@ -15,7 +15,7 @@ struct BlockedUserView: View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(spacing: 0) {
                 AnotherProfileHeader(image: mediator.mainPhoto, isOnline: mediator.user.is_online ?? false, birthday: mediator.user.birthday ?? "", distance: mediator.user.getDistance()) {
-                    mediator.cleanUserData()
+                    mediator.clear = true
                 } additionnallyAction: {
                     AdditionallyMediator.shared.setInfo(user: mediator.user)
                     store.dispatch(action: .showBottomSheet(view: .ANOTHER_ADDITIONALLY))

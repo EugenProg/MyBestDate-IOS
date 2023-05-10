@@ -29,7 +29,7 @@ class DuelMediator: ObservableObject {
     var manVoted: Bool = false
 
     init() {
-        if MainMediator.shared.user.gender == "female" {
+        if UserDataHolder.shared.getUser().gender == "female" {
             activeGender = .man
         } else {
             activeGender = .woman

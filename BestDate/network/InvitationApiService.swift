@@ -19,16 +19,17 @@ class InvitationApiService : NetworkRequest {
     }
 
     func sendInvitation(invitationId: Int, userId: Int, completion: @escaping (Bool) -> Void) {
-        var request = CoreApiTypes.sendInvitation.getRequest(withAuth: true)
+        let request = CoreApiTypes.sendInvitation.getRequest(withAuth: true)
 
         let body = SendInvitationRequest(invitation_id: invitationId, user_id: userId)
-        makeRequest(request: request, body: body, type: BaseResponse.self) { response in
+        makeRequest(request: request, body: body, type: SendInvitationResponse.self) { response in
+            UserDataHolder.shared.setSentInvitationsCount(count: response?.data?.sent_invitations_today ?? 0)
             completion(response?.success == true)
         }
     }
 
     func answerTheInvitation(invitationId: Int, answer: InvitationAnswer, completion: @escaping (Bool) -> Void) {
-        var request = CoreApiTypes.answerTheInvitation.getRequest(path: invitationId.toString(), withAuth: true)
+        let request = CoreApiTypes.answerTheInvitation.getRequest(path: invitationId.toString(), withAuth: true)
 
         let body = AnswerTheInvitationRequest(answer_id: answer.id)
         makeRequest(request: request, body: body, type: BaseResponse.self) { response in
@@ -37,7 +38,7 @@ class InvitationApiService : NetworkRequest {
     }
 
     func getUserInvitationList(filter: InvitationFilter, page: Int, completion: @escaping (Bool, [InvitationCard], Meta) -> Void) {
-        var request = CoreApiTypes.getUserInvitationList.getRequest(withAuth: true, params: CoreApiTypes.getPageParams(page: page))
+        let request = CoreApiTypes.getUserInvitationList.getRequest(withAuth: true, params: CoreApiTypes.getPageParams(page: page))
 
         let body = GetUserInvitationFilter(filter: filter.rawValue)
         makeRequest(request: request, body: body, type: UserInvitationListResponse.self) { response in

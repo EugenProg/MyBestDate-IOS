@@ -208,6 +208,15 @@ extension String {
 
         return Kson.shared.fromJson(json: self, type: ShortUserInfo.self)
     }
+
+    func toPhoneFormat() -> String {
+        var phone = self.replacingOccurrences(of: " ", with: "")
+        phone = phone.replacingOccurrences(of: "(", with: "")
+        phone = phone.replacingOccurrences(of: ")", with: "")
+        phone = phone.replacingOccurrences(of: "-", with: "")
+
+        return phone
+    }
 }
 
 extension Int {
@@ -531,6 +540,15 @@ extension GeocodingResponse {
     }
 }
 
+extension URLRequest {
+    func refreshToken() -> URLRequest {
+        var request = self
+        request.allHTTPHeaderFields?.updateValue(UserDataHolder.shared.getAccessToken(), forKey: "Authorization")
+        
+        return request
+    }
+}
+
 extension URLResponse {
     var http: HTTPURLResponse? {
         return self as? HTTPURLResponse
@@ -540,6 +558,10 @@ extension URLResponse {
 extension HTTPURLResponse {
     var isSuccessful: Bool {
         return 200 ... 299 ~= statusCode
+    }
+
+    var isUnAuth: Bool {
+        return statusCode == 401
     }
 }
 
