@@ -563,7 +563,7 @@
 "no" = "Ні";
 "you_have_received_an_invitation_please_give_an_answer" = "Ви отримали запрошення,\nбудь ласка, дайте відповідь";
 "answer_choice" = "Варіанти відповіді";
-"you_invited" = "Ви запрошені";
+"you_invited" = "Ви запросили";
 "we_have_transmitted_your_reply_to_the_sender" = "Ми передали вашу\nвідповідь відправнику";
 "this_user_craves_only_real_meetengs" = "Цей користувач жадає тільки реальних зустрічей\nі не готовий витрачати час на\nдовге листування";
 "chat_closed" = "ЧАТ ЗАКРИТИЙ!";
@@ -687,3 +687,5 @@
 "message_is_copied_to_clipboard" = "Повідомлення скопійовано";
 "you_want_see_who_viewed_your_profile" = "Хочете побачити, хто переглядав\nваш профіль?";
 "buy_a_subscription" = "Купити підписку";
+"weak_internet_connection" = "Слабке з'єднання з Інтернетом";
+"check_your_internet" = "Перевірте мобільний інтернет або мережу Wi-Fi";

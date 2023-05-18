@@ -27,8 +27,13 @@ struct AuthScreen: View {
                 }.frame(height: UIScreen.main.bounds.height, alignment: .bottom)
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(alignment: .leading, spacing: 0) {
-                        BackButton(style: .black)
-                            .padding(.init(top: 32, leading: 32, bottom: 15, trailing: 0))
+                        if store.state.screenStack.count <= 1 {
+                            Text("")
+                                .padding(.init(top: 32, leading: 32, bottom: 15, trailing: 0))
+                        } else {
+                            BackButton(style: .black)
+                                .padding(.init(top: 32, leading: 32, bottom: 15, trailing: 0))
+                        }
                         
                         Title(textColor: ColorList.main.color, text: "hello_login_now")
                         

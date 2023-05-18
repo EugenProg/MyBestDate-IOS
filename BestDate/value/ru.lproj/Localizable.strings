@@ -563,7 +563,7 @@
 "no" = "Нет";
 "you_have_received_an_invitation_please_give_an_answer" = "Вы получили приглашение,\nпожалуйста, дайте ответ";
 "answer_choice" = "Варианты ответа";
-"you_invited" = "Вы приглашены";
+"you_invited" = "Вы пригласили";
 "we_have_transmitted_your_reply_to_the_sender" = "Мы передали ваш\nответ отправителю";
 "this_user_craves_only_real_meetengs" = "Этот пользователь жаждет только реальных встреч\nи не готов тратить время на\nдолгую переписку";
 "chat_closed" = "Чат закрыт!";
@@ -687,3 +687,5 @@
 "message_is_copied_to_clipboard" = "Сообщение скопировано в буфер обмена";
 "you_want_see_who_viewed_your_profile" = "Хотите увидеть, кто просматривал\nваш профиль?";
 "buy_a_subscription" = "Купить подписку";
+"weak_internet_connection" = "Слабое интернет-соединение";
+"check_your_internet" = "Проверьте мобильный интернет или сеть Wi-Fi";

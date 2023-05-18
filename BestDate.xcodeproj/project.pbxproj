@@ -135,6 +135,8 @@
 		4C6CFF2428B699AB00BA33E0 /* AlertScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6CFF2328B699AB00BA33E0 /* AlertScreen.swift */; };
 		4C6CFF2828B69D3000BA33E0 /* CreateInvitionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6CFF2728B69D3000BA33E0 /* CreateInvitionScreen.swift */; };
 		4C6CFF2A28B6B15000BA33E0 /* TopPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6CFF2928B6B15000BA33E0 /* TopPanelView.swift */; };
+		4C80ED902A12A2780064FAB8 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C80ED8F2A12A2780064FAB8 /* NetworkManager.swift */; };
+		4C80ED932A12A4770064FAB8 /* NoConnectionAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C80ED922A12A4770064FAB8 /* NoConnectionAlert.swift */; };
 		4C878F1428B7DA7F00043680 /* CreateInvitationMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C878F1328B7DA7F00043680 /* CreateInvitationMediator.swift */; };
 		4C878F1628B7DD3000043680 /* InvitationApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C878F1528B7DD3000043680 /* InvitationApiService.swift */; };
 		4C878F1828B7E3B400043680 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C878F1728B7E3B400043680 /* ArrayExtension.swift */; };
@@ -490,6 +492,8 @@
 		4C6CFF2328B699AB00BA33E0 /* AlertScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertScreen.swift; sourceTree = "<group>"; };
 		4C6CFF2728B69D3000BA33E0 /* CreateInvitionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateInvitionScreen.swift; sourceTree = "<group>"; };
 		4C6CFF2928B6B15000BA33E0 /* TopPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopPanelView.swift; sourceTree = "<group>"; };
+		4C80ED8F2A12A2780064FAB8 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		4C80ED922A12A4770064FAB8 /* NoConnectionAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoConnectionAlert.swift; sourceTree = "<group>"; };
 		4C878F1328B7DA7F00043680 /* CreateInvitationMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateInvitationMediator.swift; sourceTree = "<group>"; };
 		4C878F1528B7DD3000043680 /* InvitationApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationApiService.swift; sourceTree = "<group>"; };
 		4C878F1728B7E3B400043680 /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
@@ -741,6 +745,7 @@
 				4C878F1B28B7F75300043680 /* ActivityViewController.swift */,
 				4C2ED4FE28FC66E40057DB02 /* PusherMediator.swift */,
 				4CFD001A29A22DE50015F86C /* DeeplinkCreator.swift */,
+				4C80ED8F2A12A2780064FAB8 /* NetworkManager.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -1107,6 +1112,14 @@
 			path = "create invitation";
 			sourceTree = "<group>";
 		};
+		4C80ED912A12A4490064FAB8 /* No connection */ = {
+			isa = PBXGroup;
+			children = (
+				4C80ED922A12A4770064FAB8 /* NoConnectionAlert.swift */,
+			);
+			path = "No connection";
+			sourceTree = "<group>";
+		};
 		4C878F2128B9246300043680 /* matches list */ = {
 			isa = PBXGroup;
 			children = (
@@ -1230,6 +1243,7 @@
 		4C8E7DA9284D24BC00D6E58D /* screens */ = {
 			isa = PBXGroup;
 			children = (
+				4C80ED912A12A4490064FAB8 /* No connection */,
 				4C48EAC229B3A2FB009199ED /* tariff list */,
 				4C48EAB929ABB4D3009199ED /* banning modals */,
 				4C9C57CE28E0B15300688F4B /* fill data */,
@@ -2099,6 +2113,7 @@
 				4C022A54285F90CC0043E49D /* PhotoViewer.swift in Sources */,
 				4CD34F50289303EC00504396 /* ToTopListButton.swift in Sources */,
 				4CBF593128A2B2EB006BDE53 /* ChatImageShowView.swift in Sources */,
+				4C80ED932A12A4770064FAB8 /* NoConnectionAlert.swift in Sources */,
 				4CA2E230286728D100E514C4 /* SurprizeBoxView.swift in Sources */,
 				4C5C86BA2871A36B006DE024 /* SearchInputView.swift in Sources */,
 				4C92CB0228A78ACA00E5DF52 /* SaveRefreshAndSetPositionScrollView.swift in Sources */,
@@ -2245,6 +2260,7 @@
 				4CF0284F288AF0C3002C59EE /* TopListItemView.swift in Sources */,
 				4C9E5AEC28D230CD00E4E9FF /* SettingsSearchLocationButtonView.swift in Sources */,
 				4C5C86B5287174DD006DE024 /* RangeBarView.swift in Sources */,
+				4C80ED902A12A2780064FAB8 /* NetworkManager.swift in Sources */,
 				4C92CB1F28B264B100E5DF52 /* InvitationMediator.swift in Sources */,
 				4CB9FF9F28842D87004F1BF6 /* AnotherProfileMediator.swift in Sources */,
 				4CD34F5228950D8900504396 /* MessageListView.swift in Sources */,
@@ -2436,7 +2452,7 @@
 				CODE_SIGN_ENTITLEMENTS = BestDate/BestDateDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 27;
+				CURRENT_PROJECT_VERSION = 28;
 				DEVELOPMENT_ASSET_PATHS = "\"BestDate/Preview Content\"";
 				DEVELOPMENT_TEAM = 7869H74LP9;
 				ENABLE_PREVIEWS = YES;
@@ -2478,7 +2494,7 @@
 				CODE_SIGN_ENTITLEMENTS = BestDate/BestDate.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 27;
+				CURRENT_PROJECT_VERSION = 28;
 				DEVELOPMENT_ASSET_PATHS = "\"BestDate/Preview Content\"";
 				DEVELOPMENT_TEAM = 7869H74LP9;
 				ENABLE_PREVIEWS = YES;

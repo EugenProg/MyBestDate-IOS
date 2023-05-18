@@ -12,23 +12,23 @@ struct PhotoEditingScreen: View {
     @ObservedObject var mediator = PhotoEditorMediator.shared
     
     @State var process: Bool = false
+    @State var cropAction: Bool = false
     
     var body: some View {
         VStack {
             ZStack {
 
-                EdiorView(backgroundColor: ColorList.main.color)
+                EdiorView(backgroundColor: ColorList.main.color, onCrop: { croppedImage, success in
+                    if success {
+                        validatePhoto(croppedImage: croppedImage)
+                    }
+                }, cropAction: $cropAction)
                 
                 VStack(alignment: .leading, spacing: 0) {
-                    VStack(alignment: .leading, spacing: 0) {
                         BackButton(style: .white) {
                             ImagePickerMediator.shared.isShowingPhotoLibrary.toggle()
                             store.dispatch(action: .navigationBack)
-                        }
-                            .padding(.init(top: 32, leading: 32, bottom: 15, trailing: 32))
-
-                        Title(textColor: ColorList.white.color, text: "adding_and_editing_a_photo", textSize: 26)
-                    }.frame(height: 165)
+                        }.padding(.init(top: 32, leading: 32, bottom: 15, trailing: 32))
                     
                     Spacer()
                     
@@ -37,22 +37,9 @@ struct PhotoEditingScreen: View {
                         .frame(width: UIScreen.main.bounds.width - 14, height: UIScreen.main.bounds.width - 14)
                     
                     Spacer()
-
-                    if UIScreen.main.bounds.height > 800 {
-
-                        Text("you_can_upload_up_to_9_photos_to_your_profile")
-                            .foregroundColor(ColorList.white_60.color)
-                            .font(MyFont.getFont(.NORMAL, 18))
-                            .multilineTextAlignment(.center)
-                            .lineSpacing(8)
-                            .frame(width: UIScreen.main.bounds.width - 36, alignment: .center)
-
-                        Spacer()
-
-                    }
                     
                     StandardButton(style: .white, title: "save", loadingProcess: $process) {
-                        validatePhoto()
+                        cropAction.toggle()
                     }
                     .padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight + 24, trailing: 0))
                 }
@@ -65,9 +52,9 @@ struct PhotoEditingScreen: View {
             }
     }
 
-    private func validatePhoto() {
+    private func validatePhoto(croppedImage: UIImage?) {
         process.toggle()
-        mediator.cropImage()
+        mediator.croppedPhoto = croppedImage ?? UIImage()
         saveImage()
 //        mediator.searchFaces { success in
 //            if success {

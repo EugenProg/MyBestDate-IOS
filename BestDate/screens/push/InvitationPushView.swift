@@ -30,21 +30,6 @@ struct InvitationPushView: View {
                         .font(MyFont.getFont(.BOLD, 20))
 
                     Spacer()
-
-                    Button(action: {
-                        closeAction()
-                        openInvitationCard()
-                    }) {
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 11)
-                                .fill(ColorList.light_blue.color)
-                                .frame(width: 75, height: 22)
-
-                            Text("go_to")
-                                .foregroundColor(ColorList.main.color)
-                                .font(MyFont.getFont(.BOLD, 14))
-                        }
-                    }
                 }
 
                 PushUserDataView(user: $mediator.user)

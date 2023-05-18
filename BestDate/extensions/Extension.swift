@@ -64,6 +64,30 @@ extension View {
         errorState.wrappedValue = true
         UIDevice.vibrate()
     }
+
+    func getImage() -> UIImage? {
+        let controller = UIHostingController(rootView: self.ignoresSafeArea())
+        let view = controller.view
+
+        let targetSize = controller.view.intrinsicContentSize
+        let rect = CGRect(origin: .zero, size: targetSize)
+        UIBezierPath(rect: rect).fill()
+        view?.bounds = rect
+        view?.backgroundColor = .clear
+
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = 1
+        let renderer = UIGraphicsImageRenderer(size: targetSize, format: format)
+
+        return renderer.image { _ in
+            view?.drawHierarchy(in: controller.view.bounds, afterScreenUpdates: true)
+        }
+    }
+
+
+    func haptic(_ style: UIImpactFeedbackGenerator.FeedbackStyle) {
+        UIImpactFeedbackGenerator(style: style).impactOccurred()
+    }
 }
 
 extension View {

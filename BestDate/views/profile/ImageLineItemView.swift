@@ -16,22 +16,6 @@ struct ImageLineItemView: View {
         ZStack {
             UpdateImageView(image: $image)
                 .frame(width: imageSize, height: imageSize)
-
-            if showText {
-                VStack {
-                    Spacer()
-                    ZStack(alignment: .leading) {
-                        OverlayView(reverse: true)
-                        
-                        if (image?.top ?? false) {
-                            Text("top_50".localized())
-                                .foregroundColor(ColorList.white.color)
-                                .font(MyFont.getFont(.NORMAL, 14))
-                                .padding(.init(top: 0, leading: 10, bottom: 0, trailing: 10))
-                        }
-                    }.frame(width: imageSize, height: 26)
-                }
-            }
         }.frame(width: imageSize, height: imageSize, alignment: .bottom)
     }
 }

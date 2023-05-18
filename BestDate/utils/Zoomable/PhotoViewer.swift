@@ -9,6 +9,8 @@ import SwiftUI
 
 struct PhotoViewer: View {
     @State var image: UIImage
+    var onCrop: (UIImage?, Bool) ->()
+    @Binding var crop: Bool
 
     @GestureState private var scaleState: CGFloat = 1
     @GestureState private var offsetState = CGSize.zero
@@ -16,12 +18,9 @@ struct PhotoViewer: View {
     @State private var offset = CGSize.zero
     @State private var scale: CGFloat = 1
 
-    @Binding var currentZoom: CGFloat
-    @Binding var currentOffset: CGSize
-
     var maxZoom: CGFloat = 2.5
     var minZoom: CGFloat = 1
-    let frameSize: CGFloat
+    let frameSize: CGFloat = UIScreen.main.bounds.width - 14
 
     var magnification: some Gesture {
         MagnificationGesture()
@@ -38,7 +37,6 @@ struct PhotoViewer: View {
                     scale *= value
                 }
                 setOffset(size: CGSize.zero)
-                currentZoom = scale * scaleState
             }
     }
 
@@ -72,17 +70,20 @@ struct PhotoViewer: View {
         } else {
             offset.height += size.height
         }
-
-        currentOffset = CGSize(width: offset.width + offsetState.width, height: offset.height + offsetState.height)
     }
 
     var body: some View {
-        Image(uiImage: image)
-            .resizable()
-            .aspectRatio(contentMode: .fill)
-            .scaleEffect(scale * scaleState)
-            .offset(x: offset.width + offsetState.width, y: offset.height + offsetState.height)
-            .gesture(SimultaneousGesture(magnification, dragGesture))
+        ImageView()
+            .onChange(of: crop) { newValue in
+                if newValue {
+                    if let image = ImageView().getImage() {
+                        onCrop(image, true)
+                    } else {
+                        onCrop(nil, false)
+                    }
+                    crop.toggle()
+                }
+            }
     }
 
     private func getImageWidth() -> CGFloat {
@@ -91,5 +92,15 @@ struct PhotoViewer: View {
 
     private func getImageHeight() -> CGFloat {
         return image.size.height > image.size.width ? frameSize * (image.size.height / image.size.width) : frameSize
+    }
+
+    func ImageView() -> some View {
+        Image(uiImage: image)
+            .resizable()
+            .aspectRatio(contentMode: .fill)
+            .scaleEffect(scale * scaleState)
+            .offset(x: offset.width + offsetState.width, y: offset.height + offsetState.height)
+            .gesture(SimultaneousGesture(magnification, dragGesture))
+            .frame(width: frameSize, height: frameSize)
     }
 }

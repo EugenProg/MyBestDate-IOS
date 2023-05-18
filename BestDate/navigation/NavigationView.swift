@@ -10,6 +10,7 @@ import SwiftUI
 struct NavigationView: View {
     @Environment(\.scenePhase) var scenePhase
     @EnvironmentObject var store: Store
+    @ObservedObject var networkManager = NetworkManager.shared
 
     var body: some View {
         ZStack {
@@ -66,6 +67,7 @@ struct NavigationView: View {
                 if newValue != .active {
                     PusherMediator.shared.closePusherConnection()
                 } else {
+                    if !networkManager.isConnected { return }
                     PusherMediator.shared.setStore(store: store)
                     self.updateUser()
                     SubscriptionApiService.shared.getAppSettings()
@@ -83,10 +85,16 @@ struct NavigationView: View {
 
     private func updateUser() {
         if UserDataHolder.shared.getUserId() == 0 { return }
-        CoreApiService.shared.updateLanguage(lang: "lang_code".localized()) { _, user in
+        CoreApiService.shared.updateLanguage(lang: "lang_code".localized()) { success, user in
             DispatchQueue.main.async {
-                MainMediator.shared.setUserInfo()
-                ProfileMediator.shared.setUser(user: user)
+                if success {
+                    if user.gender == nil || user.birthday == nil || user.name == nil {
+                        store.dispatch(action: .navigate(screen: .FILL_REGISTRATION_DATA))
+                    } else {
+                        MainMediator.shared.setUserInfo()
+                        ProfileMediator.shared.setUser(user: user)
+                    }
+                }
             }
         }
     }

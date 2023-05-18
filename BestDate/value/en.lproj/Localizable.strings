@@ -686,3 +686,5 @@
 "message_is_copied_to_clipboard" = "Message is copied to clipboard";
 "you_want_see_who_viewed_your_profile" = "Do you want to see who viewed\nyour profile?";
 "buy_a_subscription" = "Buy a subscription";
+"weak_internet_connection" = "Weak internet connection";
+"check_your_internet" = "Check your Mobile Internet or Wi-Fi network";

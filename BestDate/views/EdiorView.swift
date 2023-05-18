@@ -11,6 +11,9 @@ struct EdiorView: View {
     @EnvironmentObject var store: Store
     @ObservedObject var mediator = PhotoEditorMediator.shared
     var backgroundColor: Color
+    var onCrop: (UIImage?, Bool) ->()
+
+    @Binding var cropAction: Bool
     
     var width = UIScreen.main.bounds.width
     var height = UIScreen.main.bounds.height
@@ -56,9 +59,9 @@ struct EdiorView: View {
                 RoundedRectangle(cornerRadius: 30)
                     .fill(ColorList.white.color)
 
-                PhotoViewer(image: mediator.newPhoto, currentZoom: $mediator.zoom, currentOffset: $mediator.offset, frameSize: mediator.frame)
-                    .frame(width: width - 14, height: width - 14)
-                    .padding(.init(top: 0, leading: 7, bottom: 0, trailing: 7))
+                PhotoViewer(image: mediator.newPhoto, onCrop: { croppedImage, success in
+                    onCrop(croppedImage, success)
+                }, crop: $cropAction)
             }
 
                 /*

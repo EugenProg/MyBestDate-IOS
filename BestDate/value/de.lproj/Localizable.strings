@@ -563,7 +563,7 @@
 "no" = "Nein";
 "you_have_received_an_invitation_please_give_an_answer" = "Sie haben eine Einladung erhalten,\nbitte geben Sie eine Antwort";
 "answer_choice" = "Antwort wählen";
-"you_invited" = "Sie sind eingeladen";
+"you_invited" = "Sie haben eingeladen";
 "we_have_transmitted_your_reply_to_the_sender" = "Wir haben Ihre Antwort an\nden Absender weitergeleitet";
 "this_user_craves_only_real_meetengs" = "Dieser Nutzer sehnt sich nur nach echten Treffen\nund ist nicht bereit, Zeit für\nlange Korrespondenz zu verschwenden";
 "chat_closed" = "CHAT GESCHLOSSEN!";
@@ -687,3 +687,5 @@
 "message_is_copied_to_clipboard" = "Nachricht in Zwischenablage kopiert";
 "you_want_see_who_viewed_your_profile" = "Möchten Sie sehen, wer sich Ihr Profil\nangesehen hat?";
 "buy_a_subscription" = "Ein Abonnement kaufen";
+"weak_internet_connection" = "Schwache Internetverbindung";
+"check_your_internet" = "Überprüfen Sie Ihr mobiles Internet oder Wi-Fi-Netzwerk";

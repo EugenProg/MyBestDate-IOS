@@ -9,10 +9,12 @@ import SwiftUI
 
 struct DialogsView: View {
     @EnvironmentObject var store: Store
+    @ObservedObject var networkManager = NetworkManager.shared
     
     var body: some View {
         ZStack {
-            if store.state.showBottomSheet { BaseBottomSheet().zIndex(1) }
+            if !networkManager.isConnected { NoConnectionAlert().zIndex(1) }
+            else if store.state.showBottomSheet { BaseBottomSheet().zIndex(1) }
             else if store.state.showMessage { AlertScreen().zIndex(1) }
             else if store.state.showInvitationDialog { CreateInvitionScreen().zIndex(1) }
             else if store.state.showMatchActionDialog { MatchActionScreen().zIndex(1) }

@@ -23,6 +23,7 @@ class AnotherProfileMediator: ObservableObject {
     var clear: Bool = false
 
     func setUser(user: ShortUserInfo) {
+        self.imageList = []
         self.mainPhoto = user.main_photo ?? ProfileImage()
         self.photoCount = (user.photos_count ?? 3) >= 3 ? 3 : user.photos_count ?? 3
         self.user = user.toUser()
