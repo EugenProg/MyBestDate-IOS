@@ -11,6 +11,7 @@ struct SearchScreen: View {
     @EnvironmentObject var store: Store
     @ObservedObject var mediator = SearchMediator.shared
     @ObservedObject var locationMediator = LocationMediator.shared
+    @ObservedObject var networkManager = NetworkManager.shared
     @ObservedObject var onlineMediator = OnlineMediator.shared
     @State var refreshingProcess: Bool = false
     
@@ -91,6 +92,11 @@ struct SearchScreen: View {
                 }.padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight + 60, trailing: 0))
         }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         .background(ColorList.main.color.edgesIgnoringSafeArea(.bottom))
+        .onChange(of: networkManager.isConnected, perform: { newValue in
+            if newValue {
+                mediator.getUserList(withClear: true, page: 0) { }
+            }
+        })
         .onAppear {
             if mediator.users.isEmpty {
                 mediator.getUserList(withClear: true, page: 0) { }

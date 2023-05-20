@@ -10,6 +10,7 @@ import SwiftUI
 struct ChatListScreen: View {
     @EnvironmentObject var store: Store
     @ObservedObject var mediator = ChatListMediator.shared
+    @ObservedObject var networkManager = NetworkManager.shared
     @State var deleteProcess: Bool = false
     
     var body: some View {
@@ -36,9 +37,7 @@ struct ChatListScreen: View {
                 .frame(height: 1)
 
             ScrollView(.vertical, showsIndicators: false) {
-                ChatListView(//newList: $mediator.newChats,
-                             //previousList: $mediator.previousChats,
-                    list: $mediator.chatList,
+                ChatListView(list: $mediator.chatList,
                              deleteProcess: $deleteProcess,
                              meta: $mediator.meta,
                              lastChatId: $mediator.lastChatId,
@@ -52,6 +51,11 @@ struct ChatListScreen: View {
             }.padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight + 60, trailing: 0))
         }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
             .background(ColorList.main.color.edgesIgnoringSafeArea(.bottom))
+            .onChange(of: networkManager.isConnected, perform: { newValue in
+                if newValue {
+                    mediator.getChatList(withClear: true, page: 0)
+                }
+            })
             .onAppear {
                 MainMediator.shared.chatListPage = {
                     mediator.getChatList(withClear: true, page: 0)

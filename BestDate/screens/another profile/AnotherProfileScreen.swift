@@ -10,6 +10,7 @@ import SwiftUI
 struct AnotherProfileScreen: View {
     @EnvironmentObject var store: Store
     @ObservedObject var mediator = AnotherProfileMediator.shared
+    @ObservedObject var networkManager = NetworkManager.shared
 
     var body: some View {
         ZStack {
@@ -43,6 +44,11 @@ struct AnotherProfileScreen: View {
                                         [DeeplinkCreator().get(userId: mediator.user.id, userName: mediator.user.name ?? "")]
                 )
             }
+            .onChange(of: networkManager.isConnected, perform: { newValue in
+                if newValue {
+                    mediator.getUserById(id: mediator.user.id ?? 0)
+                }
+            })
             .onAppear {
                 store.dispatch(action:
                         .setScreenColors(status: ColorList.main.color, style: .lightContent))

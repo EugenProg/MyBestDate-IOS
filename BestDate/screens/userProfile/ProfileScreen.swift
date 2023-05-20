@@ -14,6 +14,7 @@ struct ProfileScreen: View {
     @ObservedObject var editorMediator = PhotoEditorMediator.shared
     @ObservedObject var photoMediator = PhotoSettingsSheetMediator.shared
     @ObservedObject var pickerMediator = ImagePickerMediator.shared
+    @ObservedObject var networkManager = NetworkManager.shared
     @State var showHeader = false
     @State var logoutProccess: Bool = false
 
@@ -170,6 +171,11 @@ struct ProfileScreen: View {
                                         [DeeplinkCreator().get(userId: mediator.user.id, userName: mediator.user.name ?? "")]
                 )
             }
+            .onChange(of: networkManager.isConnected, perform: { newValue in
+                if newValue {
+                    mediator.updateUserData { }
+                }
+            })
             .onAppear {
                 store.dispatch(action:
                         .setScreenColors(status: ColorList.main.color, style: .lightContent))

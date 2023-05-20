@@ -10,6 +10,7 @@ import SwiftUI
 struct GuestsScreen: View {
     @EnvironmentObject var store: Store
     @ObservedObject var mediator = GuestsMediator.shared
+    @ObservedObject var networkManager = NetworkManager.shared
     
     var body: some View {
         VStack(spacing: 0) {
@@ -73,6 +74,11 @@ struct GuestsScreen: View {
             }
         }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
             .background(ColorList.main.color.edgesIgnoringSafeArea(.bottom))
+            .onChange(of: networkManager.isConnected, perform: { newValue in
+                if newValue {
+                    mediator.getGuests(withClear: true, page: 0) { }
+                }
+            })
             .onAppear {
                 if mediator.oldGuests.isEmpty && mediator.newGuests.isEmpty {
                     mediator.getGuests(withClear: true, page: 0) { }

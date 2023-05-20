@@ -11,6 +11,7 @@ struct ChatScreen: View {
     @EnvironmentObject var store: Store
     @ObservedObject var mediator = ChatMediator.shared
     @ObservedObject var pickerMediator = ImagePickerMediator.shared
+    @ObservedObject var networkManager = NetworkManager.shared
     @State private var offsetValue: CGFloat = 0.0
 
     @State var sendTextProcess: Bool = false
@@ -175,24 +176,29 @@ struct ChatScreen: View {
                 .opacity(showImage ? 1 : 0)
                 .scaleEffect(showImage ? 1 : 0)
         }
-            .background(
-                Image("bg_chat_decor")
-                    .resizable()
-            ).edgesIgnoringSafeArea(.bottom)
-        .onAppear {
-            store.dispatch(action:
-                    .setScreenColors(status: ColorList.main.color, style: .lightContent))
+        .background(
+            Image("bg_chat_decor")
+                .resizable()
+        ).edgesIgnoringSafeArea(.bottom)
+            .onChange(of: networkManager.isConnected, perform: { newValue in
+                if newValue {
+                    mediator.getMessageList(withClear: true, page: 0)
+                }
+            })
+            .onAppear {
+                store.dispatch(action:
+                        .setScreenColors(status: ColorList.main.color, style: .lightContent))
 
-            mediator.showMessage = { message in
-                store.dispatch(action: .show(message: message))
+                mediator.showMessage = { message in
+                    store.dispatch(action: .show(message: message))
+                }
             }
-        }
-        .sheet(isPresented: $pickerMediator.isShowingPhotoLibrary) {
-            ImagePicker { image in
-                mediator.selectedImage = image
-                mediator.editImageMode.toggle()
+            .sheet(isPresented: $pickerMediator.isShowingPhotoLibrary) {
+                ImagePicker { image in
+                    mediator.selectedImage = image
+                    mediator.editImageMode.toggle()
+                }
             }
-        }
     }
 
     private func goToUserProfile() {

@@ -61,7 +61,7 @@ class NetworkRequest : NetworkLogger {
         }
     }
 
-    func makeTaskRequest<BT: Codable, RT: Codable>(request: URLRequest, body: BT, type: RT.Type, completion: @escaping (RT?) -> Void) -> URLSessionDataTask {
+    func makeTaskRequest<BT: Codable, RT: Codable>(request: URLRequest, body: BT, type: RT.Type, completion: @escaping (RT?) -> Void) -> URLSessionDataTask? {
 
         var request = request
         let data = Kson.shared.toJsonData(value: body)
@@ -73,7 +73,7 @@ class NetworkRequest : NetworkLogger {
         return task
     }
 
-    func makeTaskRequest<RT: Codable>(request: URLRequest, type: RT.Type, completion: @escaping (RT?) -> Void) -> URLSessionDataTask {
+    func makeTaskRequest<RT: Codable>(request: URLRequest, type: RT.Type, completion: @escaping (RT?) -> Void) -> URLSessionDataTask? {
         let task = resumeTask(request: request, type: type) { response in
             completion(response)
         }
@@ -92,32 +92,37 @@ class NetworkRequest : NetworkLogger {
         return body
     }
 
-    private func resumeTask<RT: Codable>(request: URLRequest, type: RT.Type, completion: @escaping (RT?) -> Void) -> URLSessionDataTask {
-        printLog(request: request)
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            self.printLog(response: response)
-            if response?.http?.isUnAuth == true {
-                CoreApiService.shared.refreshToken { success in
-                    if success {
-                        _ = self.resumeTask(request: request.refreshToken(), type: type) { response in
-                            completion(response)
+    private func resumeTask<RT: Codable>(request: URLRequest, type: RT.Type, completion: @escaping (RT?) -> Void) -> URLSessionDataTask? {
+        if !NetworkManager.shared.isConnected {
+            print(">> No internet connection 📶 <<")
+            return nil
+        } else {
+            printLog(request: request)
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                self.printLog(response: response)
+                if response?.http?.isUnAuth == true {
+                    CoreApiService.shared.refreshToken { success in
+                        if success {
+                            _ = self.resumeTask(request: request.refreshToken(), type: type) { response in
+                                completion(response)
+                            }
+                        } else {
+                            completion(nil)
                         }
+                    }
+                } else {
+                    if let data = data, let response = Kson.shared.fromJson(json: data, type: type) {
+                        self.printLog(data: data)
+                        completion(response)
                     } else {
                         completion(nil)
                     }
                 }
-            } else {
-                if let data = data, let response = Kson.shared.fromJson(json: data, type: type) {
-                    self.printLog(data: data)
-                    completion(response)
-                } else {
-                    completion(nil)
-                }
             }
-        }
 
-        task.resume()
-        return task
+            task.resume()
+            return task
+        }
     }
 
     func cancelCurrentTask() {

@@ -11,6 +11,7 @@ struct DuelScreen: View {
     @EnvironmentObject var store: Store
     @ObservedObject var mediator = DuelMediator.shared
     @ObservedObject var mainMediator = MainMediator.shared
+    @ObservedObject var networkManager = NetworkManager.shared
     @State var showResult: Bool = false
 
     @State var firstProgress: Bool = false
@@ -107,6 +108,11 @@ struct DuelScreen: View {
                 }.padding(.init(top: 0, leading: 0, bottom: 45, trailing: 0))
             }.padding(.init(top: 0, leading: 0, bottom: store.state.statusBarHeight + 60, trailing: 0))
         }.background(ColorList.main.color.edgesIgnoringSafeArea(.bottom))
+        .onChange(of: networkManager.isConnected, perform: { newValue in
+            if newValue {
+                mediator.getVotePhotos { _ in }
+            }
+        })
         .onAppear {
             store.dispatch(action:
                     .setScreenColors(status: ColorList.main.color, style: .lightContent))

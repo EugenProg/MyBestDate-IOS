@@ -10,6 +10,7 @@ import SwiftUI
 struct MatchesScreen: View {
     @EnvironmentObject var store: Store
     @ObservedObject var mediator = MatchMediator.shared
+    @ObservedObject var networkManager = NetworkManager.shared
     
     var body: some View {
         VStack(spacing: 0) {
@@ -107,6 +108,11 @@ struct MatchesScreen: View {
             }
         }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         .background(ColorList.main.color.edgesIgnoringSafeArea(.bottom))
+        .onChange(of: networkManager.isConnected, perform: { newValue in
+            if newValue && mediator.users.isEmpty {
+                mediator.getMatchPage()
+            }
+        })
         .onAppear {
             MainMediator.shared.matchPage = {
                 if mediator.users.isEmpty || mediator.currentIndex >= mediator.users.count {

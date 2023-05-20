@@ -84,7 +84,7 @@ struct NavigationView: View {
     }
 
     private func updateUser() {
-        if UserDataHolder.shared.getUserId() == 0 { return }
+        if UserDataHolder.shared.getUserId() == 0  { return }
         CoreApiService.shared.updateLanguage(lang: "lang_code".localized()) { success, user in
             DispatchQueue.main.async {
                 if success {
@@ -100,6 +100,7 @@ struct NavigationView: View {
     }
 
     private func getBlur() -> CGFloat {
+        !networkManager.isConnected ||
         store.state.showBottomSheet ||
         store.state.showMessage ||
         store.state.showMatchActionDialog ||
