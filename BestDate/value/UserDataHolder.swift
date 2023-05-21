@@ -140,6 +140,15 @@ class UserDataHolder : UserDefaultsUtil {
     func hasAActiveSubscription() -> Bool {
         true
     }
+
+    func setMatchesEnabled(enabled: Bool) {
+        setSettings(type: .MATCHES_ENABLED, value: enabled)
+        MatchMediator.shared.matchesEnabled = enabled
+    }
+
+    func getMatchesEnabled() -> Bool {
+        getSettings(type: .MATCHES_ENABLED)
+    }
 }
 
 class UserDefaultsUtil {
@@ -189,4 +198,5 @@ enum HolderTypes: String {
     case SENT_MESSAGES_TODAY
     case SENT_INVITATIONS_TODAY
     case ID
+    case MATCHES_ENABLED
 }

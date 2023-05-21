@@ -290,6 +290,7 @@ class CoreApiService : NetworkRequest {
         let request = CoreApiTypes.getUserSettings.getRequest(withAuth: true)
 
         makeRequest(request: request, type: UserSettingsResponse.self) { response in
+            UserDataHolder.shared.setMatchesEnabled(enabled: response?.data?.matches == true)
             completion(response?.success == true, response?.data ?? UserSettings())
         }
     }
@@ -297,7 +298,8 @@ class CoreApiService : NetworkRequest {
     func saveSettings(model: SaveSettingsRequest, completion: @escaping (Bool) -> Void) {
         let request = CoreApiTypes.saveSettings.getRequest(withAuth: true)
 
-        makeRequest(request: request, body: model, type: BaseResponse.self) { response in
+        makeRequest(request: request, body: model, type: UserSettingsResponse.self) { response in
+            UserDataHolder.shared.setMatchesEnabled(enabled: response?.data?.matches == true)
             completion(response?.success == true)
         }
     }

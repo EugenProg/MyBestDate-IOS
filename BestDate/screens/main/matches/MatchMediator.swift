@@ -15,6 +15,7 @@ class MatchMediator: ObservableObject {
     @Published var currentUser: ShortUserInfo? = nil
     @Published var currentIndex: Int = 0
     @Published var loadingMode: Bool = true
+    @Published var matchesEnabled: Bool = UserDataHolder.shared.getMatchesEnabled()
 
     private let pageSize: Int = 35
     var fullList: [ShortUserInfo] = []

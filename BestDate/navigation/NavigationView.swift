@@ -52,7 +52,7 @@ struct NavigationView: View {
                     case .NOTIFY_SETTINGS: NotifySettingsScreen().transition(.opacity)
                     case .SETTINGS: SettingsScreen().transition(.move(edge: .trailing))
                     case .PERSONAL_DATA: PersonalDataScreen().transition(.move(edge: .trailing))
-                    case .BLACK_LIST: BlackListScreen().transition(.move(edge: .trailing))
+                    case .BLACK_LIST: BlackListScreen().transition(.opacity)
                     case .CHANGE_PASS: ChangePasswordScreen().transition(.move(edge: .trailing))
                     case .FILL_REGISTRATION_DATA: FillRegistrationDataScreen().transition(.opacity)
                     case .SEARCH_FILTER: SearchFilterScreen().transition(.move(edge: .bottom))

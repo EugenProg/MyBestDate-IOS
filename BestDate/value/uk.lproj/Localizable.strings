@@ -689,3 +689,6 @@
 "buy_a_subscription" = "Купити підписку";
 "weak_internet_connection" = "Слабке з'єднання з Інтернетом";
 "check_your_internet" = "Перевірте мобільний інтернет або мережу Wi-Fi";
+"not_activated" = "Not activated";
+"you_can_not_see_the_matches" = "You can’t see the matches because\nyou don’t participate in them";
+"you_need_to_go_to_settings" = "You need to go to settings and\nactivate matches";
