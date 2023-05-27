@@ -20,7 +20,6 @@ final class Reducer {
                 state.screenStack.append(state.activeScreen)
                 if (clear == true) { state.screenStack.removeAll() }
                 state.activeScreen = screen
-                print(">>> check -> current screen: \(state.activeScreen)\n")
             }
 
         case .navigationBack: do {

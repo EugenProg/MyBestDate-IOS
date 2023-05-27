@@ -12,7 +12,7 @@ import UIKit
 class CoreApiService : NetworkRequest {
     static var shared = CoreApiService()
 
-    func loginByEmail(userName: String, password: String, completion: @escaping (Bool) -> Void) {
+    func loginByEmail(userName: String, password: String, completion: @escaping (Bool, String) -> Void) {
         let request = CoreApiTypes.loginByEmail.getRequest()
 
         let body = LoginByEmailRequest(username: userName, password: password)
@@ -20,11 +20,11 @@ class CoreApiService : NetworkRequest {
             if response?.error == nil {
                 UserDataHolder.shared.setAuthData(response: response)
             }
-            completion(response?.error == nil)
+            completion(response?.error == nil, response?.message ?? "wrong_auth_data".localized())
         }
     }
 
-    func loginByPhone(phone: String, password: String, completion: @escaping (Bool) -> Void) {
+    func loginByPhone(phone: String, password: String, completion: @escaping (Bool, String) -> Void) {
         let request = CoreApiTypes.loginByPhone.getRequest()
 
         let body = LoginByPhoneRequest(phone: phone, password: password)
@@ -32,7 +32,7 @@ class CoreApiService : NetworkRequest {
             if response?.error == nil {
                 UserDataHolder.shared.setAuthData(response: response)
             }
-            completion(response?.error == nil)
+            completion(response?.error == nil, response?.message ?? "wrong_auth_data".localized())
         }
     }
 
@@ -48,12 +48,12 @@ class CoreApiService : NetworkRequest {
         }
     }
 
-    func registrEmail(email: String, completion: @escaping (Bool) -> Void) {
+    func registrEmail(email: String, completion: @escaping (Bool, String) -> Void) {
         let request = CoreApiTypes.registerEmail.getRequest()
 
         let body = SendCodeRequest(email: email)
         makeRequest(request: request, body: body, type: SendCodeResponse.self) { response in
-            completion(response?.success == true)
+            completion(response?.success == true, response?.message ?? getDefaultError())
         }
     }
 
@@ -63,16 +63,16 @@ class CoreApiService : NetworkRequest {
 
         let body = SendCodeRequest(email: email)
         makeRequest(request: request, body: body, type: BaseResponse.self) { response in
-            completion(response?.success == true, response?.message ?? "")
+            completion(response?.success == true, response?.message ?? getDefaultError())
         }
     }
 
-    func registrPhone(phone: String, completion: @escaping (Bool) -> Void) {
+    func registrPhone(phone: String, completion: @escaping (Bool, String) -> Void) {
         let request = CoreApiTypes.registerPhone.getRequest()
 
         let body = SendCodeRequest(phone: phone)
         makeRequest(request: request, body: body, type: SendCodeResponse.self) { response in
-            completion(response?.success == true)
+            completion(response?.success == true, response?.message ?? getDefaultError())
         }
     }
 
@@ -81,16 +81,16 @@ class CoreApiService : NetworkRequest {
 
         let body = SendCodeRequest(phone: phone)
         makeRequest(request: request, body: body, type: BaseResponse.self) { response in
-            completion(response?.success == true, response?.message ?? "")
+            completion(response?.success == true, response?.message ?? getDefaultError())
         }
     }
 
-    func confirmEmail(email: String, code: String, completion: @escaping (Bool) -> Void) {
+    func confirmEmail(email: String, code: String, completion: @escaping (Bool, String) -> Void) {
         let request = CoreApiTypes.confirmEmail.getRequest()
 
         let body = ConfirmRequest(email: email, code: code)
         makeRequest(request: request, body: body, type: BaseResponse.self) { response in
-            completion(response?.success == true)
+            completion(response?.success == true, response?.message ?? getDefaultError())
         }
     }
 
@@ -99,16 +99,16 @@ class CoreApiService : NetworkRequest {
 
         let body = ConfirmRequest(email: email, code: code)
         makeRequest(request: request, body: body, type: BaseResponse.self) { response in
-            completion(response?.success == true, response?.message ?? "")
+            completion(response?.success == true, response?.message ?? getDefaultError())
         }
     }
 
-    func confirmPhone(phone: String, code: String, completion: @escaping (Bool) -> Void) {
+    func confirmPhone(phone: String, code: String, completion: @escaping (Bool, String) -> Void) {
         let request = CoreApiTypes.confirmPhone.getRequest()
 
         let body = ConfirmRequest(phone: phone, code: code)
         makeRequest(request: request, body: body, type: BaseResponse.self) { response in
-            completion(response?.success == true)
+            completion(response?.success == true, response?.message ?? getDefaultError())
         }
     }
 
@@ -121,55 +121,55 @@ class CoreApiService : NetworkRequest {
         }
     }
 
-    func registerByPhone(requestModel: RegistrationRequest, completion: @escaping (Bool) -> Void) {
+    func registerByPhone(requestModel: RegistrationRequest, completion: @escaping (Bool, String) -> Void) {
         let request = CoreApiTypes.registerByPhone.getRequest()
 
         makeRequest(request: request, body: requestModel, type: BaseResponse.self) { response in
-            completion(response?.success == true)
+            completion(response?.success == true, response?.message ?? getDefaultError())
         }
     }
 
-    func registerByEmail(requestModel: RegistrationRequest, completion: @escaping (Bool) -> Void) {
+    func registerByEmail(requestModel: RegistrationRequest, completion: @escaping (Bool, String) -> Void) {
         let request = CoreApiTypes.registerByEmail.getRequest()
 
         makeRequest(request: request, body: requestModel, type: BaseResponse.self) { response in
-            completion(response?.success == true)
+            completion(response?.success == true, response?.message ?? getDefaultError())
         }
     }
 
-    func resetEmail(email: String, completion: @escaping (Bool) -> Void) {
+    func resetEmail(email: String, completion: @escaping (Bool, String) -> Void) {
         let request = CoreApiTypes.resetEmail.getRequest()
 
         let body = SendCodeRequest(email: email)
         makeRequest(request: request, body: body, type: SendCodeResponse.self) { response in
-            completion(response?.success == true)
+            completion(response?.success == true, response?.message ?? getDefaultError())
         }
     }
 
-    func resetPhone(phone: String, completion: @escaping (Bool) -> Void) {
+    func resetPhone(phone: String, completion: @escaping (Bool, String) -> Void) {
         let request = CoreApiTypes.resetPhone.getRequest()
 
         let body = SendCodeRequest(phone: phone)
         makeRequest(request: request, body: body, type: SendCodeResponse.self) { response in
-            completion(response?.success == true)
+            completion(response?.success == true, response?.message ?? getDefaultError())
         }
     }
 
-    func confirmEmailReset(email: String, code: String, password: String, completion: @escaping (Bool) -> Void) {
+    func confirmEmailReset(email: String, code: String, password: String, completion: @escaping (Bool, String) -> Void) {
         let request = CoreApiTypes.confirmEmailReset.getRequest()
 
         let body = ConfirmRequest(email: email, code: code, password: password, password_confirmation: password)
         makeRequest(request: request, body: body, type: BaseResponse.self) { response in
-            completion(response?.success == true)
+            completion(response?.success == true, response?.message ?? getDefaultError())
         }
     }
 
-    func confirmPhoneReset(phone: String, code: String, password: String, completion: @escaping (Bool) -> Void) {
+    func confirmPhoneReset(phone: String, code: String, password: String, completion: @escaping (Bool, String) -> Void) {
         let request = CoreApiTypes.confirmPhoneReset.getRequest()
 
         let body = ConfirmRequest(phone: phone, code: code, password: password, password_confirmation: password)
         makeRequest(request: request, body: body, type: BaseResponse.self) { response in
-            completion(response?.success == true)
+            completion(response?.success == true, response?.message ?? getDefaultError())
         }
     }
 
@@ -356,4 +356,8 @@ class CoreApiService : NetworkRequest {
         let body = StoreTokenRequest(token: token)
         makeRequest(request: request, body: body, type: BaseResponse.self) { _ in }
     }
+}
+
+fileprivate func getDefaultError() -> String {
+    "default_error_message".localized()
 }

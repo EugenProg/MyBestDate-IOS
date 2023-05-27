@@ -11,13 +11,7 @@ import Foundation
 import Kingfisher
 
 struct AsyncImageView: View {
-    private let defaultUrl: String = "\(CoreApiTypes.serverAddress)/images/default_photo.jpg"
-
     @State var url: String?
-
-    fileprivate func placeholder() -> some View {
-        LoadingDotsView()
-    }
 
     var body: some View {
         let realUrl = URL(string: (url == nil || url?.isEmpty == true) ? defaultUrl : url ?? defaultUrl)
@@ -34,15 +28,9 @@ struct AsyncImageView: View {
 }
 
 struct UpdateWithThumbImageView: View {
-    private let defaultUrl: String = "\(CoreApiTypes.serverAddress)/images/default_photo.jpg"
-
     @Binding var image: ProfileImage?
 
     @State var fullImageIsLoaded: Bool = false
-
-    fileprivate func placeholder() -> some View {
-        LoadingDotsView()
-    }
 
     var body: some View {
         ZStack {
@@ -76,14 +64,8 @@ struct UpdateWithThumbImageView: View {
 }
 
 struct UpdateImageView: View {
-    private let defaultUrl: String = "\(CoreApiTypes.serverAddress)/images/default_photo.jpg"
-
     @Binding var image: ProfileImage?
     var smallUrl: Bool = true
-
-    fileprivate func placeholder() -> some View {
-        LoadingDotsView()
-    }
 
     var body: some View {
         let url = smallUrl ? image?.thumb_url : image?.full_url
@@ -101,13 +83,7 @@ struct UpdateImageView: View {
 }
 
 struct UserImageView: View {
-    private let defaultUrl: String = "\(CoreApiTypes.serverAddress)/images/default_photo.jpg"
-
     @Binding var user: ShortUserInfo?
-
-    fileprivate func placeholder() -> some View {
-        LoadingDotsView()
-    }
 
     var body: some View {
         let url = user?.main_photo?.thumb_url
@@ -125,14 +101,8 @@ struct UserImageView: View {
 }
 
 struct ChatImageView: View {
-    private let defaultUrl: String = "\(CoreApiTypes.serverAddress)/images/default_photo.jpg"
-
     @Binding var message: Message?
     var smallUrl: Bool = true
-
-    fileprivate func placeholder() -> some View {
-        LoadingDotsView()
-    }
 
     var body: some View {
         let url = smallUrl ? message?.image?.thumb_url : message?.image?.full_url
@@ -150,15 +120,9 @@ struct ChatImageView: View {
 }
 
 struct ChatWithThumbImageView: View {
-    private let defaultUrl: String = "\(CoreApiTypes.serverAddress)/images/default_photo.jpg"
-
     @Binding var image: ChatImage?
 
     @State var fullImageIsLoaded: Bool = false
-
-    fileprivate func placeholder() -> some View {
-        LoadingDotsView()
-    }
 
     var body: some View {
         ZStack {
@@ -192,14 +156,8 @@ struct ChatWithThumbImageView: View {
 }
 
 struct MatchImageView: View {
-    private let defaultUrl: String = "\(CoreApiTypes.serverAddress)/images/default_photo.jpg"
-
     @Binding var match: MatchItem
     @Binding var currentIndex: Int
-
-    fileprivate func placeholder() -> some View {
-        LoadingDotsView()
-    }
 
     var body: some View {
         ZStack {
@@ -234,16 +192,10 @@ struct MatchImageView: View {
 }
 
 struct AsyncWithThumbImageView: View {
-    private let defaultUrl: String = "\(CoreApiTypes.serverAddress)/images/default_photo.jpg"
-
     @State var thumbUrl: String?
     @State var fullUrl: String?
 
     @State var fullImageIsLoaded: Bool = false
-
-    fileprivate func placeholder() -> some View {
-        LoadingDotsView()
-    }
 
     var body: some View {
         ZStack {
@@ -275,3 +227,20 @@ struct AsyncWithThumbImageView: View {
         URL(string: (url == nil || url?.isEmpty == true) ? defaultUrl : url ?? defaultUrl)!
     }
 }
+
+fileprivate func hasConnection() -> Bool {
+    NetworkManager.shared.isConnected
+}
+
+fileprivate func placeholder() -> some View {
+    ZStack {
+        if hasConnection() {
+            LoadingDotsView()
+        } else {
+            Image("ic_default_image")
+                .resizable()
+        }
+    }
+}
+
+fileprivate let defaultUrl: String = "\(CoreApiTypes.serverAddress)/images/default_photo.jpg"

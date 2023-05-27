@@ -26,7 +26,7 @@ struct SecondStylesTextButton: View {
                 Text(secondText.localized())
                     .foregroundColor(secondTextColor)
                     .font(MyFont.getFont(.BOLD, 16))
-            }.padding(.init(top: 10, leading: 45, bottom: 10, trailing: 45))
+            }.padding(.init(top: 10, leading: 32, bottom: 10, trailing: 32))
         }
     }
 }

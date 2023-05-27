@@ -10,6 +10,7 @@ import SwiftUI
 struct PassRecoveryOTPScreen: View {
     @EnvironmentObject var store: Store
     @ObservedObject var mediator = RecoveryMediator.shared
+    @ObservedObject var authMediator = AuthMediator.shared
     
     @State var process: Bool = false
     
@@ -19,8 +20,17 @@ struct PassRecoveryOTPScreen: View {
     
     private func confirmAction() -> (String) -> Void {
         return { code in
-            mediator.code = code
-            withAnimation { store.dispatch(action: .navigate(screen: .PASS_RECOVERY_SET_NEW)) }
+            process.toggle()
+            mediator.confirm(code: code) { success, message in
+                DispatchQueue.main.async {
+                    process.toggle()
+                    if success {
+                        goIn(success: success, registrationMode: false, message: message)
+                    } else {
+                        store.dispatch(action: .show(message: message))
+                    }
+                }
+            }
         }
     }
     
@@ -33,6 +43,25 @@ struct PassRecoveryOTPScreen: View {
                     }
                 }
             }
+        }
+    }
+
+    private func goIn(success: Bool, registrationMode: Bool, message: String) {
+        mediator.clearData()
+        store.dispatch(action: .endProcess)
+        if success {
+            var startScreen: ScreenList = .MAIN
+            if !authMediator.hasFullData {
+                startScreen = .FILL_REGISTRATION_DATA
+            } else if !authMediator.hasImages {
+                startScreen = .PROFILE_PHOTO
+            } else if !authMediator.hasQuestionnaire {
+                startScreen = .QUESTIONNAIRE
+            }
+            UserDataHolder.shared.setStartScreen(screen: startScreen)
+            store.dispatch(action: .navigate(screen: startScreen))
+        } else {
+            store.dispatch(action: .show(message: message.localized()))
         }
     }
 }

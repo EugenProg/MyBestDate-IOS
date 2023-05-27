@@ -323,6 +323,10 @@
 		4CDD3B9B2888608D00793466 /* NoDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDD3B9A2888608D00793466 /* NoDataView.swift */; };
 		4CDD3B9D288867DA00793466 /* GuestListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDD3B9C288867DA00793466 /* GuestListView.swift */; };
 		4CDD3B9F288874F200793466 /* ProfileButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDD3B9E288874F200793466 /* ProfileButtonView.swift */; };
+		4CE699162A220A5100D165FD /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4CE699152A220A5100D165FD /* FirebaseAnalytics */; };
+		4CE699182A220A5100D165FD /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4CE699172A220A5100D165FD /* FirebaseCrashlytics */; };
+		4CE6991A2A220A5100D165FD /* FirebaseDynamicLinks in Frameworks */ = {isa = PBXBuildFile; productRef = 4CE699192A220A5100D165FD /* FirebaseDynamicLinks */; };
+		4CE6991C2A220A5100D165FD /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 4CE6991B2A220A5100D165FD /* FirebaseMessaging */; };
 		4CE9FB9B29F402C80094AA47 /* loading_dots.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CE9FB9A29F402C70094AA47 /* loading_dots.json */; };
 		4CE9FB9D29F402FE0094AA47 /* LoadingDotsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE9FB9C29F402FE0094AA47 /* LoadingDotsView.swift */; };
 		4CF028402889BACE002C59EE /* TopButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF0283F2889BACE002C59EE /* TopButtonView.swift */; };
@@ -711,8 +715,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CE6991C2A220A5100D165FD /* FirebaseMessaging in Frameworks */,
 				4C2DC95328C399D700DD15C2 /* FacebookLogin in Frameworks */,
 				4C2DC94C28C2764C00DD15C2 /* AuthenticationServices.framework in Frameworks */,
+				4CE699162A220A5100D165FD /* FirebaseAnalytics in Frameworks */,
+				4CE6991A2A220A5100D165FD /* FirebaseDynamicLinks in Frameworks */,
+				4CE699182A220A5100D165FD /* FirebaseCrashlytics in Frameworks */,
 				4CB9FF7528808B3C004F1BF6 /* Lottie in Frameworks */,
 				4C2DC95128C399D700DD15C2 /* FacebookCore in Frameworks */,
 				CBBBFD3F8B9D52BA6E4734C1 /* Pods_BestDate.framework in Frameworks */,
@@ -1852,6 +1860,10 @@
 				4CB9FF7428808B3C004F1BF6 /* Lottie */,
 				4C2DC95028C399D700DD15C2 /* FacebookCore */,
 				4C2DC95228C399D700DD15C2 /* FacebookLogin */,
+				4CE699152A220A5100D165FD /* FirebaseAnalytics */,
+				4CE699172A220A5100D165FD /* FirebaseCrashlytics */,
+				4CE699192A220A5100D165FD /* FirebaseDynamicLinks */,
+				4CE6991B2A220A5100D165FD /* FirebaseMessaging */,
 			);
 			productName = BestDate;
 			productReference = 4C8E7D7D284CC93F00D6E58D /* BestDate.app */;
@@ -1886,6 +1898,7 @@
 			packageReferences = (
 				4CB9FF7328808B3B004F1BF6 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				4C2DC94F28C399D700DD15C2 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
+				4CE699142A220A5100D165FD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 4C8E7D7E284CC93F00D6E58D /* Products */;
 			projectDirPath = "";
@@ -2456,7 +2469,7 @@
 				CODE_SIGN_ENTITLEMENTS = BestDate/BestDateDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 30;
 				DEVELOPMENT_ASSET_PATHS = "\"BestDate/Preview Content\"";
 				DEVELOPMENT_TEAM = 7869H74LP9;
 				ENABLE_PREVIEWS = YES;
@@ -2498,7 +2511,7 @@
 				CODE_SIGN_ENTITLEMENTS = BestDate/BestDate.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 30;
 				DEVELOPMENT_ASSET_PATHS = "\"BestDate/Preview Content\"";
 				DEVELOPMENT_TEAM = 7869H74LP9;
 				ENABLE_PREVIEWS = YES;
@@ -2571,6 +2584,14 @@
 				minimumVersion = 3.0.0;
 			};
 		};
+		4CE699142A220A5100D165FD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -2588,6 +2609,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4CB9FF7328808B3B004F1BF6 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
+		};
+		4CE699152A220A5100D165FD /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4CE699142A220A5100D165FD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		4CE699172A220A5100D165FD /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4CE699142A220A5100D165FD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		4CE699192A220A5100D165FD /* FirebaseDynamicLinks */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4CE699142A220A5100D165FD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDynamicLinks;
+		};
+		4CE6991B2A220A5100D165FD /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4CE699142A220A5100D165FD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

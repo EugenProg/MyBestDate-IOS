@@ -55,7 +55,7 @@ struct PassRecoverySetNewScreen: View {
         if mediator.newPass.isEmpty { passInputError = true }
         else {
             process.toggle()
-            mediator.confirm { success, message in
+            mediator.confirm(code: "") { success, message in
                 DispatchQueue.main.async {
                     process.toggle()
                     if success {
@@ -69,6 +69,7 @@ struct PassRecoverySetNewScreen: View {
     }
 
     private func goIn(success: Bool, registrationMode: Bool, message: String) {
+        mediator.clearData()
         store.dispatch(action: .endProcess)
         if success {
             var startScreen: ScreenList = .MAIN

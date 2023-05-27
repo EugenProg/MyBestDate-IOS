@@ -63,6 +63,7 @@ class ProfileMediator: ObservableObject {
         InvitationMediator.shared.clearData()
         UserDataHolder.shared.setSearchLocation(filter: .all)
         UserDataHolder.shared.clearUserData()
+        DuelMediator.shared.clearDuels()
         PusherMediator.shared.closePusherConnection()
     }
 

@@ -49,7 +49,7 @@ struct BaseOTPScreen: View {
                                 inputAction(text: text)
                             }
                             
-                            StandardButton(style: .white, title: "next", loadingProcess: $process) {
+                            StandardButton(style: .white, title: "confirm", loadingProcess: $process) {
                                 validate()
                             }.padding(.init(top: 16, leading: 0, bottom: 25, trailing: 0))
                             
@@ -62,15 +62,14 @@ struct BaseOTPScreen: View {
                                         .onTapGesture {
                                             if resendAction != nil {
                                                 resendAction!()
-                                                mediator.expirition = 59
                                                 mediator.startTimer()
                                             }
                                         }
+                                } else {
+                                    Text(String.localizedStringWithFormat("some_seconds".localized(), mediator.expirition))
+                                        .foregroundColor(ColorList.white.color)
+                                        .font(MyFont.getFont(.BOLD, 16))
                                 }
-
-                                Text(String.localizedStringWithFormat("some_seconds".localized(), mediator.expirition))
-                                    .foregroundColor(ColorList.white.color)
-                                    .font(MyFont.getFont(.BOLD, 16))
                             }.padding(.init(top: 0, leading: 32, bottom: store.state.statusBarHeight + 32, trailing: 32))
                             
                         }.padding(.init(top: 25, leading: 0, bottom: 0, trailing: 0))

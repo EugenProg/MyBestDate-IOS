@@ -74,4 +74,14 @@ class DuelMediator: ObservableObject {
             }
         }
     }
+
+    func clearDuels() {
+        self.firstDuelImage = nil
+        self.secondDuelImage = nil
+        self.firstUserImage = nil
+        self.secondUserImage = nil
+        self.firstUser = nil
+        self.secondUser = nil
+        self.hasADuelAction = false
+    }
 }

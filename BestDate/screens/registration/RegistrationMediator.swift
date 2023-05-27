@@ -23,84 +23,84 @@ final class RegistrationMediator: ObservableObject {
     func sendCode(complete: @escaping (Bool, String) -> Void) {
         if StringUtils.isPhoneNumber(phone: login) {
             authType = .phone
-            registrPhone(phone: login) { success in complete(success, "default_error_message".localized()) }
+            registrPhone(phone: login) { success, message in complete(success, message) }
         } else if StringUtils.isAEmail(email: login) {
             authType = .email
-            registrEmail(email: login) { success in complete(success, "default_error_message".localized()) }
+            registrEmail(email: login) { success, message in complete(success, message) }
         } else {
             complete(false, "enter_email_or_phone".localized())
         }
     }
 
-    private func registrEmail(email: String, complete: @escaping (Bool) -> Void) {
-        CoreApiService.shared.registrEmail(email: email) { success in
+    private func registrEmail(email: String, complete: @escaping (Bool, String) -> Void) {
+        CoreApiService.shared.registrEmail(email: email) { success, message in
             DispatchQueue.main.async {
                 if success { self.email = email }
             }
-            complete(success)
+            complete(success, message)
         }
     }
 
-    private func registrPhone(phone: String, complete: @escaping (Bool) -> Void) {
-        CoreApiService.shared.registrPhone(phone: phone) { success in
+    private func registrPhone(phone: String, complete: @escaping (Bool, String) -> Void) {
+        CoreApiService.shared.registrPhone(phone: phone) { success, message in
             DispatchQueue.main.async {
                 if success { self.phone = phone }
             }
-            complete(success)
+            complete(success, message)
         }
     }
 
     func confirm(code: String, complete: @escaping (Bool, String) -> Void) {
         if email.isEmpty {
-            confirmPhone(code: code) { success in
-                complete(success, "default_error_message".localized())
+            confirmPhone(code: code) { success, message in
+                complete(success, message)
             }
         } else if phone.isEmpty {
-            confirmEmail(code: code) { success in
-                complete(success, "default_error_message".localized())
+            confirmEmail(code: code) { success, message in
+                complete(success, message)
             }
         } else {
             complete(false, "default_error_message".localized())
         }
     }
 
-    private func confirmPhone(code: String, complete: @escaping (Bool) -> Void) {
-        CoreApiService.shared.confirmPhone(phone: phone, code: code) { success in
+    private func confirmPhone(code: String, complete: @escaping (Bool, String) -> Void) {
+        CoreApiService.shared.confirmPhone(phone: phone, code: code) { success, message in
             if success {
-                self.registerByPhone { success in complete(success) }
-            } else { complete(false) }
+                self.registerByPhone { success, message in complete(success, message) }
+            } else { complete(success, message) }
         }
     }
 
-    private func confirmEmail(code: String, complete: @escaping (Bool) -> Void) {
-        CoreApiService.shared.confirmEmail(email: email, code: code) { success in
+    private func confirmEmail(code: String, complete: @escaping (Bool, String) -> Void) {
+        CoreApiService.shared.confirmEmail(email: email, code: code) { success, message in
             if success {
-                self.registerByEmail { success in complete(success) }
-            } else { complete(false) }
+                self.registerByEmail { success, message in complete(success, message) }
+            } else { complete(success, message) }
         }
     }
 
-    private func registerByPhone(complete: @escaping (Bool) -> Void) {
+    private func registerByPhone(complete: @escaping (Bool, String) -> Void) {
         let model = RegistrationRequest(phone: phone, name: name, password: password, password_confirmation: password, gender: getGender(), birthday: getBirthDay(), look_for: getAim())
 
-        CoreApiService.shared.registerByPhone(requestModel: model) { success in
+        CoreApiService.shared.registerByPhone(requestModel: model) { success, message in
             if success {
-                AuthMediator.shared.loginByPhone(phone: self.phone, password: self.password) { success in
-                    complete(success)
+                AuthMediator.shared.loginByPhone(phone: self.phone, password: self.password) { success, message in
+                    complete(success, message)
                 }
-            } else { complete(success) }
+            } else { complete(success, message) }
         }
     }
 
-    private func registerByEmail(complete: @escaping (Bool) -> Void) {
+    private func registerByEmail(complete: @escaping (Bool, String) -> Void) {
         let model = RegistrationRequest(email: email, name: name, password: password, password_confirmation: password, gender: getGender(), birthday: getBirthDay(), look_for: getAim())
 
-        CoreApiService.shared.registerByEmail(requestModel: model) { success in
+        CoreApiService.shared.registerByEmail(requestModel: model) { success, message in
             if success {
-                AuthMediator.shared.loginByEmail(email: self.email, password: self.password) { success in
-                    complete(success)
+                AuthMediator.shared.loginByEmail(email: self.email, password: self.password) { success, message in
+                    complete(success, message)
                 }
-            } else { complete(success) }
+            } else { complete(success, message) }
         }
     }
 
@@ -150,5 +150,15 @@ final class RegistrationMediator: ObservableObject {
             "woman_looking_for_a_man".localized() :
             "woman_looking_for_a_woman".localized()
         }
+    }
+
+    func clearData() {
+        self.gender = ""
+        self.login = ""
+        self.email = ""
+        self.phone = ""
+        self.birthDate = Date.getEithteenYearsAgoDate()
+        self.name = ""
+        self.password = ""
     }
 }

@@ -59,6 +59,7 @@ struct StartScreen: View {
                         QuestionnaireMediator.shared.setEditInfo(user: user, editMode: false)
                     }
                     SubscriptionApiService.shared.getAppSettings()
+                    CoreApiService.shared.getUserSettings { _, _ in }
                     CoreApiService.shared.storeDeviceToken(token: UserDataHolder.shared.getNotificationToken())
                 }
                 navigate(screen: startScreen)

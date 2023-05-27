@@ -10,8 +10,6 @@ target 'BestDate' do
 	pod 'GooglePlaces', '7.0.0'
   pod 'GoogleMLKit/FaceDetection', '3.1.0'
   pod 'Kingfisher'
-  pod 'Firebase/Messaging', '9.3.0'
-  pod 'FirebaseDynamicLinks', '9.3.0'
   pod 'GoogleSignIn'
   pod 'PusherSwift'
 

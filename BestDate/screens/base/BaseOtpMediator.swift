@@ -14,6 +14,7 @@ class BaseOtpMediator: ObservableObject {
     var expirition: Int = 59
 
     func startTimer() {
+        self.expirition = 59
         Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
             self.expirition -= 1
             if self.expirition <= 0 {

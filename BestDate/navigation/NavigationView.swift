@@ -11,6 +11,7 @@ struct NavigationView: View {
     @Environment(\.scenePhase) var scenePhase
     @EnvironmentObject var store: Store
     @ObservedObject var networkManager = NetworkManager.shared
+    @State private var activeScreen: ScreenList = .START
 
     var body: some View {
         ZStack {
@@ -22,7 +23,7 @@ struct NavigationView: View {
             ZStack {
                 DialogsView().zIndex(1)
                 Group {
-                    switch store.state.activeScreen {
+                    switch activeScreen {
                     case .START: StartScreen()
                     case .ONBOARD_START: OnboardStartScreen().transition(.opacity)
                     case .ONBOARD_SECOND: OnboardSecondScreen().transition(.move(edge: .trailing))
@@ -60,6 +61,12 @@ struct NavigationView: View {
                     case .TARIFF_LIST: TariffListScreen().transition(.move(edge: .bottom))
                     }
                 }.blur(radius: getBlur())
+                    .onChange(of: store.state.activeScreen) { newValue in
+                        withAnimation {
+                            self.activeScreen = newValue
+                        }
+                        print(">>> current screen: \(newValue)")
+                    }
             }.onTapGesture(perform: { store.dispatch(action: .hideKeyboard) })
         }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
             .padding(.init(top: store.state.statusBarHeight, leading: 0, bottom: 0, trailing: 0))
