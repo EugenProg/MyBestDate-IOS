@@ -30,9 +30,11 @@ class SubscriptionApiService: NetworkRequest {
     func getUserSubscriptionInfo() {
         let request = CoreApiTypes.getUserSubscriptionInfo.getRequest(withAuth: true)
 
-        let body = UpdateSubscriptionInfoRequest()
+        let body = UpdateSubscriptionInfoRequest(device: "android")
         makeRequest(request: request, body: body, type: SubscribtionInfoResponse.self) { response in
-
+            if response?.success == true && response?.data?.end_at != nil {
+                UserDataHolder.shared.setActiveAndroidSubscription(endDate: response?.data?.end_at ?? "")
+            }
         }
     }
 }

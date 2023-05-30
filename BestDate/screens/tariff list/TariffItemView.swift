@@ -6,23 +6,25 @@
 //
 
 import SwiftUI
+import StoreKit
 
 struct TariffItemView: View {
-
-    var tariff: TariffType
+    @Binding var tariff: Tariff
     var width: CGFloat
     @State var buttonLoading: Bool = false
 
+    var subscribe: (Product) -> Void
+
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             HStack {
-                Text(tariff.title.localized().uppercased())
-                    .foregroundColor(tariff.color)
+                Text(tariff.type.title.localized().uppercased())
+                    .foregroundColor(tariff.type.color)
                     .font(MyFont.getFont(.BOLD, 20))
 
                 Spacer()
 
-                if tariff.popular {
+                if tariff.type.popular {
                     Text("popular")
                         .foregroundColor(ColorList.main.color)
                         .font(MyFont.getFont(.BOLD, 12))
@@ -32,21 +34,23 @@ struct TariffItemView: View {
                                 .fill(ColorList.light_blue.color)
                         )
                 }
-            }.padding(.init(top: 37, leading: 26, bottom: 32, trailing: 26))
+            }.padding(.init(top: 37, leading: 26, bottom: 8, trailing: 26))
 
             Image("bg_tariff_logo")
 
-            Text("€ \(String(format: "%.2f", tariff.amount))")
+            Text(tariff.product?.displayPrice ?? "")
                 .foregroundColor(.white)
                 .font(MyFont.getFont(.BOLD, 60))
 
-            Text(tariff.period.localized())
+            Text(tariff.type.period.localized())
                 .foregroundColor(ColorList.white_40.color)
                 .font(MyFont.getFont(.NORMAL, 16))
 
-            StandardButton(style: tariff.buttonStyle, title: "get_started", loadingProcess: $buttonLoading) {
-
-            }.padding(.init(top: 30, leading: 8, bottom: 16, trailing: 8))
+            StandardButton(style: tariff.type.buttonStyle, title: "get_started", loadingProcess: $buttonLoading) {
+                if tariff.product != nil {
+                    subscribe(tariff.product!)
+                }
+            }.padding(.init(top: 16, leading: 8, bottom: 16, trailing: 8))
 
             Rectangle()
                 .fill(ColorList.white_10.color)
@@ -71,13 +75,13 @@ struct TariffItemView: View {
                 .padding(.bottom, 16)
 
 
-            itemPoints(imageName: "ic_settings_invitations", text: "unlimited_invite_cards", switchName: tariff.switchImage)
+            itemPoints(imageName: "ic_settings_invitations", text: "unlimited_invite_cards", switchName: tariff.type.switchImage)
                 .padding(.bottom, 16)
 
-            itemPoints(imageName: "ic_settings_message", text: "unlimited_messages", switchName: tariff.switchImage)
+            itemPoints(imageName: "ic_settings_message", text: "unlimited_messages", switchName: tariff.type.switchImage)
                 .padding(.bottom, 32)
 
-        }.frame(width: width, height: 668)
+        }.frame(width: width, height: 550)
             .background(
                 RoundedRectangle(cornerRadius: 28)
                     .stroke(MyColor.getColor(255, 255, 255, 0.1), lineWidth: 1)

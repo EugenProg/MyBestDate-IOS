@@ -291,6 +291,7 @@ class CoreApiService : NetworkRequest {
 
         makeRequest(request: request, type: UserSettingsResponse.self) { response in
             UserDataHolder.shared.setMatchesEnabled(enabled: response?.data?.matches == true)
+            UserDataHolder.shared.setChatEnabled(enabled: response?.data?.block_messages == false)
             completion(response?.success == true, response?.data ?? UserSettings())
         }
     }
@@ -300,6 +301,7 @@ class CoreApiService : NetworkRequest {
 
         makeRequest(request: request, body: model, type: UserSettingsResponse.self) { response in
             UserDataHolder.shared.setMatchesEnabled(enabled: response?.data?.matches == true)
+            UserDataHolder.shared.setChatEnabled(enabled: response?.data?.block_messages == false)
             completion(response?.success == true)
         }
     }

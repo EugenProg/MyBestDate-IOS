@@ -72,6 +72,7 @@ class AuthMediator: ObservableObject {
                     CoreApiService.shared.storeDeviceToken(token: UserDataHolder.shared.getNotificationToken())
                 }
                 SubscriptionApiService.shared.getAppSettings()
+                SubscriptionApiService.shared.getUserSubscriptionInfo()
                 complete(success)
             }
         }

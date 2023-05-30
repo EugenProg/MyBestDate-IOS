@@ -7,25 +7,35 @@
 
 import Foundation
 import SwiftUI
+import StoreKit
 
 class TariffListMediator: ObservableObject {
     static let shared = TariffListMediator()
 
-    @Published var tariffsList: [TariffType] = [.montly, .three_months, .six_months]
+    @Published var tariffsList: [Tariff] = [
+        Tariff(id: 0, type: .montly, product: nil, productId: "monthly_plan"),
+        Tariff(id: 1, type: .three_months, product: nil, productId: "three_months_plan"),
+        Tariff(id: 2, type: .six_months, product: nil, productId: "six_months_plan")
+    ]
+
+    func initTariffList() {
+        for index in tariffsList.indices {
+            tariffsList[index].product = SubscriptionManager.shared.getProductById(id: tariffsList[index].productId)
+        }
+    }
+}
+
+struct Tariff {
+    var id: Int
+    var type: TariffType
+    var product: Product?
+    var productId: String
 }
 
 enum TariffType {
     case montly
     case three_months
     case six_months
-
-    var id: Int {
-        switch self {
-        case .montly: return 0
-        case .three_months: return 1
-        case .six_months: return 2
-        }
-    }
 
     var title: String {
         switch self {
@@ -40,14 +50,6 @@ enum TariffType {
         case .montly: return true
         case .three_months: return false
         case .six_months: return false
-        }
-    }
-
-    var amount: Double {
-        switch self {
-        case .montly: return 5.99
-        case .three_months: return 14.99
-        case .six_months: return 26.99
         }
     }
 

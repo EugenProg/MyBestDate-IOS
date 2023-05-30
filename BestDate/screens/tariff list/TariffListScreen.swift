@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import StoreKit
 
 struct TariffListScreen: View {
     @EnvironmentObject var store: Store
@@ -33,8 +34,10 @@ struct TariffListScreen: View {
                     }.padding(16)
                 }.padding(.init(top: 20, leading: 32, bottom: 16, trailing: 32))
 
-                TariffSliderView()
-                    .frame(height: 668)
+                TariffSliderView(tariffList: $mediator.tariffsList) { product in
+                    subscribe(product: product)
+                }
+                    .frame(height: 550)
 
                 Spacer()
             }
@@ -43,6 +46,26 @@ struct TariffListScreen: View {
         .onAppear {
             store.dispatch(action:
                     .setScreenColors(status: ColorList.main.color, style: .lightContent))
+        }
+        .task {
+            Task {
+                do {
+                    try await SubscriptionManager.shared.loadProducts()
+                    mediator.initTariffList()
+                } catch {
+                    print(error)
+                }
+            }
+        }
+    }
+
+    private func subscribe(product: Product) {
+        Task {
+            do {
+                try await SubscriptionManager.shared.purchase(product)
+            } catch {
+                print(error)
+            }
         }
     }
 }

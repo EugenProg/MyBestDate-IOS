@@ -38,7 +38,7 @@ struct MatchesDisabledView: View {
                     clickAction()
                 }
             } label: {
-                toSettingsButton()
+                ToSettingsButton()
             }.padding(.top, 98)
 
             Text("you_need_to_go_to_settings".localized())
@@ -51,25 +51,6 @@ struct MatchesDisabledView: View {
                 Rectangle()
                     .stroke(MyColor.getColor(255, 255, 255, 0.24), lineWidth: 1)
                     .background(ColorList.main.color)
-            )
-    }
-
-    fileprivate func toSettingsButton() -> some View {
-        HStack(spacing: 14) {
-            Image("ic_setting")
-                .padding(.leading, 24)
-
-            Text("settings".localized())
-                .foregroundColor(ColorList.white.color)
-                .font(MyFont.getFont(.BOLD, 14))
-
-            Image("ic_arrow_right_blue")
-                .padding(.trailing, 24)
-        }.frame(height: 42)
-            .background(
-                RoundedRectangle(cornerRadius: 21)
-                    .fill(ColorList.main.color)
-                    .shadow(color: MyColor.getColor(17, 24, 28, 0.6), radius: 16, y: 3)
             )
     }
 }

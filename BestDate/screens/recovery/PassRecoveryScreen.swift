@@ -61,7 +61,7 @@ struct PassRecoveryScreen: View {
     
     private func validate() {
         if mediator.login.isEmpty { emailInputError = true }
-        else if mediator.newPass.isEmpty { passInputError = true }
+        else if mediator.newPass.count < 6 { passInputError = true }
         else {
             process.toggle()
             mediator.sendCode { success, message in

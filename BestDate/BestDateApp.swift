@@ -29,6 +29,9 @@ struct BestDateApp: App {
 
                     deeplinkCoordinator.handleURL(url)
                 }
+                .task {
+                    await SubscriptionManager.shared.updateSubscriptionsProducts()
+                }
                 .onAppear {
                     appDelegate.store = store
                 }

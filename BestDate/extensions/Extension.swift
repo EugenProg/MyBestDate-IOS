@@ -113,6 +113,12 @@ extension Date {
         return formatter.string(from: self)
     }
 
+    func toLongServerDate() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return formatter.string(from: self)
+    }
+
     func toShortString() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd MMM"

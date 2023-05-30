@@ -77,6 +77,7 @@ struct NavigationView: View {
                     if !networkManager.isConnected { return }
                     PusherMediator.shared.setStore(store: store)
                     self.updateUser()
+                    SubscriptionApiService.shared.getUserSubscriptionInfo()
                     SubscriptionApiService.shared.getAppSettings()
 
                     if store.state.activeScreen == .MAIN &&
@@ -85,6 +86,15 @@ struct NavigationView: View {
                         ChatListMediator.shared.getChatList(withClear: true, page: 0)
                     } else if store.state.activeScreen == .CHAT {
                         ChatMediator.shared.getMessageList(withClear: true, page: 0)
+                    }
+                }
+            }
+            .task {
+                Task {
+                    do {
+                        try await SubscriptionManager.shared.loadProducts()
+                    } catch {
+                        print(error)
                     }
                 }
             }

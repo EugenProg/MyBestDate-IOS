@@ -107,19 +107,27 @@ struct ChatScreen: View {
                 }.frame(height: UIScreen.main.bounds.height)
             } else {
                 ScrollView(.vertical, showsIndicators: false) {
-                    MessageListView(messageList: $mediator.messages, meta: $mediator.meta) { item in
-                        if mediator.user?.getRole() != .bot {
-                            mediator.selectedMessage = item.message
-                            store.dispatch(action: .showBottomSheet(view: .CHAT_ACTIONS))
+                    VStack(spacing: 0) {
+                        if !mediator.chatEnabled {
+                            MessagesBlockedView {
+                                store.dispatch(action: .navigate(screen: .SETTINGS))
+                            }.rotationEffect(Angle(degrees: 180))
                         }
-                    } imageClick: { image in
-                        showingImage = image
-                        showImage = true
-                    } loadNextPage: {
-                        mediator.getNextPage()
-                    } translateClick: { message in
-                        mediator.translateMessage(message: message)
-                    }.padding(.init(top: 6, leading: 0, bottom: 16, trailing: 0))
+
+                        MessageListView(messageList: $mediator.messages, meta: $mediator.meta) { item in
+                            if mediator.user?.getRole() != .bot {
+                                mediator.selectedMessage = item.message
+                                store.dispatch(action: .showBottomSheet(view: .CHAT_ACTIONS))
+                            }
+                        } imageClick: { image in
+                            showingImage = image
+                            showImage = true
+                        } loadNextPage: {
+                            mediator.getNextPage()
+                        } translateClick: { message in
+                            mediator.translateMessage(message: message)
+                        }.padding(.init(top: 6, leading: 0, bottom: 16, trailing: 0))
+                    }
                 }.padding(.init(top: getTopPadding(), leading: 0, bottom: getBottomPadding(), trailing: 0))
                     .rotationEffect(Angle(degrees: 180))
             }

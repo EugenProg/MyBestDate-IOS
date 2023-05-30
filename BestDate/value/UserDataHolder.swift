@@ -137,8 +137,16 @@ class UserDataHolder : UserDefaultsUtil {
         !hasAActiveSubscription()
     }
 
+    func setActiveSubscription(active: Bool) {
+        setSettings(type: .ACTIVE_SUBSCRIPTION, value: active)
+    }
+
+    func setActiveAndroidSubscription(endDate: String) {
+        setSettings(type: .ACTIVE_ANDROID_SUBSCRIPTION, value: endDate > Date().toLongServerDate())
+    }
+
     func hasAActiveSubscription() -> Bool {
-        true
+        getSettings(type: .ACTIVE_SUBSCRIPTION) || getSettings(type: .ACTIVE_ANDROID_SUBSCRIPTION)
     }
 
     func setMatchesEnabled(enabled: Bool) {
@@ -148,6 +156,15 @@ class UserDataHolder : UserDefaultsUtil {
 
     func getMatchesEnabled() -> Bool {
         getSettings(type: .MATCHES_ENABLED)
+    }
+
+    func setChatEnabled(enabled: Bool) {
+        setSettings(type: .CHAT_ENABLED, value: enabled)
+        ChatMediator.shared.chatEnabled = enabled
+    }
+
+    func getChatEnabled() -> Bool {
+        getSettings(type: .CHAT_ENABLED)
     }
 }
 
@@ -199,4 +216,7 @@ enum HolderTypes: String {
     case SENT_INVITATIONS_TODAY
     case ID
     case MATCHES_ENABLED
+    case CHAT_ENABLED
+    case ACTIVE_SUBSCRIPTION
+    case ACTIVE_ANDROID_SUBSCRIPTION
 }

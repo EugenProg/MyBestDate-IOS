@@ -31,6 +31,7 @@ class ChatMediator: ObservableObject {
     @Published var isOnline: Bool = false
     @Published var typingMode: Bool = false
     @Published var ping: Int = 0
+    @Published var chatEnabled: Bool = UserDataHolder.shared.getChatEnabled()
 
     var showMessage: ((String) -> Void)? = nil
 
