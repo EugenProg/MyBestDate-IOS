@@ -40,6 +40,8 @@ struct AnotherProfileQuestionnaireScreen: View {
                         mediator.translate(text: text)
                     }
 
+                    QuestionnaireParagraphView(paragraph: mediator.searchConditions)
+
                     QuestionnaireParagraphView(paragraph: mediator.personalInfo)
 
                     QuestionnaireParagraphView(paragraph: mediator.freeTime)

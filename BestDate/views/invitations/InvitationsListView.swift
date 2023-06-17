@@ -24,7 +24,7 @@ struct InvitationsListView: View {
 
     var items: [GridItem] = [GridItem(.fixed(UIScreen.main.bounds.width), spacing: 10)]
 
-    fileprivate func listView(list: [InvitationCard], type: InvitationType) -> some View {
+    fileprivate func listView(list: Binding<[InvitationCard]>, type: InvitationType) -> some View {
         LazyVGrid(columns: items, alignment: .center, spacing: 16,
                   pinnedViews: [.sectionHeaders, .sectionFooters]) {
             ForEach(list.indices, id: \.self) { index in
@@ -32,21 +32,21 @@ struct InvitationsListView: View {
                     switch type {
                     case .new: NewInvitationItemView(invitationCard: list[index], answerAction: answerAction, userSelectAction: showUserAction)
                             .onAppear {
-                                if (list[index].id ?? 0) == (list.last?.id ?? 0) && !list.isEmpty {
+                                if (list[index].id.wrappedValue ?? 0) == (list.last?.id.wrappedValue ?? 0) && !list.isEmpty {
                                     showLoadingBlock = true
                                     loadNextPage(.new)
                                 }
                             }
                     case .answered: AnsweredInvitationItemView(invitationCard: list[index], userSelectAction: showUserAction)
                             .onAppear {
-                                if (list[index].id ?? 0) == (list.last?.id ?? 0) && !list.isEmpty {
+                                if (list[index].id.wrappedValue ?? 0) == (list.last?.id.wrappedValue ?? 0) && !list.isEmpty {
                                     showLoadingBlock = true
                                     loadNextPage(.answered)
                                 }
                             }
                     case .sended: SendedInvitationItemView(invitationCard: list[index], userSelectAction: showUserAction)
                             .onAppear {
-                                if (list[index].id ?? 0) == (list.last?.id ?? 0) && !list.isEmpty {
+                                if (list[index].id.wrappedValue ?? 0) == (list.last?.id.wrappedValue ?? 0) && !list.isEmpty {
                                     showLoadingBlock = true
                                     loadNextPage(.sended)
                                 }
@@ -60,19 +60,19 @@ struct InvitationsListView: View {
     var body: some View {
         VStack(spacing: 5) {
             if page == .new {
-                listView(list: newList, type: .new).transition(.opacity)
+                listView(list: $newList, type: .new).transition(.opacity)
 
                 if (newMeta.current_page ?? 0) < (newMeta.last_page ?? 0) && showLoadingBlock {
                     LoadingNextPageView()
                 }
             } else if page == .answered {
-                listView(list: answerdList, type: .answered).transition(.opacity)
+                listView(list: $answerdList, type: .answered).transition(.opacity)
 
                 if (answeredMeta.current_page ?? 0) < (answeredMeta.last_page ?? 0) && showLoadingBlock {
                     LoadingNextPageView()
                 }
             } else {
-                listView(list: sentList, type: .sended).transition(.opacity)
+                listView(list: $sentList, type: .sended).transition(.opacity)
 
                 if (sentMeta.current_page ?? 0) < (sentMeta.last_page ?? 0) && showLoadingBlock {
                     LoadingNextPageView()

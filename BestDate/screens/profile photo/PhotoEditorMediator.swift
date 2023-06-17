@@ -23,8 +23,8 @@ class PhotoEditorMediator: ObservableObject {
 
     var saveAction: ((ProfileImage) -> Void)? = nil
 
-    func saveImage(image: UIImage, completion: @escaping (Bool) -> Void) {
-        ImagesApiService.shared.saveProfileImage(image: image) { success, profileImage in
+    func saveImage(image: UIImage, moderated: Bool, completion: @escaping (Bool) -> Void) {
+        ImagesApiService.shared.saveProfileImage(image: image, moderated: moderated) { success, profileImage in
             DispatchQueue.main.async {
                 if success {
                     self.imageList.append(profileImage)

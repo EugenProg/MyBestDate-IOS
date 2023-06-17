@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AnsweredInvitationItemView: View {
-    var invitationCard: InvitationCard
+    @Binding var invitationCard: InvitationCard
     
     var userSelectAction: (_ user: ShortUserInfo?) -> Void
 
@@ -47,7 +47,7 @@ struct AnsweredInvitationItemView: View {
                 
                 HStack {
                     HStack(spacing: 7) {
-                        AsyncImageView(url: invitationCard.from_user?.main_photo?.thumb_url)
+                        InvitationImageView(invitation: $invitationCard, from: true)
                             .aspectRatio(contentMode: .fill)
                             .clipShape(Circle())
                             .frame(width: 26, height: 26)

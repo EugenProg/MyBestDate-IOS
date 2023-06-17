@@ -17,7 +17,6 @@ struct PhotoEditingScreen: View {
     var body: some View {
         VStack {
             ZStack {
-
                 EdiorView(backgroundColor: ColorList.main.color, onCrop: { croppedImage, success in
                     if success {
                         validatePhoto(croppedImage: croppedImage)
@@ -55,21 +54,14 @@ struct PhotoEditingScreen: View {
     private func validatePhoto(croppedImage: UIImage?) {
         process.toggle()
         mediator.croppedPhoto = croppedImage ?? UIImage()
-        saveImage()
-//        mediator.searchFaces { success in
-//            if success {
-//                saveImage()
-//            } else {
-//                process.toggle()
-//                store.dispatch(action: .showBottomSheet(view: .NOT_CORRECT_PHOTO))
-//                mediator.croppedPhoto = UIImage()
-//            }
-//        }
+        mediator.searchFaces { success in
+            saveImage(moderated: !success)
+        }
     }
 
-    private func saveImage() {
+    private func saveImage(moderated: Bool) {
         ImageUtils.resize(image: mediator.croppedPhoto) { image in
-            mediator.saveImage(image: image) { success in
+            mediator.saveImage(image: image, moderated: moderated) { success in
                 DispatchQueue.main.async {
                     process.toggle()
                     if success {

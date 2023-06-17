@@ -13,8 +13,8 @@ class AnotherProfileQuestionnaireMediator: ObservableObject {
     @Published var user: UserInfo = UserInfo()
 
     @Published var generalInfo: QuestionnaireParagraph? = nil
-    @Published var dataVerification: QuestionnaireParagraph? = nil
     @Published var personalInfo: QuestionnaireParagraph? = nil
+    @Published var searchConditions: QuestionnaireParagraph? = nil
     @Published var freeTime: QuestionnaireParagraph? = nil
     @Published var socialNetworks: [SocialNet] = []
 
@@ -22,6 +22,7 @@ class AnotherProfileQuestionnaireMediator: ObservableObject {
         self.user = user
         let questinnaire = user.questionnaire ?? Questionnaire()
         self.generalInfo = getGeneralParagraph(questionnaire: questinnaire)
+        self.searchConditions = getSearchConditions(questionnaire: questinnaire)
         self.personalInfo = getPersonalInfo(questionnaire: questinnaire)
         self.freeTime = getFreeTime(questionnaire: questinnaire)
         setSocialNetworks(links: questinnaire.socials)
@@ -45,8 +46,8 @@ class AnotherProfileQuestionnaireMediator: ObservableObject {
         self.user = UserInfo()
 
         self.generalInfo = nil
-        self.dataVerification = nil
         self.personalInfo = nil
+        self.searchConditions = nil
         self.freeTime = nil
         self.socialNetworks = []
     }
@@ -102,29 +103,19 @@ class AnotherProfileQuestionnaireMediator: ObservableObject {
         )
     }
 
-    private func getDataVerification(questionnaire: Questionnaire) -> QuestionnaireParagraph {
+    private func getSearchConditions(questionnaire: Questionnaire) -> QuestionnaireParagraph {
         QuestionnaireParagraph(
-            title: "data_verification".localized().uppercased(),
+            title: "search_condition".localized().uppercased(),
             points: [
                 QuestionnairePoint(
                     id: 0,
-                    title: "photo".localized(),
-                    value: "Photo"
+                    title: "purpose_of_dating".localized(),
+                    value: getLine(param: PorposeOfDatingType().getName(questionnaire.purpose))
                 ),
                 QuestionnairePoint(
                     id: 1,
-                    title: "email".localized(),
-                    value: self.user.email
-                ),
-                QuestionnairePoint(
-                    id: 2,
-                    title: "social_network".localized(),
-                    value: questionnaire.hair_color
-                ),
-                QuestionnairePoint(
-                    id: 3,
-                    title: "phone_number".localized(),
-                    value: questionnaire.hair_length
+                    title: "what_do_you_want_for_a_date".localized(),
+                    value: getLine(param: AwaitFromDatingType().getName(questionnaire.expectations))
                 )
             ]
         )

@@ -108,7 +108,7 @@ struct ChatScreen: View {
             } else {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(spacing: 0) {
-                        if !mediator.chatEnabled {
+                        if mediator.showChatClosedView {
                             MessagesBlockedView {
                                 store.dispatch(action: .navigate(screen: .SETTINGS))
                             }.rotationEffect(Angle(degrees: 180))

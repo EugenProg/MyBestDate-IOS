@@ -160,7 +160,7 @@ class UserDataHolder : UserDefaultsUtil {
 
     func setChatEnabled(enabled: Bool) {
         setSettings(type: .CHAT_ENABLED, value: enabled)
-        ChatMediator.shared.chatEnabled = enabled
+        ChatMediator.shared.showChatBlockedView()
     }
 
     func getChatEnabled() -> Bool {

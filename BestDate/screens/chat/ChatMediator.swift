@@ -31,7 +31,7 @@ class ChatMediator: ObservableObject {
     @Published var isOnline: Bool = false
     @Published var typingMode: Bool = false
     @Published var ping: Int = 0
-    @Published var chatEnabled: Bool = UserDataHolder.shared.getChatEnabled()
+    @Published var showChatClosedView: Bool = false
 
     var showMessage: ((String) -> Void)? = nil
 
@@ -243,6 +243,7 @@ class ChatMediator: ObservableObject {
     }
 
     func getMessageList(withClear: Bool, page: Int) {
+        self.showChatClosedView = false
         if self.loadingMode { return }
         self.loadingMode = true
         ChatApiService.shared.getChatMessages(userId: user?.id ?? 0, page: page) { success, list, meta in
@@ -257,6 +258,7 @@ class ChatMediator: ObservableObject {
                 }
                 self.cardsOnlyMode = self.user?.allow_chat == false
                 self.loadingMode = false
+                self.showChatBlockedView()
             }
         }
     }
@@ -269,6 +271,15 @@ class ChatMediator: ObservableObject {
 
     func sendReadingEvent(recepientId: Int?) {
         ChatApiService.shared.sendReadEvent(recepient: recepientId ?? 0)
+    }
+
+    func showChatBlockedView() {
+        self.showChatClosedView = false
+//        if user?.allow_chat != true || user?.getRole() == .bot || self.loadingMode {
+//            self.showChatClosedView = false
+//        } else {
+//            self.showChatClosedView = !UserDataHolder.shared.getChatEnabled()
+//        }
     }
 }
 

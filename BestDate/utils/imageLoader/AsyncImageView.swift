@@ -100,6 +100,25 @@ struct UserImageView: View {
     }
 }
 
+struct InvitationImageView: View {
+    @Binding var invitation: InvitationCard
+    let from: Bool
+
+    var body: some View {
+        let url = from ? invitation.from_user?.main_photo?.thumb_url : invitation.to_user?.main_photo?.thumb_url
+        let realUrl = URL(string: (url == nil || url?.isEmpty == true) ? defaultUrl : url ?? defaultUrl)
+        KFImage.url(realUrl)
+            .placeholder(placeholder)
+            .loadDiskFileSynchronously()
+            .cacheMemoryOnly()
+            .fade(duration: 0.25)
+            .onProgress { receivedSize, totalSize in }
+            .onSuccess { result in  }
+            .onFailure { error in }
+            .resizable()
+    }
+}
+
 struct ChatImageView: View {
     @Binding var message: Message?
     var smallUrl: Bool = true
