@@ -82,6 +82,25 @@ struct UpdateImageView: View {
     }
 }
 
+struct UpdateProfileImageView: View {
+    @Binding var image: ProfileImage
+    var smallUrl: Bool = true
+
+    var body: some View {
+        let url = smallUrl ? image.thumb_url : image.full_url
+        let realUrl = URL(string: (url == nil || url?.isEmpty == true) ? defaultUrl : url ?? defaultUrl)
+        KFImage.url(realUrl)
+            .placeholder(placeholder)
+            .loadDiskFileSynchronously()
+            .cacheMemoryOnly()
+            .fade(duration: 0.25)
+            .onProgress { receivedSize, totalSize in }
+            .onSuccess { result in  }
+            .onFailure { error in }
+            .resizable()
+    }
+}
+
 struct UserImageView: View {
     @Binding var user: ShortUserInfo?
 

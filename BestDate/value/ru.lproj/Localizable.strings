@@ -694,3 +694,7 @@
 "you_need_to_go_to_settings" = "Вам нужно перейти в настройки и\nактивировать матчи";
 "your_interlocutor_sees_the_messages" = "Ваш собеседник видит сообщения, но не может на них ответить";
 "go_to_settings_and_unlock_the_chat" = "Перейдите в настройки и разблокируйте чат";
+"photo_on_moderation" = "Фото на модерации";
+"successfully" = "Успешно";
+"sorry" = "Извините…";
+"upload_new_photo" = "Загрузить\nновое фото";

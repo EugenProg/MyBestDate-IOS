@@ -18,15 +18,24 @@ struct SearchInputView: View {
             RoundedRectangle(cornerRadius: 24)
                 .fill(light ? ColorList.main_5.color : ColorList.white_5.color)
 
-            VStack(alignment: .leading, spacing: 5) {
-                Text(hint.localized())
-                    .foregroundColor(light ? ColorList.main_60.color : ColorList.white_60.color)
-                    .font(MyFont.getFont(.NORMAL, 12))
-
-                TextField("", text: $input)
-                    .foregroundColor(light ? ColorList.main.color : ColorList.white.color)
-                    .font(MyFont.getFont(.BOLD, 20))
-
+            HStack {
+                VStack(alignment: .leading, spacing: 5) {
+                    Text(hint.localized())
+                        .foregroundColor(light ? ColorList.main_60.color : ColorList.white_60.color)
+                        .font(MyFont.getFont(.NORMAL, 12))
+                    
+                    TextField("", text: $input)
+                        .foregroundColor(light ? ColorList.main.color : ColorList.white.color)
+                        .font(MyFont.getFont(.BOLD, 20))
+                }
+                
+                Button {
+                    input = ""
+                } label: {
+                    Image("ic_close_white")
+                        .resizable()
+                        .frame(width: 16, height: 16)
+                }
             }
                 .padding(.init(top: 0, leading: 24, bottom: 0, trailing: 22))
         }.frame(width: UIScreen.main.bounds.width - 36, height: 76)

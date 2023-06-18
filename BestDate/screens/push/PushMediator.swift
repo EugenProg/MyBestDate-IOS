@@ -32,6 +32,8 @@ enum NotificationType: String {
     case invitation_answer
     case message
     case guest
+    case moderation_success
+    case moderation_failure
 
     static func getNotificationType(type: String) -> NotificationType {
         switch type {
@@ -41,6 +43,8 @@ enum NotificationType: String {
         case "invitation_answer": return .invitation_answer
         case "message": return .message
         case "guest": return .guest
+        case "photo_failed": return .moderation_failure
+        case "photo_success": return .moderation_success
         default: return .defaultPush
         }
     }

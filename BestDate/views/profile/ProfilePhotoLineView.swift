@@ -16,10 +16,12 @@ struct ProfilePhotoLineView: View {
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 3) {
-                ForEach(imagesList, id: \.id) { image in
+                ForEach($imagesList, id: \.id) { image in
                     ImageLineItemView(image: image, imageSize: imageSize)
                         .onTapGesture {
-                            selectAction(image)
+                            if image.wrappedValue.moderated != true {
+                                selectAction(image.wrappedValue)
+                            }
                         }
                 }
                 

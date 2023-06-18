@@ -693,3 +693,8 @@
 "you_need_to_go_to_settings" = "You need to go to settings and\nactivate matches";
 "your_interlocutor_sees_the_messages" = "Your interlocutor sees the messages, but cannot respond";
 "go_to_settings_and_unlock_the_chat" = "Go to settings and unblock the chat";
+"photo_on_moderation" = "Photo on moderation";
+"successfully" = "Successfully";
+"sorry" = "Sorry…";
+"upload_new_photo" = "Upload new Photo";
+

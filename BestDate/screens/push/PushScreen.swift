@@ -25,6 +25,8 @@ struct PushScreen: View {
                             case .match: MatchPushView() { dismiss() }
                             case .invitation: InvitationPushView() { dismiss() }
                             case .invitation_answer: InvitationPushView() { dismiss() }
+                            case .moderation_success: ModerationSuccessPushView() { dismiss() }
+                            case .moderation_failure: ModerationFailurePushView() { dismiss() }
                             default: DefaultPushView() { dismiss() }
                             }
                         }

@@ -12,7 +12,7 @@ class ImagesApiService : NetworkRequest {
     static let shared = ImagesApiService()
 
     func saveProfileImage(image: UIImage, moderated: Bool, completion: @escaping (Bool, ProfileImage) -> Void) {
-        var request = CoreApiTypes.saveImage.getRequest(withAuth: true, params: [RequestParams(key: "moderated", value: String(moderated))])
+        var request = CoreApiTypes.saveImage.getRequest(withAuth: true, params: [RequestParams(key: "moderated", value: String(moderated ? 1 : 0))])
 
         let media = Media(withImage: image, forKey: "photo")
         let boundary = NSUUID().uuidString

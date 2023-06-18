@@ -51,8 +51,6 @@
 		4C2DC8D228BA9F3D00DD15C2 /* match_action_anim.json in Resources */ = {isa = PBXBuildFile; fileRef = 4C2DC8D128BA9F3D00DD15C2 /* match_action_anim.json */; };
 		4C2DC8D428BCA9E900DD15C2 /* DeeplinkCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2DC8D328BCA9E900DD15C2 /* DeeplinkCoordinator.swift */; };
 		4C2DC8DA28BCDA6C00DD15C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2DC8D928BCDA6C00DD15C2 /* AppDelegate.swift */; };
-		4C2DC8DF28BCF16B00DD15C2 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2DC8DE28BCF16A00DD15C2 /* NotificationService.swift */; };
-		4C2DC8E128BCFB2E00DD15C2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C2DC8E028BCFB2E00DD15C2 /* GoogleService-Info.plist */; };
 		4C2DC93128BE944F00DD15C2 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 4C2DC92D28BE944D00DD15C2 /* loading.json */; };
 		4C2DC93828BFB6B400DD15C2 /* NotifySettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2DC93728BFB6B400DD15C2 /* NotifySettingsScreen.swift */; };
 		4C2DC93B28C0824800DD15C2 /* NotifySettingsSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2DC93A28C0824700DD15C2 /* NotifySettingsSelectorView.swift */; };
@@ -323,7 +321,6 @@
 		4CDD3B9B2888608D00793466 /* NoDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDD3B9A2888608D00793466 /* NoDataView.swift */; };
 		4CDD3B9D288867DA00793466 /* GuestListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDD3B9C288867DA00793466 /* GuestListView.swift */; };
 		4CDD3B9F288874F200793466 /* ProfileButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDD3B9E288874F200793466 /* ProfileButtonView.swift */; };
-		4CE6991E2A2214ED00D165FD /* Subscription_configuration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 4CE6991D2A2214ED00D165FD /* Subscription_configuration.storekit */; };
 		4CE699212A22187000D165FD /* SubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE699202A22187000D165FD /* SubscriptionManager.swift */; };
 		4CE699232A265ADC00D165FD /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE699222A265ADC00D165FD /* StoreKit.framework */; };
 		4CE699252A266EA800D165FD /* MessagesBlockedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE699242A266EA800D165FD /* MessagesBlockedView.swift */; };
@@ -346,7 +343,12 @@
 		4CFD001929A21D470015F86C /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFD001829A21D470015F86C /* CheckBoxView.swift */; };
 		4CFD001B29A22DE60015F86C /* DeeplinkCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFD001A29A22DE50015F86C /* DeeplinkCreator.swift */; };
 		4CFD001D29A2348B0015F86C /* ProfileAdditionaly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFD001C29A2348B0015F86C /* ProfileAdditionaly.swift */; };
-		CBBBFD3F8B9D52BA6E4734C1 /* Pods_BestDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 272A26CE4F9868E3D07C5D0C /* Pods_BestDate.framework */; };
+		9A846C613EBC140250D1B9C6 /* Pods_BestDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97AF8C182C6AD86BD5141BB1 /* Pods_BestDate.framework */; };
+		ACB9FBEE2A3E299F00A8BE0E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ACB9FBED2A3E299F00A8BE0E /* GoogleService-Info.plist */; };
+		ACB9FBF02A3E29A800A8BE0E /* Subscription_configuration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = ACB9FBEF2A3E29A800A8BE0E /* Subscription_configuration.storekit */; };
+		ACB9FBF22A3ECD5000A8BE0E /* loading_heart.json in Resources */ = {isa = PBXBuildFile; fileRef = ACB9FBF12A3ECD5000A8BE0E /* loading_heart.json */; };
+		ACB9FBF42A3EDB1A00A8BE0E /* ModerationSuccessPushView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB9FBF32A3EDB1A00A8BE0E /* ModerationSuccessPushView.swift */; };
+		ACB9FBF62A3EDB4700A8BE0E /* ModerationFailurePushView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB9FBF52A3EDB4700A8BE0E /* ModerationFailurePushView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -363,8 +365,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		272A26CE4F9868E3D07C5D0C /* Pods_BestDate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BestDate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		343F8540C938C4C140871AD4 /* Pods-BestDate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestDate.debug.xcconfig"; path = "Target Support Files/Pods-BestDate/Pods-BestDate.debug.xcconfig"; sourceTree = "<group>"; };
+		17FB07407022987999B0DD75 /* Pods-BestDate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestDate.debug.xcconfig"; path = "Target Support Files/Pods-BestDate/Pods-BestDate.debug.xcconfig"; sourceTree = "<group>"; };
 		4C022A362858EE2B0043E49D /* ProfilePhotoScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoScreen.swift; sourceTree = "<group>"; };
 		4C022A382858EE510043E49D /* PhotoEditingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoEditingScreen.swift; sourceTree = "<group>"; };
 		4C022A3A285903530043E49D /* HorisontalPhotoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorisontalPhotoListView.swift; sourceTree = "<group>"; };
@@ -410,8 +411,6 @@
 		4C2DC8D328BCA9E900DD15C2 /* DeeplinkCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeeplinkCoordinator.swift; sourceTree = "<group>"; };
 		4C2DC8D828BCDA0300DD15C2 /* BestDate.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BestDate.entitlements; sourceTree = "<group>"; };
 		4C2DC8D928BCDA6C00DD15C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4C2DC8DE28BCF16A00DD15C2 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
-		4C2DC8E028BCFB2E00DD15C2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4C2DC8F728BD0C4E00DD15C2 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		4C2DC8F928BD0C4E00DD15C2 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
 		4C2DC92C28BDF0F900DD15C2 /* BestDateDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BestDateDebug.entitlements; sourceTree = "<group>"; };
@@ -690,7 +689,6 @@
 		4CDD3B9A2888608D00793466 /* NoDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDataView.swift; sourceTree = "<group>"; };
 		4CDD3B9C288867DA00793466 /* GuestListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestListView.swift; sourceTree = "<group>"; };
 		4CDD3B9E288874F200793466 /* ProfileButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileButtonView.swift; sourceTree = "<group>"; };
-		4CE6991D2A2214ED00D165FD /* Subscription_configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Subscription_configuration.storekit; sourceTree = "<group>"; };
 		4CE699202A22187000D165FD /* SubscriptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManager.swift; sourceTree = "<group>"; };
 		4CE699222A265ADC00D165FD /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		4CE699242A266EA800D165FD /* MessagesBlockedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesBlockedView.swift; sourceTree = "<group>"; };
@@ -713,7 +711,13 @@
 		4CFD001829A21D470015F86C /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
 		4CFD001A29A22DE50015F86C /* DeeplinkCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeeplinkCreator.swift; sourceTree = "<group>"; };
 		4CFD001C29A2348B0015F86C /* ProfileAdditionaly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAdditionaly.swift; sourceTree = "<group>"; };
-		76E91AA3E17A2DD5CC8752FE /* Pods-BestDate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestDate.release.xcconfig"; path = "Target Support Files/Pods-BestDate/Pods-BestDate.release.xcconfig"; sourceTree = "<group>"; };
+		97AF8C182C6AD86BD5141BB1 /* Pods_BestDate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BestDate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ACB9FBED2A3E299F00A8BE0E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		ACB9FBEF2A3E29A800A8BE0E /* Subscription_configuration.storekit */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Subscription_configuration.storekit; path = ../../../Downloads/Subscription_configuration.storekit; sourceTree = "<group>"; };
+		ACB9FBF12A3ECD5000A8BE0E /* loading_heart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = loading_heart.json; path = ../../../../StudioProjects/bestdateandroidapp/app/src/main/res/raw/loading_heart.json; sourceTree = "<group>"; };
+		ACB9FBF32A3EDB1A00A8BE0E /* ModerationSuccessPushView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModerationSuccessPushView.swift; sourceTree = "<group>"; };
+		ACB9FBF52A3EDB4700A8BE0E /* ModerationFailurePushView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModerationFailurePushView.swift; sourceTree = "<group>"; };
+		D77E29CF86AA974549B3A8B7 /* Pods-BestDate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BestDate.release.xcconfig"; path = "Target Support Files/Pods-BestDate/Pods-BestDate.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -726,7 +730,7 @@
 				4CB9FF7528808B3C004F1BF6 /* Lottie in Frameworks */,
 				4CE699232A265ADC00D165FD /* StoreKit.framework in Frameworks */,
 				4C2DC95128C399D700DD15C2 /* FacebookCore in Frameworks */,
-				CBBBFD3F8B9D52BA6E4734C1 /* Pods_BestDate.framework in Frameworks */,
+				9A846C613EBC140250D1B9C6 /* Pods_BestDate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -747,7 +751,6 @@
 			isa = PBXGroup;
 			children = (
 				4CE6991F2A22185000D165FD /* subscriptions */,
-				4C2DC8DD28BCF13200DD15C2 /* notification center */,
 				4C92CB0028A78A6E00E5DF52 /* scroll */,
 				4C5C86E62875FB15006DE024 /* imageLoader */,
 				4C022A52285F90A50043E49D /* Zoomable */,
@@ -890,14 +893,6 @@
 			path = "match action";
 			sourceTree = "<group>";
 		};
-		4C2DC8DD28BCF13200DD15C2 /* notification center */ = {
-			isa = PBXGroup;
-			children = (
-				4C2DC8DE28BCF16A00DD15C2 /* NotificationService.swift */,
-			);
-			path = "notification center";
-			sourceTree = "<group>";
-		};
 		4C2DC93928BFB72D00DD15C2 /* notify settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -918,6 +913,8 @@
 				4C2DC94528C1221600DD15C2 /* InvitationPushView.swift */,
 				4C2DC94728C1225900DD15C2 /* DefaultPushView.swift */,
 				4C2DC94928C2528100DD15C2 /* PushUserDataView.swift */,
+				ACB9FBF32A3EDB1A00A8BE0E /* ModerationSuccessPushView.swift */,
+				ACB9FBF52A3EDB4700A8BE0E /* ModerationFailurePushView.swift */,
 			);
 			path = push;
 			sourceTree = "<group>";
@@ -1126,12 +1123,12 @@
 			path = "create invitation";
 			sourceTree = "<group>";
 		};
-		4C80ED912A12A4490064FAB8 /* No connection */ = {
+		4C80ED912A12A4490064FAB8 /* no connection */ = {
 			isa = PBXGroup;
 			children = (
 				4C80ED922A12A4770064FAB8 /* NoConnectionAlert.swift */,
 			);
-			path = "No connection";
+			path = "no connection";
 			sourceTree = "<group>";
 		};
 		4C878F2128B9246300043680 /* matches list */ = {
@@ -1178,7 +1175,7 @@
 			isa = PBXGroup;
 			children = (
 				4C2DC92C28BDF0F900DD15C2 /* BestDateDebug.entitlements */,
-				4C2DC8E028BCFB2E00DD15C2 /* GoogleService-Info.plist */,
+				ACB9FBED2A3E299F00A8BE0E /* GoogleService-Info.plist */,
 				4C2DC8D828BCDA0300DD15C2 /* BestDate.entitlements */,
 				4C950D59284E6C4C004E2C13 /* Info.plist */,
 				4CB9FF7628808D6E004F1BF6 /* Lottie */,
@@ -1196,7 +1193,7 @@
 				4C8E7D8E284D1C0B00D6E58D /* value */,
 				4C8E7DAA284D24C600D6E58D /* views */,
 				4C2DC8D928BCDA6C00DD15C2 /* AppDelegate.swift */,
-				4CE6991D2A2214ED00D165FD /* Subscription_configuration.storekit */,
+				ACB9FBEF2A3E29A800A8BE0E /* Subscription_configuration.storekit */,
 			);
 			path = BestDate;
 			sourceTree = "<group>";
@@ -1258,7 +1255,7 @@
 		4C8E7DA9284D24BC00D6E58D /* screens */ = {
 			isa = PBXGroup;
 			children = (
-				4C80ED912A12A4490064FAB8 /* No connection */,
+				4C80ED912A12A4490064FAB8 /* no connection */,
 				4C48EAC229B3A2FB009199ED /* tariff list */,
 				4C48EAB929ABB4D3009199ED /* banning modals */,
 				4C9C57CE28E0B15300688F4B /* fill data */,
@@ -1641,6 +1638,7 @@
 		4CB9FF7628808D6E004F1BF6 /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
+				ACB9FBF12A3ECD5000A8BE0E /* loading_heart.json */,
 				4CE9FB9A29F402C70094AA47 /* loading_dots.json */,
 				4C2DC92D28BE944D00DD15C2 /* loading.json */,
 				4C2DC8D128BA9F3D00DD15C2 /* match_action_anim.json */,
@@ -1834,8 +1832,8 @@
 		8AAFA1B0BD0B01F2CA3053CD /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				343F8540C938C4C140871AD4 /* Pods-BestDate.debug.xcconfig */,
-				76E91AA3E17A2DD5CC8752FE /* Pods-BestDate.release.xcconfig */,
+				17FB07407022987999B0DD75 /* Pods-BestDate.debug.xcconfig */,
+				D77E29CF86AA974549B3A8B7 /* Pods-BestDate.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -1847,7 +1845,7 @@
 				4C2DC94B28C2764500DD15C2 /* AuthenticationServices.framework */,
 				4C2DC8F728BD0C4E00DD15C2 /* UserNotifications.framework */,
 				4C2DC8F928BD0C4E00DD15C2 /* UserNotificationsUI.framework */,
-				272A26CE4F9868E3D07C5D0C /* Pods_BestDate.framework */,
+				97AF8C182C6AD86BD5141BB1 /* Pods_BestDate.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1859,13 +1857,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4C8E7D8B284CC94900D6E58D /* Build configuration list for PBXNativeTarget "BestDate" */;
 			buildPhases = (
-				D6485BFBF8673FAF446F2348 /* [CP] Check Pods Manifest.lock */,
+				C29940509F50F656B9246D89 /* [CP] Check Pods Manifest.lock */,
 				4C8E7D79284CC93F00D6E58D /* Sources */,
 				4C8E7D7A284CC93F00D6E58D /* Frameworks */,
 				4C8E7D7B284CC93F00D6E58D /* Resources */,
 				4C2DC8EE28BD0A6000DD15C2 /* Embed App Extensions */,
-				0B569DFDDC93AD691C947F8E /* [CP] Embed Pods Frameworks */,
-				81B20D957EC9DBAB94081346 /* [CP] Copy Pods Resources */,
+				01C18E042E26399B5166DDBA /* [CP] Embed Pods Frameworks */,
+				AF970FD7DC5CAEE4243E3F8A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1932,15 +1930,16 @@
 				4C8E7D88284CC94900D6E58D /* Preview Assets.xcassets in Resources */,
 				4C0E71E6284FB14A004099D4 /* Localizable.strings in Resources */,
 				4C2DC8D228BA9F3D00DD15C2 /* match_action_anim.json in Resources */,
+				ACB9FBF22A3ECD5000A8BE0E /* loading_heart.json in Resources */,
 				4C9C57E028E4AB0500688F4B /* NotoSansDisplay-Italic.ttf in Resources */,
 				4C9C57E228E4AB0D00688F4B /* NotoSansDisplay-Regular.ttf in Resources */,
-				4CE6991E2A2214ED00D165FD /* Subscription_configuration.storekit in Resources */,
+				ACB9FBF02A3E29A800A8BE0E /* Subscription_configuration.storekit in Resources */,
+				ACB9FBEE2A3E299F00A8BE0E /* GoogleService-Info.plist in Resources */,
 				4C8E7D85284CC94900D6E58D /* Assets.xcassets in Resources */,
 				4C9C57DE28E4AAFC00688F4B /* NotoSansDisplay-Bold.ttf in Resources */,
 				4CB9FF84288094C0004F1BF6 /* heart.json in Resources */,
 				4CD34F64289C22C800504396 /* love_burst_red.json in Resources */,
 				4C1459072857926700558B6B /* SplashScreen.storyboard in Resources */,
-				4C2DC8E128BCFB2E00DD15C2 /* GoogleService-Info.plist in Resources */,
 				4C421E13292BE03B00F2F6CD /* Localizable.stringsdict in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1948,7 +1947,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0B569DFDDC93AD691C947F8E /* [CP] Embed Pods Frameworks */ = {
+		01C18E042E26399B5166DDBA /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1965,7 +1964,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BestDate/Pods-BestDate-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		81B20D957EC9DBAB94081346 /* [CP] Copy Pods Resources */ = {
+		AF970FD7DC5CAEE4243E3F8A /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1982,7 +1981,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BestDate/Pods-BestDate-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D6485BFBF8673FAF446F2348 /* [CP] Check Pods Manifest.lock */ = {
+		C29940509F50F656B9246D89 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2158,6 +2157,7 @@
 				4C9E5ADA28D0E01F00E4E9FF /* SettingsScreen.swift in Sources */,
 				4C9C57CB28E0AA9500688F4B /* FillRegistrationDataScreen.swift in Sources */,
 				4C9E5B0428D38C9C00E4E9FF /* LanguageMediator.swift in Sources */,
+				ACB9FBF42A3EDB1A00A8BE0E /* ModerationSuccessPushView.swift in Sources */,
 				4CB9FF46287743D9004F1BF6 /* MainMediator.swift in Sources */,
 				4C1B7C2F286CD8C4000DB5D4 /* SeekBarView.swift in Sources */,
 				4C1458F528552BE500558B6B /* RegistrationMediator.swift in Sources */,
@@ -2257,7 +2257,6 @@
 				4CD34F5B289689B700504396 /* ChatUtils.swift in Sources */,
 				4CF02859288B0D71002C59EE /* DuelCoinsView.swift in Sources */,
 				4CF028492889D827002C59EE /* TopPagerToggle.swift in Sources */,
-				4C2DC8DF28BCF16B00DD15C2 /* NotificationService.swift in Sources */,
 				4C3D27CC28539C8800F8FD09 /* RegistrationContinueScreen.swift in Sources */,
 				4C2DC94E28C36DBF00DD15C2 /* LoadingProgressScreen.swift in Sources */,
 				4CD34F34288D0A3900504396 /* ChatListMediator.swift in Sources */,
@@ -2274,6 +2273,7 @@
 				4C8E7D9C284D1F0700D6E58D /* ScreenList.swift in Sources */,
 				4C6CFF1A28B538FE00BA33E0 /* ChatOnlyCardBottomView.swift in Sources */,
 				4C8E7D81284CC93F00D6E58D /* BestDateApp.swift in Sources */,
+				ACB9FBF62A3EDB4700A8BE0E /* ModerationFailurePushView.swift in Sources */,
 				4C1B7C2C286CD5BD000DB5D4 /* QuestionnaireSeekBarBottomSheet.swift in Sources */,
 				4C2DC8CE28BA9B1300DD15C2 /* MatchActionScreen.swift in Sources */,
 				4C9C57D228E0C21100688F4B /* NotifySettingsMediator.swift in Sources */,
@@ -2477,7 +2477,7 @@
 		};
 		4C8E7D8C284CC94900D6E58D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 343F8540C938C4C140871AD4 /* Pods-BestDate.debug.xcconfig */;
+			baseConfigurationReference = 17FB07407022987999B0DD75 /* Pods-BestDate.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -2519,7 +2519,7 @@
 		};
 		4C8E7D8D284CC94900D6E58D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 76E91AA3E17A2DD5CC8752FE /* Pods-BestDate.release.xcconfig */;
+			baseConfigurationReference = D77E29CF86AA974549B3A8B7 /* Pods-BestDate.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

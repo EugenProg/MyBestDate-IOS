@@ -65,8 +65,11 @@ struct PhotoEditingScreen: View {
                 DispatchQueue.main.async {
                     process.toggle()
                     if success {
+                        ProfileMediator.shared.updateUserData { }
                         store.dispatch(action: .navigationBack)
-                        store.dispatch(action: .showBottomSheet(view: .PHOTO_SETTINGS))
+                        if !moderated {
+                            store.dispatch(action: .showBottomSheet(view: .PHOTO_SETTINGS))
+                        }
                     }
                 }
             }

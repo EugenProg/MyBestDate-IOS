@@ -215,6 +215,11 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
             MainMediator.shared.currentScreen = .GUESTS
             screen = .MAIN
         }
+        case .moderation_failure: do {
+            screen = .PROFILE
+            ImagePickerMediator.shared.isShowingPhotoLibrary = true
+        }
+        case .moderation_success: screen = .PROFILE
         case .defaultPush:
             screen = store?.state.activeScreen ?? .MAIN
         }

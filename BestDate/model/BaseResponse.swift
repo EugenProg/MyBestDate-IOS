@@ -46,6 +46,7 @@ struct ProfileImage: Codable {
     var liked: Bool? = nil
     var likes: Int? = nil
     var top_place: Int? = nil
+    var moderated: Bool? = nil
 }
 
 struct UserDataResponse: Codable {
